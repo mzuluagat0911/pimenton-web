@@ -104,6 +104,48 @@ export const copy = {
     ],
   },
   servicesTeaser: {},
+  services: {
+    eyebrow: "Nuestros servicios",
+    heading: "Una unidad de negocio completa, no un servicio más.",
+    cta: { label: "Contáctanos", href: "#contacto" },
+    items: [
+      {
+        num: "01",
+        name: "Gestión Integral",
+        description:
+          "Nos hacemos cargo del Delivery de punta a punta: equipo, análisis, estrategia, ejecución y seguimiento diario. Con foco en crecimiento y rentabilidad.",
+        image: "/assets/services/service_gestion-integral.webp",
+      },
+      {
+        num: "02",
+        name: "Consultoría",
+        description:
+          "Trabajamos proyectos a medida en base a las necesidades de tu Restaurante, definiendo objetivos claros y metodologías ágiles.",
+        image: "/assets/services/service_consultoria.webp",
+      },
+      {
+        num: "03",
+        name: "Performance",
+        description:
+          "Optimizamos lo que más impacta en tus ventas: visibilidad, conversión, ticket promedio y recompra. Ajustes constantes, decisiones rápidas.",
+        image: "/assets/services/service_performance.webp",
+      },
+      {
+        num: "04",
+        name: "Estrategia",
+        description:
+          "Definimos en conjunto la combinación perfecta entre operaciones, marketing, procesos y rentabilidad que se ajuste a tu negocio.",
+        image: "/assets/services/service_estrategia.webp",
+      },
+      {
+        num: "05",
+        name: "Tecnología",
+        description:
+          "Utilizamos data de las Food Apps y canales digitales para disponer en tiempo real de toda la información que tu Restaurante necesita para la toma de decisiones.",
+        image: "/assets/services/service_tecnologia.webp",
+      },
+    ],
+  },
   successStories: {},
   ctaFinal: {},
   footer: {},
