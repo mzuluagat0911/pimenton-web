@@ -19,7 +19,11 @@ export const copy = {
       { value: 6, prefix: "+", suffix: "M", label: "Pedidos gestionados por año" },
     ],
   },
-  controlRoom: {},
+  controlRoom: {
+    eyebrow: "Nuestra tecnología",
+    heading: "Control Room ®",
+    subheading: "Tu delivery operado desde una sola pantalla.",
+  },
   marketStats: {},
   comparison: {},
   servicesTeaser: {},

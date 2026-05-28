@@ -46,6 +46,9 @@ export const metadata: Metadata = {
     description: "Convertimos tu Restaurante en una unidad de negocio rentable.",
     images: ["/og-default.png"],
   },
+  icons: {
+    icon: [{ url: "/assets/favicon.svg", type: "image/svg+xml" }],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
