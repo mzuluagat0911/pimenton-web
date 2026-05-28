@@ -82,7 +82,7 @@ function DesktopMedia({
   return (
     <div>
       {/* All 5 images stacked — only active is visible, others preload silently */}
-      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-pimenton-dark-surface">
+      <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl bg-pimenton-dark-surface">
         {items.map((item, i) => (
           <motion.div
             key={item.num}
@@ -108,6 +108,8 @@ function DesktopMedia({
               fill
               sizes="(min-width: 1024px) 45vw, (min-width: 768px) 50vw, 100vw"
               priority={i === 0}
+              quality={90}
+              unoptimized
               className="object-cover"
             />
           </motion.div>
@@ -191,13 +193,15 @@ function MobileAccordion({
                   style={{ overflow: "hidden" }}
                 >
                   <div className="pb-6">
-                    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-pimenton-dark-surface">
+                    <div className="relative aspect-[3/2] w-full overflow-hidden rounded-xl bg-pimenton-dark-surface">
                       <Image
                         src={item.image}
                         alt={item.name}
                         fill
                         sizes="100vw"
                         priority={i === 0}
+                        quality={90}
+                        unoptimized
                         className="object-cover"
                       />
                     </div>
