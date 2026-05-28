@@ -19,7 +19,7 @@ function ClientCard({
   const inner = (
     <div
       // The flip wrapper — preserve-3d so the two faces orbit a shared axis.
-      className={`group/card relative size-16 transition-transform duration-500 [transform-style:preserve-3d] hover:[transform:rotateY(180deg)] sm:size-20 lg:size-[88px] ${
+      className={`group/card relative size-32 transition-transform duration-700 ease-out [transform-style:preserve-3d] hover:[transform:rotateY(180deg)] sm:size-36 lg:size-[176px] ${
         reduced ? "[&_*]:!transform-none" : ""
       }`}
       style={{ transformOrigin: "center" }}
@@ -37,20 +37,20 @@ function ClientCard({
       </div>
       {/* BACK — flag + name + (optional IG hint) */}
       <div
-        className="absolute inset-0 flex flex-col items-center justify-center gap-1 rounded-full bg-pimenton-dark px-2 text-center [backface-visibility:hidden] [transform:rotateY(180deg)]"
+        className="absolute inset-0 flex flex-col items-center justify-center gap-2 rounded-full bg-pimenton-dark px-4 text-center [backface-visibility:hidden] [transform:rotateY(180deg)]"
         aria-hidden
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={client.flag}
           alt=""
-          className="size-3.5 rounded-full object-cover ring-1 ring-pimenton-dark-border sm:size-4"
+          className="size-5 rounded-full object-cover ring-1 ring-pimenton-dark-border sm:size-6"
         />
-        <span className="line-clamp-2 text-[9px] font-medium leading-tight text-pimenton-text-on-dark sm:text-[10px]">
+        <span className="line-clamp-3 text-xs font-medium leading-tight text-pimenton-text-on-dark sm:text-sm">
           {client.name}
         </span>
         {hasIG && (
-          <ExternalLink className="size-2.5 text-pimenton-accent" />
+          <ExternalLink className="size-4 text-pimenton-accent sm:size-5" />
         )}
       </div>
     </div>
@@ -82,31 +82,28 @@ function ClientCard({
 function MarqueeRow({
   items,
   direction,
-  duration,
   reduced,
 }: {
   items: Client[];
   direction: "left" | "right";
-  duration: number;
   reduced: boolean;
 }) {
-  const animationName =
-    direction === "left" ? "pim-marquee-left" : "pim-marquee-right";
+  // Animation + slowdown wired as Tailwind arbitrary utilities so the
+  // CSS-driven hover override sits in the same rule cascade as the base
+  // animation. On hover, animation-duration is multiplied ~4× — modern
+  // browsers preserve the current iteration progress when the duration
+  // changes, so the row smoothly decelerates instead of jumping or
+  // stopping abruptly. Lets the user actually read a card while it's
+  // still moving.
+  const animClasses =
+    direction === "left"
+      ? "[animation:pim-marquee-left_70s_linear_infinite] group-hover/row:[animation-duration:280s]"
+      : "[animation:pim-marquee-right_90s_linear_infinite] group-hover/row:[animation-duration:360s]";
 
   return (
-    // group wrapper — hovering ANY child pauses the track via the
-    // [&:has(:hover)] selector below. Works on touch via tap-and-hold too.
     <div className="group/row relative overflow-hidden">
       <div
-        className="flex w-max gap-4 sm:gap-6 group-hover/row:[animation-play-state:paused] motion-reduce:!animate-none"
-        style={
-          reduced
-            ? undefined
-            : {
-                animation: `${animationName} ${duration}s linear infinite`,
-                willChange: "transform",
-              }
-        }
+        className={`flex w-max gap-6 will-change-transform sm:gap-8 lg:gap-10 motion-reduce:!animate-none ${reduced ? "" : animClasses}`}
       >
         {/* Duplicate the set so the track is 2x — 0 → -50% loops seamlessly */}
         {[...items, ...items].map((client, i) => (
@@ -188,18 +185,8 @@ export function ClientWall() {
             "linear-gradient(to right, transparent, black 4%, black 96%, transparent)",
         }}
       >
-        <MarqueeRow
-          items={rowA}
-          direction="left"
-          duration={70}
-          reduced={reduced}
-        />
-        <MarqueeRow
-          items={rowB}
-          direction="right"
-          duration={90}
-          reduced={reduced}
-        />
+        <MarqueeRow items={rowA} direction="left" reduced={reduced} />
+        <MarqueeRow items={rowB} direction="right" reduced={reduced} />
       </motion.div>
     </section>
   );
