@@ -1,7 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { useRef, useState } from "react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { copy } from "@/data/copy";
 
@@ -18,12 +23,28 @@ export function Hero() {
     subhead,
     ctaPrimary,
     ctaSecondary,
-    scrollLabel,
   } = copy.hero;
 
   const [headStart, headEnd] = headline.split(headlineAccent);
   const shouldReduceMotion = useReducedMotion();
   const [videoLoaded, setVideoLoaded] = useState(false);
+
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  const parallaxY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    shouldReduceMotion ? ["0%", "0%"] : ["0%", "30%"],
+  );
+  const contentOpacity = useTransform(
+    scrollYProgress,
+    [0, 1],
+    shouldReduceMotion ? [1, 1] : [1, 0.3],
+  );
 
   const fadeUp = (delay: number, duration: number, y: number) => ({
     initial: shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y },
@@ -31,28 +52,47 @@ export function Hero() {
     transition: { delay, duration, ease: EASE },
   });
 
-  const fadeOnly = (delay: number, duration: number) => ({
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    transition: { delay, duration, ease: EASE },
-  });
+  const videoAnimate = shouldReduceMotion
+    ? { opacity: videoLoaded ? 1 : 0 }
+    : { opacity: videoLoaded ? 1 : 0, scale: [1, 1.08] };
+
+  const videoTransition = shouldReduceMotion
+    ? { duration: 1.2, ease: EASE }
+    : {
+        opacity: { duration: 1.2, ease: EASE },
+        scale: {
+          duration: 20,
+          repeat: Infinity,
+          repeatType: "reverse" as const,
+          ease: "easeInOut" as const,
+        },
+      };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-pimenton-dark">
-      <motion.video
-        src="/assets/video/hero.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
+    <section
+      ref={sectionRef}
+      className="relative h-screen w-full overflow-hidden bg-pimenton-dark"
+    >
+      <motion.div
         aria-hidden
-        onLoadedData={() => setVideoLoaded(true)}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: videoLoaded ? 1 : 0 }}
-        transition={{ duration: 1.2, ease: EASE }}
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+        className="absolute inset-0 will-change-transform"
+        style={{ y: parallaxY }}
+      >
+        <motion.video
+          src="/assets/video/hero.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden
+          onLoadedData={() => setVideoLoaded(true)}
+          initial={{ opacity: 0, scale: 1 }}
+          animate={videoAnimate}
+          transition={videoTransition}
+          className="absolute inset-0 h-full w-full object-cover will-change-transform"
+        />
+      </motion.div>
 
       <div
         aria-hidden
@@ -65,7 +105,10 @@ export function Hero() {
         style={{ backgroundImage: NOISE_SVG }}
       />
 
-      <div className="relative z-10 flex h-full flex-col">
+      <motion.div
+        style={{ opacity: contentOpacity }}
+        className="relative z-10 flex h-full flex-col"
+      >
         <div className="h-20 shrink-0" />
 
         <div className="flex flex-1 items-end pb-20 sm:pb-24 px-8 sm:px-16 lg:px-24">
@@ -120,26 +163,7 @@ export function Hero() {
             </motion.div>
           </div>
         </div>
-
-        <motion.div
-          {...fadeOnly(1.4, 1)}
-          className="pointer-events-none absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 sm:flex"
-        >
-          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-pimenton-text-on-dark/50">
-            {scrollLabel}
-          </span>
-          <motion.span
-            aria-hidden
-            animate={shouldReduceMotion ? undefined : { y: [0, 6, 0] }}
-            transition={
-              shouldReduceMotion
-                ? undefined
-                : { duration: 2, repeat: Infinity, ease: "easeInOut" }
-            }
-            className="block h-8 w-px bg-gradient-to-b from-pimenton-text-on-dark/50 to-transparent"
-          />
-        </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }
