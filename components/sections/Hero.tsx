@@ -109,8 +109,6 @@ export function Hero() {
         style={{ opacity: contentOpacity }}
         className="relative z-10 flex h-full flex-col"
       >
-        <div className="h-20 shrink-0" />
-
         <div className="flex flex-1 items-end pb-20 sm:pb-24 px-8 sm:px-16 lg:px-24">
           <div className="w-full max-w-6xl">
             <motion.p

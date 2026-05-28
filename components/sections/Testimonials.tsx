@@ -268,7 +268,8 @@ export function Testimonials() {
   return (
     <section
       ref={ref}
-      className="bg-pimenton-bg px-8 sm:px-16 lg:px-24 py-24 sm:py-32"
+      id="testimonios"
+      className="scroll-mt-24 bg-pimenton-bg px-8 sm:px-16 lg:px-24 py-24 sm:py-32"
     >
       <div className="mx-auto w-full max-w-7xl">
         <div

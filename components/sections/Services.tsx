@@ -231,7 +231,8 @@ export function Services() {
   return (
     <section
       ref={ref}
-      className="relative bg-pimenton-dark px-8 sm:px-16 lg:px-24 py-24 sm:py-32"
+      id="servicios"
+      className="relative scroll-mt-24 bg-pimenton-dark px-8 sm:px-16 lg:px-24 py-24 sm:py-32"
     >
       <div className="mx-auto w-full max-w-7xl">
         <motion.p

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, JetBrains_Mono } from "next/font/google";
+import { Header } from "@/components/layout/Header";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -55,6 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" className={`${outfit.variable} ${jetbrains.variable}`}>
       <body className="font-sans antialiased bg-pimenton-bg text-pimenton-text">
+        <Header />
         {children}
       </body>
     </html>
