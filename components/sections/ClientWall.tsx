@@ -16,13 +16,16 @@ function ClientCard({
   reduced: boolean;
 }) {
   const hasIG = client.instagram !== null;
-  const inner = (
+
+  // The flipper element rotates; the outer wrapper does NOT. That keeps
+  // the pointer hit area stable while the inner element rotates through
+  // 90° (where its visual bounding box would otherwise shrink to a line
+  // and drop the cursor, causing the flicker bug on edge hovers).
+  const flipper = (
     <div
-      // The flip wrapper — preserve-3d so the two faces orbit a shared axis.
-      className={`group/card relative size-32 transition-transform duration-700 ease-out [transform-style:preserve-3d] hover:[transform:rotateY(180deg)] sm:size-36 lg:size-[176px] ${
-        reduced ? "[&_*]:!transform-none" : ""
+      className={`absolute inset-0 transition-transform duration-700 ease-out [transform-style:preserve-3d] group-hover/coin:[transform:rotateY(180deg)] ${
+        reduced ? "!transform-none" : ""
       }`}
-      style={{ transformOrigin: "center" }}
     >
       {/* FRONT — the logo */}
       <div className="absolute inset-0 overflow-hidden rounded-full bg-pimenton-dark [backface-visibility:hidden]">
@@ -56,25 +59,25 @@ function ClientCard({
     </div>
   );
 
+  const wrapperClasses =
+    "group/coin relative shrink-0 size-24 sm:size-36 lg:size-[176px] [perspective:1000px]";
+
   if (hasIG) {
     return (
       <a
         href={client.instagram ?? "#"}
         target="_blank"
         rel="noopener noreferrer"
-        className="block shrink-0 [perspective:1000px]"
+        className={`${wrapperClasses} block`}
         aria-label={`${client.name} en Instagram`}
       >
-        {inner}
+        {flipper}
       </a>
     );
   }
   return (
-    <div
-      className="shrink-0 [perspective:1000px]"
-      aria-label={client.name}
-    >
-      {inner}
+    <div className={wrapperClasses} aria-label={client.name}>
+      {flipper}
     </div>
   );
 }
