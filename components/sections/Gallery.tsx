@@ -2,168 +2,135 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import {
-  motion,
-  useInView,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-  type MotionValue,
-} from "motion/react";
-import { ImageIcon } from "lucide-react";
-import { copy } from "@/data/copy";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { useReducedMotion } from "motion/react";
 
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(useGSAP, ScrollTrigger);
+}
 
-type GalleryImage = (typeof copy.gallery.images)[number];
+type GalleryImage = { src: string; alt: string };
 
-// Hardcoded bento layout. Six slots with mixed col/row spans for the
-// desktop bento; each carries its own subtle parallax intensity so the
-// composition feels layered as the section scrolls past. Intensities
-// alternate sign so cells drift in opposite directions — gives depth.
-const SLOTS: Array<{ className: string; parallax: number }> = [
+const IMAGES: GalleryImage[] = [
   {
-    // A — large feature, top-left, 2 rows tall
-    className:
-      "sm:col-span-2 lg:col-span-7 lg:row-span-2 aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto",
-    parallax: -50,
+    src: "/assets/gallery/preparacion-burguer.webp",
+    alt: "Preparación de hamburguesa en cocina",
   },
   {
-    // B — wide medium, top-right
-    className:
-      "lg:col-span-5 lg:row-span-1 aspect-[4/3] sm:aspect-[16/9] lg:aspect-auto",
-    parallax: 30,
+    src: "/assets/gallery/plato-sushi.webp",
+    alt: "Plato de sushi terminado",
   },
   {
-    // C — wide medium, sits below B
-    className:
-      "lg:col-span-5 lg:row-span-1 aspect-[4/3] sm:aspect-[16/9] lg:aspect-auto",
-    parallax: -25,
+    src: "/assets/gallery/repartidor-rappi.webp",
+    alt: "Repartidor saliendo a entrega",
   },
   {
-    // D — bottom-left, 4 cols
-    className:
-      "lg:col-span-4 lg:row-span-1 aspect-[4/3] sm:aspect-[3/2] lg:aspect-auto",
-    parallax: 35,
+    src: "/assets/gallery/dashboard-analisis.webp",
+    alt: "Dashboard de análisis de Pimentón",
   },
   {
-    // E — bottom-middle, 4 cols
-    className:
-      "lg:col-span-4 lg:row-span-1 aspect-[4/3] sm:aspect-[3/2] lg:aspect-auto",
-    parallax: -35,
+    src: "/assets/gallery/preparacion-pedido-veggie.webp",
+    alt: "Preparación de pedido veggie",
   },
   {
-    // F — bottom-right, 4 cols
-    className:
-      "lg:col-span-4 lg:row-span-1 aspect-[4/3] sm:aspect-[3/2] lg:aspect-auto",
-    parallax: 45,
+    src: "/assets/gallery/plato-burguer.webp",
+    alt: "Hamburguesa gourmet emplatada",
   },
 ];
 
-function Placeholder({ idx, alt }: { idx: number; alt: string }) {
-  const num = String(idx + 1).padStart(2, "0");
-  return (
-    <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-pimenton-bg-soft p-6">
-      <ImageIcon
-        aria-hidden
-        className="size-8 text-pimenton-text-muted/40"
-        strokeWidth={1.5}
-      />
-      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-text-muted/60">
-        Imagen {num}
-      </span>
-      <span className="max-w-[28ch] text-center text-xs leading-relaxed text-pimenton-text-muted/50">
-        {alt}
-      </span>
-    </div>
-  );
-}
+// Desktop grid placement for each cell. 12 cols × 4 rows; image 4
+// (dashboard, index 3) is the center hero spanning the middle.
+const DESKTOP_AREAS = [
+  "md:[grid-area:1/1/3/4]", // 0: top-left
+  "md:[grid-area:1/4/2/9]", // 1: top-middle band
+  "md:[grid-area:1/9/3/13]", // 2: top-right
+  "md:[grid-area:2/4/5/9]", // 3: HERO center
+  "md:[grid-area:3/1/5/4]", // 4: bottom-left
+  "md:[grid-area:3/9/5/13]", // 5: bottom-right
+];
 
-function GalleryCell({
-  image,
-  idx,
-  scrollYProgress,
-  reduced,
-}: {
-  image: GalleryImage;
-  idx: number;
-  scrollYProgress: MotionValue<number>;
-  reduced: boolean;
-}) {
-  const slot = SLOTS[idx];
-  const inViewRef = useRef<HTMLDivElement>(null);
-  const inView = useInView(inViewRef, { once: true, amount: 0.2 });
-
-  // Each cell's own y motion value, derived from the shared scroll
-  // progress so we only register one scroll listener for the whole
-  // section. Reduced motion collapses parallax to 0.
-  const y = useTransform(
-    scrollYProgress,
-    [0, 1],
-    reduced ? [0, 0] : [0, slot.parallax],
-  );
-
-  return (
-    <motion.div
-      ref={inViewRef}
-      className={`group relative overflow-hidden rounded-2xl border border-pimenton-border bg-pimenton-bg-soft transition-shadow duration-500 hover:shadow-[0_20px_50px_-24px_rgba(15,15,14,0.18)] ${slot.className}`}
-      initial={reduced ? { opacity: 0 } : { opacity: 0, scale: 1.05 }}
-      animate={
-        inView
-          ? { opacity: 1, scale: 1 }
-          : reduced
-            ? { opacity: 0 }
-            : { opacity: 0, scale: 1.05 }
-      }
-      transition={{ duration: 0.8, ease: EASE }}
-      style={reduced ? undefined : { y }}
-    >
-      {image.src ? (
-        <Image
-          src={image.src}
-          alt={image.alt}
-          fill
-          sizes="(min-width: 1024px) 50vw, (min-width: 640px) 50vw, 100vw"
-          className={`object-cover transition-transform duration-700 ${
-            reduced ? "" : "group-hover:scale-[1.04]"
-          }`}
-        />
-      ) : (
-        <Placeholder idx={idx} alt={image.alt} />
-      )}
-    </motion.div>
-  );
-}
+// End-state transforms for the scrub. Non-hero cells fly outward and
+// fade; hero stays centered and scales up. Values in vw/vh so cells
+// reach off-viewport regardless of their starting size.
+const SCRUB_TARGETS: Array<{
+  x?: string | number;
+  y?: string | number;
+  scale: number;
+  opacity?: number;
+}> = [
+  { x: "-50vw", y: "-45vh", scale: 1.5, opacity: 0 }, // 0
+  { x: 0, y: "-65vh", scale: 1.4, opacity: 0 }, // 1
+  { x: "50vw", y: "-45vh", scale: 1.5, opacity: 0 }, // 2
+  { x: 0, y: 0, scale: 1.7 }, // 3 HERO
+  { x: "-50vw", y: "45vh", scale: 1.5, opacity: 0 }, // 4
+  { x: "50vw", y: "45vh", scale: 1.5, opacity: 0 }, // 5
+];
 
 export function Gallery() {
-  const { images } = copy.gallery;
   const sectionRef = useRef<HTMLElement>(null);
+  const cellRefs = useRef<(HTMLDivElement | null)[]>([]);
   const reduced = useReducedMotion() ?? false;
 
-  // Single useScroll for the whole section — each cell derives its
-  // own y motion value from this shared progress.
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
+  useGSAP(
+    () => {
+      if (reduced) return;
+
+      const mm = gsap.matchMedia();
+
+      // Only run pin+scrub on desktop. Mobile gets a static bento.
+      mm.add("(min-width: 768px)", () => {
+        const cells = cellRefs.current.filter(
+          (el): el is HTMLDivElement => el !== null,
+        );
+        if (cells.length !== IMAGES.length) return;
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "+=150%",
+            pin: true,
+            scrub: 1,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        cells.forEach((el, i) => {
+          tl.to(el, SCRUB_TARGETS[i], 0);
+        });
+      });
+    },
+    { scope: sectionRef, dependencies: [reduced] },
+  );
 
   return (
     <section
       ref={sectionRef}
-      className="bg-pimenton-bg px-8 sm:px-16 lg:px-24 py-24 sm:py-32"
+      className="relative overflow-hidden bg-pimenton-dark md:h-screen"
     >
-      <div className="mx-auto w-full max-w-7xl">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-12 lg:auto-rows-[220px] lg:gap-6">
-          {images.map((image, i) => (
-            <GalleryCell
-              key={i}
-              image={image}
-              idx={i}
-              scrollYProgress={scrollYProgress}
-              reduced={reduced}
+      <div className="grid grid-cols-2 gap-3 p-6 sm:gap-4 sm:p-8 md:absolute md:inset-0 md:grid-cols-12 md:grid-rows-4 md:gap-4 md:p-8 lg:p-12">
+        {IMAGES.map((img, i) => (
+          <div
+            key={img.src}
+            ref={(el) => {
+              cellRefs.current[i] = el;
+            }}
+            className={`relative aspect-[4/3] overflow-hidden rounded-2xl bg-pimenton-dark-surface md:aspect-auto ${DESKTOP_AREAS[i]}`}
+            style={{ willChange: "transform, opacity" }}
+          >
+            <Image
+              src={img.src}
+              alt={img.alt}
+              fill
+              sizes="(min-width: 1024px) 40vw, (min-width: 768px) 40vw, 50vw"
+              priority={i === 3}
+              className="object-cover"
             />
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );
