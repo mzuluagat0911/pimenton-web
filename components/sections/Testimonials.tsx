@@ -1,11 +1,25 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView, useReducedMotion } from "motion/react";
+import {
+  motion,
+  useInView,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+} from "motion/react";
 import { Star } from "lucide-react";
 import { copy } from "@/data/copy";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+const ENTRY_SPRING = {
+  type: "spring" as const,
+  stiffness: 80,
+  damping: 14,
+  mass: 0.7,
+};
+const TILT_SPRING = { stiffness: 220, damping: 22 };
+const TILT_MAX_DEG = 5;
 
 type TestimonialItem = (typeof copy.testimonials.items)[number];
 
@@ -18,15 +32,35 @@ function getInitials(name: string): string {
     .toUpperCase();
 }
 
-function AvatarPlaceholder({ name }: { name: string }) {
-  return (
-    <div
-      aria-hidden
-      className="flex size-10 flex-shrink-0 items-center justify-center rounded-full border border-pimenton-accent/30 bg-pimenton-accent/15 font-mono text-xs font-semibold tracking-wide text-pimenton-accent sm:size-11 sm:text-sm"
-    >
-      {getInitials(name)}
-    </div>
-  );
+/**
+ * Hook: 3D tilt following the cursor position over the card. Returns
+ * motion values for rotateX/Y and the handlers to wire into the
+ * card. Disabled under reduced motion.
+ */
+function useCardTilt(disabled: boolean) {
+  const ref = useRef<HTMLElement>(null);
+  const rotateX = useMotionValue(0);
+  const rotateY = useMotionValue(0);
+  const springX = useSpring(rotateX, TILT_SPRING);
+  const springY = useSpring(rotateY, TILT_SPRING);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (disabled) return;
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    rotateY.set(px * -TILT_MAX_DEG * 2);
+    rotateX.set(py * TILT_MAX_DEG * 2);
+  };
+
+  const handleMouseLeave = () => {
+    rotateX.set(0);
+    rotateY.set(0);
+  };
+
+  return { ref, springX, springY, handleMouseMove, handleMouseLeave };
 }
 
 function StarRow() {
@@ -39,42 +73,93 @@ function StarRow() {
   );
 }
 
+function PortraitAvatar({ name }: { name: string }) {
+  // DiceBear "notionists" — illustrated portraits, deterministic per seed.
+  // Loaded as a plain <img> (external SVG, no Next config needed). Falls
+  // back to initials via onError if the request fails.
+  const seed = encodeURIComponent(name);
+  const url = `https://api.dicebear.com/9.x/notionists/svg?seed=${seed}&backgroundColor=ffe0d7,ffd9cf,ffcec1`;
+  return (
+    <div className="flex size-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-full border border-pimenton-accent/30 bg-pimenton-accent/15 font-mono text-xs font-semibold tracking-wide text-pimenton-accent">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={url}
+        alt=""
+        aria-hidden
+        className="h-full w-full object-cover"
+        draggable={false}
+        onError={(e) => {
+          // Fallback to initials if DiceBear is unreachable
+          const target = e.currentTarget;
+          target.style.display = "none";
+          if (target.nextSibling) return;
+          const span = document.createElement("span");
+          span.textContent = getInitials(name);
+          target.parentElement?.appendChild(span);
+        }}
+      />
+    </div>
+  );
+}
+
 function IntroCard({
   brand,
   heading,
   subheading,
   inView,
   reduced,
+  rotateZStart,
 }: {
   brand: string;
   heading: string;
   subheading: string;
   inView: boolean;
   reduced: boolean;
+  rotateZStart: number;
 }) {
+  const tilt = useCardTilt(reduced);
   return (
     <motion.article
-      initial={reduced ? { opacity: 0 } : { opacity: 0, y: 24 }}
+      ref={tilt.ref}
+      initial={
+        reduced
+          ? { opacity: 0 }
+          : { opacity: 0, y: 70, rotate: rotateZStart, scale: 0.94 }
+      }
       animate={
         inView
-          ? { opacity: 1, y: 0 }
+          ? { opacity: 1, y: 0, rotate: 0, scale: 1 }
           : reduced
             ? { opacity: 0 }
-            : { opacity: 0, y: 24 }
+            : { opacity: 0, y: 70, rotate: rotateZStart, scale: 0.94 }
       }
-      transition={{ duration: 0.6, ease: EASE }}
+      transition={reduced ? { duration: 0.4 } : ENTRY_SPRING}
+      style={
+        reduced
+          ? undefined
+          : {
+              rotateX: tilt.springY,
+              rotateY: tilt.springX,
+              transformPerspective: 1000,
+            }
+      }
+      onMouseMove={tilt.handleMouseMove}
+      onMouseLeave={tilt.handleMouseLeave}
       className="relative flex h-full flex-col justify-between rounded-2xl border border-pimenton-border bg-pimenton-surface p-7 sm:p-8"
     >
-      {/* Coral corner accent, subtle nod to the Framer original */}
       <span
         aria-hidden
         className="pointer-events-none absolute right-7 top-7 block size-3 border-r border-t border-pimenton-accent sm:right-8 sm:top-8"
       />
 
       <div>
-        <p className="font-semibold text-pimenton-accent tracking-tight text-lg">
-          {brand}
-        </p>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/logos/principal/logo-coral.webp"
+          alt={brand}
+          className="h-7 w-auto sm:h-8"
+          draggable={false}
+        />
         <h2 className="mt-10 text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl">
           {heading}
         </h2>
@@ -92,33 +177,47 @@ function TestimonialCard({
   index,
   inView,
   reduced,
+  rotateZStart,
 }: {
   item: TestimonialItem;
   index: number;
   inView: boolean;
   reduced: boolean;
+  rotateZStart: number;
 }) {
+  const tilt = useCardTilt(reduced);
   return (
     <motion.article
-      initial={reduced ? { opacity: 0 } : { opacity: 0, y: 24 }}
+      ref={tilt.ref}
+      initial={
+        reduced
+          ? { opacity: 0 }
+          : { opacity: 0, y: 70, rotate: rotateZStart, scale: 0.94 }
+      }
       animate={
         inView
-          ? { opacity: 1, y: 0 }
+          ? { opacity: 1, y: 0, rotate: 0, scale: 1 }
           : reduced
             ? { opacity: 0 }
-            : { opacity: 0, y: 24 }
+            : { opacity: 0, y: 70, rotate: rotateZStart, scale: 0.94 }
       }
-      transition={{
-        duration: 0.6,
-        delay: reduced ? 0 : (index + 1) * 0.1,
-        ease: EASE,
-      }}
-      whileHover={
+      transition={
+        reduced
+          ? { duration: 0.4 }
+          : { ...ENTRY_SPRING, delay: (index + 1) * 0.12 }
+      }
+      style={
         reduced
           ? undefined
-          : { y: -4, transition: { duration: 0.25, ease: EASE } }
+          : {
+              rotateX: tilt.springY,
+              rotateY: tilt.springX,
+              transformPerspective: 1000,
+            }
       }
-      className="relative flex h-full flex-col rounded-2xl border border-pimenton-border bg-pimenton-surface p-7 transition-shadow duration-300 hover:shadow-[0_18px_40px_-22px_rgba(15,15,14,0.18)] sm:p-8"
+      onMouseMove={tilt.handleMouseMove}
+      onMouseLeave={tilt.handleMouseLeave}
+      className="relative flex h-full flex-col rounded-2xl border border-pimenton-border bg-pimenton-surface p-7 transition-shadow duration-300 hover:shadow-[0_22px_44px_-22px_rgba(15,15,14,0.22)] sm:p-8"
     >
       <StarRow />
 
@@ -141,7 +240,7 @@ function TestimonialCard({
         </div>
 
         <div className="mt-6 flex items-center gap-3 border-t border-pimenton-border pt-5">
-          <AvatarPlaceholder name={item.name} />
+          <PortraitAvatar name={item.name} />
           <div className="min-w-0">
             <p className="truncate text-sm font-semibold text-pimenton-text">
               {item.name}
@@ -162,19 +261,27 @@ export function Testimonials() {
   const inView = useInView(ref, { once: true, amount: 0.15 });
   const reduced = useReducedMotion() ?? false;
 
+  // Alternating rotation start angles for the "deck deal" entry — cards
+  // arrive from slightly different tilts and settle to 0.
+  const rotations = [-2.5, 2, -1.8, 2.2];
+
   return (
     <section
       ref={ref}
       className="bg-pimenton-bg px-8 sm:px-16 lg:px-24 py-24 sm:py-32"
     >
       <div className="mx-auto w-full max-w-7xl">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div
+          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4"
+          style={{ perspective: 1200 }}
+        >
           <IntroCard
             brand={intro.brand}
             heading={intro.heading}
             subheading={intro.subheading}
             inView={inView}
             reduced={reduced}
+            rotateZStart={rotations[0]}
           />
           {items.map((item, i) => (
             <TestimonialCard
@@ -183,6 +290,7 @@ export function Testimonials() {
               index={i}
               inView={inView}
               reduced={reduced}
+              rotateZStart={rotations[i + 1] ?? 0}
             />
           ))}
         </div>
