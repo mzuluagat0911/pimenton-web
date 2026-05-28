@@ -240,12 +240,8 @@ export const copy = {
       },
     ],
     links: [
-      { label: "Inicio", href: "#" },
       { label: "¿Cómo lo hacemos?", href: "#servicios" },
       { label: "Nuestros Servicios", href: "#servicios" },
-      { label: "Casos de éxito", href: "#testimonios" },
-      { label: "Insights", href: "#" },
-      { label: "Nuestro equipo", href: "#" },
       { label: "FAQ", href: "#" },
       { label: "Contacto", href: "#contacto" },
     ],
