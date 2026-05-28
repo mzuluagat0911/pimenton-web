@@ -8,6 +8,12 @@ export const copy = {
     ctaSecondary: { label: "Contáctanos", href: "#contacto" },
     scrollLabel: "Scroll",
   },
+  whereWeOperate: {
+    eyebrow: "Presencia global",
+    heading: "Operamos delivery en +12 países.",
+    subheading:
+      "De LATAM a Europa, gestionamos el canal digital de restaurantes en todo el mundo.",
+  },
   wall: {},
   stats: {
     eyebrow: "Los números hablan",
