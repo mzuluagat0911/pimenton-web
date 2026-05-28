@@ -1,140 +1,17 @@
-import { copy } from "@/data/copy";
-import { platforms, type Platform, type PlatformRing } from "@/data/platforms";
+import { ControlRoomAutonomous } from "./control-room/Autonomous";
+import { ControlRoomMobile } from "./control-room/Mobile";
 
-const RING_RADII: Record<PlatformRing, number> = {
-  inner: 0.2,
-  middle: 0.35,
-  outer: 0.5,
-};
-
-const RING_ORDER: PlatformRing[] = ["inner", "middle", "outer"];
-
-// % of ring-container width — kept in sync with the Tailwind class on the
-// center isologo (w-[18%]) so SVG line start points hit its edge cleanly.
-const ISOLOGO_RADIUS_PCT = 9;
-
-type PositionedPlatform = Platform & {
-  angleDeg: number;
-  xPct: number;
-  yPct: number;
-  startXPct: number;
-  startYPct: number;
-  radiusPct: number;
-};
-
-function buildPositions(): PositionedPlatform[] {
-  const out: PositionedPlatform[] = [];
-  for (const ring of RING_ORDER) {
-    const list = platforms.filter((p) => p.ring === ring);
-    const radius = RING_RADII[ring];
-    list.forEach((p, i) => {
-      const angleDeg = (360 / list.length) * i;
-      const rad = (angleDeg - 90) * (Math.PI / 180);
-      const cosA = Math.cos(rad);
-      const sinA = Math.sin(rad);
-      out.push({
-        ...p,
-        angleDeg,
-        xPct: cosA * radius * 100,
-        yPct: sinA * radius * 100,
-        startXPct: cosA * ISOLOGO_RADIUS_PCT,
-        startYPct: sinA * ISOLOGO_RADIUS_PCT,
-        radiusPct: radius,
-      });
-    });
-  }
-  return out;
-}
-
+// Default desktop variant defaults to Autonomous; swap to Scroll once
+// Santi picks the version after comparing them at /lab/control-room.
 export function ControlRoom() {
-  const { eyebrow, heading, subheading } = copy.controlRoom;
-  const positioned = buildPositions();
-
   return (
-    <section className="relative bg-pimenton-dark px-8 sm:px-16 lg:px-24 py-20 sm:py-24">
-      <div className="mx-auto w-full max-w-7xl">
-        <p className="flex items-center text-pimenton-accent text-xs sm:text-sm uppercase tracking-[0.22em] font-medium">
-          <span aria-hidden className="mr-3 inline-block h-px w-8 bg-pimenton-accent" />
-          {eyebrow}
-        </p>
-        <h2 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark">
-          {heading}
-        </h2>
-        <p className="mt-4 max-w-xl text-base sm:text-lg leading-relaxed text-pimenton-text-on-dark-muted">
-          {subheading}
-        </p>
-
-        <div className="relative mx-auto mt-12 aspect-square w-full max-w-[760px] sm:mt-20">
-          {RING_ORDER.map((ring) => (
-            <div
-              key={ring}
-              aria-hidden
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-pimenton-text-on-dark-muted/15"
-              style={{
-                width: `${RING_RADII[ring] * 200}%`,
-                height: `${RING_RADII[ring] * 200}%`,
-              }}
-            />
-          ))}
-
-          <svg
-            aria-hidden
-            className="absolute inset-0 h-full w-full"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-          >
-            {positioned.map((p) => (
-              <line
-                key={p.id}
-                x1={50 + p.startXPct}
-                y1={50 + p.startYPct}
-                x2={50 + p.xPct}
-                y2={50 + p.yPct}
-                stroke="var(--color-pimenton-accent)"
-                strokeOpacity="0.25"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                vectorEffect="non-scaling-stroke"
-              />
-            ))}
-          </svg>
-
-          <div className="absolute left-1/2 top-1/2 z-20 aspect-square w-[18%] -translate-x-1/2 -translate-y-1/2">
-            <div
-              aria-hidden
-              className="absolute inset-[-60%] rounded-full bg-pimenton-accent/40 blur-3xl"
-            />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/assets/logos/isologo/isologo-crema.webp"
-              alt="Pimentón"
-              className="relative h-full w-full object-contain"
-            />
-          </div>
-
-          <ul aria-label="Plataformas integradas" className="contents">
-            {positioned.map((p) => (
-              <li
-                key={p.id}
-                className="absolute z-10 flex aspect-square w-[11.5%] items-center justify-center rounded-full border border-pimenton-dark-border bg-pimenton-dark-surface"
-                style={{
-                  left: `${50 + p.xPct}%`,
-                  top: `${50 + p.yPct}%`,
-                  transform: "translate(-50%, -50%)",
-                }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={p.logo}
-                  alt={p.name}
-                  className="max-h-[68%] max-w-[68%] object-contain"
-                  style={{ filter: "brightness(0) invert(1)" }}
-                />
-              </li>
-            ))}
-          </ul>
-        </div>
+    <>
+      <div className="md:hidden">
+        <ControlRoomMobile />
       </div>
-    </section>
+      <div className="hidden md:block">
+        <ControlRoomAutonomous />
+      </div>
+    </>
   );
 }
