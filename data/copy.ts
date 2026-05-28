@@ -9,7 +9,16 @@ export const copy = {
     scrollLabel: "Scroll",
   },
   wall: {},
-  stats: {},
+  stats: {
+    eyebrow: "Los números hablan",
+    heading: "La escala de operar en serio.",
+    items: [
+      { value: 500, prefix: "+", suffix: "", label: "Restaurantes confían en nosotros" },
+      { value: 12, prefix: "+", suffix: "", label: "Países en LATAM y Europa" },
+      { value: 30, prefix: "~", suffix: "%", label: "Crecimiento en ventas los primeros 3 meses" },
+      { value: 6, prefix: "+", suffix: "M", label: "Pedidos gestionados por año" },
+    ],
+  },
   controlRoom: {},
   marketStats: {},
   comparison: {},
