@@ -60,19 +60,19 @@ export function Footer() {
 
   return (
     <footer className="bg-pimenton-dark text-pimenton-text-on-dark">
-      <div className="mx-auto w-full max-w-7xl px-8 py-16 sm:px-16 sm:py-20 lg:px-24">
+      <div className="mx-auto w-full px-8 py-16 sm:px-16 sm:py-20 md:w-[90%] md:max-w-[1500px] md:px-0">
         {/* Top zone — logo + tagline, nav links, contact + social */}
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-10">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-10 lg:gap-14">
           {/* Logo + tagline */}
           <div className="md:col-span-5">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/assets/logos/principal/logo-coral.webp"
               alt="Pimentón"
-              className="h-10 w-auto sm:h-12"
+              className="h-10 w-auto sm:h-12 lg:h-14"
               draggable={false}
             />
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-pimenton-text-on-dark-muted sm:text-base">
+            <p className="mt-6 max-w-lg text-sm leading-relaxed text-pimenton-text-on-dark-muted sm:text-base">
               {tagline}
             </p>
           </div>
@@ -96,8 +96,9 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact + social */}
-          <div className="md:col-span-4">
+          {/* Contact + social — right-aligned on desktop to pull the
+              big email toward the page edge for a strong visual close */}
+          <div className="md:col-span-4 md:text-right">
             <h3 className="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-text-on-dark-muted">
               Contacto
             </h3>
@@ -109,12 +110,12 @@ export function Footer() {
             </a>
             <a
               href={`mailto:${email}`}
-              className="mt-2 block break-all text-2xl font-semibold tracking-tight text-pimenton-accent transition-colors duration-200 hover:text-pimenton-accent-hover sm:text-3xl"
+              className="mt-2 block break-all text-2xl font-semibold tracking-tight text-pimenton-accent transition-colors duration-200 hover:text-pimenton-accent-hover sm:text-3xl lg:text-4xl"
             >
               {email}
             </a>
 
-            <div className="mt-6 flex items-center gap-3">
+            <div className="mt-6 flex items-center gap-3 md:justify-end">
               {social.map((item) => {
                 const Icon = SOCIAL_ICONS[item.name];
                 return (
