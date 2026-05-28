@@ -2,17 +2,23 @@ import { copy } from "@/data/copy";
 import { platforms, type Platform, type PlatformRing } from "@/data/platforms";
 
 const RING_RADII: Record<PlatformRing, number> = {
-  inner: 0.28,
-  middle: 0.4,
-  outer: 0.48,
+  inner: 0.2,
+  middle: 0.35,
+  outer: 0.5,
 };
 
 const RING_ORDER: PlatformRing[] = ["inner", "middle", "outer"];
+
+// % of ring-container width — kept in sync with the Tailwind class on the
+// center isologo (w-[18%]) so SVG line start points hit its edge cleanly.
+const ISOLOGO_RADIUS_PCT = 9;
 
 type PositionedPlatform = Platform & {
   angleDeg: number;
   xPct: number;
   yPct: number;
+  startXPct: number;
+  startYPct: number;
   radiusPct: number;
 };
 
@@ -24,13 +30,15 @@ function buildPositions(): PositionedPlatform[] {
     list.forEach((p, i) => {
       const angleDeg = (360 / list.length) * i;
       const rad = (angleDeg - 90) * (Math.PI / 180);
-      const x = Math.cos(rad) * radius;
-      const y = Math.sin(rad) * radius;
+      const cosA = Math.cos(rad);
+      const sinA = Math.sin(rad);
       out.push({
         ...p,
         angleDeg,
-        xPct: x * 100,
-        yPct: y * 100,
+        xPct: cosA * radius * 100,
+        yPct: sinA * radius * 100,
+        startXPct: cosA * ISOLOGO_RADIUS_PCT,
+        startYPct: sinA * ISOLOGO_RADIUS_PCT,
         radiusPct: radius,
       });
     });
@@ -43,7 +51,7 @@ export function ControlRoom() {
   const positioned = buildPositions();
 
   return (
-    <section className="relative flex min-h-screen items-center bg-pimenton-dark px-8 sm:px-16 lg:px-24 py-20 sm:py-24">
+    <section className="relative bg-pimenton-dark px-8 sm:px-16 lg:px-24 py-20 sm:py-24">
       <div className="mx-auto w-full max-w-7xl">
         <p className="flex items-center text-pimenton-accent text-xs sm:text-sm uppercase tracking-[0.22em] font-medium">
           <span aria-hidden className="mr-3 inline-block h-px w-8 bg-pimenton-accent" />
@@ -56,12 +64,12 @@ export function ControlRoom() {
           {subheading}
         </p>
 
-        <div className="relative mx-auto mt-16 aspect-square w-full max-w-[640px] sm:mt-20">
+        <div className="relative mx-auto mt-12 aspect-square w-full max-w-[760px] sm:mt-20">
           {RING_ORDER.map((ring) => (
             <div
               key={ring}
               aria-hidden
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-pimenton-dark-border/40"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-pimenton-text-on-dark-muted/15"
               style={{
                 width: `${RING_RADII[ring] * 200}%`,
                 height: `${RING_RADII[ring] * 200}%`,
@@ -78,40 +86,37 @@ export function ControlRoom() {
             {positioned.map((p) => (
               <line
                 key={p.id}
-                x1="50"
-                y1="50"
+                x1={50 + p.startXPct}
+                y1={50 + p.startYPct}
                 x2={50 + p.xPct}
                 y2={50 + p.yPct}
                 stroke="var(--color-pimenton-accent)"
-                strokeOpacity="0.18"
-                strokeWidth="0.2"
+                strokeOpacity="0.25"
+                strokeWidth="1.5"
+                strokeLinecap="round"
                 vectorEffect="non-scaling-stroke"
               />
             ))}
           </svg>
 
-          <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
-            <div className="relative">
-              <div
-                aria-hidden
-                className="absolute inset-[-45%] rounded-full bg-pimenton-accent/30 blur-3xl"
-              />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/assets/logos/isologo/isologo-crema.webp"
-                alt="Pimentón"
-                width={128}
-                height={128}
-                className="relative size-24 sm:size-28 lg:size-32 object-contain"
-              />
-            </div>
+          <div className="absolute left-1/2 top-1/2 z-20 aspect-square w-[18%] -translate-x-1/2 -translate-y-1/2">
+            <div
+              aria-hidden
+              className="absolute inset-[-60%] rounded-full bg-pimenton-accent/40 blur-3xl"
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/assets/logos/isologo/isologo-crema.webp"
+              alt="Pimentón"
+              className="relative h-full w-full object-contain"
+            />
           </div>
 
           <ul aria-label="Plataformas integradas" className="contents">
             {positioned.map((p) => (
               <li
                 key={p.id}
-                className="absolute z-10 flex size-12 items-center justify-center rounded-full border border-pimenton-dark-border bg-pimenton-dark-surface sm:size-14"
+                className="absolute z-10 flex aspect-square w-[11.5%] items-center justify-center rounded-full border border-pimenton-dark-border bg-pimenton-dark-surface"
                 style={{
                   left: `${50 + p.xPct}%`,
                   top: `${50 + p.yPct}%`,
@@ -122,7 +127,7 @@ export function ControlRoom() {
                 <img
                   src={p.logo}
                   alt={p.name}
-                  className="size-6 object-contain sm:size-7"
+                  className="max-h-[68%] max-w-[68%] object-contain"
                   style={{ filter: "brightness(0) invert(1)" }}
                 />
               </li>
