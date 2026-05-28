@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Outfit, JetBrains_Mono } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { SmoothScroll } from "@/components/layout/SmoothScroll";
+import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -57,9 +59,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" className={`${outfit.variable} ${jetbrains.variable}`}>
       <body className="font-sans antialiased bg-pimenton-bg text-pimenton-text">
+        <SmoothScroll />
         <Header />
         {children}
         <Footer />
+        <WhatsAppFab />
       </body>
     </html>
   );

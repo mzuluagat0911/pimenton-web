@@ -17,13 +17,31 @@ const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export function Hero() {
   const {
-    eyebrow,
     headline,
     headlineAccent,
     subhead,
     ctaPrimary,
     ctaSecondary,
   } = copy.hero;
+
+  // Anchor click → smooth-scroll via Lenis if present, fallback to
+  // native scrollIntoView. Header has the same pattern.
+  const anchorClick = (href: string) => (e: React.MouseEvent) => {
+    if (!href.startsWith("#")) return;
+    e.preventDefault();
+    const lenis = typeof window !== "undefined" ? window.__lenis : undefined;
+    if (lenis) {
+      lenis.scrollTo(href, { offset: -64 });
+      return;
+    }
+    if (href === "#") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    document
+      .querySelector(href)
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   const [headStart, headEnd] = headline.split(headlineAccent);
   const shouldReduceMotion = useReducedMotion();
@@ -78,8 +96,20 @@ export function Hero() {
         className="absolute inset-0 will-change-transform"
         style={{ y: parallaxY }}
       >
+        {/* Poster fallback — visible until the video opacity ramps up
+            (or stays forever if the video never loads). Keeps the
+            Hero from ever showing a black slab. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/gallery/preparacion-burguer.webp"
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover"
+          draggable={false}
+        />
         <motion.video
           src="/assets/video/hero.mp4"
+          poster="/assets/gallery/preparacion-burguer.webp"
           autoPlay
           loop
           muted
@@ -87,6 +117,7 @@ export function Hero() {
           preload="auto"
           aria-hidden
           onLoadedData={() => setVideoLoaded(true)}
+          onCanPlay={() => setVideoLoaded(true)}
           initial={{ opacity: 0, scale: 1 }}
           animate={videoAnimate}
           transition={videoTransition}
@@ -111,17 +142,9 @@ export function Hero() {
       >
         <div className="flex flex-1 items-end pb-20 sm:pb-24 px-8 sm:px-16 lg:px-24">
           <div className="w-full max-w-6xl">
-            <motion.p
-              {...fadeUp(0.2, 0.6, 12)}
-              className="flex items-center text-pimenton-accent text-xs sm:text-sm uppercase tracking-[0.22em] font-medium"
-            >
-              <span aria-hidden className="mr-3 inline-block h-px w-8 bg-pimenton-accent" />
-              {eyebrow}
-            </motion.p>
-
             <motion.h1
-              {...fadeUp(0.4, 0.8, 24)}
-              className="mt-6 text-5xl sm:text-7xl lg:text-8xl font-semibold leading-[1.02] tracking-tight text-pimenton-text-on-dark"
+              {...fadeUp(0.2, 0.8, 24)}
+              className="text-5xl sm:text-7xl lg:text-8xl font-semibold leading-[1.02] tracking-tight text-pimenton-text-on-dark"
             >
               {headStart}
               <span className="italic font-medium text-pimenton-accent">
@@ -143,6 +166,7 @@ export function Hero() {
             >
               <a
                 href={ctaPrimary.href}
+                onClick={anchorClick(ctaPrimary.href)}
                 className="group inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-pimenton-accent px-8 py-4 font-medium text-pimenton-bg transition-colors duration-300 hover:bg-pimenton-accent-hover"
               >
                 {ctaPrimary.label}
@@ -154,6 +178,7 @@ export function Hero() {
 
               <a
                 href={ctaSecondary.href}
+                onClick={anchorClick(ctaSecondary.href)}
                 className="inline-flex cursor-pointer items-center justify-center rounded-full border border-pimenton-text-on-dark/30 px-8 py-4 font-medium text-pimenton-text-on-dark backdrop-blur-sm transition-colors duration-300 hover:border-pimenton-text-on-dark/80 hover:bg-pimenton-text-on-dark/5"
               >
                 {ctaSecondary.label}

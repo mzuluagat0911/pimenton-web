@@ -2,90 +2,132 @@
 
 import { useRef } from "react";
 import { motion, useInView, useReducedMotion } from "motion/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { copy } from "@/data/copy";
 
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(useGSAP, ScrollTrigger);
+}
 
-type Phrase = {
-  text: string;
-  highlight: string;
-};
+type Phrase = { text: string; highlight: string };
 
-/**
- * Reveal a phrase via overflow-hidden mask + translateY from below.
- * Editorial feel — the text physically emerges from the bottom of an
- * invisible "slot". The highlight word(s) light up to coral a beat
- * after the reveal finishes, so the key idea lands last.
- */
-function RevealPhrase({
-  phrase,
-  reduced,
-}: {
-  phrase: Phrase;
-  reduced: boolean;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.5 });
-
+function PhraseStatic({ phrase, inView }: { phrase: Phrase; inView: boolean }) {
   const [before, after] = phrase.text.split(phrase.highlight);
-
-  // Reduced motion: plain fade, highlight already coral, no clipping.
-  if (reduced) {
-    return (
-      <motion.div
-        ref={ref}
-        initial={{ opacity: 0 }}
-        animate={inView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <p className="text-4xl font-semibold leading-[1.1] tracking-tight text-pimenton-text-on-dark sm:text-5xl lg:text-6xl">
-          {before}
-          <span className="text-pimenton-accent">{phrase.highlight}</span>
-          {after}
-        </p>
-      </motion.div>
-    );
-  }
-
   return (
-    // Outer ref triggers viewport detection; the mask wrapper clips the
-    // text until the inner element translates up into place.
-    <div ref={ref}>
-      <div className="overflow-hidden pb-2">
-        <motion.p
-          initial={{ y: "110%" }}
-          animate={inView ? { y: "0%" } : { y: "110%" }}
-          transition={{ duration: 1.1, ease: EASE }}
-          className="text-4xl font-semibold leading-[1.1] tracking-tight text-pimenton-text-on-dark sm:text-5xl lg:text-6xl"
-        >
-          {before}
-          <span
-            className={`transition-colors duration-500 delay-[1100ms] ${
-              inView ? "text-pimenton-accent" : "text-pimenton-text-on-dark"
-            }`}
-          >
-            {phrase.highlight}
-          </span>
-          {after}
-        </motion.p>
-      </div>
-    </div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={inView ? { opacity: 1 } : { opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <p className="text-4xl font-semibold leading-[1.1] tracking-tight text-pimenton-text-on-dark sm:text-5xl lg:text-6xl">
+        {before}
+        <span className="text-pimenton-accent">{phrase.highlight}</span>
+        {after}
+      </p>
+    </motion.div>
   );
 }
 
 export function Specialists() {
-  const { phrase1, phrase2 } = copy.specialists;
+  const sectionRef = useRef<HTMLElement>(null);
+  const phrase1Ref = useRef<HTMLDivElement>(null);
+  const phrase2Ref = useRef<HTMLDivElement>(null);
+  const inViewRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion() ?? false;
+  const { phrase1, phrase2 } = copy.specialists;
+  const inView = useInView(inViewRef, { once: true, amount: 0.4 });
+
+  useGSAP(
+    () => {
+      if (reduced) return;
+
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 768px)", () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "+=220%",
+            pin: true,
+            scrub: 1,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        // Phrase 1: reveals → holds → exits
+        tl.fromTo(
+          phrase1Ref.current,
+          { yPercent: 100, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 0.15, ease: "power3.out" },
+          0,
+        );
+        tl.to(
+          phrase1Ref.current,
+          { yPercent: -100, opacity: 0, duration: 0.15, ease: "power3.in" },
+          0.4,
+        );
+
+        // Phrase 2: reveals into the vacated space, then holds to the end
+        tl.fromTo(
+          phrase2Ref.current,
+          { yPercent: 100, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 0.15, ease: "power3.out" },
+          0.55,
+        );
+      });
+    },
+    { scope: sectionRef, dependencies: [reduced] },
+  );
 
   return (
-    <section className="bg-pimenton-dark px-8 sm:px-16 lg:px-24 py-32 sm:py-48">
-      <div className="mx-auto w-full max-w-7xl">
-        <div className="max-w-4xl">
-          <RevealPhrase phrase={phrase1} reduced={reduced} />
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden bg-pimenton-dark md:h-screen"
+    >
+      {/* Desktop pinned scrub */}
+      <div className="hidden md:block absolute inset-0">
+        <div className="absolute inset-0 flex items-center justify-center px-8 sm:px-16 lg:px-24">
+          <div className="relative w-full max-w-7xl">
+            <div
+              ref={phrase1Ref}
+              className="absolute inset-x-0 top-1/2 -translate-y-1/2 will-change-transform"
+            >
+              <p className="text-4xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-5xl lg:text-6xl">
+                {phrase1.text.split(phrase1.highlight)[0]}
+                <span className="text-pimenton-accent">
+                  {phrase1.highlight}
+                </span>
+                {phrase1.text.split(phrase1.highlight)[1]}
+              </p>
+            </div>
+            <div
+              ref={phrase2Ref}
+              className="absolute inset-x-0 top-1/2 -translate-y-1/2 will-change-transform"
+              style={{ opacity: 0 }}
+            >
+              <p className="ml-auto max-w-4xl text-4xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-5xl lg:text-6xl lg:text-right">
+                {phrase2.text.split(phrase2.highlight)[0]}
+                <span className="text-pimenton-accent">
+                  {phrase2.highlight}
+                </span>
+                {phrase2.text.split(phrase2.highlight)[1]}
+              </p>
+            </div>
+          </div>
         </div>
-        <div className="mt-32 max-w-4xl sm:mt-40 lg:mt-56 lg:ml-auto">
-          <RevealPhrase phrase={phrase2} reduced={reduced} />
-        </div>
+      </div>
+
+      {/* Mobile + reduced-motion fallback — both phrases revealed via
+          intersection observer, stacked, no pin, no scrub */}
+      <div
+        ref={inViewRef}
+        className="md:hidden px-8 py-24 sm:px-16 sm:py-32 flex flex-col gap-24"
+      >
+        <PhraseStatic phrase={phrase1} inView={inView} />
+        <PhraseStatic phrase={phrase2} inView={inView} />
       </div>
     </section>
   );

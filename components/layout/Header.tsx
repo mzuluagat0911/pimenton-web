@@ -25,14 +25,36 @@ const CONTACT = {
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const reduced = useReducedMotion() ?? false;
 
-  // Track scroll to apply backdrop when off the Hero
+  // Track scroll for backdrop + auto-hide. Hide when scrolling down past
+  // the Hero, show when scrolling up — resolves the Control Room
+  // ring being clipped by the fixed header (and reads as a clean
+  // scrolling pattern site-wide).
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    let lastY = window.scrollY;
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        const y = window.scrollY;
+        setScrolled(y > 40);
+        const delta = y - lastY;
+        if (Math.abs(delta) > 4) {
+          if (delta > 0 && y > 160) setHidden(true);
+          else setHidden(false);
+          lastY = y;
+        }
+        raf = 0;
+      });
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
 
   // Lock body scroll while the overlay is up
@@ -54,19 +76,27 @@ export function Header() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  // Anchor click — close overlay, then smooth-scroll to the section.
-  // setTimeout 50ms gives React time to release body overflow before
-  // the browser kicks off the smooth scroll.
+  // Anchor click — close overlay, then smooth-scroll. Uses Lenis if
+  // present (set by SmoothScroll on window.__lenis), falls back to
+  // native scrollIntoView. setTimeout 50ms lets React release body
+  // overflow before the scroll kicks off.
   const handleLinkClick = (href: string) => (e: React.MouseEvent) => {
     e.preventDefault();
     setOpen(false);
     setTimeout(() => {
+      const lenis = typeof window !== "undefined" ? window.__lenis : undefined;
+      if (lenis) {
+        if (href === "#") lenis.scrollTo(0);
+        else lenis.scrollTo(href, { offset: -64 });
+        return;
+      }
       if (href === "#") {
         window.scrollTo({ top: 0, behavior: "smooth" });
         return;
       }
-      const target = document.querySelector(href);
-      target?.scrollIntoView({ behavior: "smooth", block: "start" });
+      document
+        .querySelector(href)
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 50);
   };
 
@@ -74,6 +104,8 @@ export function Header() {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+          !open && hidden ? "-translate-y-full" : "translate-y-0"
+        } ${
           !open && scrolled
             ? "bg-pimenton-dark/70 backdrop-blur-md"
             : "bg-transparent"
