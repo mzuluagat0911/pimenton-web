@@ -24,7 +24,32 @@ export const copy = {
     heading: "Control Room ®",
     subheading: "Tu delivery operado desde una sola pantalla.",
   },
-  marketStats: {},
+  marketStats: {
+    eyebrow: "Por qué profesionalizar tu delivery",
+    heading: "El delivery ya no es un extra. Es un negocio en sí mismo.",
+    items: [
+      {
+        stat: "1 pedido por semana",
+        label: "Gen Z y Millennials piden delivery al menos una vez por semana",
+        icon: "pedido-semana",
+      },
+      {
+        stat: "+40-50%",
+        label: "Incremento de facturación combinando delivery y canales digitales",
+        icon: "facturacion",
+      },
+      {
+        stat: "8 de cada 10",
+        label: "Personas leen reseñas y miran tu calificación antes de pedirte",
+        icon: "personas",
+      },
+      {
+        stat: "+1M",
+        label: "De impresiones: tu restaurante genera visibilidad en las apps",
+        icon: "impresiones",
+      },
+    ],
+  },
   comparison: {},
   servicesTeaser: {},
   successStories: {},
