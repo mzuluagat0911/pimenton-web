@@ -79,7 +79,7 @@ export function Header() {
             : "bg-transparent"
         }`}
       >
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-8 sm:h-20 sm:px-16 lg:px-24">
+        <div className="mx-auto flex h-16 items-center justify-between px-8 sm:h-20 md:w-[90%] md:max-w-[1500px] md:px-0">
           <a
             href="#"
             onClick={handleLinkClick("#")}
@@ -127,7 +127,7 @@ export function Header() {
                 className="absolute left-0 right-0 top-1/2 -translate-y-px block h-px bg-current"
               />
             </span>
-            <span className="font-mono text-sm uppercase tracking-[0.2em] sm:text-base">
+            <span className="text-base font-semibold tracking-tight sm:text-lg">
               {open ? "Cerrar" : "Menu"}
             </span>
           </button>

@@ -214,7 +214,42 @@ export const copy = {
       highlight: "unidad de negocio rentable",
     },
   },
-  footer: {},
+  footer: {
+    tagline:
+      "Transformamos el delivery en un canal rentable, predecible y profesional para restaurantes en LATAM y Europa.",
+    phone: "+54 9 (11) 5703 5170",
+    phoneRaw: "+5491157035170",
+    email: "comercial@pimenton.io",
+    copyright: "© 2026 Pimentón. Todos los derechos reservados.",
+    credit: {
+      label: "Created by Deache.io",
+      href: "https://deache.io",
+    },
+    social: [
+      {
+        name: "LinkedIn",
+        href: "https://www.linkedin.com/company/pimentóngrowth/",
+      },
+      {
+        name: "Instagram",
+        href: "https://www.instagram.com/pimenton.io/",
+      },
+      {
+        name: "WhatsApp",
+        href: "https://api.whatsapp.com/send/?phone=1157035170",
+      },
+    ],
+    links: [
+      { label: "Inicio", href: "#" },
+      { label: "¿Cómo lo hacemos?", href: "#servicios" },
+      { label: "Nuestros Servicios", href: "#servicios" },
+      { label: "Casos de éxito", href: "#testimonios" },
+      { label: "Insights", href: "#" },
+      { label: "Nuestro equipo", href: "#" },
+      { label: "FAQ", href: "#" },
+      { label: "Contacto", href: "#contacto" },
+    ],
+  },
 } as const;
 
 export type Copy = typeof copy;
