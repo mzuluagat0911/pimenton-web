@@ -26,7 +26,7 @@ export const copy = {
   },
   marketStats: {
     eyebrow: "Por qué profesionalizar tu delivery",
-    heading: "El delivery ya no es un extra. Es un negocio en sí mismo.",
+    heading: "El delivery ya no es un extra.\nEs un negocio en sí mismo.",
     items: [
       {
         stat: "1 pedido por semana",

@@ -104,7 +104,7 @@ export function MarketStats() {
                 : { opacity: 0, y: 20 }
           }
           transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
-          className="mt-6 max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-5xl"
+          className="mt-6 max-w-3xl whitespace-pre-line text-4xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-5xl"
         >
           {heading}
         </motion.h2>
