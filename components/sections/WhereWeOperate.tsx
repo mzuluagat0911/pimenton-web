@@ -38,6 +38,7 @@ function MapPin({
         left: `${location.x}%`,
         top: `${location.y}%`,
         transform: "translate(-50%, -50%)",
+        zIndex: active ? 30 : 10,
       }}
       data-pin
     >
@@ -78,11 +79,15 @@ function MapPin({
           ease: [0.34, 1.56, 0.64, 1], // small overshoot for the "pop"
           scale: { duration: 0.2, ease: "easeOut" },
         }}
-        className="relative flex size-7 cursor-pointer items-center justify-center rounded-full border-2 border-pimenton-accent-deep bg-pimenton-yellow shadow-[0_4px_10px_-2px_rgba(193,52,32,0.4)] outline-none transition-colors hover:bg-pimenton-yellow focus-visible:ring-2 focus-visible:ring-pimenton-accent focus-visible:ring-offset-2 focus-visible:ring-offset-pimenton-bg sm:size-9"
+        className="relative flex size-7 cursor-pointer items-center justify-center overflow-hidden rounded-full border-2 border-pimenton-accent-deep bg-pimenton-yellow shadow-[0_4px_10px_-2px_rgba(193,52,32,0.4)] outline-none focus-visible:ring-2 focus-visible:ring-pimenton-accent focus-visible:ring-offset-2 focus-visible:ring-offset-pimenton-bg sm:size-9"
       >
-        <span
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/logos/isologo/isologo-crema.svg"
+          alt=""
           aria-hidden
-          className="size-2 rounded-full bg-pimenton-accent sm:size-2.5"
+          className="h-full w-full object-contain"
+          draggable={false}
         />
       </motion.button>
 
