@@ -56,7 +56,53 @@ export const copy = {
       },
     ],
   },
-  comparison: {},
+  comparison: {
+    eyebrow: "El antes y el después",
+    heading: "Tu delivery cambia cuando alguien lo opera en serio.",
+    off: {
+      title: "Sin Pimentón",
+      badge: "Canal sin gestión profesional",
+      footer: "A ciegas",
+    },
+    on: {
+      title: "Con Pimentón",
+      badge: "Delivery como unidad de negocio rentable",
+      footer: "Con datos reales",
+    },
+    footerLabel: "Decisiones de canal",
+    activate: "Activar Pimentón",
+    activated: "Pimentón activado",
+    items: [
+      {
+        off: "Sin datos reales: tomás decisiones a ciegas sobre precios, promos y horarios.",
+        on: "Dashboard en tiempo real con ventas, margen, ticket y promos en un mismo lugar.",
+      },
+      {
+        off: "Las apps te cobran más comisión de lo que deberían. Nadie negocia por vos.",
+        on: "Un Growth Manager a cargo de tu cuenta. Operamos el canal todos los días.",
+      },
+      {
+        off: "Promociones mal configuradas que destruyen tu margen en vez de subirlo.",
+        on: "Optimización continua de precios, promos y horarios basada en datos reales.",
+      },
+      {
+        off: "Bajo ranking en las apps = menos visibilidad = menos pedidos.",
+        on: "Mejor ranking en las apps: entendemos sus reglas y palancas comerciales.",
+      },
+      {
+        off: "Errores y reclamos sin gestionar: plata que se va sin que te des cuenta.",
+        on: "Gestión activa de errores y reclamos. Recuperamos dinero que hoy estás perdiendo.",
+      },
+      {
+        off: "Ticket promedio estancado. Ningún trabajo en combos, menú o recompra.",
+        on: "Trabajo activo en ticket promedio, combos y recompra para subir la facturación.",
+      },
+      {
+        off: "El canal digital te roba tiempo y foco del negocio principal.",
+        on: "Vos te enfocás en cocinar. Nosotros nos encargamos del resto.",
+      },
+    ],
+  },
   servicesTeaser: {},
   successStories: {},
   ctaFinal: {},
