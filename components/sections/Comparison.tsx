@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   AnimatePresence,
   motion,
@@ -131,23 +131,11 @@ export function Comparison() {
 
   const [active, setActive] = useState(false);
   const [pulseCount, setPulseCount] = useState(0);
-  const [autoTriggered, setAutoTriggered] = useState(false);
 
   const toggle = () => {
     setActive((a) => !a);
     setPulseCount((c) => c + 1);
   };
-
-  // Auto-flip to ON ~1s after the section enters viewport, once.
-  useEffect(() => {
-    if (!inView || autoTriggered) return;
-    const t = setTimeout(() => {
-      setActive(true);
-      setPulseCount((c) => c + 1);
-      setAutoTriggered(true);
-    }, 1100);
-    return () => clearTimeout(t);
-  }, [inView, autoTriggered]);
 
   return (
     <section
@@ -224,10 +212,17 @@ export function Comparison() {
             <CrossFade
               active={active}
               off={off.title}
-              on={on.title}
-              className="text-2xl font-semibold tracking-tight sm:text-3xl"
-              offClassName="text-pimenton-text-on-dark-muted"
-              onClassName="text-pimenton-accent"
+              on={
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  src="/assets/logos/principal/logo-coral.webp"
+                  alt={on.title}
+                  className="h-7 w-auto sm:h-9"
+                  draggable={false}
+                />
+              }
+              className="items-center justify-items-start"
+              offClassName="text-2xl font-semibold tracking-tight text-pimenton-text-on-dark-muted sm:text-3xl"
             />
 
             <CrossFade

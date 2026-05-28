@@ -70,8 +70,8 @@ export const copy = {
       footer: "Con datos reales",
     },
     footerLabel: "Decisiones de canal",
-    activate: "Activar Pimentón",
-    activated: "Pimentón activado",
+    activate: "Activar Pimentón en mi Delivery",
+    activated: "Desactivar Pimentón",
     items: [
       {
         off: "Sin datos reales: tomás decisiones a ciegas sobre precios, promos y horarios.",
