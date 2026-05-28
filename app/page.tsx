@@ -1,3 +1,4 @@
+import { ClientWall } from "@/components/sections/ClientWall";
 import { Comparison } from "@/components/sections/Comparison";
 import { ControlRoom } from "@/components/sections/ControlRoom";
 import { Hero } from "@/components/sections/Hero";
@@ -13,7 +14,7 @@ export default function Home() {
       <Hero />
       <Stats />
       <WhereWeOperate />
-      {/* Wall de logos clientes va acá (parte 2 de esta sección) */}
+      <ClientWall />
       <ControlRoom />
       <MarketStats />
       <Comparison />

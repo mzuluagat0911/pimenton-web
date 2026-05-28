@@ -14,7 +14,11 @@ export const copy = {
     subheading:
       "De LATAM a Europa, gestionamos el canal digital de restaurantes en todo el mundo.",
   },
-  wall: {},
+  wall: {
+    eyebrow: "Quiénes confían en nosotros",
+    heading: "Más de 500 restaurantes ya operan su delivery con Pimentón.",
+    headingAccent: "500 restaurantes",
+  },
   stats: {
     eyebrow: "Los números hablan",
     heading: "La escala de operar en serio.",

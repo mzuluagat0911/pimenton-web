@@ -67,3 +67,15 @@ body {
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-pimenton-text-muted); }
+
+/* Client wall marquee — seamless infinite scroll. The track renders two
+ * copies of the logo set, so translating from 0 to -50% lands on the
+ * start of the duplicate which visually equals the start of the original. */
+@keyframes pim-marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes pim-marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
