@@ -5,6 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+  /* Fuentes — mapeadas a next/font CSS vars */
+  --font-sans: var(--font-outfit), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), monospace;
+
   /* Fondos light (dominantes) */
   --color-pimenton-bg: #FAF1E3;
   --color-pimenton-bg-soft: #F5EAD5;
