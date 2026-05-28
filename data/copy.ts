@@ -114,28 +114,28 @@ export const copy = {
         name: "Gestión Integral",
         description:
           "Nos hacemos cargo del Delivery de punta a punta: equipo, análisis, estrategia, ejecución y seguimiento diario. Con foco en crecimiento y rentabilidad.",
-        image: "/assets/services/service_gestion-integral.webp",
+        image: "/assets/services/service_gestion-integral.avif",
       },
       {
         num: "02",
         name: "Consultoría",
         description:
           "Trabajamos proyectos a medida en base a las necesidades de tu Restaurante, definiendo objetivos claros y metodologías ágiles.",
-        image: "/assets/services/service_consultoria.webp",
+        image: "/assets/services/service_consultoria.avif",
       },
       {
         num: "03",
         name: "Performance",
         description:
           "Optimizamos lo que más impacta en tus ventas: visibilidad, conversión, ticket promedio y recompra. Ajustes constantes, decisiones rápidas.",
-        image: "/assets/services/service_performance.webp",
+        image: "/assets/services/service_performance.avif",
       },
       {
         num: "04",
         name: "Estrategia",
         description:
           "Definimos en conjunto la combinación perfecta entre operaciones, marketing, procesos y rentabilidad que se ajuste a tu negocio.",
-        image: "/assets/services/service_estrategia.webp",
+        image: "/assets/services/service_estrategia.avif",
       },
       {
         num: "05",
