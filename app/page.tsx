@@ -4,6 +4,7 @@ import { ControlRoom } from "@/components/sections/ControlRoom";
 import { Hero } from "@/components/sections/Hero";
 import { MarketStats } from "@/components/sections/MarketStats";
 import { Services } from "@/components/sections/Services";
+import { Specialists } from "@/components/sections/Specialists";
 import { Stats } from "@/components/sections/Stats";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { WhereWeOperate } from "@/components/sections/WhereWeOperate";
@@ -20,6 +21,7 @@ export default function Home() {
       <Comparison />
       <Services />
       <Testimonials />
+      <Specialists />
     </main>
   );
 }

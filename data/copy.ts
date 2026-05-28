@@ -194,6 +194,16 @@ export const copy = {
     ],
   },
   ctaFinal: {},
+  specialists: {
+    phrase1: {
+      text: "No necesitás más pedidos. Necesitás mejores decisiones.",
+      highlight: "mejores decisiones",
+    },
+    phrase2: {
+      text: "Somos especialistas en convertir tu delivery en una unidad de negocio rentable.",
+      highlight: "unidad de negocio rentable",
+    },
+  },
   footer: {},
 } as const;
 
