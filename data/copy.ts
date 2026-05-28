@@ -194,6 +194,16 @@ export const copy = {
     ],
   },
   ctaFinal: {},
+  gallery: {
+    images: [
+      { src: null, alt: "Cocina de restaurante en plena operación" },
+      { src: null, alt: "Repartidor saliendo a delivery" },
+      { src: null, alt: "Plato emplatado, foto cenital" },
+      { src: null, alt: "Hamburguesa gourmet, primer plano" },
+      { src: null, alt: "Repartidor entregando el pedido" },
+      { src: null, alt: "Equipo trabajando en cocina" },
+    ],
+  },
   specialists: {
     phrase1: {
       text: "No necesitás más pedidos. Necesitás mejores decisiones.",

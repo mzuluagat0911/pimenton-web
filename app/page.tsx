@@ -1,6 +1,7 @@
 import { ClientWall } from "@/components/sections/ClientWall";
 import { Comparison } from "@/components/sections/Comparison";
 import { ControlRoom } from "@/components/sections/ControlRoom";
+import { Gallery } from "@/components/sections/Gallery";
 import { Hero } from "@/components/sections/Hero";
 import { MarketStats } from "@/components/sections/MarketStats";
 import { Services } from "@/components/sections/Services";
@@ -22,6 +23,7 @@ export default function Home() {
       <Services />
       <Testimonials />
       <Specialists />
+      <Gallery />
     </main>
   );
 }
