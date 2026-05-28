@@ -155,26 +155,29 @@ export function ControlRoomScroll() {
   };
 
   return (
-    // Spacer reserves ~180vh of scroll; the sticky child takes the
-    // section's natural height (~110vh) and stays pinned for the
-    // remainder, giving the scroll-driven rotation room to breathe
-    // without shrinking the ring relative to variant A.
-    <div ref={spacerRef} className="relative h-[180vh]">
-      <div className="sticky top-0">
-        <section className="relative bg-pimenton-dark px-8 sm:px-16 lg:px-24 py-20 sm:py-24">
-          <div className="mx-auto w-full max-w-7xl">
-            <p className="flex items-center text-pimenton-accent text-xs sm:text-sm uppercase tracking-[0.22em] font-medium">
-              <span aria-hidden className="mr-3 inline-block h-px w-8 bg-pimenton-accent" />
-              {eyebrow}
-            </p>
-            <h2 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark">
-              {heading}
-            </h2>
-            <p className="mt-4 max-w-xl text-base sm:text-lg leading-relaxed text-pimenton-text-on-dark-muted">
-              {subheading}
-            </p>
+    // The section wraps a normal-flow heading + a scroll-pin block.
+    // Only the ring is pinned; the heading scrolls past naturally above
+    // it. Spacer is 200vh so the sticky 100vh child provides 100vh of
+    // scroll runway for the rotation tween while staying centered in
+    // viewport during the pin.
+    <section className="relative bg-pimenton-dark py-20 sm:py-24">
+      <div className="mx-auto w-full max-w-7xl px-8 sm:px-16 lg:px-24">
+        <p className="flex items-center text-pimenton-accent text-xs sm:text-sm uppercase tracking-[0.22em] font-medium">
+          <span aria-hidden className="mr-3 inline-block h-px w-8 bg-pimenton-accent" />
+          {eyebrow}
+        </p>
+        <h2 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark">
+          {heading}
+        </h2>
+        <p className="mt-4 max-w-xl text-base sm:text-lg leading-relaxed text-pimenton-text-on-dark-muted">
+          {subheading}
+        </p>
+      </div>
 
-            <div className="relative mx-auto mt-12 aspect-square w-full max-w-[760px] sm:mt-20">
+      <div ref={spacerRef} className="relative mt-12 h-[200vh] sm:mt-20">
+        <div className="sticky top-0 flex h-screen items-center px-8 sm:px-16 lg:px-24">
+          <div className="mx-auto w-full max-w-7xl">
+            <div className="relative mx-auto aspect-square w-full max-w-[760px]">
               {RING_ORDER.map((ring) => (
                 <div
                   key={ring}
@@ -204,8 +207,8 @@ export function ControlRoomScroll() {
               ))}
             </div>
           </div>
-        </section>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
