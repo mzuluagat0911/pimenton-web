@@ -147,6 +147,48 @@ export const copy = {
     ],
   },
   successStories: {},
+  testimonials: {
+    intro: {
+      brand: "Pimentón",
+      heading: "Lo que dicen de nosotros",
+      subheading: "No prometemos crecimiento. Lo demostramos en números.",
+    },
+    items: [
+      {
+        quote:
+          "Antes veíamos el delivery como algo secundario. Hoy es una de nuestras principales fuentes de facturación. Pimentón nos ayudó a ordenar, optimizar y entender el canal.",
+        metrics: [
+          { value: "+45%", label: "Aumento en facturación mensual" },
+          { value: "+41%", label: "Conversión dentro de apps" },
+        ],
+        name: "Mariano Rodríguez",
+        role: "Fundador — El Desembarco",
+        photo: "/assets/testimonials/mariano.webp",
+      },
+      {
+        quote:
+          "No solo aumentaron los pedidos. Mejoraron nuestro margen y ordenaron toda la operación digital.",
+        metrics: [
+          { value: "+34%", label: "Facturación mensual" },
+          { value: "+18%", label: "Margen promedio por pedido" },
+        ],
+        name: "Carla Méndez",
+        role: "Directora Operativa — La Birra Bar",
+        photo: "/assets/testimonials/carla.webp",
+      },
+      {
+        quote:
+          "Detectaron problemas que nosotros no veíamos. Ajustaron precios, promos y visibilidad. El impacto fue inmediato.",
+        metrics: [
+          { value: "+23%", label: "Aumento en ticket promedio" },
+          { value: "+41%", label: "Conversión dentro de apps" },
+        ],
+        name: "Julián Ferreyra",
+        role: "Fundador — Tienda de Empanadas",
+        photo: "/assets/testimonials/julian.webp",
+      },
+    ],
+  },
   ctaFinal: {},
   footer: {},
 } as const;
