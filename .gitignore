@@ -36,6 +36,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# font sources — TTF masters de Helvetica (build-input). Las usamos solo
+# para generar los .woff2 de public/fonts/helvetica/. No se deployan.
+/public/fonts/helvetica-255
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

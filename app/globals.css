@@ -5,9 +5,12 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  /* Fuentes — mapeadas a next/font CSS vars */
-  --font-sans: var(--font-outfit), system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains), monospace;
+  /* Fuentes — mapeadas a next/font CSS vars.
+     --font-sans  = Helvetica (cuerpo y general)
+     --font-mono  = Encode Sans (acentos/kickers/labels — NO es monoespaciada;
+                    se conserva el nombre del token para no tocar componentes) */
+  --font-sans: var(--font-helvetica), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-encode), system-ui, sans-serif;
 
   /* Fondos light (dominantes) */
   --color-pimenton-bg: #FAF1E3;
