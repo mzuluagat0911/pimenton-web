@@ -205,7 +205,7 @@ export function ClientWall() {
     >
       {/* Heading sits inside the same px+max-w envelope as every other
           section. Marquee below bleeds full-width on purpose. */}
-      <div className="px-8 sm:px-16 lg:px-24">
+      <div className="px-[5%] sm:px-16 lg:px-24">
         <div className="mx-auto max-w-7xl">
         <motion.p
           initial={reduced ? { opacity: 0 } : { opacity: 0, y: 12 }}

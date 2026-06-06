@@ -140,7 +140,7 @@ export function Comparison() {
   return (
     <section
       ref={ref}
-      className="relative bg-pimenton-dark px-8 sm:px-16 lg:px-24 py-24 sm:py-32"
+      className="relative bg-pimenton-dark px-[5%] sm:px-16 lg:px-24 py-24 sm:py-32"
     >
       <div className="mx-auto max-w-4xl">
         <motion.p

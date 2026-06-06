@@ -232,7 +232,7 @@ export function Services() {
     <section
       ref={ref}
       id="servicios"
-      className="relative scroll-mt-24 bg-pimenton-dark px-8 sm:px-16 lg:px-24 py-24 sm:py-32"
+      className="relative scroll-mt-24 bg-pimenton-dark px-[5%] sm:px-16 lg:px-24 py-24 sm:py-32"
     >
       <div className="mx-auto w-full max-w-7xl">
         <motion.p

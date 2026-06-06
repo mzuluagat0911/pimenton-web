@@ -60,7 +60,7 @@ export function Footer() {
 
   return (
     <footer className="bg-pimenton-dark text-pimenton-text-on-dark">
-      <div className="mx-auto w-full px-8 py-16 sm:px-16 sm:py-20 md:w-[90%] md:max-w-[1500px] md:px-0">
+      <div className="mx-auto w-full px-[5%] py-16 sm:px-16 sm:py-20 md:w-[90%] md:max-w-[1500px] md:px-0">
         {/* Top zone — logo + tagline, nav links, contact + social */}
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-10 lg:gap-14">
           {/* Logo + tagline */}

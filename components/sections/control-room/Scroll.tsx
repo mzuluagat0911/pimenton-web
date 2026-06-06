@@ -161,7 +161,7 @@ export function ControlRoomScroll() {
     // scroll runway for the rotation tween while staying centered in
     // viewport during the pin.
     <section className="relative bg-pimenton-dark py-20 sm:py-24">
-      <div className="mx-auto w-full max-w-7xl px-8 sm:px-16 lg:px-24">
+      <div className="mx-auto w-full max-w-7xl px-[5%] sm:px-16 lg:px-24">
         <p className="flex items-center text-pimenton-accent text-xs sm:text-sm uppercase tracking-[0.22em] font-medium">
           <span aria-hidden className="mr-3 inline-block h-px w-8 bg-pimenton-accent" />
           {eyebrow}
@@ -175,7 +175,7 @@ export function ControlRoomScroll() {
       </div>
 
       <div ref={spacerRef} className="relative mt-12 h-[200vh] sm:mt-20">
-        <div className="sticky top-0 flex h-screen items-center px-8 sm:px-16 lg:px-24">
+        <div className="sticky top-0 flex h-screen items-center px-[5%] sm:px-16 lg:px-24">
           <div className="mx-auto w-full max-w-7xl">
             <div className="relative mx-auto aspect-square w-full max-w-[760px]">
               {RING_ORDER.map((ring) => (

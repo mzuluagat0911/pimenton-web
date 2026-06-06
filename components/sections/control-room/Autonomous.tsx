@@ -117,7 +117,7 @@ export function ControlRoomAutonomous() {
   const reduced = useReducedMotion() ?? false;
 
   return (
-    <section className="relative bg-pimenton-dark px-8 sm:px-16 lg:px-24 py-20 sm:py-24">
+    <section className="relative bg-pimenton-dark px-[5%] sm:px-16 lg:px-24 py-20 sm:py-24">
       <div className="mx-auto w-full max-w-7xl">
         <p className="flex items-center text-pimenton-accent text-xs sm:text-sm uppercase tracking-[0.22em] font-medium">
           <span aria-hidden className="mr-3 inline-block h-px w-8 bg-pimenton-accent" />

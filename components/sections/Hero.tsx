@@ -140,7 +140,7 @@ export function Hero() {
         style={{ opacity: contentOpacity }}
         className="relative z-10 flex h-full flex-col"
       >
-        <div className="flex flex-1 items-end pb-20 sm:pb-24 px-8 sm:px-16 lg:px-24">
+        <div className="flex flex-1 items-end pb-20 sm:pb-24 px-[5%] sm:px-16 lg:px-24">
           <div className="w-full max-w-6xl">
             <motion.h1
               {...fadeUp(0.2, 0.8, 24)}

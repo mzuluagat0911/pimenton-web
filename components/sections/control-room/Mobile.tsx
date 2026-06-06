@@ -22,7 +22,7 @@ export function ControlRoomMobile() {
   const { eyebrow, heading, subheading } = copy.controlRoom;
 
   return (
-    <section className="relative bg-pimenton-dark px-8 py-20 sm:px-12">
+    <section className="relative bg-pimenton-dark px-[5%] py-20 sm:px-12">
       <div className="mx-auto w-full max-w-2xl">
         <p className="flex items-center text-pimenton-accent text-xs uppercase tracking-[0.22em] font-medium">
           <span aria-hidden className="mr-3 inline-block h-px w-8 bg-pimenton-accent" />

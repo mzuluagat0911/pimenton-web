@@ -89,7 +89,7 @@ export function Specialists() {
     >
       {/* Desktop pinned scrub */}
       <div className="hidden md:block absolute inset-0">
-        <div className="absolute inset-0 flex items-center justify-center px-8 sm:px-16 lg:px-24">
+        <div className="absolute inset-0 flex items-center justify-center px-[5%] sm:px-16 lg:px-24">
           <div className="relative w-full max-w-7xl">
             <div
               ref={phrase1Ref}
@@ -124,7 +124,7 @@ export function Specialists() {
           intersection observer, stacked, no pin, no scrub */}
       <div
         ref={inViewRef}
-        className="md:hidden px-8 py-24 sm:px-16 sm:py-32 flex flex-col gap-24"
+        className="md:hidden px-[5%] py-24 sm:px-16 sm:py-32 flex flex-col gap-24"
       >
         <PhraseStatic phrase={phrase1} inView={inView} />
         <PhraseStatic phrase={phrase2} inView={inView} />

@@ -73,7 +73,7 @@ export function MarketStats() {
   return (
     <section
       ref={ref}
-      className="bg-pimenton-bg px-8 sm:px-16 lg:px-24 py-24 sm:py-32"
+      className="bg-pimenton-bg px-[5%] sm:px-16 lg:px-24 py-24 sm:py-32"
     >
       <div className="mx-auto max-w-7xl">
         <motion.p
