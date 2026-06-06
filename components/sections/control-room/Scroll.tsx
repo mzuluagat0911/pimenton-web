@@ -166,7 +166,7 @@ export function ControlRoomScroll() {
           <span aria-hidden className="mr-3 inline-block h-px w-8 bg-pimenton-accent" />
           {eyebrow}
         </p>
-        <h2 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark">
+        <h2 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark">
           {heading}
         </h2>
         <p className="mt-4 max-w-xl text-base sm:text-lg leading-relaxed text-pimenton-text-on-dark-muted">

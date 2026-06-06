@@ -65,7 +65,7 @@ function StatCard({
           delay: stagger + COUNT_DURATION,
           ease: "easeOut",
         }}
-        className="flex items-baseline font-display text-6xl sm:text-7xl font-semibold leading-none tracking-tight text-pimenton-accent tabular-nums"
+        className="flex items-baseline font-display text-5xl sm:text-6xl font-semibold leading-none tracking-tight text-pimenton-accent tabular-nums"
       >
         <span className="text-[0.7em]">{item.prefix}</span>
         <motion.span>{rounded}</motion.span>
@@ -100,7 +100,7 @@ export function Stats() {
                 : { opacity: 0, y: 20 }
           }
           transition={{ duration: 0.8, ease: EASE }}
-          className="max-w-3xl text-4xl sm:text-5xl font-semibold leading-[1.05] tracking-tight text-pimenton-text"
+          className="max-w-3xl text-3xl sm:text-4xl font-semibold leading-[1.05] tracking-tight text-pimenton-text"
         >
           {heading}
         </motion.h2>

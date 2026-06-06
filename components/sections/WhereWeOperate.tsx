@@ -165,7 +165,7 @@ export function WhereWeOperate() {
                 : { opacity: 0, y: 20 }
           }
           transition={{ duration: 0.8, ease: EASE }}
-          className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-5xl"
+          className="max-w-3xl text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl"
         >
           {heading}
         </motion.h2>

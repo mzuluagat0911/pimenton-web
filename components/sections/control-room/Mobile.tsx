@@ -28,7 +28,7 @@ export function ControlRoomMobile() {
           <span aria-hidden className="mr-3 inline-block h-px w-8 bg-pimenton-accent" />
           {eyebrow}
         </p>
-        <h2 className="mt-6 text-4xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark">
+        <h2 className="mt-6 text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark">
           {heading}
         </h2>
         <p className="mt-4 max-w-xl text-base leading-relaxed text-pimenton-text-on-dark-muted">

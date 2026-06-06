@@ -144,7 +144,7 @@ export function Hero() {
           <div className="w-full max-w-6xl">
             <motion.h1
               {...fadeUp(0.2, 0.8, 24)}
-              className="text-5xl sm:text-7xl lg:text-8xl font-semibold leading-[1.02] tracking-tight text-pimenton-text-on-dark"
+              className="text-4xl sm:text-6xl lg:text-7xl font-semibold leading-[1.02] tracking-tight text-pimenton-text-on-dark"
             >
               {headStart}
               <span className="text-pimenton-accent">{headlineAccent}</span>

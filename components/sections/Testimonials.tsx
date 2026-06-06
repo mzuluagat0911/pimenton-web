@@ -160,7 +160,7 @@ function IntroCard({
           className="h-7 w-auto sm:h-8"
           draggable={false}
         />
-        <h2 className="mt-10 text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl">
+        <h2 className="mt-10 text-2xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-3xl">
           {heading}
         </h2>
       </div>
@@ -229,7 +229,7 @@ function TestimonialCard({
         <div className="space-y-5">
           {item.metrics.map((m) => (
             <div key={m.label}>
-              <p className="font-display text-3xl font-semibold tracking-tight text-pimenton-accent sm:text-4xl">
+              <p className="font-display text-2xl font-semibold tracking-tight text-pimenton-accent sm:text-3xl">
                 {m.value}
               </p>
               <p className="mt-1 text-xs leading-relaxed text-pimenton-text-muted sm:text-sm">

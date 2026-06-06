@@ -21,7 +21,7 @@ function PhraseStatic({ phrase, inView }: { phrase: Phrase; inView: boolean }) {
       animate={inView ? { opacity: 1 } : { opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <p className="font-display text-4xl font-semibold leading-[1.1] tracking-tight text-pimenton-text-on-dark sm:text-5xl lg:text-6xl">
+      <p className="font-display text-3xl font-semibold leading-[1.1] tracking-tight text-pimenton-text-on-dark sm:text-4xl lg:text-5xl">
         {before}
         <span className="text-pimenton-accent">{phrase.highlight}</span>
         {after}
@@ -95,7 +95,7 @@ export function Specialists() {
               ref={phrase1Ref}
               className="absolute inset-x-0 top-1/2 -translate-y-1/2 will-change-transform"
             >
-              <p className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-5xl lg:text-6xl">
+              <p className="font-display text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-4xl lg:text-5xl">
                 {phrase1.text.split(phrase1.highlight)[0]}
                 <span className="text-pimenton-accent">
                   {phrase1.highlight}
@@ -108,7 +108,7 @@ export function Specialists() {
               className="absolute inset-x-0 top-1/2 -translate-y-1/2 will-change-transform"
               style={{ opacity: 0 }}
             >
-              <p className="ml-auto max-w-4xl font-display text-4xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-5xl lg:text-6xl lg:text-right">
+              <p className="ml-auto max-w-4xl font-display text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-4xl lg:text-5xl lg:text-right">
                 {phrase2.text.split(phrase2.highlight)[0]}
                 <span className="text-pimenton-accent">
                   {phrase2.highlight}

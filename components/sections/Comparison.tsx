@@ -171,7 +171,7 @@ export function Comparison() {
                 : { opacity: 0, y: 20 }
           }
           transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
-          className="mt-6 max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-5xl"
+          className="mt-6 max-w-3xl text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-4xl"
         >
           {heading}
         </motion.h2>
@@ -222,7 +222,7 @@ export function Comparison() {
                 />
               }
               className="items-center justify-items-start"
-              offClassName="font-display text-2xl font-semibold tracking-tight text-pimenton-text-on-dark-muted sm:text-3xl"
+              offClassName="font-display text-xl font-semibold tracking-tight text-pimenton-text-on-dark-muted sm:text-2xl"
             />
 
             <CrossFade

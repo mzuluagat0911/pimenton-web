@@ -54,7 +54,7 @@ function MarketCard({
       <div className="size-12 text-pimenton-accent sm:size-14">
         {Icon ? <Icon inView={sectionInView} hovered={hovered} /> : null}
       </div>
-      <p className="mt-6 font-display text-2xl font-semibold tracking-tight text-pimenton-text sm:text-3xl">
+      <p className="mt-6 font-display text-xl font-semibold tracking-tight text-pimenton-text sm:text-2xl">
         {item.stat}
       </p>
       <p className="mt-2 text-sm leading-relaxed text-pimenton-text-muted sm:text-base">
@@ -104,7 +104,7 @@ export function MarketStats() {
                 : { opacity: 0, y: 20 }
           }
           transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
-          className="mt-6 max-w-3xl whitespace-pre-line text-4xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-5xl"
+          className="mt-6 max-w-3xl whitespace-pre-line text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl"
         >
           {heading}
         </motion.h2>
