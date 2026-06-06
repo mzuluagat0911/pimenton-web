@@ -1,13 +1,13 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   AnimatePresence,
   motion,
   useInView,
   useReducedMotion,
 } from "motion/react";
-import { Check, Power, X } from "lucide-react";
+import { Check, X } from "lucide-react";
 import { copy } from "@/data/copy";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -122,20 +122,103 @@ function ComparisonItem({
   );
 }
 
+/**
+ * Switch tipo iOS — riel ovalado + thumb circular que se desliza.
+ * - OFF: riel dark-surface + thumb crema a la izquierda + halo de invitación
+ *   (anillo coral que respira) → invita a tocarlo.
+ * - ON: riel coral con glow + thumb a la derecha. Sin pulso (queda "calmo").
+ * Tamaño: w-24 h-14 (96 × 56) — tap target generoso, supera 44×44.
+ */
+function SwitchToggle({
+  active,
+  onToggle,
+  reduced,
+}: {
+  active: boolean;
+  onToggle: () => void;
+  reduced: boolean;
+}) {
+  // Distancia que viaja el thumb. Riel 96px, padding 6px×2, thumb 44px →
+  // 96 − 12 − 44 = 40px.
+  const TRAVEL = 40;
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={active}
+      aria-label="Activar Pimentón en mi delivery"
+      onClick={onToggle}
+      className="relative flex h-14 w-24 cursor-pointer items-center rounded-full p-1.5 outline-none transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-pimenton-accent focus-visible:ring-offset-2 focus-visible:ring-offset-pimenton-dark"
+      style={{
+        backgroundColor: active
+          ? "var(--color-pimenton-accent)"
+          : "var(--color-pimenton-dark-surface)",
+        borderWidth: active ? 0 : 1,
+        borderStyle: "solid",
+        borderColor: "var(--color-pimenton-dark-border)",
+        boxShadow: active
+          ? "0 0 32px 0 rgba(232, 75, 60, 0.5)"
+          : "inset 0 1px 0 0 rgba(0,0,0,0.25)",
+      }}
+    >
+      {/* Halo de invitación — sólo cuando OFF, respeta reduced-motion.
+          Coherente con el latido del Control Room. */}
+      {!reduced && !active && (
+        <motion.span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 rounded-full ring-2 ring-pimenton-accent"
+          animate={{ scale: [1, 1.18, 1], opacity: [0, 0.7, 0] }}
+          transition={{
+            duration: 2.4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      )}
+
+      {/* Thumb */}
+      <motion.span
+        aria-hidden
+        className="block size-11 rounded-full bg-pimenton-bg shadow-[0_2px_6px_-1px_rgba(0,0,0,0.4)]"
+        animate={{ x: active ? TRAVEL : 0 }}
+        transition={
+          reduced
+            ? { duration: 0.2, ease: EASE }
+            : { type: "spring", stiffness: 520, damping: 32, mass: 0.6 }
+        }
+      />
+    </button>
+  );
+}
+
 export function Comparison() {
-  const { eyebrow, heading, off, on, footerLabel, activate, activated, items } =
-    copy.comparison;
+  const { eyebrow, heading, off, on, footerLabel, items } = copy.comparison;
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.2 });
   const reduced = useReducedMotion() ?? false;
 
   const [active, setActive] = useState(false);
   const [pulseCount, setPulseCount] = useState(0);
+  const hasAutoActivated = useRef(false);
 
   const toggle = () => {
     setActive((a) => !a);
     setPulseCount((c) => c + 1);
   };
+
+  // Auto-activación: una sola vez cuando la sección entra en viewport
+  // (deja que el usuario vea OFF un instante y entonces se transforma).
+  // Bajo prefers-reduced-motion no auto-activa — respeta la preferencia
+  // del usuario y le deja el toggle manual.
+  useEffect(() => {
+    if (!inView || hasAutoActivated.current || reduced) return;
+    hasAutoActivated.current = true;
+    const t = setTimeout(() => {
+      setActive(true);
+      setPulseCount((c) => c + 1);
+    }, 800);
+    return () => clearTimeout(t);
+  }, [inView, reduced]);
 
   return (
     <section
@@ -225,20 +308,6 @@ export function Comparison() {
               offClassName="font-display text-xl font-semibold tracking-tight text-pimenton-text-on-dark-muted sm:text-2xl"
             />
 
-            <CrossFade
-              active={active}
-              off={
-                <span className="inline-flex w-fit rounded-full bg-pimenton-dark px-3 py-1 text-[10px] font-mono uppercase tracking-[0.18em] text-pimenton-text-on-dark-muted sm:text-xs">
-                  {off.badge}
-                </span>
-              }
-              on={
-                <span className="inline-flex w-fit rounded-full border border-pimenton-accent/40 bg-pimenton-accent/15 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.18em] text-pimenton-accent sm:text-xs">
-                  {on.badge}
-                </span>
-              }
-              className="mt-3 justify-items-start"
-            />
           </div>
 
           {/* Items list */}
@@ -271,44 +340,25 @@ export function Comparison() {
           </div>
         </motion.div>
 
-        {/* Activation button */}
-        <div className="mt-8 flex justify-center sm:mt-10">
-          <motion.button
-            type="button"
-            onClick={toggle}
-            whileHover={reduced ? undefined : { scale: 1.03 }}
-            whileTap={reduced ? undefined : { scale: 0.97 }}
-            animate={{
-              backgroundColor: active
-                ? "rgba(0,0,0,0)"
-                : "var(--color-pimenton-accent)",
-              color: active
-                ? "var(--color-pimenton-accent)"
-                : "var(--color-pimenton-bg)",
-            }}
-            style={{
-              borderColor: "var(--color-pimenton-accent)",
-              borderWidth: 2,
-              borderStyle: "solid",
-            }}
-            transition={{ duration: 0.5, ease: EASE }}
-            className="group inline-flex cursor-pointer items-center gap-3 rounded-full px-8 py-4 font-medium"
-            aria-pressed={active}
-          >
-            <motion.span
-              animate={{ rotate: active ? 360 : 0 }}
-              transition={{ duration: 0.7, ease: EASE }}
-              className="inline-flex"
-            >
-              <Power className="size-5" strokeWidth={2.5} />
-            </motion.span>
-            <CrossFade
-              active={active}
-              off={activate}
-              on={activated}
-              className="whitespace-nowrap"
-            />
-          </motion.button>
+        {/* Switch CTA — kicker arriba, switch en el medio, label abajo */}
+        <div className="mt-10 flex flex-col items-center gap-3 sm:mt-12">
+          <CrossFade
+            active={active}
+            off={off.toggleKicker}
+            on={on.toggleKicker}
+            className="justify-items-center"
+            offClassName="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-accent sm:text-xs"
+            onClassName="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-accent sm:text-xs"
+          />
+          <SwitchToggle active={active} onToggle={toggle} reduced={reduced} />
+          <CrossFade
+            active={active}
+            off={off.toggleLabel}
+            on={on.toggleLabel}
+            className="justify-items-center"
+            offClassName="text-sm font-semibold text-pimenton-text-on-dark sm:text-base"
+            onClassName="text-sm font-normal text-pimenton-text-on-dark-muted sm:text-base"
+          />
         </div>
       </div>
     </section>

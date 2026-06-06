@@ -64,17 +64,17 @@ export const copy = {
     heading: "Tu delivery cambia cuando alguien lo opera en serio.",
     off: {
       title: "Sin Pimentón",
-      badge: "Canal sin gestión profesional",
       footer: "A ciegas",
+      toggleKicker: "Probá la diferencia",
+      toggleLabel: "Activá Pimentón",
     },
     on: {
       title: "Con Pimentón",
-      badge: "Delivery como unidad de negocio rentable",
       footer: "Con datos reales",
+      toggleKicker: "Pimentón activo",
+      toggleLabel: "Tocá para desactivar",
     },
     footerLabel: "Decisiones de canal",
-    activate: "Activar Pimentón en mi Delivery",
-    activated: "Desactivar Pimentón",
     items: [
       {
         off: "Sin datos reales: tomás decisiones a ciegas sobre precios, promos y horarios.",
@@ -99,10 +99,6 @@ export const copy = {
       {
         off: "Ticket promedio estancado. Ningún trabajo en combos, menú o recompra.",
         on: "Trabajo activo en ticket promedio, combos y recompra para subir la facturación.",
-      },
-      {
-        off: "El canal digital te roba tiempo y foco del negocio principal.",
-        on: "Vos te enfocás en cocinar. Nosotros nos encargamos del resto.",
       },
     ],
   },

@@ -16,8 +16,8 @@ export default function Home() {
       <Stats />
       <WhereWeOperate />
       <MarketStats />
-      <Comparison />
       <ControlRoom />
+      <Comparison />
       <Testimonials />
       <Gallery />
     </main>
