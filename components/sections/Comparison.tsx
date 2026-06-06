@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   AnimatePresence,
   motion,
@@ -199,26 +199,11 @@ export function Comparison() {
 
   const [active, setActive] = useState(false);
   const [pulseCount, setPulseCount] = useState(0);
-  const hasAutoActivated = useRef(false);
 
   const toggle = () => {
     setActive((a) => !a);
     setPulseCount((c) => c + 1);
   };
-
-  // Auto-activación: una sola vez cuando la sección entra en viewport
-  // (deja que el usuario vea OFF un instante y entonces se transforma).
-  // Bajo prefers-reduced-motion no auto-activa — respeta la preferencia
-  // del usuario y le deja el toggle manual.
-  useEffect(() => {
-    if (!inView || hasAutoActivated.current || reduced) return;
-    hasAutoActivated.current = true;
-    const t = setTimeout(() => {
-      setActive(true);
-      setPulseCount((c) => c + 1);
-    }, 800);
-    return () => clearTimeout(t);
-  }, [inView, reduced]);
 
   return (
     <section

@@ -18,7 +18,8 @@ const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 // multiplier never recomputes elapsed time the way CSS does —
 // progress always advances incrementally from its current value.
 const TOP_LOOP_SECONDS = 70;
-const BOTTOM_LOOP_SECONDS = 90;
+const MIDDLE_LOOP_SECONDS = 90;
+const BOTTOM_LOOP_SECONDS = 80;
 
 const NORMAL_SPEED = 1;
 const HOVER_SPEED = 0.25;
@@ -174,9 +175,11 @@ export function ClientMarquee() {
   const inView = useInView(ref, { once: true, amount: 0.05 });
   const reduced = useReducedMotion() ?? false;
 
-  // Split clients into two rows by parity so countries interleave
-  const rowA = clients.filter((_, i) => i % 2 === 0);
-  const rowB = clients.filter((_, i) => i % 2 === 1);
+  // Split clients into three rows by modulo 3 so countries interleave
+  // across all three rows (no row becomes "the Argentina row").
+  const rowA = clients.filter((_, i) => i % 3 === 0);
+  const rowB = clients.filter((_, i) => i % 3 === 1);
+  const rowC = clients.filter((_, i) => i % 3 === 2);
 
   return (
     <motion.div
@@ -201,6 +204,12 @@ export function ClientMarquee() {
       <MarqueeRow
         items={rowB}
         direction="right"
+        loopSeconds={MIDDLE_LOOP_SECONDS}
+        reduced={reduced}
+      />
+      <MarqueeRow
+        items={rowC}
+        direction="left"
         loopSeconds={BOTTOM_LOOP_SECONDS}
         reduced={reduced}
       />
