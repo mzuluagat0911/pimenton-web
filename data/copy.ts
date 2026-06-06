@@ -21,12 +21,11 @@ export const copy = {
   },
   stats: {
     eyebrow: "Los números hablan",
-    heading: "La escala de operar en serio.",
     items: [
-      { value: 500, prefix: "+", suffix: "", label: "Restaurantes confían en nosotros" },
-      { value: 12, prefix: "+", suffix: "", label: "Países en LATAM y Europa" },
       { value: 30, prefix: "~", suffix: "%", label: "Crecimiento en ventas los primeros 3 meses" },
-      { value: 6, prefix: "+", suffix: "M", label: "Pedidos gestionados por año" },
+      { value: 500, prefix: "+", suffix: "", label: "Restaurantes han confiado en nosotros" },
+      { value: 20, prefix: "+", suffix: "", label: "Países en USA, LatAm y Europa" },
+      { value: 18, prefix: "+", suffix: "%", label: "Aumento de la rentabilidad" },
     ],
   },
   controlRoom: {
