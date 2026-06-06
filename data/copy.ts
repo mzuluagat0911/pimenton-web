@@ -10,7 +10,7 @@ export const copy = {
   },
   whereWeOperate: {
     eyebrow: "Presencia global",
-    heading: "Operamos delivery en +12 países.",
+    heading: "Operamos delivery en +20 países.",
     subheading:
       "De LATAM a Europa, gestionamos el canal digital de restaurantes en todo el mundo.",
   },
