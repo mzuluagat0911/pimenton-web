@@ -35,26 +35,26 @@ export const copy = {
   },
   marketStats: {
     eyebrow: "Por qué profesionalizar tu delivery",
-    heading: "El delivery ya no es un extra.\nEs un negocio en sí mismo.",
+    heading: "El delivery como una unidad de negocio rentable.",
     items: [
       {
         stat: "1 pedido por semana",
-        label: "Gen Z y Millennials piden delivery al menos una vez por semana",
+        label: "Gen Z y Millennials piden al menos una vez por semana.",
         icon: "pedido-semana",
       },
       {
-        stat: "+40-50%",
-        label: "Incremento de facturación combinando delivery y canales digitales",
+        stat: "+40%",
+        label: "Crecimiento interanual del delivery.",
         icon: "facturacion",
       },
       {
         stat: "8 de cada 10",
-        label: "Personas leen reseñas y miran tu calificación antes de pedirte",
+        label: "Personas leen reseñas antes de pedir.",
         icon: "personas",
       },
       {
-        stat: "+1M",
-        label: "De impresiones: tu restaurante genera visibilidad en las apps",
+        stat: "Nuevos Usuarios",
+        label: "Si no captamos clientes la competencia lo hace.",
         icon: "impresiones",
       },
     ],
