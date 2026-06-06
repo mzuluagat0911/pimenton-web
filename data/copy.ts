@@ -20,7 +20,7 @@ export const copy = {
     headingAccent: "500 restaurantes",
   },
   stats: {
-    eyebrow: "Impact since 2021",
+    eyebrow: "Generando impacto desde 2021",
     items: [
       { value: 30, prefix: "~", suffix: "%", label: "Crecimiento en ventas los primeros 3 meses" },
       { value: 500, prefix: "+", suffix: "", label: "Restaurantes han confiado en nosotros" },
