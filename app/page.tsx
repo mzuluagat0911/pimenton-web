@@ -1,4 +1,3 @@
-import { ClientWall } from "@/components/sections/ClientWall";
 import { Comparison } from "@/components/sections/Comparison";
 import { ControlRoom } from "@/components/sections/ControlRoom";
 import { Gallery } from "@/components/sections/Gallery";
@@ -16,7 +15,6 @@ export default function Home() {
       <Hero />
       <Stats />
       <WhereWeOperate />
-      <ClientWall />
       <MarketStats />
       <Comparison />
       <ControlRoom />

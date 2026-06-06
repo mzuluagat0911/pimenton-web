@@ -9,6 +9,7 @@ import {
   useReducedMotion,
   useTransform,
 } from "motion/react";
+import { ClientMarquee } from "@/components/ui-custom/ClientMarquee";
 import { copy } from "@/data/copy";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -141,9 +142,11 @@ export function Stats() {
   return (
     <section
       ref={ref}
-      className="bg-pimenton-bg px-[5%] sm:px-16 lg:px-24 py-20 sm:py-28"
+      className="bg-pimenton-bg py-20 sm:py-28 overflow-hidden"
     >
-      <div className="mx-auto max-w-7xl">
+      {/* Bloque editorial — padding al wrapper interno para que el marquee
+          de abajo pueda bleedear full-width dentro de la misma sección. */}
+      <div className="mx-auto max-w-7xl px-[5%] sm:px-16 lg:px-24">
         {/* Eyebrow estilo highlight (amarillo Pimentón) */}
         <motion.div
           initial={reduced ? { opacity: 0 } : { opacity: 0, y: 12 }}
@@ -171,6 +174,11 @@ export function Stats() {
             />
           ))}
         </div>
+      </div>
+
+      {/* Wall de clientes — bleed full-width, prueba visual de los +500 */}
+      <div className="mt-20 sm:mt-28">
+        <ClientMarquee />
       </div>
     </section>
   );
