@@ -1,11 +1,11 @@
 export const copy = {
   hero: {
     eyebrow: "Growth Partner · LATAM & Europa",
-    headline: "Escalamos tu Delivery y optimizamos tus Canales Digitales.",
-    headlineAccent: "Canales Digitales",
-    subhead: "Convertimos tu Restaurante en una unidad de negocio rentable.",
-    ctaPrimary: { label: "Servicios", href: "#servicios" },
-    ctaSecondary: { label: "Contáctanos", href: "#contacto" },
+    headline: "Potenciamos tu Delivery y optimizamos tus Canales Digitales.",
+    headlineAccent: "Delivery",
+    subhead: "Somos la Agencia #1 del Mundo expertos en Restauración.",
+    ctaPrimary: { label: "Consultoría gratuita", href: "#contacto" },
+    ctaSecondary: { label: "Hablar con un especialista", href: "#contacto" },
     scrollLabel: "Scroll",
   },
   whereWeOperate: {

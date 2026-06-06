@@ -147,9 +147,7 @@ export function Hero() {
               className="text-5xl sm:text-7xl lg:text-8xl font-semibold leading-[1.02] tracking-tight text-pimenton-text-on-dark"
             >
               {headStart}
-              <span className="italic font-medium text-pimenton-accent">
-                {headlineAccent}
-              </span>
+              <span className="text-pimenton-accent">{headlineAccent}</span>
               {headEnd}
             </motion.h1>
 
@@ -162,27 +160,33 @@ export function Hero() {
 
             <motion.div
               {...fadeUp(0.9, 0.7, 16)}
-              className="mt-10 flex flex-col sm:flex-row gap-4"
+              className="mt-10 flex flex-col sm:flex-row sm:items-center gap-4"
             >
-              <a
+              <motion.a
                 href={ctaPrimary.href}
                 onClick={anchorClick(ctaPrimary.href)}
-                className="group inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-pimenton-accent px-8 py-4 font-medium text-pimenton-bg transition-colors duration-300 hover:bg-pimenton-accent-hover"
+                whileHover={shouldReduceMotion ? undefined : { scale: 1.03 }}
+                whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 400, damping: 22 }}
+                className="group inline-flex w-full sm:w-auto cursor-pointer items-center justify-center gap-2.5 rounded-full bg-pimenton-accent px-9 py-5 text-base sm:text-lg font-semibold text-pimenton-bg shadow-xl shadow-pimenton-accent/40 transition-[background-color,box-shadow] duration-300 hover:bg-pimenton-accent-hover hover:shadow-pimenton-accent/60"
               >
                 {ctaPrimary.label}
                 <ArrowRight
                   aria-hidden
-                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                  className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
                 />
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
                 href={ctaSecondary.href}
                 onClick={anchorClick(ctaSecondary.href)}
-                className="inline-flex cursor-pointer items-center justify-center rounded-full border border-pimenton-text-on-dark/30 px-8 py-4 font-medium text-pimenton-text-on-dark backdrop-blur-sm transition-colors duration-300 hover:border-pimenton-text-on-dark/80 hover:bg-pimenton-text-on-dark/5"
+                whileHover={shouldReduceMotion ? undefined : { scale: 1.03 }}
+                whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 400, damping: 22 }}
+                className="inline-flex w-full sm:w-auto cursor-pointer items-center justify-center rounded-full border border-pimenton-text-on-dark/40 bg-pimenton-text-on-dark/5 px-9 py-5 text-base sm:text-lg font-semibold text-pimenton-text-on-dark backdrop-blur-sm transition-colors duration-300 hover:border-pimenton-text-on-dark/80 hover:bg-pimenton-text-on-dark/10"
               >
                 {ctaSecondary.label}
-              </a>
+              </motion.a>
             </motion.div>
           </div>
         </div>
