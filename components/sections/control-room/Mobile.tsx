@@ -19,7 +19,7 @@ const TIER_GRID: Record<PlatformRing, string> = {
 const TIER_ORDER: PlatformRing[] = ["inner", "middle", "outer"];
 
 export function ControlRoomMobile() {
-  const { eyebrow, heading, subheading } = copy.controlRoom;
+  const { eyebrow, heading } = copy.controlRoom;
 
   return (
     <section className="relative bg-pimenton-dark px-[5%] py-20 sm:px-12">
@@ -31,9 +31,6 @@ export function ControlRoomMobile() {
         <h2 className="mt-6 text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark">
           {heading}
         </h2>
-        <p className="mt-4 max-w-xl text-base leading-relaxed text-pimenton-text-on-dark-muted">
-          {subheading}
-        </p>
 
         <div className="mt-14 flex flex-col items-center gap-12">
           <CenterIsologo className="w-32" glowInset="-55%" />
