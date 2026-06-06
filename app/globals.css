@@ -6,10 +6,14 @@
 
 @theme {
   /* Fuentes — mapeadas a next/font CSS vars.
-     --font-sans  = Helvetica (cuerpo y general)
-     --font-mono  = Encode Sans (acentos/kickers/labels — NO es monoespaciada;
-                    se conserva el nombre del token para no tocar componentes) */
-  --font-sans: var(--font-helvetica), "Helvetica Neue", Helvetica, Arial, sans-serif;
+     --font-display = Helvetica → títulos (h1-h6) + display (números grandes,
+                      títulos de card, frases Specialists). Utility: font-display
+     --font-sans    = Encode Sans → texto corrido (párrafos, subtítulos,
+                      descripciones, nombres). Es el default del body.
+     --font-mono    = Encode Sans → alias legacy del token que usan kickers/labels
+                      (NO es monoespaciada; se conserva el nombre para no tocar componentes) */
+  --font-display: var(--font-helvetica), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: var(--font-encode), system-ui, sans-serif;
   --font-mono: var(--font-encode), system-ui, sans-serif;
 
   /* Fondos light (dominantes) */
@@ -56,6 +60,21 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Títulos → fuente display (Helvetica). Las utilities (font-display /
+   font-sans / font-mono) ganan sobre esta regla por el orden de capas,
+   así un heading con font-mono —p.ej. los labels <h3> del footer—
+   permanece en Encode sin tocar el componente. */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+  }
 }
 
 ::selection {

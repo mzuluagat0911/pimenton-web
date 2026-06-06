@@ -110,7 +110,7 @@ export function Footer() {
             </a>
             <a
               href={`mailto:${email}`}
-              className="mt-2 block break-all text-2xl font-semibold tracking-tight text-pimenton-accent transition-colors duration-200 hover:text-pimenton-accent-hover sm:text-3xl lg:text-4xl"
+              className="mt-2 block break-all font-display text-2xl font-semibold tracking-tight text-pimenton-accent transition-colors duration-200 hover:text-pimenton-accent-hover sm:text-3xl lg:text-4xl"
             >
               {email}
             </a>

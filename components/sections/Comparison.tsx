@@ -222,7 +222,7 @@ export function Comparison() {
                 />
               }
               className="items-center justify-items-start"
-              offClassName="text-2xl font-semibold tracking-tight text-pimenton-text-on-dark-muted sm:text-3xl"
+              offClassName="font-display text-2xl font-semibold tracking-tight text-pimenton-text-on-dark-muted sm:text-3xl"
             />
 
             <CrossFade

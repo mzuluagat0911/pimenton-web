@@ -54,7 +54,7 @@ function DesktopList({
                 {item.num}
               </span>
               <span
-                className={`text-3xl font-semibold tracking-tight transition-colors duration-300 sm:text-4xl lg:text-5xl ${
+                className={`font-display text-3xl font-semibold tracking-tight transition-colors duration-300 sm:text-4xl lg:text-5xl ${
                   active
                     ? "text-pimenton-text-on-dark"
                     : "text-pimenton-text-on-dark-muted/45 group-hover:text-pimenton-text-on-dark-muted/80"
@@ -130,7 +130,7 @@ function DesktopMedia({
               <span className="font-mono text-xs uppercase tracking-[0.22em] text-pimenton-accent">
                 {item.num}
               </span>
-              <span className="text-xl font-semibold tracking-tight text-pimenton-text-on-dark sm:text-2xl">
+              <span className="font-display text-xl font-semibold tracking-tight text-pimenton-text-on-dark sm:text-2xl">
                 {item.name}
               </span>
             </div>
@@ -174,7 +174,7 @@ function MobileAccordion({
                 {item.num}
               </span>
               <span
-                className={`text-2xl font-semibold tracking-tight transition-colors duration-300 ${
+                className={`font-display text-2xl font-semibold tracking-tight transition-colors duration-300 ${
                   isOpen
                     ? "text-pimenton-accent"
                     : "text-pimenton-text-on-dark-muted/70"

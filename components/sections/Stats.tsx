@@ -65,7 +65,7 @@ function StatCard({
           delay: stagger + COUNT_DURATION,
           ease: "easeOut",
         }}
-        className="flex items-baseline text-6xl sm:text-7xl font-semibold leading-none tracking-tight text-pimenton-accent tabular-nums"
+        className="flex items-baseline font-display text-6xl sm:text-7xl font-semibold leading-none tracking-tight text-pimenton-accent tabular-nums"
       >
         <span className="text-[0.7em]">{item.prefix}</span>
         <motion.span>{rounded}</motion.span>

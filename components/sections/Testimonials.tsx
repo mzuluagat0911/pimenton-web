@@ -229,7 +229,7 @@ function TestimonialCard({
         <div className="space-y-5">
           {item.metrics.map((m) => (
             <div key={m.label}>
-              <p className="text-3xl font-semibold tracking-tight text-pimenton-accent sm:text-4xl">
+              <p className="font-display text-3xl font-semibold tracking-tight text-pimenton-accent sm:text-4xl">
                 {m.value}
               </p>
               <p className="mt-1 text-xs leading-relaxed text-pimenton-text-muted sm:text-sm">

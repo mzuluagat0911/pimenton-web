@@ -209,7 +209,7 @@ export function Header() {
                       duration: 0.45,
                       ease: EASE,
                     }}
-                    className="text-3xl font-semibold tracking-tight text-pimenton-bg transition-opacity duration-200 hover:opacity-80 sm:text-4xl lg:text-5xl"
+                    className="font-display text-3xl font-semibold tracking-tight text-pimenton-bg transition-opacity duration-200 hover:opacity-80 sm:text-4xl lg:text-5xl"
                   >
                     {link.label}
                   </motion.a>
@@ -235,7 +235,7 @@ export function Header() {
                 </a>
                 <a
                   href={`mailto:${CONTACT.email}`}
-                  className="text-xl font-semibold transition-opacity hover:opacity-80 sm:text-2xl"
+                  className="font-display text-xl font-semibold transition-opacity hover:opacity-80 sm:text-2xl"
                 >
                   {CONTACT.email}
                 </a>

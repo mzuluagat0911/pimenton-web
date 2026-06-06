@@ -54,7 +54,7 @@ function MarketCard({
       <div className="size-12 text-pimenton-accent sm:size-14">
         {Icon ? <Icon inView={sectionInView} hovered={hovered} /> : null}
       </div>
-      <p className="mt-6 text-2xl font-semibold tracking-tight text-pimenton-text sm:text-3xl">
+      <p className="mt-6 font-display text-2xl font-semibold tracking-tight text-pimenton-text sm:text-3xl">
         {item.stat}
       </p>
       <p className="mt-2 text-sm leading-relaxed text-pimenton-text-muted sm:text-base">
