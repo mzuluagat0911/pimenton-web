@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { whatsappRegions, whatsappUrl } from "@/data/whatsapp";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
-const WA_HREF = "https://api.whatsapp.com/send/?phone=1157035170";
 
 function WhatsAppGlyph({ className }: { className?: string }) {
   return (
@@ -20,46 +20,242 @@ function WhatsAppGlyph({ className }: { className?: string }) {
   );
 }
 
+function CloseGlyph({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-hidden
+    >
+      <path d="M6 6l12 12M18 6l-12 12" />
+    </svg>
+  );
+}
+
 export function WhatsAppFab() {
   const [mounted, setMounted] = useState(false);
+  const [open, setOpen] = useState(false);
   const reduced = useReducedMotion() ?? false;
 
+  const fabRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const optionsRef = useRef<(HTMLAnchorElement | null)[]>([]);
+
+  // Defer mount animation
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 700);
     return () => clearTimeout(t);
   }, []);
 
-  return (
-    <motion.a
-      href={WA_HREF}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Contactar por WhatsApp"
-      initial={{ opacity: 0, scale: 0.6, y: 12 }}
-      animate={
-        mounted
-          ? { opacity: 1, scale: 1, y: 0 }
-          : { opacity: 0, scale: 0.6, y: 12 }
+  // ESC + focus trap dentro del panel
+  useEffect(() => {
+    if (!open) return;
+
+    // Foco al primer option después de la animación de entrada
+    const focusTimer = setTimeout(() => {
+      optionsRef.current[0]?.focus();
+    }, 160);
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        // Devolver foco al FAB para no perderlo
+        fabRef.current?.focus();
+        return;
       }
-      transition={{ duration: 0.5, ease: EASE }}
-      whileHover={reduced ? undefined : { scale: 1.08 }}
-      whileTap={reduced ? undefined : { scale: 0.94 }}
-      className="fixed bottom-6 right-6 z-30 flex size-14 items-center justify-center rounded-full bg-pimenton-accent text-pimenton-bg shadow-[0_8px_24px_-6px_rgba(232,75,60,0.55)] sm:bottom-8 sm:right-8 sm:size-16"
-    >
-      {/* Coral pulse halo — coherent with the marca latido */}
-      {!reduced && (
-        <motion.span
-          aria-hidden
-          className="absolute inset-0 rounded-full bg-pimenton-accent"
-          animate={{ scale: [1, 1.6], opacity: [0.45, 0] }}
-          transition={{
-            duration: 2.2,
-            repeat: Infinity,
-            ease: "easeOut",
-          }}
-        />
-      )}
-      <WhatsAppGlyph className="relative size-6 sm:size-7" />
-    </motion.a>
+      if (e.key === "Tab") {
+        const items = optionsRef.current.filter(Boolean) as HTMLElement[];
+        if (items.length === 0) return;
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      clearTimeout(focusTimer);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
+  // Click afuera cierra (pointerdown global). El FAB también lo capturamos
+  // para que su propio click no dispare un cierre redundante.
+  useEffect(() => {
+    if (!open) return;
+    const onPointerDown = (e: PointerEvent) => {
+      const target = e.target as Node;
+      if (
+        panelRef.current?.contains(target) ||
+        fabRef.current?.contains(target)
+      ) {
+        return;
+      }
+      setOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => document.removeEventListener("pointerdown", onPointerDown);
+  }, [open]);
+
+  const handleOptionClick = useCallback(() => {
+    setOpen(false);
+  }, []);
+
+  return (
+    <>
+      <motion.button
+        ref={fabRef}
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-haspopup="dialog"
+        aria-expanded={open}
+        aria-controls="wa-region-panel"
+        aria-label={
+          open ? "Cerrar selector de WhatsApp" : "Contactar por WhatsApp"
+        }
+        initial={{ opacity: 0, scale: 0.6, y: 12 }}
+        animate={
+          mounted
+            ? { opacity: 1, scale: 1, y: 0 }
+            : { opacity: 0, scale: 0.6, y: 12 }
+        }
+        transition={{ duration: 0.5, ease: EASE }}
+        whileHover={reduced ? undefined : { scale: 1.08 }}
+        whileTap={reduced ? undefined : { scale: 0.94 }}
+        className="fixed bottom-6 right-6 z-30 flex size-14 cursor-pointer items-center justify-center rounded-full bg-pimenton-accent text-pimenton-bg shadow-[0_8px_24px_-6px_rgba(232,75,60,0.55)] outline-none focus-visible:ring-2 focus-visible:ring-pimenton-accent focus-visible:ring-offset-2 focus-visible:ring-offset-pimenton-bg sm:bottom-8 sm:right-8 sm:size-16"
+      >
+        {/* Halo de pulso — sólo cuando el panel está cerrado, para no
+            competir con el contenido del panel. */}
+        {!reduced && !open && (
+          <motion.span
+            aria-hidden
+            className="absolute inset-0 rounded-full bg-pimenton-accent"
+            animate={{ scale: [1, 1.6], opacity: [0.45, 0] }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: "easeOut" }}
+          />
+        )}
+
+        {/* Swap WA ↔ X con rotación */}
+        <AnimatePresence mode="wait" initial={false}>
+          {open ? (
+            <motion.span
+              key="close"
+              initial={
+                reduced ? { opacity: 0 } : { opacity: 0, rotate: -90 }
+              }
+              animate={
+                reduced ? { opacity: 1 } : { opacity: 1, rotate: 0 }
+              }
+              exit={reduced ? { opacity: 0 } : { opacity: 0, rotate: 90 }}
+              transition={{ duration: 0.22, ease: EASE }}
+              className="relative flex items-center justify-center"
+            >
+              <CloseGlyph className="size-6 sm:size-7" />
+            </motion.span>
+          ) : (
+            <motion.span
+              key="wa"
+              initial={
+                reduced ? { opacity: 0 } : { opacity: 0, rotate: 90 }
+              }
+              animate={
+                reduced ? { opacity: 1 } : { opacity: 1, rotate: 0 }
+              }
+              exit={reduced ? { opacity: 0 } : { opacity: 0, rotate: -90 }}
+              transition={{ duration: 0.22, ease: EASE }}
+              className="relative flex items-center justify-center"
+            >
+              <WhatsAppGlyph className="size-6 sm:size-7" />
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </motion.button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            ref={panelRef}
+            id="wa-region-panel"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="wa-panel-title"
+            initial={
+              reduced
+                ? { opacity: 0 }
+                : { opacity: 0, scale: 0.92, y: 12 }
+            }
+            animate={
+              reduced
+                ? { opacity: 1 }
+                : { opacity: 1, scale: 1, y: 0 }
+            }
+            exit={
+              reduced
+                ? { opacity: 0 }
+                : { opacity: 0, scale: 0.92, y: 12 }
+            }
+            transition={{ duration: reduced ? 0.18 : 0.28, ease: EASE }}
+            style={{ transformOrigin: "bottom right" }}
+            className="fixed bottom-24 right-6 z-30 w-[min(calc(100vw-3rem),22rem)] rounded-2xl border border-pimenton-border bg-pimenton-surface p-4 shadow-[0_24px_60px_-20px_rgba(15,15,14,0.32)] sm:bottom-28 sm:right-8 sm:p-5"
+          >
+            <div className="px-1 pt-1">
+              <p className="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-pimenton-accent">
+                Escribinos por WhatsApp
+              </p>
+              <h3
+                id="wa-panel-title"
+                className="mt-1.5 font-display text-lg font-semibold text-pimenton-text sm:text-xl"
+              >
+                Elegí tu región
+              </h3>
+            </div>
+
+            <ul className="mt-4 space-y-1">
+              {whatsappRegions.map((r, i) => (
+                <li key={r.id}>
+                  <a
+                    ref={(el) => {
+                      optionsRef.current[i] = el;
+                    }}
+                    href={whatsappUrl(r)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={handleOptionClick}
+                    aria-label={`Escribir por WhatsApp a ${r.title} — ${r.subtitle}`}
+                    className="group flex items-center gap-3 rounded-xl p-3 outline-none transition-colors duration-200 hover:bg-pimenton-bg-soft focus-visible:bg-pimenton-bg-soft focus-visible:ring-2 focus-visible:ring-pimenton-accent"
+                  >
+                    <span
+                      aria-hidden
+                      className="flex size-10 flex-shrink-0 items-center justify-center rounded-full bg-pimenton-accent/15 text-pimenton-accent transition-colors duration-200 group-hover:bg-pimenton-accent group-hover:text-pimenton-bg group-focus-visible:bg-pimenton-accent group-focus-visible:text-pimenton-bg"
+                    >
+                      <WhatsAppGlyph className="size-5" />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-pimenton-text">
+                        {r.title}
+                      </p>
+                      <p className="text-xs text-pimenton-text-muted sm:text-sm">
+                        {r.subtitle}
+                      </p>
+                    </div>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
