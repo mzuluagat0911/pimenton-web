@@ -159,36 +159,33 @@ export const copy = {
     items: [
       {
         quote:
-          "Antes veíamos el delivery como algo secundario. Hoy es una de nuestras principales fuentes de facturación. Pimentón nos ayudó a ordenar, optimizar y entender el canal.",
+          "El equipo nos ayuda con la coordinación general del Delivery, desde la rentabilidad del negocio hasta la gestión operativa de reclamos e incidencias.",
         metrics: [
-          { value: "+45%", label: "Aumento en facturación mensual" },
-          { value: "+41%", label: "Conversión dentro de apps" },
+          { value: 12, prefix: "+", suffix: "%", label: "Contribución marginal" },
+          { value: 3000, prefix: "+", suffix: "", label: "Pedidos recuperados" },
         ],
-        name: "Mariano Rodríguez",
-        role: "Fundador — El Desembarco",
-        photo: "/assets/testimonials/mariano.webp",
+        name: "Valeyr Turjeman",
+        role: "Directora General — Mister Noodles",
       },
       {
         quote:
-          "No solo aumentaron los pedidos. Mejoraron nuestro margen y ordenaron toda la operación digital.",
+          "Las herramientas y paneles nos ayudaron a consolidar todo el negocio digital en un solo lugar, agilizando nuestra toma de decisiones.",
         metrics: [
-          { value: "+34%", label: "Facturación mensual" },
-          { value: "+18%", label: "Margen promedio por pedido" },
+          { value: 4, prefix: "", suffix: "", label: "Canales integrados" },
+          { value: 10, prefix: "+", suffix: "%", label: "Aumento facturación" },
         ],
-        name: "Carla Méndez",
-        role: "Directora Operativa — La Birra Bar",
-        photo: "/assets/testimonials/carla.webp",
+        name: "Bruno González Calvo",
+        role: "Managing Director — Grosso Napoletano",
       },
       {
         quote:
-          "Detectaron problemas que nosotros no veíamos. Ajustaron precios, promos y visibilidad. El impacto fue inmediato.",
+          "El seguimiento semanal y el apoyo en el día a día son fundamentales para nuestro plan de expansión y apoyo a los franquiciados.",
         metrics: [
-          { value: "+23%", label: "Aumento en ticket promedio" },
-          { value: "+41%", label: "Conversión dentro de apps" },
+          { value: 8, prefix: "+", suffix: "%", label: "Crecimiento YoY" },
+          { value: 2, prefix: "+", suffix: "", label: "Franquicias" },
         ],
-        name: "Julián Ferreyra",
-        role: "Fundador — Tienda de Empanadas",
-        photo: "/assets/testimonials/julian.webp",
+        name: "Carlos Esteve",
+        role: "Fundador — Jeques Kebabs",
       },
     ],
   },
