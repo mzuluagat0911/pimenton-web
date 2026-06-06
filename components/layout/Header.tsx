@@ -16,10 +16,13 @@ const NAV_LINKS = [
   { label: "Contacto", href: "#contacto" },
 ];
 
-const CONTACT = {
-  phone: "+54 9 (11) 5703-5170",
-  phoneRaw: "+5491157035170",
-  email: "comercial@pimenton.io",
+const CONTACTS = {
+  phones: [
+    { region: "LatAm", phone: "+54 9 11 5703 5170", phoneRaw: "5491157035170" },
+    { region: "Europe", phone: "+34 683 632 437", phoneRaw: "34683632437" },
+    { region: "USA", phone: "+54 9 11 4042 5909", phoneRaw: "5491140425909" },
+  ],
+  email: "juanchi@pimenton.io",
 };
 
 export function Header() {
@@ -227,17 +230,29 @@ export function Header() {
                 }}
                 className="flex flex-col gap-1 text-pimenton-bg"
               >
+                <ul className="space-y-1">
+                  {CONTACTS.phones.map((p) => (
+                    <li
+                      key={p.region}
+                      className="flex items-baseline gap-3 sm:gap-4"
+                    >
+                      <span className="font-mono text-[10px] uppercase tracking-[0.18em] opacity-70 sm:text-xs">
+                        {p.region}
+                      </span>
+                      <a
+                        href={`tel:${p.phoneRaw}`}
+                        className="text-sm transition-opacity hover:opacity-80 sm:text-base"
+                      >
+                        {p.phone}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
                 <a
-                  href={`tel:${CONTACT.phoneRaw}`}
-                  className="text-sm transition-opacity hover:opacity-80 sm:text-base"
+                  href={`mailto:${CONTACTS.email}`}
+                  className="mt-3 font-display text-xl font-semibold transition-opacity hover:opacity-80 sm:text-2xl"
                 >
-                  {CONTACT.phone}
-                </a>
-                <a
-                  href={`mailto:${CONTACT.email}`}
-                  className="font-display text-xl font-semibold transition-opacity hover:opacity-80 sm:text-2xl"
-                >
-                  {CONTACT.email}
+                  {CONTACTS.email}
                 </a>
               </motion.div>
             </div>

@@ -213,9 +213,14 @@ export const copy = {
   footer: {
     tagline:
       "Transformamos el delivery en un canal rentable, predecible y profesional para restaurantes en LATAM y Europa.",
-    phone: "+54 9 (11) 5703 5170",
-    phoneRaw: "+5491157035170",
-    email: "comercial@pimenton.io",
+    // Phones regionales (WhatsApp). El phoneRaw va sin "+" y sin espacios
+    // (formato estándar para enlaces tel:/wa.me).
+    phones: [
+      { region: "LatAm", phone: "+54 9 11 5703 5170", phoneRaw: "5491157035170" },
+      { region: "Europe", phone: "+34 683 632 437", phoneRaw: "34683632437" },
+      { region: "USA", phone: "+54 9 11 4042 5909", phoneRaw: "5491140425909" },
+    ],
+    email: "juanchi@pimenton.io",
     copyright: "© 2026 Pimentón. Todos los derechos reservados.",
     credit: {
       label: "Created by Deache.io",
@@ -232,7 +237,7 @@ export const copy = {
       },
       {
         name: "WhatsApp",
-        href: "https://api.whatsapp.com/send/?phone=1157035170",
+        href: "https://api.whatsapp.com/send/?phone=5491157035170",
       },
     ],
     links: [

@@ -55,7 +55,7 @@ const SOCIAL_ICONS: Record<string, React.ComponentType<IconProps>> = {
 };
 
 export function Footer() {
-  const { tagline, phone, phoneRaw, email, copyright, credit, social, links } =
+  const { tagline, phones, email, copyright, credit, social, links } =
     copy.footer;
 
   return (
@@ -102,12 +102,24 @@ export function Footer() {
             <h3 className="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-text-on-dark-muted">
               Contacto
             </h3>
-            <a
-              href={`tel:${phoneRaw}`}
-              className="mt-5 block text-sm text-pimenton-text-on-dark-muted transition-colors duration-200 hover:text-pimenton-text-on-dark"
-            >
-              {phone}
-            </a>
+            <ul className="mt-5 space-y-1.5 md:flex md:flex-col md:items-end">
+              {phones.map((p) => (
+                <li
+                  key={p.region}
+                  className="flex items-baseline gap-3 md:justify-end"
+                >
+                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-pimenton-text-on-dark-muted/70">
+                    {p.region}
+                  </span>
+                  <a
+                    href={`tel:${p.phoneRaw}`}
+                    className="text-sm text-pimenton-text-on-dark-muted transition-colors duration-200 hover:text-pimenton-text-on-dark"
+                  >
+                    {p.phone}
+                  </a>
+                </li>
+              ))}
+            </ul>
             <a
               href={`mailto:${email}`}
               className="mt-2 block break-all font-display text-2xl font-semibold tracking-tight text-pimenton-accent transition-colors duration-200 hover:text-pimenton-accent-hover sm:text-3xl lg:text-4xl"
