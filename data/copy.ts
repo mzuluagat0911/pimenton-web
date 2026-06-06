@@ -165,7 +165,8 @@ export const copy = {
           { value: 3000, prefix: "+", suffix: "", label: "Pedidos recuperados" },
         ],
         name: "Valeyr Turjeman",
-        role: "Directora General — Mister Noodles",
+        brand: "Mister Noodles",
+        role: "Directora General",
       },
       {
         quote:
@@ -175,7 +176,8 @@ export const copy = {
           { value: 10, prefix: "+", suffix: "%", label: "Aumento facturación" },
         ],
         name: "Bruno González Calvo",
-        role: "Managing Director — Grosso Napoletano",
+        brand: "Grosso Napoletano",
+        role: "Managing Director",
       },
       {
         quote:
@@ -185,7 +187,8 @@ export const copy = {
           { value: 2, prefix: "+", suffix: "", label: "Franquicias" },
         ],
         name: "Carlos Esteve",
-        role: "Fundador — Jeques Kebabs",
+        brand: "Jeques Kebabs",
+        role: "Fundador",
       },
     ],
   },

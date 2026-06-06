@@ -298,13 +298,16 @@ function TestimonialCard({
           })}
         </div>
 
-        <div className="mt-6 flex items-center gap-3 border-t border-pimenton-border pt-5">
+        <div className="mt-6 flex items-start gap-3 border-t border-pimenton-border pt-5">
           <PortraitPlaceholder name={item.name} />
-          <div className="min-w-0">
-            <p className="truncate text-sm font-semibold text-pimenton-text">
+          <div className="min-w-0 leading-tight">
+            <p className="text-sm font-semibold text-pimenton-text">
               {item.name}
             </p>
-            <p className="truncate text-xs text-pimenton-text-muted sm:text-sm">
+            <p className="mt-1 text-xs text-pimenton-text-soft sm:text-sm">
+              {item.brand}
+            </p>
+            <p className="mt-0.5 text-xs text-pimenton-text-muted">
               {item.role}
             </p>
           </div>

@@ -18,9 +18,7 @@ export default function Home() {
       <MarketStats />
       <Comparison />
       <ControlRoom />
-      <Services />
       <Testimonials />
-      <Specialists />
       <Gallery />
     </main>
   );
