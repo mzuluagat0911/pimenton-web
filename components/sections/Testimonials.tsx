@@ -29,6 +29,29 @@ type Metric = TestimonialItem["metrics"][number];
 const METRIC_COUNT_DURATION = 1.4;
 
 /**
+ * PLACEHOLDER — Retrato ilustrado por persona (DiceBear "notionists"),
+ * determinístico vía seed = nombre. Se va a reemplazar por la foto real
+ * de cada owner cuando estén disponibles. Para volver a sacarlo, borrar
+ * este componente y su uso en TestimonialCard.
+ */
+function PortraitPlaceholder({ name }: { name: string }) {
+  const seed = encodeURIComponent(name);
+  const url = `https://api.dicebear.com/9.x/notionists/svg?seed=${seed}&backgroundColor=ffe0d7,ffd9cf,ffcec1`;
+  return (
+    <div className="flex size-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-full border border-pimenton-accent/30 bg-pimenton-accent/15">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={url}
+        alt=""
+        aria-hidden
+        className="h-full w-full object-cover"
+        draggable={false}
+      />
+    </div>
+  );
+}
+
+/**
  * Renderiza una métrica con count-up de 0 al valor final + un pop sutil
  * al terminar. El número se formatea con locale es-ES para que 3000 → "3.000"
  * (separador de miles en español). Prefijo (+) y sufijo (%) en peso fino.
@@ -275,13 +298,16 @@ function TestimonialCard({
           })}
         </div>
 
-        <div className="mt-6 border-t border-pimenton-border pt-5">
-          <p className="text-sm font-semibold text-pimenton-text">
-            {item.name}
-          </p>
-          <p className="mt-0.5 text-xs text-pimenton-text-muted sm:text-sm">
-            {item.role}
-          </p>
+        <div className="mt-6 flex items-center gap-3 border-t border-pimenton-border pt-5">
+          <PortraitPlaceholder name={item.name} />
+          <div className="min-w-0">
+            <p className="truncate text-sm font-semibold text-pimenton-text">
+              {item.name}
+            </p>
+            <p className="truncate text-xs text-pimenton-text-muted sm:text-sm">
+              {item.role}
+            </p>
+          </div>
         </div>
       </div>
     </motion.article>
