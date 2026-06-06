@@ -186,7 +186,7 @@ function StatCard({
             ? "0 14px 38px -12px rgba(232, 75, 60, 0.32), 0 4px 12px -6px rgba(0,0,0,0.25)"
             : "0 4px 14px -8px rgba(0,0,0,0.22)",
       }}
-      className="relative flex h-full flex-col justify-between overflow-hidden rounded-2xl bg-pimenton-dark p-7 transition-shadow duration-300 sm:rounded-[20px] sm:p-9 lg:p-10"
+      className="relative flex h-full flex-col justify-between overflow-hidden rounded-2xl bg-pimenton-dark p-8 transition-shadow duration-300 sm:rounded-[20px] sm:p-10 lg:p-12"
     >
       {/* Grano — overlay SVG con turbulencia fractal. Muy bajo opacity
           + mix-blend-overlay = textura premium sin competir con el
@@ -206,10 +206,10 @@ function StatCard({
       {/* Valor — arriba izquierda, coral, héroe. El motion wrapper hace
           el micro-bounce (scale 1 → 1.05 → 1) al terminar el count-up. */}
       <motion.div
-        animate={bouncing && !reduced ? { scale: [1, 1.05, 1] } : { scale: 1 }}
-        transition={{ duration: 0.38, ease: EASE }}
+        animate={bouncing && !reduced ? { scale: [1, 1.025, 1] } : { scale: 1 }}
+        transition={{ duration: 0.48, ease: EASE }}
         style={{ transformOrigin: "left center" }}
-        className="relative z-10 flex items-baseline font-display text-5xl font-semibold leading-none tracking-tight text-pimenton-accent tabular-nums sm:text-6xl"
+        className="relative z-10 flex items-baseline font-display text-6xl font-semibold leading-none tracking-tight text-pimenton-accent tabular-nums sm:text-7xl lg:text-8xl"
       >
         {item.prefix && (
           <span className="text-[0.55em] font-normal">{item.prefix}</span>
@@ -223,11 +223,11 @@ function StatCard({
       {/* Label + caption — abajo izquierda. justify-between en el wrapper
           empuja este bloque al piso, dejando las cards de altura pareja
           aunque los captions varíen en largo. */}
-      <div className="relative z-10 mt-12 sm:mt-16">
-        <h3 className="text-base font-semibold tracking-wide text-pimenton-text-on-dark sm:text-lg">
+      <div className="relative z-10 mt-14 sm:mt-20 lg:mt-24">
+        <h3 className="text-lg font-semibold tracking-wide text-pimenton-text-on-dark sm:text-xl lg:text-2xl">
           {item.label}
         </h3>
-        <p className="mt-1.5 text-sm leading-relaxed text-pimenton-text-on-dark-muted">
+        <p className="mt-2 text-base leading-relaxed text-pimenton-text-on-dark-muted sm:text-lg">
           {item.caption}
         </p>
       </div>
@@ -244,10 +244,10 @@ export function Stats() {
   return (
     <section
       ref={ref}
-      className="bg-pimenton-bg py-20 sm:py-28 overflow-hidden"
+      className="bg-pimenton-bg py-24 sm:py-32 overflow-hidden"
     >
       <div className="mx-auto max-w-7xl px-[5%] sm:px-16 lg:px-24">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4 lg:gap-6">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((item, i) => (
             <StatCard
               key={item.label}
