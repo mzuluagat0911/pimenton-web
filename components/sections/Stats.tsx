@@ -246,23 +246,28 @@ export function Stats() {
       ref={ref}
       className="bg-pimenton-bg py-24 sm:py-32 overflow-hidden"
     >
-      <div className="mx-auto max-w-7xl px-[5%] sm:px-16 lg:px-24">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {items.map((item, i) => (
-            <StatCard
-              key={item.label}
-              item={item}
-              index={i}
-              inView={inView}
-              reduced={reduced}
-            />
-          ))}
+      {/* Cards: padding wrapper AFUERA del max-w-7xl (= mismo patrón que
+          MarketStats). Las cards llenan el ancho del contenido sin que
+          el px-24 las achique adentro del cap. */}
+      <div className="px-[5%] sm:px-16 lg:px-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {items.map((item, i) => (
+              <StatCard
+                key={item.label}
+                item={item}
+                index={i}
+                inView={inView}
+                reduced={reduced}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Wall de clientes — bleed full-width, prueba visual de los +500.
-          Se preserva acá porque la sección Stats funciona como bloque
-          editorial completo: dashboard arriba + marquee abajo. */}
+          Vive AFUERA del wrapper de padding para que pueda extenderse
+          edge-to-edge sin heredar el px-24 de las cards. */}
       <div className="mt-20 sm:mt-28">
         <ClientMarquee />
       </div>
