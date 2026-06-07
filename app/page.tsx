@@ -1,4 +1,5 @@
 import { Comparison } from "@/components/sections/Comparison";
+import { Consultancy } from "@/components/sections/Consultancy";
 import { ControlRoom } from "@/components/sections/ControlRoom";
 import { Gallery } from "@/components/sections/Gallery";
 import { Hero } from "@/components/sections/Hero";
@@ -18,6 +19,7 @@ export default function Home() {
       <Comparison />
       <Testimonials />
       <Gallery />
+      <Consultancy />
     </main>
   );
 }

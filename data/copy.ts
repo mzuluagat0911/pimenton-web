@@ -216,6 +216,12 @@ export const copy = {
     ],
   },
   ctaFinal: {},
+  consultancy: {
+    eyebrow: "Empecemos",
+    heading: "Consultoría gratuita en 4 pasos.",
+    subheading:
+      "Contanos sobre tu restaurante y un especialista de tu región te escribe por WhatsApp.",
+  },
   gallery: {
     images: [
       { src: null, alt: "Cocina de restaurante en plena operación" },
