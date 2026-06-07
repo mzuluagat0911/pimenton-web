@@ -1,13 +1,16 @@
 /**
  * Fuente única para el formulario de consultoría:
- * - Opciones de los selectores (categoría / ubicaciones / país)
- * - Ruteo país → región WhatsApp (consume data/whatsapp.ts)
- * - Builder del mensaje pre-cargado con omisión de campos vacíos
+ * - Opciones de los selectores (categoría / ubicaciones)
+ * - Países: lookup contra data/countries.ts (lista exhaustiva con
+ *   ruteo país → región WhatsApp embebido)
+ * - Builder del mensaje pre-cargado con omisión de campos opcionales
+ *   vacíos
  *
  * El formulario es 100% client-side: el "envío" abre wa.me en pestaña
  * nueva con el mensaje encodeado. No hay backend.
  */
 
+import { countries, findCountry, type Country } from "./countries";
 import {
   whatsappRegions,
   whatsappUrl,
@@ -26,14 +29,6 @@ export type CategoryId =
 
 export type LocationsId = "1" | "2-5" | "5+";
 
-export type CountryId =
-  | "usa"
-  | "argentina"
-  | "espana"
-  | "mexico"
-  | "chile"
-  | "otros";
-
 export type Option<Id extends string> = { id: Id; label: string };
 
 export const categories: ReadonlyArray<Option<CategoryId>> = [
@@ -51,64 +46,40 @@ export const locations: ReadonlyArray<Option<LocationsId>> = [
   { id: "5+", label: "+5" },
 ] as const;
 
-export const countries: ReadonlyArray<Option<CountryId>> = [
-  { id: "usa", label: "USA" },
-  { id: "argentina", label: "Argentina" },
-  { id: "espana", label: "España" },
-  { id: "mexico", label: "México" },
-  { id: "chile", label: "Chile" },
-  { id: "otros", label: "Otros" },
-] as const;
-
 // ────────────── Ruteo país → región ──────────────
 
 /**
- * Mapea cada país del selector al ID de región de WhatsApp.
- * - USA → usa
- * - España (y, a futuro, otros países de Europa) → europe
- * - Argentina/México/Chile → latam
- * - Otros → fallback latam (per spec)
- *
- * Si en el futuro se agregan más países al selector, extender este mapa.
- * El selector actual del form es la única fuente de IDs válidos.
+ * Resuelve la región WhatsApp para un país por su ISO code. Si el código
+ * no se encuentra (caso defensivo, no debería pasar dado que los códigos
+ * vienen del select), defaultea a LatAm.
  */
-const COUNTRY_TO_REGION: Record<CountryId, WhatsappRegion["id"]> = {
-  usa: "usa",
-  espana: "europe",
-  argentina: "latam",
-  mexico: "latam",
-  chile: "latam",
-  otros: "latam",
-};
-
-export function regionForCountry(countryId: CountryId): WhatsappRegion {
-  const regionId = COUNTRY_TO_REGION[countryId];
+export function regionForCountry(countryCode: string): WhatsappRegion {
+  const country = findCountry(countryCode);
+  const regionId = country?.region ?? "latam";
   const region = whatsappRegions.find((r) => r.id === regionId);
-  if (!region) {
-    // Hard fallback — no debería pasar porque el mapa cubre todo CountryId.
-    return whatsappRegions[0]!;
-  }
+  if (!region) return whatsappRegions[0]!;
   return region;
 }
 
 // ────────────── Snapshot del formulario ──────────────
 
 /**
- * Estado completo del formulario al momento de "enviar". Los campos
- * opcionales (name, instagram) pueden venir vacíos; los "otros" tienen
- * sentido sólo cuando el ID elegido es "otros".
+ * Estado completo del formulario al momento de "enviar". `categoryOther`
+ * sólo tiene sentido cuando category === "otros". Los campos opcionales
+ * (instagram) pueden venir vacíos. Nombre, restaurante, teléfono, país,
+ * categoría y ubicaciones son obligatorios.
  */
 export type FormSnapshot = {
   category: CategoryId;
   categoryOther: string;
   locations: LocationsId;
-  country: CountryId;
-  countryOther: string;
-  /** Tu nombre — opcional (acompaña al mensaje si está cargado) */
+  /** ISO 3166-1 alpha-2 code — siempre presente al enviar */
+  country: string;
+  /** Nombre de la persona — obligatorio */
   name: string;
   restaurant: string;
   phone: string;
-  /** Instagram — opcional */
+  /** Handle de Instagram — opcional (línea omitida si vacío) */
   instagram: string;
 };
 
@@ -122,10 +93,7 @@ function categoryLabel(snap: FormSnapshot): string {
 }
 
 function countryLabel(snap: FormSnapshot): string {
-  if (snap.country === "otros") {
-    return snap.countryOther.trim() || "Otros";
-  }
-  return countries.find((c) => c.id === snap.country)?.label ?? "";
+  return findCountry(snap.country)?.name ?? "";
 }
 
 function locationsLabel(snap: FormSnapshot): string {
@@ -133,8 +101,9 @@ function locationsLabel(snap: FormSnapshot): string {
 }
 
 /**
- * Normaliza el handle de IG: agrega "@" si el usuario no lo puso.
- * Devuelve "" si el input está vacío (la línea se omite).
+ * Normaliza el handle de IG: elimina `@` inicial si vino del input y lo
+ * vuelve a anteponer al armar el output. Devuelve "" si vacío (la línea
+ * se omite del mensaje).
  */
 function formatInstagram(raw: string): string {
   const trimmed = raw.trim().replace(/^@+/, "");
@@ -147,14 +116,14 @@ function formatInstagram(raw: string): string {
 export type SummaryRow = { label: string; value: string };
 
 export function buildSummary(snap: FormSnapshot): SummaryRow[] {
-  const rows: SummaryRow[] = [];
-  const name = snap.name.trim();
-  if (name) rows.push({ label: "Tu nombre", value: name });
-  rows.push({ label: "Restaurante", value: snap.restaurant.trim() });
-  rows.push({ label: "Categoría", value: categoryLabel(snap) });
-  rows.push({ label: "Ubicaciones", value: locationsLabel(snap) });
-  rows.push({ label: "País", value: countryLabel(snap) });
-  rows.push({ label: "Teléfono", value: snap.phone.trim() });
+  const rows: SummaryRow[] = [
+    { label: "Tu nombre", value: snap.name.trim() },
+    { label: "Restaurante", value: snap.restaurant.trim() },
+    { label: "Categoría", value: categoryLabel(snap) },
+    { label: "Ubicaciones", value: locationsLabel(snap) },
+    { label: "País", value: countryLabel(snap) },
+    { label: "Teléfono", value: snap.phone.trim() },
+  ];
   const ig = formatInstagram(snap.instagram);
   if (ig) rows.push({ label: "Instagram", value: ig });
   return rows;
@@ -163,11 +132,10 @@ export function buildSummary(snap: FormSnapshot): SummaryRow[] {
 // ────────────── Builder del mensaje WhatsApp ──────────────
 
 /**
- * Mensaje pre-cargado para wa.me. Los campos opcionales sin valor se
- * OMITEN — nunca aparece "Instagram: -" o "Nombre: -".
- *
- * El teléfono no se incluye porque WhatsApp ya lo expone como remitente
- * en la conversación: repetirlo en el cuerpo del mensaje es ruido.
+ * Mensaje pre-cargado para wa.me. Instagram se OMITE entero si vacío
+ * (no aparece "Instagram: -"). El teléfono no se incluye porque
+ * WhatsApp ya expone el número del remitente al receptor — repetirlo
+ * en el cuerpo es ruido.
  */
 export function buildWhatsappMessage(snap: FormSnapshot): string {
   const lines: string[] = [];
@@ -175,16 +143,13 @@ export function buildWhatsappMessage(snap: FormSnapshot): string {
     "Hola Pimentón 👋 Quiero profesionalizar el delivery de mi restaurante.",
   );
   lines.push("");
-
-  const name = snap.name.trim();
-  if (name) lines.push(`- Nombre: ${name}`);
+  lines.push(`- Nombre: ${snap.name.trim()}`);
   lines.push(`- Restaurante: ${snap.restaurant.trim()}`);
   lines.push(`- Categoría: ${categoryLabel(snap)}`);
   lines.push(`- Ubicaciones: ${locationsLabel(snap)}`);
   lines.push(`- País: ${countryLabel(snap)}`);
   const ig = formatInstagram(snap.instagram);
   if (ig) lines.push(`- Instagram: ${ig}`);
-
   lines.push("");
   lines.push("Me gustaría coordinar una consultoría.");
   return lines.join("\n");
@@ -192,10 +157,14 @@ export function buildWhatsappMessage(snap: FormSnapshot): string {
 
 /**
  * URL final wa.me — número según ruteo de país + texto encodeado.
- * Consume whatsappUrl() de data/whatsapp.ts (que ya hace el
+ * Consume whatsappUrl() de data/whatsapp.ts (que hace el
  * encodeURIComponent del texto).
  */
 export function buildWhatsappLink(snap: FormSnapshot): string {
   const region = regionForCountry(snap.country);
   return whatsappUrl(region, buildWhatsappMessage(snap));
 }
+
+// Re-export para que el form consuma todo desde acá si quiere
+export { countries, findCountry };
+export type { Country };

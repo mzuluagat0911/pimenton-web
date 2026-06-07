@@ -15,6 +15,7 @@ import {
   ArrowRight,
   AtSign,
   Check,
+  ChevronDown,
   MessageCircle,
   RotateCcw,
   X,
@@ -26,7 +27,6 @@ import {
   countries,
   locations,
   type CategoryId,
-  type CountryId,
   type FormSnapshot,
   type LocationsId,
 } from "@/data/contactForm";
@@ -42,8 +42,8 @@ type FormData = {
   category: CategoryId | null;
   categoryOther: string;
   locations: LocationsId | null;
-  country: CountryId | null;
-  countryOther: string;
+  /** ISO 3166-1 alpha-2 — "" antes de elegir, válido cuando no vacío */
+  country: string;
   name: string;
   restaurant: string;
   phone: string;
@@ -74,8 +74,7 @@ const INITIAL: State = {
     category: null,
     categoryOther: "",
     locations: null,
-    country: null,
-    countryOther: "",
+    country: "",
     name: "",
     restaurant: "",
     phone: "",
@@ -122,11 +121,13 @@ function isStepValid(step: Step, data: FormData): boolean {
     case 2:
       return data.locations !== null;
     case 3:
-      if (!data.country) return false;
-      if (data.country === "otros" && !data.countryOther.trim()) return false;
-      return true;
+      return data.country !== "";
     case 4:
-      return data.restaurant.trim().length > 0 && data.phone.trim().length > 0;
+      return (
+        data.name.trim().length > 0 &&
+        data.restaurant.trim().length > 0 &&
+        data.phone.trim().length > 0
+      );
     case "confirm":
       return true;
   }
@@ -139,7 +140,6 @@ function buildSnapshot(data: FormData): FormSnapshot | null {
     categoryOther: data.categoryOther,
     locations: data.locations,
     country: data.country,
-    countryOther: data.countryOther,
     name: data.name,
     restaurant: data.restaurant,
     phone: data.phone,
@@ -393,7 +393,7 @@ function FormBody({
             type="button"
             onClick={onClose}
             aria-label="Cerrar formulario"
-            className="flex size-9 flex-shrink-0 items-center justify-center rounded-full text-pimenton-text-muted outline-none transition-colors hover:bg-pimenton-bg-soft hover:text-pimenton-text focus-visible:ring-2 focus-visible:ring-pimenton-accent"
+            className="flex size-9 flex-shrink-0 cursor-pointer items-center justify-center rounded-full text-pimenton-text-muted outline-none transition-colors hover:bg-pimenton-bg-soft hover:text-pimenton-text focus-visible:ring-2 focus-visible:ring-pimenton-accent"
           >
             <X className="size-5" />
           </button>
@@ -444,7 +444,7 @@ function FormBody({
           type="button"
           onClick={() => dispatch({ type: "back" })}
           disabled={state.step === 1}
-          className="inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-medium text-pimenton-text-soft outline-none transition-colors hover:text-pimenton-text focus-visible:ring-2 focus-visible:ring-pimenton-accent disabled:cursor-not-allowed disabled:opacity-40 sm:text-base"
+          className="inline-flex cursor-pointer items-center gap-2 rounded-full px-4 py-2.5 text-sm font-medium text-pimenton-text-soft outline-none transition-colors hover:text-pimenton-text focus-visible:ring-2 focus-visible:ring-pimenton-accent disabled:cursor-not-allowed disabled:opacity-40 sm:text-base"
         >
           <ArrowLeft className="size-4" />
           Atrás
@@ -455,7 +455,7 @@ function FormBody({
             <button
               type="button"
               onClick={() => dispatch({ type: "reset" })}
-              className="inline-flex items-center gap-2 rounded-full bg-pimenton-text px-5 py-3 text-sm font-semibold text-pimenton-bg outline-none transition-all hover:opacity-90 focus-visible:ring-2 focus-visible:ring-pimenton-accent focus-visible:ring-offset-2 sm:px-6 sm:text-base"
+              className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-pimenton-text px-5 py-3 text-sm font-semibold text-pimenton-bg outline-none transition-all hover:opacity-90 focus-visible:ring-2 focus-visible:ring-pimenton-accent focus-visible:ring-offset-2 sm:px-6 sm:text-base"
             >
               <RotateCcw className="size-4" />
               Empezar de nuevo
@@ -464,7 +464,7 @@ function FormBody({
             <button
               type="button"
               onClick={onSubmit}
-              className="inline-flex items-center gap-2 rounded-full bg-pimenton-accent px-5 py-3 text-sm font-semibold text-pimenton-bg shadow-lg shadow-pimenton-accent/30 outline-none transition-all hover:shadow-pimenton-accent/45 focus-visible:ring-2 focus-visible:ring-pimenton-accent focus-visible:ring-offset-2 sm:px-6 sm:text-base"
+              className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-pimenton-accent px-5 py-3 text-sm font-semibold text-pimenton-bg shadow-lg shadow-pimenton-accent/30 outline-none transition-all hover:shadow-pimenton-accent/45 focus-visible:ring-2 focus-visible:ring-pimenton-accent focus-visible:ring-offset-2 sm:px-6 sm:text-base"
             >
               <MessageCircle className="size-4" />
               Enviar por WhatsApp
@@ -475,7 +475,7 @@ function FormBody({
             type="button"
             onClick={() => dispatch({ type: "next" })}
             disabled={!valid}
-            className="inline-flex items-center gap-2 rounded-full bg-pimenton-accent px-5 py-3 text-sm font-semibold text-pimenton-bg shadow-md shadow-pimenton-accent/25 outline-none transition-all hover:shadow-pimenton-accent/40 focus-visible:ring-2 focus-visible:ring-pimenton-accent focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none sm:px-6 sm:text-base"
+            className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-pimenton-accent px-5 py-3 text-sm font-semibold text-pimenton-bg shadow-md shadow-pimenton-accent/25 outline-none transition-all hover:shadow-pimenton-accent/40 focus-visible:ring-2 focus-visible:ring-pimenton-accent focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none sm:px-6 sm:text-base"
           >
             {state.step === 4 ? "Continuar" : "Siguiente"}
             <ArrowRight className="size-4" />
@@ -530,7 +530,7 @@ function OptionCard<Id extends string>({
       role="radio"
       aria-checked={selected}
       onClick={onClick}
-      className={`group relative flex items-center justify-between gap-3 rounded-2xl border bg-pimenton-bg-soft px-5 py-4 text-left outline-none transition-all hover:border-pimenton-accent/40 hover:bg-pimenton-bg-soft/80 focus-visible:ring-2 focus-visible:ring-pimenton-accent ${
+      className={`group relative flex cursor-pointer items-center justify-between gap-3 rounded-2xl border bg-pimenton-bg-soft px-5 py-4 text-left outline-none transition-all hover:border-pimenton-accent/40 hover:bg-pimenton-bg-soft/80 focus-visible:ring-2 focus-visible:ring-pimenton-accent ${
         selected
           ? "border-pimenton-accent bg-pimenton-accent/10"
           : "border-pimenton-border"
@@ -628,27 +628,44 @@ function StepCountry({
   data: FormData;
   dispatch: React.Dispatch<Action>;
 }) {
+  const id = useId();
   return (
-    <div role="radiogroup" aria-label="País">
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        {countries.map((opt) => (
-          <OptionCard
-            key={opt.id}
-            label={opt.label}
-            selected={data.country === opt.id}
-            onClick={() => dispatch({ type: "patch", patch: { country: opt.id } })}
-          />
-        ))}
+    <div>
+      <label
+        htmlFor={id}
+        className="mb-2 block text-sm font-medium text-pimenton-text sm:text-base"
+      >
+        País
+      </label>
+      <div className="relative">
+        <select
+          id={id}
+          value={data.country}
+          onChange={(e) =>
+            dispatch({ type: "patch", patch: { country: e.target.value } })
+          }
+          required
+          aria-required
+          className="w-full cursor-pointer appearance-none rounded-xl border border-pimenton-border bg-pimenton-bg px-4 py-3.5 pr-12 text-sm text-pimenton-text outline-none transition-colors focus:border-pimenton-accent focus:ring-2 focus:ring-pimenton-accent/25 sm:text-base"
+        >
+          <option value="" disabled>
+            Elegí tu país…
+          </option>
+          {countries.map((c) => (
+            <option key={c.code} value={c.code}>
+              {c.name}
+            </option>
+          ))}
+        </select>
+        <ChevronDown
+          aria-hidden
+          className="pointer-events-none absolute right-4 top-1/2 size-5 -translate-y-1/2 text-pimenton-text-muted"
+        />
       </div>
-      <OtherInputCollapse
-        show={data.country === "otros"}
-        value={data.countryOther}
-        onChange={(v) =>
-          dispatch({ type: "patch", patch: { countryOther: v } })
-        }
-        placeholder="¿En qué país estás?"
-        label="Especificá tu país"
-      />
+      <p className="mt-3 text-xs leading-relaxed text-pimenton-text-muted sm:text-sm">
+        Usamos tu país para conectarte con el especialista de tu región
+        por WhatsApp.
+      </p>
     </div>
   );
 }
@@ -666,7 +683,7 @@ function StepDetails({
     <div className="space-y-5">
       <TextField
         label="Tu nombre"
-        optional
+        required
         value={data.name}
         onChange={(v) => dispatch({ type: "patch", patch: { name: v } })}
         placeholder="Cómo te llamás"
@@ -695,7 +712,7 @@ function StepDetails({
         optional
         value={data.instagram}
         onChange={(v) => dispatch({ type: "patch", patch: { instagram: v } })}
-        placeholder="@turestaurante"
+        placeholder="turestaurante"
         icon={<AtSign className="size-4" />}
         autoComplete="off"
       />

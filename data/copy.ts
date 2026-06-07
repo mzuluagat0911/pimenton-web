@@ -221,6 +221,12 @@ export const copy = {
     heading: "Consultoría gratuita en 4 pasos.",
     subheading:
       "Contanos sobre tu restaurante y un especialista de tu región te escribe por WhatsApp.",
+    socialProof: "+500 restaurantes confían en Pimentón",
+    bullets: [
+      "Consultoría sin cargo y sin compromiso",
+      "Hablás con un especialista de tu región",
+      "Respuesta directa por WhatsApp",
+    ],
   },
   gallery: {
     images: [
