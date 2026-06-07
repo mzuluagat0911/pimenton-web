@@ -1,7 +1,12 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView, useReducedMotion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useInView,
+  useReducedMotion,
+} from "motion/react";
 import { Check } from "lucide-react";
 import { ConsultancyForm } from "@/components/forms/ConsultancyForm";
 import { clients } from "@/data/clients";
@@ -9,10 +14,107 @@ import { copy } from "@/data/copy";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-// Primeros 5 logos del wall de clientes para la prueba social. Cualquier
-// logo sirve (las "pruebas" son el conjunto, no el orden específico) —
-// si el orden de data/clients.ts cambia, no impacta el sentido.
-const SHOWCASE_LOGOS = clients.slice(0, 5);
+// Cantidad de logos visibles en el stack. Es el "ancho" del wall — más
+// de 5 empieza a comerse el espacio editorial en columnas anchas.
+const SHOWCASE_SLOTS = 5;
+
+/**
+ * Stack de logos de clientes que va rotando. Cada slot mantiene su
+ * posición en el stack; el contenido del slot cambia con un crossfade
+ * cuando le toca rotar. Garantiza que ningún cliente aparezca en dos
+ * slots a la vez (los swaps eligen sólo entre clientes que no estén
+ * actualmente visibles).
+ *
+ * Bajo prefers-reduced-motion: rotación apagada, muestra los primeros
+ * SHOWCASE_SLOTS clientes estáticos.
+ */
+function RotatingClientLogos({ reduced }: { reduced: boolean }) {
+  const [indices, setIndices] = useState<number[]>(() =>
+    Array.from({ length: SHOWCASE_SLOTS }, (_, i) => i),
+  );
+
+  useEffect(() => {
+    if (reduced) return;
+    // Si no hay más clientes que slots, no hay nada para rotar.
+    if (clients.length <= SHOWCASE_SLOTS) return;
+
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+    let cancelled = false;
+
+    const tick = () => {
+      if (cancelled) return;
+      setIndices((prev) => {
+        const used = new Set(prev);
+        const available: number[] = [];
+        for (let i = 0; i < clients.length; i++) {
+          if (!used.has(i)) available.push(i);
+        }
+        if (available.length === 0) return prev;
+        const slotToSwap = Math.floor(Math.random() * prev.length);
+        const newClientIdx =
+          available[Math.floor(Math.random() * available.length)]!;
+        const next = [...prev];
+        next[slotToSwap] = newClientIdx;
+        return next;
+      });
+      // Próximo tick en 2.5–5s — random para que no se sienta robótico.
+      const wait = 2500 + Math.random() * 2500;
+      timeoutId = setTimeout(tick, wait);
+    };
+
+    // Arrancamos después de 2s para que el usuario alcance a ver el
+    // stack inicial antes de que empiece a moverse.
+    timeoutId = setTimeout(tick, 2000);
+
+    return () => {
+      cancelled = true;
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [reduced]);
+
+  return (
+    <div className="flex -space-x-2.5">
+      {indices.map((clientIdx, slotIdx) => {
+        const client = clients[clientIdx];
+        if (!client) return null;
+        return (
+          <div
+            key={slotIdx}
+            className="relative size-10 overflow-hidden rounded-full border-2 border-pimenton-bg bg-pimenton-dark sm:size-11"
+            style={{ zIndex: SHOWCASE_SLOTS - slotIdx }}
+          >
+            <AnimatePresence initial={false}>
+              <motion.img
+                key={client.logo}
+                src={client.logo}
+                alt=""
+                aria-hidden
+                initial={
+                  reduced
+                    ? { opacity: 1 }
+                    : { opacity: 0, scale: 0.85 }
+                }
+                animate={{ opacity: 1, scale: 1 }}
+                exit={
+                  reduced
+                    ? { opacity: 0 }
+                    : { opacity: 0, scale: 0.85 }
+                }
+                transition={{
+                  duration: reduced ? 0.2 : 0.55,
+                  ease: EASE,
+                }}
+                className="absolute inset-0 size-full object-cover"
+                draggable={false}
+                loading="lazy"
+              />
+            </AnimatePresence>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 
 /**
  * Sección de cierre del home: bloque editorial a la izquierda
@@ -101,20 +203,7 @@ export function Consultancy() {
                 transition={{ duration: 0.7, delay: 0.32, ease: EASE }}
                 className="mt-9 flex items-center gap-4 sm:mt-10"
               >
-                <div className="flex -space-x-2.5">
-                  {SHOWCASE_LOGOS.map((c) => (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      key={c.logo}
-                      src={c.logo}
-                      alt=""
-                      aria-hidden
-                      className="size-10 rounded-full border-2 border-pimenton-bg bg-pimenton-dark object-cover sm:size-11"
-                      draggable={false}
-                      loading="lazy"
-                    />
-                  ))}
-                </div>
+                <RotatingClientLogos reduced={reduced} />
                 <p className="text-sm font-medium leading-snug text-pimenton-text sm:text-base">
                   {socialProof}
                 </p>
