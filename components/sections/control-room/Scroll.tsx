@@ -160,7 +160,7 @@ export function ControlRoomScroll() {
     // it. Spacer is 200vh so the sticky 100vh child provides 100vh of
     // scroll runway for the rotation tween while staying centered in
     // viewport during the pin.
-    <section className="relative bg-pimenton-dark py-20 sm:py-24">
+    <section className="relative bg-pimenton-dark py-14 sm:py-20">
       <div className="mx-auto w-full max-w-7xl px-[5%] sm:px-16 lg:px-24">
         <p className="flex items-center text-pimenton-accent text-xs sm:text-sm uppercase tracking-[0.22em] font-medium">
           <span aria-hidden className="mr-3 inline-block h-px w-8 bg-pimenton-accent" />

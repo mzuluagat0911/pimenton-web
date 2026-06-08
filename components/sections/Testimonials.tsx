@@ -331,7 +331,7 @@ export function Testimonials() {
     <section
       ref={ref}
       id="testimonios"
-      className="scroll-mt-24 bg-pimenton-bg px-[5%] sm:px-16 lg:px-24 py-24 sm:py-32"
+      className="scroll-mt-24 bg-pimenton-bg px-[5%] sm:px-16 lg:px-24 py-14 sm:py-20"
     >
       <div className="mx-auto w-full max-w-7xl">
         <div

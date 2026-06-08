@@ -186,7 +186,7 @@ export function Stats() {
   return (
     <section
       ref={ref}
-      className="bg-pimenton-bg py-24 sm:py-32 overflow-hidden"
+      className="bg-pimenton-bg py-14 sm:py-20 overflow-hidden"
     >
       {/* Padding wrapper afuera del max-w-7xl (mismo patrón que
           MarketStats/Consultancy), para que el ClientMarquee de abajo
@@ -220,7 +220,7 @@ export function Stats() {
       {/* Wall de clientes — bleed full-width. Se preserva porque la
           sección Stats sigue funcionando como bloque editorial completo:
           dashboard bento arriba + marquee abajo. */}
-      <div className="mt-20 sm:mt-28">
+      <div className="mt-12 sm:mt-16">
         <ClientMarquee />
       </div>
     </section>

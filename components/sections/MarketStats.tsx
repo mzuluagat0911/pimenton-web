@@ -65,7 +65,7 @@ function MarketCard({
 }
 
 export function MarketStats() {
-  const { eyebrow, heading, items } = copy.marketStats;
+  const { heading, items } = copy.marketStats;
   const reduced = useReducedMotion() ?? false;
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.2 });
@@ -73,27 +73,9 @@ export function MarketStats() {
   return (
     <section
       ref={ref}
-      className="bg-pimenton-bg px-[5%] sm:px-16 lg:px-24 py-24 sm:py-32"
+      className="bg-pimenton-bg px-[5%] sm:px-16 lg:px-24 py-14 sm:py-20"
     >
       <div className="mx-auto max-w-7xl">
-        <motion.p
-          initial={reduced ? { opacity: 0 } : { opacity: 0, y: 12 }}
-          animate={
-            inView
-              ? { opacity: 1, y: 0 }
-              : reduced
-                ? { opacity: 0 }
-                : { opacity: 0, y: 12 }
-          }
-          transition={{ duration: 0.6, ease: EASE }}
-          className="flex items-center text-pimenton-accent text-xs sm:text-sm uppercase tracking-[0.22em] font-medium"
-        >
-          <span
-            aria-hidden
-            className="mr-3 inline-block h-px w-8 bg-pimenton-accent"
-          />
-          {eyebrow}
-        </motion.p>
         <motion.h2
           initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20 }}
           animate={
@@ -103,8 +85,8 @@ export function MarketStats() {
                 ? { opacity: 0 }
                 : { opacity: 0, y: 20 }
           }
-          transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
-          className="mt-6 max-w-3xl whitespace-pre-line text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl"
+          transition={{ duration: 0.8, ease: EASE }}
+          className="max-w-3xl whitespace-pre-line text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl"
         >
           {heading}
         </motion.h2>

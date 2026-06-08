@@ -134,7 +134,7 @@ export function Consultancy() {
     <section
       ref={ref}
       id="contacto"
-      className="scroll-mt-24 bg-pimenton-bg py-24 sm:py-32"
+      className="scroll-mt-24 bg-pimenton-bg py-14 sm:py-20"
     >
       <div className="px-[5%] sm:px-16 lg:px-24">
         <div className="mx-auto max-w-7xl">

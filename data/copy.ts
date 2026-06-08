@@ -65,8 +65,7 @@ export const copy = {
     subheading: "Tu delivery operado desde una sola pantalla.",
   },
   marketStats: {
-    eyebrow: "Por qué profesionalizar tu delivery",
-    heading: "El delivery como una unidad de negocio rentable.",
+    heading: "Por qué profesionalizar tu delivery",
     items: [
       {
         stat: "1 pedido por semana",
