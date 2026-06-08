@@ -109,9 +109,7 @@ export function Header() {
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
           !open && hidden ? "-translate-y-full" : "translate-y-0"
         } ${
-          !open && scrolled
-            ? "bg-pimenton-dark/70 backdrop-blur-md"
-            : "bg-transparent"
+          !open && scrolled ? "bg-pimenton-dark" : "bg-transparent"
         }`}
       >
         <div className="mx-auto flex h-16 items-center justify-between px-[5%] sm:h-20 md:w-[90%] md:max-w-[1500px] md:px-0">
@@ -195,7 +193,7 @@ export function Header() {
             transition={{ duration: reduced ? 0.2 : 0.7, ease: EASE }}
             className="fixed inset-0 z-40 overflow-hidden bg-pimenton-accent"
           >
-            <div className="mx-auto flex h-full w-full max-w-7xl flex-col justify-between px-[5%] pb-12 pt-24 sm:px-16 sm:pb-16 sm:pt-28 lg:px-24">
+            <div className="mx-auto flex h-full w-full max-w-7xl flex-col justify-between px-[5%] pb-12 pt-24 sm:px-16 sm:pb-16 sm:pt-28 lg:max-w-none lg:px-0">
               <nav className="flex flex-1 flex-col items-end justify-center gap-2 text-right sm:gap-3">
                 {NAV_LINKS.map((link, i) => (
                   <motion.a
@@ -212,7 +210,7 @@ export function Header() {
                       duration: 0.45,
                       ease: EASE,
                     }}
-                    className="font-display text-3xl font-semibold tracking-tight text-pimenton-bg transition-opacity duration-200 hover:opacity-80 sm:text-4xl lg:text-5xl"
+                    className="font-sans text-3xl font-semibold tracking-tight text-pimenton-bg transition-opacity duration-200 hover:opacity-80 sm:text-4xl lg:text-5xl"
                   >
                     {link.label}
                   </motion.a>
@@ -236,7 +234,7 @@ export function Header() {
                       key={p.region}
                       className="flex items-baseline gap-3 sm:gap-4"
                     >
-                      <span className="font-mono text-[10px] uppercase tracking-[0.18em] opacity-70 sm:text-xs">
+                      <span className="font-sans text-[10px] font-medium uppercase tracking-[0.18em] opacity-70 sm:text-xs">
                         {p.region}
                       </span>
                       <a
@@ -250,7 +248,7 @@ export function Header() {
                 </ul>
                 <a
                   href={`mailto:${CONTACTS.email}`}
-                  className="mt-3 font-display text-xl font-semibold transition-opacity hover:opacity-80 sm:text-2xl"
+                  className="mt-3 font-sans text-xl font-semibold transition-opacity hover:opacity-80 sm:text-2xl"
                 >
                   {CONTACTS.email}
                 </a>
