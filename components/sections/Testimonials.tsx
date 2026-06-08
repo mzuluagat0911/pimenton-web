@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import {
   animate,
   motion,
@@ -8,21 +8,32 @@ import {
   useMotionValue,
   useReducedMotion,
   useScroll,
+  useSpring,
   useTransform,
 } from "motion/react";
-import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import { copy } from "@/data/copy";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
-const METRIC_COUNT_DURATION = 1.4;
+const ENTRY_SPRING = {
+  type: "spring" as const,
+  stiffness: 80,
+  damping: 14,
+  mass: 0.7,
+};
+const TILT_SPRING = { stiffness: 220, damping: 22 };
+const TILT_MAX_DEG = 5;
 
 type TestimonialItem = (typeof copy.testimonials.items)[number];
 type Metric = TestimonialItem["metrics"][number];
 
+const METRIC_COUNT_DURATION = 1.4;
+
 /**
  * PLACEHOLDER — Retrato ilustrado por persona (DiceBear "notionists"),
  * determinístico vía seed = nombre. Se va a reemplazar por la foto real
- * de cada owner cuando estén disponibles.
+ * de cada owner cuando estén disponibles. Para volver a sacarlo, borrar
+ * este componente y su uso en TestimonialCard.
  */
 function PortraitPlaceholder({ name }: { name: string }) {
   const seed = encodeURIComponent(name);
@@ -42,8 +53,9 @@ function PortraitPlaceholder({ name }: { name: string }) {
 }
 
 /**
- * Métrica con count-up de 0 → valor final + un pop sutil al terminar.
- * Locale es-ES para que 3000 se muestre "3.000".
+ * Renderiza una métrica con count-up de 0 al valor final + un pop sutil
+ * al terminar. El número se formatea con locale es-ES para que 3000 → "3.000"
+ * (separador de miles en español). Prefijo (+) y sufijo (%) en peso fino.
  */
 function AnimatedMetric({
   metric,
@@ -103,6 +115,37 @@ function AnimatedMetric({
   );
 }
 
+/**
+ * Hook: 3D tilt following the cursor position over the card. Returns
+ * motion values for rotateX/Y and the handlers to wire into the
+ * card. Disabled under reduced motion.
+ */
+function useCardTilt(disabled: boolean) {
+  const ref = useRef<HTMLElement>(null);
+  const rotateX = useMotionValue(0);
+  const rotateY = useMotionValue(0);
+  const springX = useSpring(rotateX, TILT_SPRING);
+  const springY = useSpring(rotateY, TILT_SPRING);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (disabled) return;
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    rotateY.set(px * -TILT_MAX_DEG * 2);
+    rotateX.set(py * TILT_MAX_DEG * 2);
+  };
+
+  const handleMouseLeave = () => {
+    rotateX.set(0);
+    rotateY.set(0);
+  };
+
+  return { ref, springX, springY, handleMouseMove, handleMouseLeave };
+}
+
 function StarRow() {
   return (
     <div aria-label="5 estrellas" className="flex gap-1 text-pimenton-accent">
@@ -113,38 +156,125 @@ function StarRow() {
   );
 }
 
+function IntroCard({
+  brand,
+  heading,
+  subheading,
+  inView,
+  reduced,
+  rotateZStart,
+}: {
+  brand: string;
+  heading: string;
+  subheading: string;
+  inView: boolean;
+  reduced: boolean;
+  rotateZStart: number;
+}) {
+  const tilt = useCardTilt(reduced);
+  return (
+    <motion.article
+      ref={tilt.ref}
+      initial={
+        reduced
+          ? { opacity: 0 }
+          : { opacity: 0, y: 70, rotate: rotateZStart, scale: 0.94 }
+      }
+      animate={
+        inView
+          ? { opacity: 1, y: 0, rotate: 0, scale: 1 }
+          : reduced
+            ? { opacity: 0 }
+            : { opacity: 0, y: 70, rotate: rotateZStart, scale: 0.94 }
+      }
+      transition={reduced ? { duration: 0.4 } : ENTRY_SPRING}
+      style={
+        reduced
+          ? undefined
+          : {
+              rotateX: tilt.springY,
+              rotateY: tilt.springX,
+              transformPerspective: 1000,
+            }
+      }
+      onMouseMove={tilt.handleMouseMove}
+      onMouseLeave={tilt.handleMouseLeave}
+      className="relative flex h-full flex-col justify-between rounded-2xl border border-pimenton-border bg-pimenton-surface p-7 sm:p-8"
+    >
+      <span
+        aria-hidden
+        className="pointer-events-none absolute right-7 top-7 block size-3 border-r border-t border-pimenton-accent sm:right-8 sm:top-8"
+      />
+
+      <div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/logos/principal/logo-coral.webp"
+          alt={brand}
+          className="h-7 w-auto sm:h-8"
+          draggable={false}
+        />
+        <h2 className="mt-10 text-2xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-3xl">
+          {heading}
+        </h2>
+      </div>
+
+      <p className="mt-12 text-sm leading-relaxed text-pimenton-text-muted sm:text-base">
+        {subheading}
+      </p>
+    </motion.article>
+  );
+}
+
 function TestimonialCard({
   item,
   index,
   inView,
   reduced,
+  rotateZStart,
 }: {
   item: TestimonialItem;
   index: number;
   inView: boolean;
   reduced: boolean;
+  rotateZStart: number;
 }) {
+  const tilt = useCardTilt(reduced);
   return (
     <motion.article
-      data-card
+      ref={tilt.ref}
       initial={
-        reduced ? { opacity: 0 } : { opacity: 0, y: 30 }
+        reduced
+          ? { opacity: 0 }
+          : { opacity: 0, y: 70, rotate: rotateZStart, scale: 0.94 }
       }
       animate={
         inView
-          ? { opacity: 1, y: 0 }
+          ? { opacity: 1, y: 0, rotate: 0, scale: 1 }
           : reduced
             ? { opacity: 0 }
-            : { opacity: 0, y: 30 }
+            : { opacity: 0, y: 70, rotate: rotateZStart, scale: 0.94 }
       }
-      transition={{
-        duration: 0.7,
-        delay: reduced ? 0 : index * 0.1,
-        ease: EASE,
-      }}
-      className="flex w-[300px] flex-shrink-0 snap-start flex-col rounded-2xl border border-pimenton-border bg-pimenton-surface p-7 shadow-[0_22px_44px_-22px_rgba(15,15,14,0.22)] sm:w-[360px] sm:p-8"
+      transition={
+        reduced
+          ? { duration: 0.4 }
+          : { ...ENTRY_SPRING, delay: (index + 1) * 0.12 }
+      }
+      style={
+        reduced
+          ? undefined
+          : {
+              rotateX: tilt.springY,
+              rotateY: tilt.springX,
+              transformPerspective: 1000,
+            }
+      }
+      onMouseMove={tilt.handleMouseMove}
+      onMouseLeave={tilt.handleMouseLeave}
+      className="relative flex h-full flex-col rounded-2xl border border-pimenton-border bg-pimenton-surface p-7 transition-shadow duration-300 hover:shadow-[0_22px_44px_-22px_rgba(15,15,14,0.22)] sm:p-8"
     >
       <StarRow />
+
       <p className="mt-6 text-base leading-relaxed text-pimenton-text-soft">
         {item.quote}
       </p>
@@ -152,9 +282,11 @@ function TestimonialCard({
       <div className="mt-auto pt-10">
         <div className="space-y-5">
           {item.metrics.map((m, mi) => {
+            // Delay encadenado: espera a que la card termine su entrada
+            // (stagger + entry ~0.6s) y luego escalona métrica a métrica.
             const delay = reduced
               ? 0
-              : (index + 1) * 0.1 + 0.55 + mi * 0.18;
+              : (index + 1) * 0.12 + 0.55 + mi * 0.18;
             return (
               <AnimatedMetric
                 key={m.label}
@@ -192,12 +324,16 @@ export function Testimonials() {
   const inView = useInView(ref, { once: true, amount: 0.15 });
   const reduced = useReducedMotion() ?? false;
 
-  // Padding generoso pedido específicamente para esta sección — pesa
-  // visualmente más que el resto del home.
-  // Parallax sutil del background: la imagen se traslada un poco más
-  // lento que el scroll del usuario. El contenedor del bg es 20% más
-  // alto que la sección (10% extra arriba y abajo) para que el
-  // translate ±10% nunca revele un borde.
+  // Alternating rotation start angles for the "deck deal" entry — cards
+  // arrive from slightly different tilts and settle to 0.
+  const rotations = [-2.5, 2, -1.8, 2.2];
+
+  // Parallax sutil sobre el background mint + ilustraciones amarillas.
+  // La imagen se traslada ~±10% mientras el usuario scrollea por la
+  // sección. El contenedor del bg es 20% más alto que la sección
+  // (-inset-y-[10%]) para que el translate nunca revele un borde duro.
+  // bg-pimenton-mint debajo como fallback de color mientras la imagen
+  // carga (matchea el color dominante del asset).
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -208,51 +344,12 @@ export function Testimonials() {
     reduced ? ["0%", "0%"] : ["-10%", "10%"],
   );
 
-  // Scroller horizontal — usa native overflow-x-auto con snap. Los
-  // botones prev/next disparan scrollBy programático.
-  const scrollerRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-
-  useEffect(() => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    const update = () => {
-      // 4px de tolerancia para evitar parpadeo del disabled en el
-      // extremo (sub-pixel rounding del scroll).
-      setCanScrollLeft(el.scrollLeft > 4);
-      setCanScrollRight(
-        el.scrollLeft + el.clientWidth < el.scrollWidth - 4,
-      );
-    };
-    update();
-    el.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    return () => {
-      el.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-    };
-  }, []);
-
-  const scrollByCard = (direction: 1 | -1) => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    // Tomamos el ancho de la primera card como step. El gap se suma
-    // aparte (matchea gap-6 = 24px).
-    const firstCard = el.querySelector<HTMLElement>("[data-card]");
-    const step = firstCard ? firstCard.offsetWidth + 24 : 360;
-    el.scrollBy({ left: step * direction, behavior: "smooth" });
-  };
-
   return (
     <section
       ref={ref}
       id="testimonios"
-      className="relative isolate scroll-mt-24 overflow-hidden bg-pimenton-mint py-24 sm:py-36"
+      className="relative isolate scroll-mt-24 overflow-hidden bg-pimenton-mint px-[5%] sm:px-16 lg:px-24 py-14 sm:py-20"
     >
-      {/* Background parallax — la imagen ya es mint + ilustraciones
-          amarillas. bg-pimenton-mint queda detrás por si la imagen
-          tarda en cargar (fallback de color compatible). */}
       <motion.div
         aria-hidden
         style={{ y: bgY }}
@@ -267,104 +364,29 @@ export function Testimonials() {
         />
       </motion.div>
 
-      <div className="mx-auto max-w-7xl px-[5%] sm:px-16 lg:px-24">
-        {/* Header: heading + subheading a la izquierda, controles
-            prev/next a la derecha. En mobile se apilan. */}
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between sm:gap-12">
-          <div className="max-w-2xl">
-            <motion.h2
-              initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20 }}
-              animate={
-                inView
-                  ? { opacity: 1, y: 0 }
-                  : reduced
-                    ? { opacity: 0 }
-                    : { opacity: 0, y: 20 }
-              }
-              transition={{ duration: 0.8, ease: EASE }}
-              className="text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl lg:text-5xl"
-            >
-              {intro.heading}
-            </motion.h2>
-            <motion.p
-              initial={reduced ? { opacity: 0 } : { opacity: 0, y: 16 }}
-              animate={
-                inView
-                  ? { opacity: 1, y: 0 }
-                  : reduced
-                    ? { opacity: 0 }
-                    : { opacity: 0, y: 16 }
-              }
-              transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
-              className="mt-5 text-base leading-relaxed text-pimenton-text-soft sm:text-lg"
-            >
-              {intro.subheading}
-            </motion.p>
-          </div>
-
-          <motion.div
-            initial={reduced ? { opacity: 0 } : { opacity: 0, y: 10 }}
-            animate={
-              inView
-                ? { opacity: 1, y: 0 }
-                : reduced
-                  ? { opacity: 0 }
-                  : { opacity: 0, y: 10 }
-            }
-            transition={{ duration: 0.6, delay: 0.2, ease: EASE }}
-            className="flex flex-shrink-0 gap-3"
-          >
-            <button
-              type="button"
-              onClick={() => scrollByCard(-1)}
-              disabled={!canScrollLeft}
-              aria-label="Reseña anterior"
-              className="flex size-12 cursor-pointer items-center justify-center rounded-full border border-pimenton-text/15 bg-pimenton-bg/90 text-pimenton-text outline-none backdrop-blur-sm transition-all hover:bg-pimenton-text hover:text-pimenton-bg focus-visible:ring-2 focus-visible:ring-pimenton-accent disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-pimenton-bg/90 disabled:hover:text-pimenton-text"
-            >
-              <ChevronLeft className="size-5" />
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollByCard(1)}
-              disabled={!canScrollRight}
-              aria-label="Reseña siguiente"
-              className="flex size-12 cursor-pointer items-center justify-center rounded-full border border-pimenton-text/15 bg-pimenton-bg/90 text-pimenton-text outline-none backdrop-blur-sm transition-all hover:bg-pimenton-text hover:text-pimenton-bg focus-visible:ring-2 focus-visible:ring-pimenton-accent disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-pimenton-bg/90 disabled:hover:text-pimenton-text"
-            >
-              <ChevronRight className="size-5" />
-            </button>
-          </motion.div>
-        </div>
-
-        {/* Scroller — máscara lateral para fade en los bordes, sugiere
-            que hay más cards fuera del viewport. Native overflow-x-auto
-            + scroll-snap-type da swipe libre en touch y smoothness al
-            scrollBy programático. Scrollbar visual oculta. */}
+      <div className="mx-auto w-full max-w-7xl">
         <div
-          className="relative mt-12 sm:mt-16"
-          style={{
-            maskImage:
-              "linear-gradient(to right, transparent, black 3%, black 97%, transparent)",
-            WebkitMaskImage:
-              "linear-gradient(to right, transparent, black 3%, black 97%, transparent)",
-          }}
+          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4"
+          style={{ perspective: 1200 }}
         >
-          <div
-            ref={scrollerRef}
-            className="overflow-x-auto pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-            style={{ scrollSnapType: "x mandatory" }}
-          >
-            <div className="flex gap-6 px-1">
-              {items.map((item, i) => (
-                <TestimonialCard
-                  key={item.name}
-                  item={item}
-                  index={i}
-                  inView={inView}
-                  reduced={reduced}
-                />
-              ))}
-            </div>
-          </div>
+          <IntroCard
+            brand={intro.brand}
+            heading={intro.heading}
+            subheading={intro.subheading}
+            inView={inView}
+            reduced={reduced}
+            rotateZStart={rotations[0]}
+          />
+          {items.map((item, i) => (
+            <TestimonialCard
+              key={item.name}
+              item={item}
+              index={i}
+              inView={inView}
+              reduced={reduced}
+              rotateZStart={rotations[i + 1] ?? 0}
+            />
+          ))}
         </div>
       </div>
     </section>
