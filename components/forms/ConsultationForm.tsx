@@ -962,13 +962,14 @@ export function ConsultationForm() {
             : "";
 
   // Título del paso con la parte resaltada (estilo marcador) por paso.
+  // Todos en coral para consistencia visual dentro del wizard.
   const stepTitle =
     state.step === 1
       ? splitHighlight(formCopy.step1.title, "tu categoría", "coral")
       : state.step === 2
-        ? splitHighlight(formCopy.step2.title, "país", "mint")
+        ? splitHighlight(formCopy.step2.title, "país", "coral")
         : state.step === 3
-          ? splitHighlight(formCopy.step3.title, "tu operación?", "yellow")
+          ? splitHighlight(formCopy.step3.title, "tu operación?", "coral")
           : state.step === 4
             ? splitHighlight(formCopy.step4.title, "tus datos", "coral")
             : null;
