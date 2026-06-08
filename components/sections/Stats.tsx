@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import {
   animate,
   motion,
@@ -13,69 +13,70 @@ import { ClientMarquee } from "@/components/ui-custom/ClientMarquee";
 import { copy } from "@/data/copy";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
-const COUNT_DURATION = 1.7;
-const STAGGER = 0.1;
-
-// Noise SVG inline — tile 240×240 con turbulencia fractal. Se aplica con
-// mix-blend-overlay a opacidad muy baja para texturizar el fondo dark
-// sin gritar "soy un overlay".
-const NOISE_DATA_URI =
-  "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E";
+const COUNT_DURATION = 1.4;
+const STAGGER = 0.12;
 
 type StatItem = (typeof copy.stats.items)[number];
+type BgKey = StatItem["bg"];
 
 /**
- * Indicador "Live" — punto coral con halo pulsante tipo radar.
- * - Reduced motion: punto estático sin halo.
- * - Hover (intense=true): el pulso acelera (~1s en vez de 1.6s) y el
- *   halo expande un poco más, reaccionando al cursor.
+ * Mapping bg key → clase Tailwind. La data de copy.ts queda agnóstica de
+ * tokens (usa ids semánticos: "coral", "mint", "soft", "yellow"), y el
+ * componente traduce. Si se renombra un token de paleta, sólo se toca acá.
  */
-function LiveIndicator({
-  reduced,
-  intense,
-}: {
-  reduced: boolean;
-  intense: boolean;
-}) {
-  const duration = intense ? 1.0 : 1.6;
-  const maxScale = intense ? 2.8 : 2.4;
+const BG_BY_KEY: Record<BgKey, string> = {
+  coral: "bg-pimenton-accent",
+  mint: "bg-pimenton-mint",
+  soft: "bg-pimenton-bg-soft",
+  yellow: "bg-pimenton-yellow",
+};
 
-  return (
-    <div
-      aria-hidden
-      className="pointer-events-none absolute right-5 top-5 flex size-2.5 items-center justify-center sm:right-6 sm:top-6"
-    >
-      {!reduced && (
-        <motion.span
-          className="absolute inset-0 rounded-full bg-pimenton-accent"
-          animate={{
-            scale: [1, maxScale, maxScale],
-            opacity: [0.75, 0, 0],
-          }}
-          transition={{
-            duration,
-            repeat: Infinity,
-            ease: "easeOut",
-          }}
-        />
-      )}
-      <motion.span
-        className="relative size-2.5 rounded-full bg-pimenton-accent"
-        style={{
-          boxShadow: reduced
-            ? undefined
-            : "0 0 8px 0 rgba(232, 75, 60, 0.6)",
-        }}
-        animate={reduced ? undefined : { opacity: [1, 0.78, 1] }}
-        transition={
-          reduced
-            ? undefined
-            : { duration, repeat: Infinity, ease: "easeInOut" }
-        }
-      />
-    </div>
-  );
-}
+/**
+ * Color del texto por fondo. Coral lleva texto crema; el resto
+ * (mint / soft / yellow) lleva texto oscuro. Caption con opacidad
+ * reducida para jerarquía sobre label + valor.
+ */
+const TEXT_BY_KEY: Record<
+  BgKey,
+  { primary: string; caption: string }
+> = {
+  coral: {
+    primary: "text-pimenton-bg",
+    caption: "text-pimenton-bg/80",
+  },
+  mint: {
+    primary: "text-pimenton-text",
+    caption: "text-pimenton-text/70",
+  },
+  soft: {
+    primary: "text-pimenton-text",
+    caption: "text-pimenton-text/70",
+  },
+  yellow: {
+    primary: "text-pimenton-text",
+    caption: "text-pimenton-text/70",
+  },
+};
+
+/**
+ * Placement de cada card en el grid bento de desktop (lg+). En mobile
+ * y tablet estas clases no aplican (el grid es 1 col / 2 cols simple).
+ *
+ * Composición desktop:
+ *   col1 row1-2 → coral large
+ *   col1 row3   → mint small
+ *   col2 row1   → soft small
+ *   col2 row2-3 → yellow large
+ *
+ * Las dos cards grandes quedan en diagonal (coral arriba-izq /
+ * amarillo abajo-der). Las dos chicas en la otra diagonal.
+ */
+const PLACEMENT_BY_INDEX: Record<number, string> = {
+  0: "lg:col-start-1 lg:row-start-1 lg:row-span-2",
+  1: "lg:col-start-1 lg:row-start-3 lg:row-span-1",
+  2: "lg:col-start-2 lg:row-start-1 lg:row-span-1",
+  3: "lg:col-start-2 lg:row-start-2 lg:row-span-2",
+};
 
 function StatCard({
   item,
@@ -89,21 +90,16 @@ function StatCard({
   reduced: boolean;
 }) {
   const stagger = reduced ? 0 : index * STAGGER;
-  const [hovered, setHovered] = useState(false);
-  const [countDone, setCountDone] = useState(reduced);
-  const [bouncing, setBouncing] = useState(false);
-  const bounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  // Valor de display animado (count-up + fluctuación).
   const count = useMotionValue(reduced ? item.value : 0);
   const rounded = useTransform(count, (v) => Math.round(v));
+  const text = TEXT_BY_KEY[item.bg];
+  const isLarge = item.size === "large";
 
-  // Count-up de entrada — al entrar en viewport, contar de 0 al value.
-  // Al terminar: trigger bounce + habilitar fluctuación.
+  // Count-up al entrar en viewport. Una sola vez (porque inView es
+  // once: true). Prefix/suffix permanecen estáticos.
   useEffect(() => {
     if (reduced) {
       count.set(item.value);
-      setCountDone(true);
       return;
     }
     if (!inView) return;
@@ -111,125 +107,71 @@ function StatCard({
       duration: COUNT_DURATION,
       delay: stagger,
       ease: "easeOut",
-      onComplete: () => {
-        setCountDone(true);
-        setBouncing(true);
-        // Bounce timer rastreado en ref para que el cleanup del effect
-        // lo pueda cancelar si la card desmonta durante esos 380ms.
-        bounceTimerRef.current = setTimeout(() => setBouncing(false), 380);
-      },
     });
-    return () => {
-      controls.stop();
-      if (bounceTimerRef.current) {
-        clearTimeout(bounceTimerRef.current);
-        bounceTimerRef.current = null;
-      }
-    };
+    return () => controls.stop();
   }, [inView, reduced, item.value, count, stagger]);
-
-  // Micro-fluctuación post count-up — cada 4-8s, target dentro de
-  // ±fluctuationRange del valor base. Cada card es independiente: el
-  // primer tick se escalona por index, y los waits son random.
-  // Países (fluctuationRange = 0) NO entra acá: las naciones no
-  // aparecen y desaparecen cada 6 segundos.
-  useEffect(() => {
-    if (reduced || !countDone || item.fluctuationRange === 0) return;
-
-    let timeoutId: ReturnType<typeof setTimeout> | undefined;
-    let controls: { stop: () => void } | null = null;
-    let cancelled = false;
-
-    const tick = () => {
-      if (cancelled) return;
-      // Delta uniforme en [-range, +range], redondeado.
-      const delta = (Math.random() * 2 - 1) * item.fluctuationRange;
-      const target = Math.round(item.value + delta);
-      controls = animate(count, target, {
-        duration: 0.45,
-        ease: "easeOut",
-      });
-      const wait = 4000 + Math.random() * 4000; // 4-8s
-      timeoutId = setTimeout(tick, wait);
-    };
-
-    // Primer tick: 800ms base + 600ms por index para desincronizar las
-    // 4 cards en el arranque.
-    timeoutId = setTimeout(tick, 800 + index * 600);
-
-    return () => {
-      cancelled = true;
-      if (timeoutId) clearTimeout(timeoutId);
-      controls?.stop();
-    };
-  }, [countDone, reduced, item.fluctuationRange, item.value, count, index]);
 
   return (
     <motion.article
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      initial={reduced ? { opacity: 0 } : { opacity: 0, y: 22 }}
+      initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20 }}
       animate={
         inView
           ? { opacity: 1, y: 0 }
           : reduced
             ? { opacity: 0 }
-            : { opacity: 0, y: 22 }
+            : { opacity: 0, y: 20 }
       }
-      transition={{ duration: 0.65, delay: stagger, ease: EASE }}
+      transition={{ duration: 0.7, delay: stagger, ease: EASE }}
       whileHover={
-        reduced ? undefined : { y: -5, transition: { duration: 0.3, ease: EASE } }
+        reduced
+          ? undefined
+          : {
+              scale: 1.02,
+              transition: { duration: 0.3, ease: EASE },
+            }
       }
-      style={{
-        boxShadow:
-          hovered && !reduced
-            ? "0 14px 38px -12px rgba(232, 75, 60, 0.32), 0 4px 12px -6px rgba(0,0,0,0.25)"
-            : "0 4px 14px -8px rgba(0,0,0,0.22)",
-      }}
-      className="relative flex h-full flex-col justify-between overflow-hidden rounded-2xl bg-pimenton-dark p-8 transition-shadow duration-300 sm:rounded-[20px] sm:p-10 lg:p-12"
+      className={`group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl p-8 sm:p-10 lg:rounded-[28px] ${
+        isLarge
+          ? "min-h-[280px] lg:min-h-[480px] lg:p-12"
+          : "min-h-[220px] lg:min-h-[230px] lg:p-10"
+      } ${BG_BY_KEY[item.bg]} ${PLACEMENT_BY_INDEX[index] ?? ""}`}
     >
-      {/* Grano — overlay SVG con turbulencia fractal. Muy bajo opacity
-          + mix-blend-overlay = textura premium sin competir con el
-          contenido. */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-overlay"
-        style={{
-          backgroundImage: `url("${NOISE_DATA_URI}")`,
-          backgroundSize: "240px 240px",
-        }}
-      />
-
-      {/* Live indicator — esquina superior derecha */}
-      <LiveIndicator reduced={reduced} intense={hovered} />
-
-      {/* Valor — arriba izquierda, coral, héroe. El motion wrapper hace
-          el micro-bounce (scale 1 → 1.05 → 1) al terminar el count-up. */}
-      <motion.div
-        animate={bouncing && !reduced ? { scale: [1, 1.025, 1] } : { scale: 1 }}
-        transition={{ duration: 0.48, ease: EASE }}
-        style={{ transformOrigin: "left center" }}
-        className="relative z-10 flex items-baseline font-display text-6xl font-semibold leading-none tracking-tight text-pimenton-accent tabular-nums sm:text-7xl lg:text-8xl"
-      >
-        {item.prefix && (
-          <span className="text-[0.55em] font-normal">{item.prefix}</span>
-        )}
-        <motion.span>{rounded}</motion.span>
-        {item.suffix && (
-          <span className="text-[0.55em] font-normal">{item.suffix}</span>
-        )}
-      </motion.div>
-
-      {/* Label + caption — abajo izquierda. justify-between en el wrapper
-          empuja este bloque al piso, dejando las cards de altura pareja
-          aunque los captions varíen en largo. */}
-      <div className="relative z-10 mt-14 sm:mt-20 lg:mt-24">
-        <h3 className="text-lg font-semibold tracking-wide text-pimenton-text-on-dark sm:text-xl lg:text-2xl">
+      {/* Bloque arriba-izquierda: label (h3 → font-display + uppercase
+          por @layer base) + caption editorial debajo. */}
+      <div>
+        <h3
+          className={`text-2xl font-bold leading-[1.05] tracking-tight sm:text-3xl ${
+            isLarge ? "lg:text-4xl" : "lg:text-2xl"
+          } ${text.primary}`}
+        >
           {item.label}
         </h3>
-        <p className="mt-2 text-base leading-relaxed text-pimenton-text-on-dark-muted sm:text-lg">
+        <p
+          className={`mt-2.5 max-w-[28ch] text-sm leading-relaxed sm:text-base ${text.caption}`}
+        >
           {item.caption}
         </p>
+      </div>
+
+      {/* Valor — abajo derecha. self-end alinea al borde derecho del
+          flex-col (cross axis = horizontal). justify-between del padre
+          lo empuja al piso. */}
+      <div
+        className={`mt-8 self-end font-display font-bold leading-none tracking-tight tabular-nums ${
+          isLarge
+            ? "text-7xl sm:text-8xl lg:text-9xl"
+            : "text-6xl sm:text-7xl lg:text-7xl"
+        } ${text.primary}`}
+      >
+        <span className="text-[0.45em] font-normal align-baseline">
+          {item.prefix}
+        </span>
+        <motion.span>{rounded}</motion.span>
+        {item.suffix && (
+          <span className="text-[0.45em] font-normal align-baseline">
+            {item.suffix}
+          </span>
+        )}
       </div>
     </motion.article>
   );
@@ -246,12 +188,22 @@ export function Stats() {
       ref={ref}
       className="bg-pimenton-bg py-24 sm:py-32 overflow-hidden"
     >
-      {/* Cards: padding wrapper AFUERA del max-w-7xl (= mismo patrón que
-          MarketStats). Las cards llenan el ancho del contenido sin que
-          el px-24 las achique adentro del cap. */}
+      {/* Padding wrapper afuera del max-w-7xl (mismo patrón que
+          MarketStats/Consultancy), para que el ClientMarquee de abajo
+          pueda bleedear edge-to-edge sin heredar el px-24. */}
       <div className="px-[5%] sm:px-16 lg:px-24">
         <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {/*
+            Grid bento:
+              - mobile: 1 col, cards stacked en orden de la data
+                (coral → mint → soft → yellow).
+              - md (768-1023): 2x2 simple. DOM flow: [coral, mint] /
+                [soft, yellow]. Sin asimetría porque a este ancho no aporta.
+              - lg (≥1024): bento asimétrico vía row-span. Coral large
+                arriba-izq, amarillo large abajo-der; mint y soft en la
+                otra diagonal. Ver PLACEMENT_BY_INDEX.
+          */}
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:grid-rows-3 lg:gap-6">
             {items.map((item, i) => (
               <StatCard
                 key={item.label}
@@ -265,9 +217,9 @@ export function Stats() {
         </div>
       </div>
 
-      {/* Wall de clientes — bleed full-width, prueba visual de los +500.
-          Vive AFUERA del wrapper de padding para que pueda extenderse
-          edge-to-edge sin heredar el px-24 de las cards. */}
+      {/* Wall de clientes — bleed full-width. Se preserva porque la
+          sección Stats sigue funcionando como bloque editorial completo:
+          dashboard bento arriba + marquee abajo. */}
       <div className="mt-20 sm:mt-28">
         <ClientMarquee />
       </div>
