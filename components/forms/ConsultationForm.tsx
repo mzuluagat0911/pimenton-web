@@ -75,7 +75,26 @@ function Emoji3D({
   /** Si false, no aplica animaciones de hover/select (uso decorativo). */
   interactive?: boolean;
 }) {
-  const [errored, setErrored] = useState(false);
+  // El PNG 3D de Fluent puede no existir todavía. En vez de renderizar el
+  // <img> y esperar que falle (el onError se PIERDE si el 404 ocurre antes
+  // de que React hidrate y enganche el handler → queda la imagen rota),
+  // mostramos el emoji Unicode por defecto y sólo hacemos "upgrade" al PNG
+  // cuando confirmamos que carga, precargándolo con new Image(). Así nunca
+  // se ve una imagen rota y, si en el futuro dropean los PNG en
+  // /public/assets/emoji/3d/, se actualiza solo.
+  const [pngOk, setPngOk] = useState(false);
+  useEffect(() => {
+    let cancelled = false;
+    const probe = new window.Image();
+    probe.onload = () => {
+      // naturalWidth 0 == respuesta válida pero no es imagen → no upgrade.
+      if (!cancelled && probe.naturalWidth > 0) setPngOk(true);
+    };
+    probe.src = `${EMOJI_BASE_PATH}${name}`;
+    return () => {
+      cancelled = true;
+    };
+  }, [name]);
 
   // Wobble: re-mount un div interno cada vez que selected cambia. Cada
   // remount dispara los keyframes [-10, 10, 0] en 0.4s. El primer render
@@ -91,7 +110,18 @@ function Emoji3D({
     setWobbleKey((k) => k + 1);
   }, [selected, interactive, reduced]);
 
-  const inner = errored ? (
+  const inner = pngOk ? (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={`${EMOJI_BASE_PATH}${name}`}
+      alt=""
+      aria-hidden
+      width={size}
+      height={size}
+      draggable={false}
+      style={{ width: size, height: size }}
+    />
+  ) : (
     <span
       aria-hidden
       role="img"
@@ -100,18 +130,6 @@ function Emoji3D({
     >
       {fallback}
     </span>
-  ) : (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={`${EMOJI_BASE_PATH}${name}`}
-      alt=""
-      aria-hidden
-      width={size}
-      height={size}
-      onError={() => setErrored(true)}
-      draggable={false}
-      style={{ width: size, height: size }}
-    />
   );
 
   if (!interactive) {
