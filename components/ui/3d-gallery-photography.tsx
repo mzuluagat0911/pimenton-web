@@ -61,6 +61,14 @@ interface InfiniteGalleryProps {
 	className?: string;
 	/** Optional style for outer container */
 	style?: React.CSSProperties;
+	/**
+	 * Optional external scroll driver. When provided, the gallery becomes
+	 * SCROLL-DRIVEN (finite): internal wheel/key capture and autoplay are
+	 * disabled, and plane positions map deterministically from
+	 * progressRef.current (0→1). Lets a parent pin the section and scrub
+	 * the gallery with page scroll instead of trapping the wheel infinitely.
+	 */
+	progressRef?: { current: number };
 }
 
 interface PlaneData {
@@ -74,6 +82,9 @@ interface PlaneData {
 const DEFAULT_DEPTH_RANGE = 50;
 const MAX_HORIZONTAL_OFFSET = 8;
 const MAX_VERTICAL_OFFSET = 8;
+// Full depth ranges traversed over a 0→1 scroll-driven progress sweep.
+// Higher = the camera flies through more image cycles per scroll.
+const SCROLL_LOOPS = 2;
 
 // Custom shader material for blur, opacity, and cloth folding effects
 const createClothMaterial = () => {
@@ -224,6 +235,7 @@ function GalleryScene({
 		blurOut: { start: 0.9, end: 1.0 },
 		maxBlur: 3.0,
 	},
+	progressRef,
 }: Omit<InfiniteGalleryProps, 'className' | 'style'>) {
 	const [scrollVelocity, setScrollVelocity] = useState(0);
 	const [autoPlay, setAutoPlay] = useState(true);
@@ -327,6 +339,9 @@ function GalleryScene({
 	);
 
 	useEffect(() => {
+		// Scroll-driven mode: the parent pins the section and feeds progress,
+		// so we must NOT capture wheel/keys (that's what trapped scroll).
+		if (progressRef) return;
 		const canvas = document.querySelector('canvas');
 		if (canvas) {
 			canvas.addEventListener('wheel', handleWheel, { passive: false });
@@ -337,67 +352,93 @@ function GalleryScene({
 				document.removeEventListener('keydown', handleKeyDown);
 			};
 		}
-	}, [handleWheel, handleKeyDown]);
+	}, [handleWheel, handleKeyDown, progressRef]);
 
 	// Auto-play logic
 	useEffect(() => {
+		if (progressRef) return; // scroll-driven: no autoplay, scroll owns it
 		const interval = setInterval(() => {
 			if (Date.now() - lastInteraction.current > 3000) {
 				setAutoPlay(true);
 			}
 		}, 1000);
 		return () => clearInterval(interval);
-	}, []);
+	}, [progressRef]);
 
 	useFrame((state, delta) => {
-		// Apply auto-play
-		if (autoPlay) {
-			setScrollVelocity((prev) => prev + 0.3 * delta);
-		}
-
-		// Damping
-		setScrollVelocity((prev) => prev * 0.95);
-
-		// Update time uniform for all materials
 		const time = state.clock.getElapsedTime();
-		materials.forEach((material) => {
-			if (material && material.uniforms) {
-				material.uniforms.time.value = time;
-				material.uniforms.scrollForce.value = scrollVelocity;
-			}
-		});
-
-		// Update plane positions
+		const totalRange = depthRange;
 		const imageAdvance =
 			totalImages > 0 ? visibleCount % totalImages || totalImages : 0;
-		const totalRange = depthRange;
 
+		if (progressRef) {
+			// ── Scroll-driven (finite) ── absolute traversal from progress.
+			// Deterministic so scrubbing both directions stays stable and the
+			// section can release to the footer once progress hits 1.
+			const advance = progressRef.current * totalRange * SCROLL_LOOPS;
+			materials.forEach((material) => {
+				if (material && material.uniforms) {
+					material.uniforms.time.value = time;
+					material.uniforms.scrollForce.value = 0;
+				}
+			});
+			planesData.current.forEach((plane, i) => {
+				const base = visibleCount > 0 ? (depthRange / visibleCount) * i : 0;
+				const raw = base + advance;
+				const wraps = Math.floor(raw / totalRange);
+				plane.z = ((raw % totalRange) + totalRange) % totalRange;
+				plane.x = spatialPositions[i]?.x ?? 0;
+				plane.y = spatialPositions[i]?.y ?? 0;
+				if (imageAdvance > 0 && totalImages > 0) {
+					plane.imageIndex =
+						(((i + wraps * imageAdvance) % totalImages) + totalImages) %
+						totalImages;
+				}
+			});
+		} else {
+			// ── Velocity model ── autoplay + wheel/keys (original behavior).
+			if (autoPlay) {
+				setScrollVelocity((prev) => prev + 0.3 * delta);
+			}
+			setScrollVelocity((prev) => prev * 0.95);
+			materials.forEach((material) => {
+				if (material && material.uniforms) {
+					material.uniforms.time.value = time;
+					material.uniforms.scrollForce.value = scrollVelocity;
+				}
+			});
+			planesData.current.forEach((plane, i) => {
+				let newZ = plane.z + scrollVelocity * delta * 10;
+				let wrapsForward = 0;
+				let wrapsBackward = 0;
+
+				if (newZ >= totalRange) {
+					wrapsForward = Math.floor(newZ / totalRange);
+					newZ -= totalRange * wrapsForward;
+				} else if (newZ < 0) {
+					wrapsBackward = Math.ceil(-newZ / totalRange);
+					newZ += totalRange * wrapsBackward;
+				}
+
+				if (wrapsForward > 0 && imageAdvance > 0 && totalImages > 0) {
+					plane.imageIndex =
+						(plane.imageIndex + wrapsForward * imageAdvance) % totalImages;
+				}
+
+				if (wrapsBackward > 0 && imageAdvance > 0 && totalImages > 0) {
+					const step = plane.imageIndex - wrapsBackward * imageAdvance;
+					plane.imageIndex =
+						((step % totalImages) + totalImages) % totalImages;
+				}
+
+				plane.z = ((newZ % totalRange) + totalRange) % totalRange;
+				plane.x = spatialPositions[i]?.x ?? 0;
+				plane.y = spatialPositions[i]?.y ?? 0;
+			});
+		}
+
+		// ── Opacity + blur (shared by both modes) ──
 		planesData.current.forEach((plane, i) => {
-			let newZ = plane.z + scrollVelocity * delta * 10;
-			let wrapsForward = 0;
-			let wrapsBackward = 0;
-
-			if (newZ >= totalRange) {
-				wrapsForward = Math.floor(newZ / totalRange);
-				newZ -= totalRange * wrapsForward;
-			} else if (newZ < 0) {
-				wrapsBackward = Math.ceil(-newZ / totalRange);
-				newZ += totalRange * wrapsBackward;
-			}
-
-			if (wrapsForward > 0 && imageAdvance > 0 && totalImages > 0) {
-				plane.imageIndex =
-					(plane.imageIndex + wrapsForward * imageAdvance) % totalImages;
-			}
-
-			if (wrapsBackward > 0 && imageAdvance > 0 && totalImages > 0) {
-				const step = plane.imageIndex - wrapsBackward * imageAdvance;
-				plane.imageIndex = ((step % totalImages) + totalImages) % totalImages;
-			}
-
-			plane.z = ((newZ % totalRange) + totalRange) % totalRange;
-			plane.x = spatialPositions[i]?.x ?? 0;
-			plane.y = spatialPositions[i]?.y ?? 0;
 
 			// Calculate opacity based on fade settings
 			const normalizedPosition = plane.z / totalRange; // 0 to 1
@@ -549,6 +590,7 @@ export default function InfiniteGallery({
 	zSpacing,
 	visibleCount,
 	falloff,
+	progressRef,
 	fadeSettings = {
 		fadeIn: { start: 0.05, end: 0.25 },
 		fadeOut: { start: 0.4, end: 0.43 },
@@ -596,6 +638,7 @@ export default function InfiniteGallery({
 						zSpacing={zSpacing}
 						visibleCount={visibleCount}
 						falloff={falloff}
+						progressRef={progressRef}
 						fadeSettings={fadeSettings}
 						blurSettings={blurSettings}
 					/>
