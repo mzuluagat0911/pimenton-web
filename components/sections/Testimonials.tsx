@@ -348,7 +348,7 @@ export function Testimonials() {
     <section
       ref={ref}
       id="testimonios"
-      className="relative isolate scroll-mt-24 overflow-hidden bg-pimenton-mint px-[5%] sm:px-16 lg:px-24 py-14 sm:py-20"
+      className="relative isolate scroll-mt-24 overflow-hidden bg-pimenton-mint px-[5%] sm:px-16 lg:px-24 py-14 sm:py-20 lg:py-36"
     >
       <motion.div
         aria-hidden
@@ -365,8 +365,20 @@ export function Testimonials() {
       </motion.div>
 
       <div className="mx-auto w-full max-w-7xl">
+        {/*
+          Grid responsive con dos modos:
+          - mobile (< md): grid-flow-col + auto-cols-[80%] convierte el
+            grid en una fila horizontal scrolleable. Cada card ocupa el
+            80% del viewport, snap-x mandatory + snap-start en cada
+            child = swipe natural. Scrollbar oculta. Esto evita que la
+            sección se haga eterna en vertical en mobile.
+          - md+: grid clásico 2 cols, lg+ 4 cols — el layout original
+            (IntroCard + 3 testimonios) sin tocar.
+          [&>*]:snap-start aplica scroll-snap-align: start a cada hijo
+          directo sin tener que tocar IntroCard/TestimonialCard.
+        */}
         <div
-          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4"
+          className="grid grid-flow-col auto-cols-[80%] gap-4 overflow-x-auto pb-2 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden [&>*]:snap-start md:grid-flow-row md:auto-cols-auto md:grid-cols-2 md:gap-6 md:overflow-visible md:pb-0 md:snap-none lg:grid-cols-4"
           style={{ perspective: 1200 }}
         >
           <IntroCard
