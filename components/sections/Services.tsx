@@ -219,8 +219,17 @@ function MobileAccordion({
   );
 }
 
-export function Services() {
-  const { eyebrow, heading, cta, items } = copy.services;
+export function Services({
+  eyebrow = copy.services.eyebrow,
+  heading = copy.services.heading,
+  showCta = true,
+}: {
+  eyebrow?: string;
+  heading?: string;
+  /** Oculta el CTA interno (p.ej. en /servicios, que tiene su propio CTA). */
+  showCta?: boolean;
+} = {}) {
+  const { cta, items } = copy.services;
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.15 });
   const reduced = useReducedMotion() ?? false;
@@ -294,18 +303,20 @@ export function Services() {
         </div>
 
         {/* CTA */}
-        <div className="mt-16 flex justify-start sm:mt-20 md:justify-end">
-          <a
-            href={cta.href}
-            className="group inline-flex items-center gap-2 text-base font-medium text-pimenton-accent transition-colors duration-300 hover:text-pimenton-accent-hover sm:text-lg"
-          >
-            {cta.label}
-            <ArrowRight
-              aria-hidden
-              className="size-4 transition-transform duration-300 group-hover:translate-x-1 sm:size-5"
-            />
-          </a>
-        </div>
+        {showCta && (
+          <div className="mt-16 flex justify-start sm:mt-20 md:justify-end">
+            <a
+              href={cta.href}
+              className="group inline-flex items-center gap-2 text-base font-medium text-pimenton-accent transition-colors duration-300 hover:text-pimenton-accent-hover sm:text-lg"
+            >
+              {cta.label}
+              <ArrowRight
+                aria-hidden
+                className="size-4 transition-transform duration-300 group-hover:translate-x-1 sm:size-5"
+              />
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );
