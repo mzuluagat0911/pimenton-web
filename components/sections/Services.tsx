@@ -16,30 +16,28 @@ const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 type Item = (typeof copy.services.items)[number];
 
-// Fila de logos de plataformas que usa cada servicio. Los logos vienen
-// en su color original; los pasamos a blanco (brightness(0) invert(1))
-// para una fila uniforme sobre el fondo oscuro, igual que el Control Room.
+// Logos de plataformas que usa cada servicio, cada uno en un círculo gris
+// con el logo en blanco — mismo tratamiento que el Control Room.
 function PlatformRow({ platforms }: { platforms?: readonly string[] }) {
   if (!platforms || platforms.length === 0) return null;
   return (
-    <div className="mt-7">
-      <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-text-on-dark-muted">
-        Plataformas que usamos
-      </p>
-      <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-3">
-        {platforms.map((src) => (
-          // eslint-disable-next-line @next/next/no-img-element
+    <div className="mt-7 flex flex-wrap items-center gap-3">
+      {platforms.map((src) => (
+        <div
+          key={src}
+          className="flex size-12 items-center justify-center rounded-full border border-pimenton-dark-border bg-pimenton-dark-surface sm:size-14"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            key={src}
             src={src}
             alt=""
             aria-hidden
             draggable={false}
-            className="h-5 w-auto opacity-75 sm:h-6"
+            className="max-h-[54%] max-w-[54%] object-contain"
             style={{ filter: "brightness(0) invert(1)" }}
           />
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 }
@@ -224,7 +222,7 @@ function MobileAccordion({
                   uppercaseNames ? "uppercase" : ""
                 } ${
                   isOpen
-                    ? "text-pimenton-accent"
+                    ? "text-pimenton-text-on-dark"
                     : "text-pimenton-text-on-dark-muted/70"
                 }`}
               >

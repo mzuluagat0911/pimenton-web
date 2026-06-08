@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import { splitHighlight } from "@/components/ui-custom/Highlight";
 import { EASE } from "./Eyebrow";
+import { OrdenesChart } from "./OrdenesChart";
 
 const VANITY = ["Engagement", "Synergy", "ROI", "Branding"];
 
@@ -45,27 +46,6 @@ function AgencyDeck() {
           </span>
         ))}
       </div>
-    </div>
-  );
-}
-
-// Lado Pimentón: video vertical real de órdenes operando (reemplaza al
-// dashboard ilustrativo). El video define el ancho por su ratio portrait;
-// lo centramos y lo capamos en alto para alinear con el deck de la
-// izquierda.
-function PimentonVideo() {
-  return (
-    <div className={`flex items-center justify-center ${VISUAL_H}`}>
-      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-      <video
-        src="/assets/video/ordenes_2025.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        aria-hidden
-        className="block max-h-[440px] w-auto rounded-2xl border border-pimenton-border shadow-[0_24px_60px_-24px_rgba(15,15,14,0.32)]"
-      />
     </div>
   );
 }
@@ -117,8 +97,8 @@ export function NoSomosAgencia() {
   return (
     <section className="bg-pimenton-bg px-[5%] py-24 sm:px-16 sm:py-32 lg:px-24">
       <div className="mx-auto w-full max-w-7xl">
-        {/* Header centrado (sin eyebrow) */}
-        <div className="mx-auto max-w-3xl text-center">
+        {/* Header left-aligned (sin eyebrow) */}
+        <div className="max-w-3xl">
           <motion.h2
             initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -155,15 +135,16 @@ export function NoSomosAgencia() {
             reduced={reduced}
           />
           <Column
-            visual={<PimentonVideo />}
+            visual={<OrdenesChart />}
             label={
               <>
                 Equipo
+                {/* logo 25% más grande que el texto para darle peso */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/assets/logos/principal/logo-coral.webp"
                   alt="Pimentón"
-                  className="inline-block h-5 w-auto sm:h-6"
+                  className="inline-block h-[25px] w-auto sm:h-[30px]"
                   draggable={false}
                 />
               </>
