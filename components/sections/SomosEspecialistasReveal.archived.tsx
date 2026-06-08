@@ -1,3 +1,7 @@
+// Reemplazado por GallerySpecialists.tsx en diciembre 2026. Mantener
+// por referencia. Esta era la sección "Somos especialistas" — reveal
+// full-screen de texto con GSAP. No se importa en el Home.
+
 "use client";
 
 import { useRef } from "react";

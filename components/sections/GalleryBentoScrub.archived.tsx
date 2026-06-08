@@ -1,3 +1,7 @@
+// Reemplazado por GallerySpecialists.tsx en diciembre 2026. Mantener
+// por referencia. Esta era la galería bento con GSAP ScrollTrigger
+// (pin + scrub). No se importa en el Home.
+
 "use client";
 
 import { useRef } from "react";
