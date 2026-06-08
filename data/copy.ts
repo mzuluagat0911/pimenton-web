@@ -107,28 +107,24 @@ export const copy = {
     footerLabel: "Decisiones de canal",
     items: [
       {
-        off: "Sin datos reales: tomás decisiones a ciegas sobre precios, promos y horarios.",
-        on: "Dashboard en tiempo real con ventas, margen, ticket y promos en un mismo lugar.",
+        off: "Solo frente a las apps: la operación, las negociaciones y los problemas recaen en tu equipo.",
+        on: "Gestión del día a día del Delivery y relación con las aplicaciones: un equipo de especialistas a cargo de tu negocio.",
       },
       {
-        off: "Las apps te cobran más comisión de lo que deberían. Nadie negocia por vos.",
-        on: "Un Growth Manager a cargo de tu cuenta. Operamos el canal todos los días.",
+        off: "Datos dispersos entre apps, planillas y pantallas: imposible tomar decisiones en tiempo real.",
+        on: "Dashboards en tiempo real con ventas, operaciones, funnel y principales métricas económicas.",
       },
       {
-        off: "Promociones mal configuradas que destruyen tu margen en vez de subirlo.",
-        on: "Optimización continua de precios, promos y horarios basada en datos reales.",
+        off: "Precios desactualizados, stock fuera de control y caídas de conectividad que descubrís cuando el cliente reclama.",
+        on: "Estrategia de precios, control de stocks y monitoreo de conectividad.",
       },
       {
-        off: "Bajo ranking en las apps = menos visibilidad = menos pedidos.",
-        on: "Mejor ranking en las apps: entendemos sus reglas y palancas comerciales.",
+        off: "Reseñas negativas sin respuesta y reclamos sin gestionar: cada incidencia te baja el ranking y la facturación.",
+        on: "Moderación de reseñas, reclamos e incidencias.",
       },
       {
-        off: "Errores y reclamos sin gestionar: plata que se va sin que te des cuenta.",
-        on: "Gestión activa de errores y reclamos. Recuperamos dinero que hoy estás perdiendo.",
-      },
-      {
-        off: "Ticket promedio estancado. Ningún trabajo en combos, menú o recompra.",
-        on: "Trabajo activo en ticket promedio, combos y recompra para subir la facturación.",
+        off: "Promos improvisadas sin estrategia: cada mes se reinventa el plan y el crecimiento nunca llega.",
+        on: "Planificación de campañas y estrategias de crecimiento.",
       },
     ],
   },
