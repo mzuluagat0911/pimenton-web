@@ -27,7 +27,9 @@ export default function ServiciosPage() {
         eyebrow="Qué hacemos"
         heading="Cinco soluciones, un mismo objetivo: que vendas más sin mayor esfuerzo."
         headingHighlight="vendas más"
-        showCta={false}
+        showCta
+        ctaHref="/contacto"
+        ctaLabel="Empezar consultoría gratuita"
         uppercaseNames
         showPlatforms
       />

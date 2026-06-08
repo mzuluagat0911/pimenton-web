@@ -86,7 +86,7 @@ export function ServiciosHero() {
       <motion.div
         aria-hidden
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.15 }}
+        animate={{ opacity: 0.22 }}
         transition={{ duration: 0.6, ease: EASE }}
         className="pointer-events-none absolute inset-0 overflow-hidden"
       >

@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   motion,
   useInView,
@@ -21,11 +22,11 @@ type Item = (typeof copy.services.items)[number];
 function PlatformRow({ platforms }: { platforms?: readonly string[] }) {
   if (!platforms || platforms.length === 0) return null;
   return (
-    <div className="mt-7 flex flex-wrap items-center gap-3">
+    <div className="mt-7 flex flex-wrap items-center gap-3 sm:gap-4">
       {platforms.map((src) => (
         <div
           key={src}
-          className="flex size-12 items-center justify-center rounded-full border border-pimenton-dark-border bg-pimenton-dark-surface sm:size-14"
+          className="flex size-16 items-center justify-center rounded-full border border-pimenton-dark-border bg-pimenton-dark-surface sm:size-20"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -33,7 +34,7 @@ function PlatformRow({ platforms }: { platforms?: readonly string[] }) {
             alt=""
             aria-hidden
             draggable={false}
-            className="max-h-[54%] max-w-[54%] object-contain"
+            className="max-h-[46%] max-w-[72%] object-contain"
             style={{ filter: "brightness(0) invert(1)" }}
           />
         </div>
@@ -273,6 +274,8 @@ export function Services({
   heading = copy.services.heading,
   headingHighlight,
   showCta = true,
+  ctaHref,
+  ctaLabel,
   uppercaseNames = false,
   showPlatforms = false,
 }: {
@@ -280,8 +283,12 @@ export function Services({
   heading?: string;
   /** Palabra/frase del heading a resaltar en coral (marcador). */
   headingHighlight?: string;
-  /** Oculta el CTA interno (p.ej. en /servicios, que tiene su propio CTA). */
+  /** Muestra el CTA al pie de la sección. */
   showCta?: boolean;
+  /** Override del destino del CTA (p.ej. "/contacto"). */
+  ctaHref?: string;
+  /** Override del label del CTA. */
+  ctaLabel?: string;
   /** Nombres de servicio en uppercase (regla específica de /servicios). */
   uppercaseNames?: boolean;
   /** Muestra los logos de plataformas por servicio (solo /servicios). */
@@ -367,19 +374,20 @@ export function Services({
           />
         </div>
 
-        {/* CTA */}
+        {/* CTA — full-width centrado en mobile (al final de los servicios),
+            bottom-right en desktop. */}
         {showCta && (
-          <div className="mt-16 flex justify-start sm:mt-20 md:justify-end">
-            <a
-              href={cta.href}
-              className="group inline-flex items-center gap-2 text-base font-medium text-pimenton-accent transition-colors duration-300 hover:text-pimenton-accent-hover sm:text-lg"
+          <div className="mt-14 flex justify-center sm:mt-16 md:justify-end">
+            <Link
+              href={ctaHref ?? cta.href}
+              className="group inline-flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-full bg-pimenton-accent px-7 py-3.5 text-base font-semibold text-pimenton-bg shadow-lg shadow-pimenton-accent/30 transition-all duration-300 hover:bg-pimenton-accent-hover hover:shadow-pimenton-accent/50 sm:w-auto sm:text-lg"
             >
-              {cta.label}
+              {ctaLabel ?? cta.label}
               <ArrowRight
                 aria-hidden
-                className="size-4 transition-transform duration-300 group-hover:translate-x-1 sm:size-5"
+                className="size-5 transition-transform duration-300 group-hover:translate-x-1"
               />
-            </a>
+            </Link>
           </div>
         )}
       </div>

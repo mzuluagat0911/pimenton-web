@@ -1,6 +1,6 @@
 "use client";
 
-import { useId } from "react";
+import { useEffect, useId, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -28,23 +28,61 @@ const linePath = VALUES.map((v, i) => `${i === 0 ? "M" : "L"} ${x(i)} ${y(v)}`).
 const areaPath =
   `${linePath} L ${x(VALUES.length - 1)} ${VB_H - PAD.bottom} L ${x(0)} ${VB_H - PAD.bottom} Z`;
 
+const LAST = VALUES.length - 1;
+const fmt = (n: number) => n.toLocaleString("es-ES");
+
 /**
  * Réplica horizontal y full-width del video "ÓRDENES 2025": panel oscuro
  * con un gráfico de área coral que se dibuja al entrar en viewport.
- * Reemplaza al video vertical (1080×2400) que no entraba a tope de ancho.
+ *
+ * Actividad en tiempo real: un badge "EN VIVO" pulsa, y los contadores
+ * (acumuladas + mes actual) van creciendo de a poco — como si entraran
+ * pedidos. El último punto del gráfico emite un "ping" tipo radar.
+ * Reduced motion: todo estático, sin contadores ni pings.
  */
 export function OrdenesChart() {
   const reduced = useReducedMotion() ?? false;
   const gradId = useId();
+
+  // Contadores en vivo — arrancan en los valores base (SSR estable) y
+  // crecen de a poco. cleanup del interval en unmount.
+  const [acc, setAcc] = useState(12850);
+  const [cur, setCur] = useState(1750);
+  useEffect(() => {
+    if (reduced) return;
+    const id = setInterval(() => {
+      const inc = 1 + Math.floor(Math.random() * 4); // 1–4 pedidos
+      setAcc((a) => a + inc);
+      // el mes actual sube un poco menos seguido
+      if (Math.random() < 0.6) setCur((c) => c + inc);
+    }, 2400);
+    return () => clearInterval(id);
+  }, [reduced]);
 
   return (
     <div className="flex h-auto flex-col overflow-hidden rounded-2xl border border-pimenton-dark-border bg-pimenton-dark p-6 sm:p-7 md:h-[460px]">
       {/* Header */}
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-text-on-dark-muted">
-            Evolución mensual
-          </p>
+          <div className="flex items-center gap-2.5">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-text-on-dark-muted">
+              Evolución mensual
+            </p>
+            {/* Badge EN VIVO */}
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-pimenton-accent/12 px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-pimenton-accent">
+              <motion.span
+                aria-hidden
+                className="inline-block size-1.5 rounded-full bg-pimenton-accent"
+                animate={reduced ? undefined : { opacity: [1, 0.25, 1] }}
+                transition={
+                  reduced
+                    ? undefined
+                    : { duration: 1.6, repeat: Infinity, ease: "easeInOut" }
+                }
+              />
+              En vivo
+            </span>
+          </div>
           <h4 className="mt-1.5 font-display text-2xl font-bold leading-none tracking-tight text-pimenton-text-on-dark sm:text-3xl">
             Órdenes <span className="text-pimenton-accent">2025</span>
           </h4>
@@ -55,7 +93,7 @@ export function OrdenesChart() {
               Acumuladas
             </p>
             <p className="mt-1 font-display text-xl font-bold tabular-nums text-pimenton-accent sm:text-2xl">
-              12.850
+              {fmt(acc)}
             </p>
           </div>
           <div>
@@ -63,7 +101,7 @@ export function OrdenesChart() {
               Diciembre
             </p>
             <p className="mt-1 font-display text-xl font-bold tabular-nums text-pimenton-text-on-dark sm:text-2xl">
-              1.750
+              {fmt(cur)}
             </p>
           </div>
         </div>
@@ -152,10 +190,25 @@ export function OrdenesChart() {
                 className="fill-pimenton-text-on-dark-muted"
                 style={{ fontSize: 11, fontVariantNumeric: "tabular-nums" }}
               >
-                {v.toLocaleString("es-ES")}
+                {fmt(v)}
               </text>
             </motion.g>
           ))}
+
+          {/* ping en vivo sobre el último punto */}
+          {!reduced && (
+            <motion.circle
+              cx={x(LAST)}
+              cy={y(VALUES[LAST]!)}
+              fill="none"
+              stroke="var(--color-pimenton-accent)"
+              strokeWidth={1.5}
+              vectorEffect="non-scaling-stroke"
+              initial={{ r: 3, opacity: 0.7 }}
+              animate={{ r: [3, 16], opacity: [0.7, 0] }}
+              transition={{ duration: 1.9, repeat: Infinity, ease: "easeOut" }}
+            />
+          )}
 
           {/* labels de meses */}
           {MONTHS.map((m, i) => (
