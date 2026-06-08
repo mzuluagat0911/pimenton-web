@@ -13,12 +13,6 @@ import { CenterIsologo } from "./CenterIsologo";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-// Tolerancias de hover: pequeño delay para abrir evita disparos
-// accidentales al pasar el mouse de largo. El delay de cierre da
-// margen para mover el cursor del pimiento al modal sin que se
-// cierre en el camino.
-const OPEN_HOVER_DELAY = 150;
-const CLOSE_HOVER_DELAY = 300;
 // Tiempo entre que la sección entra en viewport y aparece el hint.
 const HINT_DELAY = 2500;
 
@@ -40,11 +34,9 @@ type Props = {
 /**
  * Wrapper interactivo del isologo central del Control Room.
  *
- * - Hover (desktop) o tap (mobile) abre un modal con un video que
- *   muestra Pimentón en acción.
- * - Tolerancias de hover (150ms abrir / 300ms cerrar) para evitar
- *   disparos accidentales y permitir mover el cursor entre pimiento
- *   y modal sin que cierre.
+ * - Click (mismo comportamiento en todos los dispositivos) abre un
+ *   modal con un video que muestra Pimentón en acción. NO se abre por
+ *   hover — el hover sólo aporta affordance visual (scale + glow).
  * - Microcopy "Ver en acción →" como affordance pasiva — aparece
  *   ~2.5s después que la sección entra en viewport, y se oculta en
  *   cuanto el usuario interactúa por primera vez.
@@ -63,8 +55,6 @@ export function IsologoTrigger({ className = "", glowInset = "-60%" }: Props) {
   const [hasInteracted, setHasInteracted] = useState(false);
   const [hintVisible, setHintVisible] = useState(false);
 
-  const openTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // Hint visible 2.5s después que entra la sección, siempre que el
@@ -77,14 +67,6 @@ export function IsologoTrigger({ className = "", glowInset = "-60%" }: Props) {
     return () => clearTimeout(t);
   }, [inView, hasInteracted]);
 
-  // Cleanup global de timers en unmount.
-  useEffect(() => {
-    return () => {
-      if (openTimerRef.current) clearTimeout(openTimerRef.current);
-      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
-    };
-  }, []);
-
   const markInteracted = () => {
     if (!hasInteracted) {
       setHasInteracted(true);
@@ -92,55 +74,24 @@ export function IsologoTrigger({ className = "", glowInset = "-60%" }: Props) {
     }
   };
 
-  // Hover enter — clear close timer + arm open timer.
+  // Hover handlers — sólo para affordance visual (scale + glow extra
+  // + ocultar el hint). NO abren el modal: eso es exclusivo del click.
   const handleEnter = () => {
     setHovered(true);
     markInteracted();
-    if (closeTimerRef.current) {
-      clearTimeout(closeTimerRef.current);
-      closeTimerRef.current = null;
-    }
-    if (!open && !openTimerRef.current) {
-      openTimerRef.current = setTimeout(() => {
-        setOpen(true);
-        openTimerRef.current = null;
-      }, OPEN_HOVER_DELAY);
-    }
   };
 
-  // Hover leave — clear open timer + arm close timer.
   const handleLeave = () => {
     setHovered(false);
-    if (openTimerRef.current) {
-      clearTimeout(openTimerRef.current);
-      openTimerRef.current = null;
-    }
-    closeTimerRef.current = setTimeout(() => {
-      setOpen(false);
-      closeTimerRef.current = null;
-    }, CLOSE_HOVER_DELAY);
   };
 
-  // Click — mobile + desktop fallback. Abre inmediato, cancela timer
-  // de open por si estaba en flight.
+  // Click — único disparador del modal en todos los dispositivos.
   const handleClick = () => {
     markInteracted();
-    if (openTimerRef.current) {
-      clearTimeout(openTimerRef.current);
-      openTimerRef.current = null;
-    }
     setOpen(true);
   };
 
   const handleClose = () => {
-    if (openTimerRef.current) {
-      clearTimeout(openTimerRef.current);
-      openTimerRef.current = null;
-    }
-    if (closeTimerRef.current) {
-      clearTimeout(closeTimerRef.current);
-      closeTimerRef.current = null;
-    }
     setOpen(false);
   };
 
@@ -215,8 +166,6 @@ export function IsologoTrigger({ className = "", glowInset = "-60%" }: Props) {
       <VideoModal
         open={open}
         onClose={handleClose}
-        onMouseEnter={handleEnter}
-        onMouseLeave={handleLeave}
         videoRef={videoRef}
         reduced={reduced}
       />
@@ -227,15 +176,11 @@ export function IsologoTrigger({ className = "", glowInset = "-60%" }: Props) {
 function VideoModal({
   open,
   onClose,
-  onMouseEnter,
-  onMouseLeave,
   videoRef,
   reduced,
 }: {
   open: boolean;
   onClose: () => void;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
   videoRef: React.RefObject<HTMLVideoElement | null>;
   reduced: boolean;
 }) {
@@ -314,15 +259,12 @@ function VideoModal({
             className="absolute inset-0 cursor-default bg-pimenton-dark/65 backdrop-blur-sm outline-none"
           />
 
-          {/* Panel del modal — el mouseEnter/Leave acá hace pareja con
-              los del pimiento para mantener el modal abierto mientras
-              el cursor esté en cualquiera de los dos. */}
+          {/* Panel del modal — el modal se cierra con X, backdrop o
+              ESC. No reacciona al mouse (es click-only). */}
           <motion.div
             role="dialog"
             aria-modal="true"
             aria-label="Control Room en acción"
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
             initial={
               reduced ? { opacity: 0 } : { opacity: 0, scale: 0.95 }
             }
