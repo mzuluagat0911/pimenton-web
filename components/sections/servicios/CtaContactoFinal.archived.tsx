@@ -1,3 +1,7 @@
+// Versión previa de /servicios, estructura conversion-driven de 8 secciones.
+// Reemplazada por la versión simple informativa en diciembre 2026.
+// Mantener por referencia. No se importa en la /servicios actual.
+
 "use client";
 
 import Link from "next/link";

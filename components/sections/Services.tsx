@@ -9,6 +9,7 @@ import {
   AnimatePresence,
 } from "motion/react";
 import { ArrowRight } from "lucide-react";
+import { splitHighlight } from "@/components/ui-custom/Highlight";
 import { copy } from "@/data/copy";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -20,11 +21,13 @@ function DesktopList({
   activeIndex,
   onHover,
   reduced,
+  uppercaseNames = false,
 }: {
   items: readonly Item[];
   activeIndex: number;
   onHover: (i: number) => void;
   reduced: boolean;
+  uppercaseNames?: boolean;
 }) {
   return (
     <ul className="flex flex-col gap-1">
@@ -55,6 +58,8 @@ function DesktopList({
               </span>
               <span
                 className={`font-display text-2xl font-semibold tracking-tight transition-colors duration-300 sm:text-3xl lg:text-4xl ${
+                  uppercaseNames ? "uppercase" : ""
+                } ${
                   active
                     ? "text-pimenton-text-on-dark"
                     : "text-pimenton-text-on-dark-muted/45 group-hover:text-pimenton-text-on-dark-muted/80"
@@ -74,10 +79,12 @@ function DesktopMedia({
   items,
   activeIndex,
   reduced,
+  uppercaseNames = false,
 }: {
   items: readonly Item[];
   activeIndex: number;
   reduced: boolean;
+  uppercaseNames?: boolean;
 }) {
   return (
     <div>
@@ -130,7 +137,11 @@ function DesktopMedia({
               <span className="font-mono text-xs uppercase tracking-[0.22em] text-pimenton-accent">
                 {item.num}
               </span>
-              <span className="font-display text-lg font-semibold tracking-tight text-pimenton-text-on-dark sm:text-xl">
+              <span
+                className={`font-display text-lg font-semibold tracking-tight text-pimenton-text-on-dark sm:text-xl ${
+                  uppercaseNames ? "uppercase" : ""
+                }`}
+              >
                 {item.name}
               </span>
             </div>
@@ -149,11 +160,13 @@ function MobileAccordion({
   openIndex,
   onOpen,
   reduced,
+  uppercaseNames = false,
 }: {
   items: readonly Item[];
   openIndex: number;
   onOpen: (i: number) => void;
   reduced: boolean;
+  uppercaseNames?: boolean;
 }) {
   return (
     <ul className="flex flex-col border-t border-pimenton-dark-border">
@@ -175,6 +188,8 @@ function MobileAccordion({
               </span>
               <span
                 className={`font-display text-xl font-semibold tracking-tight transition-colors duration-300 ${
+                  uppercaseNames ? "uppercase" : ""
+                } ${
                   isOpen
                     ? "text-pimenton-accent"
                     : "text-pimenton-text-on-dark-muted/70"
@@ -222,12 +237,18 @@ function MobileAccordion({
 export function Services({
   eyebrow = copy.services.eyebrow,
   heading = copy.services.heading,
+  headingHighlight,
   showCta = true,
+  uppercaseNames = false,
 }: {
   eyebrow?: string;
   heading?: string;
+  /** Palabra/frase del heading a resaltar en coral (marcador). */
+  headingHighlight?: string;
   /** Oculta el CTA interno (p.ej. en /servicios, que tiene su propio CTA). */
   showCta?: boolean;
+  /** Nombres de servicio en uppercase (regla específica de /servicios). */
+  uppercaseNames?: boolean;
 } = {}) {
   const { cta, items } = copy.services;
   const ref = useRef<HTMLElement>(null);
@@ -274,7 +295,9 @@ export function Services({
           transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
           className="mt-6 max-w-3xl text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-4xl"
         >
-          {heading}
+          {headingHighlight
+            ? splitHighlight(heading, headingHighlight, "coral")
+            : heading}
         </motion.h2>
 
         {/* Mobile accordion */}
@@ -284,6 +307,7 @@ export function Services({
             openIndex={openIndex}
             onOpen={setOpenIndex}
             reduced={reduced}
+            uppercaseNames={uppercaseNames}
           />
         </div>
 
@@ -293,12 +317,14 @@ export function Services({
             items={items}
             activeIndex={activeIndex}
             reduced={reduced}
+            uppercaseNames={uppercaseNames}
           />
           <DesktopList
             items={items}
             activeIndex={activeIndex}
             onHover={setActiveIndex}
             reduced={reduced}
+            uppercaseNames={uppercaseNames}
           />
         </div>
 

@@ -1,51 +1,37 @@
 import type { Metadata } from "next";
 import { Services } from "@/components/sections/Services";
 import { ServiciosHero } from "@/components/sections/servicios/ServiciosHero";
-import { PorQuePimenton } from "@/components/sections/servicios/PorQuePimenton";
-import { ComoTrabajamos } from "@/components/sections/servicios/ComoTrabajamos";
-import { CasosResultados } from "@/components/sections/servicios/CasosResultados";
-import { FaqServicios } from "@/components/sections/servicios/FaqServicios";
-import { CtaContactoFinal } from "@/components/sections/servicios/CtaContactoFinal";
+import { NoSomosAgencia } from "@/components/sections/servicios/NoSomosAgencia";
 
 export const metadata: Metadata = {
   title:
     "Servicios | Pimentón — Especialistas en delivery para restaurantes",
   description:
-    "Cinco servicios para profesionalizar tu delivery: optimización de Foodapps, performance, contenido, tecnología y consultoría. +500 restaurantes confían en Pimentón.",
+    "Cinco servicios para profesionalizar tu delivery. +500 restaurantes en +20 países confían en Pimentón.",
   alternates: { canonical: "/servicios" },
 };
 
 export default function ServiciosPage() {
   return (
     <main>
-      {/* 1. Hero (oscuro) */}
+      {/* 1. Hero (oscuro) — mosaico Control Room de fondo */}
       <ServiciosHero />
 
-      {/* 2. Por qué Pimentón (crema) */}
-      <PorQuePimenton />
+      {/* 2. No somos una agencia (crema) — split agencia vs Pimentón */}
+      <NoSomosAgencia />
 
-      {/* 3. Lista de servicios — componente reutilizado del Home (oscuro).
-             Trae su propio id="servicios" para el anchor del hero. Le pasamos
-             el header de esta página y ocultamos su CTA interno. */}
+      {/* 3. Cinco servicios (oscuro) — componente del Home reutilizado, con
+             header propio de esta página, palabra resaltada, nombres en
+             uppercase y sin CTA interno. */}
       <Services
         eyebrow="Qué hacemos"
         heading="Cinco servicios. Un mismo objetivo: que vendas más sin sufrir más."
+        headingHighlight="vendas más"
         showCta={false}
+        uppercaseNames
       />
 
-      {/* 4. Cómo trabajamos (oscuro, con seam respecto a Servicios) */}
-      <ComoTrabajamos />
-
-      {/* 5. Casos / Resultados (crema) */}
-      <CasosResultados />
-
-      {/* 6. FAQ (oscuro) */}
-      <FaqServicios />
-
-      {/* 7. CTA final → /contacto (coral). Sin form embebido. */}
-      <CtaContactoFinal />
-
-      {/* 8. Footer: global desde app/layout.tsx */}
+      {/* 4. Footer: global desde app/layout.tsx */}
     </main>
   );
 }
