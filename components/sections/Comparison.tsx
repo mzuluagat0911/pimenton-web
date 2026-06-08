@@ -8,6 +8,7 @@ import {
   useReducedMotion,
 } from "motion/react";
 import { Check, X } from "lucide-react";
+import { splitHighlight } from "@/components/ui-custom/Highlight";
 import { copy } from "@/data/copy";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -223,7 +224,7 @@ export function Comparison() {
           transition={{ duration: 0.8, ease: EASE }}
           className="max-w-3xl text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-4xl"
         >
-          {heading}
+          {splitHighlight(heading, "opera en serio.", "coral")}
         </motion.h2>
 
         {/* The transformation card */}

@@ -9,6 +9,7 @@ import {
 } from "motion/react";
 import { Check } from "lucide-react";
 import { ConsultationForm } from "@/components/forms/ConsultationForm";
+import { Highlight } from "@/components/ui-custom/Highlight";
 import { clients } from "@/data/clients";
 import { copy } from "@/data/copy";
 
@@ -124,21 +125,15 @@ function RotatingClientLogos({ reduced }: { reduced: boolean }) {
  * fuera del wrapper).
  */
 export function Consultancy() {
-  const {
-    eyebrow,
-    heading,
-    headingAccent,
-    description,
-    socialProof,
-    bullets,
-  } = copy.consultationForm.intro;
+  const { heading, headingAccent, description, socialProof, bullets } =
+    copy.consultationForm.intro;
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.15 });
   const reduced = useReducedMotion() ?? false;
 
-  // Split del heading para colorar el accent ("GRATUITA") en coral.
+  // Split del heading para resaltar el accent ("en 4 pasos.") en amarillo.
   // Si por algún motivo el accent no está en el heading, mostramos el
-  // string entero sin coloreado (safe fallback).
+  // string entero sin resaltado (safe fallback).
   const accentIndex = heading.indexOf(headingAccent);
   const headingBefore = accentIndex >= 0 ? heading.slice(0, accentIndex) : heading;
   const headingAfter =
@@ -155,25 +150,6 @@ export function Consultancy() {
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
             {/* ── Columna izquierda: editorial ── */}
             <div className="flex flex-col">
-              <motion.p
-                initial={reduced ? { opacity: 0 } : { opacity: 0, y: 12 }}
-                animate={
-                  inView
-                    ? { opacity: 1, y: 0 }
-                    : reduced
-                      ? { opacity: 0 }
-                      : { opacity: 0, y: 12 }
-                }
-                transition={{ duration: 0.6, ease: EASE }}
-                className="flex items-center text-pimenton-accent text-xs sm:text-sm uppercase tracking-[0.22em] font-medium"
-              >
-                <span
-                  aria-hidden
-                  className="mr-3 inline-block h-px w-8 bg-pimenton-accent"
-                />
-                {eyebrow}
-              </motion.p>
-
               <motion.h2
                 initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20 }}
                 animate={
@@ -183,12 +159,12 @@ export function Consultancy() {
                       ? { opacity: 0 }
                       : { opacity: 0, y: 20 }
                 }
-                transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
-                className="mt-6 text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl lg:text-5xl"
+                transition={{ duration: 0.8, ease: EASE }}
+                className="text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl lg:text-5xl"
               >
                 {headingBefore}
                 {accentIndex >= 0 && (
-                  <span className="text-pimenton-accent">{headingAccent}</span>
+                  <Highlight color="yellow">{headingAccent}</Highlight>
                 )}
                 {headingAfter}
               </motion.h2>

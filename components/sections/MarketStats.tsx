@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "motion/react";
+import { splitHighlight } from "@/components/ui-custom/Highlight";
 import { copy } from "@/data/copy";
 import {
   FacturacionIcon,
@@ -88,7 +89,7 @@ export function MarketStats() {
           transition={{ duration: 0.8, ease: EASE }}
           className="max-w-3xl whitespace-pre-line text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl"
         >
-          {heading}
+          {splitHighlight(heading, "tu delivery?", "mint")}
         </motion.h2>
 
         <div className="mt-16 grid grid-cols-1 gap-6 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">

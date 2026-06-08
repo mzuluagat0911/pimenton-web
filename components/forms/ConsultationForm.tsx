@@ -32,6 +32,7 @@ import {
   type FormSnapshot,
   type SizeId,
 } from "@/data/consultationForm";
+import { Highlight, splitHighlight } from "@/components/ui-custom/Highlight";
 import { copy } from "@/data/copy";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -843,11 +844,10 @@ function SuccessScreen({
 }) {
   const successCopy = copy.consultationForm.success;
   const restaurant = data.restaurant.trim();
-  // Si por algún edge case restaurant viene vacío, caemos a "¡Listo!"
-  // sin interpolación para no mostrar "¡Listo, !".
-  const title = restaurant
-    ? successCopy.title.replace("{restaurant}", restaurant)
-    : "¡Listo!";
+  // Partimos el template "¡Listo, {restaurant}!" para resaltar el nombre
+  // del restaurante en coral. Si por algún edge case viene vacío, caemos
+  // a "¡Listo!" sin interpolación para no mostrar "¡Listo, !".
+  const [titleBefore, titleAfter] = successCopy.title.split("{restaurant}");
 
   return (
     <div className="relative flex flex-col items-center text-center">
@@ -867,7 +867,15 @@ function SuccessScreen({
         transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
         className="mt-6 text-3xl font-black tracking-tight text-pimenton-text sm:text-4xl"
       >
-        {title}
+        {restaurant ? (
+          <>
+            {titleBefore}
+            <Highlight color="coral">{restaurant}</Highlight>
+            {titleAfter}
+          </>
+        ) : (
+          "¡Listo!"
+        )}
       </motion.h3>
 
       <motion.p
@@ -953,16 +961,17 @@ export function ConsultationForm() {
             ? formCopy.step4.label
             : "";
 
+  // Título del paso con la parte resaltada (estilo marcador) por paso.
   const stepTitle =
     state.step === 1
-      ? formCopy.step1.title
+      ? splitHighlight(formCopy.step1.title, "tu categoría", "coral")
       : state.step === 2
-        ? formCopy.step2.title
+        ? splitHighlight(formCopy.step2.title, "país", "mint")
         : state.step === 3
-          ? formCopy.step3.title
+          ? splitHighlight(formCopy.step3.title, "tu operación?", "yellow")
           : state.step === 4
-            ? formCopy.step4.title
-            : "";
+            ? splitHighlight(formCopy.step4.title, "tus datos", "coral")
+            : null;
 
   const progressStep = state.step === "success" ? 4 : state.step;
 

@@ -2,7 +2,7 @@ export const copy = {
   hero: {
     eyebrow: "Growth Partner · LATAM & Europa",
     headline: "Potenciamos tu Delivery y optimizamos tus Canales Digitales.",
-    headlineAccent: "Delivery",
+    headlineAccent: "Potenciamos tu Delivery",
     subhead: "Somos la Agencia #1 del Mundo expertos en Restauración.",
     ctaPrimary: { label: "Consultoría gratuita", href: "#contacto" },
     ctaSecondary: { label: "Hablar con un especialista", href: "#contacto" },
@@ -65,7 +65,7 @@ export const copy = {
     subheading: "Tu delivery operado desde una sola pantalla.",
   },
   marketStats: {
-    heading: "Por qué profesionalizar tu delivery",
+    heading: "¿Por qué profesionalizar tu delivery?",
     items: [
       {
         stat: "1 pedido por semana",
@@ -229,8 +229,8 @@ export const copy = {
   consultationForm: {
     intro: {
       eyebrow: "Empecemos",
-      heading: "Consultoría GRATUITA en 4 pasos.",
-      headingAccent: "GRATUITA",
+      heading: "Consultoría gratuita en 4 pasos.",
+      headingAccent: "en 4 pasos.",
       description:
         "Contanos sobre tu restaurante y un especialista de tu región te escribe por WhatsApp.",
       socialProof: "+500 restaurantes confían en Pimentón",

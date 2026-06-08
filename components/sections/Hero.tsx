@@ -8,6 +8,7 @@ import {
   useTransform,
 } from "motion/react";
 import { ArrowRight } from "lucide-react";
+import { Highlight } from "@/components/ui-custom/Highlight";
 import { copy } from "@/data/copy";
 
 const NOISE_SVG =
@@ -139,7 +140,7 @@ export function Hero() {
               className="text-4xl sm:text-6xl lg:text-7xl font-semibold leading-[1.02] tracking-tight text-pimenton-text-on-dark"
             >
               {headStart}
-              <span className="text-pimenton-accent">{headlineAccent}</span>
+              <Highlight color="coral">{headlineAccent}</Highlight>
               {headEnd}
             </motion.h1>
 
