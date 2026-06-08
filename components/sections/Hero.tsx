@@ -58,11 +58,6 @@ export function Hero() {
     [0, 1],
     shouldReduceMotion ? ["0%", "0%"] : ["0%", "30%"],
   );
-  const contentOpacity = useTransform(
-    scrollYProgress,
-    [0, 1],
-    shouldReduceMotion ? [1, 1] : [1, 0.3],
-  );
 
   const fadeUp = (delay: number, duration: number, y: number) => ({
     initial: shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y },
@@ -136,10 +131,7 @@ export function Hero() {
         style={{ backgroundImage: NOISE_SVG }}
       />
 
-      <motion.div
-        style={{ opacity: contentOpacity }}
-        className="relative z-10 flex h-full flex-col"
-      >
+      <div className="relative z-10 flex h-full flex-col">
         <div className="flex flex-1 items-end pb-20 sm:pb-24 px-[5%] sm:px-16 lg:px-24">
           <div className="w-full max-w-6xl">
             <motion.h1
@@ -168,7 +160,7 @@ export function Hero() {
                 whileHover={shouldReduceMotion ? undefined : { scale: 1.03 }}
                 whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 400, damping: 22 }}
-                className="group inline-flex w-full sm:w-auto cursor-pointer items-center justify-center gap-2.5 rounded-full bg-pimenton-accent px-9 py-5 text-base sm:text-lg font-semibold text-pimenton-bg shadow-xl shadow-pimenton-accent/40 transition-[background-color,box-shadow] duration-300 hover:bg-pimenton-accent-hover hover:shadow-pimenton-accent/60"
+                className="group inline-flex w-full sm:w-auto cursor-pointer items-center justify-center gap-2.5 rounded-full bg-pimenton-accent px-9 py-3.5 text-base sm:text-lg font-semibold text-pimenton-bg shadow-xl shadow-pimenton-accent/40 transition-[background-color,box-shadow] duration-300 hover:bg-pimenton-accent-hover hover:shadow-pimenton-accent/60"
               >
                 {ctaPrimary.label}
                 <ArrowRight
@@ -183,14 +175,14 @@ export function Hero() {
                 whileHover={shouldReduceMotion ? undefined : { scale: 1.03 }}
                 whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 400, damping: 22 }}
-                className="inline-flex w-full sm:w-auto cursor-pointer items-center justify-center rounded-full border border-pimenton-text-on-dark/40 bg-pimenton-text-on-dark/5 px-9 py-5 text-base sm:text-lg font-semibold text-pimenton-text-on-dark backdrop-blur-sm transition-colors duration-300 hover:border-pimenton-text-on-dark/80 hover:bg-pimenton-text-on-dark/10"
+                className="inline-flex w-full sm:w-auto cursor-pointer items-center justify-center rounded-full border border-pimenton-text-on-dark/40 bg-pimenton-text-on-dark/5 px-9 py-3.5 text-base sm:text-lg font-semibold text-pimenton-text-on-dark backdrop-blur-sm transition-colors duration-300 hover:border-pimenton-text-on-dark/80 hover:bg-pimenton-text-on-dark/10"
               >
                 {ctaSecondary.label}
               </motion.a>
             </motion.div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
