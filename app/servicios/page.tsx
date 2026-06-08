@@ -29,7 +29,7 @@ export default function ServiciosPage() {
         headingHighlight="vendas más"
         showCta
         ctaHref="/contacto"
-        ctaLabel="Empezar consultoría gratuita"
+        ctaLabel="Consultoría gratuita"
         uppercaseNames
         showPlatforms
       />

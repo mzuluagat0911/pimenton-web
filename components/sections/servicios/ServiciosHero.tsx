@@ -115,8 +115,7 @@ export function ServiciosHero() {
           className="mt-7 max-w-[640px] text-lg leading-relaxed text-pimenton-text-on-dark-muted sm:text-xl"
         >
           Gestionamos tu delivery de punta a punta para que vendas más, con
-          menos fricción y mayor rentabilidad. Sin paquetes genéricos: cada
-          operación se diseña sobre el terreno.
+          menos fricción y mayor rentabilidad.
         </motion.p>
       </div>
     </section>

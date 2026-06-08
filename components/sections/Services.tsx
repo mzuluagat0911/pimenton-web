@@ -9,7 +9,6 @@ import {
   useReducedMotion,
   AnimatePresence,
 } from "motion/react";
-import { ArrowRight } from "lucide-react";
 import { splitHighlight } from "@/components/ui-custom/Highlight";
 import { copy } from "@/data/copy";
 
@@ -40,6 +39,19 @@ function PlatformRow({ platforms }: { platforms?: readonly string[] }) {
         </div>
       ))}
     </div>
+  );
+}
+
+// CTA pill (sin icono) hacia la página de contacto. Full-width en mobile,
+// auto en sm+.
+function CtaButton({ href, label }: { href: string; label: string }) {
+  return (
+    <Link
+      href={href}
+      className="inline-flex w-full cursor-pointer items-center justify-center rounded-full bg-pimenton-accent px-7 py-3.5 text-base font-semibold text-pimenton-bg shadow-lg shadow-pimenton-accent/30 transition-all duration-300 hover:bg-pimenton-accent-hover hover:shadow-pimenton-accent/50 sm:w-auto sm:text-lg"
+    >
+      {label}
+    </Link>
   );
 }
 
@@ -108,12 +120,15 @@ function DesktopMedia({
   reduced,
   uppercaseNames = false,
   showPlatforms = false,
+  cta,
 }: {
   items: readonly Item[];
   activeIndex: number;
   reduced: boolean;
   uppercaseNames?: boolean;
   showPlatforms?: boolean;
+  /** CTA renderizado bajo las plataformas (desktop). */
+  cta?: { href: string; label: string };
 }) {
   return (
     <div>
@@ -178,6 +193,11 @@ function DesktopMedia({
               {item.description}
             </p>
             {showPlatforms && <PlatformRow platforms={item.platforms} />}
+            {cta && (
+              <div className="mt-9">
+                <CtaButton href={cta.href} label={cta.label} />
+              </div>
+            )}
           </motion.div>
         ))}
       </div>
@@ -364,6 +384,11 @@ export function Services({
             reduced={reduced}
             uppercaseNames={uppercaseNames}
             showPlatforms={showPlatforms}
+            cta={
+              showCta
+                ? { href: ctaHref ?? cta.href, label: ctaLabel ?? cta.label }
+                : undefined
+            }
           />
           <DesktopList
             items={items}
@@ -374,20 +399,14 @@ export function Services({
           />
         </div>
 
-        {/* CTA — full-width centrado en mobile (al final de los servicios),
-            bottom-right en desktop. */}
+        {/* CTA mobile — al final de todos los servicios. En desktop el CTA
+            va dentro de DesktopMedia, debajo de las plataformas. */}
         {showCta && (
-          <div className="mt-14 flex justify-center sm:mt-16 md:justify-end">
-            <Link
+          <div className="mt-14 flex justify-center md:hidden">
+            <CtaButton
               href={ctaHref ?? cta.href}
-              className="group inline-flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-full bg-pimenton-accent px-7 py-3.5 text-base font-semibold text-pimenton-bg shadow-lg shadow-pimenton-accent/30 transition-all duration-300 hover:bg-pimenton-accent-hover hover:shadow-pimenton-accent/50 sm:w-auto sm:text-lg"
-            >
-              {ctaLabel ?? cta.label}
-              <ArrowRight
-                aria-hidden
-                className="size-5 transition-transform duration-300 group-hover:translate-x-1"
-              />
-            </Link>
+              label={ctaLabel ?? cta.label}
+            />
           </div>
         )}
       </div>
