@@ -9,7 +9,7 @@ import {
   useTransform,
 } from "motion/react";
 import { copy } from "@/data/copy";
-import { CenterIsologo } from "./CenterIsologo";
+import { IsologoTrigger } from "./IsologoTrigger";
 import {
   buildPositions,
   packetDelays,
@@ -161,14 +161,20 @@ export function ControlRoomScroll() {
     // scroll runway for the rotation tween while staying centered in
     // viewport during the pin.
     <section className="relative bg-pimenton-dark py-14 sm:py-20">
-      <div className="mx-auto w-full max-w-7xl px-[5%] sm:px-16 lg:px-24">
-        <p className="flex items-center text-pimenton-accent text-xs sm:text-sm uppercase tracking-[0.22em] font-medium">
-          <span aria-hidden className="mr-3 inline-block h-px w-8 bg-pimenton-accent" />
-          {eyebrow}
-        </p>
-        <h2 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark">
-          {heading}
-        </h2>
+      {/* Heading wrapper: padding por fuera del max-w-7xl — mismo patrón
+          exacto que MarketStats. La sección no puede llevar el padding
+          en el root porque el spacer de los anillos (abajo) usa su
+          propio sistema de padding interno y necesita root sin px. */}
+      <div className="px-[5%] sm:px-16 lg:px-24">
+        <div className="mx-auto w-full max-w-7xl">
+          <p className="flex items-center text-pimenton-accent text-xs sm:text-sm uppercase tracking-[0.22em] font-medium">
+            <span aria-hidden className="mr-3 inline-block h-px w-8 bg-pimenton-accent" />
+            {eyebrow}
+          </p>
+          <h2 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark">
+            {heading}
+          </h2>
+        </div>
       </div>
 
       <div ref={spacerRef} className="relative mt-12 h-[200vh] sm:mt-20">
@@ -187,7 +193,7 @@ export function ControlRoomScroll() {
                 />
               ))}
 
-              <CenterIsologo
+              <IsologoTrigger
                 className="absolute left-1/2 top-1/2 z-20 w-[18%] -translate-x-1/2 -translate-y-1/2"
                 glowInset="-60%"
               />

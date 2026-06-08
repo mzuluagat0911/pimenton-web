@@ -2,7 +2,7 @@
 
 import { copy } from "@/data/copy";
 import { platforms, type PlatformRing } from "@/data/platforms";
-import { CenterIsologo } from "./CenterIsologo";
+import { IsologoTrigger } from "./IsologoTrigger";
 
 const TIER_LABELS: Record<PlatformRing, string> = {
   inner: "Food Apps",
@@ -22,8 +22,12 @@ export function ControlRoomMobile() {
   const { eyebrow, heading } = copy.controlRoom;
 
   return (
-    <section className="relative bg-pimenton-dark px-[5%] py-14 sm:px-12 sm:py-20">
-      <div className="mx-auto w-full max-w-2xl">
+    // Padding sm:px-16 alinea con MarketStats (que también usa sm:px-16).
+    // El heading vive en su propio container max-w-7xl para coincidir
+    // exactamente con el de MarketStats; los anillos abajo siguen en
+    // max-w-2xl para mantener la legibilidad mobile.
+    <section className="relative bg-pimenton-dark px-[5%] py-14 sm:px-16 sm:py-20">
+      <div className="mx-auto w-full max-w-7xl">
         <p className="flex items-center text-pimenton-accent text-xs uppercase tracking-[0.22em] font-medium">
           <span aria-hidden className="mr-3 inline-block h-px w-8 bg-pimenton-accent" />
           {eyebrow}
@@ -31,9 +35,11 @@ export function ControlRoomMobile() {
         <h2 className="mt-6 text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark">
           {heading}
         </h2>
+      </div>
 
+      <div className="mx-auto w-full max-w-2xl">
         <div className="mt-14 flex flex-col items-center gap-12">
-          <CenterIsologo className="w-32" glowInset="-55%" />
+          <IsologoTrigger className="w-32" glowInset="-55%" />
 
           <div className="flex w-full flex-col gap-10">
             {TIER_ORDER.map((ring) => {
