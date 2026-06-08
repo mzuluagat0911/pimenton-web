@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { Highlight } from "@/components/ui-custom/Highlight";
-import { Eyebrow, EASE } from "./Eyebrow";
+import { EASE } from "./Eyebrow";
 import {
   AlertTile,
   BarsTile,
@@ -103,19 +103,15 @@ export function ServiciosHero() {
 
       {/* Texto del hero */}
       <div className="relative z-10 mx-auto w-full max-w-7xl">
-        <motion.div {...fadeUp(0)}>
-          <Eyebrow>Nuestros servicios</Eyebrow>
-        </motion.div>
-
         <motion.h1
-          {...fadeUp(0.12)}
-          className="mt-7 max-w-4xl text-5xl font-bold leading-[1.02] tracking-tight text-pimenton-bg sm:text-6xl lg:text-7xl"
+          {...fadeUp(0)}
+          className="max-w-4xl text-4xl font-semibold leading-[1.02] tracking-tight text-pimenton-bg sm:text-6xl lg:text-7xl"
         >
           Soluciones de <Highlight color="coral">delivery</Highlight>
         </motion.h1>
 
         <motion.p
-          {...fadeUp(0.26)}
+          {...fadeUp(0.14)}
           className="mt-7 max-w-[640px] text-lg leading-relaxed text-pimenton-text-on-dark-muted sm:text-xl"
         >
           Gestionamos tu delivery de punta a punta para que vendas más, con

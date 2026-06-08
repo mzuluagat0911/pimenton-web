@@ -25,10 +25,11 @@ export default function ServiciosPage() {
              uppercase y sin CTA interno. */}
       <Services
         eyebrow="Qué hacemos"
-        heading="Cinco servicios. Un mismo objetivo: que vendas más sin sufrir más."
+        heading="Cinco soluciones, un mismo objetivo: que vendas más sin mayor esfuerzo."
         headingHighlight="vendas más"
         showCta={false}
         uppercaseNames
+        showPlatforms
       />
 
       {/* 4. Footer: global desde app/layout.tsx */}

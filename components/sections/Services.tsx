@@ -16,6 +16,34 @@ const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 type Item = (typeof copy.services.items)[number];
 
+// Fila de logos de plataformas que usa cada servicio. Los logos vienen
+// en su color original; los pasamos a blanco (brightness(0) invert(1))
+// para una fila uniforme sobre el fondo oscuro, igual que el Control Room.
+function PlatformRow({ platforms }: { platforms?: readonly string[] }) {
+  if (!platforms || platforms.length === 0) return null;
+  return (
+    <div className="mt-7">
+      <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-text-on-dark-muted">
+        Plataformas que usamos
+      </p>
+      <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-3">
+        {platforms.map((src) => (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={src}
+            src={src}
+            alt=""
+            aria-hidden
+            draggable={false}
+            className="h-5 w-auto opacity-75 sm:h-6"
+            style={{ filter: "brightness(0) invert(1)" }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function DesktopList({
   items,
   activeIndex,
@@ -80,11 +108,13 @@ function DesktopMedia({
   activeIndex,
   reduced,
   uppercaseNames = false,
+  showPlatforms = false,
 }: {
   items: readonly Item[];
   activeIndex: number;
   reduced: boolean;
   uppercaseNames?: boolean;
+  showPlatforms?: boolean;
 }) {
   return (
     <div>
@@ -148,6 +178,7 @@ function DesktopMedia({
             <p className="mt-3 max-w-prose text-sm leading-relaxed text-pimenton-text-on-dark-muted sm:text-base">
               {item.description}
             </p>
+            {showPlatforms && <PlatformRow platforms={item.platforms} />}
           </motion.div>
         ))}
       </div>
@@ -161,12 +192,14 @@ function MobileAccordion({
   onOpen,
   reduced,
   uppercaseNames = false,
+  showPlatforms = false,
 }: {
   items: readonly Item[];
   openIndex: number;
   onOpen: (i: number) => void;
   reduced: boolean;
   uppercaseNames?: boolean;
+  showPlatforms?: boolean;
 }) {
   return (
     <ul className="flex flex-col border-t border-pimenton-dark-border">
@@ -223,6 +256,9 @@ function MobileAccordion({
                     <p className="mt-4 text-sm leading-relaxed text-pimenton-text-on-dark-muted">
                       {item.description}
                     </p>
+                    {showPlatforms && (
+                      <PlatformRow platforms={item.platforms} />
+                    )}
                   </div>
                 </motion.div>
               )}
@@ -240,6 +276,7 @@ export function Services({
   headingHighlight,
   showCta = true,
   uppercaseNames = false,
+  showPlatforms = false,
 }: {
   eyebrow?: string;
   heading?: string;
@@ -249,6 +286,8 @@ export function Services({
   showCta?: boolean;
   /** Nombres de servicio en uppercase (regla específica de /servicios). */
   uppercaseNames?: boolean;
+  /** Muestra los logos de plataformas por servicio (solo /servicios). */
+  showPlatforms?: boolean;
 } = {}) {
   const { cta, items } = copy.services;
   const ref = useRef<HTMLElement>(null);
@@ -308,6 +347,7 @@ export function Services({
             onOpen={setOpenIndex}
             reduced={reduced}
             uppercaseNames={uppercaseNames}
+            showPlatforms={showPlatforms}
           />
         </div>
 
@@ -318,6 +358,7 @@ export function Services({
             activeIndex={activeIndex}
             reduced={reduced}
             uppercaseNames={uppercaseNames}
+            showPlatforms={showPlatforms}
           />
           <DesktopList
             items={items}

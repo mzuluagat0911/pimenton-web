@@ -139,6 +139,13 @@ export const copy = {
         description:
           "Nos hacemos cargo del Delivery de punta a punta: equipo, análisis, estrategia, ejecución y seguimiento diario. Con foco en crecimiento y rentabilidad.",
         image: "/assets/services/service_gestion-integral.webp",
+        platforms: [
+          "/assets/logos-platforms/foodapp_rappi.svg",
+          "/assets/logos-platforms/foodapp_pedidos-ya.svg",
+          "/assets/logos-platforms/foodapp_uber-eats.svg",
+          "/assets/logos-platforms/foodapp_glovo.svg",
+          "/assets/logos-platforms/foodapp_deliveroo.svg",
+        ],
       },
       {
         num: "02",
@@ -146,6 +153,11 @@ export const copy = {
         description:
           "Trabajamos proyectos a medida en base a las necesidades de tu Restaurante, definiendo objetivos claros y metodologías ágiles.",
         image: "/assets/services/service_consultoria.webp",
+        platforms: [
+          "/assets/logos-platforms/tool_deliverect.svg",
+          "/assets/logos-platforms/tool_toast.svg",
+          "/assets/logos-platforms/tool_delivery-hero.svg",
+        ],
       },
       {
         num: "03",
@@ -153,6 +165,12 @@ export const copy = {
         description:
           "Optimizamos lo que más impacta en tus ventas: visibilidad, conversión, ticket promedio y recompra. Ajustes constantes, decisiones rápidas.",
         image: "/assets/services/service_performance.webp",
+        platforms: [
+          "/assets/logos-platforms/foodapp_rappi.svg",
+          "/assets/logos-platforms/foodapp_pedidos-ya.svg",
+          "/assets/logos-platforms/foodapp_uber-eats.svg",
+          "/assets/logos-platforms/tech_meta.svg",
+        ],
       },
       {
         num: "04",
@@ -160,6 +178,11 @@ export const copy = {
         description:
           "Definimos en conjunto la combinación perfecta entre operaciones, marketing, procesos y rentabilidad que se ajuste a tu negocio.",
         image: "/assets/services/service_estrategia.webp",
+        platforms: [
+          "/assets/logos-platforms/tech_google.svg",
+          "/assets/logos-platforms/tech_meta.svg",
+          "/assets/logos-platforms/tool_delivery-hero.svg",
+        ],
       },
       {
         num: "05",
@@ -167,6 +190,12 @@ export const copy = {
         description:
           "Utilizamos data de las Food Apps y canales digitales para disponer en tiempo real de toda la información que tu Restaurante necesita para la toma de decisiones.",
         image: "/assets/services/service_tecnologia.webp",
+        platforms: [
+          "/assets/logos-platforms/tech_claude.svg",
+          "/assets/logos-platforms/tech_chat-gpt.svg",
+          "/assets/logos-platforms/tech_google.svg",
+          "/assets/logos-platforms/tech_meta.svg",
+        ],
       },
     ],
   },
