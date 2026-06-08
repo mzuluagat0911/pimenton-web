@@ -21,12 +21,8 @@ export type CategoryId =
   | "burger"
   | "pizza"
   | "sushi"
-  | "pasta"
-  | "meat"
   | "dessert"
-  | "coffee"
   | "bakery"
-  | "empanadas"
   | "other";
 
 export type SizeId = "solo" | "small" | "medium" | "large";
@@ -46,12 +42,8 @@ export const categories: ReadonlyArray<CategoryOption> = [
   { id: "burger", label: "Burger", emoji: "burger.png", fallback: "🍔" },
   { id: "pizza", label: "Pizza", emoji: "pizza.png", fallback: "🍕" },
   { id: "sushi", label: "Sushi", emoji: "sushi.png", fallback: "🍣" },
-  { id: "pasta", label: "Pastas", emoji: "pasta.png", fallback: "🍝" },
-  { id: "meat", label: "Carnes / Parrilla", emoji: "meat.png", fallback: "🥩" },
-  { id: "dessert", label: "Postres / Helados", emoji: "donut.png", fallback: "🍩" },
-  { id: "coffee", label: "Cafetería", emoji: "coffee.png", fallback: "☕" },
+  { id: "dessert", label: "Postres", emoji: "donut.png", fallback: "🍩" },
   { id: "bakery", label: "Panaderías", emoji: "croissant.png", fallback: "🥐" },
-  { id: "empanadas", label: "Empanadas", emoji: "dumpling.png", fallback: "🥟" },
   { id: "other", label: "Otros", emoji: "plate.png", fallback: "🍽️" },
 ] as const;
 
@@ -200,11 +192,21 @@ export type FormSnapshot = {
   countryLabel: string;
   /** Selección del paso 3 */
   size: SizeId;
-  /** Nombre de la persona — obligatorio */
-  name: string;
+  /** Nombre del restaurante — obligatorio */
+  restaurant: string;
   /** Teléfono WhatsApp — obligatorio */
   phone: string;
+  /** Handle de Instagram — opcional (línea omitida si vacío) */
+  instagram: string;
 };
+
+/** Normaliza un handle de IG: saca @ inicial si vino y lo vuelve a
+ *  anteponer al armar el output. "" si vacío (línea se omite). */
+function formatInstagram(raw: string): string {
+  const trimmed = raw.trim().replace(/^@+/, "");
+  if (!trimmed) return "";
+  return `@${trimmed}`;
+}
 
 // ────────── Builder del mensaje WhatsApp ──────────
 
@@ -220,18 +222,25 @@ function sizeLabel(id: SizeId): string {
 /**
  * Mensaje pre-armado para wa.me. Ejemplo de output:
  *
- *   ¡Hola Pimentón! 👋 Soy Santiago.
- *   Tengo un restaurante de Burger, Pizza en Argentina con Pequeño (2 – 5 sucursales).
+ *   ¡Hola Pimentón! 👋 Soy de Brasa & Fuego.
+ *   Tenemos un restaurante de Burger, Pizza en Argentina con Pequeño (2 – 5 sucursales).
+ *   Instagram: @brasayfuego
  *   Me gustaría agendar la consultoría gratuita.
+ *
+ * La línea de Instagram se OMITE entera si el campo viene vacío
+ * (no aparece "Instagram: -").
  */
 export function buildWhatsappMessage(snap: FormSnapshot): string {
   const cats = snap.categories.map(categoryLabel).join(", ");
   const size = sizeLabel(snap.size);
-  return [
-    `¡Hola Pimentón! 👋 Soy ${snap.name.trim()}.`,
-    `Tengo un restaurante de ${cats} en ${snap.countryLabel} con ${size}.`,
-    "Me gustaría agendar la consultoría gratuita.",
-  ].join("\n");
+  const ig = formatInstagram(snap.instagram);
+  const lines = [
+    `¡Hola Pimentón! 👋 Soy de ${snap.restaurant.trim()}.`,
+    `Tenemos un restaurante de ${cats} en ${snap.countryLabel} con ${size}.`,
+  ];
+  if (ig) lines.push(`Instagram: ${ig}`);
+  lines.push("Me gustaría agendar la consultoría gratuita.");
+  return lines.join("\n");
 }
 
 /** URL final wa.me, con número de región resuelto + mensaje encodeado. */

@@ -44,34 +44,63 @@ const EMOJI_BASE_PATH = "/assets/emoji/3d/";
 
 /**
  * Renderiza el PNG 3D de Microsoft Fluent (en /public/assets/emoji/3d/).
- * Si el archivo no existe todavía (Pimentón aún no los dropeó), cae al
- * emoji Unicode equivalente para que la UI no se vea rota. PNG y Unicode
- * son semánticamente equivalentes; sólo cambia el render.
+ * Si el archivo no existe todavía, cae al emoji Unicode equivalente
+ * para que la UI no se vea rota.
+ *
+ * Animaciones (todas via motion/react):
+ * - Idle: drop-shadow sutil + scale 1, rotate 0.
+ * - Hover: scale 1.12, rotate -6°, drop-shadow más fuerte oscuro.
+ * - Selected: drop-shadow coral, mantiene scale del hover si activo,
+ *   y dispara un wobble corto (rotate [-10, 10, 0] en 0.4s) en cada
+ *   toggle del estado seleccionado.
+ *
+ * Reduced motion: sin scale/rotate/wobble. El drop-shadow (informativo
+ * del estado) sí se mantiene.
  */
 function Emoji3D({
   name,
   fallback,
   size,
+  hovered = false,
+  selected = false,
+  reduced = false,
+  interactive = true,
 }: {
   name: string;
   fallback: string;
   size: number;
+  hovered?: boolean;
+  selected?: boolean;
+  reduced?: boolean;
+  /** Si false, no aplica animaciones de hover/select (uso decorativo). */
+  interactive?: boolean;
 }) {
   const [errored, setErrored] = useState(false);
 
-  if (errored) {
-    return (
-      <span
-        aria-hidden
-        role="img"
-        className="inline-flex items-center justify-center leading-none"
-        style={{ fontSize: size * 0.85, width: size, height: size }}
-      >
-        {fallback}
-      </span>
-    );
-  }
-  return (
+  // Wobble: re-mount un div interno cada vez que selected cambia. Cada
+  // remount dispara los keyframes [-10, 10, 0] en 0.4s. El primer render
+  // no dispara (firstRenderRef guard) para evitar que pase al cargar.
+  const [wobbleKey, setWobbleKey] = useState(0);
+  const firstRenderRef = useRef(true);
+  useEffect(() => {
+    if (firstRenderRef.current) {
+      firstRenderRef.current = false;
+      return;
+    }
+    if (!interactive || reduced) return;
+    setWobbleKey((k) => k + 1);
+  }, [selected, interactive, reduced]);
+
+  const inner = errored ? (
+    <span
+      aria-hidden
+      role="img"
+      className="inline-flex items-center justify-center leading-none"
+      style={{ fontSize: size * 0.85, width: size, height: size }}
+    >
+      {fallback}
+    </span>
+  ) : (
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={`${EMOJI_BASE_PATH}${name}`}
@@ -83,6 +112,44 @@ function Emoji3D({
       draggable={false}
       style={{ width: size, height: size }}
     />
+  );
+
+  if (!interactive) {
+    return inner;
+  }
+
+  // Drop shadow por estado. Selected gana sobre hover (la coral marca
+  // estado, el hover es transitorio).
+  const filterValue = selected
+    ? "drop-shadow(0 6px 12px rgba(232, 75, 60, 0.5))"
+    : hovered
+      ? "drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2))"
+      : "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15))";
+
+  return (
+    <motion.div
+      animate={
+        reduced
+          ? { filter: filterValue }
+          : {
+              scale: hovered ? 1.12 : 1,
+              rotate: hovered ? -6 : 0,
+              filter: filterValue,
+            }
+      }
+      transition={{ duration: reduced ? 0.15 : 0.25, ease: EASE }}
+      style={{ display: "inline-flex", transformOrigin: "center" }}
+    >
+      <motion.div
+        key={wobbleKey}
+        initial={{ rotate: 0 }}
+        animate={reduced ? { rotate: 0 } : { rotate: [-10, 10, 0] }}
+        transition={{ duration: reduced ? 0 : 0.4, ease: "easeOut" }}
+        style={{ display: "inline-flex" }}
+      >
+        {inner}
+      </motion.div>
+    </motion.div>
   );
 }
 
@@ -139,32 +206,30 @@ function OptionCard({
   reduced: boolean;
   ariaPressed?: boolean;
 }) {
+  // Hover tracked en React (no whileHover) para poder propagar a
+  // <Emoji3D>: la animación del emoji depende del hover sobre el botón
+  // entero, no sólo sobre el emoji.
+  const [hovered, setHovered] = useState(false);
+
   return (
     <motion.button
       type="button"
       onClick={onClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setHovered(true)}
+      onBlur={() => setHovered(false)}
       aria-pressed={ariaPressed}
-      whileHover={
-        reduced
-          ? undefined
-          : {
-              scale: 1.02,
-              rotateY: 4,
-              rotateX: -3,
-              transition: { duration: 0.25, ease: EASE },
-            }
-      }
       animate={
-        selected && !reduced ? { scale: 1.02 } : { scale: 1 }
+        reduced
+          ? { scale: 1 }
+          : { scale: selected || hovered ? 1.02 : 1 }
       }
       transition={{ duration: 0.25, ease: EASE }}
-      style={{
-        transformStyle: reduced ? undefined : "preserve-3d",
-      }}
-      className={`group relative flex min-h-[120px] cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border-2 bg-pimenton-surface px-3 py-5 text-center outline-none transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-pimenton-accent sm:min-h-[140px] sm:gap-3 sm:px-4 sm:py-6 ${
+      className={`group relative flex cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border-2 bg-pimenton-surface px-3 py-4 text-center outline-none transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-pimenton-accent sm:gap-3 sm:px-4 sm:py-5 ${
         selected
           ? "border-pimenton-accent bg-pimenton-accent/[0.06] shadow-[0_10px_30px_-12px_rgba(232,75,60,0.25)]"
-          : "border-pimenton-border shadow-[0_4px_14px_-8px_rgba(15,15,14,0.12)] hover:border-pimenton-accent/40 hover:shadow-[0_10px_30px_-12px_rgba(15,15,14,0.2)]"
+          : "border-pimenton-border shadow-[0_4px_14px_-8px_rgba(15,15,14,0.1)] hover:border-pimenton-accent/40 hover:shadow-[0_10px_30px_-12px_rgba(15,15,14,0.18)]"
       }`}
     >
       <AnimatePresence>
@@ -182,7 +247,14 @@ function OptionCard({
         )}
       </AnimatePresence>
 
-      <Emoji3D name={emoji} fallback={fallback} size={emojiSize} />
+      <Emoji3D
+        name={emoji}
+        fallback={fallback}
+        size={emojiSize}
+        hovered={hovered}
+        selected={selected}
+        reduced={reduced}
+      />
 
       <div>
         <span className="block text-sm font-bold leading-tight text-pimenton-text sm:text-base">
@@ -306,8 +378,9 @@ type FormData = {
   countryIso: string;
   countryLabel: string;
   size: SizeId | null;
-  name: string;
+  restaurant: string;
   phone: string;
+  instagram: string;
 };
 
 type State = {
@@ -331,8 +404,9 @@ const INITIAL_STATE: State = {
     countryIso: "",
     countryLabel: "",
     size: null,
-    name: "",
+    restaurant: "",
     phone: "",
+    instagram: "",
   },
 };
 
@@ -383,7 +457,7 @@ function isValid(step: Step, data: FormData): boolean {
       return data.size !== null;
     case 4:
       return (
-        data.name.trim().length > 0 &&
+        data.restaurant.trim().length > 0 &&
         isValidPhone(data.phone)
       );
     case "success":
@@ -526,7 +600,7 @@ function Step2Country({
             transition={{ duration: reduced ? 0.15 : 0.3, ease: EASE }}
             className="overflow-hidden"
           >
-            <div className="mt-4 rounded-2xl border border-pimenton-border bg-pimenton-bg-soft p-3 sm:p-4">
+            <div className="mt-4 rounded-2xl border border-pimenton-border bg-pimenton-bg p-3 sm:p-4">
               <div className="relative">
                 <Search
                   aria-hidden
@@ -640,31 +714,41 @@ function Step4Details({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const nameId = useId();
+  const restaurantId = useId();
   const phoneId = useId();
+  const instagramId = useId();
+
+  // Clase compartida — bg blanco (no más cream marronoso) + borde sutil
+  // + ring coral al focus.
+  const inputClass =
+    "block h-12 w-full rounded-xl border border-pimenton-border bg-pimenton-surface px-4 text-base text-pimenton-text outline-none placeholder:text-pimenton-text-muted/70 focus:border-pimenton-accent focus:ring-2 focus:ring-pimenton-accent/25";
 
   return (
     <div className="space-y-5">
+      {/* Restaurante — required */}
       <div>
         <label
-          htmlFor={nameId}
+          htmlFor={restaurantId}
           className="mb-1.5 block text-sm font-medium text-pimenton-text sm:text-base"
         >
-          {formCopy.nameLabel}
+          {formCopy.restaurantLabel}
         </label>
         <input
-          id={nameId}
+          id={restaurantId}
           type="text"
-          value={data.name}
-          onChange={(e) => dispatch({ type: "set", patch: { name: e.target.value } })}
-          placeholder={formCopy.namePlaceholder}
-          autoComplete="name"
+          value={data.restaurant}
+          onChange={(e) =>
+            dispatch({ type: "set", patch: { restaurant: e.target.value } })
+          }
+          placeholder={formCopy.restaurantPlaceholder}
+          autoComplete="organization"
           required
           aria-required
-          className="block h-12 w-full rounded-xl border border-pimenton-border bg-pimenton-bg-soft px-4 text-base text-pimenton-text outline-none placeholder:text-pimenton-text-muted/70 focus:border-pimenton-accent focus:ring-2 focus:ring-pimenton-accent/25"
+          className={inputClass}
         />
       </div>
 
+      {/* Móvil — required */}
       <div>
         <label
           htmlFor={phoneId}
@@ -677,13 +761,15 @@ function Step4Details({
           type="tel"
           inputMode="tel"
           value={data.phone}
-          onChange={(e) => dispatch({ type: "set", patch: { phone: e.target.value } })}
+          onChange={(e) =>
+            dispatch({ type: "set", patch: { phone: e.target.value } })
+          }
           placeholder={formCopy.phonePlaceholder}
           autoComplete="tel"
           required
           aria-required
           aria-describedby={`${phoneId}-hint`}
-          className="block h-12 w-full rounded-xl border border-pimenton-border bg-pimenton-bg-soft px-4 text-base text-pimenton-text outline-none placeholder:text-pimenton-text-muted/70 focus:border-pimenton-accent focus:ring-2 focus:ring-pimenton-accent/25"
+          className={inputClass}
         />
         <p
           id={`${phoneId}-hint`}
@@ -691,6 +777,38 @@ function Step4Details({
         >
           {formCopy.phoneHint}
         </p>
+      </div>
+
+      {/* Instagram — opcional */}
+      <div>
+        <label
+          htmlFor={instagramId}
+          className="mb-1.5 flex items-center gap-2 text-sm font-medium text-pimenton-text sm:text-base"
+        >
+          <span>{formCopy.instagramLabel}</span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-pimenton-text-muted">
+            {formCopy.instagramOptional}
+          </span>
+        </label>
+        <div className="relative">
+          <span
+            aria-hidden
+            className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-pimenton-text-muted"
+          >
+            @
+          </span>
+          <input
+            id={instagramId}
+            type="text"
+            value={data.instagram}
+            onChange={(e) =>
+              dispatch({ type: "set", patch: { instagram: e.target.value } })
+            }
+            placeholder={formCopy.instagramPlaceholder}
+            autoComplete="off"
+            className={`${inputClass} pl-10`}
+          />
+        </div>
       </div>
     </div>
   );
@@ -706,8 +824,12 @@ function SuccessScreen({
   link: string;
 }) {
   const successCopy = copy.consultationForm.success;
-  const firstName = data.name.trim().split(/\s+/)[0] ?? "";
-  const title = successCopy.title.replace("{nombre}", firstName);
+  const restaurant = data.restaurant.trim();
+  // Si por algún edge case restaurant viene vacío, caemos a "¡Listo!"
+  // sin interpolación para no mostrar "¡Listo, !".
+  const title = restaurant
+    ? successCopy.title.replace("{restaurant}", restaurant)
+    : "¡Listo!";
 
   return (
     <div className="relative flex flex-col items-center text-center">
@@ -778,8 +900,9 @@ export function ConsultationForm() {
       countryIso: d.countryIso,
       countryLabel: d.countryLabel,
       size: d.size,
-      name: d.name,
+      restaurant: d.restaurant,
       phone: d.phone,
+      instagram: d.instagram,
     };
   }, [state.data]);
 

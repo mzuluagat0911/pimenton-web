@@ -259,11 +259,14 @@ export const copy = {
     step4: {
       label: "Paso 4 de 4",
       title: "Dejanos tus datos",
-      nameLabel: "Nombre",
-      namePlaceholder: "Tu nombre",
-      phoneLabel: "WhatsApp",
+      restaurantLabel: "Nombre del restaurante",
+      restaurantPlaceholder: "Brasa & Fuego",
+      phoneLabel: "Número de móvil",
       phonePlaceholder: "+54 9 11 1234 5678",
       phoneHint: "Te escribimos por WhatsApp en las próximas horas. No spam.",
+      instagramLabel: "Instagram",
+      instagramPlaceholder: "turestaurante",
+      instagramOptional: "opcional",
       submitLabel: "Enviar y abrir WhatsApp",
     },
     nav: {
@@ -271,9 +274,9 @@ export const copy = {
       next: "Siguiente",
     },
     success: {
-      // El "{nombre}" se reemplaza en tiempo de render con el primer
-      // nombre del usuario para evitar tutearlo con apellido raro.
-      title: "¡Listo, {nombre}!",
+      // El "{restaurant}" se reemplaza en tiempo de render con el nombre
+      // del restaurante cargado en el paso 4.
+      title: "¡Listo, {restaurant}!",
       description:
         "Te llevamos a WhatsApp con tu mensaje listo. Un especialista de tu región te responde en las próximas horas.",
       cta: "Abrir WhatsApp",
