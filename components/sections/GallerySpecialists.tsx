@@ -14,7 +14,16 @@ function GalleryOverlay() {
       <h2 className="font-display text-4xl font-black leading-tight tracking-tight text-pimenton-bg md:text-6xl lg:text-8xl">
         Especialistas en delivery,
         <br />
-        <span className="text-pimenton-accent">Pimentón.</span>
+        {/* Logo coral en lugar de la palabra "Pimentón". Altura ≈ font-size
+            por breakpoint para que coincida con el tamaño del texto.
+            alt="Pimentón" mantiene el nombre accesible del heading. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/logos/principal/logo-coral.webp"
+          alt="Pimentón"
+          className="mt-2 inline-block h-9 w-auto align-middle md:mt-3 md:h-16 lg:mt-4 lg:h-24"
+          draggable={false}
+        />
       </h2>
     </div>
   );
