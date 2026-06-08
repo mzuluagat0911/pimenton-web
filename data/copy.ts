@@ -90,7 +90,6 @@ export const copy = {
     ],
   },
   comparison: {
-    eyebrow: "El antes y el después",
     heading: "Tu delivery cambia cuando alguien lo opera en serio.",
     off: {
       title: "Sin Pimentón",
@@ -211,6 +210,41 @@ export const copy = {
         name: "Carlos Esteve",
         brand: "Jeques Kebabs",
         role: "Fundador",
+      },
+      // ────── PLACEHOLDER — reemplazar con reseñas reales cuando
+      //        Pimentón las pase. Estructura idéntica al resto.
+      {
+        quote:
+          "Pasamos de no saber qué pasaba con cada pedido a tener todo el delivery en una sola vista. La operación se profesionalizó por completo.",
+        metrics: [
+          { value: 35, prefix: "+", suffix: "%", label: "Reducción de errores" },
+          { value: 800, prefix: "+", suffix: "", label: "Pedidos por mes" },
+        ],
+        name: "Lucía Méndez",
+        brand: "Brasa & Fuego",
+        role: "Co-fundadora",
+      },
+      {
+        quote:
+          "El acompañamiento semanal nos cambió la forma de tomar decisiones. Hoy entendemos qué funciona y qué no, con datos reales.",
+        metrics: [
+          { value: 22, prefix: "+", suffix: "%", label: "Crecimiento ticket promedio" },
+          { value: 5, prefix: "", suffix: "", label: "Locales operando" },
+        ],
+        name: "Diego Ramírez",
+        brand: "Sushi del Sur",
+        role: "CEO",
+      },
+      {
+        quote:
+          "Las reseñas que antes se acumulaban sin respuesta ahora se gestionan en tiempo real. Subimos rating en todas las apps.",
+        metrics: [
+          { value: 40, prefix: "+", suffix: "%", label: "Reducción de reclamos" },
+          { value: 15, prefix: "+", suffix: "%", label: "Mejora en rating" },
+        ],
+        name: "Sofía Cabrera",
+        brand: "Burger Lab",
+        role: "Operations Manager",
       },
     ],
   },
