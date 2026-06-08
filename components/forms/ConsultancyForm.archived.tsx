@@ -1,3 +1,13 @@
+// Versión previa del form de consultoría — 4 pasos planos con
+// CSS cards, sin emojis 3D, sin auto-advance. Reemplazado por
+// components/forms/ConsultationForm.tsx en diciembre 2026. Mantener
+// por referencia: si se quiere volver a este lenguaje visual, basta
+// con cambiar el import en components/sections/Consultancy.tsx.
+//
+// La data legacy sigue viviendo en data/contactForm.ts (la nueva
+// versión usa data/consultationForm.ts). No tocar el shape de
+// contactForm.ts mientras este archivo siga compilando.
+
 "use client";
 
 import {

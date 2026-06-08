@@ -8,7 +8,7 @@ import {
   useReducedMotion,
 } from "motion/react";
 import { Check } from "lucide-react";
-import { ConsultancyForm } from "@/components/forms/ConsultancyForm";
+import { ConsultationForm } from "@/components/forms/ConsultationForm";
 import { clients } from "@/data/clients";
 import { copy } from "@/data/copy";
 
@@ -124,11 +124,25 @@ function RotatingClientLogos({ reduced }: { reduced: boolean }) {
  * fuera del wrapper).
  */
 export function Consultancy() {
-  const { eyebrow, heading, subheading, socialProof, bullets } =
-    copy.consultancy;
+  const {
+    eyebrow,
+    heading,
+    headingAccent,
+    description,
+    socialProof,
+    bullets,
+  } = copy.consultationForm.intro;
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.15 });
   const reduced = useReducedMotion() ?? false;
+
+  // Split del heading para colorar el accent ("GRATUITA") en coral.
+  // Si por algún motivo el accent no está en el heading, mostramos el
+  // string entero sin coloreado (safe fallback).
+  const accentIndex = heading.indexOf(headingAccent);
+  const headingBefore = accentIndex >= 0 ? heading.slice(0, accentIndex) : heading;
+  const headingAfter =
+    accentIndex >= 0 ? heading.slice(accentIndex + headingAccent.length) : "";
 
   return (
     <section
@@ -172,7 +186,11 @@ export function Consultancy() {
                 transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
                 className="mt-6 text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl lg:text-5xl"
               >
-                {heading}
+                {headingBefore}
+                {accentIndex >= 0 && (
+                  <span className="text-pimenton-accent">{headingAccent}</span>
+                )}
+                {headingAfter}
               </motion.h2>
 
               <motion.p
@@ -187,7 +205,7 @@ export function Consultancy() {
                 transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
                 className="mt-5 max-w-xl text-base leading-relaxed text-pimenton-text-soft sm:text-lg"
               >
-                {subheading}
+                {description}
               </motion.p>
 
               {/* Prueba social: stack de logos + texto */}
@@ -267,7 +285,7 @@ export function Consultancy() {
               transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
               className="lg:sticky lg:top-28"
             >
-              <ConsultancyForm variant="inline" />
+              <ConsultationForm />
             </motion.div>
           </div>
         </div>

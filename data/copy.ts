@@ -226,6 +226,59 @@ export const copy = {
       "Respuesta directa por WhatsApp",
     ],
   },
+  consultationForm: {
+    intro: {
+      eyebrow: "Empecemos",
+      heading: "Consultoría GRATUITA en 4 pasos.",
+      headingAccent: "GRATUITA",
+      description:
+        "Contanos sobre tu restaurante y un especialista de tu región te escribe por WhatsApp.",
+      socialProof: "+500 restaurantes confían en Pimentón",
+      bullets: [
+        "Consultoría sin cargo y sin compromiso",
+        "Hablás con un especialista de tu región",
+        "Respuesta directa por WhatsApp",
+      ],
+    },
+    step1: {
+      label: "Paso 1 de 4",
+      title: "Elegí tu categoría",
+      helper: "Podés seleccionar más de una.",
+    },
+    step2: {
+      label: "Paso 2 de 4",
+      title: "¿De qué país nos escribís?",
+      otherLabel: "Otro país",
+      searchPlaceholder: "Buscar país…",
+      emptyState: "No encontramos ese país.",
+    },
+    step3: {
+      label: "Paso 3 de 4",
+      title: "¿De qué tamaño es tu operación?",
+    },
+    step4: {
+      label: "Paso 4 de 4",
+      title: "Dejanos tus datos",
+      nameLabel: "Nombre",
+      namePlaceholder: "Tu nombre",
+      phoneLabel: "WhatsApp",
+      phonePlaceholder: "+54 9 11 1234 5678",
+      phoneHint: "Te escribimos por WhatsApp en las próximas horas. No spam.",
+      submitLabel: "Enviar y abrir WhatsApp",
+    },
+    nav: {
+      back: "Atrás",
+      next: "Siguiente",
+    },
+    success: {
+      // El "{nombre}" se reemplaza en tiempo de render con el primer
+      // nombre del usuario para evitar tutearlo con apellido raro.
+      title: "¡Listo, {nombre}!",
+      description:
+        "Te llevamos a WhatsApp con tu mensaje listo. Un especialista de tu región te responde en las próximas horas.",
+      cta: "Abrir WhatsApp",
+    },
+  },
   gallery: {
     images: [
       { src: null, alt: "Cocina de restaurante en plena operación" },
