@@ -193,7 +193,7 @@ export function Header() {
             transition={{ duration: reduced ? 0.2 : 0.7, ease: EASE }}
             className="fixed inset-0 z-40 overflow-hidden bg-pimenton-accent"
           >
-            <div className="mx-auto flex h-full w-full max-w-7xl flex-col justify-between px-[5%] pb-12 pt-24 sm:px-16 sm:pb-16 sm:pt-28 lg:max-w-none lg:px-0">
+            <div className="mx-auto flex h-full w-full max-w-7xl flex-col justify-between px-[5%] pb-12 pt-24 sm:px-16 sm:pb-16 sm:pt-28 md:w-[90%] md:max-w-[1500px] md:px-0">
               <nav className="flex flex-1 flex-col items-end justify-center gap-2 text-right sm:gap-3">
                 {NAV_LINKS.map((link, i) => (
                   <motion.a
