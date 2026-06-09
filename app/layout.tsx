@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Encode_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
+import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
 import "./globals.css";
@@ -99,7 +99,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es" className={`${helvetica.variable} ${encodeSans.variable}`}>
       <body className="font-sans antialiased bg-pimenton-bg text-pimenton-text">
         <SmoothScroll />
-        <Header />
+        <SiteHeader />
         {children}
         <Footer />
         <WhatsAppFab />

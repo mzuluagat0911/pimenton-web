@@ -14,7 +14,7 @@ const NAV_LINKS = [
   { label: "Insights", href: "#" },
   { label: "Nuestro equipo", href: "#" },
   { label: "FAQ", href: "#" },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Contacto", href: "/contacto" },
 ];
 
 const CONTACTS = {
@@ -26,7 +26,7 @@ const CONTACTS = {
   email: "juanchi@pimenton.io",
 };
 
-export function Header() {
+export function Header({ forceSolid = false }: { forceSolid?: boolean }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -126,7 +126,9 @@ export function Header() {
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
           !open && hidden ? "-translate-y-full" : "translate-y-0"
         } ${
-          !open && scrolled ? "bg-pimenton-dark" : "bg-transparent"
+          !open && (scrolled || forceSolid)
+            ? "bg-pimenton-dark"
+            : "bg-transparent"
         }`}
       >
         <div className="mx-auto flex h-16 items-center justify-between px-[5%] sm:h-20 md:w-[90%] md:max-w-[1500px] md:px-0">
