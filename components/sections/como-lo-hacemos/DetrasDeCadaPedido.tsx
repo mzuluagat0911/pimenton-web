@@ -13,6 +13,7 @@ import { MessageCircle } from "lucide-react";
 import { splitHighlight } from "@/components/ui-custom/Highlight";
 import { EASE } from "@/components/sections/servicios/Eyebrow";
 import { CtaPill } from "@/components/ui-custom/CtaPill";
+import { ControlRoomAutonomous } from "@/components/sections/control-room/Autonomous";
 import { whatsappRegions, whatsappUrl } from "@/data/whatsapp";
 
 // CTA — mismo número del FAB (LatAm). El task indicaba wa.me/1157035170
@@ -249,11 +250,8 @@ export function DetrasDeCadaPedido() {
   const inView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section
-      ref={ref}
-      className="bg-pimenton-dark px-[5%] py-24 sm:px-16 sm:py-32 lg:px-24"
-    >
-      <div className="mx-auto w-full max-w-7xl">
+    <section ref={ref} className="bg-pimenton-dark py-24 sm:py-32">
+      <div className="mx-auto w-full max-w-7xl px-[5%] sm:px-16 lg:px-24">
         {/* Header */}
         <div className="max-w-3xl">
           <motion.h2
@@ -311,9 +309,16 @@ export function DetrasDeCadaPedido() {
             <MockPerfil reduced={reduced} />
           </Card>
         </div>
+      </div>
 
-        {/* CTA final WhatsApp — pill coral (mismo estilo que el resto de la web) */}
-        <div className="mt-16 flex justify-center sm:mt-20">
+      {/* Control Room — variante A (video constante): los anillos rotan solos
+          en loop. Va entre las 4 cards y el CTA. Renderiza full-width con su
+          propio px/max-w-7xl, así alinea con el header, el grid y el CTA. */}
+      <ControlRoomAutonomous />
+
+      {/* CTA final WhatsApp — pill coral (mismo estilo que el resto de la web) */}
+      <div className="mx-auto w-full max-w-7xl px-[5%] sm:px-16 lg:px-24">
+        <div className="flex justify-center">
           <CtaPill
             href={WA_HREF}
             external

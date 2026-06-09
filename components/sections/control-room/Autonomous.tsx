@@ -112,7 +112,7 @@ function RingGroup({
 }
 
 export function ControlRoomAutonomous() {
-  const { eyebrow, heading, subheading } = copy.controlRoom;
+  const { eyebrow, heading } = copy.controlRoom;
   const positioned = buildPositions();
   const reduced = useReducedMotion() ?? false;
 
@@ -126,9 +126,6 @@ export function ControlRoomAutonomous() {
         <h2 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark">
           {heading}
         </h2>
-        <p className="mt-4 max-w-xl text-base sm:text-lg leading-relaxed text-pimenton-text-on-dark-muted">
-          {subheading}
-        </p>
 
         <div className="relative mx-auto mt-12 aspect-square w-full max-w-[760px] sm:mt-20">
           {RING_ORDER.map((ring) => (
