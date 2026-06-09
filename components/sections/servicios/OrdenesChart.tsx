@@ -16,7 +16,9 @@ const VALUES = [200, 450, 500, 1050, 950, 900, 1150, 1350, 1500, 1600, 1450, 175
 // distorsión al estirar con preserveAspectRatio="none".
 const VB_W = 600;
 const VB_H = 340;
-const PAD = { left: 6, right: 6, top: 40, bottom: 28 };
+// Padding lateral generoso para que los labels/puntos de los meses extremos
+// (ENE / DIC) y el ping del último punto no se corten en pantallas angostas.
+const PAD = { left: 30, right: 30, top: 40, bottom: 28 };
 const Y_MAX = 2000;
 
 const x = (i: number) =>
@@ -61,8 +63,8 @@ export function OrdenesChart() {
 
   return (
     <div className="flex h-auto flex-col overflow-hidden rounded-2xl border border-pimenton-dark-border bg-pimenton-dark p-6 sm:p-7 md:h-[460px]">
-      {/* Header */}
-      <div className="flex items-start justify-between gap-4">
+      {/* Header — stack en mobile (título arriba, métricas abajo), fila en sm+ */}
+      <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
         <div>
           <div className="flex items-center gap-2.5">
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-text-on-dark-muted">
@@ -87,7 +89,7 @@ export function OrdenesChart() {
             Órdenes <span className="text-pimenton-accent">2025</span>
           </h4>
         </div>
-        <div className="flex gap-6 text-right">
+        <div className="flex gap-8 sm:gap-6 sm:text-right">
           <div>
             <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-pimenton-text-on-dark-muted">
               Acumuladas
