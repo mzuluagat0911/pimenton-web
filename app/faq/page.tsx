@@ -78,11 +78,22 @@ const jsonLd = {
   ],
 };
 
+const INTRO =
+  "Las preguntas que más nos hacen sobre cómo trabajamos tu delivery.";
+
+const CTA = (
+  <CtaPill
+    href="/contacto"
+    label="¿Tienes otra duda? Hablemos."
+    icon={<CornerDownRight aria-hidden className="size-5" />}
+  />
+);
+
 export default function FaqPage() {
   return (
-    // pt para que el contenido arranque por DEBAJO del header sólido fijo —
-    // esta página no tiene hero que lo compense.
-    <main className="pt-16 sm:pt-20">
+    // El pt vive en la sección (no en <main>) para que el fondo menta llegue
+    // hasta el header sólido fijo, sin una franja del color del body.
+    <main>
       {/* JSON-LD structured data */}
       <script
         type="application/ld+json"
@@ -91,25 +102,36 @@ export default function FaqPage() {
         }}
       />
 
-      <section className="bg-pimenton-bg px-[5%] py-16 sm:px-16 sm:py-24 lg:px-24">
+      <section className="relative isolate overflow-hidden bg-pimenton-mint px-[5%] pb-20 pt-28 sm:px-16 sm:pb-28 sm:pt-32 lg:px-24">
+        {/* Fondo menta + texturas amarillas — mismo asset que la sección
+            "Lo que dicen de nosotros" del Home. */}
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('/assets/reseñas/background-resenas.webp')",
+          }}
+        />
+
         <div className="mx-auto w-full max-w-7xl">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[2fr_3fr] lg:gap-16">
-            {/* ── Columna izquierda: título gigante + CTA (sticky en desktop) ── */}
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[2fr_3fr] lg:gap-16">
+            {/* ── Columna izquierda: heading + descripción + CTA (sticky desktop) ── */}
             <div className="lg:sticky lg:top-28 lg:self-start">
-              <h1 className="text-7xl font-bold leading-none tracking-tight text-pimenton-text sm:text-8xl lg:text-9xl">
+              <h1 className="text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl lg:text-5xl">
                 FAQ
               </h1>
-              <div className="mt-10 sm:mt-12">
-                <CtaPill
-                  href="/contacto"
-                  label="¿Tienes otra duda? Hablemos."
-                  icon={<CornerDownRight aria-hidden className="size-5" />}
-                />
-              </div>
+              <p className="mt-5 max-w-sm text-base leading-relaxed text-pimenton-text-soft sm:text-lg">
+                {INTRO}
+              </p>
+              {/* CTA — en desktop va en la columna izquierda */}
+              <div className="mt-8 hidden lg:block">{CTA}</div>
             </div>
 
-            {/* ── Columna derecha: acordeón ── */}
+            {/* ── Columna derecha: acordeón (cards blancas) ── */}
             <FaqAccordion items={faqs} />
+
+            {/* CTA — en mobile va al FINAL de las preguntas (mejor UX) */}
+            <div className="lg:hidden">{CTA}</div>
           </div>
         </div>
       </section>
