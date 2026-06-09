@@ -50,6 +50,20 @@ export const metadata: Metadata = {
   title: "Pimentón — Escalamos tu Delivery y Canales Digitales",
   description:
     "Growth Partner especializado en delivery para restaurantes. Operamos tus canales digitales en LATAM y Europa. +500 restaurantes confían en nosotros.",
+  // Canonical de la home. Las subpáginas (/servicios, /como-lo-hacemos)
+  // declaran el suyo y reemplazan este por el merge shallow de metadata.
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   keywords: [
     "delivery restaurantes",
     "growth partner gastronomía",

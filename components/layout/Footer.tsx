@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { copy } from "@/data/copy";
 
 // Inline brand icons. lucide-react@1.16 in this project doesn't expose
@@ -85,12 +86,12 @@ export function Footer() {
             <ul className="mt-5 space-y-2.5">
               {links.map((link) => (
                 <li key={link.label}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-sm text-pimenton-text-on-dark transition-colors duration-200 hover:text-pimenton-accent"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

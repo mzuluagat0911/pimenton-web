@@ -584,14 +584,17 @@ function MockPerfil({
           y el contenedor se auto-dimensiona a la más alta → responsive, sin
           altura fija que se desborde sobre "En línea". */}
       <div className="grid w-full grid-cols-1 grid-rows-1">
-        <AnimatePresence initial={false}>
+        {/* mode="wait": el perfil saliente se desvanece por completo ANTES de
+            que entre el nuevo → nunca se superponen dos nombres (evita el
+            texto pisado durante el cross-fade). */}
+        <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={reduced ? "static" : gmIndex}
             className="col-start-1 row-start-1 flex flex-col items-center"
             initial={reduced ? false : { opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={reduced ? undefined : { opacity: 0, scale: 0.94 }}
-            transition={{ duration: 0.5, ease: EASE }}
+            transition={{ duration: 0.4, ease: EASE }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -797,7 +800,7 @@ export function DetrasDeCadaPedido() {
       <div className="px-[5%] sm:px-16 lg:px-24">
         <div className="mx-auto w-full max-w-7xl">
           <div className="flex justify-center">
-            <CtaPill href="/contacto" label="Hablemos" />
+            <CtaPill href="/contacto" label="Hablar con un especialista" />
           </div>
         </div>
       </div>
