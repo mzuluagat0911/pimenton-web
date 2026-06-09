@@ -8,7 +8,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { Eyebrow, EASE } from "./Eyebrow";
-import { casos } from "@/data/casos";
+import { casos } from "@/data/casos-servicios-band";
 
 export function CasosResultados() {
   const reduced = useReducedMotion() ?? false;

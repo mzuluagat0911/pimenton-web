@@ -703,6 +703,51 @@ export const copy = {
       imageAlt: { es: "Equipo completo de Pimentón" },
     },
   },
+  // Casos de Éxito (/casos hub + /casos/[slug] template). Chrome reutilizable
+  // de la UI; el contenido de cada caso vive en data/casos.ts. Sólo .es por
+  // ahora (el fallback ya muestra .es en EN).
+  casos: {
+    hub: {
+      eyebrow: { es: "Casos de éxito" },
+      heading: { es: "Resultados reales, no promesas." },
+      headingAccent: { es: "Resultados" },
+      subtitle: {
+        es: "Restaurantes que decidieron profesionalizar su delivery y lo convirtieron en un canal rentable. Estos son algunos de ellos.",
+      },
+      // Banda de prueba social — datos sobrios y verificables de los casos.
+      proof: [
+        { value: "+200%", label: { es: "el mayor crecimiento" } },
+        { value: "6", label: { es: "casos comprobables" } },
+        { value: "4", label: { es: "países" } },
+      ],
+      cardCta: { es: "Ver caso" },
+    },
+    caso: {
+      metricasEyebrow: { es: "Los números" },
+      desafioHeading: { es: "El desafío" },
+      desafioAccent: { es: "desafío" },
+      approachHeading: { es: "Qué hicimos" },
+      approachAccent: { es: "hicimos" },
+      resultadosHeading: { es: "Resultados en detalle" },
+      resultadosAccent: { es: "detalle" },
+      conclusionHeading: { es: "Conclusión estratégica" },
+      conclusionAccent: { es: "estratégica" },
+      otrosHeading: { es: "Ver otros casos" },
+      otrosAccent: { es: "otros" },
+      backToHub: { es: "Ver todos los casos" },
+    },
+    // CTA de cierre reutilizable (hub + cada caso). Fondo coral; "potenciar"
+    // resaltado en dark (sobre coral, el coral sería invisible).
+    cta: {
+      heading: { es: "¿Quieres potenciar tu delivery?" },
+      headingAccent: { es: "potenciar" },
+      description: {
+        es: "Cada uno de estos casos empezó con una conversación. El tuyo también puede empezar hoy.",
+      },
+      button: { es: "Hablemos" },
+      href: "/contacto",
+    },
+  },
   nav: {
     menu: { es: "Menu", en: "Menu" },
     close: { es: "Cerrar", en: "Close" },
@@ -722,7 +767,7 @@ export const copy = {
       },
       {
         label: { es: "Casos de éxito", en: "Success stories" },
-        href: "#testimonios",
+        href: "/casos",
       },
       { label: { es: "Insights", en: "Insights" }, href: "#" },
       { label: { es: "Nuestro equipo", en: "Our team" }, href: "/equipo" },
@@ -802,6 +847,10 @@ export const copy = {
       {
         label: { es: "Nuestros Servicios", en: "Our Services" },
         href: "/servicios",
+      },
+      {
+        label: { es: "Casos de éxito", en: "Success stories" },
+        href: "/casos",
       },
       { label: { es: "Equipo", en: "Team" }, href: "/equipo" },
       { label: { es: "FAQ", en: "FAQ" }, href: "/faq" },

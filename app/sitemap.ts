@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { casos } from "@/data/casos";
 
 const SITE = "https://pimenton.io";
 
@@ -43,5 +44,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.6,
     },
+    {
+      url: `${SITE}/casos`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    // Una entrada por caso (desde el data layer — se suman solas).
+    ...casos.map((c) => ({
+      url: `${SITE}/casos/${c.slug}`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
   ];
 }
