@@ -9,14 +9,27 @@ import { useCopy } from "@/components/i18n/LanguageContext";
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 /**
- * CTA de cierre reutilizable (hub /casos + cada caso). Fondo coral, texto
- * crema, "potenciar" resaltado en dark (sobre coral el coral no contrastaría)
- * y pill oscuro → /contacto. Una sola fuente de verdad.
+ * CTA de cierre reutilizable (hub /casos + cada caso, /insights, etc.).
+ * Fondo coral, texto crema, palabra resaltada en dark (sobre coral el coral
+ * no contrastaría) y pill oscuro → /contacto. Una sola fuente de verdad.
+ *
+ * Por defecto usa el copy de casos.cta; cualquier prop lo sobreescribe para
+ * reusar el mismo componente con copy custom (p. ej. /insights).
  */
-export function CtaPotenciar() {
+export function CtaPotenciar(props: {
+  heading?: string;
+  headingAccent?: string;
+  description?: string;
+  button?: string;
+  href?: string;
+} = {}) {
   const reduced = useReducedMotion() ?? false;
-  const { heading, headingAccent, description, button, href } =
-    useCopy().casos.cta;
+  const fallback = useCopy().casos.cta;
+  const heading = props.heading ?? fallback.heading;
+  const headingAccent = props.headingAccent ?? fallback.headingAccent;
+  const description = props.description ?? fallback.description;
+  const button = props.button ?? fallback.button;
+  const href = props.href ?? fallback.href;
 
   const reveal = (delay: number) => ({
     initial: reduced ? { opacity: 0 } : { opacity: 0, y: 20 },

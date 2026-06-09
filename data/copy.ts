@@ -748,6 +748,32 @@ export const copy = {
       href: "/contacto",
     },
   },
+  // Blog /insights (hub editorial + template /insights/[slug]). Chrome
+  // reutilizable; el contenido de los artículos vive en data/insights.ts.
+  // Sólo .es por ahora (el fallback ya muestra .es en EN).
+  insights: {
+    hub: {
+      eyebrow: { es: "Insights" },
+      heading: { es: "Insights para un delivery más rentable." },
+      headingAccent: { es: "rentable" },
+      subtitle: {
+        es: "Estrategia, datos y operación real de delivery. Lo que aprendemos gestionando cientos de restaurantes, sin vueltas y al grano.",
+      },
+    },
+    readCta: { es: "Leer artículo" },
+    backToHub: { es: "Volver a Insights" },
+    masArticulos: { es: "Más artículos" },
+    masArticulosAccent: { es: "Más" },
+    // CTA custom para /insights (reusa CtaPotenciar). "aplicar" en dark.
+    cta: {
+      heading: { es: "¿Listo para aplicar esto en tu delivery?" },
+      headingAccent: { es: "aplicar" },
+      description: {
+        es: "Cada artículo nace de trabajo real con restaurantes. Hablemos del tuyo.",
+      },
+      button: { es: "Hablemos" },
+    },
+  },
   nav: {
     menu: { es: "Menu", en: "Menu" },
     close: { es: "Cerrar", en: "Close" },
@@ -769,7 +795,7 @@ export const copy = {
         label: { es: "Casos de éxito", en: "Success stories" },
         href: "/casos",
       },
-      { label: { es: "Insights", en: "Insights" }, href: "#" },
+      { label: { es: "Insights", en: "Insights" }, href: "/insights" },
       { label: { es: "Nuestro equipo", en: "Our team" }, href: "/equipo" },
       { label: { es: "FAQ", en: "FAQ" }, href: "/faq" },
       { label: { es: "Contacto", en: "Contact" }, href: "/contacto" },
@@ -852,6 +878,7 @@ export const copy = {
         label: { es: "Casos de éxito", en: "Success stories" },
         href: "/casos",
       },
+      { label: { es: "Insights", en: "Insights" }, href: "/insights" },
       { label: { es: "Equipo", en: "Team" }, href: "/equipo" },
       { label: { es: "FAQ", en: "FAQ" }, href: "/faq" },
       { label: { es: "Contacto", en: "Contact" }, href: "/contacto" },

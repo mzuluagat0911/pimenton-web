@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { casos } from "@/data/casos";
+import { insights } from "@/data/insights";
 
 const SITE = "https://pimenton.io";
 
@@ -56,6 +57,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "monthly" as const,
       priority: 0.7,
+    })),
+    {
+      url: `${SITE}/insights`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    // Una entrada por artículo (desde el data layer).
+    ...insights.map((a) => ({
+      url: `${SITE}/insights/${a.slug}`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
     })),
   ];
 }
