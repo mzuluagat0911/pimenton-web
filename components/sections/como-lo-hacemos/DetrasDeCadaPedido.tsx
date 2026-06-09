@@ -65,8 +65,11 @@ function LiveDot({ reduced }: { reduced: boolean }) {
       {!reduced && (
         <motion.span
           className="absolute inset-0 rounded-full bg-pimenton-accent"
-          animate={{ scale: [1, 2.4, 2.4], opacity: [0.75, 0, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut" }}
+          // Halo "soft": la opacidad entra y sale (0 → pico → 0), así el
+          // reinicio del loop ocurre con el anillo invisible → sin pop
+          // brusco. Es un pulso continuo, no un ping que reaparece de golpe.
+          animate={{ scale: [1, 2.2], opacity: [0, 0.5, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
         />
       )}
       <span
@@ -576,14 +579,15 @@ function MockPerfil({
   return (
     <div className="flex flex-col items-center text-center">
       {/* Perfil completo (foto + nombre + rol) cross-fade como bloque único,
-          así la cara y el nombre cambian SIEMPRE juntos (sin desync). El
-          contenedor reserva altura fija para que el bloque absoluto no
-          colapse el layout. */}
-      <div className="relative h-[8.5rem] w-full">
+          así la cara y el nombre cambian SIEMPRE juntos (sin desync). Grid
+          1×1: ambas copias se apilan en la misma celda durante el cross-fade
+          y el contenedor se auto-dimensiona a la más alta → responsive, sin
+          altura fija que se desborde sobre "En línea". */}
+      <div className="grid w-full grid-cols-1 grid-rows-1">
         <AnimatePresence initial={false}>
           <motion.div
             key={reduced ? "static" : gmIndex}
-            className="absolute inset-x-0 top-0 flex flex-col items-center"
+            className="col-start-1 row-start-1 flex flex-col items-center"
             initial={reduced ? false : { opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={reduced ? undefined : { opacity: 0, scale: 0.94 }}
@@ -597,17 +601,17 @@ function MockPerfil({
               draggable={false}
               className="size-20 rounded-full object-cover ring-1 ring-pimenton-accent/30"
             />
-            <p className="mt-4 text-sm font-bold uppercase tracking-wide text-pimenton-text-on-dark">
+            <p className="mt-4 text-balance text-sm font-bold uppercase tracking-wide text-pimenton-text-on-dark">
               {gm.nombre}
             </p>
-            <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.16em] text-pimenton-text-on-dark-muted">
+            <p className="mt-1 text-balance font-mono text-[9px] uppercase tracking-[0.16em] text-pimenton-text-on-dark-muted">
               {gm.rol} · {gm.pais}
             </p>
           </motion.div>
         </AnimatePresence>
       </div>
       {/* En línea — constante, con halo radar */}
-      <span className="inline-flex items-center gap-1.5 rounded-full bg-pimenton-dark px-2.5 py-1 text-[10px] font-medium text-pimenton-text-on-dark-muted">
+      <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-pimenton-dark px-2.5 py-1 text-[10px] font-medium text-pimenton-text-on-dark-muted">
         <LiveDot reduced={reduced} />
         En línea
       </span>

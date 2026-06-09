@@ -141,8 +141,10 @@ export function WhatsAppFab() {
           <motion.span
             aria-hidden
             className="absolute inset-0 rounded-full bg-pimenton-accent"
-            animate={{ scale: [1, 1.6], opacity: [0.45, 0] }}
-            transition={{ duration: 2.2, repeat: Infinity, ease: "easeOut" }}
+            // Halo "soft": la opacidad entra y sale (0 → pico → 0), así el
+            // loop reinicia con el anillo invisible → sin pop brusco.
+            animate={{ scale: [1, 1.7], opacity: [0, 0.4, 0] }}
+            transition={{ duration: 2.4, repeat: Infinity, ease: "easeOut" }}
           />
         )}
 
