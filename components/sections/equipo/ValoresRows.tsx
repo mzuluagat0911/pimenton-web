@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import { splitHighlight } from "@/components/ui-custom/Highlight";
+import { TiltImage } from "@/components/ui-custom/TiltImage";
 import { useCopy } from "@/components/i18n/LanguageContext";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -31,20 +31,13 @@ function ValorRow({
       transition={{ duration: 0.7, ease: EASE }}
       className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16"
     >
-      {/* Imagen — 4:3, border-radius 12px */}
-      <div
-        className={`relative aspect-[4/3] w-full overflow-hidden rounded-xl ${
-          textLeft ? "lg:order-2" : "lg:order-1"
-        }`}
-      >
-        <Image
-          src={row.image}
-          alt={row.alt}
-          fill
-          className="object-cover"
-          sizes="(max-width: 1024px) 100vw, 50vw"
-        />
-      </div>
+      {/* Imagen — 4:3, border-radius 12px, tilt 3D al hover */}
+      <TiltImage
+        src={row.image}
+        alt={row.alt}
+        sizes="(max-width: 1024px) 100vw, 50vw"
+        className={`aspect-[4/3] w-full ${textLeft ? "lg:order-2" : "lg:order-1"}`}
+      />
 
       {/* Texto */}
       <div className={textLeft ? "lg:order-1" : "lg:order-2"}>

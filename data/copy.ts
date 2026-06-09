@@ -642,7 +642,7 @@ export const copy = {
     valores: {
       rows: [
         {
-          heading: { es: "Nos movemos con adaptabilidad." },
+          heading: { es: "Nos movemos con adaptabilidad" },
           accent: { es: "adaptabilidad" },
           paragraph: {
             es: "Entregamos con calidad, priorizando lo que importa y orientando cada acción a resultados concretos. Leemos el contexto, ajustamos rápido y seguimos.",
@@ -651,7 +651,7 @@ export const copy = {
           alt: { es: "Equipo Pimentón colaborando" },
         },
         {
-          heading: { es: "Somos protagonistas." },
+          heading: { es: "Somos protagonistas" },
           accent: { es: "protagonistas" },
           paragraph: {
             es: "Hacemos que las cosas pasen, nos involucramos y resolvemos en equipo. El compromiso se nota en la acción y en la responsabilidad compartida.",
@@ -660,7 +660,7 @@ export const copy = {
           alt: { es: "Equipo Pimentón en plena operación" },
         },
         {
-          heading: { es: "El respeto atraviesa todo." },
+          heading: { es: "El respeto atraviesa todo" },
           accent: { es: "respeto" },
           paragraph: {
             es: "Nos comunicamos con honestidad, escuchamos activamente y valoramos las ideas por sobre las jerarquías. Debatimos con intención y construimos una cultura directa, humana y adulta.",
@@ -671,8 +671,7 @@ export const copy = {
       ],
     },
     modelo: {
-      eyebrow: { es: "Nuestro modelo" },
-      heading: { es: "Cómo acompañamos este modelo." },
+      heading: { es: "Cómo acompañamos este modelo" },
       headingAccent: { es: "acompañamos" },
       cards: [
         { title: { es: "Trabajo distribuido y flexible" }, icon: "laptop" },
@@ -700,6 +699,8 @@ export const copy = {
       },
       button: { es: "Quiero sumarme" },
       href: "https://forms.gle/zYUFuXkNG5dsS9z17",
+      image: "/assets/equipo/equipo-completo.webp",
+      imageAlt: { es: "Equipo completo de Pimentón" },
     },
   },
   nav: {

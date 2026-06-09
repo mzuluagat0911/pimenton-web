@@ -1,7 +1,7 @@
 "use client";
 
 import { Fragment } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion, type Variants } from "motion/react";
 import { Highlight } from "@/components/ui-custom/Highlight";
 import { useCopy } from "@/components/i18n/LanguageContext";
 
@@ -16,42 +16,42 @@ export function FraseManifiesto() {
   const words = text.split(" ");
   const accentNorm = norm(accent);
 
-  const renderWord = (w: string, i: number) => {
-    const node =
-      norm(w) === accentNorm ? <Highlight color="coral">{w}</Highlight> : w;
-
-    if (reduced) return <Fragment key={i}>{node} </Fragment>;
-
-    // Reveal con máscara: cada palabra vive en un contenedor overflow-hidden
-    // y entra desde abajo (translateY). El uppercase no tiene descendentes,
-    // así que la máscara no recorta. Stagger por palabra.
-    return (
-      <Fragment key={i}>
-        <span className="inline-block overflow-hidden align-bottom">
-          <motion.span
-            className="inline-block"
-            initial={{ y: "110%" }}
-            whileInView={{ y: "0%" }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.7, delay: i * 0.09, ease: EASE }}
-          >
-            {node}
-          </motion.span>
-        </span>{" "}
-      </Fragment>
-    );
+  // Un único observer en el h2 dispara el reveal y reparte el stagger a las
+  // palabras vía variants (no un whileInView por palabra: las spans están
+  // translateY(110%) dentro de un mask overflow-hidden y el observer por
+  // palabra no llega a intersectar). reduced-motion → fade sin máscara.
+  const container: Variants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: reduced ? 0 : 0.09, delayChildren: 0.05 },
+    },
   };
+  const wordVariant: Variants = reduced
+    ? { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.5 } } }
+    : { hidden: { y: "110%" }, visible: { y: "0%", transition: { duration: 0.7, ease: EASE } } };
 
   return (
     <section className="flex min-h-[75vh] items-center justify-center overflow-hidden bg-pimenton-dark px-[5%] py-24 sm:px-16 sm:py-32 lg:px-24">
       <motion.h2
-        initial={reduced ? { opacity: 0 } : false}
-        whileInView={reduced ? { opacity: 1 } : undefined}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        variants={container}
         className="mx-auto max-w-5xl text-center text-5xl font-bold leading-[1.1] tracking-tight text-pimenton-text-on-dark sm:text-6xl lg:text-7xl"
       >
-        {words.map(renderWord)}
+        {words.map((w, i) => {
+          const node =
+            norm(w) === accentNorm ? <Highlight color="coral">{w}</Highlight> : w;
+          return (
+            <Fragment key={i}>
+              <span className="inline-block overflow-hidden align-bottom">
+                <motion.span className="inline-block" variants={wordVariant}>
+                  {node}
+                </motion.span>
+              </span>{" "}
+            </Fragment>
+          );
+        })}
       </motion.h2>
     </section>
   );
