@@ -8,7 +8,7 @@ import { Header } from "./Header";
  * (no tienen hero detrás, así que un header transparente quedaría ilegible
  * sobre el fondo crema). Reusable: para sumar una ruta, agregala acá.
  */
-const SOLID_HEADER_ROUTES = ["/contacto"];
+const SOLID_HEADER_ROUTES = ["/contacto", "/faq"];
 
 /**
  * Wrapper del header global. Mantiene la lógica de variante FUERA del

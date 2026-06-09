@@ -364,6 +364,7 @@ export const copy = {
     links: [
       { label: "¿Cómo lo hacemos?", href: "/como-lo-hacemos" },
       { label: "Nuestros Servicios", href: "/servicios" },
+      { label: "FAQ", href: "/faq" },
       { label: "Contacto", href: "/contacto" },
     ],
   },

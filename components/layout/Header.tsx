@@ -13,7 +13,7 @@ const NAV_LINKS = [
   { label: "Casos de éxito", href: "#testimonios" },
   { label: "Insights", href: "#" },
   { label: "Nuestro equipo", href: "#" },
-  { label: "FAQ", href: "#" },
+  { label: "FAQ", href: "/faq" },
   { label: "Contacto", href: "/contacto" },
 ];
 
