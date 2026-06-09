@@ -50,7 +50,7 @@ export function HeroComoLoHacemos() {
 
         <motion.p
           {...fadeUp(0.14)}
-          className="mt-7 max-w-[600px] text-lg leading-relaxed text-pimenton-text-on-dark-muted sm:text-xl"
+          className="mt-7 max-w-[640px] text-lg leading-relaxed text-pimenton-text-on-dark-muted sm:text-xl"
         >
           Datos reales, decisiones diarias y un Growth Manager dedicado a tu
           negocio.

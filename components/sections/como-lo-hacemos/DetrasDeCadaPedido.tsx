@@ -261,7 +261,7 @@ export function DetrasDeCadaPedido() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.8, ease: EASE }}
-            className="text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-4xl lg:text-5xl"
+            className="text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-4xl"
           >
             {splitHighlight(
               "Detrás de cada pedido, hay una decisión.",
