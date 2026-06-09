@@ -629,6 +629,79 @@ export const copy = {
       },
     },
   },
+  // Página /equipo (Cultura Pimentón). Sólo .es por ahora; el .en se suma
+  // en la próxima tanda de traducción (el fallback ya muestra .es en EN).
+  equipo: {
+    hero: {
+      eyebrow: { es: "Cultura Pimentón" },
+    },
+    manifesto: {
+      text: { es: "Crecer implica aprender todo el tiempo." },
+      accent: { es: "aprender" },
+    },
+    valores: {
+      rows: [
+        {
+          heading: { es: "Nos movemos con adaptabilidad." },
+          accent: { es: "adaptabilidad" },
+          paragraph: {
+            es: "Entregamos con calidad, priorizando lo que importa y orientando cada acción a resultados concretos. Leemos el contexto, ajustamos rápido y seguimos.",
+          },
+          image: "/assets/equipo/equipo-valor-1.webp",
+          alt: { es: "Equipo Pimentón colaborando" },
+        },
+        {
+          heading: { es: "Somos protagonistas." },
+          accent: { es: "protagonistas" },
+          paragraph: {
+            es: "Hacemos que las cosas pasen, nos involucramos y resolvemos en equipo. El compromiso se nota en la acción y en la responsabilidad compartida.",
+          },
+          image: "/assets/equipo/equipo-valor-2.webp",
+          alt: { es: "Equipo Pimentón en plena operación" },
+        },
+        {
+          heading: { es: "El respeto atraviesa todo." },
+          accent: { es: "respeto" },
+          paragraph: {
+            es: "Nos comunicamos con honestidad, escuchamos activamente y valoramos las ideas por sobre las jerarquías. Debatimos con intención y construimos una cultura directa, humana y adulta.",
+          },
+          image: "/assets/equipo/equipo-valor-3.webp",
+          alt: { es: "Cultura de respeto en Pimentón" },
+        },
+      ],
+    },
+    modelo: {
+      eyebrow: { es: "Nuestro modelo" },
+      heading: { es: "Cómo acompañamos este modelo." },
+      headingAccent: { es: "acompañamos" },
+      cards: [
+        { title: { es: "Trabajo distribuido y flexible" }, icon: "laptop" },
+        {
+          title: { es: "Compensación alineada a impacto y resultados" },
+          icon: "trending-up",
+        },
+        {
+          title: {
+            es: "Reconocimiento por contribuir al crecimiento del negocio",
+          },
+          icon: "award",
+        },
+        {
+          title: { es: "Descanso coordinado en función del equipo" },
+          icon: "calendar",
+        },
+      ],
+    },
+    cta: {
+      heading: { es: "¿Quieres sumarte a Pimentón?" },
+      headingAccent: { es: "sumarte" },
+      description: {
+        es: "Siempre queremos conocer personas con mentalidad emprendedora y ganas de construir. Si sientes que este modelo de trabajo va contigo, completa el formulario.",
+      },
+      button: { es: "Quiero sumarme" },
+      href: "https://forms.gle/zYUFuXkNG5dsS9z17",
+    },
+  },
   nav: {
     menu: { es: "Menu", en: "Menu" },
     close: { es: "Cerrar", en: "Close" },
@@ -651,7 +724,7 @@ export const copy = {
         href: "#testimonios",
       },
       { label: { es: "Insights", en: "Insights" }, href: "#" },
-      { label: { es: "Nuestro equipo", en: "Our team" }, href: "#" },
+      { label: { es: "Nuestro equipo", en: "Our team" }, href: "/equipo" },
       { label: { es: "FAQ", en: "FAQ" }, href: "/faq" },
       { label: { es: "Contacto", en: "Contact" }, href: "/contacto" },
     ],
@@ -729,6 +802,7 @@ export const copy = {
         label: { es: "Nuestros Servicios", en: "Our Services" },
         href: "/servicios",
       },
+      { label: { es: "Equipo", en: "Team" }, href: "/equipo" },
       { label: { es: "FAQ", en: "FAQ" }, href: "/faq" },
       { label: { es: "Contacto", en: "Contact" }, href: "/contacto" },
     ],

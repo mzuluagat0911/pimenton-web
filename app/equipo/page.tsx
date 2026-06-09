@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import { EquipoHero } from "@/components/sections/equipo/EquipoHero";
+import { FraseManifiesto } from "@/components/sections/equipo/FraseManifiesto";
+import { ValoresRows } from "@/components/sections/equipo/ValoresRows";
+import { ComoAcompanamos } from "@/components/sections/equipo/ComoAcompanamos";
+import { CtaSumarte } from "@/components/sections/equipo/CtaSumarte";
 
 const PATH = "/equipo";
-const TITLE = "Equipo | Pimentón — Cultura Pimentón";
+const TITLE = "Equipo | Pimentón — Nuestra cultura";
 const DESCRIPTION =
-  "La cultura y el equipo detrás de Pimentón: especialistas en delivery obsesionados con la rentabilidad de cada restaurante.";
+  "Cultura Pimentón: cómo trabajamos, en qué creemos y qué buscamos en las personas que se suman al equipo. Adaptabilidad, protagonismo y respeto.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -44,6 +48,10 @@ export default function EquipoPage() {
   return (
     <main>
       <EquipoHero />
+      <FraseManifiesto />
+      <ValoresRows />
+      <ComoAcompanamos />
+      <CtaSumarte />
     </main>
   );
 }

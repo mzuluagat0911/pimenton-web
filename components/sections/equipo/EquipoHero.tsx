@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { useIsMobile } from "@/components/hooks/use-is-mobile";
+import { useCopy } from "@/components/i18n/LanguageContext";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -12,6 +13,7 @@ const MOBILE_SRC = "/assets/video/equipo-hero-mobile.mp4";
 
 export function EquipoHero() {
   const reduced = useReducedMotion() ?? false;
+  const { eyebrow } = useCopy().equipo.hero;
   // Corte en 768px: < 768 = mobile (vertical 3:4), >= 768 = desktop (16:9).
   const isMobile = useIsMobile(768);
   const [videoReady, setVideoReady] = useState(false);
@@ -73,7 +75,7 @@ export function EquipoHero() {
           draggable={false}
         />
         <p className="mt-7 font-sans text-xs font-medium uppercase tracking-[0.3em] text-pimenton-accent sm:text-sm">
-          Cultura Pimentón
+          {eyebrow}
         </p>
       </motion.div>
     </section>

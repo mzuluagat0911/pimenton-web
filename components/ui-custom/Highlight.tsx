@@ -1,13 +1,15 @@
 import type { ReactNode } from "react";
 
-export type HighlightColor = "coral" | "mint" | "yellow";
+export type HighlightColor = "coral" | "mint" | "yellow" | "dark";
 
 // Color de texto por contraste sobre cada fondo de resaltado:
-// coral → crema; menta/amarillo → oscuro.
+// coral → crema; menta/amarillo → oscuro; dark → crema (para resaltar
+// sobre fondos coral, donde el coral sobre coral sería invisible).
 const STYLES: Record<HighlightColor, string> = {
   coral: "bg-pimenton-accent text-pimenton-bg",
   mint: "bg-pimenton-mint text-pimenton-text",
   yellow: "bg-pimenton-yellow text-pimenton-text",
+  dark: "bg-pimenton-dark text-pimenton-bg",
 };
 
 /**
