@@ -132,8 +132,8 @@ function StatCard({
       }
       className={`group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl p-8 sm:p-10 lg:rounded-[28px] ${
         isLarge
-          ? "min-h-[280px] lg:min-h-[480px] lg:p-12"
-          : "min-h-[220px] lg:min-h-[230px] lg:p-10"
+          ? "min-h-[280px] lg:min-h-[340px] lg:p-10"
+          : "min-h-[220px] lg:min-h-[200px] lg:p-10"
       } ${BG_BY_KEY[item.bg]} ${PLACEMENT_BY_INDEX[index] ?? ""}`}
     >
       {/* Bloque arriba-izquierda: label (h3 → font-display + uppercase
@@ -186,7 +186,7 @@ export function Stats() {
   return (
     <section
       ref={ref}
-      className="bg-pimenton-bg py-14 sm:py-20 overflow-hidden"
+      className="bg-pimenton-bg py-12 sm:py-16 overflow-hidden"
     >
       {/* Padding wrapper afuera del max-w-7xl (mismo patrón que
           MarketStats/Consultancy), para que el ClientMarquee de abajo
@@ -203,7 +203,7 @@ export function Stats() {
                 arriba-izq, amarillo large abajo-der; mint y soft en la
                 otra diagonal. Ver PLACEMENT_BY_INDEX.
           */}
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:grid-rows-3 lg:gap-6">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:gap-6">
             {items.map((item, i) => (
               <StatCard
                 key={item.label}
@@ -220,7 +220,7 @@ export function Stats() {
       {/* Wall de clientes — bleed full-width. Se preserva porque la
           sección Stats sigue funcionando como bloque editorial completo:
           dashboard bento arriba + marquee abajo. */}
-      <div className="mt-12 sm:mt-16">
+      <div className="mt-10 sm:mt-12">
         <ClientMarquee />
       </div>
     </section>
