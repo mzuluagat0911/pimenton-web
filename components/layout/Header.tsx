@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -8,7 +9,7 @@ const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const NAV_LINKS = [
   { label: "Inicio", href: "#" },
   { label: "¿Cómo lo hacemos?", href: "#servicios" },
-  { label: "Nuestros Servicios", href: "#servicios" },
+  { label: "Nuestros Servicios", href: "/servicios" },
   { label: "Casos de éxito", href: "#testimonios" },
   { label: "Insights", href: "#" },
   { label: "Nuestro equipo", href: "#" },
@@ -30,6 +31,8 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const reduced = useReducedMotion() ?? false;
+  const router = useRouter();
+  const pathname = usePathname();
 
   // Track scroll for backdrop + auto-hide. Hide when scrolling down past
   // the Hero, show when scrolling up — resolves the Control Room
@@ -79,13 +82,27 @@ export function Header() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  // Anchor click — close overlay, then smooth-scroll. Uses Lenis if
-  // present (set by SmoothScroll on window.__lenis), falls back to
-  // native scrollIntoView. setTimeout 50ms lets React release body
-  // overflow before the scroll kicks off.
+  // Click de link del menú. Maneja 3 casos:
+  //  1. Ruta interna ("/servicios") → navegación client-side.
+  //  2. Anchor ("#...") estando FUERA del Home → el ancla vive en el
+  //     Home, así que navegamos al Home con el hash.
+  //  3. Anchor estando EN el Home → smooth-scroll (Lenis o nativo).
+  // setTimeout 50ms deja que React libere el overflow del body antes
+  // de scrollear.
   const handleLinkClick = (href: string) => (e: React.MouseEvent) => {
     e.preventDefault();
     setOpen(false);
+
+    if (href.startsWith("/")) {
+      router.push(href);
+      return;
+    }
+
+    if (pathname !== "/") {
+      router.push(href === "#" ? "/" : `/${href}`);
+      return;
+    }
+
     setTimeout(() => {
       const lenis = typeof window !== "undefined" ? window.__lenis : undefined;
       if (lenis) {
