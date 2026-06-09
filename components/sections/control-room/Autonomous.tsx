@@ -140,10 +140,12 @@ export function ControlRoomAutonomous() {
             />
           ))}
 
-          <CenterIsologo
-            className="absolute left-1/2 top-1/2 z-20 w-[18%] -translate-x-1/2 -translate-y-1/2"
-            glowInset="-60%"
-          />
+          {/* Wrapper absoluto para el posicionamiento (centrado): así el
+              <CenterIsologo> queda `relative` puro, sin el conflicto
+              relative+absolute en el mismo elemento. */}
+          <div className="absolute left-1/2 top-1/2 z-20 w-[18%] -translate-x-1/2 -translate-y-1/2">
+            <CenterIsologo className="w-full" glowInset="-60%" />
+          </div>
 
           {RING_ORDER.map((ring) => (
             <RingGroup

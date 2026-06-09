@@ -31,7 +31,7 @@ export function CenterIsologo({ className = "", glowInset = "-60%" }: Props) {
 
   return (
     <motion.div
-      className={`relative aspect-square ${className}`}
+      className={`relative ${className}`}
       animate={reduced ? undefined : { scale: [1, 1.04, 1] }}
       transition={
         reduced
@@ -69,16 +69,20 @@ export function CenterIsologo({ className = "", glowInset = "-60%" }: Props) {
 
       <motion.div
         key={`punch-${dischargeKey}`}
-        className="relative h-full w-full"
+        className="relative w-full"
         initial={{ scale: 1 }}
         animate={reduced ? undefined : { scale: [1, 1.06, 1] }}
         transition={reduced ? undefined : { duration: 0.5, ease: "easeOut" }}
       >
+        {/* La imagen (webp cuadrada) define la altura del isologo vía su
+            aspecto natural (w-full + h-auto). Evita el combo frágil
+            aspect-square + h-full, que en WebKit/producción puede colapsar
+            o desalinear el isologo. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/assets/logos/isologo/isologo-crema.webp"
           alt="Pimentón"
-          className="relative h-full w-full object-contain"
+          className="relative block h-auto w-full object-contain"
         />
       </motion.div>
     </motion.div>
