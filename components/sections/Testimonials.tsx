@@ -1,15 +1,18 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import {
+  animate,
   motion,
   useInView,
   useMotionValue,
   useReducedMotion,
+  useScroll,
   useSpring,
+  useTransform,
 } from "motion/react";
 import { Star } from "lucide-react";
-import { copy } from "@/data/copy";
+import { useCopy } from "@/components/i18n/LanguageContext";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const ENTRY_SPRING = {
@@ -21,15 +24,95 @@ const ENTRY_SPRING = {
 const TILT_SPRING = { stiffness: 220, damping: 22 };
 const TILT_MAX_DEG = 5;
 
-type TestimonialItem = (typeof copy.testimonials.items)[number];
+type TestimonialItem = ReturnType<typeof useCopy>["testimonials"]["items"][number];
+type Metric = TestimonialItem["metrics"][number];
 
-function getInitials(name: string): string {
-  return name
-    .split(/\s+/)
-    .map((part) => part[0])
-    .slice(0, 2)
-    .join("")
-    .toUpperCase();
+const METRIC_COUNT_DURATION = 1.4;
+
+/**
+ * PLACEHOLDER — Retrato ilustrado por persona (DiceBear "notionists"),
+ * determinístico vía seed = nombre. Se va a reemplazar por la foto real
+ * de cada owner cuando estén disponibles. Para volver a sacarlo, borrar
+ * este componente y su uso en TestimonialCard.
+ */
+function PortraitPlaceholder({ name }: { name: string }) {
+  const seed = encodeURIComponent(name);
+  const url = `https://api.dicebear.com/9.x/notionists/svg?seed=${seed}&backgroundColor=ffe0d7,ffd9cf,ffcec1`;
+  return (
+    <div className="flex size-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-full border border-pimenton-accent/30 bg-pimenton-accent/15">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={url}
+        alt=""
+        aria-hidden
+        className="h-full w-full object-cover"
+        draggable={false}
+      />
+    </div>
+  );
+}
+
+/**
+ * Renderiza una métrica con count-up de 0 al valor final + un pop sutil
+ * al terminar. El número se formatea con locale es-ES para que 3000 → "3.000"
+ * (separador de miles en español). Prefijo (+) y sufijo (%) en peso fino.
+ */
+function AnimatedMetric({
+  metric,
+  delay,
+  inView,
+  reduced,
+}: {
+  metric: Metric;
+  delay: number;
+  inView: boolean;
+  reduced: boolean;
+}) {
+  const count = useMotionValue(reduced ? metric.value : 0);
+  const display = useTransform(count, (latest) =>
+    Math.round(latest).toLocaleString("es-ES"),
+  );
+
+  useEffect(() => {
+    if (reduced) {
+      count.set(metric.value);
+      return;
+    }
+    if (!inView) return;
+    const controls = animate(count, metric.value, {
+      duration: METRIC_COUNT_DURATION,
+      delay,
+      ease: "easeOut",
+    });
+    return () => controls.stop();
+  }, [inView, reduced, metric.value, count, delay]);
+
+  return (
+    <div>
+      <motion.div
+        animate={
+          inView && !reduced ? { scale: [1, 1.07, 1] } : { scale: 1 }
+        }
+        transition={{
+          duration: 0.5,
+          delay: delay + METRIC_COUNT_DURATION,
+          ease: "easeOut",
+        }}
+        className="flex items-baseline font-display text-2xl font-semibold tracking-tight text-pimenton-accent tabular-nums sm:text-3xl"
+      >
+        {metric.prefix && (
+          <span className="text-[0.7em] font-normal">{metric.prefix}</span>
+        )}
+        <motion.span>{display}</motion.span>
+        {metric.suffix && (
+          <span className="text-[0.7em] font-normal">{metric.suffix}</span>
+        )}
+      </motion.div>
+      <p className="mt-1 text-xs leading-relaxed text-pimenton-text-muted sm:text-sm">
+        {metric.label}
+      </p>
+    </div>
+  );
 }
 
 /**
@@ -64,40 +147,12 @@ function useCardTilt(disabled: boolean) {
 }
 
 function StarRow() {
+  const aria = useCopy().testimonials.starsAria;
   return (
-    <div aria-label="5 estrellas" className="flex gap-1 text-pimenton-accent">
+    <div aria-label={aria} className="flex gap-1 text-pimenton-accent">
       {Array.from({ length: 5 }).map((_, i) => (
         <Star key={i} className="size-4 fill-current" strokeWidth={0} />
       ))}
-    </div>
-  );
-}
-
-function PortraitAvatar({ name }: { name: string }) {
-  // DiceBear "notionists" — illustrated portraits, deterministic per seed.
-  // Loaded as a plain <img> (external SVG, no Next config needed). Falls
-  // back to initials via onError if the request fails.
-  const seed = encodeURIComponent(name);
-  const url = `https://api.dicebear.com/9.x/notionists/svg?seed=${seed}&backgroundColor=ffe0d7,ffd9cf,ffcec1`;
-  return (
-    <div className="flex size-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-full border border-pimenton-accent/30 bg-pimenton-accent/15 font-mono text-xs font-semibold tracking-wide text-pimenton-accent">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={url}
-        alt=""
-        aria-hidden
-        className="h-full w-full object-cover"
-        draggable={false}
-        onError={(e) => {
-          // Fallback to initials if DiceBear is unreachable
-          const target = e.currentTarget;
-          target.style.display = "none";
-          if (target.nextSibling) return;
-          const span = document.createElement("span");
-          span.textContent = getInitials(name);
-          target.parentElement?.appendChild(span);
-        }}
-      />
     </div>
   );
 }
@@ -160,7 +215,7 @@ function IntroCard({
           className="h-7 w-auto sm:h-8"
           draggable={false}
         />
-        <h2 className="mt-10 text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl">
+        <h2 className="mt-10 text-2xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-3xl">
           {heading}
         </h2>
       </div>
@@ -227,25 +282,34 @@ function TestimonialCard({
 
       <div className="mt-auto pt-10">
         <div className="space-y-5">
-          {item.metrics.map((m) => (
-            <div key={m.label}>
-              <p className="text-3xl font-semibold tracking-tight text-pimenton-accent sm:text-4xl">
-                {m.value}
-              </p>
-              <p className="mt-1 text-xs leading-relaxed text-pimenton-text-muted sm:text-sm">
-                {m.label}
-              </p>
-            </div>
-          ))}
+          {item.metrics.map((m, mi) => {
+            // Delay encadenado: espera a que la card termine su entrada
+            // (stagger + entry ~0.6s) y luego escalona métrica a métrica.
+            const delay = reduced
+              ? 0
+              : (index + 1) * 0.12 + 0.55 + mi * 0.18;
+            return (
+              <AnimatedMetric
+                key={m.label}
+                metric={m}
+                delay={delay}
+                inView={inView}
+                reduced={reduced}
+              />
+            );
+          })}
         </div>
 
-        <div className="mt-6 flex items-center gap-3 border-t border-pimenton-border pt-5">
-          <PortraitAvatar name={item.name} />
-          <div className="min-w-0">
-            <p className="truncate text-sm font-semibold text-pimenton-text">
+        <div className="mt-6 flex items-start gap-3 border-t border-pimenton-border pt-5">
+          <PortraitPlaceholder name={item.name} />
+          <div className="min-w-0 leading-tight">
+            <p className="text-sm font-semibold text-pimenton-text">
               {item.name}
             </p>
-            <p className="truncate text-xs text-pimenton-text-muted sm:text-sm">
+            <p className="mt-1 text-xs text-pimenton-text-soft sm:text-sm">
+              {item.brand}
+            </p>
+            <p className="mt-0.5 text-xs text-pimenton-text-muted">
               {item.role}
             </p>
           </div>
@@ -256,7 +320,7 @@ function TestimonialCard({
 }
 
 export function Testimonials() {
-  const { intro, items } = copy.testimonials;
+  const { intro, items } = useCopy().testimonials;
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.15 });
   const reduced = useReducedMotion() ?? false;
@@ -265,15 +329,57 @@ export function Testimonials() {
   // arrive from slightly different tilts and settle to 0.
   const rotations = [-2.5, 2, -1.8, 2.2];
 
+  // Parallax sutil sobre el background mint + ilustraciones amarillas.
+  // La imagen se traslada ~±10% mientras el usuario scrollea por la
+  // sección. El contenedor del bg es 20% más alto que la sección
+  // (-inset-y-[10%]) para que el translate nunca revele un borde duro.
+  // bg-pimenton-mint debajo como fallback de color mientras la imagen
+  // carga (matchea el color dominante del asset).
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const bgY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    reduced ? ["0%", "0%"] : ["-10%", "10%"],
+  );
+
   return (
     <section
       ref={ref}
       id="testimonios"
-      className="scroll-mt-24 bg-pimenton-bg px-8 sm:px-16 lg:px-24 py-24 sm:py-32"
+      className="relative isolate scroll-mt-24 overflow-hidden bg-pimenton-mint px-[5%] sm:px-16 lg:px-24 py-14 sm:py-20 lg:py-36"
     >
-      <div className="mx-auto w-full max-w-7xl">
+      <motion.div
+        aria-hidden
+        style={{ y: bgY }}
+        className="absolute -inset-y-[10%] inset-x-0 -z-10"
+      >
         <div
-          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4"
+          className="h-full w-full bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "url('/assets/reseñas/background-resenas.webp')",
+          }}
+        />
+      </motion.div>
+
+      <div className="mx-auto w-full max-w-7xl">
+        {/*
+          Grid responsive con dos modos:
+          - mobile (< md): grid-flow-col + auto-cols-[80%] convierte el
+            grid en una fila horizontal scrolleable. Cada card ocupa el
+            80% del viewport, snap-x mandatory + snap-start en cada
+            child = swipe natural. Scrollbar oculta. Esto evita que la
+            sección se haga eterna en vertical en mobile.
+          - md+: grid clásico 2 cols, lg+ 4 cols — el layout original
+            (IntroCard + 3 testimonios) sin tocar.
+          [&>*]:snap-start aplica scroll-snap-align: start a cada hijo
+          directo sin tener que tocar IntroCard/TestimonialCard.
+        */}
+        <div
+          className="grid grid-flow-col auto-cols-[80%] gap-4 overflow-x-auto pb-2 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden [&>*]:snap-start md:grid-flow-row md:auto-cols-auto md:grid-cols-2 md:gap-6 md:overflow-visible md:pb-0 md:snap-none lg:grid-cols-4"
           style={{ perspective: 1200 }}
         >
           <IntroCard

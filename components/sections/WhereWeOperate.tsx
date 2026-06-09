@@ -7,7 +7,7 @@ import {
   useInView,
   useReducedMotion,
 } from "motion/react";
-import { copy } from "@/data/copy";
+import { useCopy } from "@/components/i18n/LanguageContext";
 import { locations, type Location } from "@/data/locations";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -118,7 +118,7 @@ function MapPin({
 }
 
 export function WhereWeOperate() {
-  const { heading, subheading } = copy.whereWeOperate;
+  const { heading, subheading } = useCopy().whereWeOperate;
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.2 });
   const reduced = useReducedMotion() ?? false;
@@ -152,7 +152,7 @@ export function WhereWeOperate() {
   return (
     <section
       ref={ref}
-      className="bg-pimenton-bg px-8 sm:px-16 lg:px-24 pt-12 pb-24 sm:pt-16 sm:pb-32"
+      className="bg-pimenton-bg px-[5%] sm:px-16 lg:px-24 pt-12 pb-24 sm:pt-16 sm:pb-32"
     >
       <div className="mx-auto max-w-7xl">
         <motion.h2
@@ -165,7 +165,7 @@ export function WhereWeOperate() {
                 : { opacity: 0, y: 20 }
           }
           transition={{ duration: 0.8, ease: EASE }}
-          className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-5xl"
+          className="max-w-3xl text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl"
         >
           {heading}
         </motion.h2>

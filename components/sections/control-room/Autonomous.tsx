@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { copy } from "@/data/copy";
+import { useCopy } from "@/components/i18n/LanguageContext";
 import { CenterIsologo } from "./CenterIsologo";
 import {
   buildPositions,
@@ -112,23 +112,20 @@ function RingGroup({
 }
 
 export function ControlRoomAutonomous() {
-  const { eyebrow, heading, subheading } = copy.controlRoom;
+  const { eyebrow, heading } = useCopy().controlRoom;
   const positioned = buildPositions();
   const reduced = useReducedMotion() ?? false;
 
   return (
-    <section className="relative bg-pimenton-dark px-8 sm:px-16 lg:px-24 py-20 sm:py-24">
+    <section className="relative overflow-hidden bg-pimenton-dark px-[5%] sm:px-16 lg:px-24 py-20 sm:py-24">
       <div className="mx-auto w-full max-w-7xl">
         <p className="flex items-center text-pimenton-accent text-xs sm:text-sm uppercase tracking-[0.22em] font-medium">
           <span aria-hidden className="mr-3 inline-block h-px w-8 bg-pimenton-accent" />
           {eyebrow}
         </p>
-        <h2 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark">
+        <h2 className="mt-6 text-3xl sm:text-4xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark">
           {heading}
         </h2>
-        <p className="mt-4 max-w-xl text-base sm:text-lg leading-relaxed text-pimenton-text-on-dark-muted">
-          {subheading}
-        </p>
 
         <div className="relative mx-auto mt-12 aspect-square w-full max-w-[760px] sm:mt-20">
           {RING_ORDER.map((ring) => (

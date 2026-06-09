@@ -1,32 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { useCopy } from "@/components/i18n/LanguageContext";
+import { LanguageToggle } from "./LanguageToggle";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-const NAV_LINKS = [
-  { label: "Inicio", href: "#" },
-  { label: "¿Cómo lo hacemos?", href: "#servicios" },
-  { label: "Nuestros Servicios", href: "#servicios" },
-  { label: "Casos de éxito", href: "#testimonios" },
-  { label: "Insights", href: "#" },
-  { label: "Nuestro equipo", href: "#" },
-  { label: "FAQ", href: "#" },
-  { label: "Contacto", href: "#contacto" },
-];
-
-const CONTACT = {
-  phone: "+54 9 (11) 5703-5170",
-  phoneRaw: "+5491157035170",
-  email: "comercial@pimenton.io",
-};
-
-export function Header() {
+export function Header({ forceSolid = false }: { forceSolid?: boolean }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const reduced = useReducedMotion() ?? false;
+  const router = useRouter();
+  const pathname = usePathname();
+  const c = useCopy();
+  const navLinks = c.nav.links;
 
   // Track scroll for backdrop + auto-hide. Hide when scrolling down past
   // the Hero, show when scrolling up — resolves the Control Room
@@ -76,13 +66,27 @@ export function Header() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  // Anchor click — close overlay, then smooth-scroll. Uses Lenis if
-  // present (set by SmoothScroll on window.__lenis), falls back to
-  // native scrollIntoView. setTimeout 50ms lets React release body
-  // overflow before the scroll kicks off.
+  // Click de link del menú. Maneja 3 casos:
+  //  1. Ruta interna ("/servicios") → navegación client-side.
+  //  2. Anchor ("#...") estando FUERA del Home → el ancla vive en el
+  //     Home, así que navegamos al Home con el hash.
+  //  3. Anchor estando EN el Home → smooth-scroll (Lenis o nativo).
+  // setTimeout 50ms deja que React libere el overflow del body antes
+  // de scrollear.
   const handleLinkClick = (href: string) => (e: React.MouseEvent) => {
     e.preventDefault();
     setOpen(false);
+
+    if (href.startsWith("/")) {
+      router.push(href);
+      return;
+    }
+
+    if (pathname !== "/") {
+      router.push(href === "#" ? "/" : `/${href}`);
+      return;
+    }
+
     setTimeout(() => {
       const lenis = typeof window !== "undefined" ? window.__lenis : undefined;
       if (lenis) {
@@ -106,16 +110,16 @@ export function Header() {
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
           !open && hidden ? "-translate-y-full" : "translate-y-0"
         } ${
-          !open && scrolled
-            ? "bg-pimenton-dark/70 backdrop-blur-md"
+          !open && (scrolled || forceSolid)
+            ? "bg-pimenton-dark"
             : "bg-transparent"
         }`}
       >
-        <div className="mx-auto flex h-16 items-center justify-between px-8 sm:h-20 md:w-[90%] md:max-w-[1500px] md:px-0">
+        <div className="mx-auto flex h-16 items-center justify-between px-[5%] sm:h-20 md:w-[90%] md:max-w-[1500px] md:px-0">
           <a
             href="#"
             onClick={handleLinkClick("#")}
-            aria-label="Pimentón — Inicio"
+            aria-label={c.nav.ariaHome}
             className="block transition-opacity hover:opacity-90"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -127,42 +131,38 @@ export function Header() {
             />
           </a>
 
-          <button
-            type="button"
-            onClick={() => setOpen((o) => !o)}
-            aria-expanded={open}
-            aria-controls="primary-nav"
-            aria-label={open ? "Cerrar menú" : "Abrir menú"}
-            className="group inline-flex cursor-pointer items-center gap-3 text-pimenton-bg transition-opacity hover:opacity-80"
-          >
-            {/* Two-line hamburger that morphs into an X. Position-only
-                animation, transform-origin centered. */}
-            <span aria-hidden className="relative block h-4 w-6">
-              <motion.span
-                animate={
-                  reduced
-                    ? { rotate: open ? 45 : 0, y: open ? 0 : -3 }
-                    : { rotate: open ? 45 : 0, y: open ? 0 : -3 }
-                }
-                transition={{ duration: 0.3, ease: EASE }}
-                style={{ transformOrigin: "center" }}
-                className="absolute left-0 right-0 top-1/2 -translate-y-px block h-px bg-current"
-              />
-              <motion.span
-                animate={
-                  reduced
-                    ? { rotate: open ? -45 : 0, y: open ? 0 : 3 }
-                    : { rotate: open ? -45 : 0, y: open ? 0 : 3 }
-                }
-                transition={{ duration: 0.3, ease: EASE }}
-                style={{ transformOrigin: "center" }}
-                className="absolute left-0 right-0 top-1/2 -translate-y-px block h-px bg-current"
-              />
-            </span>
-            <span className="text-base font-semibold tracking-tight sm:text-lg">
-              {open ? "Cerrar" : "Menu"}
-            </span>
-          </button>
+          <div className="flex items-center gap-4 sm:gap-6">
+            <LanguageToggle />
+
+            <button
+              type="button"
+              onClick={() => setOpen((o) => !o)}
+              aria-expanded={open}
+              aria-controls="primary-nav"
+              aria-label={open ? c.nav.ariaClose : c.nav.ariaOpen}
+              className="group inline-flex cursor-pointer items-center gap-3 text-pimenton-bg transition-opacity hover:opacity-80"
+            >
+              {/* Two-line hamburger that morphs into an X. Position-only
+                  animation, transform-origin centered. */}
+              <span aria-hidden className="relative block h-4 w-6">
+                <motion.span
+                  animate={{ rotate: open ? 45 : 0, y: open ? 0 : -3 }}
+                  transition={{ duration: 0.3, ease: EASE }}
+                  style={{ transformOrigin: "center" }}
+                  className="absolute left-0 right-0 top-1/2 -translate-y-px block h-px bg-current"
+                />
+                <motion.span
+                  animate={{ rotate: open ? -45 : 0, y: open ? 0 : 3 }}
+                  transition={{ duration: 0.3, ease: EASE }}
+                  style={{ transformOrigin: "center" }}
+                  className="absolute left-0 right-0 top-1/2 -translate-y-px block h-px bg-current"
+                />
+              </span>
+              <span className="text-base font-semibold tracking-tight sm:text-lg">
+                {open ? c.nav.close : c.nav.menu}
+              </span>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -173,7 +173,7 @@ export function Header() {
             key="overlay"
             role="dialog"
             aria-modal="true"
-            aria-label="Menú principal"
+            aria-label={c.nav.ariaPrimaryNav}
             initial={
               reduced
                 ? { opacity: 0 }
@@ -192,24 +192,22 @@ export function Header() {
             transition={{ duration: reduced ? 0.2 : 0.7, ease: EASE }}
             className="fixed inset-0 z-40 overflow-hidden bg-pimenton-accent"
           >
-            <div className="mx-auto flex h-full w-full max-w-7xl flex-col justify-between px-8 pb-12 pt-24 sm:px-16 sm:pb-16 sm:pt-28 lg:px-24">
+            <div className="mx-auto flex h-full w-full max-w-7xl flex-col justify-between px-[5%] pb-12 pt-24 sm:px-16 sm:pb-16 sm:pt-28 md:w-[90%] md:max-w-[1500px] md:px-0">
               <nav className="flex flex-1 flex-col items-end justify-center gap-2 text-right sm:gap-3">
-                {NAV_LINKS.map((link, i) => (
+                {navLinks.map((link, i) => (
                   <motion.a
-                    key={link.label}
+                    key={i}
                     href={link.href}
                     onClick={handleLinkClick(link.href)}
                     initial={reduced ? { opacity: 0 } : { opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={
-                      reduced ? { opacity: 0 } : { opacity: 0, y: -8 }
-                    }
+                    exit={reduced ? { opacity: 0 } : { opacity: 0, y: -8 }}
                     transition={{
                       delay: reduced ? 0 : 0.32 + i * 0.05,
                       duration: 0.45,
                       ease: EASE,
                     }}
-                    className="text-3xl font-semibold tracking-tight text-pimenton-bg transition-opacity duration-200 hover:opacity-80 sm:text-4xl lg:text-5xl"
+                    className="font-sans text-3xl font-semibold tracking-tight text-pimenton-bg transition-opacity duration-200 hover:opacity-80 sm:text-4xl lg:text-5xl"
                   >
                     {link.label}
                   </motion.a>
@@ -221,23 +219,35 @@ export function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={reduced ? { opacity: 0 } : { opacity: 0, y: -8 }}
                 transition={{
-                  delay: reduced ? 0 : 0.32 + NAV_LINKS.length * 0.05,
+                  delay: reduced ? 0 : 0.32 + navLinks.length * 0.05,
                   duration: 0.45,
                   ease: EASE,
                 }}
                 className="flex flex-col gap-1 text-pimenton-bg"
               >
+                <ul className="space-y-1">
+                  {c.footer.phones.map((p) => (
+                    <li
+                      key={p.phoneRaw}
+                      className="flex items-baseline gap-3 sm:gap-4"
+                    >
+                      <span className="font-sans text-[10px] font-medium uppercase tracking-[0.18em] opacity-70 sm:text-xs">
+                        {p.region}
+                      </span>
+                      <a
+                        href={`tel:${p.phoneRaw}`}
+                        className="text-sm transition-opacity hover:opacity-80 sm:text-base"
+                      >
+                        {p.phone}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
                 <a
-                  href={`tel:${CONTACT.phoneRaw}`}
-                  className="text-sm transition-opacity hover:opacity-80 sm:text-base"
+                  href={`mailto:${c.footer.email}`}
+                  className="mt-3 font-sans text-xl font-semibold transition-opacity hover:opacity-80 sm:text-2xl"
                 >
-                  {CONTACT.phone}
-                </a>
-                <a
-                  href={`mailto:${CONTACT.email}`}
-                  className="text-xl font-semibold transition-opacity hover:opacity-80 sm:text-2xl"
-                >
-                  {CONTACT.email}
+                  {c.footer.email}
                 </a>
               </motion.div>
             </div>

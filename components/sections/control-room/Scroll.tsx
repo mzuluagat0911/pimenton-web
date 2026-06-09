@@ -8,8 +8,8 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
-import { copy } from "@/data/copy";
-import { CenterIsologo } from "./CenterIsologo";
+import { useCopy } from "@/components/i18n/LanguageContext";
+import { IsologoTrigger } from "./IsologoTrigger";
 import {
   buildPositions,
   packetDelays,
@@ -116,7 +116,7 @@ function ScrollRingGroup({
 }
 
 export function ControlRoomScroll() {
-  const { eyebrow, heading, subheading } = copy.controlRoom;
+  const { eyebrow, heading } = useCopy().controlRoom;
   const positioned = buildPositions();
   const reduced = useReducedMotion() ?? false;
 
@@ -160,22 +160,25 @@ export function ControlRoomScroll() {
     // it. Spacer is 200vh so the sticky 100vh child provides 100vh of
     // scroll runway for the rotation tween while staying centered in
     // viewport during the pin.
-    <section className="relative bg-pimenton-dark py-20 sm:py-24">
-      <div className="mx-auto w-full max-w-7xl px-8 sm:px-16 lg:px-24">
-        <p className="flex items-center text-pimenton-accent text-xs sm:text-sm uppercase tracking-[0.22em] font-medium">
-          <span aria-hidden className="mr-3 inline-block h-px w-8 bg-pimenton-accent" />
-          {eyebrow}
-        </p>
-        <h2 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark">
-          {heading}
-        </h2>
-        <p className="mt-4 max-w-xl text-base sm:text-lg leading-relaxed text-pimenton-text-on-dark-muted">
-          {subheading}
-        </p>
+    <section className="relative bg-pimenton-dark py-14 sm:py-20">
+      {/* Heading wrapper: padding por fuera del max-w-7xl — mismo patrón
+          exacto que MarketStats. La sección no puede llevar el padding
+          en el root porque el spacer de los anillos (abajo) usa su
+          propio sistema de padding interno y necesita root sin px. */}
+      <div className="px-[5%] sm:px-16 lg:px-24">
+        <div className="mx-auto w-full max-w-7xl">
+          <p className="flex items-center text-pimenton-accent text-xs sm:text-sm uppercase tracking-[0.22em] font-medium">
+            <span aria-hidden className="mr-3 inline-block h-px w-8 bg-pimenton-accent" />
+            {eyebrow}
+          </p>
+          <h2 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark">
+            {heading}
+          </h2>
+        </div>
       </div>
 
       <div ref={spacerRef} className="relative mt-12 h-[200vh] sm:mt-20">
-        <div className="sticky top-0 flex h-screen items-center px-8 sm:px-16 lg:px-24">
+        <div className="sticky top-0 flex h-screen items-center px-[5%] sm:px-16 lg:px-24">
           <div className="mx-auto w-full max-w-7xl">
             <div className="relative mx-auto aspect-square w-full max-w-[760px]">
               {RING_ORDER.map((ring) => (
@@ -190,7 +193,7 @@ export function ControlRoomScroll() {
                 />
               ))}
 
-              <CenterIsologo
+              <IsologoTrigger
                 className="absolute left-1/2 top-1/2 z-20 w-[18%] -translate-x-1/2 -translate-y-1/2"
                 glowInset="-60%"
               />

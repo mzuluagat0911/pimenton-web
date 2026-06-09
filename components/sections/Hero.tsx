@@ -8,7 +8,8 @@ import {
   useTransform,
 } from "motion/react";
 import { ArrowRight } from "lucide-react";
-import { copy } from "@/data/copy";
+import { Highlight } from "@/components/ui-custom/Highlight";
+import { useCopy } from "@/components/i18n/LanguageContext";
 
 const NOISE_SVG =
   "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")";
@@ -16,13 +17,8 @@ const NOISE_SVG =
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export function Hero() {
-  const {
-    headline,
-    headlineAccent,
-    subhead,
-    ctaPrimary,
-    ctaSecondary,
-  } = copy.hero;
+  const { headline, headlineAccent, subhead, ctaPrimary, ctaSecondary } =
+    useCopy().hero;
 
   // Anchor click → smooth-scroll via Lenis if present, fallback to
   // native scrollIntoView. Header has the same pattern.
@@ -57,11 +53,6 @@ export function Hero() {
     scrollYProgress,
     [0, 1],
     shouldReduceMotion ? ["0%", "0%"] : ["0%", "30%"],
-  );
-  const contentOpacity = useTransform(
-    scrollYProgress,
-    [0, 1],
-    shouldReduceMotion ? [1, 1] : [1, 0.3],
   );
 
   const fadeUp = (delay: number, duration: number, y: number) => ({
@@ -136,20 +127,15 @@ export function Hero() {
         style={{ backgroundImage: NOISE_SVG }}
       />
 
-      <motion.div
-        style={{ opacity: contentOpacity }}
-        className="relative z-10 flex h-full flex-col"
-      >
-        <div className="flex flex-1 items-end pb-20 sm:pb-24 px-8 sm:px-16 lg:px-24">
+      <div className="relative z-10 flex h-full flex-col">
+        <div className="flex flex-1 items-end pb-20 sm:pb-24 px-[5%] sm:px-16 lg:px-24">
           <div className="w-full max-w-6xl">
             <motion.h1
               {...fadeUp(0.2, 0.8, 24)}
-              className="text-5xl sm:text-7xl lg:text-8xl font-semibold leading-[1.02] tracking-tight text-pimenton-text-on-dark"
+              className="text-4xl sm:text-6xl lg:text-7xl font-semibold leading-[1.02] tracking-tight text-pimenton-text-on-dark"
             >
               {headStart}
-              <span className="italic font-medium text-pimenton-accent">
-                {headlineAccent}
-              </span>
+              <Highlight color="coral">{headlineAccent}</Highlight>
               {headEnd}
             </motion.h1>
 
@@ -162,31 +148,37 @@ export function Hero() {
 
             <motion.div
               {...fadeUp(0.9, 0.7, 16)}
-              className="mt-10 flex flex-col sm:flex-row gap-4"
+              className="mt-10 flex flex-col sm:flex-row sm:items-center gap-4"
             >
-              <a
+              <motion.a
                 href={ctaPrimary.href}
                 onClick={anchorClick(ctaPrimary.href)}
-                className="group inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-pimenton-accent px-8 py-4 font-medium text-pimenton-bg transition-colors duration-300 hover:bg-pimenton-accent-hover"
+                whileHover={shouldReduceMotion ? undefined : { scale: 1.03 }}
+                whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 400, damping: 22 }}
+                className="group inline-flex w-full sm:w-auto cursor-pointer items-center justify-center gap-2.5 rounded-full bg-pimenton-accent px-9 py-3.5 text-base sm:text-lg font-semibold text-pimenton-bg shadow-xl shadow-pimenton-accent/40 transition-[background-color,box-shadow] duration-300 hover:bg-pimenton-accent-hover hover:shadow-pimenton-accent/60"
               >
                 {ctaPrimary.label}
                 <ArrowRight
                   aria-hidden
-                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                  className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
                 />
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
                 href={ctaSecondary.href}
                 onClick={anchorClick(ctaSecondary.href)}
-                className="inline-flex cursor-pointer items-center justify-center rounded-full border border-pimenton-text-on-dark/30 px-8 py-4 font-medium text-pimenton-text-on-dark backdrop-blur-sm transition-colors duration-300 hover:border-pimenton-text-on-dark/80 hover:bg-pimenton-text-on-dark/5"
+                whileHover={shouldReduceMotion ? undefined : { scale: 1.03 }}
+                whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 400, damping: 22 }}
+                className="inline-flex w-full sm:w-auto cursor-pointer items-center justify-center rounded-full border border-pimenton-text-on-dark/40 bg-pimenton-text-on-dark/5 px-9 py-3.5 text-base sm:text-lg font-semibold text-pimenton-text-on-dark backdrop-blur-sm transition-colors duration-300 hover:border-pimenton-text-on-dark/80 hover:bg-pimenton-text-on-dark/10"
               >
                 {ctaSecondary.label}
-              </a>
+              </motion.a>
             </motion.div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

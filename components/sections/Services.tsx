@@ -2,29 +2,81 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   motion,
   useInView,
   useReducedMotion,
   AnimatePresence,
 } from "motion/react";
-import { ArrowRight } from "lucide-react";
-import { copy } from "@/data/copy";
+import { splitHighlight } from "@/components/ui-custom/Highlight";
+import { useCopy } from "@/components/i18n/LanguageContext";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-type Item = (typeof copy.services.items)[number];
+// Link de Next con capacidades motion, para el mismo hover (scale + spring)
+// que el CTA primario del hero del Home.
+const MotionLink = motion.create(Link);
+
+type Item = ReturnType<typeof useCopy>["services"]["items"][number];
+
+// Logos de plataformas que usa cada servicio, cada uno en un círculo gris
+// con el logo en blanco — mismo tratamiento que el Control Room.
+function PlatformRow({ platforms }: { platforms?: readonly string[] }) {
+  if (!platforms || platforms.length === 0) return null;
+  return (
+    <div className="mt-7 flex flex-wrap items-center gap-3 sm:gap-4">
+      {platforms.map((src) => (
+        <div
+          key={src}
+          className="flex size-16 items-center justify-center rounded-full border border-pimenton-dark-border bg-pimenton-dark-surface sm:size-20"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={src}
+            alt=""
+            aria-hidden
+            draggable={false}
+            className="max-h-[46%] max-w-[72%] object-contain"
+            style={{ filter: "brightness(0) invert(1)" }}
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// CTA pill (sin icono) hacia la página de contacto. Full-width en mobile,
+// auto en sm+. Mismo comportamiento hover que el CTA primario del hero del
+// Home: scale 1.03 con spring + tap 0.97 (transición CSS solo para
+// background/box-shadow, el spring maneja el scale).
+function CtaButton({ href, label }: { href: string; label: string }) {
+  const reduced = useReducedMotion() ?? false;
+  return (
+    <MotionLink
+      href={href}
+      whileHover={reduced ? undefined : { scale: 1.03 }}
+      whileTap={reduced ? undefined : { scale: 0.97 }}
+      transition={{ type: "spring", stiffness: 400, damping: 22 }}
+      className="inline-flex w-full cursor-pointer items-center justify-center rounded-full bg-pimenton-accent px-7 py-3.5 text-base font-semibold text-pimenton-bg shadow-xl shadow-pimenton-accent/40 transition-[background-color,box-shadow] duration-300 hover:bg-pimenton-accent-hover hover:shadow-pimenton-accent/60 sm:w-auto sm:text-lg"
+    >
+      {label}
+    </MotionLink>
+  );
+}
 
 function DesktopList({
   items,
   activeIndex,
   onHover,
   reduced,
+  uppercaseNames = false,
 }: {
   items: readonly Item[];
   activeIndex: number;
   onHover: (i: number) => void;
   reduced: boolean;
+  uppercaseNames?: boolean;
 }) {
   return (
     <ul className="flex flex-col gap-1">
@@ -54,7 +106,9 @@ function DesktopList({
                 {item.num}
               </span>
               <span
-                className={`text-3xl font-semibold tracking-tight transition-colors duration-300 sm:text-4xl lg:text-5xl ${
+                className={`font-display text-2xl font-semibold tracking-tight transition-colors duration-300 sm:text-3xl lg:text-4xl ${
+                  uppercaseNames ? "uppercase" : ""
+                } ${
                   active
                     ? "text-pimenton-text-on-dark"
                     : "text-pimenton-text-on-dark-muted/45 group-hover:text-pimenton-text-on-dark-muted/80"
@@ -74,10 +128,17 @@ function DesktopMedia({
   items,
   activeIndex,
   reduced,
+  uppercaseNames = false,
+  showPlatforms = false,
+  cta,
 }: {
   items: readonly Item[];
   activeIndex: number;
   reduced: boolean;
+  uppercaseNames?: boolean;
+  showPlatforms?: boolean;
+  /** CTA renderizado bajo las plataformas (desktop). */
+  cta?: { href: string; label: string };
 }) {
   return (
     <div>
@@ -130,13 +191,23 @@ function DesktopMedia({
               <span className="font-mono text-xs uppercase tracking-[0.22em] text-pimenton-accent">
                 {item.num}
               </span>
-              <span className="text-xl font-semibold tracking-tight text-pimenton-text-on-dark sm:text-2xl">
+              <span
+                className={`font-display text-lg font-semibold tracking-tight text-pimenton-text-on-dark sm:text-xl ${
+                  uppercaseNames ? "uppercase" : ""
+                }`}
+              >
                 {item.name}
               </span>
             </div>
             <p className="mt-3 max-w-prose text-sm leading-relaxed text-pimenton-text-on-dark-muted sm:text-base">
               {item.description}
             </p>
+            {showPlatforms && <PlatformRow platforms={item.platforms} />}
+            {cta && (
+              <div className="mt-9">
+                <CtaButton href={cta.href} label={cta.label} />
+              </div>
+            )}
           </motion.div>
         ))}
       </div>
@@ -149,11 +220,15 @@ function MobileAccordion({
   openIndex,
   onOpen,
   reduced,
+  uppercaseNames = false,
+  showPlatforms = false,
 }: {
   items: readonly Item[];
   openIndex: number;
   onOpen: (i: number) => void;
   reduced: boolean;
+  uppercaseNames?: boolean;
+  showPlatforms?: boolean;
 }) {
   return (
     <ul className="flex flex-col border-t border-pimenton-dark-border">
@@ -174,9 +249,11 @@ function MobileAccordion({
                 {item.num}
               </span>
               <span
-                className={`text-2xl font-semibold tracking-tight transition-colors duration-300 ${
+                className={`font-display text-xl font-semibold tracking-tight transition-colors duration-300 ${
+                  uppercaseNames ? "uppercase" : ""
+                } ${
                   isOpen
-                    ? "text-pimenton-accent"
+                    ? "text-pimenton-text-on-dark"
                     : "text-pimenton-text-on-dark-muted/70"
                 }`}
               >
@@ -208,6 +285,9 @@ function MobileAccordion({
                     <p className="mt-4 text-sm leading-relaxed text-pimenton-text-on-dark-muted">
                       {item.description}
                     </p>
+                    {showPlatforms && (
+                      <PlatformRow platforms={item.platforms} />
+                    )}
                   </div>
                 </motion.div>
               )}
@@ -219,8 +299,37 @@ function MobileAccordion({
   );
 }
 
-export function Services() {
-  const { eyebrow, heading, cta, items } = copy.services;
+export function Services({
+  eyebrow,
+  heading,
+  headingHighlight,
+  showCta = true,
+  ctaHref,
+  ctaLabel,
+  uppercaseNames = false,
+  showPlatforms = false,
+}: {
+  eyebrow?: string;
+  heading?: string;
+  /** Palabra/frase del heading a resaltar en coral (marcador). */
+  headingHighlight?: string;
+  /** Muestra el CTA al pie de la sección. */
+  showCta?: boolean;
+  /** Override del destino del CTA (p.ej. "/contacto"). */
+  ctaHref?: string;
+  /** Override del label del CTA. */
+  ctaLabel?: string;
+  /** Nombres de servicio en uppercase (regla específica de /servicios). */
+  uppercaseNames?: boolean;
+  /** Muestra los logos de plataformas por servicio (solo /servicios). */
+  showPlatforms?: boolean;
+} = {}) {
+  const c = useCopy();
+  const { cta, items } = c.services;
+  // eyebrow/heading: si la página los pasa (p.ej. /servicios), se usan tal
+  // cual; si no, caen al copy traducido.
+  const resolvedEyebrow = eyebrow ?? c.services.eyebrow;
+  const resolvedHeading = heading ?? c.services.heading;
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.15 });
   const reduced = useReducedMotion() ?? false;
@@ -232,7 +341,7 @@ export function Services() {
     <section
       ref={ref}
       id="servicios"
-      className="relative scroll-mt-24 bg-pimenton-dark px-8 sm:px-16 lg:px-24 py-24 sm:py-32"
+      className="relative scroll-mt-24 bg-pimenton-dark px-[5%] sm:px-16 lg:px-24 py-24 sm:py-32"
     >
       <div className="mx-auto w-full max-w-7xl">
         <motion.p
@@ -251,7 +360,7 @@ export function Services() {
             aria-hidden
             className="mr-3 inline-block h-px w-8 bg-pimenton-accent"
           />
-          {eyebrow}
+          {resolvedEyebrow}
         </motion.p>
         <motion.h2
           initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20 }}
@@ -263,9 +372,11 @@ export function Services() {
                 : { opacity: 0, y: 20 }
           }
           transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
-          className="mt-6 max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-5xl"
+          className="mt-6 max-w-3xl text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-4xl"
         >
-          {heading}
+          {headingHighlight
+            ? splitHighlight(resolvedHeading, headingHighlight, "coral")
+            : resolvedHeading}
         </motion.h2>
 
         {/* Mobile accordion */}
@@ -275,6 +386,8 @@ export function Services() {
             openIndex={openIndex}
             onOpen={setOpenIndex}
             reduced={reduced}
+            uppercaseNames={uppercaseNames}
+            showPlatforms={showPlatforms}
           />
         </div>
 
@@ -284,28 +397,33 @@ export function Services() {
             items={items}
             activeIndex={activeIndex}
             reduced={reduced}
+            uppercaseNames={uppercaseNames}
+            showPlatforms={showPlatforms}
+            cta={
+              showCta
+                ? { href: ctaHref ?? cta.href, label: ctaLabel ?? cta.label }
+                : undefined
+            }
           />
           <DesktopList
             items={items}
             activeIndex={activeIndex}
             onHover={setActiveIndex}
             reduced={reduced}
+            uppercaseNames={uppercaseNames}
           />
         </div>
 
-        {/* CTA */}
-        <div className="mt-16 flex justify-start sm:mt-20 md:justify-end">
-          <a
-            href={cta.href}
-            className="group inline-flex items-center gap-2 text-base font-medium text-pimenton-accent transition-colors duration-300 hover:text-pimenton-accent-hover sm:text-lg"
-          >
-            {cta.label}
-            <ArrowRight
-              aria-hidden
-              className="size-4 transition-transform duration-300 group-hover:translate-x-1 sm:size-5"
+        {/* CTA mobile — al final de todos los servicios. En desktop el CTA
+            va dentro de DesktopMedia, debajo de las plataformas. */}
+        {showCta && (
+          <div className="mt-14 flex justify-center md:hidden">
+            <CtaButton
+              href={ctaHref ?? cta.href}
+              label={ctaLabel ?? cta.label}
             />
-          </a>
-        </div>
+          </div>
+        )}
       </div>
     </section>
   );

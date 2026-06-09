@@ -1,4 +1,7 @@
-import { copy } from "@/data/copy";
+"use client";
+
+import Link from "next/link";
+import { useCopy } from "@/components/i18n/LanguageContext";
 
 // Inline brand icons. lucide-react@1.16 in this project doesn't expose
 // Instagram/LinkedIn (they were added in later releases), and the brief
@@ -55,12 +58,21 @@ const SOCIAL_ICONS: Record<string, React.ComponentType<IconProps>> = {
 };
 
 export function Footer() {
-  const { tagline, phone, phoneRaw, email, copyright, credit, social, links } =
-    copy.footer;
+  const {
+    tagline,
+    phones,
+    email,
+    copyright,
+    credit,
+    social,
+    links,
+    navHeading,
+    contactHeading,
+  } = useCopy().footer;
 
   return (
     <footer className="bg-pimenton-dark text-pimenton-text-on-dark">
-      <div className="mx-auto w-full px-8 py-16 sm:px-16 sm:py-20 md:w-[90%] md:max-w-[1500px] md:px-0">
+      <div className="mx-auto w-full px-[5%] py-16 sm:px-16 sm:py-20 md:w-[90%] md:max-w-[1500px] md:px-0">
         {/* Top zone — logo + tagline, nav links, contact + social */}
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-10 lg:gap-14">
           {/* Logo + tagline */}
@@ -80,17 +92,17 @@ export function Footer() {
           {/* Nav links */}
           <div className="md:col-span-3">
             <h3 className="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-text-on-dark-muted">
-              Navegación
+              {navHeading}
             </h3>
             <ul className="mt-5 space-y-2.5">
               {links.map((link) => (
-                <li key={link.label}>
-                  <a
+                <li key={link.href}>
+                  <Link
                     href={link.href}
                     className="text-sm text-pimenton-text-on-dark transition-colors duration-200 hover:text-pimenton-accent"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -100,17 +112,29 @@ export function Footer() {
               big email toward the page edge for a strong visual close */}
           <div className="md:col-span-4 md:text-right">
             <h3 className="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-text-on-dark-muted">
-              Contacto
+              {contactHeading}
             </h3>
-            <a
-              href={`tel:${phoneRaw}`}
-              className="mt-5 block text-sm text-pimenton-text-on-dark-muted transition-colors duration-200 hover:text-pimenton-text-on-dark"
-            >
-              {phone}
-            </a>
+            <ul className="mt-5 space-y-1.5 md:flex md:flex-col md:items-end">
+              {phones.map((p) => (
+                <li
+                  key={p.phoneRaw}
+                  className="flex items-baseline gap-3 md:justify-end"
+                >
+                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-pimenton-text-on-dark-muted/70">
+                    {p.region}
+                  </span>
+                  <a
+                    href={`tel:${p.phoneRaw}`}
+                    className="text-sm text-pimenton-text-on-dark-muted transition-colors duration-200 hover:text-pimenton-text-on-dark"
+                  >
+                    {p.phone}
+                  </a>
+                </li>
+              ))}
+            </ul>
             <a
               href={`mailto:${email}`}
-              className="mt-2 block break-all text-2xl font-semibold tracking-tight text-pimenton-accent transition-colors duration-200 hover:text-pimenton-accent-hover sm:text-3xl lg:text-4xl"
+              className="mt-2 block break-all font-display text-2xl font-semibold tracking-tight text-pimenton-accent transition-colors duration-200 hover:text-pimenton-accent-hover sm:text-3xl lg:text-4xl"
             >
               {email}
             </a>

@@ -2,7 +2,8 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "motion/react";
-import { copy } from "@/data/copy";
+import { splitHighlight } from "@/components/ui-custom/Highlight";
+import { useCopy } from "@/components/i18n/LanguageContext";
 import {
   FacturacionIcon,
   ImpresionesIcon,
@@ -20,7 +21,7 @@ const ICON_MAP = {
 } as const;
 
 type IconKey = keyof typeof ICON_MAP;
-type Item = (typeof copy.marketStats.items)[number];
+type Item = ReturnType<typeof useCopy>["marketStats"]["items"][number];
 
 function MarketCard({
   item,
@@ -54,7 +55,7 @@ function MarketCard({
       <div className="size-12 text-pimenton-accent sm:size-14">
         {Icon ? <Icon inView={sectionInView} hovered={hovered} /> : null}
       </div>
-      <p className="mt-6 text-2xl font-semibold tracking-tight text-pimenton-text sm:text-3xl">
+      <p className="mt-6 font-display text-xl font-semibold tracking-tight text-pimenton-text sm:text-2xl">
         {item.stat}
       </p>
       <p className="mt-2 text-sm leading-relaxed text-pimenton-text-muted sm:text-base">
@@ -65,7 +66,7 @@ function MarketCard({
 }
 
 export function MarketStats() {
-  const { eyebrow, heading, items } = copy.marketStats;
+  const { heading, items } = useCopy().marketStats;
   const reduced = useReducedMotion() ?? false;
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.2 });
@@ -73,27 +74,9 @@ export function MarketStats() {
   return (
     <section
       ref={ref}
-      className="bg-pimenton-bg px-8 sm:px-16 lg:px-24 py-24 sm:py-32"
+      className="bg-pimenton-bg px-[5%] sm:px-16 lg:px-24 py-14 sm:py-20"
     >
       <div className="mx-auto max-w-7xl">
-        <motion.p
-          initial={reduced ? { opacity: 0 } : { opacity: 0, y: 12 }}
-          animate={
-            inView
-              ? { opacity: 1, y: 0 }
-              : reduced
-                ? { opacity: 0 }
-                : { opacity: 0, y: 12 }
-          }
-          transition={{ duration: 0.6, ease: EASE }}
-          className="flex items-center text-pimenton-accent text-xs sm:text-sm uppercase tracking-[0.22em] font-medium"
-        >
-          <span
-            aria-hidden
-            className="mr-3 inline-block h-px w-8 bg-pimenton-accent"
-          />
-          {eyebrow}
-        </motion.p>
         <motion.h2
           initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20 }}
           animate={
@@ -103,10 +86,10 @@ export function MarketStats() {
                 ? { opacity: 0 }
                 : { opacity: 0, y: 20 }
           }
-          transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
-          className="mt-6 max-w-3xl whitespace-pre-line text-4xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-5xl"
+          transition={{ duration: 0.8, ease: EASE }}
+          className="max-w-3xl whitespace-pre-line text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl"
         >
-          {heading}
+          {splitHighlight(heading, "tu delivery?", "mint")}
         </motion.h2>
 
         <div className="mt-16 grid grid-cols-1 gap-6 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
