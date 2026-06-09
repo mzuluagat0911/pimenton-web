@@ -9,19 +9,10 @@ import {
   useReducedMotion,
   useTransform,
 } from "motion/react";
-import { MessageCircle } from "lucide-react";
 import { splitHighlight } from "@/components/ui-custom/Highlight";
 import { EASE } from "@/components/sections/servicios/Eyebrow";
 import { CtaPill } from "@/components/ui-custom/CtaPill";
 import { ControlRoomAutonomous } from "@/components/sections/control-room/Autonomous";
-import { whatsappRegions, whatsappUrl } from "@/data/whatsapp";
-
-// CTA — mismo número del FAB (LatAm). El task indicaba wa.me/1157035170
-// (sin código de país, inválido); usamos el número internacional completo.
-const WA_HREF = whatsappUrl(
-  whatsappRegions[0]!,
-  "Hola Pimentón. Vi la página de cómo trabajan y me gustaría hablar por WhatsApp.",
-);
 
 const COL3_LOGOS = [
   "foodapp_rappi",
@@ -234,7 +225,7 @@ function Card({
       <div className="flex min-h-[208px] flex-1 items-center justify-center">
         {children}
       </div>
-      <h3 className="mt-6 text-xl font-bold uppercase tracking-tight text-pimenton-text-on-dark sm:text-2xl">
+      <h3 className="mt-6 text-xl font-semibold uppercase tracking-tight text-pimenton-text-on-dark sm:text-2xl">
         {title}
       </h3>
       <p className="mt-2 text-sm leading-relaxed text-pimenton-text-on-dark-muted">
@@ -251,9 +242,13 @@ export function DetrasDeCadaPedido() {
 
   return (
     <section ref={ref} className="bg-pimenton-dark py-24 sm:py-32">
-      <div className="mx-auto w-full max-w-7xl px-[5%] sm:px-16 lg:px-24">
-        {/* Header */}
-        <div className="max-w-3xl">
+      {/* px en el wrapper externo (no en el max-w-7xl), igual que el Control
+          Room: así el contenido llega al ancho completo de max-w-7xl y ambos
+          bloques coinciden en ancho. */}
+      <div className="px-[5%] sm:px-16 lg:px-24">
+        <div className="mx-auto w-full max-w-7xl">
+          {/* Header */}
+          <div className="max-w-3xl">
           <motion.h2
             initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -308,6 +303,7 @@ export function DetrasDeCadaPedido() {
           >
             <MockPerfil reduced={reduced} />
           </Card>
+          </div>
         </div>
       </div>
 
@@ -316,15 +312,13 @@ export function DetrasDeCadaPedido() {
           propio px/max-w-7xl, así alinea con el header, el grid y el CTA. */}
       <ControlRoomAutonomous />
 
-      {/* CTA final WhatsApp — pill coral (mismo estilo que el resto de la web) */}
-      <div className="mx-auto w-full max-w-7xl px-[5%] sm:px-16 lg:px-24">
-        <div className="flex justify-center">
-          <CtaPill
-            href={WA_HREF}
-            external
-            label="Hablemos por WhatsApp"
-            icon={<MessageCircle aria-hidden className="size-5" />}
-          />
+      {/* CTA final — pill coral (mismo estilo que el resto de la web), al
+          Contacto, sin icono. */}
+      <div className="px-[5%] sm:px-16 lg:px-24">
+        <div className="mx-auto w-full max-w-7xl">
+          <div className="flex justify-center">
+            <CtaPill href="/contacto" label="Hablemos" />
+          </div>
         </div>
       </div>
     </section>

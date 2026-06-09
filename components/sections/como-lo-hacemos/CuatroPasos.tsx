@@ -109,7 +109,7 @@ function Step({
           reduced={reduced}
         />
         <div className="pt-1">
-          <h3 className="text-2xl font-bold normal-case tracking-tight text-pimenton-text sm:text-3xl">
+          <h3 className="text-xl font-semibold tracking-tight text-pimenton-text sm:text-2xl">
             {paso.title}
           </h3>
           <p className="mt-3 max-w-prose text-base leading-relaxed text-pimenton-text-muted">
