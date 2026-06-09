@@ -14,6 +14,10 @@ import { copy } from "@/data/copy";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
+// Link de Next con capacidades motion, para el mismo hover (scale + spring)
+// que el CTA primario del hero del Home.
+const MotionLink = motion.create(Link);
+
 type Item = (typeof copy.services.items)[number];
 
 // Logos de plataformas que usa cada servicio, cada uno en un círculo gris
@@ -43,15 +47,21 @@ function PlatformRow({ platforms }: { platforms?: readonly string[] }) {
 }
 
 // CTA pill (sin icono) hacia la página de contacto. Full-width en mobile,
-// auto en sm+.
+// auto en sm+. Mismo comportamiento hover que el CTA primario del hero del
+// Home: scale 1.03 con spring + tap 0.97 (transición CSS solo para
+// background/box-shadow, el spring maneja el scale).
 function CtaButton({ href, label }: { href: string; label: string }) {
+  const reduced = useReducedMotion() ?? false;
   return (
-    <Link
+    <MotionLink
       href={href}
-      className="inline-flex w-full cursor-pointer items-center justify-center rounded-full bg-pimenton-accent px-7 py-3.5 text-base font-semibold text-pimenton-bg shadow-lg shadow-pimenton-accent/30 transition-all duration-300 hover:bg-pimenton-accent-hover hover:shadow-pimenton-accent/50 sm:w-auto sm:text-lg"
+      whileHover={reduced ? undefined : { scale: 1.03 }}
+      whileTap={reduced ? undefined : { scale: 0.97 }}
+      transition={{ type: "spring", stiffness: 400, damping: 22 }}
+      className="inline-flex w-full cursor-pointer items-center justify-center rounded-full bg-pimenton-accent px-7 py-3.5 text-base font-semibold text-pimenton-bg shadow-xl shadow-pimenton-accent/40 transition-[background-color,box-shadow] duration-300 hover:bg-pimenton-accent-hover hover:shadow-pimenton-accent/60 sm:w-auto sm:text-lg"
     >
       {label}
-    </Link>
+    </MotionLink>
   );
 }
 
