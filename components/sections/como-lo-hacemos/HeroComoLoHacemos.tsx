@@ -40,9 +40,9 @@ export function HeroComoLoHacemos() {
         className="absolute inset-0 -z-10 bg-gradient-to-b from-pimenton-dark/55 via-pimenton-dark/65 to-pimenton-dark/90"
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl text-center md:text-left">
-        <h1 className="text-4xl font-semibold leading-[1.02] tracking-tight text-pimenton-bg sm:text-6xl lg:text-7xl">
-          <motion.span className="block max-w-4xl md:mx-0" {...fadeUp(0)}>
+      <div className="relative z-10 mx-auto w-full max-w-7xl">
+        <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] tracking-tight text-pimenton-bg sm:text-6xl lg:text-7xl">
+          <motion.span className="block" {...fadeUp(0)}>
             <Highlight color="coral">Operamos</Highlight> tu delivery como si
             fuera nuestro.
           </motion.span>
@@ -50,9 +50,10 @@ export function HeroComoLoHacemos() {
 
         <motion.p
           {...fadeUp(0.14)}
-          className="mx-auto mt-7 max-w-[600px] text-lg leading-relaxed text-pimenton-text-on-dark-muted sm:text-xl md:mx-0"
+          className="mt-7 max-w-[600px] text-lg leading-relaxed text-pimenton-text-on-dark-muted sm:text-xl"
         >
-          Un proceso claro, con foco en rentabilidad.
+          Datos reales, decisiones diarias y un Growth Manager dedicado a tu
+          negocio.
         </motion.p>
       </div>
     </section>
