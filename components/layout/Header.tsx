@@ -8,7 +8,7 @@ const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const NAV_LINKS = [
   { label: "Inicio", href: "#" },
-  { label: "¿Cómo lo hacemos?", href: "#servicios" },
+  { label: "¿Cómo lo hacemos?", href: "/como-lo-hacemos" },
   { label: "Nuestros Servicios", href: "/servicios" },
   { label: "Casos de éxito", href: "#testimonios" },
   { label: "Insights", href: "#" },
