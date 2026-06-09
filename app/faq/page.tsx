@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { CornerDownRight } from "lucide-react";
 import { CtaPill } from "@/components/ui-custom/CtaPill";
+import { Highlight } from "@/components/ui-custom/Highlight";
 import { FaqAccordion } from "@/components/sections/faq/FaqAccordion";
 import { faqs } from "@/data/faq";
 
@@ -81,13 +81,7 @@ const jsonLd = {
 const INTRO =
   "Las preguntas que más nos hacen sobre cómo trabajamos tu delivery.";
 
-const CTA = (
-  <CtaPill
-    href="/contacto"
-    label="¿Tienes otra duda? Hablemos."
-    icon={<CornerDownRight aria-hidden className="size-5" />}
-  />
-);
+const CTA = <CtaPill href="/contacto" label="¿Tienes otra duda? Hablemos." />;
 
 export default function FaqPage() {
   return (
@@ -102,23 +96,17 @@ export default function FaqPage() {
         }}
       />
 
-      <section className="relative isolate overflow-hidden bg-pimenton-mint px-[5%] pb-20 pt-28 sm:px-16 sm:pb-28 sm:pt-32 lg:px-24">
-        {/* Fondo menta + texturas amarillas — mismo asset que la sección
-            "Lo que dicen de nosotros" del Home. */}
-        <div
-          aria-hidden
-          className="absolute inset-0 -z-10 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('/assets/reseñas/background-resenas.webp')",
-          }}
-        />
-
+      {/* Fondo menta sólido (sin texturas). Sin overflow-hidden: un ancestro
+          con overflow recortado rompe el position:sticky de la columna izq. */}
+      <section className="bg-pimenton-mint px-[5%] pb-20 pt-28 sm:px-16 sm:pb-28 sm:pt-32 lg:px-24">
         <div className="mx-auto w-full max-w-7xl">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[2fr_3fr] lg:gap-16">
-            {/* ── Columna izquierda: heading + descripción + CTA (sticky desktop) ── */}
+            {/* ── Columna izquierda: heading + descripción + CTA. Alineada
+                 arriba a la izquierda (self-start) y sticky en desktop, así
+                 acompaña el scroll del acordeón. ── */}
             <div className="lg:sticky lg:top-28 lg:self-start">
               <h1 className="text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl lg:text-5xl">
-                FAQ
+                <Highlight color="yellow">FAQ</Highlight>
               </h1>
               <p className="mt-5 max-w-sm text-base leading-relaxed text-pimenton-text-soft sm:text-lg">
                 {INTRO}
