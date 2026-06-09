@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { Highlight } from "@/components/ui-custom/Highlight";
-import { Eyebrow, EASE } from "@/components/sections/servicios/Eyebrow";
+import { EASE } from "@/components/sections/servicios/Eyebrow";
 
 export function HeroComoLoHacemos() {
   const reduced = useReducedMotion() ?? false;
@@ -41,26 +41,18 @@ export function HeroComoLoHacemos() {
       />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl text-center md:text-left">
-        <motion.div {...fadeUp(0)}>
-          <Eyebrow className="justify-center md:justify-start">
-            Cómo lo hacemos
-          </Eyebrow>
-        </motion.div>
-
-        <h1 className="mt-7 text-4xl font-semibold leading-[1.02] tracking-tight text-pimenton-bg sm:text-6xl lg:text-7xl">
-          <motion.span className="block max-w-4xl md:mx-0" {...fadeUp(0.12)}>
+        <h1 className="text-4xl font-semibold leading-[1.02] tracking-tight text-pimenton-bg sm:text-6xl lg:text-7xl">
+          <motion.span className="block max-w-4xl md:mx-0" {...fadeUp(0)}>
             <Highlight color="coral">Operamos</Highlight> tu delivery como si
             fuera nuestro.
           </motion.span>
         </h1>
 
         <motion.p
-          {...fadeUp(0.26)}
+          {...fadeUp(0.14)}
           className="mx-auto mt-7 max-w-[600px] text-lg leading-relaxed text-pimenton-text-on-dark-muted sm:text-xl md:mx-0"
         >
-          Un proceso claro, con foco en rentabilidad. Analizamos,
-          diagnosticamos, operamos y optimizamos cada canal con un Growth
-          Manager dedicado.
+          Un proceso claro, con foco en rentabilidad.
         </motion.p>
       </div>
     </section>

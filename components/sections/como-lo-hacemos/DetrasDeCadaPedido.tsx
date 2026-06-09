@@ -11,7 +11,8 @@ import {
 } from "motion/react";
 import { MessageCircle } from "lucide-react";
 import { splitHighlight } from "@/components/ui-custom/Highlight";
-import { Eyebrow, EASE } from "@/components/sections/servicios/Eyebrow";
+import { EASE } from "@/components/sections/servicios/Eyebrow";
+import { CtaPill } from "@/components/ui-custom/CtaPill";
 import { whatsappRegions, whatsappUrl } from "@/data/whatsapp";
 
 // CTA — mismo número del FAB (LatAm). El task indicaba wa.me/1157035170
@@ -255,13 +256,12 @@ export function DetrasDeCadaPedido() {
       <div className="mx-auto w-full max-w-7xl">
         {/* Header */}
         <div className="max-w-3xl">
-          <Eyebrow>Por qué funciona</Eyebrow>
           <motion.h2
             initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.8, ease: EASE }}
-            className="mt-6 text-4xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-5xl lg:text-6xl"
+            className="text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-4xl lg:text-5xl"
           >
             {splitHighlight(
               "Detrás de cada pedido, hay una decisión.",
@@ -312,20 +312,14 @@ export function DetrasDeCadaPedido() {
           </Card>
         </div>
 
-        {/* CTA final WhatsApp */}
+        {/* CTA final WhatsApp — pill coral (mismo estilo que el resto de la web) */}
         <div className="mt-16 flex justify-center sm:mt-20">
-          <motion.a
+          <CtaPill
             href={WA_HREF}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={reduced ? undefined : { scale: 1.03 }}
-            whileTap={reduced ? undefined : { scale: 0.97 }}
-            transition={{ type: "spring", stiffness: 400, damping: 22 }}
-            className="inline-flex cursor-pointer items-center gap-2.5 rounded-full bg-pimenton-accent px-8 py-4 font-display text-base font-bold uppercase tracking-wide text-pimenton-bg shadow-xl shadow-pimenton-accent/40 transition-shadow duration-300 hover:shadow-pimenton-accent/60 sm:text-lg"
-          >
-            <MessageCircle aria-hidden className="size-5" />
-            Hablemos por WhatsApp
-          </motion.a>
+            external
+            label="Hablemos por WhatsApp"
+            icon={<MessageCircle aria-hidden className="size-5" />}
+          />
         </div>
       </div>
     </section>
