@@ -9,10 +9,10 @@
 
 export type WhatsappRegion = {
   id: "latam" | "europe" | "usa";
-  /** Etiqueta corta (LatAm, Europa, USA) */
-  title: string;
-  /** Descriptor que aparece abajo del título en el selector */
-  subtitle: string;
+  /** Etiqueta corta bilingüe (LatAm, Europa/Europe, USA) */
+  title: { es: string; en: string };
+  /** Descriptor bilingüe que aparece abajo del título en el selector */
+  subtitle: { es: string; en: string };
   /** Solo dígitos, en formato internacional sin "+" (formato wa.me) */
   phone: string;
 };
@@ -20,20 +20,20 @@ export type WhatsappRegion = {
 export const whatsappRegions: readonly WhatsappRegion[] = [
   {
     id: "latam",
-    title: "LatAm",
-    subtitle: "Argentina y la región",
+    title: { es: "LatAm", en: "LatAm" },
+    subtitle: { es: "Argentina y la región", en: "Argentina & the region" },
     phone: "5491157035170",
   },
   {
     id: "europe",
-    title: "Europa",
-    subtitle: "España y Europa",
+    title: { es: "Europa", en: "Europe" },
+    subtitle: { es: "España y Europa", en: "Spain & Europe" },
     phone: "34683632437",
   },
   {
     id: "usa",
-    title: "USA",
-    subtitle: "Estados Unidos",
+    title: { es: "USA", en: "USA" },
+    subtitle: { es: "Estados Unidos", en: "United States" },
     phone: "5491140425909",
   },
 ] as const;

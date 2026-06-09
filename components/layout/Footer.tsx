@@ -1,5 +1,7 @@
+"use client";
+
 import Link from "next/link";
-import { copy } from "@/data/copy";
+import { useCopy } from "@/components/i18n/LanguageContext";
 
 // Inline brand icons. lucide-react@1.16 in this project doesn't expose
 // Instagram/LinkedIn (they were added in later releases), and the brief
@@ -56,8 +58,17 @@ const SOCIAL_ICONS: Record<string, React.ComponentType<IconProps>> = {
 };
 
 export function Footer() {
-  const { tagline, phones, email, copyright, credit, social, links } =
-    copy.footer;
+  const {
+    tagline,
+    phones,
+    email,
+    copyright,
+    credit,
+    social,
+    links,
+    navHeading,
+    contactHeading,
+  } = useCopy().footer;
 
   return (
     <footer className="bg-pimenton-dark text-pimenton-text-on-dark">
@@ -81,11 +92,11 @@ export function Footer() {
           {/* Nav links */}
           <div className="md:col-span-3">
             <h3 className="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-text-on-dark-muted">
-              Navegación
+              {navHeading}
             </h3>
             <ul className="mt-5 space-y-2.5">
               {links.map((link) => (
-                <li key={link.label}>
+                <li key={link.href}>
                   <Link
                     href={link.href}
                     className="text-sm text-pimenton-text-on-dark transition-colors duration-200 hover:text-pimenton-accent"
@@ -101,12 +112,12 @@ export function Footer() {
               big email toward the page edge for a strong visual close */}
           <div className="md:col-span-4 md:text-right">
             <h3 className="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-text-on-dark-muted">
-              Contacto
+              {contactHeading}
             </h3>
             <ul className="mt-5 space-y-1.5 md:flex md:flex-col md:items-end">
               {phones.map((p) => (
                 <li
-                  key={p.region}
+                  key={p.phoneRaw}
                   className="flex items-baseline gap-3 md:justify-end"
                 >
                   <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-pimenton-text-on-dark-muted/70">

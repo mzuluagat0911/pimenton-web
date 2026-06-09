@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { copy } from "@/data/copy";
+import { useCopy } from "@/components/i18n/LanguageContext";
 import { CenterIsologo } from "./CenterIsologo";
 import {
   buildPositions,
@@ -112,7 +112,7 @@ function RingGroup({
 }
 
 export function ControlRoomAutonomous() {
-  const { eyebrow, heading } = copy.controlRoom;
+  const { eyebrow, heading } = useCopy().controlRoom;
   const positioned = buildPositions();
   const reduced = useReducedMotion() ?? false;
 

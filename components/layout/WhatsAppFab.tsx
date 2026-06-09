@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { whatsappRegions, whatsappUrl } from "@/data/whatsapp";
+import { useCopy, useT } from "@/components/i18n/LanguageContext";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -41,6 +42,8 @@ export function WhatsAppFab() {
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
   const reduced = useReducedMotion() ?? false;
+  const wa = useCopy().whatsapp;
+  const t = useT();
 
   const fabRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -121,9 +124,7 @@ export function WhatsAppFab() {
         aria-haspopup="dialog"
         aria-expanded={open}
         aria-controls="wa-region-panel"
-        aria-label={
-          open ? "Cerrar selector de WhatsApp" : "Contactar por WhatsApp"
-        }
+        aria-label={open ? wa.fabClose : wa.fabOpen}
         initial={{ opacity: 0, scale: 0.6, y: 12 }}
         animate={
           mounted
@@ -213,13 +214,13 @@ export function WhatsAppFab() {
           >
             <div className="px-1 pt-1">
               <p className="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-pimenton-accent">
-                Escribinos por WhatsApp
+                {wa.panelKicker}
               </p>
               <h3
                 id="wa-panel-title"
                 className="mt-1.5 font-display text-lg font-semibold text-pimenton-text sm:text-xl"
               >
-                Elegí tu región
+                {wa.panelTitle}
               </h3>
             </div>
 
@@ -234,7 +235,7 @@ export function WhatsAppFab() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={handleOptionClick}
-                    aria-label={`Escribir por WhatsApp a ${r.title} — ${r.subtitle}`}
+                    aria-label={`${wa.optionAria} ${t(r.title)} — ${t(r.subtitle)}`}
                     className="group flex items-center gap-3 rounded-xl p-3 outline-none transition-colors duration-200 hover:bg-pimenton-bg-soft focus-visible:bg-pimenton-bg-soft focus-visible:ring-2 focus-visible:ring-pimenton-accent"
                   >
                     <span
@@ -245,10 +246,10 @@ export function WhatsAppFab() {
                     </span>
                     <div className="min-w-0">
                       <p className="text-sm font-semibold text-pimenton-text">
-                        {r.title}
+                        {t(r.title)}
                       </p>
                       <p className="text-xs text-pimenton-text-muted sm:text-sm">
-                        {r.subtitle}
+                        {t(r.subtitle)}
                       </p>
                     </div>
                   </a>

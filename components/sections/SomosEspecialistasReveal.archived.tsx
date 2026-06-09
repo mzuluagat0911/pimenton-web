@@ -9,7 +9,7 @@ import { motion, useInView, useReducedMotion } from "motion/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { copy } from "@/data/copy";
+import { useCopy } from "@/components/i18n/LanguageContext";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -40,7 +40,7 @@ export function Specialists() {
   const phrase2Ref = useRef<HTMLDivElement>(null);
   const inViewRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion() ?? false;
-  const { phrase1, phrase2 } = copy.specialists;
+  const { phrase1, phrase2 } = useCopy().specialists;
   const inView = useInView(inViewRef, { once: true, amount: 0.4 });
 
   useGSAP(

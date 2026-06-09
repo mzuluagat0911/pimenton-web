@@ -3,7 +3,11 @@
  * - Categorías, tamaños y países destacados con su asset 3D + fallback Unicode.
  * - Lista completa de países para el dropdown "Otro país" (reutiliza countries.ts).
  * - Phone code lookup para pre-llenar el input del paso 4.
- * - Builder del mensaje pre-armado de WhatsApp + URL final.
+ * - Builder del mensaje pre-armado de WhatsApp + URL final (bilingüe).
+ *
+ * Labels visibles (categorías, tamaños, países destacados) son bilingües
+ * { es, en } y se resuelven con useT en el componente. El mensaje de
+ * WhatsApp se arma en el idioma activo.
  *
  * El form NO se envía a backend: el "envío" abre wa.me en pestaña nueva.
  */
@@ -14,6 +18,10 @@ import {
   whatsappUrl,
   type WhatsappRegion,
 } from "./whatsapp";
+
+export type Lang = "es" | "en";
+type Localized = { es: string; en: string };
+const L = (loc: Localized, lang: Lang) => loc[lang];
 
 // ────────── Tipos ──────────
 
@@ -31,7 +39,7 @@ export type SizeId = "solo" | "small" | "medium" | "large";
 
 type CategoryOption = {
   id: CategoryId;
-  label: string;
+  label: Localized;
   /** Nombre del PNG en /public/assets/emoji/3d/ */
   emoji: string;
   /** Unicode emoji que se muestra si el PNG no existe todavía */
@@ -39,18 +47,48 @@ type CategoryOption = {
 };
 
 export const categories: ReadonlyArray<CategoryOption> = [
-  { id: "burger", label: "Burger", emoji: "burger.png", fallback: "🍔" },
-  { id: "pizza", label: "Pizza", emoji: "pizza.png", fallback: "🍕" },
-  { id: "sushi", label: "Sushi", emoji: "sushi.png", fallback: "🍣" },
-  { id: "dessert", label: "Postres", emoji: "donut.png", fallback: "🍩" },
-  { id: "bakery", label: "Panaderías", emoji: "croissant.png", fallback: "🥐" },
-  { id: "other", label: "Otros", emoji: "plate.png", fallback: "🍽️" },
+  {
+    id: "burger",
+    label: { es: "Burger", en: "Burger" },
+    emoji: "burger.png",
+    fallback: "🍔",
+  },
+  {
+    id: "pizza",
+    label: { es: "Pizza", en: "Pizza" },
+    emoji: "pizza.png",
+    fallback: "🍕",
+  },
+  {
+    id: "sushi",
+    label: { es: "Sushi", en: "Sushi" },
+    emoji: "sushi.png",
+    fallback: "🍣",
+  },
+  {
+    id: "dessert",
+    label: { es: "Postres", en: "Desserts" },
+    emoji: "donut.png",
+    fallback: "🍩",
+  },
+  {
+    id: "bakery",
+    label: { es: "Panaderías", en: "Bakeries" },
+    emoji: "croissant.png",
+    fallback: "🥐",
+  },
+  {
+    id: "other",
+    label: { es: "Otros", en: "Other" },
+    emoji: "plate.png",
+    fallback: "🍽️",
+  },
 ] as const;
 
 type SizeOption = {
   id: SizeId;
-  label: string;
-  caption: string;
+  label: Localized;
+  caption: Localized;
   emoji: string;
   fallback: string;
 };
@@ -58,29 +96,29 @@ type SizeOption = {
 export const sizes: ReadonlyArray<SizeOption> = [
   {
     id: "solo",
-    label: "Solo yo",
-    caption: "1 sucursal",
+    label: { es: "Solo yo", en: "Just me" },
+    caption: { es: "1 sucursal", en: "1 location" },
     emoji: "chef.png",
     fallback: "👨‍🍳",
   },
   {
     id: "small",
-    label: "Pequeño",
-    caption: "2 – 5 sucursales",
+    label: { es: "Pequeño", en: "Small" },
+    caption: { es: "2 – 5 sucursales", en: "2 – 5 locations" },
     emoji: "building-small.png",
     fallback: "🏪",
   },
   {
     id: "medium",
-    label: "Mediano",
-    caption: "6 – 20 sucursales",
+    label: { es: "Mediano", en: "Medium" },
+    caption: { es: "6 – 20 sucursales", en: "6 – 20 locations" },
     emoji: "building-medium.png",
     fallback: "🏢",
   },
   {
     id: "large",
-    label: "Grande",
-    caption: "+20 sucursales",
+    label: { es: "Grande", en: "Large" },
+    caption: { es: "+20 sucursales", en: "+20 locations" },
     emoji: "building-large.png",
     fallback: "🏬",
   },
@@ -89,20 +127,60 @@ export const sizes: ReadonlyArray<SizeOption> = [
 type FeaturedCountry = {
   /** ISO 3166-1 alpha-2 — matchea con countries.ts */
   isoCode: string;
-  label: string;
+  label: Localized;
   emoji: string;
   fallback: string;
 };
 
 export const featuredCountries: ReadonlyArray<FeaturedCountry> = [
-  { isoCode: "AR", label: "Argentina", emoji: "flag-ar.png", fallback: "🇦🇷" },
-  { isoCode: "CL", label: "Chile", emoji: "flag-cl.png", fallback: "🇨🇱" },
-  { isoCode: "CO", label: "Colombia", emoji: "flag-co.png", fallback: "🇨🇴" },
-  { isoCode: "ES", label: "España", emoji: "flag-es.png", fallback: "🇪🇸" },
-  { isoCode: "MX", label: "México", emoji: "flag-mx.png", fallback: "🇲🇽" },
-  { isoCode: "PE", label: "Perú", emoji: "flag-pe.png", fallback: "🇵🇪" },
-  { isoCode: "UY", label: "Uruguay", emoji: "flag-uy.png", fallback: "🇺🇾" },
-  { isoCode: "US", label: "USA", emoji: "flag-us.png", fallback: "🇺🇸" },
+  {
+    isoCode: "AR",
+    label: { es: "Argentina", en: "Argentina" },
+    emoji: "flag-ar.png",
+    fallback: "🇦🇷",
+  },
+  {
+    isoCode: "CL",
+    label: { es: "Chile", en: "Chile" },
+    emoji: "flag-cl.png",
+    fallback: "🇨🇱",
+  },
+  {
+    isoCode: "CO",
+    label: { es: "Colombia", en: "Colombia" },
+    emoji: "flag-co.png",
+    fallback: "🇨🇴",
+  },
+  {
+    isoCode: "ES",
+    label: { es: "España", en: "Spain" },
+    emoji: "flag-es.png",
+    fallback: "🇪🇸",
+  },
+  {
+    isoCode: "MX",
+    label: { es: "México", en: "Mexico" },
+    emoji: "flag-mx.png",
+    fallback: "🇲🇽",
+  },
+  {
+    isoCode: "PE",
+    label: { es: "Perú", en: "Peru" },
+    emoji: "flag-pe.png",
+    fallback: "🇵🇪",
+  },
+  {
+    isoCode: "UY",
+    label: { es: "Uruguay", en: "Uruguay" },
+    emoji: "flag-uy.png",
+    fallback: "🇺🇾",
+  },
+  {
+    isoCode: "US",
+    label: { es: "USA", en: "USA" },
+    emoji: "flag-us.png",
+    fallback: "🇺🇸",
+  },
 ] as const;
 
 // ────────── Helpers de países ──────────
@@ -123,7 +201,8 @@ const featuredIsoSet = new Set(featuredCountries.map((c) => c.isoCode));
 /**
  * Países restantes para el dropdown "Otro país" — todos los de
  * countries.ts excepto los 8 destacados. Cada uno con su flag emoji
- * nativo (no usamos PNG de Fluent para esta lista — demasiados).
+ * nativo. Los nombres del long-tail quedan en español (countries.ts);
+ * los 8 destacados sí son bilingües.
  */
 export const otherCountries = allCountries
   .filter((c) => !featuredIsoSet.has(c.code))
@@ -208,43 +287,53 @@ function formatInstagram(raw: string): string {
   return `@${trimmed}`;
 }
 
-// ────────── Builder del mensaje WhatsApp ──────────
+// ────────── Builder del mensaje WhatsApp (bilingüe) ──────────
 
-function categoryLabel(id: CategoryId): string {
-  return categories.find((c) => c.id === id)?.label ?? id;
+function categoryLabel(id: CategoryId, lang: Lang): string {
+  const cat = categories.find((c) => c.id === id);
+  return cat ? L(cat.label, lang) : id;
 }
 
-function sizeLabel(id: SizeId): string {
+function sizeLabel(id: SizeId, lang: Lang): string {
   const s = sizes.find((s) => s.id === id);
-  return s ? `${s.label} (${s.caption})` : id;
+  return s ? `${L(s.label, lang)} (${L(s.caption, lang)})` : id;
 }
 
-/**
- * Mensaje pre-armado para wa.me. Ejemplo de output:
- *
- *   ¡Hola Pimentón! 👋 Soy de Brasa & Fuego.
- *   Tenemos un restaurante de Burger, Pizza en Argentina con Pequeño (2 – 5 sucursales).
- *   Instagram: @brasayfuego
- *   Me gustaría agendar la consultoría gratuita.
- *
- * La línea de Instagram se OMITE entera si el campo viene vacío
- * (no aparece "Instagram: -").
- */
-export function buildWhatsappMessage(snap: FormSnapshot): string {
-  const cats = snap.categories.map(categoryLabel).join(", ");
-  const size = sizeLabel(snap.size);
+// Plantillas del mensaje por idioma. La línea de Instagram se omite entera
+// si el campo viene vacío.
+const MESSAGE = {
+  es: {
+    greeting: (r: string) => `¡Hola Pimentón! 👋 Soy de ${r}.`,
+    body: (cats: string, country: string, size: string) =>
+      `Tenemos un restaurante de ${cats} en ${country} con ${size}.`,
+    instagram: (ig: string) => `Instagram: ${ig}`,
+    closing: "Me gustaría agendar la consultoría gratuita.",
+  },
+  en: {
+    greeting: (r: string) => `Hi Pimentón! 👋 I'm from ${r}.`,
+    body: (cats: string, country: string, size: string) =>
+      `We run a ${cats} restaurant in ${country}, ${size}.`,
+    instagram: (ig: string) => `Instagram: ${ig}`,
+    closing: "I'd like to book the free consultation.",
+  },
+} as const;
+
+export function buildWhatsappMessage(snap: FormSnapshot, lang: Lang): string {
+  const m = MESSAGE[lang];
+  const cats = snap.categories.map((id) => categoryLabel(id, lang)).join(", ");
+  const size = sizeLabel(snap.size, lang);
   const ig = formatInstagram(snap.instagram);
   const lines = [
-    `¡Hola Pimentón! 👋 Soy de ${snap.restaurant.trim()}.`,
-    `Tenemos un restaurante de ${cats} en ${snap.countryLabel} con ${size}.`,
+    m.greeting(snap.restaurant.trim()),
+    m.body(cats, snap.countryLabel, size),
   ];
-  if (ig) lines.push(`Instagram: ${ig}`);
-  lines.push("Me gustaría agendar la consultoría gratuita.");
+  if (ig) lines.push(m.instagram(ig));
+  lines.push(m.closing);
   return lines.join("\n");
 }
 
-/** URL final wa.me, con número de región resuelto + mensaje encodeado. */
-export function buildWhatsappLink(snap: FormSnapshot): string {
+/** URL final wa.me, con número de región resuelto + mensaje en el idioma. */
+export function buildWhatsappLink(snap: FormSnapshot, lang: Lang): string {
   const region = regionForCountry(snap.countryIso);
-  return whatsappUrl(region, buildWhatsappMessage(snap));
+  return whatsappUrl(region, buildWhatsappMessage(snap, lang));
 }

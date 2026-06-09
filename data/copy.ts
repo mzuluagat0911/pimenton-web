@@ -1,29 +1,66 @@
+// Copy bilingüe del sitio. Cada string mostrado es un campo { es, en }.
+// El .es está en español NEUTRO (sin voseo); el .en en inglés natural de
+// marketing. Datos estructurales (paths, números, hrefs, enums, nombres
+// propios) quedan como valores planos. Se resuelve al idioma activo con
+// useCopy() (components/i18n/LanguageContext).
 export const copy = {
   hero: {
-    eyebrow: "Growth Partner · LATAM & Europa",
-    headline: "Potenciamos tu Delivery y optimizamos tus Canales Digitales.",
-    headlineAccent: "Potenciamos tu Delivery",
-    subhead: "Somos la Agencia #1 del Mundo expertos en Restauración.",
-    ctaPrimary: { label: "Consultoría gratuita", href: "#contacto" },
-    ctaSecondary: { label: "Hablar con un especialista", href: "#contacto" },
-    scrollLabel: "Scroll",
+    eyebrow: {
+      es: "Growth Partner · LATAM & Europa",
+      en: "Growth Partner · LATAM & Europe",
+    },
+    headline: {
+      es: "Potenciamos tu Delivery y optimizamos tus Canales Digitales.",
+      en: "We power up your Delivery and optimize your Digital Channels.",
+    },
+    headlineAccent: {
+      es: "Potenciamos tu Delivery",
+      en: "We power up your Delivery",
+    },
+    subhead: {
+      es: "Somos la Agencia #1 del Mundo experta en Restauración.",
+      en: "We're the world's #1 agency specialized in the restaurant industry.",
+    },
+    ctaPrimary: {
+      label: { es: "Consultoría gratuita", en: "Free consultation" },
+      href: "#contacto",
+    },
+    ctaSecondary: {
+      label: {
+        es: "Hablar con un especialista",
+        en: "Talk to a specialist",
+      },
+      href: "#contacto",
+    },
+    scrollLabel: { es: "Scroll", en: "Scroll" },
   },
   whereWeOperate: {
-    eyebrow: "Presencia global",
-    heading: "Operamos delivery en +20 países.",
-    subheading:
-      "De LATAM a Europa, gestionamos el canal digital de restaurantes en todo el mundo.",
+    eyebrow: { es: "Presencia global", en: "Global presence" },
+    heading: {
+      es: "Operamos delivery en +20 países.",
+      en: "We run delivery in +20 countries.",
+    },
+    subheading: {
+      es: "De LATAM a Europa, gestionamos el canal digital de restaurantes en todo el mundo.",
+      en: "From LATAM to Europe, we manage restaurants' digital channel all over the world.",
+    },
   },
   wall: {
-    eyebrow: "Quiénes confían en nosotros",
-    heading: "Más de 500 restaurantes ya operan su delivery con Pimentón.",
-    headingAccent: "500 restaurantes",
+    eyebrow: { es: "Quiénes confían en nosotros", en: "Who trusts us" },
+    heading: {
+      es: "Más de 500 restaurantes ya operan su delivery con Pimentón.",
+      en: "Over 500 restaurants already run their delivery with Pimentón.",
+    },
+    headingAccent: { es: "500 restaurantes", en: "500 restaurants" },
   },
   stats: {
     items: [
       {
-        label: "Crecimiento Ventas",
-        caption: "en los primeros tres meses",
+        label: { es: "Crecimiento Ventas", en: "Sales Growth" },
+        caption: {
+          es: "en los primeros tres meses",
+          en: "in the first three months",
+        },
         value: 30,
         prefix: "+",
         suffix: "%",
@@ -31,8 +68,8 @@ export const copy = {
         size: "large",
       },
       {
-        label: "Restaurantes",
-        caption: "confían en nosotros",
+        label: { es: "Restaurantes", en: "Restaurants" },
+        caption: { es: "confían en nosotros", en: "trust us" },
         value: 500,
         prefix: "+",
         suffix: "",
@@ -40,8 +77,11 @@ export const copy = {
         size: "small",
       },
       {
-        label: "Países",
-        caption: "Presencia en USA, LatAm y Europa",
+        label: { es: "Países", en: "Countries" },
+        caption: {
+          es: "Presencia en USA, LatAm y Europa",
+          en: "Presence across the US, LatAm and Europe",
+        },
         value: 20,
         prefix: "+",
         suffix: "",
@@ -49,8 +89,11 @@ export const copy = {
         size: "small",
       },
       {
-        label: "Rentabilidad",
-        caption: "aumento promedio trimestral",
+        label: { es: "Rentabilidad", en: "Profitability" },
+        caption: {
+          es: "aumento promedio trimestral",
+          en: "average quarterly increase",
+        },
         value: 18,
         prefix: "+",
         suffix: "%",
@@ -60,84 +103,155 @@ export const copy = {
     ],
   },
   controlRoom: {
-    eyebrow: "Nuestra tecnología",
-    heading: "Control Room ®",
-    subheading: "Tu delivery operado desde una sola pantalla.",
+    eyebrow: { es: "Nuestra tecnología", en: "Our technology" },
+    heading: { es: "Control Room ®", en: "Control Room ®" },
+    subheading: {
+      es: "Tu delivery operado desde una sola pantalla.",
+      en: "Your delivery, run from a single screen.",
+    },
+    watchLabel: { es: "Ver en acción", en: "Watch in action" },
+    watchAria: {
+      es: "Ver Control Room en acción",
+      en: "Watch Control Room in action",
+    },
+    modalAria: { es: "Control Room en acción", en: "Control Room in action" },
+    closeAria: { es: "Cerrar", en: "Close" },
+    closeModalAria: { es: "Cerrar modal", en: "Close modal" },
   },
   marketStats: {
-    heading: "¿Por qué profesionalizar tu delivery?",
+    heading: {
+      es: "¿Por qué profesionalizar tu delivery?",
+      en: "Why professionalize your delivery?",
+    },
     items: [
       {
-        stat: "1 pedido por semana",
-        label: "Gen Z y Millennials piden al menos una vez por semana.",
+        stat: { es: "1 pedido por semana", en: "1 order per week" },
+        label: {
+          es: "Gen Z y Millennials piden al menos una vez por semana.",
+          en: "Gen Z and Millennials order at least once a week.",
+        },
         icon: "pedido-semana",
       },
       {
-        stat: "+40%",
-        label: "Crecimiento interanual del delivery.",
+        stat: { es: "+40%", en: "+40%" },
+        label: {
+          es: "Crecimiento interanual del delivery.",
+          en: "Year-over-year delivery growth.",
+        },
         icon: "facturacion",
       },
       {
-        stat: "8 de cada 10",
-        label: "Personas leen reseñas antes de pedir.",
+        stat: { es: "8 de cada 10", en: "8 out of 10" },
+        label: {
+          es: "Personas leen reseñas antes de pedir.",
+          en: "People read reviews before ordering.",
+        },
         icon: "personas",
       },
       {
-        stat: "Nuevos Usuarios",
-        label: "Si no captamos clientes la competencia lo hace.",
+        stat: { es: "Nuevos Usuarios", en: "New Users" },
+        label: {
+          es: "Si no captamos clientes, la competencia lo hace.",
+          en: "If we don't capture customers, the competition will.",
+        },
         icon: "impresiones",
       },
     ],
   },
   comparison: {
-    heading: "Tu delivery cambia cuando alguien lo opera en serio.",
+    heading: {
+      es: "Tu delivery cambia cuando alguien lo opera en serio.",
+      en: "Your delivery changes when someone runs it for real.",
+    },
     off: {
-      title: "Sin Pimentón",
-      footer: "A ciegas",
-      toggleKicker: "Probá la diferencia",
-      toggleLabel: "Activá Pimentón",
+      title: { es: "Sin Pimentón", en: "Without Pimentón" },
+      footer: { es: "A ciegas", en: "Flying blind" },
+      toggleKicker: { es: "Prueba la diferencia", en: "See the difference" },
+      toggleLabel: { es: "Activa Pimentón", en: "Turn on Pimentón" },
     },
     on: {
-      title: "Con Pimentón",
-      footer: "Con datos reales",
-      toggleKicker: "Pimentón activo",
-      toggleLabel: "Tocá para desactivar",
+      title: { es: "Con Pimentón", en: "With Pimentón" },
+      footer: { es: "Con datos reales", en: "With real data" },
+      toggleKicker: { es: "Pimentón activo", en: "Pimentón on" },
+      toggleLabel: { es: "Toca para desactivar", en: "Tap to turn off" },
     },
-    footerLabel: "Decisiones de canal",
+    footerLabel: { es: "Decisiones de canal", en: "Channel decisions" },
+    toggleAria: {
+      es: "Activar Pimentón en mi delivery",
+      en: "Turn on Pimentón for my delivery",
+    },
     items: [
       {
-        off: "Solo frente a las apps: la operación, las negociaciones y los problemas recaen en tu equipo.",
-        on: "Gestión del día a día del Delivery y relación con las aplicaciones: un equipo de especialistas a cargo de tu negocio.",
+        off: {
+          es: "Solo frente a las apps: la operación, las negociaciones y los problemas recaen en tu equipo.",
+          en: "Alone against the apps: operations, negotiations and problems all land on your team.",
+        },
+        on: {
+          es: "Gestión del día a día del Delivery y relación con las aplicaciones: un equipo de especialistas a cargo de tu negocio.",
+          en: "Day-to-day delivery management and app relationships: a team of specialists running your business.",
+        },
       },
       {
-        off: "Datos dispersos entre apps, planillas y pantallas: imposible tomar decisiones en tiempo real.",
-        on: "Dashboards en tiempo real con ventas, operaciones, funnel y principales métricas económicas.",
+        off: {
+          es: "Datos dispersos entre apps, planillas y pantallas: imposible tomar decisiones en tiempo real.",
+          en: "Data scattered across apps, spreadsheets and screens: impossible to decide in real time.",
+        },
+        on: {
+          es: "Dashboards en tiempo real con ventas, operaciones, funnel y principales métricas económicas.",
+          en: "Real-time dashboards with sales, operations, funnel and key economic metrics.",
+        },
       },
       {
-        off: "Precios desactualizados, stock fuera de control y caídas de conectividad que descubrís cuando el cliente reclama.",
-        on: "Estrategia de precios, control de stocks y monitoreo de conectividad.",
+        off: {
+          es: "Precios desactualizados, stock fuera de control y caídas de conectividad que descubres cuando el cliente reclama.",
+          en: "Outdated prices, stock out of control and connectivity outages you only catch when a customer complains.",
+        },
+        on: {
+          es: "Estrategia de precios, control de stocks y monitoreo de conectividad.",
+          en: "Pricing strategy, stock control and connectivity monitoring.",
+        },
       },
       {
-        off: "Reseñas negativas sin respuesta y reclamos sin gestionar: cada incidencia te baja el ranking y la facturación.",
-        on: "Moderación de reseñas, reclamos e incidencias.",
+        off: {
+          es: "Reseñas negativas sin respuesta y reclamos sin gestionar: cada incidencia te baja el ranking y la facturación.",
+          en: "Negative reviews left unanswered and complaints unmanaged: every incident drops your ranking and revenue.",
+        },
+        on: {
+          es: "Moderación de reseñas, reclamos e incidencias.",
+          en: "Review, complaint and incident management.",
+        },
       },
       {
-        off: "Promos improvisadas sin estrategia: cada mes se reinventa el plan y el crecimiento nunca llega.",
-        on: "Planificación de campañas y estrategias de crecimiento.",
+        off: {
+          es: "Promos improvisadas sin estrategia: cada mes se reinventa el plan y el crecimiento nunca llega.",
+          en: "Improvised promos with no strategy: every month the plan resets and growth never comes.",
+        },
+        on: {
+          es: "Planificación de campañas y estrategias de crecimiento.",
+          en: "Campaign planning and growth strategies.",
+        },
       },
     ],
   },
   servicesTeaser: {},
   services: {
-    eyebrow: "Nuestros servicios",
-    heading: "Una unidad de negocio completa, no un servicio más.",
-    cta: { label: "Contáctanos", href: "#contacto" },
+    eyebrow: { es: "Nuestros servicios", en: "Our services" },
+    heading: {
+      es: "Una unidad de negocio completa, no un servicio más.",
+      en: "A complete business unit, not just another service.",
+    },
+    cta: {
+      label: { es: "Contáctanos", en: "Contact us" },
+      href: "#contacto",
+    },
     items: [
       {
         num: "01",
-        name: "Gestión Integral",
-        description:
-          "Nos hacemos cargo del Delivery de punta a punta: equipo, análisis, estrategia, ejecución y seguimiento diario. Con foco en crecimiento y rentabilidad.",
+        name: { es: "Gestión Integral", en: "End-to-End Management" },
+        description: {
+          es: "Nos hacemos cargo del Delivery de punta a punta: equipo, análisis, estrategia, ejecución y seguimiento diario. Con foco en crecimiento y rentabilidad.",
+          en: "We take over your Delivery end to end: team, analytics, strategy, execution and daily follow-up. Focused on growth and profitability.",
+        },
         image: "/assets/services/service_gestion-integral.webp",
         platforms: [
           "/assets/logos-platforms/foodapp_rappi.svg",
@@ -149,9 +263,11 @@ export const copy = {
       },
       {
         num: "02",
-        name: "Consultoría",
-        description:
-          "Trabajamos proyectos a medida en base a las necesidades de tu Restaurante, definiendo objetivos claros y metodologías ágiles.",
+        name: { es: "Consultoría", en: "Consulting" },
+        description: {
+          es: "Trabajamos proyectos a medida en base a las necesidades de tu Restaurante, definiendo objetivos claros y metodologías ágiles.",
+          en: "We build tailored projects around your restaurant's needs, with clear goals and agile methodologies.",
+        },
         image: "/assets/services/service_consultoria.webp",
         platforms: [
           "/assets/logos-platforms/tool_deliverect.svg",
@@ -161,9 +277,11 @@ export const copy = {
       },
       {
         num: "03",
-        name: "Performance",
-        description:
-          "Optimizamos lo que más impacta en tus ventas: visibilidad, conversión, ticket promedio y recompra. Ajustes constantes, decisiones rápidas.",
+        name: { es: "Performance", en: "Performance" },
+        description: {
+          es: "Optimizamos lo que más impacta en tus ventas: visibilidad, conversión, ticket promedio y recompra. Ajustes constantes, decisiones rápidas.",
+          en: "We optimize what moves your sales most: visibility, conversion, average ticket and repeat orders. Constant tuning, fast decisions.",
+        },
         image: "/assets/services/service_performance.webp",
         platforms: [
           "/assets/logos-platforms/foodapp_rappi.svg",
@@ -174,9 +292,11 @@ export const copy = {
       },
       {
         num: "04",
-        name: "Estrategia",
-        description:
-          "Definimos en conjunto la combinación perfecta entre operaciones, marketing, procesos y rentabilidad que se ajuste a tu negocio.",
+        name: { es: "Estrategia", en: "Strategy" },
+        description: {
+          es: "Definimos en conjunto la combinación perfecta entre operaciones, marketing, procesos y rentabilidad que se ajuste a tu negocio.",
+          en: "Together we define the right mix of operations, marketing, processes and profitability for your business.",
+        },
         image: "/assets/services/service_estrategia.webp",
         platforms: [
           "/assets/logos-platforms/tech_google.svg",
@@ -186,9 +306,11 @@ export const copy = {
       },
       {
         num: "05",
-        name: "Tecnología",
-        description:
-          "Utilizamos data de las Food Apps y canales digitales para disponer en tiempo real de toda la información que tu Restaurante necesita para la toma de decisiones.",
+        name: { es: "Tecnología", en: "Technology" },
+        description: {
+          es: "Utilizamos data de las Food Apps y canales digitales para disponer en tiempo real de toda la información que tu Restaurante necesita para la toma de decisiones.",
+          en: "We use data from Foodapps and digital channels to surface, in real time, all the information your restaurant needs to make decisions.",
+        },
         image: "/assets/services/service_tecnologia.webp",
         platforms: [
           "/assets/logos-platforms/tech_claude.svg",
@@ -201,150 +323,390 @@ export const copy = {
   },
   successStories: {},
   testimonials: {
+    starsAria: { es: "5 estrellas", en: "5 stars" },
     intro: {
       brand: "Pimentón",
-      heading: "Lo que dicen de nosotros",
-      subheading: "No prometemos crecimiento. Lo demostramos en números.",
+      heading: { es: "Lo que dicen de nosotros", en: "What they say about us" },
+      subheading: {
+        es: "No prometemos crecimiento. Lo demostramos en números.",
+        en: "We don't promise growth. We prove it in numbers.",
+      },
     },
     items: [
       {
+        // Cita real del cliente — queda en su idioma original (no se traduce).
         quote:
           "El equipo nos ayuda con la coordinación general del Delivery, desde la rentabilidad del negocio hasta la gestión operativa de reclamos e incidencias.",
         metrics: [
-          { value: 12, prefix: "+", suffix: "%", label: "Contribución marginal" },
-          { value: 3000, prefix: "+", suffix: "", label: "Pedidos recuperados" },
+          {
+            value: 12,
+            prefix: "+",
+            suffix: "%",
+            label: {
+              es: "Contribución marginal",
+              en: "Marginal contribution",
+            },
+          },
+          {
+            value: 3000,
+            prefix: "+",
+            suffix: "",
+            label: { es: "Pedidos recuperados", en: "Recovered orders" },
+          },
         ],
         name: "Valeyr Turjeman",
         brand: "Mister Noodles",
-        role: "Directora General",
+        role: { es: "Directora General", en: "General Manager" },
       },
       {
         quote:
           "Las herramientas y paneles nos ayudaron a consolidar todo el negocio digital en un solo lugar, agilizando nuestra toma de decisiones.",
         metrics: [
-          { value: 4, prefix: "", suffix: "", label: "Canales integrados" },
-          { value: 10, prefix: "+", suffix: "%", label: "Aumento facturación" },
+          {
+            value: 4,
+            prefix: "",
+            suffix: "",
+            label: { es: "Canales integrados", en: "Integrated channels" },
+          },
+          {
+            value: 10,
+            prefix: "+",
+            suffix: "%",
+            label: { es: "Aumento facturación", en: "Revenue increase" },
+          },
         ],
         name: "Bruno González Calvo",
         brand: "Grosso Napoletano",
-        role: "Managing Director",
+        role: { es: "Managing Director", en: "Managing Director" },
       },
       {
         quote:
           "El seguimiento semanal y el apoyo en el día a día son fundamentales para nuestro plan de expansión y apoyo a los franquiciados.",
         metrics: [
-          { value: 8, prefix: "+", suffix: "%", label: "Crecimiento YoY" },
-          { value: 2, prefix: "+", suffix: "", label: "Franquicias" },
+          {
+            value: 8,
+            prefix: "+",
+            suffix: "%",
+            label: { es: "Crecimiento YoY", en: "YoY growth" },
+          },
+          {
+            value: 2,
+            prefix: "+",
+            suffix: "",
+            label: { es: "Franquicias", en: "Franchises" },
+          },
         ],
         name: "Carlos Esteve",
         brand: "Jeques Kebabs",
-        role: "Fundador",
+        role: { es: "Fundador", en: "Founder" },
       },
     ],
   },
   ctaFinal: {},
   consultancy: {
-    eyebrow: "Empecemos",
-    heading: "Consultoría gratuita en 4 pasos.",
-    subheading:
-      "Contanos sobre tu restaurante y un especialista de tu región te escribe por WhatsApp.",
-    socialProof: "+500 restaurantes confían en Pimentón",
+    eyebrow: { es: "Empecemos", en: "Let's start" },
+    heading: {
+      es: "Consultoría gratuita en 4 pasos.",
+      en: "Free consultation in 4 steps.",
+    },
+    subheading: {
+      es: "Cuéntanos sobre tu restaurante y un especialista de tu región te escribe por WhatsApp.",
+      en: "Tell us about your restaurant and a specialist from your region will reach out on WhatsApp.",
+    },
+    socialProof: {
+      es: "+500 restaurantes confían en Pimentón",
+      en: "+500 restaurants trust Pimentón",
+    },
     bullets: [
-      "Consultoría sin cargo y sin compromiso",
-      "Hablás con un especialista de tu región",
-      "Respuesta directa por WhatsApp",
+      {
+        es: "Consultoría sin cargo y sin compromiso",
+        en: "Free consultation, no strings attached",
+      },
+      {
+        es: "Hablas con un especialista de tu región",
+        en: "Talk to a specialist from your region",
+      },
+      { es: "Respuesta directa por WhatsApp", en: "Direct reply on WhatsApp" },
     ],
   },
   consultationForm: {
     intro: {
-      eyebrow: "Empecemos",
-      heading: "Consultoría gratuita en 4 pasos.",
-      headingAccent: "en 4 pasos.",
-      description:
-        "Contanos sobre tu restaurante y un especialista de tu región te escribe por WhatsApp.",
-      socialProof: "+500 restaurantes confían en Pimentón",
+      eyebrow: { es: "Empecemos", en: "Let's start" },
+      heading: {
+        es: "Consultoría gratuita en 4 pasos.",
+        en: "Free consultation in 4 steps.",
+      },
+      headingAccent: { es: "en 4 pasos.", en: "in 4 steps." },
+      description: {
+        es: "Cuéntanos sobre tu restaurante y un especialista de tu región te escribe por WhatsApp.",
+        en: "Tell us about your restaurant and a specialist from your region will reach out on WhatsApp.",
+      },
+      socialProof: {
+        es: "+500 restaurantes confían en Pimentón",
+        en: "+500 restaurants trust Pimentón",
+      },
       bullets: [
-        "Consultoría sin cargo y sin compromiso",
-        "Hablás con un especialista de tu región",
-        "Respuesta directa por WhatsApp",
+        {
+          es: "Consultoría sin cargo y sin compromiso",
+          en: "Free consultation, no strings attached",
+        },
+        {
+          es: "Hablas con un especialista de tu región",
+          en: "Talk to a specialist from your region",
+        },
+        {
+          es: "Respuesta directa por WhatsApp",
+          en: "Direct reply on WhatsApp",
+        },
       ],
     },
+    aria: {
+      categories: { es: "Categorías", en: "Categories" },
+      searchCountry: { es: "Buscar país", en: "Search country" },
+      countryList: { es: "Lista de países", en: "Country list" },
+      sizeGroup: {
+        es: "Tamaño de la operación",
+        en: "Operation size",
+      },
+    },
     step1: {
-      label: "Paso 1 de 4",
-      title: "Elegí tu categoría",
-      helper: "Podés seleccionar más de una.",
+      label: { es: "Paso 1 de 4", en: "Step 1 of 4" },
+      title: { es: "Elige tu categoría", en: "Choose your category" },
+      titleAccent: { es: "tu categoría", en: "your category" },
+      helper: {
+        es: "Puedes seleccionar más de una.",
+        en: "You can select more than one.",
+      },
     },
     step2: {
-      label: "Paso 2 de 4",
-      title: "¿De qué país nos escribís?",
-      otherLabel: "Otro país",
-      searchPlaceholder: "Buscar país…",
-      emptyState: "No encontramos ese país.",
+      label: { es: "Paso 2 de 4", en: "Step 2 of 4" },
+      title: {
+        es: "¿Desde qué país nos escribes?",
+        en: "Which country are you writing from?",
+      },
+      titleAccent: { es: "país", en: "country" },
+      otherLabel: { es: "Otro país", en: "Other country" },
+      searchPlaceholder: { es: "Buscar país…", en: "Search country…" },
+      emptyState: {
+        es: "No encontramos ese país.",
+        en: "We couldn't find that country.",
+      },
     },
     step3: {
-      label: "Paso 3 de 4",
-      title: "¿De qué tamaño es tu operación?",
+      label: { es: "Paso 3 de 4", en: "Step 3 of 4" },
+      title: {
+        es: "¿De qué tamaño es tu operación?",
+        en: "How big is your operation?",
+      },
+      titleAccent: { es: "tu operación?", en: "your operation?" },
     },
     step4: {
-      label: "Paso 4 de 4",
-      title: "Dejanos tus datos",
-      restaurantLabel: "Nombre del restaurante",
-      restaurantPlaceholder: "Brasa & Fuego",
-      phoneLabel: "Número de móvil",
-      phonePlaceholder: "+54 9 11 1234 5678",
-      phoneHint: "Te escribimos por WhatsApp en las próximas horas. No spam.",
-      instagramLabel: "Instagram",
-      instagramPlaceholder: "turestaurante",
-      instagramOptional: "opcional",
-      submitLabel: "Enviar y abrir WhatsApp",
+      label: { es: "Paso 4 de 4", en: "Step 4 of 4" },
+      title: { es: "Déjanos tus datos", en: "Leave us your details" },
+      titleAccent: { es: "tus datos", en: "your details" },
+      restaurantLabel: {
+        es: "Nombre del restaurante",
+        en: "Restaurant name",
+      },
+      restaurantPlaceholder: { es: "Brasa & Fuego", en: "Brasa & Fuego" },
+      phoneLabel: { es: "Número de móvil", en: "Mobile number" },
+      phonePlaceholder: {
+        es: "+54 9 11 1234 5678",
+        en: "+54 9 11 1234 5678",
+      },
+      phoneHint: {
+        es: "Te escribimos por WhatsApp en las próximas horas. Nada de spam.",
+        en: "We'll message you on WhatsApp within hours. No spam.",
+      },
+      instagramLabel: { es: "Instagram", en: "Instagram" },
+      instagramPlaceholder: { es: "turestaurante", en: "yourrestaurant" },
+      instagramOptional: { es: "opcional", en: "optional" },
+      submitLabel: {
+        es: "Enviar y abrir WhatsApp",
+        en: "Send and open WhatsApp",
+      },
     },
     nav: {
-      back: "Atrás",
-      next: "Siguiente",
+      back: { es: "Atrás", en: "Back" },
+      next: { es: "Siguiente", en: "Next" },
+    },
+    validation: {
+      category: {
+        es: "Elige al menos una categoría.",
+        en: "Choose at least one category.",
+      },
+      country: { es: "Elige tu país.", en: "Choose your country." },
+      size: {
+        es: "Elige el tamaño de tu operación.",
+        en: "Choose your operation size.",
+      },
+      restaurant: {
+        es: "Ingresa el nombre de tu restaurante.",
+        en: "Enter your restaurant name.",
+      },
+      phone: {
+        es: "Ingresa un número de teléfono válido.",
+        en: "Enter a valid phone number.",
+      },
     },
     success: {
-      // El "{restaurant}" se reemplaza en tiempo de render con el nombre
-      // del restaurante cargado en el paso 4.
-      title: "¡Listo, {restaurant}!",
-      description:
-        "Te llevamos a WhatsApp con tu mensaje listo. Un especialista de tu región te responde en las próximas horas.",
-      cta: "Abrir WhatsApp",
+      // "{restaurant}" se reemplaza en render con el nombre cargado.
+      title: { es: "¡Listo, {restaurant}!", en: "You're all set, {restaurant}!" },
+      titleFallback: { es: "¡Listo!", en: "All set!" },
+      description: {
+        es: "Te llevamos a WhatsApp con tu mensaje listo. Un especialista de tu región te responde en las próximas horas.",
+        en: "We're taking you to WhatsApp with your message ready. A specialist from your region will reply within hours.",
+      },
+      cta: { es: "Abrir WhatsApp", en: "Open WhatsApp" },
     },
   },
   gallery: {
     images: [
-      { src: null, alt: "Cocina de restaurante en plena operación" },
-      { src: null, alt: "Repartidor saliendo a delivery" },
-      { src: null, alt: "Plato emplatado, foto cenital" },
-      { src: null, alt: "Hamburguesa gourmet, primer plano" },
-      { src: null, alt: "Repartidor entregando el pedido" },
-      { src: null, alt: "Equipo trabajando en cocina" },
+      {
+        src: null,
+        alt: {
+          es: "Cocina de restaurante en plena operación",
+          en: "Restaurant kitchen in full operation",
+        },
+      },
+      {
+        src: null,
+        alt: {
+          es: "Repartidor saliendo a delivery",
+          en: "Courier heading out for delivery",
+        },
+      },
+      {
+        src: null,
+        alt: {
+          es: "Plato emplatado, foto cenital",
+          en: "Plated dish, overhead shot",
+        },
+      },
+      {
+        src: null,
+        alt: {
+          es: "Hamburguesa gourmet, primer plano",
+          en: "Gourmet burger, close-up",
+        },
+      },
+      {
+        src: null,
+        alt: {
+          es: "Repartidor entregando el pedido",
+          en: "Courier handing over the order",
+        },
+      },
+      {
+        src: null,
+        alt: {
+          es: "Equipo trabajando en cocina",
+          en: "Team working in the kitchen",
+        },
+      },
     ],
   },
   specialists: {
+    galleryHeading: {
+      es: "Especialistas en delivery,",
+      en: "Delivery specialists,",
+    },
     phrase1: {
-      text: "No necesitás más pedidos. Necesitás mejores decisiones.",
-      highlight: "mejores decisiones",
+      text: {
+        es: "No necesitas más pedidos. Necesitas mejores decisiones.",
+        en: "You don't need more orders. You need better decisions.",
+      },
+      highlight: { es: "mejores decisiones", en: "better decisions" },
     },
     phrase2: {
-      text: "Somos especialistas en convertir tu delivery en una unidad de negocio rentable.",
-      highlight: "unidad de negocio rentable",
+      text: {
+        es: "Somos especialistas en convertir tu delivery en una unidad de negocio rentable.",
+        en: "We're specialists at turning your delivery into a profitable business unit.",
+      },
+      highlight: {
+        es: "unidad de negocio rentable",
+        en: "profitable business unit",
+      },
+    },
+  },
+  nav: {
+    menu: { es: "Menu", en: "Menu" },
+    close: { es: "Cerrar", en: "Close" },
+    ariaOpen: { es: "Abrir menú", en: "Open menu" },
+    ariaClose: { es: "Cerrar menú", en: "Close menu" },
+    ariaHome: { es: "Pimentón — Inicio", en: "Pimentón — Home" },
+    ariaPrimaryNav: { es: "Menú principal", en: "Main menu" },
+    links: [
+      { label: { es: "Inicio", en: "Home" }, href: "#" },
+      {
+        label: { es: "¿Cómo lo hacemos?", en: "How we do it" },
+        href: "/como-lo-hacemos",
+      },
+      {
+        label: { es: "Nuestros Servicios", en: "Our Services" },
+        href: "/servicios",
+      },
+      {
+        label: { es: "Casos de éxito", en: "Success stories" },
+        href: "#testimonios",
+      },
+      { label: { es: "Insights", en: "Insights" }, href: "#" },
+      { label: { es: "Nuestro equipo", en: "Our team" }, href: "#" },
+      { label: { es: "FAQ", en: "FAQ" }, href: "/faq" },
+      { label: { es: "Contacto", en: "Contact" }, href: "/contacto" },
+    ],
+  },
+  whatsapp: {
+    fabOpen: {
+      es: "Contactar por WhatsApp",
+      en: "Contact us on WhatsApp",
+    },
+    fabClose: {
+      es: "Cerrar selector de WhatsApp",
+      en: "Close WhatsApp selector",
+    },
+    panelKicker: {
+      es: "Escríbenos por WhatsApp",
+      en: "Message us on WhatsApp",
+    },
+    panelTitle: { es: "Elige tu región", en: "Choose your region" },
+    optionAria: {
+      es: "Escribir por WhatsApp a",
+      en: "Message on WhatsApp:",
     },
   },
   footer: {
-    tagline:
-      "Transformamos el delivery en un canal rentable, predecible y profesional para restaurantes en LATAM y Europa.",
-    // Phones regionales (WhatsApp). El phoneRaw va sin "+" y sin espacios
-    // (formato estándar para enlaces tel:/wa.me).
+    tagline: {
+      es: "Transformamos el delivery en un canal rentable, predecible y profesional para restaurantes en LATAM y Europa.",
+      en: "We transform delivery into a profitable, predictable and professional channel for restaurants in LATAM and Europe.",
+    },
+    navHeading: { es: "Navegación", en: "Navigation" },
+    contactHeading: { es: "Contacto", en: "Contact" },
+    // Phones regionales (WhatsApp). phoneRaw sin "+" ni espacios (tel:/wa.me).
     phones: [
-      { region: "LatAm", phone: "+54 9 11 5703 5170", phoneRaw: "5491157035170" },
-      { region: "Europe", phone: "+34 683 632 437", phoneRaw: "34683632437" },
-      { region: "USA", phone: "+54 9 11 4042 5909", phoneRaw: "5491140425909" },
+      {
+        region: { es: "LatAm", en: "LatAm" },
+        phone: "+54 9 11 5703 5170",
+        phoneRaw: "5491157035170",
+      },
+      {
+        region: { es: "Europa", en: "Europe" },
+        phone: "+34 683 632 437",
+        phoneRaw: "34683632437",
+      },
+      {
+        region: { es: "USA", en: "USA" },
+        phone: "+54 9 11 4042 5909",
+        phoneRaw: "5491140425909",
+      },
     ],
     email: "juanchi@pimenton.io",
-    copyright: "© 2026 Pimentón. Todos los derechos reservados.",
+    copyright: {
+      es: "© 2026 Pimentón. Todos los derechos reservados.",
+      en: "© 2026 Pimentón. All rights reserved.",
+    },
     credit: {
-      label: "Created by Deache.io",
+      label: { es: "Created by Deache.io", en: "Created by Deache.io" },
       href: "https://deache.io",
     },
     social: [
@@ -352,20 +714,23 @@ export const copy = {
         name: "LinkedIn",
         href: "https://www.linkedin.com/company/pimentóngrowth/",
       },
-      {
-        name: "Instagram",
-        href: "https://www.instagram.com/pimenton.io/",
-      },
+      { name: "Instagram", href: "https://www.instagram.com/pimenton.io/" },
       {
         name: "WhatsApp",
         href: "https://api.whatsapp.com/send/?phone=5491157035170",
       },
     ],
     links: [
-      { label: "¿Cómo lo hacemos?", href: "/como-lo-hacemos" },
-      { label: "Nuestros Servicios", href: "/servicios" },
-      { label: "FAQ", href: "/faq" },
-      { label: "Contacto", href: "/contacto" },
+      {
+        label: { es: "¿Cómo lo hacemos?", en: "How we do it" },
+        href: "/como-lo-hacemos",
+      },
+      {
+        label: { es: "Nuestros Servicios", en: "Our Services" },
+        href: "/servicios",
+      },
+      { label: { es: "FAQ", en: "FAQ" }, href: "/faq" },
+      { label: { es: "Contacto", en: "Contact" }, href: "/contacto" },
     ],
   },
 } as const;

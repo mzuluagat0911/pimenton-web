@@ -11,7 +11,7 @@ import { Check } from "lucide-react";
 import { ConsultationForm } from "@/components/forms/ConsultationForm";
 import { Highlight } from "@/components/ui-custom/Highlight";
 import { clients } from "@/data/clients";
-import { copy } from "@/data/copy";
+import { useCopy } from "@/components/i18n/LanguageContext";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -126,7 +126,7 @@ function RotatingClientLogos({ reduced }: { reduced: boolean }) {
  */
 export function Consultancy() {
   const { heading, headingAccent, description, socialProof, bullets } =
-    copy.consultationForm.intro;
+    useCopy().consultationForm.intro;
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.15 });
   const reduced = useReducedMotion() ?? false;

@@ -96,11 +96,12 @@ const jsonLd = {
         "@type": "OfferCatalog",
         name: "Soluciones de delivery",
         itemListElement: copy.services.items.map((s) => ({
+          // JSON-LD server-side en español (la metadata del sitio queda en es).
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: s.name,
-            description: s.description,
+            name: s.name.es,
+            description: s.description.es,
           },
         })),
       },

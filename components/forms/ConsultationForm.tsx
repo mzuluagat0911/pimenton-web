@@ -33,7 +33,11 @@ import {
   type SizeId,
 } from "@/data/consultationForm";
 import { Highlight, splitHighlight } from "@/components/ui-custom/Highlight";
-import { copy } from "@/data/copy";
+import {
+  useCopy,
+  useLanguage,
+  useT,
+} from "@/components/i18n/LanguageContext";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const AUTO_ADVANCE_DELAY = 600;
@@ -503,15 +507,17 @@ function Step1Category({
   dispatch: React.Dispatch<Action>;
   reduced: boolean;
 }) {
+  const t = useT();
+  const aria = useCopy().consultationForm.aria;
   return (
-    <div role="group" aria-label="Categorías">
+    <div role="group" aria-label={aria.categories}>
       <div className="grid grid-cols-2 gap-3 sm:gap-4">
         {categories.map((c) => {
           const isSelected = data.categories.includes(c.id);
           return (
             <OptionCard
               key={c.id}
-              label={c.label}
+              label={t(c.label)}
               emoji={c.emoji}
               fallback={c.fallback}
               selected={isSelected}
@@ -535,7 +541,10 @@ function Step2Country({
   dispatch: React.Dispatch<Action>;
   reduced: boolean;
 }) {
-  const formCopy = copy.consultationForm.step2;
+  const t = useT();
+  const cf = useCopy().consultationForm;
+  const formCopy = cf.step2;
+  const aria = cf.aria;
   const [otherOpen, setOtherOpen] = useState(false);
   const [query, setQuery] = useState("");
   const { trigger, cancel } = useAutoAdvance(() =>
@@ -592,11 +601,11 @@ function Step2Country({
         {featuredCountries.map((c) => (
           <OptionCard
             key={c.isoCode}
-            label={c.label}
+            label={t(c.label)}
             emoji={c.emoji}
             fallback={c.fallback}
             selected={data.countryIso === c.isoCode}
-            onClick={() => handleFeatured(c.isoCode, c.label)}
+            onClick={() => handleFeatured(c.isoCode, t(c.label))}
             reduced={reduced}
           />
         ))}
@@ -630,7 +639,7 @@ function Step2Country({
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder={formCopy.searchPlaceholder}
-                  aria-label="Buscar país"
+                  aria-label={aria.searchCountry}
                   className="block h-11 w-full rounded-xl border border-pimenton-border bg-pimenton-surface pl-10 pr-3 text-sm text-pimenton-text outline-none placeholder:text-pimenton-text-muted/70 focus:border-pimenton-accent focus:ring-2 focus:ring-pimenton-accent/25 sm:text-base"
                 />
               </div>
@@ -638,7 +647,7 @@ function Step2Country({
               <ul
                 className="mt-3 max-h-72 overflow-y-auto"
                 role="listbox"
-                aria-label="Lista de países"
+                aria-label={aria.countryList}
               >
                 {filteredOthers.length === 0 && (
                   <li className="px-3 py-4 text-center text-sm text-pimenton-text-muted">
@@ -691,14 +700,17 @@ function Step3Size({
     trigger();
   };
 
+  const t = useT();
+  const aria = useCopy().consultationForm.aria;
+
   return (
-    <div role="radiogroup" aria-label="Tamaño de la operación">
+    <div role="radiogroup" aria-label={aria.sizeGroup}>
       <div className="grid grid-cols-2 gap-3 sm:gap-4">
         {sizes.map((s) => (
           <OptionCard
             key={s.id}
-            label={s.label}
-            caption={s.caption}
+            label={t(s.label)}
+            caption={t(s.caption)}
             emoji={s.emoji}
             fallback={s.fallback}
             emojiSize={64}
@@ -719,7 +731,7 @@ function Step4Details({
   data: FormData;
   dispatch: React.Dispatch<Action>;
 }) {
-  const formCopy = copy.consultationForm.step4;
+  const formCopy = useCopy().consultationForm.step4;
   // Pre-fill del teléfono con el código del país elegido en step 2 — sólo
   // la primera vez que el usuario llega a este paso y no escribió nada.
   const prefilledRef = useRef(false);
@@ -842,7 +854,7 @@ function SuccessScreen({
   reduced: boolean;
   link: string;
 }) {
-  const successCopy = copy.consultationForm.success;
+  const successCopy = useCopy().consultationForm.success;
   const restaurant = data.restaurant.trim();
   // Partimos el template "¡Listo, {restaurant}!" para resaltar el nombre
   // del restaurante en coral. Si por algún edge case viene vacío, caemos
@@ -874,7 +886,7 @@ function SuccessScreen({
             {titleAfter}
           </>
         ) : (
-          "¡Listo!"
+          successCopy.titleFallback
         )}
       </motion.h3>
 
@@ -912,7 +924,8 @@ function SuccessScreen({
 export function ConsultationForm() {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   const reduced = useReducedMotion() ?? false;
-  const formCopy = copy.consultationForm;
+  const formCopy = useCopy().consultationForm;
+  const { lang } = useLanguage();
 
   const valid = isValid(state.step, state.data);
 
@@ -936,18 +949,18 @@ export function ConsultationForm() {
     if (!isValid(4, state.data)) return;
     const snap = buildSnapshot();
     if (!snap) return;
-    const link = buildWhatsappLink(snap);
+    const link = buildWhatsappLink(snap, lang);
     window.open(link, "_blank", "noopener,noreferrer");
     dispatch({ type: "next" });
-  }, [state.data, buildSnapshot]);
+  }, [state.data, buildSnapshot, lang]);
 
   // Para el botón de WhatsApp en success — pre-armamos el link una vez
   // estamos en success (no antes, los datos pueden no estar completos).
   const successLink = useMemo(() => {
     if (state.step !== "success") return "";
     const snap = buildSnapshot();
-    return snap ? buildWhatsappLink(snap) : "";
-  }, [state.step, buildSnapshot]);
+    return snap ? buildWhatsappLink(snap, lang) : "";
+  }, [state.step, buildSnapshot, lang]);
 
   // Resolver label/title por paso para el header del wizard.
   const stepLabel =
@@ -965,13 +978,21 @@ export function ConsultationForm() {
   // Todos en coral para consistencia visual dentro del wizard.
   const stepTitle =
     state.step === 1
-      ? splitHighlight(formCopy.step1.title, "tu categoría", "coral")
+      ? splitHighlight(formCopy.step1.title, formCopy.step1.titleAccent, "coral")
       : state.step === 2
-        ? splitHighlight(formCopy.step2.title, "país", "coral")
+        ? splitHighlight(formCopy.step2.title, formCopy.step2.titleAccent, "coral")
         : state.step === 3
-          ? splitHighlight(formCopy.step3.title, "tu operación?", "coral")
+          ? splitHighlight(
+              formCopy.step3.title,
+              formCopy.step3.titleAccent,
+              "coral",
+            )
           : state.step === 4
-            ? splitHighlight(formCopy.step4.title, "tus datos", "coral")
+            ? splitHighlight(
+                formCopy.step4.title,
+                formCopy.step4.titleAccent,
+                "coral",
+              )
             : null;
 
   const progressStep = state.step === "success" ? 4 : state.step;

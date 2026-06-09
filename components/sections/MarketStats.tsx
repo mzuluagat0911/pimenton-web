@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "motion/react";
 import { splitHighlight } from "@/components/ui-custom/Highlight";
-import { copy } from "@/data/copy";
+import { useCopy } from "@/components/i18n/LanguageContext";
 import {
   FacturacionIcon,
   ImpresionesIcon,
@@ -21,7 +21,7 @@ const ICON_MAP = {
 } as const;
 
 type IconKey = keyof typeof ICON_MAP;
-type Item = (typeof copy.marketStats.items)[number];
+type Item = ReturnType<typeof useCopy>["marketStats"]["items"][number];
 
 function MarketCard({
   item,
@@ -66,7 +66,7 @@ function MarketCard({
 }
 
 export function MarketStats() {
-  const { heading, items } = copy.marketStats;
+  const { heading, items } = useCopy().marketStats;
   const reduced = useReducedMotion() ?? false;
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.2 });

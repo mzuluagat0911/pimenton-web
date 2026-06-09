@@ -10,13 +10,13 @@ import {
   useTransform,
 } from "motion/react";
 import { ClientMarquee } from "@/components/ui-custom/ClientMarquee";
-import { copy } from "@/data/copy";
+import { useCopy } from "@/components/i18n/LanguageContext";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const COUNT_DURATION = 1.4;
 const STAGGER = 0.12;
 
-type StatItem = (typeof copy.stats.items)[number];
+type StatItem = ReturnType<typeof useCopy>["stats"]["items"][number];
 type BgKey = StatItem["bg"];
 
 /**
@@ -178,7 +178,7 @@ function StatCard({
 }
 
 export function Stats() {
-  const { items } = copy.stats;
+  const { items } = useCopy().stats;
   const reduced = useReducedMotion() ?? false;
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.2 });

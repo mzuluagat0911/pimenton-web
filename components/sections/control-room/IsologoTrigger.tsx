@@ -10,6 +10,7 @@ import {
 } from "motion/react";
 import { ArrowRight, X } from "lucide-react";
 import { CenterIsologo } from "./CenterIsologo";
+import { useCopy } from "@/components/i18n/LanguageContext";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -46,6 +47,7 @@ type Props = {
  *   glow base, descargas) — sólo agrega capas encima.
  */
 export function IsologoTrigger({ className = "", glowInset = "-60%" }: Props) {
+  const cr = useCopy().controlRoom;
   const reduced = useReducedMotion() ?? false;
   const wrapperRef = useRef<HTMLDivElement>(null);
   const inView = useInView(wrapperRef, { once: true, amount: 0.3 });
@@ -102,7 +104,7 @@ export function IsologoTrigger({ className = "", glowInset = "-60%" }: Props) {
     >
       <motion.button
         type="button"
-        aria-label="Ver Control Room en acción"
+        aria-label={cr.watchAria}
         aria-haspopup="dialog"
         aria-expanded={open}
         onClick={handleClick}
@@ -156,7 +158,7 @@ export function IsologoTrigger({ className = "", glowInset = "-60%" }: Props) {
             className="pointer-events-none absolute left-1/2 top-full mt-6 -translate-x-1/2 whitespace-nowrap"
           >
             <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.2em] text-pimenton-accent sm:text-sm">
-              Ver en acción
+              {cr.watchLabel}
               <ArrowRight aria-hidden className="size-3.5" />
             </span>
           </motion.div>
@@ -184,6 +186,7 @@ function VideoModal({
   videoRef: React.RefObject<HTMLVideoElement | null>;
   reduced: boolean;
 }) {
+  const cr = useCopy().controlRoom;
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
@@ -254,7 +257,7 @@ function VideoModal({
           {/* Backdrop como button para que sea focuseable y semántico. */}
           <button
             type="button"
-            aria-label="Cerrar"
+            aria-label={cr.closeAria}
             onClick={onClose}
             className="absolute inset-0 cursor-default bg-pimenton-dark/65 backdrop-blur-sm outline-none"
           />
@@ -264,7 +267,7 @@ function VideoModal({
           <motion.div
             role="dialog"
             aria-modal="true"
-            aria-label="Control Room en acción"
+            aria-label={cr.modalAria}
             initial={
               reduced ? { opacity: 0 } : { opacity: 0, scale: 0.95 }
             }
@@ -283,7 +286,7 @@ function VideoModal({
             <button
               type="button"
               onClick={onClose}
-              aria-label="Cerrar modal"
+              aria-label={cr.closeModalAria}
               className="absolute right-3 top-3 z-10 flex size-9 cursor-pointer items-center justify-center rounded-full bg-pimenton-dark/70 text-pimenton-text-on-dark backdrop-blur-sm outline-none transition-all hover:scale-105 hover:bg-pimenton-dark/90 focus-visible:ring-2 focus-visible:ring-pimenton-accent sm:right-4 sm:top-4"
             >
               <X className="size-5" />

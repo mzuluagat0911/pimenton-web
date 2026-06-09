@@ -10,7 +10,7 @@ import {
   AnimatePresence,
 } from "motion/react";
 import { splitHighlight } from "@/components/ui-custom/Highlight";
-import { copy } from "@/data/copy";
+import { useCopy } from "@/components/i18n/LanguageContext";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -18,7 +18,7 @@ const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 // que el CTA primario del hero del Home.
 const MotionLink = motion.create(Link);
 
-type Item = (typeof copy.services.items)[number];
+type Item = ReturnType<typeof useCopy>["services"]["items"][number];
 
 // Logos de plataformas que usa cada servicio, cada uno en un círculo gris
 // con el logo en blanco — mismo tratamiento que el Control Room.
@@ -300,8 +300,8 @@ function MobileAccordion({
 }
 
 export function Services({
-  eyebrow = copy.services.eyebrow,
-  heading = copy.services.heading,
+  eyebrow,
+  heading,
   headingHighlight,
   showCta = true,
   ctaHref,
@@ -324,7 +324,12 @@ export function Services({
   /** Muestra los logos de plataformas por servicio (solo /servicios). */
   showPlatforms?: boolean;
 } = {}) {
-  const { cta, items } = copy.services;
+  const c = useCopy();
+  const { cta, items } = c.services;
+  // eyebrow/heading: si la página los pasa (p.ej. /servicios), se usan tal
+  // cual; si no, caen al copy traducido.
+  const resolvedEyebrow = eyebrow ?? c.services.eyebrow;
+  const resolvedHeading = heading ?? c.services.heading;
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.15 });
   const reduced = useReducedMotion() ?? false;
@@ -355,7 +360,7 @@ export function Services({
             aria-hidden
             className="mr-3 inline-block h-px w-8 bg-pimenton-accent"
           />
-          {eyebrow}
+          {resolvedEyebrow}
         </motion.p>
         <motion.h2
           initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20 }}
@@ -370,8 +375,8 @@ export function Services({
           className="mt-6 max-w-3xl text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-4xl"
         >
           {headingHighlight
-            ? splitHighlight(heading, headingHighlight, "coral")
-            : heading}
+            ? splitHighlight(resolvedHeading, headingHighlight, "coral")
+            : resolvedHeading}
         </motion.h2>
 
         {/* Mobile accordion */}

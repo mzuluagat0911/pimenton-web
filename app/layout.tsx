@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import { Footer } from "@/components/layout/Footer";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
+import { LanguageProvider } from "@/components/i18n/LanguageContext";
 import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
 import "./globals.css";
 
@@ -98,11 +99,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" className={`${helvetica.variable} ${encodeSans.variable}`}>
       <body className="font-sans antialiased bg-pimenton-bg text-pimenton-text">
-        <SmoothScroll />
-        <SiteHeader />
-        {children}
-        <Footer />
-        <WhatsAppFab />
+        <LanguageProvider>
+          <SmoothScroll />
+          <SiteHeader />
+          {children}
+          <Footer />
+          <WhatsAppFab />
+        </LanguageProvider>
       </body>
     </html>
   );

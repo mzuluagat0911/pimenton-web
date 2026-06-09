@@ -7,7 +7,7 @@ import {
   useInView,
   useReducedMotion,
 } from "motion/react";
-import { copy } from "@/data/copy";
+import { useCopy } from "@/components/i18n/LanguageContext";
 import { locations, type Location } from "@/data/locations";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -118,7 +118,7 @@ function MapPin({
 }
 
 export function WhereWeOperate() {
-  const { heading, subheading } = copy.whereWeOperate;
+  const { heading, subheading } = useCopy().whereWeOperate;
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.2 });
   const reduced = useReducedMotion() ?? false;

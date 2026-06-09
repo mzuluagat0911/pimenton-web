@@ -9,7 +9,7 @@ import {
 } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { Highlight } from "@/components/ui-custom/Highlight";
-import { copy } from "@/data/copy";
+import { useCopy } from "@/components/i18n/LanguageContext";
 
 const NOISE_SVG =
   "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")";
@@ -17,13 +17,8 @@ const NOISE_SVG =
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export function Hero() {
-  const {
-    headline,
-    headlineAccent,
-    subhead,
-    ctaPrimary,
-    ctaSecondary,
-  } = copy.hero;
+  const { headline, headlineAccent, subhead, ctaPrimary, ctaSecondary } =
+    useCopy().hero;
 
   // Anchor click → smooth-scroll via Lenis if present, fallback to
   // native scrollIntoView. Header has the same pattern.

@@ -9,7 +9,7 @@ import {
 } from "motion/react";
 import { Check, X } from "lucide-react";
 import { splitHighlight } from "@/components/ui-custom/Highlight";
-import { copy } from "@/data/copy";
+import { useCopy } from "@/components/i18n/LanguageContext";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const ITEM_STAGGER = 0.08;
@@ -134,10 +134,12 @@ function SwitchToggle({
   active,
   onToggle,
   reduced,
+  aria,
 }: {
   active: boolean;
   onToggle: () => void;
   reduced: boolean;
+  aria: string;
 }) {
   // Distancia que viaja el thumb. Riel 96px, padding 6px×2, thumb 44px →
   // 96 − 12 − 44 = 40px.
@@ -147,7 +149,7 @@ function SwitchToggle({
       type="button"
       role="switch"
       aria-checked={active}
-      aria-label="Activar Pimentón en mi delivery"
+      aria-label={aria}
       onClick={onToggle}
       className="relative flex h-14 w-24 cursor-pointer items-center rounded-full p-1.5 outline-none transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-pimenton-accent focus-visible:ring-offset-2 focus-visible:ring-offset-pimenton-dark"
       style={{
@@ -193,7 +195,8 @@ function SwitchToggle({
 }
 
 export function Comparison() {
-  const { heading, off, on, footerLabel, items } = copy.comparison;
+  const { heading, off, on, footerLabel, toggleAria, items } =
+    useCopy().comparison;
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.2 });
   const reduced = useReducedMotion() ?? false;
@@ -318,7 +321,12 @@ export function Comparison() {
             offClassName="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-accent sm:text-xs"
             onClassName="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-accent sm:text-xs"
           />
-          <SwitchToggle active={active} onToggle={toggle} reduced={reduced} />
+          <SwitchToggle
+            active={active}
+            onToggle={toggle}
+            reduced={reduced}
+            aria={toggleAria}
+          />
           <CrossFade
             active={active}
             off={off.toggleLabel}

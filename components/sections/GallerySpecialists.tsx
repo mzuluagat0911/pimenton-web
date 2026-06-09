@@ -4,15 +4,17 @@ import { useRef } from "react";
 import { motion, useInView, useReducedMotion } from "motion/react";
 import { ImageTrail } from "@/components/ui/image-trail";
 import { galleryImages } from "@/data/gallery";
+import { useCopy, useT } from "@/components/i18n/LanguageContext";
 
 // Texto fijo encima — mix-blend-exclusion lo mantiene legible sobre el
 // fondo y las imágenes que aparecen con el cursor. pointer-events-none
 // para no bloquear el seguimiento del mouse/touch.
 function GalleryOverlay() {
+  const heading = useCopy().specialists.galleryHeading;
   return (
     <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-6 text-center mix-blend-exclusion">
       <h2 className="font-display text-4xl font-black leading-tight tracking-tight text-pimenton-bg md:text-6xl lg:text-8xl">
-        Especialistas en delivery,
+        {heading}
         <br />
         {/* Logo coral en lugar de la palabra "Pimentón". Altura ≈ font-size
             por breakpoint para que coincida con el tamaño del texto.
@@ -32,6 +34,7 @@ function GalleryOverlay() {
 // Fallback para prefers-reduced-motion: grid estático de las 6 imágenes,
 // sin el efecto de trail (que es puramente de movimiento).
 function StaticGalleryGrid() {
+  const t = useT();
   return (
     <div className="grid h-full w-full grid-cols-2 grid-rows-3 gap-1 sm:grid-cols-3 sm:grid-rows-2">
       {galleryImages.map((img, i) => (
@@ -46,7 +49,7 @@ function StaticGalleryGrid() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={img.src}
-            alt={img.alt}
+            alt={t(img.alt)}
             className="absolute inset-0 h-full w-full object-cover"
             draggable={false}
           />

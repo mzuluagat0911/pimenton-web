@@ -12,7 +12,7 @@ import {
   useTransform,
 } from "motion/react";
 import { Star } from "lucide-react";
-import { copy } from "@/data/copy";
+import { useCopy } from "@/components/i18n/LanguageContext";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const ENTRY_SPRING = {
@@ -24,7 +24,7 @@ const ENTRY_SPRING = {
 const TILT_SPRING = { stiffness: 220, damping: 22 };
 const TILT_MAX_DEG = 5;
 
-type TestimonialItem = (typeof copy.testimonials.items)[number];
+type TestimonialItem = ReturnType<typeof useCopy>["testimonials"]["items"][number];
 type Metric = TestimonialItem["metrics"][number];
 
 const METRIC_COUNT_DURATION = 1.4;
@@ -147,8 +147,9 @@ function useCardTilt(disabled: boolean) {
 }
 
 function StarRow() {
+  const aria = useCopy().testimonials.starsAria;
   return (
-    <div aria-label="5 estrellas" className="flex gap-1 text-pimenton-accent">
+    <div aria-label={aria} className="flex gap-1 text-pimenton-accent">
       {Array.from({ length: 5 }).map((_, i) => (
         <Star key={i} className="size-4 fill-current" strokeWidth={0} />
       ))}
@@ -319,7 +320,7 @@ function TestimonialCard({
 }
 
 export function Testimonials() {
-  const { intro, items } = copy.testimonials;
+  const { intro, items } = useCopy().testimonials;
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.15 });
   const reduced = useReducedMotion() ?? false;

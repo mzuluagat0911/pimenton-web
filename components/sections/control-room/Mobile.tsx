@@ -1,6 +1,6 @@
 "use client";
 
-import { copy } from "@/data/copy";
+import { useCopy } from "@/components/i18n/LanguageContext";
 import { platforms, type PlatformRing } from "@/data/platforms";
 import { IsologoTrigger } from "./IsologoTrigger";
 
@@ -19,7 +19,7 @@ const TIER_GRID: Record<PlatformRing, string> = {
 const TIER_ORDER: PlatformRing[] = ["inner", "middle", "outer"];
 
 export function ControlRoomMobile() {
-  const { eyebrow, heading } = copy.controlRoom;
+  const { eyebrow, heading } = useCopy().controlRoom;
 
   return (
     // Padding sm:px-16 alinea con MarketStats (que también usa sm:px-16).
