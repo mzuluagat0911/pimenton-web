@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   AnimatePresence,
   motion,
@@ -203,6 +203,16 @@ export function Comparison() {
 
   const [active, setActive] = useState(false);
   const [pulseCount, setPulseCount] = useState(0);
+
+  // Al entrar en viewport se activa sola (muestra "Con Pimentón"). El efecto
+  // sólo corre en la transición a inView (once: true), así que si el usuario
+  // la apaga manualmente después, queda apagada (no se vuelve a forzar).
+  useEffect(() => {
+    if (inView) {
+      setActive(true);
+      setPulseCount((c) => c + 1);
+    }
+  }, [inView]);
 
   const toggle = () => {
     setActive((a) => !a);

@@ -89,7 +89,9 @@ export function MarketStats() {
           transition={{ duration: 0.8, ease: EASE }}
           className="max-w-3xl whitespace-pre-line text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl"
         >
-          {splitHighlight(heading, "tu delivery?", "mint")}
+          {/* "tu delivery?" no se parte: queda en una sola línea (evita la
+              palabra huérfana). */}
+          {splitHighlight(heading, "tu delivery?", "mint", "whitespace-nowrap")}
         </motion.h2>
 
         <div className="mt-16 grid grid-cols-1 gap-6 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
