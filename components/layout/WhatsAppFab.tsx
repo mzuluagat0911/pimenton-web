@@ -219,7 +219,7 @@ export function WhatsAppFab() {
             }
             transition={{ duration: reduced ? 0.18 : 0.28, ease: EASE }}
             style={{ transformOrigin: "bottom right" }}
-            className="fixed bottom-24 right-6 z-30 w-[min(calc(100vw-3rem),22rem)] rounded-2xl border border-pimenton-border bg-pimenton-surface p-4 shadow-[0_24px_60px_-20px_rgba(15,15,14,0.32)] sm:bottom-28 sm:right-8 sm:p-5"
+            className="fixed bottom-28 right-6 z-30 w-[min(calc(100vw-3rem),22rem)] rounded-2xl border border-pimenton-border bg-pimenton-surface p-4 shadow-[0_24px_60px_-20px_rgba(15,15,14,0.32)] sm:bottom-32 sm:right-8 sm:p-5"
           >
             <div className="px-1 pt-1">
               <p className="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-pimenton-accent">
