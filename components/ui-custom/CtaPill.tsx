@@ -9,7 +9,7 @@ import { motion, useReducedMotion } from "motion/react";
 const MotionLink = motion.create(Link);
 
 // Styling canónico del CTA de la web (replica el CTA primario del hero del
-// Home): pill full-width en mobile / auto en sm+, sin uppercase, Encode Sans.
+// Home): pill full-width en mobile / auto en sm+, sin uppercase, Helvetica.
 // `coral` es el default; `dark` (pill oscuro, texto crema) se usa sobre
 // fondos coral donde el coral no contrastaría.
 const PILL_BASE =

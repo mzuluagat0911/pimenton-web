@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   AnimatePresence,
   motion,
@@ -61,16 +61,21 @@ function ComparisonItem({
   index,
   active,
   reduced,
+  scanning,
 }: {
   offText: string;
   onText: string;
   index: number;
   active: boolean;
   reduced: boolean;
+  scanning: boolean;
 }) {
-  const delay = reduced ? 0 : index * ITEM_STAGGER;
-  const iconDuration = reduced ? 0.2 : 0.35;
-  const textDuration = reduced ? 0.2 : 0.45;
+  // Durante el escáner: stagger más amplio (los ítems se prenden uno por uno,
+  // en sincronía con el barrido) y flip más lento, para que se vea claro.
+  const stagger = scanning ? 0.22 : ITEM_STAGGER;
+  const delay = reduced ? 0 : index * stagger;
+  const iconDuration = reduced ? 0.2 : scanning ? 0.5 : 0.35;
+  const textDuration = reduced ? 0.2 : scanning ? 0.55 : 0.45;
 
   return (
     <li className="grid grid-cols-[auto_1fr] items-start gap-3 py-3.5 sm:gap-4 sm:py-4">
@@ -203,11 +208,31 @@ export function Comparison() {
 
   const [active, setActive] = useState(false);
   const [pulseCount, setPulseCount] = useState(0);
+  // `scanning`: la PRIMERA activación al scrollear corre con una animación más
+  // lenta y secuencial (efecto "escáner" — los ítems se revelan uno a uno y el
+  // barrido baja más despacio). Los toggles manuales posteriores son rápidos.
+  const [scanning, setScanning] = useState(false);
+
+  // Al entrar en viewport se activa sola con el efecto escáner. El efecto sólo
+  // corre en la transición a inView (once: true), así que si el usuario la
+  // apaga manualmente después, queda apagada (no se vuelve a forzar).
+  useEffect(() => {
+    if (!inView) return;
+    setActive(true);
+    setScanning(true);
+    setPulseCount((c) => c + 1);
+    const t = setTimeout(() => setScanning(false), 1700);
+    return () => clearTimeout(t);
+  }, [inView]);
 
   const toggle = () => {
+    setScanning(false); // toggle manual → rápido
     setActive((a) => !a);
     setPulseCount((c) => c + 1);
   };
+
+  // Duraciones de cross-fade: más lentas durante el escáner.
+  const crossDur = scanning ? 0.7 : 0.4;
 
   return (
     <section
@@ -245,7 +270,7 @@ export function Comparison() {
               : "0 8px 24px -16px rgba(0, 0, 0, 0.5)",
           }}
           style={{ borderWidth: 2, borderStyle: "solid" }}
-          transition={{ duration: 0.6, ease: EASE }}
+          transition={{ duration: scanning ? 0.9 : 0.6, ease: EASE }}
         >
           {/* Energy pulse — vertical sweep on every toggle */}
           <AnimatePresence>
@@ -253,10 +278,22 @@ export function Comparison() {
               <motion.span
                 key={pulseCount}
                 aria-hidden
-                initial={{ y: "-100%", opacity: 0.8 }}
-                animate={{ y: "100%", opacity: 0 }}
-                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                className="pointer-events-none absolute inset-x-0 z-10 h-48 bg-gradient-to-b from-transparent via-pimenton-accent/35 to-transparent"
+                initial={{ y: "-100%", opacity: scanning ? 0 : 0.8 }}
+                animate={
+                  scanning
+                    ? { y: "100%", opacity: [0, 0.9, 0.9, 0] }
+                    : { y: "100%", opacity: 0 }
+                }
+                transition={
+                  scanning
+                    ? { duration: 1.5, ease: "easeInOut", times: [0, 0.1, 0.85, 1] }
+                    : { duration: 0.9, ease: [0.22, 1, 0.36, 1] }
+                }
+                className={`pointer-events-none absolute inset-x-0 z-10 bg-gradient-to-b from-transparent to-transparent ${
+                  scanning
+                    ? "h-32 via-pimenton-accent/55"
+                    : "h-48 via-pimenton-accent/35"
+                }`}
               />
             )}
           </AnimatePresence>
@@ -265,6 +302,7 @@ export function Comparison() {
           <div className="relative z-0 px-6 pt-6 sm:px-10 sm:pt-8">
             <CrossFade
               active={active}
+              duration={crossDur}
               off={off.title}
               on={
                 /* eslint-disable-next-line @next/next/no-img-element */
@@ -291,6 +329,7 @@ export function Comparison() {
                 index={i}
                 active={active}
                 reduced={reduced}
+                scanning={scanning}
               />
             ))}
           </ul>
@@ -302,6 +341,7 @@ export function Comparison() {
             </span>
             <CrossFade
               active={active}
+              duration={crossDur}
               off={off.footer}
               on={on.footer}
               className="text-sm sm:text-base"
@@ -315,6 +355,7 @@ export function Comparison() {
         <div className="mt-10 flex flex-col items-center gap-3 sm:mt-12">
           <CrossFade
             active={active}
+            duration={crossDur}
             off={off.toggleKicker}
             on={on.toggleKicker}
             className="justify-items-center"
@@ -329,6 +370,7 @@ export function Comparison() {
           />
           <CrossFade
             active={active}
+            duration={crossDur}
             off={off.toggleLabel}
             on={on.toggleLabel}
             className="justify-items-center"

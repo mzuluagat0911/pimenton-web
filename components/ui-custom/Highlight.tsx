@@ -45,13 +45,16 @@ export function splitHighlight(
   text: string,
   segment: string,
   color: HighlightColor,
+  className?: string,
 ): ReactNode {
   const i = text.indexOf(segment);
   if (i < 0) return text;
   return (
     <>
       {text.slice(0, i)}
-      <Highlight color={color}>{segment}</Highlight>
+      <Highlight color={color} className={className}>
+        {segment}
+      </Highlight>
       {text.slice(i + segment.length)}
     </>
   );

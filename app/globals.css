@@ -4,17 +4,30 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Banderas: fuente que SÓLO trae los glifos de bandera (regional indicators).
+   Con unicode-range acotado a U+1F1E6–1F1FF, sólo aplica a esos codepoints y
+   sólo se descarga si hay una bandera en pantalla. Así 🇦🇷 etc. se ven en
+   TODOS los dispositivos (Windows no renderiza flags emoji nativos). El resto
+   del texto sigue en Helvetica (la fuente no tiene glifos de letras). */
+@font-face {
+  font-family: "Twemoji Country Flags";
+  src: url("/fonts/flags/TwemojiCountryFlags.woff2") format("woff2");
+  font-display: swap;
+  unicode-range: U+1F1E6-1F1FF;
+}
+
 @theme {
-  /* Fuentes — mapeadas a next/font CSS vars.
-     --font-display = Helvetica → títulos (h1-h6) + display (números grandes,
-                      títulos de card, frases Specialists). Utility: font-display
-     --font-sans    = Encode Sans → texto corrido (párrafos, subtítulos,
-                      descripciones, nombres). Es el default del body.
-     --font-mono    = Encode Sans → alias legacy del token que usan kickers/labels
-                      (NO es monoespaciada; se conserva el nombre para no tocar componentes) */
-  --font-display: var(--font-helvetica), "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-sans: var(--font-encode), system-ui, sans-serif;
-  --font-mono: var(--font-encode), system-ui, sans-serif;
+  /* Fuentes — TODO el sitio usa Helvetica (Pimentón no usa Encode Sans).
+     Los tres tokens apuntan a la misma familia, así headings, texto corrido y
+     kickers/labels renderizan Helvetica. Se conservan los tres nombres
+     (display/sans/mono) para no tocar las utilities ya usadas en componentes
+     (font-display / font-sans / font-mono). Sólo hay 4 masters (regular/bold ×
+     normal/italic): los weights intermedios (500/600) resuelven al más cercano
+     por el algoritmo de matching de CSS. "Twemoji Country Flags" va primero
+     (sólo afecta codepoints de bandera por su unicode-range). */
+  --font-display: "Twemoji Country Flags", var(--font-helvetica), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: "Twemoji Country Flags", var(--font-helvetica), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "Twemoji Country Flags", var(--font-helvetica), "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   /* Fondos light (dominantes) */
   --color-pimenton-bg: #FAF1E3;
@@ -48,6 +61,12 @@
   /* Secundarios (usar con moderación) */
   --color-pimenton-mint: #C3DDD8;
   --color-pimenton-yellow: #FFF081;
+
+  /* WhatsApp — verde clásico de marca. Reservado para el FAB/CTA de
+     contacto directo; pedido explícito del cliente. No usar como acento
+     general (eso es coral). */
+  --color-pimenton-whatsapp: #25D366;
+  --color-pimenton-whatsapp-deep: #1FB957;
 }
 
 html {
@@ -62,10 +81,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Títulos → fuente display (Helvetica). Las utilities (font-display /
-   font-sans / font-mono) ganan sobre esta regla por el orden de capas,
-   así un heading con font-mono —p.ej. los labels <h3> del footer—
-   permanece en Encode sin tocar el componente. */
+/* Sólo aplica el UPPERCASE de los títulos. La familia ya es Helvetica en
+   todo el sitio (los tres tokens apuntan a Helvetica), así que un <h3> con
+   font-mono —p.ej. los labels del footer— sigue en Helvetica pero sin
+   uppercase (la utility gana a esta regla por el orden de capas). */
 @layer base {
   h1,
   h2,

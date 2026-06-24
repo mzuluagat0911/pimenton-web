@@ -136,7 +136,10 @@ export function Hero() {
             >
               {headStart}
               <Highlight color="coral">{headlineAccent}</Highlight>
-              {headEnd}
+              {/* Quiebre de línea pedido: la parte resaltada queda en la
+                  primera línea y el resto baja. */}
+              <br />
+              {headEnd.replace(/^\s+/, "")}
             </motion.h1>
 
             <motion.p
@@ -165,16 +168,20 @@ export function Hero() {
                 />
               </motion.a>
 
-              <motion.a
-                href={ctaSecondary.href}
-                onClick={anchorClick(ctaSecondary.href)}
+              {/* Abre el selector de región de WhatsApp (LatAm / Europa /
+                  USA) — dispara el mismo panel del FAB fijo vía evento. */}
+              <motion.button
+                type="button"
+                onClick={() =>
+                  window.dispatchEvent(new Event("pimenton:open-whatsapp"))
+                }
                 whileHover={shouldReduceMotion ? undefined : { scale: 1.03 }}
                 whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 400, damping: 22 }}
                 className="inline-flex w-full sm:w-auto cursor-pointer items-center justify-center rounded-full border border-pimenton-text-on-dark/40 bg-pimenton-text-on-dark/5 px-9 py-3.5 text-base sm:text-lg font-semibold text-pimenton-text-on-dark backdrop-blur-sm transition-colors duration-300 hover:border-pimenton-text-on-dark/80 hover:bg-pimenton-text-on-dark/10"
               >
                 {ctaSecondary.label}
-              </motion.a>
+              </motion.button>
             </motion.div>
           </div>
         </div>
