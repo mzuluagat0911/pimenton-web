@@ -43,17 +43,23 @@ export function HeroComoLoHacemos() {
       <div className="relative z-10 mx-auto w-full max-w-7xl">
         <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] tracking-tight text-pimenton-bg sm:text-6xl lg:text-7xl">
           <motion.span className="block" {...fadeUp(0)}>
-            <Highlight color="coral">Operamos</Highlight> tu delivery como si
-            fuera nuestro.
+            <Highlight color="coral">Operamos</Highlight>
+          </motion.span>
+          <motion.span className="block" {...fadeUp(0.08)}>
+            tu delivery como
+          </motion.span>
+          <motion.span className="block" {...fadeUp(0.16)}>
+            si fuera nuestro
           </motion.span>
         </h1>
 
         <motion.p
-          {...fadeUp(0.14)}
+          {...fadeUp(0.24)}
           className="mt-7 max-w-[640px] text-lg leading-relaxed text-pimenton-text-on-dark-muted sm:text-xl"
         >
-          Datos reales, decisiones diarias y un Growth Manager dedicado a tu
-          negocio.
+          Datos reales, decisiones diarias y un Growth Manager{" "}
+          <br className="hidden sm:inline" />
+          dedicado a tu negocio.
         </motion.p>
       </div>
     </section>

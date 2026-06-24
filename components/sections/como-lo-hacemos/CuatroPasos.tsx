@@ -130,36 +130,49 @@ export function CuatroPasos() {
   return (
     <section className="bg-pimenton-bg px-[5%] py-24 sm:px-16 sm:py-32 lg:px-24">
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-12 lg:grid-cols-[2fr_3fr] lg:gap-16">
-        {/* Columna izquierda — heading (sticky en desktop, acompaña el scroll
-            hasta el final de la sección) */}
-        <div className="lg:sticky lg:top-28 lg:self-start">
-          <motion.h2
+        {/* Columna izquierda — heading + subtítulo arriba (fijos, sin sticky)
+            y el CTA abajo en desktop, alineado con el final de los pasos. */}
+        <div className="flex flex-col">
+          <div>
+            <motion.h2
+              initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.8, ease: EASE }}
+              className="text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl"
+            >
+              {splitHighlight("¿Cómo lo hacemos?", "hacemos", "coral")}
+            </motion.h2>
+            <motion.p
+              initial={reduced ? { opacity: 0 } : { opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
+              className="mt-5 text-lg leading-relaxed text-pimenton-text-muted"
+            >
+              Un proceso claro, con foco en rentabilidad.
+            </motion.p>
+          </div>
+
+          {/* CTA — desktop: abajo a la izquierda, pegado al final de los pasos */}
+          <motion.div
             initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.8, ease: EASE }}
-            className="text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl"
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.6, ease: EASE }}
+            className="mt-auto hidden pt-10 lg:block"
           >
-            {splitHighlight("¿Cómo lo hacemos?", "hacemos?", "coral")}
-          </motion.h2>
-          <motion.p
-            initial={reduced ? { opacity: 0 } : { opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
-            className="mt-5 text-lg leading-relaxed text-pimenton-text-muted"
-          >
-            Un proceso claro. Con foco en rentabilidad.
-          </motion.p>
+            <CtaPill href="/contacto" label="Quiero analizar mi delivery" />
+          </motion.div>
         </div>
 
-        {/* Columna derecha — pasos + CTA */}
+        {/* Columna derecha — los pasos */}
         <div>
           {pasos.map((paso, i) => (
             <Step key={paso.num} paso={paso} index={i} reduced={reduced} />
           ))}
 
-          {/* CTA — pill coral (mismo estilo que el resto de la web) */}
+          {/* CTA — mobile/tablet: al final, después de los pasos */}
           <motion.div
             initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -169,7 +182,7 @@ export function CuatroPasos() {
               delay: reduced ? 0 : pasos.length * 0.1,
               ease: EASE,
             }}
-            className="border-t border-pimenton-border pt-8 sm:pt-10"
+            className="border-t border-pimenton-border pt-8 sm:pt-10 lg:hidden"
           >
             <CtaPill href="/contacto" label="Quiero analizar mi delivery" />
           </motion.div>
