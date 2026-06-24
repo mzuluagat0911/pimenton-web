@@ -61,6 +61,12 @@
   /* Secundarios (usar con moderación) */
   --color-pimenton-mint: #C3DDD8;
   --color-pimenton-yellow: #FFF081;
+
+  /* WhatsApp — verde clásico de marca. Reservado para el FAB/CTA de
+     contacto directo; pedido explícito del cliente. No usar como acento
+     general (eso es coral). */
+  --color-pimenton-whatsapp: #25D366;
+  --color-pimenton-whatsapp-deep: #1FB957;
 }
 
 html {

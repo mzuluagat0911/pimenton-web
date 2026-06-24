@@ -143,14 +143,14 @@ export function WhatsAppFab() {
         transition={{ duration: 0.5, ease: EASE }}
         whileHover={reduced ? undefined : { scale: 1.08 }}
         whileTap={reduced ? undefined : { scale: 0.94 }}
-        className="fixed bottom-6 right-6 z-30 flex size-14 cursor-pointer items-center justify-center rounded-full bg-pimenton-accent text-pimenton-bg shadow-[0_8px_24px_-6px_rgba(232,75,60,0.55)] outline-none focus-visible:ring-2 focus-visible:ring-pimenton-accent focus-visible:ring-offset-2 focus-visible:ring-offset-pimenton-bg sm:bottom-8 sm:right-8 sm:size-16"
+        className="fixed bottom-6 right-6 z-30 flex size-[70px] cursor-pointer items-center justify-center rounded-full bg-pimenton-whatsapp text-pimenton-bg shadow-[0_10px_28px_-6px_rgba(37,211,102,0.5)] outline-none focus-visible:ring-2 focus-visible:ring-pimenton-whatsapp focus-visible:ring-offset-2 focus-visible:ring-offset-pimenton-bg sm:bottom-8 sm:right-8 sm:size-20"
       >
         {/* Halo de pulso — sólo cuando el panel está cerrado, para no
             competir con el contenido del panel. */}
         {!reduced && !open && (
           <motion.span
             aria-hidden
-            className="absolute inset-0 rounded-full bg-pimenton-accent"
+            className="absolute inset-0 rounded-full bg-pimenton-whatsapp"
             // Halo "soft": la opacidad entra y sale (0 → pico → 0), así el
             // loop reinicia con el anillo invisible → sin pop brusco.
             animate={{ scale: [1, 1.7], opacity: [0, 0.4, 0] }}
@@ -173,7 +173,7 @@ export function WhatsAppFab() {
               transition={{ duration: 0.22, ease: EASE }}
               className="relative flex items-center justify-center"
             >
-              <CloseGlyph className="size-6 sm:size-7" />
+              <CloseGlyph className="size-7 sm:size-8" />
             </motion.span>
           ) : (
             <motion.span
@@ -188,7 +188,7 @@ export function WhatsAppFab() {
               transition={{ duration: 0.22, ease: EASE }}
               className="relative flex items-center justify-center"
             >
-              <WhatsAppGlyph className="size-6 sm:size-7" />
+              <WhatsAppGlyph className="size-7 sm:size-8" />
             </motion.span>
           )}
         </AnimatePresence>
