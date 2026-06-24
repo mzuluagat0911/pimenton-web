@@ -355,7 +355,7 @@ export const copy = {
           },
         ],
         name: "Valeyr Turjeman",
-        brand: "Mister Noodles",
+        brand: "Mr. Noodles",
         role: { es: "Directora General", en: "General Manager" },
       },
       {
@@ -377,7 +377,10 @@ export const copy = {
         ],
         name: "Bruno González Calvo",
         brand: "Grosso Napoletano",
-        role: { es: "Managing Director", en: "Managing Director" },
+        role: {
+          es: "Partner & Managing Director",
+          en: "Partner & Managing Director",
+        },
       },
       {
         quote:
@@ -396,9 +399,9 @@ export const copy = {
             label: { es: "Franquicias", en: "Franchises" },
           },
         ],
-        name: "Carlos Esteve",
-        brand: "Jeques Kebabs",
-        role: { es: "Fundador", en: "Founder" },
+        name: "Carlos Estevez Rozas",
+        brand: "Jekes Kebabs",
+        role: { es: "Partner & CEO", en: "Partner & CEO" },
       },
     ],
   },

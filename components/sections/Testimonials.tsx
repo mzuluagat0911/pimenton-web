@@ -30,6 +30,16 @@ type Metric = TestimonialItem["metrics"][number];
 const METRIC_COUNT_DURATION = 1.4;
 
 /**
+ * Separador de miles con punto (es): 3000 → "3.000", 12 → "12". Manual (no
+ * depende de Intl/toLocaleString, que según el entorno no agrega el punto).
+ */
+function formatMiles(n: number): string {
+  return Math.round(n)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+/**
  * PLACEHOLDER — Retrato ilustrado por persona (DiceBear "notionists"),
  * determinístico vía seed = nombre. Se va a reemplazar por la foto real
  * de cada owner cuando estén disponibles. Para volver a sacarlo, borrar
@@ -54,8 +64,8 @@ function PortraitPlaceholder({ name }: { name: string }) {
 
 /**
  * Renderiza una métrica con count-up de 0 al valor final + un pop sutil
- * al terminar. El número se formatea con locale es-ES para que 3000 → "3.000"
- * (separador de miles en español). Prefijo (+) y sufijo (%) en peso fino.
+ * al terminar. El número usa separador de miles con punto (3000 → "3.000").
+ * Prefijo (+) y sufijo (%) en peso fino.
  */
 function AnimatedMetric({
   metric,
@@ -69,9 +79,7 @@ function AnimatedMetric({
   reduced: boolean;
 }) {
   const count = useMotionValue(reduced ? metric.value : 0);
-  const display = useTransform(count, (latest) =>
-    Math.round(latest).toLocaleString("es-ES"),
-  );
+  const display = useTransform(count, (latest) => formatMiles(latest));
 
   useEffect(() => {
     if (reduced) {
@@ -329,12 +337,10 @@ export function Testimonials() {
   // arrive from slightly different tilts and settle to 0.
   const rotations = [-2.5, 2, -1.8, 2.2];
 
-  // Parallax sutil sobre el background mint + ilustraciones amarillas.
-  // La imagen se traslada ~±10% mientras el usuario scrollea por la
-  // sección. El contenedor del bg es 20% más alto que la sección
-  // (-inset-y-[10%]) para que el translate nunca revele un borde duro.
-  // bg-pimenton-mint debajo como fallback de color mientras la imagen
-  // carga (matchea el color dominante del asset).
+  // Parallax sutil de la textura sobre el fondo coral sólido. La textura se
+  // traslada ~±10% mientras el usuario scrollea; el contenedor es 20% más
+  // alto que la sección (-inset-y-[10%]) para que el translate nunca revele
+  // un borde duro. El color de fondo (coral) lo da la propia <section>.
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -349,18 +355,20 @@ export function Testimonials() {
     <section
       ref={ref}
       id="testimonios"
-      className="relative isolate scroll-mt-24 overflow-hidden bg-pimenton-mint px-[5%] sm:px-16 lg:px-24 py-14 sm:py-20 lg:py-36"
+      className="relative isolate scroll-mt-24 overflow-hidden bg-pimenton-accent px-[5%] sm:px-16 lg:px-24 py-14 sm:py-20 lg:py-36"
     >
+      {/* Fondo coral sólido (en la <section>) + textura de líneas encima.
+          mix-blend-multiply: el blanco de la textura cae al coral y las líneas
+          grises quedan como estrías un poco más oscuras → coral texturado. */}
       <motion.div
         aria-hidden
         style={{ y: bgY }}
         className="absolute -inset-y-[10%] inset-x-0 -z-10"
       >
         <div
-          className="h-full w-full bg-cover bg-center"
+          className="h-full w-full bg-cover bg-center mix-blend-multiply"
           style={{
-            backgroundImage:
-              "url('/assets/reseñas/background-resenas.webp')",
+            backgroundImage: "url('/assets/texturas/linear.webp')",
           }}
         />
       </motion.div>
