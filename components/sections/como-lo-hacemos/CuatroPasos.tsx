@@ -154,13 +154,13 @@ export function CuatroPasos() {
             </motion.p>
           </div>
 
-          {/* CTA — desktop: abajo a la izquierda, pegado al final de los pasos */}
+          {/* CTA — desktop: justo debajo del subtítulo, arriba a la izquierda */}
           <motion.div
             initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.6, ease: EASE }}
-            className="mt-auto hidden pt-10 lg:block"
+            transition={{ duration: 0.6, delay: 0.2, ease: EASE }}
+            className="mt-8 hidden lg:block"
           >
             <CtaPill href="/contacto" label="Quiero analizar mi delivery" />
           </motion.div>
