@@ -17,7 +17,7 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
-import { splitHighlight } from "@/components/ui-custom/Highlight";
+import { Highlight } from "@/components/ui-custom/Highlight";
 import { EASE } from "@/components/sections/servicios/Eyebrow";
 import { CtaPill } from "@/components/ui-custom/CtaPill";
 import { ControlRoomAutonomous } from "@/components/sections/control-room/Autonomous";
@@ -635,7 +635,7 @@ function TiltCard({
   reduced,
   children,
 }: {
-  title: string;
+  title: ReactNode;
   desc: string;
   index: number;
   reduced: boolean;
@@ -741,13 +741,12 @@ export function DetrasDeCadaPedido() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.8, ease: EASE }}
-              className="text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-4xl"
+              className="text-3xl font-semibold leading-[1.12] tracking-tight text-pimenton-text-on-dark sm:text-4xl"
             >
-              {splitHighlight(
-                "Detrás de cada pedido, hay una decisión.",
-                "decisión.",
-                "coral",
-              )}
+              <span className="block">Detrás de cada pedido,</span>
+              <span className="mt-1 block">
+                <Highlight color="coral">hay una decisión.</Highlight>
+              </span>
             </motion.h2>
           </div>
 
@@ -755,7 +754,15 @@ export function DetrasDeCadaPedido() {
               (sin overflow-hidden en ningún ancestro → nada se corta). */}
           <div className="mt-14 grid grid-cols-1 gap-6 py-8 sm:mt-16 sm:grid-cols-2 lg:grid-cols-4">
             <TiltCard
-              title="Ves todos los datos en el mismo lugar"
+              title={
+                <>
+                  Ves todos los
+                  <br />
+                  datos en el
+                  <br />
+                  mismo lugar
+                </>
+              }
               desc="Ventas, margen, ticket y promos. Decidimos con datos reales."
               index={0}
               reduced={reduced}
@@ -763,8 +770,14 @@ export function DetrasDeCadaPedido() {
               <MockDashboard inView={inView} reduced={reduced} index={0} />
             </TiltCard>
             <TiltCard
-              title="Nos metemos en la operación"
-              desc="Operamos el canal todos los días, de punta a punta."
+              title={
+                <>
+                  Operamos el canal todos los días,
+                  <br />
+                  de punta a punta
+                </>
+              }
+              desc="Nos metemos en la operación, no la miramos de afuera."
               index={1}
               reduced={reduced}
             >
