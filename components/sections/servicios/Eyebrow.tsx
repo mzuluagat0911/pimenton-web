@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 export const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 /**
- * Eyebrow estándar de la página de Servicios: Encode Sans uppercase,
+ * Eyebrow estándar de la página de Servicios: Helvetica uppercase,
  * tracking amplio, coral, con hairline a la izquierda. Coherente con el
  * patrón del Home. Entra con fade + leve translateY al verse.
  */

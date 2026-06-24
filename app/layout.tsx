@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Encode_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import { Footer } from "@/components/layout/Footer";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -35,14 +34,6 @@ const helvetica = localFont({
     },
   ],
   variable: "--font-helvetica",
-  display: "swap",
-});
-
-// Secundaria — Encode Sans (acentos, kickers, labels). Variable font,
-// rango wght 100-900, sin necesidad de declarar weights.
-const encodeSans = Encode_Sans({
-  subsets: ["latin"],
-  variable: "--font-encode",
   display: "swap",
 });
 
@@ -97,7 +88,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${helvetica.variable} ${encodeSans.variable}`}>
+    <html lang="es" className={helvetica.variable}>
       <body className="font-sans antialiased bg-pimenton-bg text-pimenton-text">
         <LanguageProvider>
           <SmoothScroll />
