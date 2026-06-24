@@ -18,8 +18,8 @@ export const copy = {
       en: "We power up your Delivery",
     },
     subhead: {
-      es: "Somos la Agencia #1 del Mundo experta en Restauración.",
-      en: "We're the world's #1 agency specialized in the restaurant industry.",
+      es: "Somos la agencia número #1 del mundo en Restaurantes",
+      en: "We're the world's #1 agency in Restaurants",
     },
     ctaPrimary: {
       label: { es: "Consultoría gratuita", en: "Free consultation" },

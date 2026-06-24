@@ -55,6 +55,15 @@ export function WhatsAppFab() {
     return () => clearTimeout(t);
   }, []);
 
+  // Permite abrir el selector de región desde afuera (p. ej. el CTA
+  // "Hablar con un especialista" del hero) vía evento global.
+  useEffect(() => {
+    const openFromEvent = () => setOpen(true);
+    window.addEventListener("pimenton:open-whatsapp", openFromEvent);
+    return () =>
+      window.removeEventListener("pimenton:open-whatsapp", openFromEvent);
+  }, []);
+
   // ESC + focus trap dentro del panel
   useEffect(() => {
     if (!open) return;
