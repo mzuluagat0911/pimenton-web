@@ -4,6 +4,18 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Banderas: fuente que SÓLO trae los glifos de bandera (regional indicators).
+   Con unicode-range acotado a U+1F1E6–1F1FF, sólo aplica a esos codepoints y
+   sólo se descarga si hay una bandera en pantalla. Así 🇦🇷 etc. se ven en
+   TODOS los dispositivos (Windows no renderiza flags emoji nativos). El resto
+   del texto sigue en Helvetica (la fuente no tiene glifos de letras). */
+@font-face {
+  font-family: "Twemoji Country Flags";
+  src: url("/fonts/flags/TwemojiCountryFlags.woff2") format("woff2");
+  font-display: swap;
+  unicode-range: U+1F1E6-1F1FF;
+}
+
 @theme {
   /* Fuentes — TODO el sitio usa Helvetica (Pimentón no usa Encode Sans).
      Los tres tokens apuntan a la misma familia, así headings, texto corrido y
@@ -11,10 +23,11 @@
      (display/sans/mono) para no tocar las utilities ya usadas en componentes
      (font-display / font-sans / font-mono). Sólo hay 4 masters (regular/bold ×
      normal/italic): los weights intermedios (500/600) resuelven al más cercano
-     por el algoritmo de matching de CSS. */
-  --font-display: var(--font-helvetica), "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-sans: var(--font-helvetica), "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-mono: var(--font-helvetica), "Helvetica Neue", Helvetica, Arial, sans-serif;
+     por el algoritmo de matching de CSS. "Twemoji Country Flags" va primero
+     (sólo afecta codepoints de bandera por su unicode-range). */
+  --font-display: "Twemoji Country Flags", var(--font-helvetica), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: "Twemoji Country Flags", var(--font-helvetica), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "Twemoji Country Flags", var(--font-helvetica), "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   /* Fondos light (dominantes) */
   --color-pimenton-bg: #FAF1E3;

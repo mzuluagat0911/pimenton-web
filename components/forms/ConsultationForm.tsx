@@ -799,15 +799,8 @@ function Step4Details({
           autoComplete="tel"
           required
           aria-required
-          aria-describedby={`${phoneId}-hint`}
           className={inputClass}
         />
-        <p
-          id={`${phoneId}-hint`}
-          className="mt-2 text-xs text-pimenton-text-muted sm:text-sm"
-        >
-          {formCopy.phoneHint}
-        </p>
       </div>
 
       {/* Instagram — opcional */}

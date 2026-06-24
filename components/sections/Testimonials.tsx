@@ -355,22 +355,19 @@ export function Testimonials() {
     <section
       ref={ref}
       id="testimonios"
-      className="relative isolate scroll-mt-24 overflow-hidden bg-pimenton-accent px-[5%] sm:px-16 lg:px-24 py-14 sm:py-20 lg:py-36"
+      className="relative isolate scroll-mt-24 overflow-hidden bg-pimenton-mint px-[5%] sm:px-16 lg:px-24 py-14 sm:py-20 lg:py-36"
     >
-      {/* Fondo coral sólido (en la <section>) + textura de líneas encima.
-          mix-blend-multiply: el blanco de la textura cae al coral y las líneas
-          grises quedan como estrías un poco más oscuras → coral texturado. */}
+      {/* Fondo menta sólido (en la <section>) + textura de líneas encima.
+          mix-blend-multiply: el blanco de la textura cae al menta y las líneas
+          grises quedan como estrías un poco más oscuras → menta texturado.
+          Textura responsive: linear-mobile.webp en mobile, linear.webp en
+          tablet/desktop (sm+). */}
       <motion.div
         aria-hidden
         style={{ y: bgY }}
         className="absolute -inset-y-[10%] inset-x-0 -z-10"
       >
-        <div
-          className="h-full w-full bg-cover bg-center mix-blend-multiply"
-          style={{
-            backgroundImage: "url('/assets/texturas/linear.webp')",
-          }}
-        />
+        <div className="h-full w-full bg-[url(/assets/texturas/linear-mobile.webp)] bg-cover bg-center mix-blend-multiply sm:bg-[url(/assets/texturas/linear.webp)]" />
       </motion.div>
 
       <div className="mx-auto w-full max-w-7xl">

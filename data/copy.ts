@@ -441,8 +441,8 @@ export const copy = {
       },
       headingAccent: { es: "en 4 pasos.", en: "in 4 steps." },
       description: {
-        es: "Cuéntanos sobre tu restaurante y un especialista de tu región te escribe por WhatsApp.",
-        en: "Tell us about your restaurant and a specialist from your region will reach out on WhatsApp.",
+        es: "Cuéntanos sobre tu Restaurante y un especialista te contactará por WhatsApp.",
+        en: "Tell us about your Restaurant and a specialist will contact you on WhatsApp.",
       },
       socialProof: {
         es: "+500 restaurantes confían en Pimentón",
@@ -484,10 +484,10 @@ export const copy = {
     step2: {
       label: { es: "Paso 2 de 4", en: "Step 2 of 4" },
       title: {
-        es: "¿Desde qué país nos escribes?",
-        en: "Which country are you writing from?",
+        es: "¿Dónde está tu negocio?",
+        en: "Where is your business?",
       },
-      titleAccent: { es: "país", en: "country" },
+      titleAccent: { es: "tu negocio?", en: "your business?" },
       otherLabel: { es: "Otro país", en: "Other country" },
       searchPlaceholder: { es: "Buscar país…", en: "Search country…" },
       emptyState: {
@@ -498,10 +498,10 @@ export const copy = {
     step3: {
       label: { es: "Paso 3 de 4", en: "Step 3 of 4" },
       title: {
-        es: "¿De qué tamaño es tu operación?",
-        en: "How big is your operation?",
+        es: "¿Cuántos locales tienes?",
+        en: "How many locations do you have?",
       },
-      titleAccent: { es: "tu operación?", en: "your operation?" },
+      titleAccent: { es: "locales", en: "locations" },
     },
     step4: {
       label: { es: "Paso 4 de 4", en: "Step 4 of 4" },
@@ -863,6 +863,7 @@ export const copy = {
         href: "https://www.linkedin.com/company/pimentóngrowth/",
       },
       { name: "Instagram", href: "https://www.instagram.com/pimenton.io/" },
+      { name: "TikTok", href: "https://www.tiktok.com/@juanchihaun" },
       {
         name: "WhatsApp",
         href: "https://api.whatsapp.com/send/?phone=5491157035170",
