@@ -639,7 +639,9 @@ export const copy = {
       eyebrow: { es: "Cultura Pimentón" },
     },
     manifesto: {
-      text: { es: "Crecer implica aprender todo el tiempo." },
+      // \n = quiebre de línea forzado en desktop (ver FraseManifiesto);
+      // en pantallas chicas el texto fluye con text-balance (sin huérfanos).
+      text: { es: "Crecer implica\naprender todo el tiempo." },
       accent: { es: "aprender" },
     },
     valores: {

@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { Award, Calendar, Laptop, TrendingUp, type LucideIcon } from "lucide-react";
-import { splitHighlight } from "@/components/ui-custom/Highlight";
+import { Highlight } from "@/components/ui-custom/Highlight";
 import { EASE } from "@/components/sections/servicios/Eyebrow";
 import { useCopy } from "@/components/i18n/LanguageContext";
 
@@ -16,6 +16,11 @@ const ICONS: Record<string, LucideIcon> = {
 export function ComoAcompanamos() {
   const reduced = useReducedMotion() ?? false;
   const { heading, headingAccent, cards } = useCopy().equipo.modelo;
+  // Disposición en dos líneas: "Cómo acompañamos" / "este modelo".
+  const accentIdx = heading.indexOf(headingAccent);
+  const beforeAccent = accentIdx >= 0 ? heading.slice(0, accentIdx) : heading;
+  const afterAccent =
+    accentIdx >= 0 ? heading.slice(accentIdx + headingAccent.length).trim() : "";
 
   return (
     <section className="bg-pimenton-dark px-[5%] py-24 sm:px-16 sm:py-32 lg:px-24">
@@ -26,9 +31,13 @@ export function ComoAcompanamos() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.8, ease: EASE }}
-            className="text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-4xl lg:text-5xl"
+            className="text-3xl font-semibold leading-[1.08] tracking-tight text-pimenton-text-on-dark sm:text-4xl lg:text-5xl"
           >
-            {splitHighlight(heading, headingAccent, "coral")}
+            <span className="block">
+              {beforeAccent}
+              <Highlight color="coral">{headingAccent}</Highlight>
+            </span>
+            {afterAccent && <span className="block">{afterAccent}</span>}
           </motion.h2>
         </div>
 
