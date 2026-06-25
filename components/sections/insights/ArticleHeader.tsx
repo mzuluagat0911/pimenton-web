@@ -23,7 +23,7 @@ export function ArticleHeader({ insight }: { insight: Insight }) {
   });
 
   return (
-    <section className="relative isolate overflow-hidden bg-pimenton-dark px-[5%] pt-28 sm:px-16 sm:pt-32 lg:px-24">
+    <section className="relative isolate bg-pimenton-dark px-[5%] pb-16 pt-28 sm:px-16 sm:pb-20 sm:pt-32 lg:px-24 lg:pb-24">
       <div className="mx-auto w-full max-w-4xl">
         <motion.div {...fadeUp(0)}>
           <Link
@@ -67,11 +67,12 @@ export function ArticleHeader({ insight }: { insight: Insight }) {
           {insight.excerpt}
         </motion.p>
 
-        {/* Banda de imagen del artículo — 3/2 = ratio nativo de las fotos
-            (1680×1120), así no se recorta el sujeto. */}
+        {/* Imagen del artículo — 3/2 = ratio nativo de las fotos
+            (1680×1120), así no se recorta el sujeto. Card redondeada
+            contenida (coherente con el hub), con aire abajo. */}
         <motion.div
           {...fadeUp(0.24)}
-          className="relative mt-12 aspect-[3/2] w-full overflow-hidden rounded-t-xl"
+          className="relative mt-12 aspect-[3/2] w-full overflow-hidden rounded-2xl"
         >
           <Image
             src={insight.heroImage}
