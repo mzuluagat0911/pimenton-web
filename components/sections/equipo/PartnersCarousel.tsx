@@ -79,7 +79,7 @@ export function PartnersCarousel() {
         initial={reduced ? { opacity: 0 } : { opacity: 0, y: 16 }}
         animate={inView ? { opacity: 1, y: 0 } : undefined}
         transition={{ duration: 0.7, ease: EASE }}
-        className="mb-10 text-center font-mono text-xs font-medium uppercase tracking-[0.22em] text-pimenton-text-muted sm:mb-14 sm:text-sm"
+        className="mb-10 text-center font-sans text-xs font-medium uppercase tracking-[0.22em] text-pimenton-text-muted sm:mb-14 sm:text-sm"
       >
         {eyebrow}
       </motion.p>
