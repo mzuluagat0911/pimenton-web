@@ -35,21 +35,22 @@ export function ArticleHeader({ insight }: { insight: Insight }) {
           </Link>
         </motion.div>
 
-        <motion.p
+        {/* Categoría como pill coral (mismo styling que las cards del hub) +
+            fecha al lado. */}
+        <motion.div
           {...fadeUp(0.06)}
-          className="mt-8 flex flex-wrap items-center gap-2 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-pimenton-accent sm:text-sm"
+          className="mt-8 flex flex-wrap items-center gap-3"
         >
-          <span>{insight.categoria}</span>
-          <span aria-hidden className="text-pimenton-text-on-dark-muted">
-            ·
+          <span className="rounded-full bg-pimenton-accent/15 px-3 py-1 font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-pimenton-accent">
+            {insight.categoria}
           </span>
           <time
             dateTime={insight.fecha}
-            className="text-pimenton-text-on-dark-muted"
+            className="font-sans text-xs font-medium uppercase tracking-[0.14em] text-pimenton-text-on-dark-muted"
           >
             {insight.fechaDisplay}
           </time>
-        </motion.p>
+        </motion.div>
 
         {/* Título largo → sentence case (normal-case anula el uppercase) */}
         <motion.h1
@@ -66,10 +67,11 @@ export function ArticleHeader({ insight }: { insight: Insight }) {
           {insight.excerpt}
         </motion.p>
 
-        {/* Banda de imagen del artículo */}
+        {/* Banda de imagen del artículo — 3/2 = ratio nativo de las fotos
+            (1680×1120), así no se recorta el sujeto. */}
         <motion.div
           {...fadeUp(0.24)}
-          className="relative mt-12 aspect-[16/9] w-full overflow-hidden rounded-t-xl"
+          className="relative mt-12 aspect-[3/2] w-full overflow-hidden rounded-t-xl"
         >
           <Image
             src={insight.heroImage}

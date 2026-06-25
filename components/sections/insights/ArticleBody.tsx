@@ -68,12 +68,13 @@ export function ArticleBody({ insight }: { insight: Insight }) {
           </div>
         ))}
 
-        {/* Conclusión — remate con borde coral */}
-        <div className="mt-14 border-l-4 border-pimenton-accent pl-6 sm:mt-16 sm:pl-8">
+        {/* Conclusión — remate. Misma trama que el cuerpo (text-lg), con un
+            borde coral fino; sin el salto de tamaño anterior. */}
+        <div className="mt-14 border-l-2 border-pimenton-accent pl-5 sm:mt-16 sm:pl-6">
           {insight.conclusion.map((p, i) => (
             <p
               key={i}
-              className={`font-display text-xl font-medium leading-snug tracking-tight text-pimenton-text sm:text-2xl ${
+              className={`text-lg leading-[1.75] text-pimenton-text-soft ${
                 i > 0 ? "mt-4" : ""
               }`}
             >

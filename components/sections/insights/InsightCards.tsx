@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
-import { ArrowRight } from "lucide-react";
 import type { Insight } from "@/data/insights";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -64,56 +63,5 @@ export function InsightCard({
         {insight.resumen}
       </p>
     </MotionLink>
-  );
-}
-
-/**
- * Card compacta (vertical) para "Más artículos" al final de cada artículo.
- */
-export function InsightCardCompact({
-  insight,
-  readCta,
-}: {
-  insight: Insight;
-  readCta: string;
-}) {
-  return (
-    <Link
-      href={`/insights/${insight.slug}`}
-      className="group flex h-full flex-col overflow-hidden rounded-xl border border-pimenton-border bg-pimenton-surface shadow-sm transition-shadow duration-300 hover:shadow-lg"
-    >
-      <div className="relative aspect-[16/10] w-full overflow-hidden">
-        <Image
-          src={insight.heroImage}
-          alt={insight.titulo}
-          fill
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-        />
-      </div>
-      <div className="flex flex-1 flex-col p-6">
-        <span className="font-sans text-xs font-semibold uppercase tracking-[0.18em] text-pimenton-accent">
-          {insight.categoria}
-        </span>
-        <h3 className="mt-2 text-lg font-bold normal-case leading-snug tracking-tight text-pimenton-text transition-colors duration-300 group-hover:text-pimenton-accent">
-          {insight.titulo}
-        </h3>
-        <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
-          <time
-            dateTime={insight.fecha}
-            className="text-pimenton-text-subtle"
-          >
-            {insight.fechaDisplay}
-          </time>
-          <span className="inline-flex items-center gap-1.5 font-semibold text-pimenton-accent">
-            {readCta}
-            <ArrowRight
-              aria-hidden
-              className="size-4 transition-transform duration-300 group-hover:translate-x-1"
-            />
-          </span>
-        </div>
-      </div>
-    </Link>
   );
 }
