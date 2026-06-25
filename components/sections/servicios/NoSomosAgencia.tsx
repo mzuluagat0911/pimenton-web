@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { splitHighlight } from "@/components/ui-custom/Highlight";
+import { Highlight } from "@/components/ui-custom/Highlight";
 import { EASE } from "./Eyebrow";
 import { OrdenesChart } from "./OrdenesChart";
 
@@ -104,13 +104,12 @@ export function NoSomosAgencia() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.8, ease: EASE }}
-            className="text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl"
+            className="text-3xl font-semibold leading-[1.12] tracking-tight text-pimenton-text sm:text-4xl"
           >
-            {splitHighlight(
-              "No somos una agencia. Somos un equipo de operación de delivery.",
-              "operación",
-              "coral",
-            )}
+            <span className="block">Somos un equipo</span>
+            <span className="mt-1 block">
+              de <Highlight color="coral">operación de delivery.</Highlight>
+            </span>
           </motion.h2>
           <motion.p
             initial={reduced ? { opacity: 0 } : { opacity: 0, y: 16 }}

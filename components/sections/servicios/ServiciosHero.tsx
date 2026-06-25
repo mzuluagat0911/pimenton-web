@@ -107,15 +107,19 @@ export function ServiciosHero() {
           {...fadeUp(0)}
           className="max-w-4xl text-4xl font-semibold leading-[1.02] tracking-tight text-pimenton-bg sm:text-6xl lg:text-7xl"
         >
-          Soluciones de <Highlight color="coral">delivery</Highlight>
+          <span className="block">Soluciones</span>
+          <span className="block">
+            de <Highlight color="coral">delivery</Highlight>
+          </span>
         </motion.h1>
 
         <motion.p
           {...fadeUp(0.14)}
           className="mt-7 max-w-[640px] text-lg leading-relaxed text-pimenton-text-on-dark-muted sm:text-xl"
         >
-          Gestionamos tu delivery de punta a punta para que vendas más, con
-          menos fricción y mayor rentabilidad.
+          Gestionamos tu delivery de punta a punta para que vendas más,{" "}
+          <br className="hidden sm:inline" />
+          con menos fricción y mayor rentabilidad.
         </motion.p>
       </div>
     </section>
