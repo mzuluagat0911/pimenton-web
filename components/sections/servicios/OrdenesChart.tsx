@@ -2,12 +2,17 @@
 
 import { useEffect, useId, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
+import { useT } from "@/components/i18n/LanguageContext";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const MONTHS = [
   "ENE", "FEB", "MAR", "ABR", "MAY", "JUN",
   "JUL", "AGO", "SEP", "OCT", "NOV", "DIC",
+];
+const MONTHS_EN = [
+  "JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+  "JUL", "AUG", "SEP", "OCT", "NOV", "DEC",
 ];
 // Serie que suma 12.850 y cierra en 1.750 (DIC) — réplica del video.
 const VALUES = [200, 450, 500, 1050, 950, 900, 1150, 1350, 1500, 1600, 1450, 1750];
@@ -45,6 +50,8 @@ const fmt = (n: number) => n.toLocaleString("es-ES");
 export function OrdenesChart() {
   const reduced = useReducedMotion() ?? false;
   const gradId = useId();
+  const t = useT();
+  const months = MONTHS.map((m, i) => t({ es: m, en: MONTHS_EN[i]! }));
 
   // Contadores en vivo — arrancan en los valores base (SSR estable) y
   // crecen de a poco. cleanup del interval en unmount.
@@ -68,7 +75,7 @@ export function OrdenesChart() {
         <div>
           <div className="flex items-center gap-2.5">
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-text-on-dark-muted">
-              Evolución mensual
+              {t({ es: "Evolución mensual", en: "Monthly evolution" })}
             </p>
             {/* Badge EN VIVO */}
             <span className="inline-flex items-center gap-1.5 rounded-full bg-pimenton-accent/12 px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-pimenton-accent">
@@ -82,17 +89,18 @@ export function OrdenesChart() {
                     : { duration: 1.6, repeat: Infinity, ease: "easeInOut" }
                 }
               />
-              En vivo
+              {t({ es: "En vivo", en: "Live" })}
             </span>
           </div>
           <h4 className="mt-1.5 font-display text-2xl font-bold leading-none tracking-tight text-pimenton-text-on-dark sm:text-3xl">
-            Órdenes <span className="text-pimenton-accent">2025</span>
+            {t({ es: "Órdenes", en: "Orders" })}{" "}
+            <span className="text-pimenton-accent">2025</span>
           </h4>
         </div>
         <div className="flex gap-8 sm:gap-6 sm:text-right">
           <div>
             <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-pimenton-text-on-dark-muted">
-              Acumuladas
+              {t({ es: "Acumuladas", en: "Cumulative" })}
             </p>
             <p className="mt-1 font-display text-xl font-bold tabular-nums text-pimenton-accent sm:text-2xl">
               {fmt(acc)}
@@ -100,7 +108,7 @@ export function OrdenesChart() {
           </div>
           <div>
             <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-pimenton-text-on-dark-muted">
-              Diciembre
+              {t({ es: "Diciembre", en: "December" })}
             </p>
             <p className="mt-1 font-display text-xl font-bold tabular-nums text-pimenton-text-on-dark sm:text-2xl">
               {fmt(cur)}
@@ -213,9 +221,9 @@ export function OrdenesChart() {
           )}
 
           {/* labels de meses */}
-          {MONTHS.map((m, i) => (
+          {months.map((m, i) => (
             <text
-              key={m}
+              key={i}
               x={x(i)}
               y={VB_H - 8}
               textAnchor="middle"
@@ -230,8 +238,8 @@ export function OrdenesChart() {
 
       {/* Footer */}
       <div className="mt-4 flex items-center justify-between border-t border-pimenton-dark-border pt-3 font-mono text-[9px] uppercase tracking-[0.18em] text-pimenton-text-on-dark-muted">
-        <span>Órdenes mensuales · 2025</span>
-        <span>Enero → Diciembre</span>
+        <span>{t({ es: "Órdenes mensuales · 2025", en: "Monthly orders · 2025" })}</span>
+        <span>{t({ es: "Enero → Diciembre", en: "January → December" })}</span>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { Highlight } from "@/components/ui-custom/Highlight";
+import { useT } from "@/components/i18n/LanguageContext";
 import { EASE } from "./Eyebrow";
 import { OrdenesChart } from "./OrdenesChart";
 
@@ -21,6 +22,7 @@ const VISUAL_H = "h-auto md:h-[460px]";
 // con su número de slide ("23/64") gritando "esto sigue y sigue".
 // Contrasta con el dashboard en vivo (coral) de la derecha.
 function AgencyDeck() {
+  const t = useT();
   return (
     // overflow-hidden + slides 100% dentro del contenedor → nada se sale
     // hacia la derecha (sin overflow horizontal en mobile). La pila asoma
@@ -40,10 +42,10 @@ function AgencyDeck() {
             <div className="size-6 flex-shrink-0 rounded bg-pimenton-text/12" />
             <div>
               <p className="text-[13px] font-medium text-pimenton-text-muted">
-                Reporte mensual
+                {t({ es: "Reporte mensual", en: "Monthly report" })}
               </p>
               <p className="mt-0.5 text-[10px] uppercase tracking-[0.16em] text-pimenton-text-subtle">
-                Resumen ejecutivo · Q3
+                {t({ es: "Resumen ejecutivo · Q3", en: "Executive summary · Q3" })}
               </p>
             </div>
           </div>
@@ -133,6 +135,7 @@ function Column({
 
 export function NoSomosAgencia() {
   const reduced = useReducedMotion() ?? false;
+  const t = useT();
 
   return (
     <section className="bg-pimenton-bg px-[5%] py-24 sm:px-16 sm:py-32 lg:px-24">
@@ -146,9 +149,14 @@ export function NoSomosAgencia() {
             transition={{ duration: 0.8, ease: EASE }}
             className="text-3xl font-semibold leading-[1.12] tracking-tight text-pimenton-text sm:text-4xl"
           >
-            <span className="block">Somos un equipo</span>
+            <span className="block">
+              {t({ es: "Somos un equipo", en: "We're a delivery" })}
+            </span>
             <span className="mt-1 block">
-              de <Highlight color="coral">operación de delivery.</Highlight>
+              {t({ es: "de ", en: "" })}
+              <Highlight color="coral">
+                {t({ es: "operación de delivery.", en: "operations team." })}
+              </Highlight>
             </span>
           </motion.h2>
           <motion.p
@@ -158,7 +166,10 @@ export function NoSomosAgencia() {
             transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
             className="mt-5 text-lg leading-relaxed text-pimenton-text-muted"
           >
-            La diferencia se ve cuando abres nuestra pantalla.
+            {t({
+              es: "La diferencia se ve cuando abres nuestra pantalla.",
+              en: "The difference shows when you open our screen.",
+            })}
           </motion.p>
         </div>
 
@@ -166,9 +177,12 @@ export function NoSomosAgencia() {
         <div className="mt-14 grid grid-cols-1 items-start gap-8 sm:mt-20 md:grid-cols-2 lg:gap-12">
           <Column
             visual={<AgencyDeck />}
-            label="Agencias tradicionales"
+            label={t({ es: "Agencias tradicionales", en: "Traditional agencies" })}
             labelClass="text-pimenton-text-muted"
-            text="Te entregan slides, métricas vanity y reportes de actividad. La operación sigue siendo tu problema."
+            text={t({
+              es: "Te entregan slides, métricas vanity y reportes de actividad. La operación sigue siendo tu problema.",
+              en: "They hand you slides, vanity metrics, and activity reports. The operation is still your problem.",
+            })}
             textClass="text-pimenton-text-muted"
             delay={0}
             reduced={reduced}
@@ -177,7 +191,7 @@ export function NoSomosAgencia() {
             visual={<OrdenesChart />}
             label={
               <>
-                Equipo
+                {t({ es: "Equipo", en: "Team" })}
                 {/* logo 25% más grande que el texto para darle peso */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -189,7 +203,10 @@ export function NoSomosAgencia() {
               </>
             }
             labelClass="text-pimenton-text"
-            text="Operamos tu delivery todos los días. Tomamos decisiones, ajustamos campañas, optimizamos menús. Los resultados se ven en tu P&L."
+            text={t({
+              es: "Operamos tu delivery todos los días. Tomamos decisiones, ajustamos campañas, optimizamos menús. Los resultados se ven en tu P&L.",
+              en: "We operate your delivery every day. We make decisions, adjust campaigns, optimize menus. The results show up in your P&L.",
+            })}
             textClass="text-pimenton-text"
             delay={0.2}
             reduced={reduced}
