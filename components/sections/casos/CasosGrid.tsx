@@ -51,27 +51,10 @@ function CasoCard({
       </div>
 
       <div className="flex flex-1 flex-col p-7 sm:p-8">
-        {/* Logo + marca, o marca sola */}
-        {caso.logo ? (
-          <div className="flex items-center gap-3">
-            <span className="relative size-11 shrink-0 overflow-hidden rounded-full bg-pimenton-dark">
-              <Image
-                src={caso.logo}
-                alt={caso.marca}
-                fill
-                sizes="44px"
-                className="object-cover"
-              />
-            </span>
-            <h3 className="text-lg font-bold tracking-tight text-pimenton-text">
-              {caso.marca}
-            </h3>
-          </div>
-        ) : (
-          <h3 className="text-2xl font-bold leading-none tracking-tight text-pimenton-text">
-            {caso.marca}
-          </h3>
-        )}
+        {/* Marca — sin logo, tamaño consistente en todas las cards. */}
+        <h3 className="text-2xl font-bold leading-none tracking-tight text-pimenton-text">
+          {caso.marca}
+        </h3>
 
         {/* Categoría + país */}
         <p className="mt-3 text-sm text-pimenton-text-muted">{meta}</p>

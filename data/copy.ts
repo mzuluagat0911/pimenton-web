@@ -744,13 +744,13 @@ export const copy = {
       otrosAccent: { es: "otros" },
       backToHub: { es: "Ver todos los casos" },
     },
-    // CTA de cierre reutilizable (hub + cada caso). Fondo coral; "potenciar"
-    // resaltado en dark (sobre coral, el coral sería invisible).
+    // CTA de cierre reutilizable (hub + cada caso). Fondo coral, sin
+    // resaltado en el heading, pill crema.
     cta: {
       heading: { es: "¿Quieres potenciar tu delivery?" },
-      headingAccent: { es: "potenciar" },
+      headingAccent: { es: "" },
       description: {
-        es: "Cada uno de estos casos empezó con una conversación. El tuyo también puede empezar hoy.",
+        es: "Cada uno de estos casos empezó con una conversación.\nEl tuyo también puede empezar hoy.",
       },
       button: { es: "Hablemos" },
       href: "/contacto",

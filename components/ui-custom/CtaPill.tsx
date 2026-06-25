@@ -19,6 +19,10 @@ const PILL_VARIANT = {
   coral:
     "bg-pimenton-accent text-pimenton-bg shadow-xl shadow-pimenton-accent/40 hover:bg-pimenton-accent-hover hover:shadow-pimenton-accent/60",
   dark: "bg-pimenton-dark text-pimenton-bg shadow-xl shadow-pimenton-dark/40 hover:bg-pimenton-dark-soft hover:shadow-pimenton-dark/60",
+  // Pill crema con texto coral — para fondos coral (CTA de cierre): más
+  // suave y coherente con la paleta que un pill oscuro.
+  cream:
+    "bg-pimenton-bg text-pimenton-accent shadow-xl shadow-pimenton-dark/20 hover:bg-pimenton-bg-soft hover:shadow-pimenton-dark/30",
 } as const;
 
 /**
@@ -43,7 +47,7 @@ export function CtaPill({
   icon?: ReactNode;
   iconPosition?: "left" | "right";
   className?: string;
-  variant?: "coral" | "dark";
+  variant?: "coral" | "dark" | "cream";
 }) {
   const PILL = `${PILL_BASE} ${PILL_VARIANT[variant]}`;
   const reduced = useReducedMotion() ?? false;

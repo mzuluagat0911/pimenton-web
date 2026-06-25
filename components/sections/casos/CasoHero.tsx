@@ -1,17 +1,21 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
+import { ArrowLeft } from "lucide-react";
 import { Eyebrow, EASE } from "@/components/sections/servicios/Eyebrow";
+import { useCopy } from "@/components/i18n/LanguageContext";
 import type { Caso } from "@/data/casos";
 
 /**
- * Hero del caso individual. Oscuro (navbar normal transparente→sólido).
- * Eyebrow = categoría · país; H1 = marca; tagline debajo; y una banda de
- * imagen del local/producto, full-width con esquinas superiores redondeadas.
+ * Hero del caso individual. Oscuro. Volver al hub + eyebrow (categoría ·
+ * país) + H1 (marca) + tagline, y una imagen del local contenida (3/2,
+ * redondeada) — coherente con los artículos de insights.
  */
 export function CasoHero({ caso }: { caso: Caso }) {
   const reduced = useReducedMotion() ?? false;
+  const backToHub = useCopy().casos.caso.backToHub;
   const eyebrow = caso.pais
     ? `${caso.categoria} · ${caso.bandera} ${caso.pais}`
     : caso.categoria;
@@ -23,9 +27,19 @@ export function CasoHero({ caso }: { caso: Caso }) {
   });
 
   return (
-    <section className="relative isolate overflow-hidden bg-pimenton-dark px-[5%] pt-28 sm:px-16 sm:pt-32 lg:px-24">
+    <section className="relative isolate bg-pimenton-dark px-[5%] pb-16 pt-28 sm:px-16 sm:pb-20 sm:pt-32 lg:px-24 lg:pb-24">
       <div className="mx-auto w-full max-w-7xl">
-        <div className="pb-12 sm:pb-16">
+        <motion.div {...fadeUp(0)}>
+          <Link
+            href="/casos"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-pimenton-text-on-dark-muted transition-colors duration-300 hover:text-pimenton-accent"
+          >
+            <ArrowLeft aria-hidden className="size-4" />
+            {backToHub}
+          </Link>
+        </motion.div>
+
+        <div className="mb-12 mt-8 sm:mb-16">
           <Eyebrow>{eyebrow}</Eyebrow>
 
           <motion.h1
@@ -43,10 +57,11 @@ export function CasoHero({ caso }: { caso: Caso }) {
           </motion.p>
         </div>
 
-        {/* Banda de imagen del caso */}
+        {/* Imagen del caso — 3/2 = ratio nativo de las fotos (1280×854),
+            contenida y redondeada (sin recorte). */}
         <motion.div
           {...fadeUp(0.24)}
-          className="relative aspect-[16/9] w-full overflow-hidden rounded-t-xl"
+          className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl"
         >
           <Image
             src={caso.heroImage}
