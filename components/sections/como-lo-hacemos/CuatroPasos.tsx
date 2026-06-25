@@ -1,68 +1,39 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { splitHighlight } from "@/components/ui-custom/Highlight";
 import { EASE } from "@/components/sections/servicios/Eyebrow";
 import { CtaPill } from "@/components/ui-custom/CtaPill";
 import { pasos, type Paso } from "@/data/comoLoHacemos";
 
-const EMOJI_BASE_PATH = "/assets/emoji/3d/";
-
-// Emoji 3D de Microsoft Fluent con flotación sutil + drop-shadow. Mismo
-// patrón de carga que el formulario de consultoría: mostramos el emoji
-// Unicode de fallback y sólo hacemos "upgrade" al PNG cuando confirmamos
-// que carga (precarga con new Image()), así nunca se ve una imagen rota.
-function ProcessEmoji({
-  name,
-  fallback,
+// Icono SVG de la iconografía de marca, renderizado como máscara para
+// poder tintarlo con un color de paleta (bg-pimenton-text) en vez de
+// depender del fill del asset. Conserva la flotación sutil del diseño.
+function ProcessIcon({
+  icon,
   index,
   reduced,
 }: {
-  name: string;
-  fallback: string;
+  icon: string;
   index: number;
   reduced: boolean;
 }) {
-  const [pngOk, setPngOk] = useState(false);
-  useEffect(() => {
-    let cancelled = false;
-    const probe = new window.Image();
-    probe.onload = () => {
-      if (!cancelled && probe.naturalWidth > 0) setPngOk(true);
-    };
-    probe.src = `${EMOJI_BASE_PATH}${name}`;
-    return () => {
-      cancelled = true;
-    };
-  }, [name]);
-
-  const inner = pngOk ? (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={`${EMOJI_BASE_PATH}${name}`}
-      alt=""
-      aria-hidden
-      width={64}
-      height={64}
-      draggable={false}
-      className="size-14 sm:size-16"
-    />
-  ) : (
-    <span
-      aria-hidden
-      role="img"
-      className="inline-flex size-14 items-center justify-center text-5xl leading-none sm:size-16 sm:text-6xl"
-    >
-      {fallback}
-    </span>
-  );
+  const maskStyle = {
+    maskImage: `url("${icon}")`,
+    WebkitMaskImage: `url("${icon}")`,
+    maskRepeat: "no-repeat",
+    WebkitMaskRepeat: "no-repeat",
+    maskPosition: "center",
+    WebkitMaskPosition: "center",
+    maskSize: "contain",
+    WebkitMaskSize: "contain",
+  } as const;
 
   return (
-    <motion.div
+    <motion.span
       aria-hidden
-      className="flex-shrink-0"
-      style={{ filter: "drop-shadow(0 8px 14px rgba(0, 0, 0, 0.18))" }}
+      className="block size-14 flex-shrink-0 bg-pimenton-text sm:size-16"
+      style={maskStyle}
       animate={reduced ? undefined : { y: [0, -6, 0] }}
       transition={
         reduced
@@ -74,9 +45,7 @@ function ProcessEmoji({
               delay: index * 0.35,
             }
       }
-    >
-      {inner}
-    </motion.div>
+    />
   );
 }
 
@@ -102,12 +71,7 @@ function Step({
       className="border-t border-pimenton-border py-8 sm:py-10"
     >
       <div className="flex items-start gap-5 sm:gap-7">
-        <ProcessEmoji
-          name={paso.emoji}
-          fallback={paso.fallback}
-          index={index}
-          reduced={reduced}
-        />
+        <ProcessIcon icon={paso.icon} index={index} reduced={reduced} />
         <div className="pt-1">
           <h3 className="text-xl font-semibold tracking-tight text-pimenton-text sm:text-2xl">
             {paso.title}

@@ -1,10 +1,9 @@
 /**
  * Los 4 pasos del proceso de Pimentón (página /como-lo-hacemos).
  *
- * Cada paso se ilustra con un emoji 3D de Microsoft Fluent (PNG en
- * /public/assets/emoji/3d/) — mismo tratamiento que el formulario de
- * consultoría. `fallback` es el emoji Unicode equivalente, que se muestra
- * si el PNG no estuviera disponible.
+ * Cada paso se ilustra con un icono SVG de la iconografía de marca
+ * (en /public/assets/icons/proceso/). Se renderiza como máscara y se
+ * tinta con un color de paleta — ver ProcessIcon en CuatroPasos.tsx.
  */
 
 export type Paso = {
@@ -13,10 +12,8 @@ export type Paso = {
   description: string;
   /** Frase destacada en coral, debajo de la descripción. */
   highlight: string;
-  /** Nombre del archivo PNG en /public/assets/emoji/3d/. */
-  emoji: string;
-  /** Emoji Unicode de fallback. */
-  fallback: string;
+  /** Ruta del SVG de iconografía en /public/assets/icons/proceso/. */
+  icon: string;
 };
 
 export const pasos: Paso[] = [
@@ -25,8 +22,7 @@ export const pasos: Paso[] = [
     title: "Analizamos",
     description: "Entendemos tu negocio y detectamos oportunidades clave.",
     highlight: "Somos expertos en APPs de delivery.",
-    emoji: "magnifying-glass.png",
-    fallback: "🔍",
+    icon: "/assets/icons/proceso/analizamos-icon.svg",
   },
   {
     num: "02",
@@ -35,16 +31,14 @@ export const pasos: Paso[] = [
       "Estudiamos tu restaurante y cada métrica para hacer crecer tus ventas.",
     highlight:
       "Tenemos herramientas, tecnología y un equipo de Data especializado.",
-    emoji: "stethoscope.png",
-    fallback: "🩺",
+    icon: "/assets/icons/proceso/diagnosticamos-icon.svg",
   },
   {
     num: "03",
     title: "Operamos",
     description: "Operamos tu delivery, llevamos la relación con las APPs.",
     highlight: "Un Growth Manager estará a cargo de tu negocio.",
-    emoji: "gear.png",
-    fallback: "⚙️",
+    icon: "/assets/icons/proceso/operamos-icon.svg",
   },
   {
     num: "04",
@@ -52,8 +46,7 @@ export const pasos: Paso[] = [
     description: "Ajustamos las variables que impactan en tus ventas.",
     highlight:
       "Trabajamos en la visibilidad, facturación, ticket promedio, conversión y recompra.",
-    emoji: "chart-increasing.png",
-    fallback: "📈",
+    icon: "/assets/icons/proceso/optimizamos-icon.svg",
   },
 ];
 
