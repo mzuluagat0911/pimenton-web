@@ -52,10 +52,10 @@ export function InsightCard({
         {insight.categoria}
       </span>
 
-      {/* Título — sentence case (normal-case anula el uppercase global). En
-          desktop se reserva el alto de 3 líneas (min-h) para que las bajadas
-          de las 3 cards queden alineadas. */}
-      <h2 className="mt-4 text-xl font-bold normal-case leading-snug tracking-tight text-pimenton-text transition-colors duration-300 group-hover:text-pimenton-accent lg:line-clamp-3 lg:min-h-[5.25rem]">
+      {/* Título — sentence case (normal-case anula el uppercase global).
+          Alto natural: la bajada queda pegada al título (mismo espaciado en
+          desktop y mobile). */}
+      <h2 className="mt-4 text-xl font-bold normal-case leading-snug tracking-tight text-pimenton-text transition-colors duration-300 group-hover:text-pimenton-accent">
         {insight.titulo}
       </h2>
 
