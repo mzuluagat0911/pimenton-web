@@ -1,12 +1,17 @@
+"use client";
+
 import { splitHighlight } from "@/components/ui-custom/Highlight";
+import { useT } from "@/components/i18n/LanguageContext";
 import type { Insight } from "@/data/insights";
 
 /**
- * Cuerpo del artículo — server component (contenido estático, lectura cómoda
- * y garantizada). Ancho de lectura ~720px, leading generoso. Bullets con
- * marcador coral (guion). Conclusión con borde coral (remate).
+ * Cuerpo del artículo — client component (resuelve el idioma activo con
+ * useT(); el SSR/primer render es "es", así el contenido por defecto queda en
+ * el HTML). Ancho de lectura ~720px, leading generoso. Bullets con marcador
+ * coral (guion). Conclusión con borde coral (remate).
  */
 export function ArticleBody({ insight }: { insight: Insight }) {
+  const t = useT();
   return (
     <section className="bg-pimenton-bg px-[5%] py-16 sm:py-20 lg:py-24">
       <div className="mx-auto w-full max-w-[720px]">
@@ -17,7 +22,7 @@ export function ArticleBody({ insight }: { insight: Insight }) {
               key={i}
               className="text-lg leading-[1.75] text-pimenton-text-soft sm:text-xl"
             >
-              {p}
+              {t(p)}
             </p>
           ))}
         </div>
@@ -27,8 +32,8 @@ export function ArticleBody({ insight }: { insight: Insight }) {
           <div key={si} className="mt-12 sm:mt-16">
             <h2 className="text-2xl font-bold normal-case leading-tight tracking-tight text-pimenton-text sm:text-3xl">
               {sec.headingAccent
-                ? splitHighlight(sec.heading, sec.headingAccent, "coral")
-                : sec.heading}
+                ? splitHighlight(t(sec.heading), t(sec.headingAccent), "coral")
+                : t(sec.heading)}
             </h2>
 
             {sec.parrafos?.map((p, pi) => (
@@ -36,7 +41,7 @@ export function ArticleBody({ insight }: { insight: Insight }) {
                 key={pi}
                 className="mt-5 text-lg leading-[1.75] text-pimenton-text-soft"
               >
-                {p}
+                {t(p)}
               </p>
             ))}
 
@@ -51,7 +56,7 @@ export function ArticleBody({ insight }: { insight: Insight }) {
                       aria-hidden
                       className="mt-[0.7em] h-px w-5 shrink-0 bg-pimenton-accent"
                     />
-                    <span>{b}</span>
+                    <span>{t(b)}</span>
                   </li>
                 ))}
               </ul>
@@ -62,7 +67,7 @@ export function ArticleBody({ insight }: { insight: Insight }) {
                 key={pi}
                 className="mt-5 text-lg leading-[1.75] text-pimenton-text-soft"
               >
-                {p}
+                {t(p)}
               </p>
             ))}
           </div>
@@ -78,7 +83,7 @@ export function ArticleBody({ insight }: { insight: Insight }) {
                 i > 0 ? "mt-4" : ""
               }`}
             >
-              {p}
+              {t(p)}
             </p>
           ))}
         </div>

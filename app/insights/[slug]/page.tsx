@@ -48,7 +48,7 @@ export async function generateMetadata({
       title: a.metaTitle,
       description: a.metaDescription,
       images: [
-        { url: a.heroImage, width: 1680, height: 1120, alt: a.titulo },
+        { url: a.heroImage, width: 1680, height: 1120, alt: a.titulo.es },
       ],
     },
     twitter: {
@@ -72,12 +72,12 @@ export default async function InsightPage({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    headline: a.titulo,
+    headline: a.titulo.es,
     description: a.metaDescription,
     datePublished: a.fecha,
     dateModified: a.fecha,
     image: `${SITE}${a.heroImage}`,
-    articleSection: a.categoria,
+    articleSection: a.categoria.es,
     inLanguage: "es",
     author: { "@type": "Organization", name: "Pimentón", url: SITE },
     publisher: {

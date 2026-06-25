@@ -76,7 +76,7 @@ const jsonLd = {
       publisher: { "@type": "Organization", name: "Pimentón", url: SITE },
       blogPost: insights.map((a) => ({
         "@type": "BlogPosting",
-        headline: a.titulo,
+        headline: a.titulo.es,
         datePublished: a.fecha,
         url: `${SITE}${PATH}/${a.slug}`,
         image: `${SITE}${a.heroImage}`,

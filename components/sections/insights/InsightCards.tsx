@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
+import { useT } from "@/components/i18n/LanguageContext";
 import type { Insight } from "@/data/insights";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -21,6 +22,7 @@ export function InsightCard({
   index: number;
 }) {
   const reduced = useReducedMotion() ?? false;
+  const t = useT();
 
   return (
     <MotionLink
@@ -39,7 +41,7 @@ export function InsightCard({
       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-pimenton-bg-soft">
         <Image
           src={insight.heroImage}
-          alt={insight.titulo}
+          alt={t(insight.titulo)}
           fill
           sizes="(max-width: 1024px) 100vw, 33vw"
           className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
@@ -48,19 +50,19 @@ export function InsightCard({
 
       {/* Categoría */}
       <span className="mt-5 self-start rounded-full bg-pimenton-accent/10 px-3 py-1 font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-pimenton-accent">
-        {insight.categoria}
+        {t(insight.categoria)}
       </span>
 
       {/* Título — sentence case (normal-case anula el uppercase global).
           Alto natural: la bajada queda pegada al título (mismo espaciado en
           desktop y mobile). */}
       <h2 className="mt-4 text-xl font-bold normal-case leading-snug tracking-tight text-pimenton-text transition-colors duration-300 group-hover:text-pimenton-accent">
-        {insight.titulo}
+        {t(insight.titulo)}
       </h2>
 
       {/* Bajada breve */}
       <p className="mt-2.5 line-clamp-2 text-[15px] leading-relaxed text-pimenton-text-muted">
-        {insight.resumen}
+        {t(insight.resumen)}
       </p>
     </MotionLink>
   );

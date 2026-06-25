@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
 import { EASE } from "@/components/sections/servicios/Eyebrow";
-import { useCopy } from "@/components/i18n/LanguageContext";
+import { useCopy, useT } from "@/components/i18n/LanguageContext";
 import type { Insight } from "@/data/insights";
 
 /**
@@ -14,6 +14,7 @@ import type { Insight } from "@/data/insights";
  */
 export function ArticleHeader({ insight }: { insight: Insight }) {
   const reduced = useReducedMotion() ?? false;
+  const t = useT();
   const backToHub = useCopy().insights.backToHub;
 
   const fadeUp = (delay: number) => ({
@@ -42,13 +43,13 @@ export function ArticleHeader({ insight }: { insight: Insight }) {
           className="mt-8 flex flex-wrap items-center gap-3"
         >
           <span className="rounded-full bg-pimenton-accent/15 px-3 py-1 font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-pimenton-accent">
-            {insight.categoria}
+            {t(insight.categoria)}
           </span>
           <time
             dateTime={insight.fecha}
             className="font-sans text-xs font-medium uppercase tracking-[0.14em] text-pimenton-text-on-dark-muted"
           >
-            {insight.fechaDisplay}
+            {t(insight.fechaDisplay)}
           </time>
         </motion.div>
 
@@ -57,14 +58,14 @@ export function ArticleHeader({ insight }: { insight: Insight }) {
           {...fadeUp(0.12)}
           className="mt-5 text-3xl font-bold normal-case leading-[1.12] tracking-tight text-pimenton-bg sm:text-4xl lg:text-5xl"
         >
-          {insight.titulo}
+          {t(insight.titulo)}
         </motion.h1>
 
         <motion.p
           {...fadeUp(0.18)}
           className="mt-6 max-w-2xl text-lg leading-relaxed text-pimenton-text-on-dark-muted sm:text-xl"
         >
-          {insight.excerpt}
+          {t(insight.excerpt)}
         </motion.p>
 
         {/* Imagen del artículo — 3/2 = ratio nativo de las fotos
@@ -76,7 +77,7 @@ export function ArticleHeader({ insight }: { insight: Insight }) {
         >
           <Image
             src={insight.heroImage}
-            alt={insight.titulo}
+            alt={t(insight.titulo)}
             fill
             priority
             sizes="(max-width: 896px) 100vw, 896px"
