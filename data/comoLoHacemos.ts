@@ -1,10 +1,9 @@
 /**
  * Los 4 pasos del proceso de Pimentón (página /como-lo-hacemos).
  *
- * Cada paso se ilustra con un emoji 3D de Microsoft Fluent (PNG en
- * /public/assets/emoji/3d/) — mismo tratamiento que el formulario de
- * consultoría. `fallback` es el emoji Unicode equivalente, que se muestra
- * si el PNG no estuviera disponible.
+ * Cada paso se ilustra con un icono SVG de la iconografía de marca
+ * (en /public/assets/icons/proceso/). Se renderiza como máscara y se
+ * tinta con un color de paleta — ver ProcessIcon en CuatroPasos.tsx.
  */
 
 export type Paso = {
@@ -13,10 +12,8 @@ export type Paso = {
   description: string;
   /** Frase destacada en coral, debajo de la descripción. */
   highlight: string;
-  /** Nombre del archivo PNG en /public/assets/emoji/3d/. */
-  emoji: string;
-  /** Emoji Unicode de fallback. */
-  fallback: string;
+  /** Ruta del SVG de iconografía en /public/assets/icons/proceso/. */
+  icon: string;
 };
 
 export const pasos: Paso[] = [
@@ -25,8 +22,7 @@ export const pasos: Paso[] = [
     title: "Analizamos",
     description: "Entendemos tu negocio y detectamos oportunidades clave.",
     highlight: "Somos expertos en APPs de delivery.",
-    emoji: "magnifying-glass.png",
-    fallback: "🔍",
+    icon: "/assets/icons/proceso/analizamos-icon.svg",
   },
   {
     num: "02",
@@ -35,16 +31,14 @@ export const pasos: Paso[] = [
       "Estudiamos tu restaurante y cada métrica para hacer crecer tus ventas.",
     highlight:
       "Tenemos herramientas, tecnología y un equipo de Data especializado.",
-    emoji: "stethoscope.png",
-    fallback: "🩺",
+    icon: "/assets/icons/proceso/diagnosticamos-icon.svg",
   },
   {
     num: "03",
     title: "Operamos",
     description: "Operamos tu delivery, llevamos la relación con las APPs.",
     highlight: "Un Growth Manager estará a cargo de tu negocio.",
-    emoji: "gear.png",
-    fallback: "⚙️",
+    icon: "/assets/icons/proceso/operamos-icon.svg",
   },
   {
     num: "04",
@@ -52,8 +46,7 @@ export const pasos: Paso[] = [
     description: "Ajustamos las variables que impactan en tus ventas.",
     highlight:
       "Trabajamos en la visibilidad, facturación, ticket promedio, conversión y recompra.",
-    emoji: "chart-increasing.png",
-    fallback: "📈",
+    icon: "/assets/icons/proceso/optimizamos-icon.svg",
   },
 ];
 
@@ -120,10 +113,9 @@ export const col3LogoPool: readonly string[] = [
   "/assets/logos-platforms/foodapp_zomato.svg",
 ] as const;
 
-// ── Columna 4 — Growth Managers (3, rotan en loop) ──
-// TODO: nombres, locaciones y fotos provisionales, confirmables por
-// Santiago. Las fotos son placeholders descargados localmente
-// (randomuser.me); se swappean por las reales del equipo cuando lleguen.
+// ── Columna 4 — Equipo de Growth & Customer Success (rotan en loop) ──
+// Personas reales del equipo de Pimentón. Fotos en /public/assets/team/
+// (los nombres de archivo codifican nombre-apellido-rol-país).
 export type GrowthManager = {
   nombre: string;
   rol: string;
@@ -133,21 +125,39 @@ export type GrowthManager = {
 
 export const growthManagers: GrowthManager[] = [
   {
-    nombre: "Martina Álvarez",
+    nombre: "Martín Camacho",
     rol: "Growth Manager",
-    pais: "Argentina",
-    foto: "/assets/team/placeholder/gm-1.jpg",
+    pais: "Ecuador",
+    foto: "/assets/team/martin-camacho-growth-manager-ecuador.webp",
   },
   {
-    nombre: "Carlos Vidal",
+    nombre: "Patricia Carrasco",
     rol: "Growth Manager",
     pais: "España",
-    foto: "/assets/team/placeholder/gm-2.jpg",
+    foto: "/assets/team/patricia-carrasco-growth-manager-espana.webp",
   },
   {
-    nombre: "Daniela Rojas",
+    nombre: "Virginia Rondón",
     rol: "Growth Manager",
-    pais: "México",
-    foto: "/assets/team/placeholder/gm-3.jpg",
+    pais: "LatAm",
+    foto: "/assets/team/virginia-rondon-growth-manager-latam.webp",
+  },
+  {
+    nombre: "Carolina Medina",
+    rol: "Customer Success",
+    pais: "LatAm",
+    foto: "/assets/team/carolina-medina-customer-success-latam.webp",
+  },
+  {
+    nombre: "Jesús Morán Morales",
+    rol: "Customer Success",
+    pais: "USA",
+    foto: "/assets/team/jesus-moran-morales-customer-success-usa.webp",
+  },
+  {
+    nombre: "Marielith Medina",
+    rol: "Customer Success",
+    pais: "LatAm",
+    foto: "/assets/team/marielith-medina-customer-success-latam.webp",
   },
 ];
