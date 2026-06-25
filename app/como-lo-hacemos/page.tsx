@@ -91,8 +91,8 @@ const jsonLd = {
       step: pasos.map((p, i) => ({
         "@type": "HowToStep",
         position: i + 1,
-        name: p.title,
-        text: `${p.description} ${p.highlight}`,
+        name: p.title.es,
+        text: `${p.description.es} ${p.highlight.es}`,
       })),
     },
   ],

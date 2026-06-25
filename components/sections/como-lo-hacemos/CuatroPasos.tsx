@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { splitHighlight } from "@/components/ui-custom/Highlight";
 import { EASE } from "@/components/sections/servicios/Eyebrow";
 import { CtaPill } from "@/components/ui-custom/CtaPill";
+import { useT } from "@/components/i18n/LanguageContext";
 import { pasos, type Paso } from "@/data/comoLoHacemos";
 
 // Icono SVG de la iconografía de marca, renderizado como máscara para
@@ -58,6 +59,7 @@ function Step({
   index: number;
   reduced: boolean;
 }) {
+  const t = useT();
   return (
     <motion.div
       initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20 }}
@@ -74,13 +76,13 @@ function Step({
         <ProcessIcon icon={paso.icon} index={index} reduced={reduced} />
         <div className="pt-1">
           <h3 className="text-xl font-semibold tracking-tight text-pimenton-text sm:text-2xl">
-            {paso.title}
+            {t(paso.title)}
           </h3>
           <p className="mt-3 max-w-prose text-base leading-relaxed text-pimenton-text-muted">
-            {paso.description}
+            {t(paso.description)}
           </p>
           <p className="mt-2 max-w-prose text-base font-medium leading-relaxed text-pimenton-accent">
-            {paso.highlight}
+            {t(paso.highlight)}
           </p>
         </div>
       </div>
@@ -90,6 +92,11 @@ function Step({
 
 export function CuatroPasos() {
   const reduced = useReducedMotion() ?? false;
+  const t = useT();
+  const ctaLabel = t({
+    es: "Quiero analizar mi delivery",
+    en: "Analyze my delivery",
+  });
 
   return (
     <section className="bg-pimenton-bg px-[5%] py-24 sm:px-16 sm:py-32 lg:px-24">
@@ -105,7 +112,11 @@ export function CuatroPasos() {
               transition={{ duration: 0.8, ease: EASE }}
               className="text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl"
             >
-              {splitHighlight("¿Cómo lo hacemos?", "hacemos", "coral")}
+              {splitHighlight(
+                t({ es: "¿Cómo lo hacemos?", en: "How we do it" }),
+                t({ es: "hacemos", en: "we do it" }),
+                "coral",
+              )}
             </motion.h2>
             <motion.p
               initial={reduced ? { opacity: 0 } : { opacity: 0, y: 16 }}
@@ -114,7 +125,10 @@ export function CuatroPasos() {
               transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
               className="mt-5 text-lg leading-relaxed text-pimenton-text-muted"
             >
-              Un proceso claro, con foco en rentabilidad.
+              {t({
+                es: "Un proceso claro, con foco en rentabilidad.",
+                en: "A clear process, focused on profitability.",
+              })}
             </motion.p>
           </div>
 
@@ -126,7 +140,7 @@ export function CuatroPasos() {
             transition={{ duration: 0.6, delay: 0.2, ease: EASE }}
             className="mt-8 hidden lg:block"
           >
-            <CtaPill href="/contacto" label="Quiero analizar mi delivery" />
+            <CtaPill href="/contacto" label={ctaLabel} />
           </motion.div>
         </div>
 
@@ -148,7 +162,7 @@ export function CuatroPasos() {
             }}
             className="border-t border-pimenton-border pt-8 sm:pt-10 lg:hidden"
           >
-            <CtaPill href="/contacto" label="Quiero analizar mi delivery" />
+            <CtaPill href="/contacto" label={ctaLabel} />
           </motion.div>
         </div>
       </div>

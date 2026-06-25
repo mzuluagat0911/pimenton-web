@@ -3,9 +3,11 @@
 import { motion, useReducedMotion } from "motion/react";
 import { Highlight } from "@/components/ui-custom/Highlight";
 import { EASE } from "@/components/sections/servicios/Eyebrow";
+import { useT } from "@/components/i18n/LanguageContext";
 
 export function HeroComoLoHacemos() {
   const reduced = useReducedMotion() ?? false;
+  const t = useT();
 
   // fade + translateY con stagger por línea al cargar.
   const fadeUp = (delay: number) => ({
@@ -43,13 +45,15 @@ export function HeroComoLoHacemos() {
       <div className="relative z-10 mx-auto w-full max-w-7xl">
         <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] tracking-tight text-pimenton-bg sm:text-6xl lg:text-7xl">
           <motion.span className="block" {...fadeUp(0)}>
-            <Highlight color="coral">Operamos</Highlight>
+            <Highlight color="coral">
+              {t({ es: "Operamos", en: "We operate" })}
+            </Highlight>
           </motion.span>
           <motion.span className="block" {...fadeUp(0.08)}>
-            tu delivery como
+            {t({ es: "tu delivery como", en: "your delivery" })}
           </motion.span>
           <motion.span className="block" {...fadeUp(0.16)}>
-            si fuera nuestro
+            {t({ es: "si fuera nuestro", en: "as if it were ours" })}
           </motion.span>
         </h1>
 
@@ -57,9 +61,10 @@ export function HeroComoLoHacemos() {
           {...fadeUp(0.24)}
           className="mt-7 max-w-[640px] text-lg leading-relaxed text-pimenton-text-on-dark-muted sm:text-xl"
         >
-          Datos reales, decisiones diarias y un Growth Manager{" "}
-          <br className="hidden sm:inline" />
-          dedicado a tu negocio.
+          {t({
+            es: "Datos reales, decisiones diarias y un Growth Manager dedicado a tu negocio.",
+            en: "Real data, daily decisions, and a Growth Manager dedicated to your business.",
+          })}
         </motion.p>
       </div>
     </section>

@@ -6,12 +6,14 @@
  * tinta con un color de paleta — ver ProcessIcon en CuatroPasos.tsx.
  */
 
+type Localized = { es: string; en: string };
+
 export type Paso = {
   num: string;
-  title: string;
-  description: string;
+  title: Localized;
+  description: Localized;
   /** Frase destacada en coral, debajo de la descripción. */
-  highlight: string;
+  highlight: Localized;
   /** Ruta del SVG de iconografía en /public/assets/icons/proceso/. */
   icon: string;
 };
@@ -19,33 +21,54 @@ export type Paso = {
 export const pasos: Paso[] = [
   {
     num: "01",
-    title: "Analizamos",
-    description: "Entendemos tu negocio y detectamos oportunidades clave.",
-    highlight: "Somos expertos en APPs de delivery.",
+    title: { es: "Analizamos", en: "We analyze" },
+    description: {
+      es: "Entendemos tu negocio y detectamos oportunidades clave.",
+      en: "We understand your business and spot key opportunities.",
+    },
+    highlight: {
+      es: "Somos expertos en APPs de delivery.",
+      en: "We're experts in delivery apps.",
+    },
     icon: "/assets/icons/proceso/analizamos-icon.svg",
   },
   {
     num: "02",
-    title: "Diagnosticamos",
-    description:
-      "Estudiamos tu restaurante y cada métrica para hacer crecer tus ventas.",
-    highlight:
-      "Tenemos herramientas, tecnología y un equipo de Data especializado.",
+    title: { es: "Diagnosticamos", en: "We diagnose" },
+    description: {
+      es: "Estudiamos tu restaurante y cada métrica para hacer crecer tus ventas.",
+      en: "We study your restaurant and every metric to grow your sales.",
+    },
+    highlight: {
+      es: "Tenemos herramientas, tecnología y un equipo de Data especializado.",
+      en: "We have the tools, technology, and a specialized Data team.",
+    },
     icon: "/assets/icons/proceso/diagnosticamos-icon.svg",
   },
   {
     num: "03",
-    title: "Operamos",
-    description: "Operamos tu delivery, llevamos la relación con las APPs.",
-    highlight: "Un Growth Manager estará a cargo de tu negocio.",
+    title: { es: "Operamos", en: "We operate" },
+    description: {
+      es: "Operamos tu delivery, llevamos la relación con las APPs.",
+      en: "We run your delivery and manage the relationship with the apps.",
+    },
+    highlight: {
+      es: "Un Growth Manager estará a cargo de tu negocio.",
+      en: "A Growth Manager will be in charge of your business.",
+    },
     icon: "/assets/icons/proceso/operamos-icon.svg",
   },
   {
     num: "04",
-    title: "Optimizamos",
-    description: "Ajustamos las variables que impactan en tus ventas.",
-    highlight:
-      "Trabajamos en la visibilidad, facturación, ticket promedio, conversión y recompra.",
+    title: { es: "Optimizamos", en: "We optimize" },
+    description: {
+      es: "Ajustamos las variables que impactan en tus ventas.",
+      en: "We fine-tune the variables that drive your sales.",
+    },
+    highlight: {
+      es: "Trabajamos en la visibilidad, facturación, ticket promedio, conversión y recompra.",
+      en: "We work on visibility, revenue, average ticket, conversion, and repeat orders.",
+    },
     icon: "/assets/icons/proceso/optimizamos-icon.svg",
   },
 ];
@@ -70,16 +93,27 @@ export const dashboardConfig = {
 
 // ── Columna 2 — Partes diarios (typing en loop, 2 días alternados) ──
 // `highlight` es el fragmento del texto que va en coral.
-export type ParteItem = { text: string; highlight?: string };
+export type ParteItem = { text: Localized; highlight?: Localized };
 export type ParteDiario = { fecha: string; items: ParteItem[] };
 
 export const partesDiarios: ParteDiario[] = [
   {
     fecha: "24/05",
     items: [
-      { text: "+18% conversión vs ayer", highlight: "+18%" },
-      { text: "Menú optimizado en 3 plataformas" },
-      { text: "Campaña Rappi: +$4.2k en 24h", highlight: "+$4.2k" },
+      {
+        text: { es: "+18% conversión vs ayer", en: "+18% conversion vs. yesterday" },
+        highlight: { es: "+18%", en: "+18%" },
+      },
+      {
+        text: {
+          es: "Menú optimizado en 3 plataformas",
+          en: "Menu optimized across 3 platforms",
+        },
+      },
+      {
+        text: { es: "Campaña Rappi: +$4.2k en 24h", en: "Rappi campaign: +$4.2k in 24h" },
+        highlight: { es: "+$4.2k", en: "+$4.2k" },
+      },
     ],
   },
   {
@@ -87,9 +121,26 @@ export const partesDiarios: ParteDiario[] = [
     // plausibles de ejemplo, editables.
     fecha: "25/05",
     items: [
-      { text: "+12% ticket promedio vs semana pasada", highlight: "+12%" },
-      { text: "2 nuevas promos activas en PedidosYa" },
-      { text: "Recompra: +9% en clientes frecuentes", highlight: "+9%" },
+      {
+        text: {
+          es: "+12% ticket promedio vs semana pasada",
+          en: "+12% avg. ticket vs. last week",
+        },
+        highlight: { es: "+12%", en: "+12%" },
+      },
+      {
+        text: {
+          es: "2 nuevas promos activas en PedidosYa",
+          en: "2 new promos live on PedidosYa",
+        },
+      },
+      {
+        text: {
+          es: "Recompra: +9% en clientes frecuentes",
+          en: "Repeat orders: +9% among regulars",
+        },
+        highlight: { es: "+9%", en: "+9%" },
+      },
     ],
   },
 ];
@@ -118,46 +169,46 @@ export const col3LogoPool: readonly string[] = [
 // (los nombres de archivo codifican nombre-apellido-rol-país).
 export type GrowthManager = {
   nombre: string;
-  rol: string;
-  pais: string;
+  rol: Localized;
+  pais: Localized;
   foto: string;
 };
 
 export const growthManagers: GrowthManager[] = [
   {
     nombre: "Martín Camacho",
-    rol: "Growth Manager",
-    pais: "Ecuador",
+    rol: { es: "Growth Manager", en: "Growth Manager" },
+    pais: { es: "Ecuador", en: "Ecuador" },
     foto: "/assets/team/martin-camacho-growth-manager-ecuador.webp",
   },
   {
     nombre: "Patricia Carrasco",
-    rol: "Growth Manager",
-    pais: "España",
+    rol: { es: "Growth Manager", en: "Growth Manager" },
+    pais: { es: "España", en: "Spain" },
     foto: "/assets/team/patricia-carrasco-growth-manager-espana.webp",
   },
   {
     nombre: "Virginia Rondón",
-    rol: "Growth Manager",
-    pais: "LatAm",
+    rol: { es: "Growth Manager", en: "Growth Manager" },
+    pais: { es: "LatAm", en: "LatAm" },
     foto: "/assets/team/virginia-rondon-growth-manager-latam.webp",
   },
   {
     nombre: "Carolina Medina",
-    rol: "Customer Success",
-    pais: "LatAm",
+    rol: { es: "Customer Success", en: "Customer Success" },
+    pais: { es: "LatAm", en: "LatAm" },
     foto: "/assets/team/carolina-medina-customer-success-latam.webp",
   },
   {
     nombre: "Jesús Morán Morales",
-    rol: "Customer Success",
-    pais: "USA",
+    rol: { es: "Customer Success", en: "Customer Success" },
+    pais: { es: "USA", en: "USA" },
     foto: "/assets/team/jesus-moran-morales-customer-success-usa.webp",
   },
   {
     nombre: "Marielith Medina",
-    rol: "Customer Success",
-    pais: "LatAm",
+    rol: { es: "Customer Success", en: "Customer Success" },
+    pais: { es: "LatAm", en: "LatAm" },
     foto: "/assets/team/marielith-medina-customer-success-latam.webp",
   },
 ];
