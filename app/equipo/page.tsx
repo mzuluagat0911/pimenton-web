@@ -3,6 +3,7 @@ import { EquipoHero } from "@/components/sections/equipo/EquipoHero";
 import { FraseManifiesto } from "@/components/sections/equipo/FraseManifiesto";
 import { ValoresRows } from "@/components/sections/equipo/ValoresRows";
 import { ComoAcompanamos } from "@/components/sections/equipo/ComoAcompanamos";
+import { PartnersCarousel } from "@/components/sections/equipo/PartnersCarousel";
 import { CtaSumarte } from "@/components/sections/equipo/CtaSumarte";
 
 const PATH = "/equipo";
@@ -51,6 +52,7 @@ export default function EquipoPage() {
       <FraseManifiesto />
       <ValoresRows />
       <ComoAcompanamos />
+      <PartnersCarousel />
       <CtaSumarte />
     </main>
   );

@@ -696,6 +696,9 @@ export const copy = {
         },
       ],
     },
+    partners: {
+      eyebrow: { es: "Operamos con todo el ecosistema" },
+    },
     cta: {
       heading: { es: "¿Quieres sumarte a Pimentón?" },
       headingAccent: { es: "sumarte" },
