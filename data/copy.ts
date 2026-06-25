@@ -777,7 +777,7 @@ export const copy = {
       heading: { es: "¿Listo para aplicar esto en tu delivery?" },
       headingAccent: { es: "aplicar" },
       description: {
-        es: "Cada artículo nace de trabajo real con restaurantes. Hablemos del tuyo.",
+        es: "Cada artículo nace de trabajo real con restaurantes.\nHablemos del tuyo.",
       },
       button: { es: "Hablemos" },
     },

@@ -30,6 +30,8 @@ export interface Insight {
   fechaDisplay: string;
   /** Bajada / descripción para el hub */
   excerpt: string;
+  /** Descripción breve para la card del hub (máx 2 líneas) */
+  resumen: string;
   heroImage: string;
   metaTitle: string;
   metaDescription: string;
@@ -50,6 +52,8 @@ export const insights: Insight[] = [
     fechaDisplay: "18 feb 2026",
     excerpt:
       "Muchos restaurantes aumentan pedidos en apps de delivery, pero el margen no mejora. Te explicamos por qué sucede y cómo transformar el canal en una unidad realmente rentable.",
+    resumen:
+      "Vender más no siempre es ganar más. Por qué tu delivery pierde margen y cómo revertirlo.",
     heroImage: "/assets/insights/delivery-rentable/hero.jpg",
     metaTitle:
       "Por qué tu delivery vende pero no es rentable | Insights Pimentón",
@@ -132,6 +136,8 @@ export const insights: Insight[] = [
     fechaDisplay: "18 feb 2026",
     excerpt:
       "Subir el ticket promedio es una de las formas más efectivas de mejorar la rentabilidad en delivery. Te mostramos estrategias prácticas para lograrlo sin erosionar margen.",
+    resumen:
+      "Estrategias prácticas para subir el ticket promedio y mejorar el margen sin depender de descuentos.",
     heroImage: "/assets/insights/ticket-promedio/hero.jpg",
     metaTitle:
       "Cómo aumentar el ticket promedio en delivery | Insights Pimentón",
@@ -230,6 +236,8 @@ export const insights: Insight[] = [
     fechaDisplay: "12 feb 2026",
     excerpt:
       "El delivery ya no es un canal secundario. En esta guía te mostramos cómo estructurarlo como una verdadera unidad de negocio rentable y escalable.",
+    resumen:
+      "Cómo estructurar tu delivery como una unidad de negocio rentable y escalable, paso a paso.",
     heroImage: "/assets/insights/profesionalizar-delivery/hero.jpg",
     metaTitle:
       "Cómo profesionalizar el canal de delivery | Insights Pimentón",

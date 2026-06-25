@@ -50,7 +50,7 @@ export function CtaPotenciar(props: {
 
         <motion.p
           {...reveal(0.12)}
-          className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-pimenton-bg/90 sm:text-xl"
+          className="mx-auto mt-6 max-w-xl whitespace-pre-line text-lg leading-relaxed text-pimenton-bg/90 sm:text-xl"
         >
           {description}
         </motion.p>
