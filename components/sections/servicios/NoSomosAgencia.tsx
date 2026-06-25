@@ -7,44 +7,85 @@ import { OrdenesChart } from "./OrdenesChart";
 
 const VANITY = ["Engagement", "Synergy", "ROI", "Branding"];
 
+// Alturas (%) de las barras del "gráfico" gris del slide — genéricas,
+// planas, sin vida (contrastan con la línea coral viva de la derecha).
+const AGENCY_BARS = [48, 66, 40, 72, 54, 82, 60];
+
 // Altura fija de los visuales en desktop para que ambas columnas y sus
 // labels alineen. En mobile, alto natural.
 const VISUAL_H = "h-auto md:h-[460px]";
 
-// Composición ilustrativa de "agencia tradicional": monocromática, sin
-// color, lifeless — slides genéricos, líneas de texto fake, un gráfico
-// vacío y palabras vacías. Contrasta con el video real de la derecha.
+// Composición ilustrativa de "agencia tradicional": una PILA de slides
+// que nunca termina (deck interminable), monocromática y sin vida — el
+// slide del frente trae un gráfico de barras gris, bullets y jerga vacía,
+// con su número de slide ("23/64") gritando "esto sigue y sigue".
+// Contrasta con el dashboard en vivo (coral) de la derecha.
 function AgencyDeck() {
   return (
-    <div
-      className={`flex flex-col rounded-2xl border border-pimenton-border bg-pimenton-bg-soft p-6 sm:p-7 ${VISUAL_H}`}
-    >
-      <div className="h-2.5 w-1/2 rounded bg-pimenton-text/15" />
-      <div className="mt-5 space-y-2.5">
-        <div className="h-2 w-full rounded bg-pimenton-text/10" />
-        <div className="h-2 w-5/6 rounded bg-pimenton-text/10" />
-        <div className="h-2 w-2/3 rounded bg-pimenton-text/10" />
-      </div>
-      <div className="mt-7 flex items-center gap-5">
-        <div
-          aria-hidden
-          className="size-20 flex-shrink-0 rounded-full border-[10px] border-pimenton-text/12"
-        />
-        <div className="flex-1 space-y-2.5">
-          <div className="h-2 w-full rounded bg-pimenton-text/10" />
-          <div className="h-2 w-4/5 rounded bg-pimenton-text/10" />
-          <div className="h-2 w-3/5 rounded bg-pimenton-text/10" />
-        </div>
-      </div>
-      <div className="mt-auto flex flex-wrap gap-2 pt-7">
-        {VANITY.map((w) => (
-          <span
-            key={w}
-            className="rounded-full border border-pimenton-border px-3 py-1 font-sans text-[11px] uppercase tracking-[0.16em] text-pimenton-text-muted"
-          >
-            {w}
+    <div aria-hidden className={`relative ${VISUAL_H}`}>
+      {/* Slides de atrás — la pila que "nunca termina". */}
+      <div
+        className="absolute inset-0 rounded-2xl border border-pimenton-border bg-pimenton-bg-soft"
+        style={{ transform: "translate(18px, -18px) rotate(4deg)" }}
+      />
+      <div
+        className="absolute inset-0 rounded-2xl border border-pimenton-border bg-pimenton-bg-soft"
+        style={{ transform: "translate(9px, -9px) rotate(2deg)" }}
+      />
+
+      {/* Slide del frente — el contenido "aburrido". */}
+      <div className="relative flex h-full flex-col rounded-2xl border border-pimenton-border bg-pimenton-bg-soft p-6 sm:p-7">
+        {/* Header del reporte + número de slide */}
+        <div className="flex items-start justify-between border-b border-pimenton-border pb-4">
+          <div className="flex items-center gap-2.5">
+            <div className="size-6 flex-shrink-0 rounded bg-pimenton-text/12" />
+            <div>
+              <p className="text-[13px] font-medium text-pimenton-text-muted">
+                Reporte mensual
+              </p>
+              <p className="mt-0.5 text-[10px] uppercase tracking-[0.16em] text-pimenton-text-subtle">
+                Resumen ejecutivo · Q3
+              </p>
+            </div>
+          </div>
+          <span className="flex-shrink-0 rounded border border-pimenton-border px-2 py-0.5 text-[10px] uppercase tracking-[0.12em] text-pimenton-text-subtle">
+            Slide 23/64
           </span>
-        ))}
+        </div>
+
+        {/* "Gráfico" de barras gris — plano, sin color. Alto fijo por
+            breakpoint (definido, para que las barras en % resuelvan bien). */}
+        <div className="mt-6 flex h-36 items-end gap-2 border-b border-pimenton-text/10 md:h-[200px]">
+          {AGENCY_BARS.map((h, i) => (
+            <div
+              key={i}
+              className="flex-1 rounded-t-sm bg-pimenton-text/15"
+              style={{ height: `${h}%` }}
+            />
+          ))}
+        </div>
+
+        {/* Bullets fake */}
+        <div className="mt-5 space-y-2.5">
+          {["w-full", "w-4/5", "w-3/5"].map((w, i) => (
+            <div key={i} className="flex items-center gap-2.5">
+              <span className="size-1.5 flex-shrink-0 rounded-full bg-pimenton-text/25" />
+              <span className={`h-2 ${w} rounded bg-pimenton-text/10`} />
+            </div>
+          ))}
+        </div>
+
+        {/* Jerga vanity */}
+        <div className="mt-auto flex flex-wrap gap-2 pt-5">
+          {VANITY.map((w) => (
+            <span
+              key={w}
+              className="rounded-full border border-pimenton-border px-3 py-1 font-sans text-[11px] uppercase tracking-[0.16em] text-pimenton-text-muted"
+            >
+              {w}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
