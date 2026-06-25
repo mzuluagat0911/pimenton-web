@@ -22,19 +22,18 @@ const VISUAL_H = "h-auto md:h-[460px]";
 // Contrasta con el dashboard en vivo (coral) de la derecha.
 function AgencyDeck() {
   return (
-    <div aria-hidden className={`relative ${VISUAL_H}`}>
-      {/* Slides de atrás — la pila que "nunca termina". */}
-      <div
-        className="absolute inset-0 rounded-2xl border border-pimenton-border bg-pimenton-bg-soft"
-        style={{ transform: "translate(18px, -18px) rotate(4deg)" }}
-      />
-      <div
-        className="absolute inset-0 rounded-2xl border border-pimenton-border bg-pimenton-bg-soft"
-        style={{ transform: "translate(9px, -9px) rotate(2deg)" }}
-      />
+    // overflow-hidden + slides 100% dentro del contenedor → nada se sale
+    // hacia la derecha (sin overflow horizontal en mobile). La pila asoma
+    // porque el slide del frente lleva margen arriba/derecha (mt/mr).
+    <div aria-hidden className={`relative overflow-hidden ${VISUAL_H}`}>
+      {/* Slides de atrás — asoman escalonados arriba-derecha, dentro del
+          contenedor: el más al fondo pegado al borde sup-der, el del medio
+          a 8px. */}
+      <div className="absolute bottom-4 left-4 right-0 top-0 rounded-2xl border border-pimenton-border bg-pimenton-bg-soft" />
+      <div className="absolute bottom-2 left-2 right-2 top-2 rounded-2xl border border-pimenton-border bg-pimenton-bg-soft" />
 
-      {/* Slide del frente — el contenido "aburrido". */}
-      <div className="relative flex h-full flex-col rounded-2xl border border-pimenton-border bg-pimenton-bg-soft p-6 sm:p-7">
+      {/* Slide del frente — el contenido "aburrido". El mt/mr deja ver la pila. */}
+      <div className="relative mr-4 mt-4 flex flex-col rounded-2xl border border-pimenton-border bg-pimenton-bg-soft p-6 sm:p-7 md:h-[calc(100%-1rem)]">
         {/* Header del reporte + número de slide */}
         <div className="flex items-start justify-between border-b border-pimenton-border pb-4">
           <div className="flex items-center gap-2.5">
