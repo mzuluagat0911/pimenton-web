@@ -4,8 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
-import { Eyebrow, EASE } from "@/components/sections/servicios/Eyebrow";
+import { EASE } from "@/components/sections/servicios/Eyebrow";
 import { useCopy } from "@/components/i18n/LanguageContext";
+import { MetaPills } from "./MetaPills";
 import type { Caso } from "@/data/casos";
 
 /**
@@ -16,9 +17,6 @@ import type { Caso } from "@/data/casos";
 export function CasoHero({ caso }: { caso: Caso }) {
   const reduced = useReducedMotion() ?? false;
   const backToHub = useCopy().casos.caso.backToHub;
-  const eyebrow = caso.pais
-    ? `${caso.categoria} · ${caso.bandera} ${caso.pais}`
-    : caso.categoria;
 
   const fadeUp = (delay: number) => ({
     initial: reduced ? { opacity: 0 } : { opacity: 0, y: 22 },
@@ -40,10 +38,17 @@ export function CasoHero({ caso }: { caso: Caso }) {
         </motion.div>
 
         <div className="mb-12 mt-8 sm:mb-16">
-          <Eyebrow>{eyebrow}</Eyebrow>
+          <motion.div {...fadeUp(0.04)}>
+            <MetaPills
+              categoria={caso.categoria}
+              pais={caso.pais}
+              bandera={caso.bandera}
+              onDark
+            />
+          </motion.div>
 
           <motion.h1
-            {...fadeUp(0.08)}
+            {...fadeUp(0.1)}
             className="mt-6 max-w-4xl text-5xl font-bold leading-[1.0] tracking-tight text-pimenton-bg sm:text-6xl lg:text-7xl"
           >
             {caso.marca}

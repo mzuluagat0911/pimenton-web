@@ -6,6 +6,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { casos, type Caso } from "@/data/casos";
 import { useCopy } from "@/components/i18n/LanguageContext";
+import { MetaPills } from "./MetaPills";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const MotionLink = motion.create(Link);
@@ -21,10 +22,6 @@ function CasoCard({
   cardCta: string;
   reduced: boolean;
 }) {
-  const meta = caso.pais
-    ? `${caso.categoria} · ${caso.bandera} ${caso.pais}`
-    : caso.categoria;
-
   return (
     <MotionLink
       href={`/casos/${caso.slug}`}
@@ -56,8 +53,13 @@ function CasoCard({
           {caso.marca}
         </h3>
 
-        {/* Categoría + país */}
-        <p className="mt-3 text-sm text-pimenton-text-muted">{meta}</p>
+        {/* Categoría (coral) + país (menta) */}
+        <MetaPills
+          categoria={caso.categoria}
+          pais={caso.pais}
+          bandera={caso.bandera}
+          className="mt-4"
+        />
 
         {/* Tagline — Helvetica medium, normal case (no es heading) */}
         <p className="mt-4 font-display text-lg font-medium leading-snug text-pimenton-text-soft sm:text-xl">
