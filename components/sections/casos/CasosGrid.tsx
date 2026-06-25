@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { casos, type Caso } from "@/data/casos";
-import { useCopy } from "@/components/i18n/LanguageContext";
+import { useCopy, useT } from "@/components/i18n/LanguageContext";
 import { MetaPills } from "./MetaPills";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -22,6 +22,7 @@ function CasoCard({
   cardCta: string;
   reduced: boolean;
 }) {
+  const t = useT();
   return (
     <MotionLink
       href={`/casos/${caso.slug}`}
@@ -55,24 +56,24 @@ function CasoCard({
 
         {/* Categoría (coral) + país (menta) */}
         <MetaPills
-          categoria={caso.categoria}
-          pais={caso.pais}
+          categoria={t(caso.categoria)}
+          pais={t(caso.pais)}
           bandera={caso.bandera}
           className="mt-4"
         />
 
         {/* Tagline — Helvetica medium, normal case (no es heading) */}
         <p className="mt-4 font-display text-lg font-medium leading-snug text-pimenton-text-soft sm:text-xl">
-          {caso.tagline}
+          {t(caso.tagline)}
         </p>
 
         {/* Métrica destacada (la primera del array), gigante coral */}
         <div className="mt-6 flex items-baseline gap-2.5">
           <span className="font-display text-4xl font-bold leading-none text-pimenton-accent">
-            {caso.metricas[0]?.valor}
+            {caso.metricas[0] ? t(caso.metricas[0].valor) : ""}
           </span>
           <span className="text-sm text-pimenton-text-muted">
-            {caso.metricas[0]?.label}
+            {caso.metricas[0] ? t(caso.metricas[0].label) : ""}
           </span>
         </div>
 

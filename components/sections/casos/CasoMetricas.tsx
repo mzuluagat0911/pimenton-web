@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { CountUp } from "@/components/ui-custom/CountUp";
-import { useCopy } from "@/components/i18n/LanguageContext";
+import { useCopy, useT } from "@/components/i18n/LanguageContext";
 import type { Metrica } from "@/data/casos";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -10,6 +10,7 @@ const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 /** Las 3 métricas destacadas, con count-up al entrar en viewport. */
 export function CasoMetricas({ metricas }: { metricas: Metrica[] }) {
   const reduced = useReducedMotion() ?? false;
+  const t = useT();
   const eyebrow = useCopy().casos.caso.metricasEyebrow;
 
   return (
@@ -33,11 +34,11 @@ export function CasoMetricas({ metricas }: { metricas: Metrica[] }) {
               }}
             >
               <CountUp
-                value={m.valor}
+                value={t(m.valor)}
                 className="block font-display text-5xl font-bold leading-none tracking-tight text-pimenton-accent sm:text-6xl"
               />
               <p className="mt-3 text-base leading-snug text-pimenton-text-muted sm:text-lg">
-                {m.label}
+                {t(m.label)}
               </p>
             </motion.div>
           ))}

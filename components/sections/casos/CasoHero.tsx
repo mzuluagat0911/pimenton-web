@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
 import { EASE } from "@/components/sections/servicios/Eyebrow";
-import { useCopy } from "@/components/i18n/LanguageContext";
+import { useCopy, useT } from "@/components/i18n/LanguageContext";
 import { MetaPills } from "./MetaPills";
 import type { Caso } from "@/data/casos";
 
@@ -16,6 +16,7 @@ import type { Caso } from "@/data/casos";
  */
 export function CasoHero({ caso }: { caso: Caso }) {
   const reduced = useReducedMotion() ?? false;
+  const t = useT();
   const backToHub = useCopy().casos.caso.backToHub;
 
   const fadeUp = (delay: number) => ({
@@ -40,8 +41,8 @@ export function CasoHero({ caso }: { caso: Caso }) {
         <div className="mb-12 mt-8 sm:mb-16">
           <motion.div {...fadeUp(0.04)}>
             <MetaPills
-              categoria={caso.categoria}
-              pais={caso.pais}
+              categoria={t(caso.categoria)}
+              pais={t(caso.pais)}
               bandera={caso.bandera}
               onDark
             />
@@ -58,7 +59,7 @@ export function CasoHero({ caso }: { caso: Caso }) {
             {...fadeUp(0.16)}
             className="mt-6 max-w-2xl font-display text-xl font-medium leading-snug tracking-tight text-pimenton-text-on-dark sm:text-2xl"
           >
-            {caso.tagline}
+            {t(caso.tagline)}
           </motion.p>
         </div>
 

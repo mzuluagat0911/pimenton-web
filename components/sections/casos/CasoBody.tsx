@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { splitHighlight } from "@/components/ui-custom/Highlight";
-import { useCopy } from "@/components/i18n/LanguageContext";
+import { useCopy, useT, type Localized } from "@/components/i18n/LanguageContext";
 import type { Estrategia } from "@/data/casos";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -18,8 +18,9 @@ function useReveal() {
 }
 
 /** 3. El Desafío (contexto) — fondo oscuro. */
-export function CasoDesafio({ contexto }: { contexto: string }) {
+export function CasoDesafio({ contexto }: { contexto: Localized }) {
   const reveal = useReveal();
+  const t = useT();
   const { desafioHeading, desafioAccent } = useCopy().casos.caso;
   return (
     <section className="bg-pimenton-bg px-[5%] py-16 sm:px-16 sm:py-20 lg:px-24">
@@ -34,7 +35,7 @@ export function CasoDesafio({ contexto }: { contexto: string }) {
           {...reveal(0.1)}
           className="mt-6 text-lg leading-relaxed text-pimenton-text-soft sm:text-xl"
         >
-          {contexto}
+          {t(contexto)}
         </motion.p>
       </div>
     </section>
@@ -45,6 +46,7 @@ export function CasoDesafio({ contexto }: { contexto: string }) {
 export function CasoApproach({ approach }: { approach: Estrategia[] }) {
   const reduced = useReducedMotion() ?? false;
   const reveal = useReveal();
+  const t = useT();
   const { approachHeading, approachAccent } = useCopy().casos.caso;
   return (
     <section className="bg-pimenton-bg px-[5%] py-16 sm:px-16 sm:py-20 lg:px-24">
@@ -76,7 +78,7 @@ export function CasoApproach({ approach }: { approach: Estrategia[] }) {
               <div>
                 {step.titulo && (
                   <h3 className="text-lg font-bold tracking-tight text-pimenton-text sm:text-xl">
-                    {step.titulo}
+                    {t(step.titulo)}
                   </h3>
                 )}
                 <p
@@ -84,7 +86,7 @@ export function CasoApproach({ approach }: { approach: Estrategia[] }) {
                     step.titulo ? "mt-2" : ""
                   }`}
                 >
-                  {step.descripcion}
+                  {t(step.descripcion)}
                 </p>
               </div>
             </motion.li>
@@ -96,9 +98,10 @@ export function CasoApproach({ approach }: { approach: Estrategia[] }) {
 }
 
 /** 5. Resultados en detalle — sólo casos multi-sucursal/multimarca. Oscuro. */
-export function CasoResultados({ items }: { items: string[] }) {
+export function CasoResultados({ items }: { items: Localized[] }) {
   const reduced = useReducedMotion() ?? false;
   const reveal = useReveal();
+  const t = useT();
   const { resultadosHeading, resultadosAccent } = useCopy().casos.caso;
   return (
     <section className="bg-pimenton-bg px-[5%] py-16 sm:px-16 sm:py-20 lg:px-24">
@@ -112,9 +115,10 @@ export function CasoResultados({ items }: { items: string[] }) {
 
         <ul className="mt-10 border-t border-pimenton-border">
           {items.map((item, i) => {
-            const idx = item.indexOf(":");
-            const label = idx > -1 ? item.slice(0, idx) : null;
-            const detail = idx > -1 ? item.slice(idx + 1).trim() : item;
+            const resolved = t(item);
+            const idx = resolved.indexOf(":");
+            const label = idx > -1 ? resolved.slice(0, idx) : null;
+            const detail = idx > -1 ? resolved.slice(idx + 1).trim() : resolved;
             return (
               <motion.li
                 key={i}
@@ -150,8 +154,9 @@ export function CasoResultados({ items }: { items: string[] }) {
 }
 
 /** 6. Conclusión estratégica — el remate, bloque editorial con barra coral. */
-export function CasoConclusion({ text }: { text: string }) {
+export function CasoConclusion({ text }: { text: Localized }) {
   const reveal = useReveal();
+  const t = useT();
   const { conclusionHeading, conclusionAccent } = useCopy().casos.caso;
   return (
     <section className="bg-pimenton-bg px-[5%] py-16 sm:px-16 sm:py-20 lg:px-24">
@@ -167,7 +172,7 @@ export function CasoConclusion({ text }: { text: string }) {
           {...reveal(0.1)}
           className="mt-8 border-l-2 border-pimenton-accent pl-5 sm:pl-6"
         >
-          <p className="text-lg leading-[1.75] text-pimenton-text-soft">{text}</p>
+          <p className="text-lg leading-[1.75] text-pimenton-text-soft">{t(text)}</p>
         </motion.div>
       </div>
     </section>

@@ -29,7 +29,7 @@ export async function generateMetadata({
   if (!caso) return {};
 
   const title = `${caso.marca} | Casos de Éxito · Pimentón`;
-  const description = caso.tagline;
+  const description = caso.tagline.es;
   const path = `/casos/${slug}`;
 
   return {
@@ -99,8 +99,8 @@ export default async function CasoPage({
       },
       {
         "@type": "Article",
-        headline: `${caso.marca} — ${caso.tagline}`,
-        description: caso.contexto,
+        headline: `${caso.marca} — ${caso.tagline.es}`,
+        description: caso.contexto.es,
         articleSection: "Casos de éxito",
         image: `${SITE}${caso.heroImage}`,
         author: { "@type": "Organization", name: "Pimentón", url: SITE },
