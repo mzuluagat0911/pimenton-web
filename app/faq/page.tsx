@@ -71,8 +71,8 @@ const jsonLd = {
       "@type": "FAQPage",
       mainEntity: faqs.map((f) => ({
         "@type": "Question",
-        name: f.pregunta,
-        acceptedAnswer: { "@type": "Answer", text: f.respuesta },
+        name: f.pregunta.es,
+        acceptedAnswer: { "@type": "Answer", text: f.respuesta.es },
       })),
     },
   ],
