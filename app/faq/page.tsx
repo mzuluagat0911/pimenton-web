@@ -78,8 +78,7 @@ const jsonLd = {
   ],
 };
 
-const INTRO =
-  "Las preguntas que más nos hacen sobre cómo trabajamos tu delivery.";
+const INTRO = "Las preguntas que más nos hacen.";
 
 const CTA = <CtaPill href="/contacto" label="¿Tienes otra duda? Hablemos." />;
 
