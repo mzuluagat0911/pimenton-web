@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CtaPill } from "@/components/ui-custom/CtaPill";
+import { FaqIntroText, FaqCta } from "@/components/sections/faq/FaqIntro";
 import { Highlight } from "@/components/ui-custom/Highlight";
 import { FaqAccordion } from "@/components/sections/faq/FaqAccordion";
 import { faqs } from "@/data/faq";
@@ -78,10 +78,6 @@ const jsonLd = {
   ],
 };
 
-const INTRO = "Las preguntas que más nos hacen.";
-
-const CTA = <CtaPill href="/contacto" label="¿Tienes otra duda? Hablemos." />;
-
 export default function FaqPage() {
   return (
     // El pt vive en la sección (no en <main>) para que el fondo menta llegue
@@ -107,18 +103,20 @@ export default function FaqPage() {
               <h1 className="text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl lg:text-5xl">
                 <Highlight color="yellow">FAQ</Highlight>
               </h1>
-              <p className="mt-5 max-w-sm text-base leading-relaxed text-pimenton-text-soft sm:text-lg">
-                {INTRO}
-              </p>
+              <FaqIntroText />
               {/* CTA — en desktop va en la columna izquierda */}
-              <div className="mt-8 hidden lg:block">{CTA}</div>
+              <div className="mt-8 hidden lg:block">
+                <FaqCta />
+              </div>
             </div>
 
             {/* ── Columna derecha: acordeón (cards blancas) ── */}
             <FaqAccordion items={faqs} />
 
             {/* CTA — en mobile va al FINAL de las preguntas (mejor UX) */}
-            <div className="lg:hidden">{CTA}</div>
+            <div className="lg:hidden">
+              <FaqCta />
+            </div>
           </div>
         </div>
       </section>
