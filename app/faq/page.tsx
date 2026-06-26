@@ -4,7 +4,7 @@ import { Highlight } from "@/components/ui-custom/Highlight";
 import { FaqAccordion } from "@/components/sections/faq/FaqAccordion";
 import { faqs } from "@/data/faq";
 
-const SITE = "https://pimenton.io";
+import { SITE_URL as SITE } from "@/lib/site";
 const PATH = "/faq";
 
 const TITLE = "FAQ | Pimentón — Preguntas frecuentes sobre nuestro servicio";

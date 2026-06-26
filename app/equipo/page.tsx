@@ -5,6 +5,7 @@ import { ValoresRows } from "@/components/sections/equipo/ValoresRows";
 import { ComoAcompanamos } from "@/components/sections/equipo/ComoAcompanamos";
 import { PartnersCarousel } from "@/components/sections/equipo/PartnersCarousel";
 import { CtaSumarte } from "@/components/sections/equipo/CtaSumarte";
+import { SITE_URL as SITE } from "@/lib/site";
 
 const PATH = "/equipo";
 const TITLE = "Equipo | Pimentón — Nuestra cultura";
@@ -45,9 +46,38 @@ export const metadata: Metadata = {
   },
 };
 
+// JSON-LD: breadcrumb (página interna). Organization + WebSite vienen del layout.
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Inicio", item: `${SITE}/` },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Equipo",
+          item: `${SITE}${PATH}`,
+        },
+      ],
+    },
+  ],
+};
+
 export default function EquipoPage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+      {/* H1 de la página (el hero es visual: logo + eyebrow, sin heading).
+          Visualmente oculto — no toca el diseño, pero da un único H1 con la
+          keyword principal para SEO y accesibilidad. */}
+      <h1 className="sr-only">Equipo y cultura de Pimentón</h1>
       <EquipoHero />
       <FraseManifiesto />
       <ValoresRows />

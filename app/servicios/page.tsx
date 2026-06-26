@@ -4,7 +4,7 @@ import { NoSomosAgencia } from "@/components/sections/servicios/NoSomosAgencia";
 import { ServiciosSoluciones } from "@/components/sections/servicios/ServiciosSoluciones";
 import { copy } from "@/data/copy";
 
-const SITE = "https://pimenton.io";
+import { SITE_URL as SITE } from "@/lib/site";
 const PATH = "/servicios";
 
 export const metadata: Metadata = {

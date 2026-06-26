@@ -5,6 +5,8 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { LanguageProvider } from "@/components/i18n/LanguageContext";
 import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
+import { SITE_URL } from "@/lib/site";
+import { copy } from "@/data/copy";
 import "./globals.css";
 
 // Principal — Helvetica self-hosted (next/font/local). Solo 4 masters:
@@ -38,7 +40,9 @@ const helvetica = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://pimenton.io"),
+  // metadataBase resuelve las URLs relativas de OG/canonical a absolutas.
+  // Viene de NEXT_PUBLIC_SITE_URL (fallback pimenton.io) — ver lib/site.ts.
+  metadataBase: new URL(SITE_URL),
   title: "Pimentón — Escalamos tu Delivery y Canales Digitales",
   description:
     "Growth Partner especializado en delivery para restaurantes. Operamos tus canales digitales en LATAM y Europa. +500 restaurantes confían en nosotros.",
@@ -69,7 +73,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Pimentón — Growth Partner para tu Delivery",
     description: "Convertimos tu Restaurante en una unidad de negocio rentable.",
-    url: "https://pimenton.io",
+    url: SITE_URL,
     siteName: "Pimentón",
     locale: "es_AR",
     type: "website",
@@ -83,13 +87,67 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [{ url: "/assets/favicon.svg", type: "image/svg+xml" }],
+    // apple-touch-icon (180×180 PNG) — rasterizado del favicon.svg, mismo mark.
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
+};
+
+// ── Structured data GLOBAL (presente en TODAS las páginas vía el layout) ──
+// Organization + WebSite con @id estables, para que el resto de los schemas
+// (BreadcrumbList, ContactPage, etc.) puedan referenciarlos por @id. Los datos
+// (logo, redes, email, teléfonos) salen del data layer (copy.footer), una sola
+// fuente de verdad. Todas las URLs son absolutas vía SITE_URL.
+const ORG_ID = `${SITE_URL}/#organization`;
+const WEBSITE_ID = `${SITE_URL}/#website`;
+
+const siteJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": ORG_ID,
+      name: "Pimentón",
+      url: SITE_URL,
+      logo: `${SITE_URL}/assets/logos/principal/logo-coral.webp`,
+      image: `${SITE_URL}/og-default.png`,
+      description:
+        "Growth Partner especializado en delivery para restaurantes. Operamos los canales digitales de restaurantes en LATAM y Europa para convertir el delivery en un canal rentable, predecible y profesional.",
+      email: copy.footer.email,
+      // Perfiles sociales (sin WhatsApp, que es un canal de contacto, no perfil).
+      sameAs: copy.footer.social
+        .filter((s) => s.name !== "WhatsApp")
+        .map((s) => s.href),
+      // Teléfonos regionales como puntos de contacto.
+      contactPoint: copy.footer.phones.map((p) => ({
+        "@type": "ContactPoint",
+        telephone: `+${p.phoneRaw}`,
+        contactType: "customer service",
+        areaServed: p.region.es,
+        availableLanguage: ["es", "en"],
+      })),
+    },
+    {
+      "@type": "WebSite",
+      "@id": WEBSITE_ID,
+      name: "Pimentón",
+      url: SITE_URL,
+      inLanguage: "es",
+      publisher: { "@id": ORG_ID },
+    },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={helvetica.variable}>
       <body className="font-sans antialiased bg-pimenton-bg text-pimenton-text">
+        {/* JSON-LD global: Organization + WebSite (en todas las páginas). */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(siteJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
         <LanguageProvider>
           <SmoothScroll />
           <SiteHeader />

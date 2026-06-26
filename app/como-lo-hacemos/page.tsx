@@ -4,7 +4,7 @@ import { CuatroPasos } from "@/components/sections/como-lo-hacemos/CuatroPasos";
 import { DetrasDeCadaPedido } from "@/components/sections/como-lo-hacemos/DetrasDeCadaPedido";
 import { pasos } from "@/data/comoLoHacemos";
 
-const SITE = "https://pimenton.io";
+import { SITE_URL as SITE } from "@/lib/site";
 const PATH = "/como-lo-hacemos";
 
 const TITLE = "Cómo lo hacemos | Pimentón — Operación de delivery profesional";

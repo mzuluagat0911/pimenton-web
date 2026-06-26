@@ -4,7 +4,7 @@ import { InsightsList } from "@/components/sections/insights/InsightsList";
 import { InsightsCta } from "@/components/sections/insights/InsightsCta";
 import { insights } from "@/data/insights";
 
-const SITE = "https://pimenton.io";
+import { SITE_URL as SITE } from "@/lib/site";
 const PATH = "/insights";
 const TITLE = "Insights | Pimentón — Estrategia y rentabilidad en delivery";
 const DESCRIPTION =

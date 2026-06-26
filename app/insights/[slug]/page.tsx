@@ -6,7 +6,7 @@ import { ArticleBody } from "@/components/sections/insights/ArticleBody";
 import { MasArticulos } from "@/components/sections/insights/MasArticulos";
 import { InsightsCta } from "@/components/sections/insights/InsightsCta";
 
-const SITE = "https://pimenton.io";
+import { SITE_URL as SITE } from "@/lib/site";
 
 // SSG: prerenderiza los 3 (o N) artículos desde el data layer al build.
 export function generateStaticParams() {
