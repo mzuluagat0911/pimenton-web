@@ -337,3 +337,56 @@ export function buildWhatsappLink(snap: FormSnapshot, lang: Lang): string {
   const region = regionForCountry(snap.countryIso);
   return whatsappUrl(region, buildWhatsappMessage(snap, lang));
 }
+
+// ────────── Payload del lead (Google Sheet / CRM) ──────────
+
+/**
+ * Estructura EXACTA que espera el Apps Script (los nombres de campo importan).
+ * Las etiquetas (categorías, país, sucursales) van SIEMPRE en español para
+ * consistencia del CRM, aunque el form esté en inglés. `idioma` registra el
+ * idioma activo del sitio al enviar.
+ */
+export type LeadPayload = {
+  nombre: string;
+  whatsapp: string;
+  categorias: string;
+  pais: string;
+  sucursales: string;
+  idioma: "ES" | "EN";
+};
+
+/** Label legible en español de una categoría (no el id interno). */
+function categoryLabelEs(id: CategoryId): string {
+  return categories.find((c) => c.id === id)?.label.es ?? id;
+}
+
+/** Label legible en español del tamaño/sucursales. */
+function sizeLabelEs(id: SizeId): string {
+  return sizes.find((s) => s.id === id)?.label.es ?? id;
+}
+
+/**
+ * Label legible en español del país. Para los destacados usa su label.es;
+ * para el resto, el nombre de countries.ts (ya en español). Último recurso:
+ * el label guardado en el form (que para "otros países" también es español).
+ */
+function countryLabelEs(iso: string, fallback: string): string {
+  const featured = featuredCountries.find((c) => c.isoCode === iso);
+  if (featured) return featured.label.es;
+  return findCountry(iso)?.name ?? fallback;
+}
+
+/**
+ * Arma el payload del lead para el webhook del Sheet. Categorías como string
+ * separado por coma con labels legibles; país y sucursales en español.
+ */
+export function buildLeadPayload(snap: FormSnapshot, lang: Lang): LeadPayload {
+  return {
+    nombre: snap.restaurant.trim(),
+    whatsapp: snap.phone.trim(),
+    categorias: snap.categories.map(categoryLabelEs).join(", "),
+    pais: countryLabelEs(snap.countryIso, snap.countryLabel),
+    sucursales: sizeLabelEs(snap.size),
+    idioma: lang === "en" ? "EN" : "ES",
+  };
+}
