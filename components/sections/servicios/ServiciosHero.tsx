@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { Highlight } from "@/components/ui-custom/Highlight";
+import { useT } from "@/components/i18n/LanguageContext";
 import { EASE } from "./Eyebrow";
 import {
   AlertTile,
@@ -20,59 +21,76 @@ type Placed = {
   mobileHide?: boolean;
 };
 
-const MOSAIC: Placed[] = [
-  {
-    node: (
-      <MetricTile
-        label="Pedidos hoy"
-        value="1.247"
-        delta="+12% vs ayer"
-        cycle={["1.247", "1.251", "1.258", "1.263"]}
-      />
-    ),
-    style: { top: "10%", left: "3%", width: 210, rotate: "-3deg" },
-  },
-  {
-    node: <BarsTile label="Ventas · 7 días" />,
-    style: { top: "6%", left: "68%", width: 230, rotate: "2.5deg" },
-  },
-  {
-    node: <PlatformsTile />,
-    style: { top: "52%", left: "5%", width: 200, rotate: "1.5deg" },
-    mobileHide: true,
-  },
-  {
-    node: (
-      <MetricTile
-        label="Ticket promedio"
-        value="$24,50"
-        delta="+8% mensual"
-        cycle={["$24,50", "$24,80", "$25,10"]}
-      />
-    ),
-    style: { top: "66%", left: "60%", width: 205, rotate: "-2deg" },
-  },
-  {
-    node: <AlertTile text="Menú optimizado en 3 plataformas" />,
-    style: { top: "38%", left: "74%", width: 240, rotate: "3deg" },
-    mobileHide: true,
-  },
-  {
-    node: <OrderRowsTile />,
-    style: { top: "70%", left: "26%", width: 215, rotate: "-1deg" },
-    mobileHide: true,
-  },
-  {
-    node: (
-      <MetricTile label="Rentabilidad" value="+18%" delta="trimestral" />
-    ),
-    style: { top: "30%", left: "40%", width: 190, rotate: "2deg" },
-    mobileHide: true,
-  },
-];
+// Se construye dentro del componente para resolver las etiquetas al idioma
+// activo (useT). Los valores numéricos se mantienen (language-neutral).
+function buildMosaic(t: ReturnType<typeof useT>): Placed[] {
+  return [
+    {
+      node: (
+        <MetricTile
+          label={t({ es: "Pedidos hoy", en: "Orders today" })}
+          value="1.247"
+          delta={t({ es: "+12% vs ayer", en: "+12% vs. yesterday" })}
+          cycle={["1.247", "1.251", "1.258", "1.263"]}
+        />
+      ),
+      style: { top: "10%", left: "3%", width: 210, rotate: "-3deg" },
+    },
+    {
+      node: <BarsTile label={t({ es: "Ventas · 7 días", en: "Sales · 7 days" })} />,
+      style: { top: "6%", left: "68%", width: 230, rotate: "2.5deg" },
+    },
+    {
+      node: <PlatformsTile />,
+      style: { top: "52%", left: "5%", width: 200, rotate: "1.5deg" },
+      mobileHide: true,
+    },
+    {
+      node: (
+        <MetricTile
+          label={t({ es: "Ticket promedio", en: "Average ticket" })}
+          value="$24,50"
+          delta={t({ es: "+8% mensual", en: "+8% monthly" })}
+          cycle={["$24,50", "$24,80", "$25,10"]}
+        />
+      ),
+      style: { top: "66%", left: "60%", width: 205, rotate: "-2deg" },
+    },
+    {
+      node: (
+        <AlertTile
+          text={t({
+            es: "Menú optimizado en 3 plataformas",
+            en: "Menu optimized across 3 platforms",
+          })}
+        />
+      ),
+      style: { top: "38%", left: "74%", width: 240, rotate: "3deg" },
+      mobileHide: true,
+    },
+    {
+      node: <OrderRowsTile />,
+      style: { top: "70%", left: "26%", width: 215, rotate: "-1deg" },
+      mobileHide: true,
+    },
+    {
+      node: (
+        <MetricTile
+          label={t({ es: "Rentabilidad", en: "Profitability" })}
+          value="+18%"
+          delta={t({ es: "trimestral", en: "quarterly" })}
+        />
+      ),
+      style: { top: "30%", left: "40%", width: 190, rotate: "2deg" },
+      mobileHide: true,
+    },
+  ];
+}
 
 export function ServiciosHero() {
   const reduced = useReducedMotion() ?? false;
+  const t = useT();
+  const MOSAIC = buildMosaic(t);
 
   const fadeUp = (delay: number) => ({
     initial: reduced ? { opacity: 0 } : { opacity: 0, y: 22 },
@@ -107,15 +125,25 @@ export function ServiciosHero() {
           {...fadeUp(0)}
           className="max-w-4xl text-4xl font-semibold leading-[1.02] tracking-tight text-pimenton-bg sm:text-6xl lg:text-7xl"
         >
-          Soluciones de <Highlight color="coral">delivery</Highlight>
+          <span className="block">
+            {t({ es: "Soluciones", en: "Delivery" })}
+          </span>
+          <span className="block">
+            {t({ es: "de ", en: "" })}
+            <Highlight color="coral">
+              {t({ es: "delivery", en: "solutions" })}
+            </Highlight>
+          </span>
         </motion.h1>
 
         <motion.p
           {...fadeUp(0.14)}
           className="mt-7 max-w-[640px] text-lg leading-relaxed text-pimenton-text-on-dark-muted sm:text-xl"
         >
-          Gestionamos tu delivery de punta a punta para que vendas más, con
-          menos fricción y mayor rentabilidad.
+          {t({
+            es: "Gestionamos tu delivery de punta a punta para que vendas más, con menos fricción y mayor rentabilidad.",
+            en: "We manage your delivery end to end so you sell more, with less friction and greater profitability.",
+          })}
         </motion.p>
       </div>
     </section>

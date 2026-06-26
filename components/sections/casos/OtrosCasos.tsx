@@ -6,13 +6,14 @@ import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { getOtrosCasos } from "@/data/casos";
 import { splitHighlight } from "@/components/ui-custom/Highlight";
-import { useCopy } from "@/components/i18n/LanguageContext";
+import { useCopy, useT } from "@/components/i18n/LanguageContext";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 /** Navegación cruzada: hasta 3 otros casos + volver al hub. */
 export function OtrosCasos({ slug }: { slug: string }) {
   const reduced = useReducedMotion() ?? false;
+  const t = useT();
   const { otrosHeading, otrosAccent, backToHub } = useCopy().casos.caso;
   const otros = getOtrosCasos(slug, 3);
 
@@ -65,7 +66,9 @@ export function OtrosCasos({ slug }: { slug: string }) {
                     {c.marca}
                   </h3>
                   <p className="mt-1 text-xs text-pimenton-text-muted">
-                    {c.pais ? `${c.categoria} · ${c.bandera} ${c.pais}` : c.categoria}
+                    {t(c.pais)
+                      ? `${t(c.categoria)} · ${c.bandera} ${t(c.pais)}`
+                      : t(c.categoria)}
                   </p>
                 </div>
               </Link>

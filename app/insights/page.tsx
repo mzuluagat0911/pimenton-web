@@ -4,7 +4,7 @@ import { InsightsList } from "@/components/sections/insights/InsightsList";
 import { InsightsCta } from "@/components/sections/insights/InsightsCta";
 import { insights } from "@/data/insights";
 
-const SITE = "https://pimenton.io";
+import { SITE_URL as SITE } from "@/lib/site";
 const PATH = "/insights";
 const TITLE = "Insights | Pimentón — Estrategia y rentabilidad en delivery";
 const DESCRIPTION =
@@ -76,7 +76,7 @@ const jsonLd = {
       publisher: { "@type": "Organization", name: "Pimentón", url: SITE },
       blogPost: insights.map((a) => ({
         "@type": "BlogPosting",
-        headline: a.titulo,
+        headline: a.titulo.es,
         datePublished: a.fecha,
         url: `${SITE}${PATH}/${a.slug}`,
         image: `${SITE}${a.heroImage}`,

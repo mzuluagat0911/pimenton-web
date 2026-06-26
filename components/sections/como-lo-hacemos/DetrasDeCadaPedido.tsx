@@ -4,6 +4,7 @@ import {
   type MouseEvent as ReactMouseEvent,
   type ReactNode,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -21,6 +22,7 @@ import { Highlight } from "@/components/ui-custom/Highlight";
 import { EASE } from "@/components/sections/servicios/Eyebrow";
 import { CtaPill } from "@/components/ui-custom/CtaPill";
 import { ControlRoomAutonomous } from "@/components/sections/control-room/Autonomous";
+import { useT } from "@/components/i18n/LanguageContext";
 import {
   col3LogoPool,
   dashboardConfig,
@@ -233,6 +235,7 @@ function MockDashboard({
   index: number;
 }) {
   const hasEntered = useHasEntered(inView, reduced, index);
+  const t = useT();
   const { ordenes, facturacion, pedidos, roi } = dashboardConfig;
 
   return (
@@ -240,7 +243,7 @@ function MockDashboard({
       {/* Panel órdenes (dark) */}
       <div className="rounded-xl border border-pimenton-dark-border bg-pimenton-dark p-3.5">
         <p className="font-mono text-[8px] uppercase tracking-[0.18em] text-pimenton-text-on-dark-muted">
-          Órdenes 2025
+          {t({ es: "Órdenes 2025", en: "Orders 2025" })}
         </p>
         <div className="mt-1.5 flex items-end justify-between gap-3">
           <span className="font-display text-2xl font-bold tabular-nums text-pimenton-accent">
@@ -277,7 +280,7 @@ function MockDashboard({
       {/* Panel facturación (claro) */}
       <div className="rounded-xl bg-pimenton-bg p-3.5">
         <p className="font-mono text-[8px] uppercase tracking-[0.18em] text-pimenton-text-muted">
-          Facturación
+          {t({ es: "Facturación", en: "Revenue" })}
         </p>
         <div className="mt-1.5 flex items-end justify-between gap-3">
           <span className="font-display text-2xl font-bold tabular-nums text-pimenton-text">
@@ -308,7 +311,7 @@ function MockDashboard({
             hasEntered={hasEntered}
             reduced={reduced}
           />{" "}
-          pedidos ·{" "}
+          {t({ es: "pedidos", en: "orders" })} ·{" "}
           <RisingNumber
             base={roi.base}
             fluct={roi.fluct}
@@ -372,6 +375,20 @@ function MockNota({
   index: number;
 }) {
   const hasEntered = useHasEntered(inView, reduced, index);
+  const t = useT();
+  // Partes diarios resueltos al idioma activo. Memoizado por idioma: al
+  // cambiar de idioma, `days` cambia → el typing reinicia en el nuevo texto.
+  const days = useMemo(
+    () =>
+      partesDiarios.map((d) => ({
+        fecha: d.fecha,
+        items: d.items.map((it) => ({
+          text: t(it.text),
+          highlight: it.highlight ? t(it.highlight) : undefined,
+        })),
+      })),
+    [t],
+  );
   const [dayIndex, setDayIndex] = useState(0);
   const [reveals, setReveals] = useState<number[]>([0, 0, 0]);
   const [cycleKey, setCycleKey] = useState(0);
@@ -396,7 +413,7 @@ function MockNota({
         await wait(520); // deja entrar la "notificación"
         if (cancelled) break;
 
-        const items = partesDiarios[day].items;
+        const items = days[day].items;
         for (let i = 0; i < items.length; i++) {
           const len = items[i].text.length;
           await wait(200); // micro-pausa antes del ítem
@@ -417,7 +434,7 @@ function MockNota({
         if (cancelled) break;
 
         await wait(2000); // nota completa, legible
-        day = (day + 1) % partesDiarios.length;
+        day = (day + 1) % days.length;
       }
     })();
 
@@ -426,9 +443,9 @@ function MockNota({
       if (timer) clearTimeout(timer);
       if (resolveWait) resolveWait(); // desbloquea el await pendiente
     };
-  }, [hasEntered, reduced]);
+  }, [hasEntered, reduced, days]);
 
-  const day = partesDiarios[reduced ? 0 : dayIndex];
+  const day = days[reduced ? 0 : dayIndex];
   const lens = reduced ? day.items.map((it) => it.text.length) : reveals;
   // Línea activa = última con algún caracter revelado (para el cursor).
   const activeLine = reduced
@@ -448,7 +465,7 @@ function MockNota({
       >
         <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-pimenton-text/20" />
         <p className="font-mono text-[8px] uppercase tracking-[0.18em] text-pimenton-text-muted">
-          Parte diario · {day.fecha}
+          {t({ es: "Parte diario", en: "Daily report" })} · {day.fecha}
         </p>
         <ul className="mt-3 space-y-2 text-xs leading-snug text-pimenton-text">
           {day.items.map((item, i) => (
@@ -560,6 +577,7 @@ function MockPerfil({
   index: number;
 }) {
   const hasEntered = useHasEntered(inView, reduced, index);
+  const t = useT();
   const [gmIndex, setGmIndex] = useState(0);
 
   useEffect(() => {
@@ -608,7 +626,7 @@ function MockPerfil({
               {gm.nombre}
             </p>
             <p className="mt-1 text-balance font-mono text-[9px] uppercase tracking-[0.16em] text-pimenton-text-on-dark-muted">
-              {gm.rol} · {gm.pais}
+              {t(gm.rol)} · {t(gm.pais)}
             </p>
           </motion.div>
         </AnimatePresence>
@@ -616,7 +634,7 @@ function MockPerfil({
       {/* En línea — constante, con halo radar */}
       <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-pimenton-dark px-2.5 py-1 text-[10px] font-medium text-pimenton-text-on-dark-muted">
         <LiveDot reduced={reduced} />
-        En línea
+        {t({ es: "En línea", en: "Online" })}
       </span>
     </div>
   );
@@ -724,6 +742,7 @@ function TiltCard({
 
 export function DetrasDeCadaPedido() {
   const reduced = useReducedMotion() ?? false;
+  const t = useT();
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.2 });
 
@@ -743,9 +762,13 @@ export function DetrasDeCadaPedido() {
               transition={{ duration: 0.8, ease: EASE }}
               className="text-3xl font-semibold leading-[1.12] tracking-tight text-pimenton-text-on-dark sm:text-4xl"
             >
-              <span className="block">Detrás de cada pedido,</span>
+              <span className="block">
+                {t({ es: "Detrás de cada pedido,", en: "Behind every order," })}
+              </span>
               <span className="mt-1 block">
-                <Highlight color="coral">hay una decisión.</Highlight>
+                <Highlight color="coral">
+                  {t({ es: "hay una decisión.", en: "there's a decision." })}
+                </Highlight>
               </span>
             </motion.h2>
           </div>
@@ -754,46 +777,56 @@ export function DetrasDeCadaPedido() {
               (sin overflow-hidden en ningún ancestro → nada se corta). */}
           <div className="mt-14 grid grid-cols-1 gap-6 py-8 sm:mt-16 sm:grid-cols-2 lg:grid-cols-4">
             <TiltCard
-              title={
-                <>
-                  Ves todos los
-                  <br />
-                  datos en el
-                  <br />
-                  mismo lugar
-                </>
-              }
-              desc="Ventas, margen, ticket y promos. Decidimos con datos reales."
+              title={t({
+                es: "Ves todos los datos en el mismo lugar",
+                en: "See all your data in one place",
+              })}
+              desc={t({
+                es: "Ventas, margen, ticket y promos. Decidimos con datos reales.",
+                en: "Sales, margin, ticket, and promos. We decide with real data.",
+              })}
               index={0}
               reduced={reduced}
             >
               <MockDashboard inView={inView} reduced={reduced} index={0} />
             </TiltCard>
             <TiltCard
-              title={
-                <>
-                  Operamos el canal todos los días,
-                  <br />
-                  de punta a punta
-                </>
-              }
-              desc="Nos metemos en la operación, no la miramos de afuera."
+              title={t({
+                es: "Operamos el canal todos los días, de punta a punta",
+                en: "We operate the channel every day, end to end",
+              })}
+              desc={t({
+                es: "Nos metemos en la operación, no la miramos de afuera.",
+                en: "We get into the operation — we don't watch from the outside.",
+              })}
               index={1}
               reduced={reduced}
             >
               <MockNota inView={inView} reduced={reduced} index={1} />
             </TiltCard>
             <TiltCard
-              title="Somos expertos en APPs de Delivery"
-              desc="Gestionamos el canal como si fuera nuestro."
+              title={t({
+                es: "Somos expertos en APPs de Delivery",
+                en: "We're delivery app experts",
+              })}
+              desc={t({
+                es: "Gestionamos el canal como si fuera nuestro.",
+                en: "We manage the channel as if it were ours.",
+              })}
               index={2}
               reduced={reduced}
             >
               <MockLogos inView={inView} reduced={reduced} index={2} />
             </TiltCard>
             <TiltCard
-              title="Contarás con un equipo de Growth a cargo"
-              desc="Un especialista de tu región, dedicado a tu negocio."
+              title={t({
+                es: "Contarás con un equipo de Growth a cargo",
+                en: "You'll have a Growth team in charge",
+              })}
+              desc={t({
+                es: "Un especialista de tu región, dedicado a tu negocio.",
+                en: "A specialist from your region, dedicated to your business.",
+              })}
               index={3}
               reduced={reduced}
             >
@@ -813,7 +846,13 @@ export function DetrasDeCadaPedido() {
       <div className="px-[5%] sm:px-16 lg:px-24">
         <div className="mx-auto w-full max-w-7xl">
           <div className="flex justify-center">
-            <CtaPill href="/contacto" label="Hablar con un especialista" />
+            <CtaPill
+              href="/contacto"
+              label={t({
+                es: "Hablar con un especialista",
+                en: "Talk to a specialist",
+              })}
+            />
           </div>
         </div>
       </div>

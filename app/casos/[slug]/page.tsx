@@ -12,7 +12,7 @@ import {
 import { OtrosCasos } from "@/components/sections/casos/OtrosCasos";
 import { CtaPotenciar } from "@/components/sections/casos/CtaPotenciar";
 
-const SITE = "https://pimenton.io";
+import { SITE_URL as SITE } from "@/lib/site";
 
 // SSG: prerenderiza las 6 (o N) landings desde el data layer al build.
 export function generateStaticParams() {
@@ -29,7 +29,7 @@ export async function generateMetadata({
   if (!caso) return {};
 
   const title = `${caso.marca} | Casos de Éxito · Pimentón`;
-  const description = caso.tagline;
+  const description = caso.tagline.es;
   const path = `/casos/${slug}`;
 
   return {
@@ -55,7 +55,7 @@ export async function generateMetadata({
       title,
       description,
       images: [
-        { url: caso.heroImage, width: 1280, height: 720, alt: caso.marca },
+        { url: caso.heroImage, width: 1280, height: 854, alt: caso.marca },
       ],
     },
     twitter: {
@@ -99,8 +99,8 @@ export default async function CasoPage({
       },
       {
         "@type": "Article",
-        headline: `${caso.marca} — ${caso.tagline}`,
-        description: caso.contexto,
+        headline: `${caso.marca} — ${caso.tagline.es}`,
+        description: caso.contexto.es,
         articleSection: "Casos de éxito",
         image: `${SITE}${caso.heroImage}`,
         author: { "@type": "Organization", name: "Pimentón", url: SITE },

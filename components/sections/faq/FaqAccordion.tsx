@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { EASE } from "@/components/sections/servicios/Eyebrow";
+import { useT } from "@/components/i18n/LanguageContext";
 import type { Faq } from "@/data/faq";
 
 // Ícono +/− con dos barras: la horizontal es fija; la vertical colapsa
@@ -41,6 +42,7 @@ function FaqItem({
   onToggle: () => void;
   reduced: boolean;
 }) {
+  const t = useT();
   return (
     // Card blanca (mismo lenguaje que las cards de "Lo que dicen de nosotros").
     <div className="overflow-hidden rounded-2xl border border-pimenton-border bg-pimenton-surface transition-shadow duration-300 hover:shadow-[0_18px_40px_-24px_rgba(15,15,14,0.25)]">
@@ -61,7 +63,7 @@ function FaqItem({
                 : "text-pimenton-text group-hover:text-pimenton-accent"
             }`}
           >
-            {item.pregunta}
+            {t(item.pregunta)}
           </span>
           <PlusMinus isOpen={isOpen} reduced={reduced} />
         </button>
@@ -77,7 +79,7 @@ function FaqItem({
             style={{ overflow: "hidden" }}
           >
             <p className="px-6 pb-6 text-base leading-relaxed text-pimenton-text-muted sm:px-7 sm:pb-7">
-              {item.respuesta}
+              {t(item.respuesta)}
             </p>
           </motion.div>
         )}
@@ -96,7 +98,7 @@ export function FaqAccordion({ items }: { items: Faq[] }) {
     <div className="space-y-3 sm:space-y-4">
       {items.map((item, i) => (
         <FaqItem
-          key={item.pregunta}
+          key={i}
           item={item}
           isOpen={openIndex === i}
           onToggle={() => setOpenIndex(openIndex === i ? null : i)}

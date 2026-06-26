@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { casos } from "@/data/casos";
 import { insights } from "@/data/insights";
 
-const SITE = "https://pimenton.io";
+import { SITE_URL as SITE } from "@/lib/site";
 
 // Solo rutas públicas existentes. /lab/* queda fuera (no es contenido
 // público).
@@ -19,19 +19,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${SITE}/servicios`,
       lastModified,
       changeFrequency: "monthly",
-      priority: 0.9,
+      priority: 0.8,
     },
     {
       url: `${SITE}/como-lo-hacemos`,
       lastModified,
       changeFrequency: "monthly",
-      priority: 0.9,
+      priority: 0.8,
     },
     {
       url: `${SITE}/contacto`,
       lastModified,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.6,
     },
     {
       url: `${SITE}/faq`,
@@ -62,7 +62,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${SITE}/insights`,
       lastModified,
       changeFrequency: "weekly",
-      priority: 0.7,
+      priority: 0.8,
     },
     // Una entrada por artículo (desde el data layer).
     ...insights.map((a) => ({

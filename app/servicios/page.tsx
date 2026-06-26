@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Services } from "@/components/sections/Services";
 import { ServiciosHero } from "@/components/sections/servicios/ServiciosHero";
 import { NoSomosAgencia } from "@/components/sections/servicios/NoSomosAgencia";
+import { ServiciosSoluciones } from "@/components/sections/servicios/ServiciosSoluciones";
 import { copy } from "@/data/copy";
 
-const SITE = "https://pimenton.io";
+import { SITE_URL as SITE } from "@/lib/site";
 const PATH = "/servicios";
 
 export const metadata: Metadata = {
@@ -129,16 +129,7 @@ export default function ServiciosPage() {
       {/* 3. Cinco servicios (oscuro) — componente del Home reutilizado, con
              header propio de esta página, palabra resaltada, nombres en
              uppercase y sin CTA interno. */}
-      <Services
-        eyebrow="Qué hacemos"
-        heading="Cinco soluciones, un mismo objetivo: que vendas más sin mayor esfuerzo."
-        headingHighlight="vendas más"
-        showCta
-        ctaHref="/contacto"
-        ctaLabel="Consultoría gratuita"
-        uppercaseNames
-        showPlatforms
-      />
+      <ServiciosSoluciones />
 
       {/* 4. Footer: global desde app/layout.tsx */}
     </main>

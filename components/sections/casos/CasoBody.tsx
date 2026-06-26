@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { splitHighlight } from "@/components/ui-custom/Highlight";
-import { useCopy } from "@/components/i18n/LanguageContext";
+import { useCopy, useT, type Localized } from "@/components/i18n/LanguageContext";
 import type { Estrategia } from "@/data/casos";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -18,23 +18,24 @@ function useReveal() {
 }
 
 /** 3. El Desafío (contexto) — fondo oscuro. */
-export function CasoDesafio({ contexto }: { contexto: string }) {
+export function CasoDesafio({ contexto }: { contexto: Localized }) {
   const reveal = useReveal();
+  const t = useT();
   const { desafioHeading, desafioAccent } = useCopy().casos.caso;
   return (
-    <section className="bg-pimenton-dark px-[5%] py-20 sm:px-16 sm:py-28 lg:px-24">
+    <section className="bg-pimenton-bg px-[5%] py-16 sm:px-16 sm:py-20 lg:px-24">
       <div className="mx-auto w-full max-w-3xl">
         <motion.h2
           {...reveal(0)}
-          className="text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-4xl lg:text-5xl"
+          className="text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl lg:text-5xl"
         >
           {splitHighlight(desafioHeading, desafioAccent, "coral")}
         </motion.h2>
         <motion.p
           {...reveal(0.1)}
-          className="mt-6 text-lg leading-relaxed text-pimenton-text-on-dark-muted sm:text-xl"
+          className="mt-6 text-lg leading-relaxed text-pimenton-text-soft sm:text-xl"
         >
-          {contexto}
+          {t(contexto)}
         </motion.p>
       </div>
     </section>
@@ -45,9 +46,10 @@ export function CasoDesafio({ contexto }: { contexto: string }) {
 export function CasoApproach({ approach }: { approach: Estrategia[] }) {
   const reduced = useReducedMotion() ?? false;
   const reveal = useReveal();
+  const t = useT();
   const { approachHeading, approachAccent } = useCopy().casos.caso;
   return (
-    <section className="bg-pimenton-bg px-[5%] py-20 sm:px-16 sm:py-28 lg:px-24">
+    <section className="bg-pimenton-bg px-[5%] py-16 sm:px-16 sm:py-20 lg:px-24">
       <div className="mx-auto w-full max-w-3xl">
         <motion.h2
           {...reveal(0)}
@@ -76,7 +78,7 @@ export function CasoApproach({ approach }: { approach: Estrategia[] }) {
               <div>
                 {step.titulo && (
                   <h3 className="text-lg font-bold tracking-tight text-pimenton-text sm:text-xl">
-                    {step.titulo}
+                    {t(step.titulo)}
                   </h3>
                 )}
                 <p
@@ -84,7 +86,7 @@ export function CasoApproach({ approach }: { approach: Estrategia[] }) {
                     step.titulo ? "mt-2" : ""
                   }`}
                 >
-                  {step.descripcion}
+                  {t(step.descripcion)}
                 </p>
               </div>
             </motion.li>
@@ -96,25 +98,27 @@ export function CasoApproach({ approach }: { approach: Estrategia[] }) {
 }
 
 /** 5. Resultados en detalle — sólo casos multi-sucursal/multimarca. Oscuro. */
-export function CasoResultados({ items }: { items: string[] }) {
+export function CasoResultados({ items }: { items: Localized[] }) {
   const reduced = useReducedMotion() ?? false;
   const reveal = useReveal();
+  const t = useT();
   const { resultadosHeading, resultadosAccent } = useCopy().casos.caso;
   return (
-    <section className="bg-pimenton-dark px-[5%] py-20 sm:px-16 sm:py-28 lg:px-24">
+    <section className="bg-pimenton-bg px-[5%] py-16 sm:px-16 sm:py-20 lg:px-24">
       <div className="mx-auto w-full max-w-3xl">
         <motion.h2
           {...reveal(0)}
-          className="text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-4xl lg:text-5xl"
+          className="text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl lg:text-5xl"
         >
           {splitHighlight(resultadosHeading, resultadosAccent, "coral")}
         </motion.h2>
 
-        <ul className="mt-10 border-t border-pimenton-dark-border">
+        <ul className="mt-10 border-t border-pimenton-border">
           {items.map((item, i) => {
-            const idx = item.indexOf(":");
-            const label = idx > -1 ? item.slice(0, idx) : null;
-            const detail = idx > -1 ? item.slice(idx + 1).trim() : item;
+            const resolved = t(item);
+            const idx = resolved.indexOf(":");
+            const label = idx > -1 ? resolved.slice(0, idx) : null;
+            const detail = idx > -1 ? resolved.slice(idx + 1).trim() : resolved;
             return (
               <motion.li
                 key={i}
@@ -126,15 +130,15 @@ export function CasoResultados({ items }: { items: string[] }) {
                   delay: reduced ? 0 : i * 0.08,
                   ease: EASE,
                 }}
-                className="flex items-start gap-4 border-b border-pimenton-dark-border py-5"
+                className="flex items-start gap-4 border-b border-pimenton-border py-5"
               >
                 <span
                   aria-hidden
                   className="mt-2.5 size-1.5 shrink-0 rounded-full bg-pimenton-accent"
                 />
-                <span className="text-base leading-relaxed text-pimenton-text-on-dark-muted sm:text-lg">
+                <span className="text-base leading-relaxed text-pimenton-text-soft sm:text-lg">
                   {label && (
-                    <span className="font-semibold text-pimenton-text-on-dark">
+                    <span className="font-semibold text-pimenton-text">
                       {label}:{" "}
                     </span>
                   )}
@@ -150,11 +154,12 @@ export function CasoResultados({ items }: { items: string[] }) {
 }
 
 /** 6. Conclusión estratégica — el remate, bloque editorial con barra coral. */
-export function CasoConclusion({ text }: { text: string }) {
+export function CasoConclusion({ text }: { text: Localized }) {
   const reveal = useReveal();
+  const t = useT();
   const { conclusionHeading, conclusionAccent } = useCopy().casos.caso;
   return (
-    <section className="bg-pimenton-bg px-[5%] py-24 sm:px-16 sm:py-32 lg:px-24">
+    <section className="bg-pimenton-bg px-[5%] py-16 sm:px-16 sm:py-20 lg:px-24">
       <div className="mx-auto w-full max-w-3xl">
         <motion.h2
           {...reveal(0)}
@@ -162,13 +167,12 @@ export function CasoConclusion({ text }: { text: string }) {
         >
           {splitHighlight(conclusionHeading, conclusionAccent, "coral")}
         </motion.h2>
+        {/* Remate — misma trama que el cuerpo (text-lg), borde coral fino. */}
         <motion.div
           {...reveal(0.1)}
-          className="mt-8 border-l-4 border-pimenton-accent pl-6 sm:pl-8"
+          className="mt-8 border-l-2 border-pimenton-accent pl-5 sm:pl-6"
         >
-          <p className="font-display text-2xl font-medium leading-snug tracking-tight text-pimenton-text sm:text-3xl">
-            {text}
-          </p>
+          <p className="text-lg leading-[1.75] text-pimenton-text-soft">{t(text)}</p>
         </motion.div>
       </div>
     </section>

@@ -1,24 +1,19 @@
-"use client";
-
 import { insights } from "@/data/insights";
-import { useCopy } from "@/components/i18n/LanguageContext";
-import { InsightRow } from "./InsightCards";
+import { InsightCard } from "./InsightCards";
 
-/** Lista editorial del hub: filas horizontales con foto de lado alternado. */
+/**
+ * Hub de insights: grid editorial de cards — 3 columnas en desktop, una
+ * sola columna en mobile.
+ */
 export function InsightsList() {
-  const readCta = useCopy().insights.readCta;
-
   return (
-    <section className="bg-pimenton-bg px-[5%] py-16 sm:px-16 sm:py-20 lg:px-24">
-      <div className="mx-auto w-full max-w-6xl">
-        {insights.map((insight, i) => (
-          <InsightRow
-            key={insight.slug}
-            insight={insight}
-            index={i}
-            readCta={readCta}
-          />
-        ))}
+    <section className="bg-pimenton-bg px-[5%] py-16 sm:px-16 sm:py-24 lg:px-24">
+      <div className="mx-auto w-full max-w-7xl">
+        <div className="grid grid-cols-1 gap-x-8 gap-y-14 lg:grid-cols-3">
+          {insights.map((insight, i) => (
+            <InsightCard key={insight.slug} insight={insight} index={i} />
+          ))}
+        </div>
       </div>
     </section>
   );

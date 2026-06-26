@@ -13,7 +13,8 @@ const norm = (w: string) => w.toLowerCase().replace(/[.,;:!?¿¡—]/g, "");
 export function FraseManifiesto() {
   const reduced = useReducedMotion() ?? false;
   const { text, accent } = useCopy().equipo.manifesto;
-  const words = text.split(" ");
+  // El copy puede traer "\n" para forzar un quiebre de línea (sólo desktop).
+  const lines = text.split("\n");
   const accentNorm = norm(accent);
 
   // Un único observer en el h2 dispara el reveal y reparte el stagger a las
@@ -37,21 +38,35 @@ export function FraseManifiesto() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.25 }}
         variants={container}
-        className="mx-auto max-w-5xl text-center text-5xl font-bold leading-[1.1] tracking-tight text-pimenton-text-on-dark sm:text-6xl lg:text-7xl"
+        className="mx-auto max-w-6xl text-balance text-center text-5xl font-bold leading-[1.1] tracking-tight text-pimenton-text-on-dark sm:text-6xl lg:text-7xl"
       >
-        {words.map((w, i) => {
-          const node =
-            norm(w) === accentNorm ? <Highlight color="coral">{w}</Highlight> : w;
-          return (
-            <Fragment key={i}>
-              <span className="inline-block overflow-hidden align-bottom">
-                <motion.span className="inline-block" variants={wordVariant}>
-                  {node}
-                </motion.span>
-              </span>{" "}
-            </Fragment>
-          );
-        })}
+        {lines.map((line, li) => (
+          <Fragment key={`l${li}`}>
+            {line.split(" ").map((w, wi) => {
+              const node =
+                norm(w) === accentNorm ? (
+                  <Highlight color="coral">{w}</Highlight>
+                ) : (
+                  w
+                );
+              return (
+                <Fragment key={`${li}-${wi}`}>
+                  <span className="inline-block overflow-hidden align-bottom">
+                    <motion.span
+                      className="inline-block"
+                      variants={wordVariant}
+                    >
+                      {node}
+                    </motion.span>
+                  </span>{" "}
+                </Fragment>
+              );
+            })}
+            {/* Quiebre forzado entre líneas del copy — sólo desktop; abajo
+                fluye natural + text-balance. */}
+            {li < lines.length - 1 && <br className="hidden lg:inline" />}
+          </Fragment>
+        ))}
       </motion.h2>
     </section>
   );

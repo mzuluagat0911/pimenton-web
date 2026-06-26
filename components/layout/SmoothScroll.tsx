@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -22,6 +23,17 @@ declare global {
  * window.__lenis so header / hero anchor clicks can call scrollTo.
  */
 export function SmoothScroll() {
+  const pathname = usePathname();
+
+  // Al cambiar de ruta, volvemos arriba. Next resetea el scroll nativo, pero
+  // Lenis mantiene su posición interna → hay que avisarle explícitamente
+  // (si no, el caso/artículo nuevo abre a la misma altura Y que el anterior).
+  useEffect(() => {
+    const lenis = window.__lenis;
+    if (lenis) lenis.scrollTo(0, { immediate: true });
+    else window.scrollTo(0, 0);
+  }, [pathname]);
+
   useEffect(() => {
     if (typeof window === "undefined") return;
 

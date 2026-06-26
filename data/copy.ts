@@ -636,74 +636,87 @@ export const copy = {
   // en la próxima tanda de traducción (el fallback ya muestra .es en EN).
   equipo: {
     hero: {
-      eyebrow: { es: "Cultura Pimentón" },
+      eyebrow: { es: "Cultura Pimentón", en: "Pimentón Culture" },
     },
     manifesto: {
-      text: { es: "Crecer implica aprender todo el tiempo." },
-      accent: { es: "aprender" },
+      // \n = quiebre de línea forzado en desktop (ver FraseManifiesto);
+      // en pantallas chicas el texto fluye con text-balance (sin huérfanos).
+      text: {
+        es: "Crecer implica\naprender todo el tiempo.",
+        en: "Growing means\nlearning all the time.",
+      },
+      accent: { es: "aprender", en: "learning" },
     },
     valores: {
       rows: [
         {
-          heading: { es: "Nos movemos con adaptabilidad" },
-          accent: { es: "adaptabilidad" },
+          heading: { es: "Nos movemos con adaptabilidad", en: "We move with adaptability" },
+          accent: { es: "adaptabilidad", en: "adaptability" },
           paragraph: {
             es: "Entregamos con calidad, priorizando lo que importa y orientando cada acción a resultados concretos. Leemos el contexto, ajustamos rápido y seguimos.",
+            en: "We deliver with quality, prioritizing what matters and steering every action toward concrete results. We read the context, adjust fast, and keep going.",
           },
           image: "/assets/equipo/equipo-valor-1.webp",
-          alt: { es: "Equipo Pimentón colaborando" },
+          alt: { es: "Equipo Pimentón colaborando", en: "Pimentón team collaborating" },
         },
         {
-          heading: { es: "Somos protagonistas" },
-          accent: { es: "protagonistas" },
+          heading: { es: "Somos protagonistas", en: "We take ownership" },
+          accent: { es: "protagonistas", en: "ownership" },
           paragraph: {
             es: "Hacemos que las cosas pasen, nos involucramos y resolvemos en equipo. El compromiso se nota en la acción y en la responsabilidad compartida.",
+            en: "We make things happen, we get involved, and we solve as a team. Commitment shows in the action and in shared responsibility.",
           },
           image: "/assets/equipo/equipo-valor-2.webp",
-          alt: { es: "Equipo Pimentón en plena operación" },
+          alt: { es: "Equipo Pimentón en plena operación", en: "Pimentón team in full operation" },
         },
         {
-          heading: { es: "El respeto atraviesa todo" },
-          accent: { es: "respeto" },
+          heading: { es: "El respeto atraviesa todo", en: "Respect runs through everything" },
+          accent: { es: "respeto", en: "Respect" },
           paragraph: {
             es: "Nos comunicamos con honestidad, escuchamos activamente y valoramos las ideas por sobre las jerarquías. Debatimos con intención y construimos una cultura directa, humana y adulta.",
+            en: "We communicate honestly, listen actively, and value ideas over hierarchy. We debate with intention and build a direct, human, grown-up culture.",
           },
           image: "/assets/equipo/equipo-valor-3.webp",
-          alt: { es: "Cultura de respeto en Pimentón" },
+          alt: { es: "Cultura de respeto en Pimentón", en: "A culture of respect at Pimentón" },
         },
       ],
     },
     modelo: {
-      heading: { es: "Cómo acompañamos este modelo" },
-      headingAccent: { es: "acompañamos" },
+      heading: { es: "Cómo acompañamos este modelo", en: "How we support this model" },
+      headingAccent: { es: "acompañamos", en: "support" },
       cards: [
-        { title: { es: "Trabajo distribuido y flexible" }, icon: "laptop" },
+        { title: { es: "Trabajo distribuido y flexible", en: "Distributed, flexible work" }, icon: "laptop" },
         {
-          title: { es: "Compensación alineada a impacto y resultados" },
+          title: { es: "Compensación alineada a impacto y resultados", en: "Compensation tied to impact and results" },
           icon: "trending-up",
         },
         {
           title: {
             es: "Reconocimiento por contribuir al crecimiento del negocio",
+            en: "Recognition for contributing to business growth",
           },
           icon: "award",
         },
         {
-          title: { es: "Descanso coordinado en función del equipo" },
+          title: { es: "Descanso coordinado en función del equipo", en: "Time off coordinated around the team" },
           icon: "calendar",
         },
       ],
     },
+    partners: {
+      eyebrow: { es: "Operamos con todo el ecosistema", en: "We operate across the whole ecosystem" },
+    },
     cta: {
-      heading: { es: "¿Quieres sumarte a Pimentón?" },
-      headingAccent: { es: "sumarte" },
+      heading: { es: "¿Quieres sumarte a Pimentón?", en: "Want to join Pimentón?" },
+      headingAccent: { es: "sumarte", en: "join" },
       description: {
         es: "Siempre queremos conocer personas con mentalidad emprendedora y ganas de construir. Si sientes que este modelo de trabajo va contigo, completa el formulario.",
+        en: "We are always looking to meet people with an entrepreneurial mindset and a drive to build. If this way of working feels like you, fill out the form.",
       },
-      button: { es: "Quiero sumarme" },
+      button: { es: "Quiero sumarme", en: "I want to join" },
       href: "https://forms.gle/zYUFuXkNG5dsS9z17",
       image: "/assets/equipo/equipo-completo.webp",
-      imageAlt: { es: "Equipo completo de Pimentón" },
+      imageAlt: { es: "Equipo completo de Pimentón", en: "The full Pimentón team" },
     },
   },
   // Casos de Éxito (/casos hub + /casos/[slug] template). Chrome reutilizable
@@ -711,43 +724,45 @@ export const copy = {
   // ahora (el fallback ya muestra .es en EN).
   casos: {
     hub: {
-      eyebrow: { es: "Casos de éxito" },
-      heading: { es: "Resultados reales, no promesas." },
-      headingAccent: { es: "Resultados" },
+      eyebrow: { es: "Casos de éxito", en: "Success stories" },
+      heading: { es: "Resultados reales, no promesas.", en: "Real results, not promises." },
+      headingAccent: { es: "Resultados", en: "Real results" },
       subtitle: {
         es: "Restaurantes que decidieron profesionalizar su delivery y lo convirtieron en un canal rentable. Estos son algunos de ellos.",
+        en: "Restaurants that decided to professionalize their delivery and turned it into a profitable channel. Here are a few of them.",
       },
       // Banda de prueba social — datos sobrios y verificables de los casos.
       proof: [
-        { value: "+200%", label: { es: "el mayor crecimiento" } },
-        { value: "6", label: { es: "casos comprobables" } },
-        { value: "4", label: { es: "países" } },
+        { value: "+200%", label: { es: "el mayor crecimiento", en: "the biggest growth" } },
+        { value: "6", label: { es: "casos comprobables", en: "verifiable cases" } },
+        { value: "4", label: { es: "países", en: "countries" } },
       ],
-      cardCta: { es: "Ver caso" },
+      cardCta: { es: "Ver caso", en: "View case" },
     },
     caso: {
-      metricasEyebrow: { es: "Los números" },
-      desafioHeading: { es: "El desafío" },
-      desafioAccent: { es: "desafío" },
-      approachHeading: { es: "Qué hicimos" },
-      approachAccent: { es: "hicimos" },
-      resultadosHeading: { es: "Resultados en detalle" },
-      resultadosAccent: { es: "detalle" },
-      conclusionHeading: { es: "Conclusión estratégica" },
-      conclusionAccent: { es: "estratégica" },
-      otrosHeading: { es: "Ver otros casos" },
-      otrosAccent: { es: "otros" },
-      backToHub: { es: "Ver todos los casos" },
+      metricasEyebrow: { es: "Los números", en: "The numbers" },
+      desafioHeading: { es: "El desafío", en: "The challenge" },
+      desafioAccent: { es: "desafío", en: "challenge" },
+      approachHeading: { es: "Qué hicimos", en: "What we did" },
+      approachAccent: { es: "hicimos", en: "did" },
+      resultadosHeading: { es: "Resultados en detalle", en: "Results in detail" },
+      resultadosAccent: { es: "detalle", en: "detail" },
+      conclusionHeading: { es: "Conclusión estratégica", en: "Strategic takeaway" },
+      conclusionAccent: { es: "estratégica", en: "Strategic" },
+      otrosHeading: { es: "Ver otros casos", en: "See other cases" },
+      otrosAccent: { es: "otros", en: "other" },
+      backToHub: { es: "Ver todos los casos", en: "See all cases" },
     },
-    // CTA de cierre reutilizable (hub + cada caso). Fondo coral; "potenciar"
-    // resaltado en dark (sobre coral, el coral sería invisible).
+    // CTA de cierre reutilizable (hub + cada caso). Fondo coral, sin
+    // resaltado en el heading, pill crema.
     cta: {
-      heading: { es: "¿Quieres potenciar tu delivery?" },
-      headingAccent: { es: "potenciar" },
+      heading: { es: "¿Quieres potenciar tu delivery?", en: "Want to boost your delivery?" },
+      headingAccent: { es: "" },
       description: {
-        es: "Cada uno de estos casos empezó con una conversación. El tuyo también puede empezar hoy.",
+        es: "Cada uno de estos casos empezó con una conversación.\nEl tuyo también puede empezar hoy.",
+        en: "Every one of these cases started with a conversation.\nYours can start today, too.",
       },
-      button: { es: "Hablemos" },
+      button: { es: "Hablemos", en: "Let's talk" },
       href: "/contacto",
     },
   },
@@ -756,25 +771,27 @@ export const copy = {
   // Sólo .es por ahora (el fallback ya muestra .es en EN).
   insights: {
     hub: {
-      eyebrow: { es: "Insights" },
-      heading: { es: "Insights para un delivery más rentable." },
-      headingAccent: { es: "rentable" },
+      eyebrow: { es: "Insights", en: "Insights" },
+      heading: { es: "Insights para un delivery más rentable.", en: "Insights for a more profitable delivery." },
+      headingAccent: { es: "rentable", en: "profitable" },
       subtitle: {
         es: "Estrategia, datos y operación real de delivery. Lo que aprendemos gestionando cientos de restaurantes, sin vueltas y al grano.",
+        en: "Strategy, data, and real delivery operations. What we learn managing hundreds of restaurants — straight to the point.",
       },
     },
-    readCta: { es: "Leer artículo" },
-    backToHub: { es: "Volver a Insights" },
-    masArticulos: { es: "Más artículos" },
-    masArticulosAccent: { es: "Más" },
+    readCta: { es: "Leer artículo", en: "Read article" },
+    backToHub: { es: "Volver a Insights", en: "Back to Insights" },
+    masArticulos: { es: "Más artículos", en: "More articles" },
+    masArticulosAccent: { es: "Más", en: "More" },
     // CTA custom para /insights (reusa CtaPotenciar). "aplicar" en dark.
     cta: {
-      heading: { es: "¿Listo para aplicar esto en tu delivery?" },
-      headingAccent: { es: "aplicar" },
+      heading: { es: "¿Listo para aplicar esto en tu delivery?", en: "Ready to apply this to your delivery?" },
+      headingAccent: { es: "aplicar", en: "apply" },
       description: {
-        es: "Cada artículo nace de trabajo real con restaurantes. Hablemos del tuyo.",
+        es: "Cada artículo nace de trabajo real con restaurantes.\nHablemos del tuyo.",
+        en: "Every article comes from real work with restaurants.\nLet's talk about yours.",
       },
-      button: { es: "Hablemos" },
+      button: { es: "Hablemos", en: "Let's talk" },
     },
   },
   nav: {

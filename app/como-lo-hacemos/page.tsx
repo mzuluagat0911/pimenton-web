@@ -4,7 +4,7 @@ import { CuatroPasos } from "@/components/sections/como-lo-hacemos/CuatroPasos";
 import { DetrasDeCadaPedido } from "@/components/sections/como-lo-hacemos/DetrasDeCadaPedido";
 import { pasos } from "@/data/comoLoHacemos";
 
-const SITE = "https://pimenton.io";
+import { SITE_URL as SITE } from "@/lib/site";
 const PATH = "/como-lo-hacemos";
 
 const TITLE = "Cómo lo hacemos | Pimentón — Operación de delivery profesional";
@@ -91,8 +91,8 @@ const jsonLd = {
       step: pasos.map((p, i) => ({
         "@type": "HowToStep",
         position: i + 1,
-        name: p.title,
-        text: `${p.description} ${p.highlight}`,
+        name: p.title.es,
+        text: `${p.description.es} ${p.highlight.es}`,
       })),
     },
   ],

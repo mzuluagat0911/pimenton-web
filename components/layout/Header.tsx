@@ -190,10 +190,12 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean }) {
                 : { clipPath: "circle(0% at calc(100% - 5rem) 2.5rem)" }
             }
             transition={{ duration: reduced ? 0.2 : 0.7, ease: EASE }}
-            className="fixed inset-0 z-40 overflow-hidden bg-pimenton-accent"
+            className="fixed inset-0 z-40 overflow-y-auto overflow-x-hidden overscroll-contain bg-pimenton-accent"
           >
-            <div className="mx-auto flex h-full w-full max-w-7xl flex-col justify-between px-[5%] pb-12 pt-24 sm:px-16 sm:pb-16 sm:pt-28 md:w-[90%] md:max-w-[1500px] md:px-0">
-              <nav className="flex flex-1 flex-col items-end justify-center gap-2 text-right sm:gap-3">
+            {/* min-h-full + overflow-y-auto: en pantallas muy bajas el menú
+                scrollea en vez de cortar el contenido (p. ej. el mail). */}
+            <div className="mx-auto flex min-h-full w-full max-w-7xl flex-col justify-between gap-[clamp(1rem,3vh,2rem)] px-[5%] pb-8 pt-20 sm:px-16 sm:pb-10 sm:pt-24 md:w-[90%] md:max-w-[1500px] md:px-0">
+              <nav className="flex flex-1 flex-col items-end justify-center gap-[clamp(0.25rem,1.5vh,0.75rem)] text-right">
                 {navLinks.map((link, i) => (
                   <motion.a
                     key={i}
@@ -207,7 +209,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean }) {
                       duration: 0.45,
                       ease: EASE,
                     }}
-                    className="font-sans text-3xl font-semibold tracking-tight text-pimenton-bg transition-opacity duration-200 hover:opacity-80 sm:text-4xl lg:text-5xl"
+                    className="font-sans text-[clamp(1.875rem,min(4.5vw,5.2vh),3rem)] font-semibold leading-[1.1] tracking-tight text-pimenton-bg transition-opacity duration-200 hover:opacity-80"
                   >
                     {link.label}
                   </motion.a>

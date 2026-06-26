@@ -4,7 +4,7 @@ import { CasosGrid } from "@/components/sections/casos/CasosGrid";
 import { CtaPotenciar } from "@/components/sections/casos/CtaPotenciar";
 import { casos } from "@/data/casos";
 
-const SITE = "https://pimenton.io";
+import { SITE_URL as SITE } from "@/lib/site";
 const PATH = "/casos";
 const TITLE = "Casos de éxito | Pimentón";
 const DESCRIPTION =
@@ -77,7 +77,7 @@ const jsonLd = {
       itemListElement: casos.map((c, i) => ({
         "@type": "ListItem",
         position: i + 1,
-        name: `${c.marca} — ${c.tagline}`,
+        name: `${c.marca} — ${c.tagline.es}`,
         url: `${SITE}${PATH}/${c.slug}`,
       })),
     },

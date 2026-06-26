@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Consultancy } from "@/components/sections/Consultancy";
 
-const SITE = "https://pimenton.io";
+import { SITE_URL as SITE } from "@/lib/site";
 const PATH = "/contacto";
 
 const TITLE = "Contacto | Pimentón — Agenda tu consultoría gratuita";
@@ -98,6 +98,13 @@ export default function ContactoPage() {
           __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
         }}
       />
+
+      {/* H1 de la página. La sección Consultancy (compartida con el Home) usa
+          un H2, así que acá agregamos un único H1 con la keyword principal.
+          Visualmente oculto — no toca el diseño. */}
+      <h1 className="sr-only">
+        Contacto — Agenda tu consultoría de delivery gratuita
+      </h1>
 
       {/* Misma sección del Home (intro + wizard de 4 pasos). Importa el
           componente existente — una sola fuente de verdad. */}

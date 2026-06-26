@@ -45,12 +45,14 @@ export function CtaPotenciar(props: {
           {...reveal(0)}
           className="text-4xl font-bold leading-[1.05] tracking-tight text-pimenton-bg sm:text-5xl lg:text-6xl"
         >
-          {splitHighlight(heading, headingAccent, "dark")}
+          {headingAccent
+            ? splitHighlight(heading, headingAccent, "dark")
+            : heading}
         </motion.h2>
 
         <motion.p
           {...reveal(0.12)}
-          className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-pimenton-bg/90 sm:text-xl"
+          className="mx-auto mt-6 max-w-xl whitespace-pre-line text-lg leading-relaxed text-pimenton-bg/90 sm:text-xl"
         >
           {description}
         </motion.p>
@@ -59,7 +61,7 @@ export function CtaPotenciar(props: {
           <CtaPill
             href={href}
             label={button}
-            variant="dark"
+            variant="cream"
             iconPosition="right"
             icon={<ArrowRight aria-hidden className="size-5" />}
             className="sm:px-9 sm:py-4"

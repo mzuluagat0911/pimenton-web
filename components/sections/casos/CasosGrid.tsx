@@ -5,7 +5,8 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { casos, type Caso } from "@/data/casos";
-import { useCopy } from "@/components/i18n/LanguageContext";
+import { useCopy, useT } from "@/components/i18n/LanguageContext";
+import { MetaPills } from "./MetaPills";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const MotionLink = motion.create(Link);
@@ -21,10 +22,7 @@ function CasoCard({
   cardCta: string;
   reduced: boolean;
 }) {
-  const meta = caso.pais
-    ? `${caso.categoria} · ${caso.bandera} ${caso.pais}`
-    : caso.categoria;
-
+  const t = useT();
   return (
     <MotionLink
       href={`/casos/${caso.slug}`}
@@ -51,43 +49,31 @@ function CasoCard({
       </div>
 
       <div className="flex flex-1 flex-col p-7 sm:p-8">
-        {/* Logo + marca, o marca sola */}
-        {caso.logo ? (
-          <div className="flex items-center gap-3">
-            <span className="relative size-11 shrink-0 overflow-hidden rounded-full bg-pimenton-dark">
-              <Image
-                src={caso.logo}
-                alt={caso.marca}
-                fill
-                sizes="44px"
-                className="object-cover"
-              />
-            </span>
-            <h3 className="text-lg font-bold tracking-tight text-pimenton-text">
-              {caso.marca}
-            </h3>
-          </div>
-        ) : (
-          <h3 className="text-2xl font-bold leading-none tracking-tight text-pimenton-text">
-            {caso.marca}
-          </h3>
-        )}
+        {/* Marca — sin logo, tamaño consistente en todas las cards. */}
+        <h3 className="text-2xl font-bold leading-none tracking-tight text-pimenton-text">
+          {caso.marca}
+        </h3>
 
-        {/* Categoría + país */}
-        <p className="mt-3 text-sm text-pimenton-text-muted">{meta}</p>
+        {/* Categoría (coral) + país (menta) */}
+        <MetaPills
+          categoria={t(caso.categoria)}
+          pais={t(caso.pais)}
+          bandera={caso.bandera}
+          className="mt-4"
+        />
 
         {/* Tagline — Helvetica medium, normal case (no es heading) */}
         <p className="mt-4 font-display text-lg font-medium leading-snug text-pimenton-text-soft sm:text-xl">
-          {caso.tagline}
+          {t(caso.tagline)}
         </p>
 
         {/* Métrica destacada (la primera del array), gigante coral */}
         <div className="mt-6 flex items-baseline gap-2.5">
           <span className="font-display text-4xl font-bold leading-none text-pimenton-accent">
-            {caso.metricas[0]?.valor}
+            {caso.metricas[0] ? t(caso.metricas[0].valor) : ""}
           </span>
           <span className="text-sm text-pimenton-text-muted">
-            {caso.metricas[0]?.label}
+            {caso.metricas[0] ? t(caso.metricas[0].label) : ""}
           </span>
         </div>
 
