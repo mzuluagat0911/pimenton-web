@@ -22,6 +22,7 @@ import {
   Search,
 } from "lucide-react";
 import {
+  buildLeadPayload,
   buildWhatsappLink,
   categories,
   featuredCountries,
@@ -32,6 +33,7 @@ import {
   type FormSnapshot,
   type SizeId,
 } from "@/data/consultationForm";
+import { sendLead } from "@/lib/leads";
 import { Highlight, splitHighlight } from "@/components/ui-custom/Highlight";
 import {
   useCopy,
@@ -942,6 +944,10 @@ export function ConsultationForm() {
     if (!isValid(4, state.data)) return;
     const snap = buildSnapshot();
     if (!snap) return;
+    // Respaldo CRM: dispara el lead al Google Sheet en segundo plano. Es un
+    // AÑADIDO a WhatsApp, fire-and-forget y a prueba de fallos — nunca bloquea
+    // ni demora la apertura de WhatsApp (que sigue siendo el canal principal).
+    sendLead(buildLeadPayload(snap, lang));
     const link = buildWhatsappLink(snap, lang);
     window.open(link, "_blank", "noopener,noreferrer");
     dispatch({ type: "next" });
