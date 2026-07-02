@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   motion,
   useInView,
@@ -159,14 +159,20 @@ function CardFace({
  * Llegás scrolleando y la card se ve "Sin Pimentón". Cuando queda centrada
  * en el viewport, el scroll se fija (sticky) y el progreso del scroll va
  * revelando la cara "Con Pimentón" de arriba hacia abajo — una línea de
- * escaneo coral marca el borde de la revelación (la versión scrubbed del
- * efecto "escáner" que antes corría solo con un timer). Al completarse,
- * el scroll se suelta y seguís de largo. Reversible: scrollear hacia
- * arriba des-revela. Sin botón ON/OFF.
+ * escaneo coral marca el borde de la revelación. Al completarse, el scroll
+ * se suelta y seguís de largo. Reversible: scrollear hacia arriba
+ * des-revela. Sin botón ON/OFF.
  *
- * Mismo patrón que el Control Room (sticky + spacer + useScroll/useSpring
- * de motion, sin GSAP): spacer de 220vh → 100vh de child sticky + ~120vh
- * de recorrido de scroll para el wipe.
+ * Geometría del pin — SIN aire muerto en el flujo: el sticky mide lo que
+ * mide la card (no 100vh), así que antes del pin la card sigue al heading
+ * con el mt del sistema, y después del pin queda pegada al final del
+ * spacer con el py normal de sección. El centrado durante el pin se logra
+ * midiendo la card (ResizeObserver): top = (viewport − card) / 2. El
+ * runway (cuánto scroll dura el pin) es un div invisible de 120vh debajo.
+ *
+ * El respiro de la revelación sale solo de la geometría: el tracking
+ * (["start start","end end"] del spacer) arranca ~pinTop DESPUÉS de
+ * fijarse y llega a 1 ~pinTop ANTES de soltarse — no hace falta remapear.
  *
  * Reduced motion: sin pin ni wipe — cross-fade simple a "Con Pimentón"
  * cuando la sección entra en viewport.
@@ -180,20 +186,43 @@ export function Comparison() {
   const inView = useInView(headingRef, { once: true, amount: 0.5 });
 
   const spacerRef = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
+
+  // Offset del pin para que la card quede centrada mientras está fijada.
+  // Se mide la card real (cambia por breakpoint / idioma) y se recalcula
+  // en resize. Clamp a 12px por si la card superara el alto del viewport.
+  const [pinTop, setPinTop] = useState(0);
+  useEffect(() => {
+    const el = stickyRef.current;
+    if (!el) return;
+    const update = () =>
+      setPinTop(
+        Math.max(12, Math.round((window.innerHeight - el.offsetHeight) / 2)),
+      );
+    update();
+    // Re-medición diferida: la card puede cambiar de alto al cargar la
+    // fuente (swap de Helvetica) antes de que el RO llegue a entregar.
+    const t = setTimeout(update, 400);
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    window.addEventListener("resize", update);
+    return () => {
+      clearTimeout(t);
+      ro.disconnect();
+      window.removeEventListener("resize", update);
+    };
+  }, [reduced]);
+
   const { scrollYProgress } = useScroll({
     target: spacerRef,
     offset: ["start start", "end end"],
   });
   // Spring = feel de scrub suave (mismos valores que el Control Room).
-  const smoothed = useSpring(scrollYProgress, {
+  const progress = useSpring(scrollYProgress, {
     stiffness: 90,
     damping: 28,
     mass: 0.5,
   });
-  // Respiro al inicio y al final del pin: la revelación arranca apenas
-  // después de fijarse y se completa apenas antes de soltarse, así el
-  // estado final se lee un instante antes de seguir scrolleando.
-  const progress = useTransform(smoothed, [0.08, 0.92], [0, 1]);
 
   // Wipe de arriba hacia abajo: la cara ON muestra su fracción superior.
   const clipBottom = useTransform(progress, (v) => (1 - v) * 100);
@@ -239,11 +268,12 @@ export function Comparison() {
             </motion.div>
           </div>
         ) : (
-          // Spacer 220vh: el child sticky (100vh) fija la card centrada y
-          // los ~120vh restantes son el recorrido de scroll del wipe.
-          <div ref={spacerRef} className="relative mt-12 h-[220vh] sm:mt-16">
-            <div className="sticky top-0 flex h-screen items-center">
-              <div className="relative w-full">
+          <div ref={spacerRef} className="relative mt-12 sm:mt-16">
+            {/* El sticky mide lo que mide la card → cero aire muerto en el
+                flujo (la separación con el heading y con la sección
+                siguiente es la del sistema). Centrado en pin vía pinTop. */}
+            <div ref={stickyRef} className="sticky" style={{ top: pinTop }}>
+              <div className="relative">
                 {/* Glow coral que crece con la revelación. Vive FUERA del
                     clip (hermano, no hijo) para que el resplandor no quede
                     recortado por el clip-path. */}
@@ -277,6 +307,10 @@ export function Comparison() {
                 </motion.div>
               </div>
             </div>
+
+            {/* Runway del pin: solo aporta recorrido de scroll (invisible).
+                120vh ≈ cuánto dura la card fijada mientras se revela. */}
+            <div aria-hidden className="h-[120vh]" />
           </div>
         )}
       </div>
