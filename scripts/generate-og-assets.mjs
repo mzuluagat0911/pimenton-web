@@ -75,7 +75,7 @@ async function buildOg() {
   const logoLeft = Math.round((OG_W - logoW) / 2);
   const logoTop = Math.round(OG_H * 0.33);
 
-  const subtitle = Buffer.from(`
+  const subtitleEs = Buffer.from(`
     <svg width="${OG_W}" height="${OG_H}" xmlns="http://www.w3.org/2000/svg">
       <text
         x="50%"
@@ -100,16 +100,45 @@ async function buildOg() {
     </svg>
   `);
 
-  await sharp(photo)
-    .composite([
-      { input: veil, top: 0, left: 0 },
-      { input: logo, top: logoTop, left: logoLeft },
-      { input: subtitle, top: 0, left: 0 },
-    ])
-    .png({ quality: 92, compressionLevel: 8 })
-    .toFile(join(publicDir, "og-default.png"));
+  const subtitleEn = Buffer.from(`
+    <svg width="${OG_W}" height="${OG_H}" xmlns="http://www.w3.org/2000/svg">
+      <text
+        x="50%"
+        y="${logoTop + logoH + 44}"
+        text-anchor="middle"
+        font-family="Helvetica, Arial, sans-serif"
+        font-size="26"
+        font-weight="700"
+        letter-spacing="7"
+        fill="${CORAL}"
+      >GROWTH PARTNER</text>
+      <text
+        x="50%"
+        y="${logoTop + logoH + 88}"
+        text-anchor="middle"
+        font-family="Helvetica, Arial, sans-serif"
+        font-size="20"
+        font-weight="400"
+        fill="${CREAM}"
+        fill-opacity="0.9"
+      >We grow your delivery and digital channels</text>
+    </svg>
+  `);
 
-  console.log("✓ og-default.png (1200×630, logo centrado)");
+  const compose = (subtitle, outName) =>
+    sharp(photo)
+      .composite([
+        { input: veil, top: 0, left: 0 },
+        { input: logo, top: logoTop, left: logoLeft },
+        { input: subtitle, top: 0, left: 0 },
+      ])
+      .png({ quality: 92, compressionLevel: 8 })
+      .toFile(join(publicDir, outName));
+
+  await compose(subtitleEs, "og-default.png");
+  console.log("✓ og-default.png (ES)");
+  await compose(subtitleEn, "og-en.png");
+  console.log("✓ og-en.png (EN)");
 }
 
 /**

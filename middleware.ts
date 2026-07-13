@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   DEFAULT_LOCALE,
   isLocale,
+  LOCALE_HEADER,
   type Locale,
   withLocale,
 } from "@/lib/i18n";
@@ -21,9 +22,15 @@ export function middleware(request: NextRequest) {
       pathname.slice(segment.length + 1) || "/";
     const url = request.nextUrl.clone();
     url.pathname = pathnameWithoutLocale;
-    // El rewrite oculta /es|/en de usePathname(); la cookie + el pathname
-    // del browser son la fuente de verdad del idioma en el cliente.
-    const response = NextResponse.rewrite(url);
+
+    // Inject locale into the rewritten request so layout/generateMetadata
+    // can read it via headers(). usePathname() alone loses /es|/en.
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set(LOCALE_HEADER, segment);
+
+    const response = NextResponse.rewrite(url, {
+      request: { headers: requestHeaders },
+    });
     response.cookies.set("pimenton-lang", segment, {
       path: "/",
       sameSite: "lax",
@@ -40,11 +47,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    /*
-     * Aplica a todas las rutas excepto:
-     * - _next (build/static)
-     * - archivos estáticos con extensión (favicon, imágenes, fuentes, etc.)
-     */
     "/((?!_next/static|_next/image|favicon.ico|.*\\..*).*)",
   ],
 };

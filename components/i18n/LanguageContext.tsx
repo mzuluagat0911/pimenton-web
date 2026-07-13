@@ -54,23 +54,27 @@ function persist(lang: Lang) {
 }
 
 /**
- * Provider global del idioma. La URL del browser (`/es`, `/en`) es la fuente
- * de verdad. Ojo: con rewrite del middleware, usePathname() devuelve la ruta
- * interna SIN el prefijo, así que leemos window.location.pathname en un effect.
+ * Provider global del idioma. `initialLang` viene del server (header del
+ * middleware) para que SSR, OG y el primer paint coincidan con /es o /en.
+ * En el cliente, la URL del browser sigue siendo la fuente de verdad al navegar.
  */
-export function LanguageProvider({ children }: { children: ReactNode }) {
+export function LanguageProvider({
+  children,
+  initialLang = "es",
+}: {
+  children: ReactNode;
+  initialLang?: Lang;
+}) {
   const pathname = usePathname();
   const router = useRouter();
-  // SSR + primer paint: siempre "es" (mismo que el HTML del server) para no
-  // romper hidratación. El effect sincroniza con /en|/es de la URL real.
-  const [lang, setLangState] = useState<Lang>("es");
+  const [lang, setLangState] = useState<Lang>(initialLang);
 
   useEffect(() => {
     const next = getLocaleFromPathname(window.location.pathname);
     setLangState(next);
     persist(next);
     document.documentElement.lang = next;
-  }, [pathname]);
+  }, [pathname, initialLang]);
 
   const setLang = useCallback(
     (next: Lang) => {
