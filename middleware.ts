@@ -21,7 +21,15 @@ export function middleware(request: NextRequest) {
       pathname.slice(segment.length + 1) || "/";
     const url = request.nextUrl.clone();
     url.pathname = pathnameWithoutLocale;
-    return NextResponse.rewrite(url);
+    // El rewrite oculta /es|/en de usePathname(); la cookie + el pathname
+    // del browser son la fuente de verdad del idioma en el cliente.
+    const response = NextResponse.rewrite(url);
+    response.cookies.set("pimenton-lang", segment, {
+      path: "/",
+      sameSite: "lax",
+      maxAge: 60 * 60 * 24 * 365,
+    });
+    return response;
   }
 
   const locale = pathname === "/" ? detectLocale(request) : DEFAULT_LOCALE;

@@ -54,27 +54,32 @@ function persist(lang: Lang) {
 }
 
 /**
- * Provider global del idioma. La URL es la fuente de verdad (`/es`, `/en`).
- * El toggle cambia de idioma navegando a la misma ruta con otro prefijo.
+ * Provider global del idioma. La URL del browser (`/es`, `/en`) es la fuente
+ * de verdad. Ojo: con rewrite del middleware, usePathname() devuelve la ruta
+ * interna SIN el prefijo, así que leemos window.location.pathname en un effect.
  */
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
-  const urlLang = getLocaleFromPathname(pathname);
-  const [lang, setLangState] = useState<Lang>(urlLang);
+  // SSR + primer paint: siempre "es" (mismo que el HTML del server) para no
+  // romper hidratación. El effect sincroniza con /en|/es de la URL real.
+  const [lang, setLangState] = useState<Lang>("es");
 
   useEffect(() => {
-    setLangState(urlLang);
-    persist(urlLang);
-    document.documentElement.lang = urlLang;
-  }, [urlLang]);
+    const next = getLocaleFromPathname(window.location.pathname);
+    setLangState(next);
+    persist(next);
+    document.documentElement.lang = next;
+  }, [pathname]);
 
   const setLang = useCallback(
     (next: Lang) => {
-      if (next === urlLang) return;
-      router.push(switchLocalePath(pathname, next));
+      const currentPath = window.location.pathname;
+      const currentLang = getLocaleFromPathname(currentPath);
+      if (next === currentLang) return;
+      router.push(switchLocalePath(currentPath, next));
     },
-    [pathname, router, urlLang],
+    [router],
   );
 
   const toggle = useCallback(() => {
