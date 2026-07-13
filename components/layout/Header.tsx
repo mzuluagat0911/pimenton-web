@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { useCopy } from "@/components/i18n/LanguageContext";
+import { useCopy, useLocalizedHref } from "@/components/i18n/LanguageContext";
+import { isHomePath } from "@/lib/i18n";
 import { LanguageToggle } from "./LanguageToggle";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -15,6 +16,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean }) {
   const reduced = useReducedMotion() ?? false;
   const router = useRouter();
   const pathname = usePathname();
+  const localizedHref = useLocalizedHref();
   const c = useCopy();
   const navLinks = c.nav.links;
 
@@ -78,12 +80,12 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean }) {
     setOpen(false);
 
     if (href.startsWith("/")) {
-      router.push(href);
+      router.push(localizedHref(href));
       return;
     }
 
-    if (pathname !== "/") {
-      router.push(href === "#" ? "/" : `/${href}`);
+    if (!isHomePath(pathname)) {
+      router.push(href === "#" ? localizedHref("/") : localizedHref(href));
       return;
     }
 
@@ -199,7 +201,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean }) {
                 {navLinks.map((link, i) => (
                   <motion.a
                     key={i}
-                    href={link.href}
+                    href={localizedHref(link.href)}
                     onClick={handleLinkClick(link.href)}
                     initial={reduced ? { opacity: 0 } : { opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}

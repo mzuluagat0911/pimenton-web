@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
 import { EASE } from "@/components/sections/servicios/Eyebrow";
-import { useCopy, useT } from "@/components/i18n/LanguageContext";
+import { useCopy, useLocalizedHref, useT } from "@/components/i18n/LanguageContext";
 import type { Insight } from "@/data/insights";
 
 /**
@@ -16,6 +16,7 @@ export function ArticleHeader({ insight }: { insight: Insight }) {
   const reduced = useReducedMotion() ?? false;
   const t = useT();
   const backToHub = useCopy().insights.backToHub;
+  const localizedHref = useLocalizedHref();
 
   const fadeUp = (delay: number) => ({
     initial: reduced ? { opacity: 0 } : { opacity: 0, y: 20 },
@@ -28,7 +29,7 @@ export function ArticleHeader({ insight }: { insight: Insight }) {
       <div className="mx-auto w-full max-w-4xl">
         <motion.div {...fadeUp(0)}>
           <Link
-            href="/insights"
+            href={localizedHref("/insights")}
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-pimenton-text-on-dark-muted transition-colors duration-300 hover:text-pimenton-accent"
           >
             <ArrowLeft aria-hidden className="size-4" />

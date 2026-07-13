@@ -11,24 +11,24 @@ export const copy = {
     },
     headline: {
       es: "Potenciamos tu Delivery y optimizamos tus Canales Digitales.",
-      en: "We power up your Delivery and optimize your Digital Channels.",
+      en: "We grow your delivery, empowering your sales channels",
     },
     headlineAccent: {
       es: "Potenciamos tu Delivery",
-      en: "We power up your Delivery",
+      en: "We grow your delivery,",
     },
     subhead: {
       es: "Somos la agencia número #1 del mundo en Restaurantes",
-      en: "We're the world's #1 agency in Restaurants",
+      en: "We are the #1 Restaurant Agency",
     },
     ctaPrimary: {
-      label: { es: "Consultoría gratuita", en: "Free consultation" },
+      label: { es: "Consultoría gratuita", en: "Free discovery call" },
       href: "#contacto",
     },
     ctaSecondary: {
       label: {
         es: "Hablar con un especialista",
-        en: "Talk to a specialist",
+        en: "Speak with a specialist",
       },
       href: "#contacto",
     },
@@ -410,7 +410,7 @@ export const copy = {
     eyebrow: { es: "Empecemos", en: "Let's start" },
     heading: {
       es: "Consultoría gratuita en 4 pasos.",
-      en: "Free consultation in 4 steps.",
+      en: "Free Consultancy in 4 steps.",
     },
     subheading: {
       es: "Cuéntanos sobre tu restaurante y un especialista de tu región te escribe por WhatsApp.",
@@ -423,7 +423,7 @@ export const copy = {
     bullets: [
       {
         es: "Consultoría sin cargo y sin compromiso",
-        en: "Free consultation, no strings attached",
+        en: "Free Consultancy, no strings attached",
       },
       {
         es: "Hablas con un especialista de tu región",
@@ -437,7 +437,7 @@ export const copy = {
       eyebrow: { es: "Empecemos", en: "Let's start" },
       heading: {
         es: "Consultoría gratuita en 4 pasos.",
-        en: "Free consultation in 4 steps.",
+        en: "Free Consultancy in 4 steps.",
       },
       headingAccent: { es: "en 4 pasos.", en: "in 4 steps." },
       description: {
@@ -451,7 +451,7 @@ export const copy = {
       bullets: [
         {
           es: "Consultoría sin cargo y sin compromiso",
-          en: "Free consultation, no strings attached",
+          en: "Free Consultancy, no strings attached",
         },
         {
           es: "Hablas con un especialista de tu región",

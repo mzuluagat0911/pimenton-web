@@ -21,7 +21,7 @@ export function ServiciosSoluciones() {
       headingHighlight={t({ es: "vendas más", en: "sell more" })}
       showCta
       ctaHref="/contacto"
-      ctaLabel={t({ es: "Consultoría gratuita", en: "Free consultation" })}
+      ctaLabel={t({ es: "Consultoría gratuita", en: "Free Consultancy" })}
       uppercaseNames
       showPlatforms
     />

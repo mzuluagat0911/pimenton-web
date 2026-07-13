@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
 import { EASE } from "@/components/sections/servicios/Eyebrow";
-import { useCopy, useT } from "@/components/i18n/LanguageContext";
+import { useCopy, useLocalizedHref, useT } from "@/components/i18n/LanguageContext";
 import { MetaPills } from "./MetaPills";
 import type { Caso } from "@/data/casos";
 
@@ -18,6 +18,7 @@ export function CasoHero({ caso }: { caso: Caso }) {
   const reduced = useReducedMotion() ?? false;
   const t = useT();
   const backToHub = useCopy().casos.caso.backToHub;
+  const localizedHref = useLocalizedHref();
 
   const fadeUp = (delay: number) => ({
     initial: reduced ? { opacity: 0 } : { opacity: 0, y: 22 },
@@ -30,7 +31,7 @@ export function CasoHero({ caso }: { caso: Caso }) {
       <div className="mx-auto w-full max-w-7xl">
         <motion.div {...fadeUp(0)}>
           <Link
-            href="/casos"
+            href={localizedHref("/casos")}
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-pimenton-text-on-dark-muted transition-colors duration-300 hover:text-pimenton-accent"
           >
             <ArrowLeft aria-hidden className="size-4" />

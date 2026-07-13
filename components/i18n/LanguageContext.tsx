@@ -9,7 +9,13 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { copy } from "@/data/copy";
+import {
+  getLocaleFromPathname,
+  switchLocalePath,
+  withLocale,
+} from "@/lib/i18n";
 
 export type Lang = "es" | "en";
 
@@ -48,45 +54,32 @@ function persist(lang: Lang) {
 }
 
 /**
- * Provider global del idioma (client-side, sin routing i18n). El idioma vive
- * en runtime; la URL no cambia. Persiste en localStorage.
- *
- * SSR/hidratación: el primer render es SIEMPRE "es" (igual que el server),
- * y recién en el efecto se lee la preferencia guardada / el idioma del
- * navegador. Así no hay mismatch de hidratación.
+ * Provider global del idioma. La URL es la fuente de verdad (`/es`, `/en`).
+ * El toggle cambia de idioma navegando a la misma ruta con otro prefijo.
  */
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("es");
+  const pathname = usePathname();
+  const router = useRouter();
+  const urlLang = getLocaleFromPathname(pathname);
+  const [lang, setLangState] = useState<Lang>(urlLang);
 
   useEffect(() => {
-    let next: Lang | null = null;
-    try {
-      const stored = window.localStorage.getItem(STORAGE_KEY);
-      if (stored === "es" || stored === "en") next = stored;
-    } catch {
-      /* noop */
-    }
-    // Primera visita sin preferencia: sugerir EN si el navegador no es español.
-    if (!next) {
-      const navLang =
-        typeof navigator !== "undefined" ? navigator.language : "";
-      if (navLang && !navLang.toLowerCase().startsWith("es")) next = "en";
-    }
-    if (next && next !== "es") setLangState(next);
-  }, []);
+    setLangState(urlLang);
+    persist(urlLang);
+    document.documentElement.lang = urlLang;
+  }, [urlLang]);
 
-  const setLang = useCallback((next: Lang) => {
-    setLangState(next);
-    persist(next);
-  }, []);
+  const setLang = useCallback(
+    (next: Lang) => {
+      if (next === urlLang) return;
+      router.push(switchLocalePath(pathname, next));
+    },
+    [pathname, router, urlLang],
+  );
 
   const toggle = useCallback(() => {
-    setLangState((prev) => {
-      const next: Lang = prev === "es" ? "en" : "es";
-      persist(next);
-      return next;
-    });
-  }, []);
+    setLang(lang === "es" ? "en" : "es");
+  }, [lang, setLang]);
 
   const value = useMemo<LanguageContextValue>(
     () => ({ lang, setLang, toggle }),
@@ -154,4 +147,10 @@ export function useCopy(): Resolved<typeof copy> {
     () => deepResolve(copy, lang) as Resolved<typeof copy>,
     [lang],
   );
+}
+
+/** Prefija rutas internas con el idioma activo (`/contacto` → `/es/contacto`). */
+export function useLocalizedHref(): (path: string) => string {
+  const { lang } = useLanguage();
+  return useCallback((path: string) => withLocale(path, lang), [lang]);
 }

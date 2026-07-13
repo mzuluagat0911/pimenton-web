@@ -10,7 +10,7 @@ import {
   AnimatePresence,
 } from "motion/react";
 import { splitHighlight } from "@/components/ui-custom/Highlight";
-import { useCopy } from "@/components/i18n/LanguageContext";
+import { useCopy, useLocalizedHref } from "@/components/i18n/LanguageContext";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -52,9 +52,10 @@ function PlatformRow({ platforms }: { platforms?: readonly string[] }) {
 // background/box-shadow, el spring maneja el scale).
 function CtaButton({ href, label }: { href: string; label: string }) {
   const reduced = useReducedMotion() ?? false;
+  const localizedHref = useLocalizedHref();
   return (
     <MotionLink
-      href={href}
+      href={href.startsWith("/") ? localizedHref(href) : href}
       whileHover={reduced ? undefined : { scale: 1.03 }}
       whileTap={reduced ? undefined : { scale: 0.97 }}
       transition={{ type: "spring", stiffness: 400, damping: 22 }}

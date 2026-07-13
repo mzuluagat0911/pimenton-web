@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
-import { useT } from "@/components/i18n/LanguageContext";
+import { useT, useLocalizedHref } from "@/components/i18n/LanguageContext";
 import type { Insight } from "@/data/insights";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -23,10 +23,11 @@ export function InsightCard({
 }) {
   const reduced = useReducedMotion() ?? false;
   const t = useT();
+  const localizedHref = useLocalizedHref();
 
   return (
     <MotionLink
-      href={`/insights/${insight.slug}`}
+      href={localizedHref(`/insights/${insight.slug}`)}
       initial={reduced ? { opacity: 0 } : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}

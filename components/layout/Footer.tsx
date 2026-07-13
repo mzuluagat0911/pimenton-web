@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCopy } from "@/components/i18n/LanguageContext";
+import { useCopy, useLocalizedHref } from "@/components/i18n/LanguageContext";
 
 // Inline brand icons. lucide-react@1.16 in this project doesn't expose
 // Instagram/LinkedIn (they were added in later releases), and the brief
@@ -84,6 +84,7 @@ export function Footer() {
     navHeading,
     contactHeading,
   } = useCopy().footer;
+  const localizedHref = useLocalizedHref();
 
   return (
     <footer className="bg-pimenton-dark text-pimenton-text-on-dark">
@@ -113,7 +114,7 @@ export function Footer() {
               {links.map((link) => (
                 <li key={link.href}>
                   <Link
-                    href={link.href}
+                    href={localizedHref(link.href)}
                     className="text-sm text-pimenton-text-on-dark transition-colors duration-200 hover:text-pimenton-accent"
                   >
                     {link.label}

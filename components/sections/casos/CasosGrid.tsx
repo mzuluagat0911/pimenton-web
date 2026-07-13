@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { casos, type Caso } from "@/data/casos";
-import { useCopy, useT } from "@/components/i18n/LanguageContext";
+import { useCopy, useLocalizedHref, useT } from "@/components/i18n/LanguageContext";
 import { MetaPills } from "./MetaPills";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -23,9 +23,10 @@ function CasoCard({
   reduced: boolean;
 }) {
   const t = useT();
+  const localizedHref = useLocalizedHref();
   return (
     <MotionLink
-      href={`/casos/${caso.slug}`}
+      href={localizedHref(`/casos/${caso.slug}`)}
       initial={reduced ? { opacity: 0 } : { opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}

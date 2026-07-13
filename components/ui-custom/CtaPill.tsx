@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
+import { useLocalizedHref } from "@/components/i18n/LanguageContext";
 
 // Link de Next con capacidades motion — mismo hover (scale + spring) que el
 // CTA primario del hero del Home / el CTA de Servicios.
@@ -51,6 +52,9 @@ export function CtaPill({
 }) {
   const PILL = `${PILL_BASE} ${PILL_VARIANT[variant]}`;
   const reduced = useReducedMotion() ?? false;
+  const localizedHref = useLocalizedHref();
+  const resolvedHref =
+    !external && href.startsWith("/") ? localizedHref(href) : href;
   const motionProps = {
     whileHover: reduced ? undefined : { scale: 1.03 },
     whileTap: reduced ? undefined : { scale: 0.97 },
@@ -85,7 +89,7 @@ export function CtaPill({
   }
 
   return (
-    <MotionLink href={href} {...motionProps} className={`${PILL} ${className}`}>
+    <MotionLink href={resolvedHref} {...motionProps} className={`${PILL} ${className}`}>
       {content}
     </MotionLink>
   );

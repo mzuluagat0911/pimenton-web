@@ -314,7 +314,7 @@ const MESSAGE = {
     body: (cats: string, country: string, size: string) =>
       `We run a ${cats} restaurant in ${country}, ${size}.`,
     instagram: (ig: string) => `Instagram: ${ig}`,
-    closing: "I'd like to book the free consultation.",
+    closing: "I'd like to book the Free Consultancy.",
   },
 } as const;
 

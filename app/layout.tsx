@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     "Growth Partner especializado en delivery para restaurantes. Operamos tus canales digitales en LATAM y Europa. +500 restaurantes confían en nosotros.",
   // Canonical de la home. Las subpáginas (/servicios, /como-lo-hacemos)
   // declaran el suyo y reemplazan este por el merge shallow de metadata.
-  alternates: { canonical: "/" },
+  alternates: { canonical: "/es" },
   robots: {
     index: true,
     follow: true,
@@ -72,23 +72,38 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Pimentón — Growth Partner para tu Delivery",
-    description: "Convertimos tu Restaurante en una unidad de negocio rentable.",
+    description: "Potenciamos tu delivery y canales digitales.",
     url: SITE_URL,
     siteName: "Pimentón",
     locale: "es_AR",
     type: "website",
-    images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "Pimentón" }],
+    images: [
+      {
+        // ?v=2 forcea a WhatsApp/FB a refrescar el cache del preview.
+        url: "/og-default.png?v=2",
+        width: 1200,
+        height: 630,
+        alt: "Pimentón — Growth Partner",
+        type: "image/png",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Pimentón — Growth Partner para tu Delivery",
-    description: "Convertimos tu Restaurante en una unidad de negocio rentable.",
-    images: ["/og-default.png"],
+    description: "Potenciamos tu delivery y canales digitales.",
+    images: ["/og-default.png?v=2"],
   },
   icons: {
-    icon: [{ url: "/assets/favicon.svg", type: "image/svg+xml" }],
-    // apple-touch-icon (180×180 PNG) — rasterizado del favicon.svg, mismo mark.
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/assets/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
 };
 

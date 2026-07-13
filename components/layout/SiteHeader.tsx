@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { stripLocaleFromPathname } from "@/lib/i18n";
 import { Header } from "./Header";
 
 /**
@@ -18,8 +19,9 @@ const SOLID_HEADER_ROUTES = ["/contacto", "/faq"];
  */
 export function SiteHeader() {
   const pathname = usePathname();
+  const barePath = stripLocaleFromPathname(pathname);
   const forceSolid = SOLID_HEADER_ROUTES.some(
-    (route) => pathname === route || pathname.startsWith(`${route}/`),
+    (route) => barePath === route || barePath.startsWith(`${route}/`),
   );
   return <Header forceSolid={forceSolid} />;
 }
