@@ -188,9 +188,17 @@ async function buildIcons() {
   const ico = encodeIco([
     { size: 16, png: icon16 },
     { size: 32, png: icon32 },
+    { size: 48, png: await buildMarkPng(48, 0.12) },
   ]);
   writeFileSync(join(publicDir, "favicon.ico"), ico);
-  console.log("✓ favicon.ico");
+  writeFileSync(join(root, "app/favicon.ico"), ico);
+  console.log("✓ favicon.ico (public/ + app/)");
+
+  // Metadata file convention de Next (app/icon.png, app/apple-icon.png)
+  const icon192 = await buildMarkPng(192, 0.14);
+  await sharp(icon192).toFile(join(root, "app/icon.png"));
+  await sharp(icon180).toFile(join(root, "app/apple-icon.png"));
+  console.log("✓ app/icon.png + app/apple-icon.png");
 }
 
 function encodeIco(entries) {
