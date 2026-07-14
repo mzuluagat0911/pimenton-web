@@ -11,11 +11,11 @@ export const copy = {
     },
     headline: {
       es: "Potenciamos tu Delivery y optimizamos tus Canales Digitales.",
-      en: "We grow your delivery, empowering your sales channels",
+      en: "We supercharge your delivery, empowering your sales channels.",
     },
     headlineAccent: {
       es: "Potenciamos tu Delivery",
-      en: "We grow your delivery,",
+      en: "We supercharge your delivery,",
     },
     subhead: {
       es: "Somos la agencia número #1 del mundo en Restaurantes",
