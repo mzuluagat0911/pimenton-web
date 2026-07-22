@@ -121,7 +121,7 @@ export const copy = {
   marketStats: {
     heading: {
       es: "¿Por qué profesionalizar tu delivery?",
-      en: "Why professionalize your delivery?",
+      en: "Key reasons to upgrade your delivery service.",
     },
     items: [
       {
@@ -656,7 +656,7 @@ export const copy = {
             es: "Entregamos con calidad, priorizando lo que importa y orientando cada acción a resultados concretos. Leemos el contexto, ajustamos rápido y seguimos.",
             en: "We deliver with quality, prioritizing what matters and steering every action toward concrete results. We read the context, adjust fast, and keep going.",
           },
-          image: "/assets/equipo/equipo-valor-1.webp",
+          image: "/assets/equipo/equipo-valor-1-v2.webp",
           alt: { es: "Equipo Pimentón colaborando", en: "Pimentón team collaborating" },
         },
         {
@@ -666,7 +666,7 @@ export const copy = {
             es: "Hacemos que las cosas pasen, nos involucramos y resolvemos en equipo. El compromiso se nota en la acción y en la responsabilidad compartida.",
             en: "We make things happen, we get involved, and we solve as a team. Commitment shows in the action and in shared responsibility.",
           },
-          image: "/assets/equipo/equipo-valor-2.webp",
+          image: "/assets/equipo/equipo-valor-2-v2.webp",
           alt: { es: "Equipo Pimentón en plena operación", en: "Pimentón team in full operation" },
         },
         {
@@ -676,7 +676,7 @@ export const copy = {
             es: "Nos comunicamos con honestidad, escuchamos activamente y valoramos las ideas por sobre las jerarquías. Debatimos con intención y construimos una cultura directa, humana y adulta.",
             en: "We communicate honestly, listen actively, and value ideas over hierarchy. We debate with intention and build a direct, human, grown-up culture.",
           },
-          image: "/assets/equipo/equipo-valor-3.webp",
+          image: "/assets/equipo/equipo-valor-3-v2.webp",
           alt: { es: "Cultura de respeto en Pimentón", en: "A culture of respect at Pimentón" },
         },
       ],
@@ -715,7 +715,7 @@ export const copy = {
       },
       button: { es: "Quiero sumarme", en: "I want to join" },
       href: "https://forms.gle/zYUFuXkNG5dsS9z17",
-      image: "/assets/equipo/equipo-completo.webp",
+      image: "/assets/equipo/equipo-completo-v2.webp",
       imageAlt: { es: "Equipo completo de Pimentón", en: "The full Pimentón team" },
     },
   },
