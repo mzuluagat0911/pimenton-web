@@ -36,6 +36,7 @@ function ValorRow({
         src={row.image}
         alt={row.alt}
         sizes="(max-width: 1024px) 100vw, 50vw"
+        priority={index === 0}
         className={`aspect-[4/3] w-full ${textLeft ? "lg:order-2" : "lg:order-1"}`}
       />
 
