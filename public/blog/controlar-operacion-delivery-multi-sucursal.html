@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Cómo controlar la operación de delivery en varias sucursales</title>
+    <meta name="description" content="Controla el delivery multi-sucursal con un sistema de ritmo, alertas y dueños claros. Aprende qué mirar cada día y cómo pasar de dato a acción." />
+    <meta name="keywords" content="cómo controlar la operación de delivery en varias sucursales, ops delivery multi-sucursal, checklist operación delivery, control diario pedidos, mesa de control restaurantes" />
+    <link rel="canonical" href="https://pimenton.io/blog/controlar-operacion-delivery-multi-sucursal" />
+    <link rel="alternate" hreflang="es" href="https://pimenton.io/blog/controlar-operacion-delivery-multi-sucursal" />
+    <link rel="alternate" hreflang="en" href="https://pimenton.io/en/blog/multi-location-delivery-daily-control-checklist" />
+    <link rel="alternate" hreflang="x-default" href="https://pimenton.io/blog/controlar-operacion-delivery-multi-sucursal" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Cómo controlar la operación de delivery en varias sucursales" />
+    <meta property="og:description" content="Controla el delivery multi-sucursal con un sistema de ritmo, alertas y dueños claros. Aprende qué mirar cada día y cómo pasar de dato a acción." />
+    <meta property="og:url" content="https://pimenton.io/blog/controlar-operacion-delivery-multi-sucursal" />
+    <meta property="og:image" content="https://pimenton.io/og-default.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Cómo controlar la operación de delivery en varias sucursales" />
+    <meta name="twitter:description" content="Controla el delivery multi-sucursal con un sistema de ritmo, alertas y dueños claros. Aprende qué mirar cada día y cómo pasar de dato a acción." />
+    <meta name="twitter:image" content="https://pimenton.io/og-default.png" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Cómo controlar la operación de delivery en varias sucursales sin operar a ciegas",
+      "description": "Controla el delivery multi-sucursal con un sistema de ritmo, alertas y dueños claros. Aprende qué mirar cada día y cómo pasar de dato a acción.",
+      "inLanguage": "es",
+      "author": {
+            "@type": "Organization",
+            "name": "Control Room by Pimentón",
+            "url": "https://pimenton.io/es"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://pimenton.io/og-default.png"
+            }
+      },
+      "datePublished": "2026-08-09",
+      "dateModified": "2026-08-09",
+      "mainEntityOfPage": "https://pimenton.io/blog/controlar-operacion-delivery-multi-sucursal",
+      "image": "https://pimenton.io/og-default.png"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "¿Quién debe mirar el delivery cada día?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "El control diario debe tener un dueño operativo claro: un director o gerente de ops que revise la mesa de control a horas fijas, y un responsable por cada sucursal que atienda las alertas de su local. La visibilidad puede ser compartida, pero la responsabilidad de actuar nunca debe ser difusa."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Qué ritual operativo funciona en multi-sucursal?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Funciona una cadencia en tres capas: un standup corto diario para revisar alertas y asignar quién resuelve qué, una revisión en vivo durante el turno pico, y un review semanal para comparar sucursales y sacar 2-3 acciones concretas. Ante crisis se activa un war room con protocolo definido."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Cómo pasar de dato a acción en ops?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "El ciclo tiene cuatro pasos: ver el indicador en la mesa de control, priorizarlo contra un umbral que define si es alerta, asignarlo a un dueño con nombre, y resolverlo con un playbook ya definido. Un dato sin umbral y sin dueño se queda en reporte y nunca cambia la operación."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Qué indicadores debe tener un checklist de control diario de delivery?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Los que predicen problemas antes de que exploten: tiempos de preparación y despacho, cancelaciones y rechazos, stock de productos clave, rating y quejas en apps, y pedidos en curso frente a la capacidad del local. Si un indicador no cambia una decisión diaria, va a la revisión semanal, no al checklist."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Inicio",
+                  "item": "https://pimenton.io/es"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog Control Room",
+                  "item": "https://pimenton.io/blog/control-room"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Cómo controlar la operación de delivery en varias sucursales sin operar a ciegas",
+                  "item": "https://pimenton.io/blog/controlar-operacion-delivery-multi-sucursal"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+  </head>
+  <body class="theme-control-room">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/es" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-blanco.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/es">Inicio</a>
+          <a href="/blog/control-room">Blog Ops</a>
+          <a class="hide-sm" href="/es/contacto">Consultoría</a>
+          <span class="lang" role="group" aria-label="Idioma">
+            <a class="active" href="/blog/controlar-operacion-delivery-multi-sucursal" hreflang="es">ES</a>
+            <a class="" href="/en/blog/multi-location-delivery-daily-control-checklist" hreflang="en">EN</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Control Room · Ops</p>
+          <h1>Cómo controlar la operación de delivery en varias sucursales sin operar a ciegas</h1>
+          <p class="lead-answer"><p>Controlar la operación de delivery en varias sucursales es tener un <strong>sistema de ritmo y visibilidad</strong> que responda tres preguntas cada día: qué pasa, dónde duele y qué mover. Se logra con un checklist diario de indicadores (tiempos, cancelaciones, stock, rating), alertas que priorizan lo que se rompe primero y un dueño claro por local. Sin ese ritmo, cada sucursal opera aislada y los problemas se detectan tarde.</p></p>
+          <p class="byline">Por Control Room · 2026-08-09 · 4 min de lectura</p>
+<p>Cuando tienes una sola cocina, controlas el delivery mirando la pantalla y caminando al pase. Con cinco, diez o veinte sucursales eso ya no escala: los problemas aparecen en paralelo, cada local tiene su propio ritmo y para cuando te enteras de una caída de rating o una racha de cancelaciones, ya perdiste ventas y clientes. Controlar la operación multi-sucursal no es tener más pantallas, es tener un <strong>sistema operativo repetible</strong>: qué mirar, quién lo mira y qué se hace con lo que se ve.</p><h2>Qué significa controlar el delivery multi-sucursal</h2><p>Controlar la operación de delivery en varias sucursales es operar con <strong>visibilidad comparable y ritmo definido</strong>, no reaccionar a incendios sueltos. Significa que cualquier persona de ops puede abrir la mesa de control y responder en segundos: ¿qué locales están fuera de tiempo?, ¿dónde subieron las cancelaciones?, ¿qué producto se está agotando en el turno pico?</p><p>La diferencia entre un restaurante que controla y otro que apaga incendios está en tres cosas:</p><ul><li><strong>Indicadores comparables:</strong> los mismos números medidos igual en todos los locales, no un Excel distinto por sucursal.</li><li><strong>Umbrales claros:</strong> saber cuándo un tiempo de preparación o un rating deja de ser normal y pasa a ser alerta.</li><li><strong>Dueños asignados:</strong> cada local y cada alerta tienen un responsable con nombre, no una responsabilidad difusa.</li></ul><h2>Qué mirar cada día: el checklist de control</h2><p>El control diario de pedidos no necesita 40 métricas. Necesita las pocas que predicen problemas antes de que exploten. Un checklist operativo de delivery multi-sucursal debería revisar, por local y por turno:</p><ol><li><strong>Tiempos de preparación y despacho:</strong> el primer síntoma de una cocina saturada o mal dimensionada.</li><li><strong>Cancelaciones y rechazos:</strong> distinguir si son por stock, por tiempos o por operación.</li><li><strong>Stock de productos clave:</strong> los ítems que más venden y que más duele agotar en pico.</li><li><strong>Rating y quejas en apps:</strong> la señal tardía pero más cara si se ignora.</li><li><strong>Pedidos en curso vs. capacidad:</strong> saber si el local está a punto de reventar antes de que reviente.</li></ol><p>La regla es simple: si un indicador no cambia una decisión, no va en el checklist diario. Guárdalo para la revisión semanal.</p><h3>Cadencia: diario, semanal, mensual</h3><p>No todo se mira con la misma frecuencia. Un buen ritmo de ops separa los horizontes:</p><ul><li><strong>Diario:</strong> control de turno en vivo — tiempos, cancelaciones, stock, alertas activas.</li><li><strong>Semanal:</strong> comparativa entre sucursales — quién mejora, quién cae, qué patrón se repite.</li><li><strong>Mensual:</strong> tendencias de rating, recurrencia de quejas y decisiones estructurales (dotación, menú por local, horarios).</li></ul><h2>El ritual operativo que funciona en multi-sucursal</h2><p>El control no vive en un dashboard, vive en un <strong>ritual</strong>. El error más común es tener datos hermosos que nadie revisa a una hora fija. Un ritual que funciona en operaciones con volumen tiene esta forma:</p><ul><li><strong>Standup corto de ops (10-15 min):</strong> a primera hora o antes del pico, revisando alertas de la mesa de control y quién resuelve qué hoy.</li><li><strong>Revisión de turno pico:</strong> alguien vigila la operación en vivo durante las horas críticas, no solo al cierre.</li><li><strong>Review semanal de sucursales:</strong> comparar locales con los mismos números y sacar 2-3 acciones concretas, no un reporte de 20 páginas.</li><li><strong>War room ante crisis:</strong> cuando un local se rompe (caída de rating, saturación, falla de stock), un protocolo claro de quién entra, qué se mira y cuándo se declara resuelto.</li></ul><p>La clave del ritual multi-sucursal es que <strong>cada local tenga un dueño</strong>. La mesa de control te dice dónde duele; el dueño del local es quien mueve. Sin dueño, la alerta se convierte en ruido compartido que nadie atiende.</p><h2>Errores comunes que sabotean el control</h2><p>La mayoría de las operaciones multi-sucursal no fallan por falta de datos, sino por cómo los usan:</p><ul><li><strong>Un Excel por sucursal:</strong> imposible comparar, imposible detectar patrones, e imposible mantener actualizado con volumen.</li><li><strong>Mirar solo el rating:</strong> es la métrica más tardía. Para cuando cae, el problema lleva días operando.</li><li><strong>Alertas sin umbral:</strong> si todo es urgente, nada es urgente. Sin umbrales claros, el equipo aprende a ignorar las alertas.</li><li><strong>Reportes sin dueño:</strong> el número más bonito no sirve si nadie tiene la responsabilidad de actuar sobre él.</li><li><strong>Revisar solo al cierre:</strong> enterarte a las 11 pm de que el turno de las 8 fue un desastre no cambia nada. El control útil es en vivo.</li></ul><h2>De dato a acción: cómo cierra el ciclo</h2><p>Un indicador solo sirve si termina en una decisión. El camino de dato a acción tiene cuatro pasos: <strong>ver</strong> (la mesa de control muestra el número), <strong>priorizar</strong> (el umbral define si es alerta), <strong>asignar</strong> (el dueño del local lo toma) y <strong>resolver</strong> (una acción concreta con un playbook, no improvisación).</p><p>Por ejemplo: si una sucursal cruza el umbral de tiempo de preparación en el pico, la acción no es "hablar con el gerente", es un playbook definido — revisar dotación del turno, pausar promociones que saturan, o limitar temporalmente el catálogo. El dato dispara una respuesta ya pensada.</p><div class="callout"><p><strong>Control Room</strong> es la mesa de control operativa de Pimentón: reúne la visibilidad de pedidos, las alertas y el ritmo multi-sucursal en un solo lugar, para que dejes de comparar locales con Excel y empieces a operar con dueños, umbrales y acciones claras. Si tienes volumen y necesitas ritmo — no otro dashboard decorativo — <a href="/es/contacto">agenda una consultoría para ver Control Room</a>.</p></div>
+          <h2 id="faq">Preguntas frecuentes</h2>
+          <div class="faq">
+            <details>
+              <summary>¿Quién debe mirar el delivery cada día?</summary>
+              <p>El control diario debe tener un dueño operativo claro: un director o gerente de ops que revise la mesa de control a horas fijas, y un responsable por cada sucursal que atienda las alertas de su local. La visibilidad puede ser compartida, pero la responsabilidad de actuar nunca debe ser difusa.</p>
+            </details>
+            <details>
+              <summary>¿Qué ritual operativo funciona en multi-sucursal?</summary>
+              <p>Funciona una cadencia en tres capas: un standup corto diario para revisar alertas y asignar quién resuelve qué, una revisión en vivo durante el turno pico, y un review semanal para comparar sucursales y sacar 2-3 acciones concretas. Ante crisis se activa un war room con protocolo definido.</p>
+            </details>
+            <details>
+              <summary>¿Cómo pasar de dato a acción en ops?</summary>
+              <p>El ciclo tiene cuatro pasos: ver el indicador en la mesa de control, priorizarlo contra un umbral que define si es alerta, asignarlo a un dueño con nombre, y resolverlo con un playbook ya definido. Un dato sin umbral y sin dueño se queda en reporte y nunca cambia la operación.</p>
+            </details>
+            <details>
+              <summary>¿Qué indicadores debe tener un checklist de control diario de delivery?</summary>
+              <p>Los que predicen problemas antes de que exploten: tiempos de preparación y despacho, cancelaciones y rechazos, stock de productos clave, rating y quejas en apps, y pedidos en curso frente a la capacidad del local. Si un indicador no cambia una decisión diaria, va a la revisión semanal, no al checklist.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>¿Quieres ver tu delivery con claridad?</h2>
+            <p>Agenda 30 minutos. Revisamos qué está rompiendo el ritmo multi-sucursal y qué mover primero.</p>
+            <a class="btn" href="/es/contacto">Agendar consultoría</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/es">Inicio</a> · <a href="/blog/control-room">Blog Ops</a> · <a href="/es/contacto">Contacto</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

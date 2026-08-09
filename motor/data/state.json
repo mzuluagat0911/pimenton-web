@@ -1,7 +1,62 @@
 {
   "covered": {
-    "pimenton": [],
-    "control-room": []
+    "pimenton": [
+      "rentabilidad delivery apps restaurantes",
+      "cuánto subir precios en apps de delivery"
+    ],
+    "control-room": [
+      "qué indicadores revisar delivery multi-sucursal",
+      "cómo controlar la operación de delivery en varias sucursales"
+    ]
   },
-  "published": []
+  "published": [
+    {
+      "slug": "rentabilidad-delivery-apps-restaurantes",
+      "destino": "pimenton",
+      "keyword": "rentabilidad delivery apps restaurantes",
+      "date": "2026-08-09",
+      "title": "Rentabilidad delivery apps restaurantes: el P&L por pedido",
+      "description": "Aprende a armar el P&L por pedido en apps de delivery: comisiones, packaging, ads y ticket para saber cuánto deja realmente cada orden.",
+      "path": "/blog/rentabilidad-delivery-apps-restaurantes",
+      "pathEn": "/en/blog/delivery-app-profitability-per-order-pl",
+      "titleEn": "Delivery App Profitability: Your Restaurant's Per-Order P&L",
+      "descriptionEn": "Learn how to build a per-order P&L for delivery apps: commissions, packaging, ads and ticket size that decide if each order actually makes money."
+    },
+    {
+      "slug": "indicadores-mañana-delivery-multi-sucursal",
+      "destino": "control-room",
+      "keyword": "qué indicadores revisar delivery multi-sucursal",
+      "date": "2026-08-09",
+      "title": "Qué indicadores revisar cada mañana en delivery multi-sucursal",
+      "description": "Checklist matutino de KPIs para operar delivery multi-sucursal: tiempos, cancelaciones, rating y stock. Sabé qué mirar primero sin Excel eterno.",
+      "path": "/blog/indicadores-mañana-delivery-multi-sucursal",
+      "pathEn": "/en/blog/morning-metrics-checklist-multi-location-delivery",
+      "titleEn": "Morning Metrics Checklist for Multi-Location Delivery Ops",
+      "descriptionEn": "The morning delivery metrics to check first across multiple locations: prep and delivery times, cancellations, ratings and stock outages — in one 10-minute scan."
+    },
+    {
+      "slug": "cuanto-subir-precios-apps-delivery",
+      "destino": "pimenton",
+      "keyword": "cuánto subir precios en apps de delivery",
+      "date": "2026-08-09",
+      "title": "Cuánto subir precios en apps de delivery sin perder pedidos",
+      "description": "Aprende cuánto subir precios en apps de delivery para cubrir comisiones sin matar conversión. Markup, precios diferenciados y cómo probar el aumento.",
+      "path": "/blog/cuanto-subir-precios-apps-delivery",
+      "pathEn": "/en/blog/how-much-raise-delivery-app-prices",
+      "titleEn": "How Much to Raise Delivery App Prices Without Losing Orders",
+      "descriptionEn": "Learn exactly how much to raise delivery app prices to cover commissions without killing conversion. Markup math for Rappi, Uber Eats, DoorDash and more."
+    },
+    {
+      "slug": "controlar-operacion-delivery-multi-sucursal",
+      "destino": "control-room",
+      "keyword": "cómo controlar la operación de delivery en varias sucursales",
+      "date": "2026-08-09",
+      "title": "Cómo controlar la operación de delivery en varias sucursales",
+      "description": "Controla el delivery multi-sucursal con un sistema de ritmo, alertas y dueños claros. Aprende qué mirar cada día y cómo pasar de dato a acción.",
+      "path": "/blog/controlar-operacion-delivery-multi-sucursal",
+      "pathEn": "/en/blog/multi-location-delivery-daily-control-checklist",
+      "titleEn": "How to Run Multi-Location Delivery With a Daily Control Checklist",
+      "descriptionEn": "Learn how to control multi-location delivery operations with a daily checklist: what to watch, who owns it, and how to turn each alert into action."
+    }
+  ]
 }
