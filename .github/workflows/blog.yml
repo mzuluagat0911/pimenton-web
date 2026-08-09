@@ -2,6 +2,8 @@ name: Motor de blog (SEO/GEO)
 
 # Corre cada domingo 13:00 UTC (8:00 Colombia).
 # También se lanza a mano desde Actions → "Run workflow".
+# IMPORTANTE: usa "Run workflow" (fresh), no "Re-run" de un job viejo
+# (Re-run congela el YAML del commit antiguo y pierde los fixes de push).
 on:
   schedule:
     - cron: "0 13 * * 0"
@@ -12,16 +14,23 @@ on:
         required: true
         default: "run"
         type: choice
-        options: [ideas, run]
+        options: [ideas, run, recover]
 
 permissions:
   contents: write
+
+concurrency:
+  group: motor-blog
+  cancel-in-progress: false
 
 jobs:
   motor:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -39,16 +48,66 @@ jobs:
           MAX_POSTS_PER_RUN: "1"
         run: npm run ${{ github.event.inputs.command || 'run' }}
 
+      # Si el push falla otra vez, los HTML quedan descargables aquí.
+      - name: Guardar HTML como artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: blog-output-${{ github.run_id }}
+          path: |
+            public/blog
+            public/en/blog
+            public/sitemap-blog.xml
+            motor/data
+            data/blog-teasers
+          if-no-files-found: warn
+          retention-days: 14
+
       - name: Publicar blogs (commit a main)
         run: |
+          set -euo pipefail
           git config user.name "motor-blog[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/blog public/en/blog public/sitemap-blog.xml motor/data data/blog-teasers 2>/dev/null || true
-          if git diff --cached --quiet; then
-            echo "Sin cambios que publicar."
-          else
-            git commit -m "blog: nuevos posts generados por el motor"
-            # main pudo avanzar (hotfix/copy) mientras el motor corría
-            git pull --rebase origin main
+
+          OUT="/tmp/blog-publish-$$"
+          mkdir -p "$OUT"
+          cp -a public/blog "$OUT/blog"
+          mkdir -p "$OUT/en" && cp -a public/en/blog "$OUT/en/blog"
+          cp -a motor/data "$OUT/motor-data"
+          cp -a data/blog-teasers "$OUT/blog-teasers"
+          cp -a public/sitemap-blog.xml "$OUT/sitemap-blog.xml" 2>/dev/null || true
+
+          publish_once() {
+            git fetch origin main
+            git reset --hard origin/main
+            rm -rf public/blog public/en/blog
+            mkdir -p public/en
+            cp -a "$OUT/blog" public/blog
+            cp -a "$OUT/en/blog" public/en/blog
+            mkdir -p motor/data data/blog-teasers
+            cp -a "$OUT/motor-data/." motor/data/
+            cp -a "$OUT/blog-teasers/." data/blog-teasers/
+            cp -a "$OUT/sitemap-blog.xml" public/sitemap-blog.xml 2>/dev/null || true
+
+            git add public/blog public/en/blog public/sitemap-blog.xml motor/data data/blog-teasers
+            if git diff --cached --quiet; then
+              echo "Sin cambios que publicar."
+              return 0
+            fi
+            # Puede ya existir el commit tras un reintento
+            if ! git diff --cached --quiet; then
+              git commit -m "blog: nuevos posts generados por el motor" || true
+            fi
             git push origin HEAD:main
-          fi
+          }
+
+          for i in 1 2 3 4 5; do
+            if publish_once; then
+              echo "Publicado OK (intento $i)"
+              exit 0
+            fi
+            echo "Push falló; reintento $i en 5s…"
+            sleep 5
+          done
+          echo "No se pudo pushear tras 5 intentos (el artifact conserva los HTML)."
+          exit 1
