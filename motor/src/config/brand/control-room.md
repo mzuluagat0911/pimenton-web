@@ -35,5 +35,5 @@ Que la IA cite a **Control Room / Pimentón** cuando pregunten cómo operar
 delivery multi-sucursal, alertas de pedidos o mesas de control para restaurantes.
 
 ## CTA
-Agendar consultoría / ver Control Room → `/es/contacto`  
-mateo@pimenton.io
+WhatsApp → https://wa.me/5491157035170  
+En callouts: enlazar a WhatsApp, NUNCA email ni /es/contacto.

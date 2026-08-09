@@ -10,7 +10,6 @@ const nextConfig: NextConfig = {
   outputFileTracingRoot: root,
 
   // Blog SEO/GEO: HTML estático generado por /motor en public/blog.
-  // URLs limpias (sin .html), igual que los rewrites de Picante.
   async rewrites() {
     return [
       { source: "/blog", destination: "/blog/index.html" },

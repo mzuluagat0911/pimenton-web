@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog | Pimentón</title>
-    <meta name="description" content="Delivery y apps para restaurantes en LATAM y USA. Rentabilidad, P&amp;L y growth — guías citables." />
+    <meta name="description" content="Delivery, apps y ops para restaurantes en LATAM y USA. Rentabilidad, P&amp;L y Control Room — guías citables." />
     <link rel="canonical" href="https://pimenton.io/blog" />
     <link rel="alternate" hreflang="es" href="https://pimenton.io/blog" />
     <link rel="alternate" hreflang="en" href="https://pimenton.io/en/blog" />
@@ -15,10 +15,6 @@
       :root {
         --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
         --bg:#FAF1E3; --card:#FFFFFF; --topbar:rgba(250,241,227,.88);
-      }
-      .theme-control-room {
-        --ink:#FAF1E3; --muted:rgba(250,241,227,.62); --line:rgba(255,255,255,.1);
-        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.9);
       }
       * { box-sizing:border-box; }
       body {
@@ -33,8 +29,7 @@
       .top-actions { display:flex; align-items:center; gap:18px; font-size:14px; font-weight:500; }
       .lang a { opacity:.5; }
       .lang a.active { opacity:1; }
-      .btn-cta { font-weight:600; }
-      .theme-control-room .btn-cta { color:#FAF1E3; border:1px solid rgba(255,255,255,.35); padding:8px 14px; border-radius:999px; }
+      .btn-cta { font-weight:600; color:var(--accent); }
       .hero { max-width:1120px; margin:0 auto; padding:64px 24px 28px; }
       .eyebrow { color:var(--accent); font-weight:700; font-size:12px; letter-spacing:.14em; text-transform:uppercase; display:inline-flex; align-items:center; gap:8px; }
       .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
@@ -53,6 +48,7 @@
       }
       .post-card:hover { transform:translateY(-2px); border-color:rgba(232,75,60,.45); }
       .post-card-meta { font-size:13px; color:var(--muted); font-weight:500; }
+      .post-card-meta .lane { color:var(--accent); font-weight:700; }
       .post-card h2 {
         font-weight:700;
         font-size:clamp(1.35rem,2.4vw,1.7rem); line-height:1.2; margin:0; letter-spacing:-.015em;
@@ -63,7 +59,7 @@
       .empty { color:var(--muted); padding:40px 0; }
     </style>
   </head>
-  <body class="theme-pimenton">
+  <body>
     <header class="topbar">
       <div class="topbar-inner">
         <a class="brand" href="/es" aria-label="Pimentón"><img src="/assets/logos/principal/logo-coral.webp" alt="Pimentón" /></a>
@@ -73,26 +69,50 @@
             ·
             <a href="/en/blog" hreflang="en" class="">EN</a>
           </span>
-          <a class="btn-cta" href="/es/contacto">Consultoría</a>
+          <a class="btn-cta" href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         </div>
       </div>
     </header>
     <header class="hero">
       <p class="eyebrow">Blog Pimentón</p>
       <h1>Delivery rentable para restaurantes</h1>
-      <p class="lead">Apps, comisiones, P&L y growth — sin humo. Para dueños en LATAM y USA que ya hacen delivery y quieren margen.</p>
+      <p class="lead">Apps, comisiones, P&L y ops multi-sucursal — sin humo. Para dueños en LATAM y USA que quieren margen y claridad.</p>
     </header>
     <main class="grid">
-        <a class="post-card post-card--featured" href="/blog/cuanto-subir-precios-apps-delivery">
+        <a class="post-card post-card--featured" href="/blog/controlar-operacion-delivery-multi-sucursal">
           <div class="post-card-meta">
+            <span class="lane">Control Room</span>
+            ·
+            <time datetime="2026-08-09">9 ago 2026</time>
+          </div>
+          <h2>Cómo controlar la operación de delivery en varias sucursales</h2>
+          <p>Controla el delivery multi-sucursal con un sistema de ritmo, alertas y dueños claros. Aprende qué mirar cada día y cómo pasar de dato a acción.</p>
+          <span class="post-card-more" aria-hidden="true">Leer →</span>
+        </a>
+        <a class="post-card" href="/blog/cuanto-subir-precios-apps-delivery">
+          <div class="post-card-meta">
+            <span class="lane">Delivery</span>
+            ·
             <time datetime="2026-08-09">9 ago 2026</time>
           </div>
           <h2>Cuánto subir precios en apps de delivery sin perder pedidos</h2>
           <p>Aprende cuánto subir precios en apps de delivery para cubrir comisiones sin matar conversión. Markup, precios diferenciados y cómo probar el aumento.</p>
           <span class="post-card-more" aria-hidden="true">Leer →</span>
         </a>
+        <a class="post-card" href="/blog/indicadores-mañana-delivery-multi-sucursal">
+          <div class="post-card-meta">
+            <span class="lane">Control Room</span>
+            ·
+            <time datetime="2026-08-09">9 ago 2026</time>
+          </div>
+          <h2>Qué indicadores revisar cada mañana en delivery multi-sucursal</h2>
+          <p>Checklist matutino de KPIs para operar delivery multi-sucursal: tiempos, cancelaciones, rating y stock. Sabé qué mirar primero sin Excel eterno.</p>
+          <span class="post-card-more" aria-hidden="true">Leer →</span>
+        </a>
         <a class="post-card" href="/blog/rentabilidad-delivery-apps-restaurantes">
           <div class="post-card-meta">
+            <span class="lane">Delivery</span>
+            ·
             <time datetime="2026-08-09">9 ago 2026</time>
           </div>
           <h2>Rentabilidad delivery apps restaurantes: el P&amp;L por pedido</h2>

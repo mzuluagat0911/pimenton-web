@@ -1,9 +1,9 @@
 import { log } from "../lib/logger.js";
+import { env } from "../config/env.js";
 import { loadState, saveState, coveredKeywords, markPublished } from "../lib/state.js";
 import type { Destino } from "../lib/state.js";
 import { DESTINOS } from "../types.js";
 import type { Idea } from "../types.js";
-import { env } from "../config/env.js";
 import { searchIdeas } from "./searcher.js";
 import { publishIdea, rebuildIndex } from "./publisher.js";
 
@@ -11,6 +11,12 @@ const SEEDS: Record<Destino, string> = {
   pimenton: env.SEED_PIMENTON,
   "control-room": env.SEED_CONTROL_ROOM,
 };
+
+function activeDestinos(): Destino[] {
+  const lane = env.LANE as Destino | "";
+  if (lane === "pimenton" || lane === "control-room") return [lane];
+  return DESTINOS;
+}
 
 /**
  * Posts que el Action generó pero no pudo pushear (runs fallidos por race en main).
@@ -25,7 +31,6 @@ const RECOVER_BATCH: { destino: Destino; idea: Idea }[] = [
         "P&L delivery restaurante",
         "comisiones apps delivery",
         "margen por pedido delivery",
-        "DoorDash Uber Eats Rappi rentabilidad",
       ],
       search_intent: "informacional",
       angle:
@@ -98,7 +103,7 @@ const RECOVER_BATCH: { destino: Destino; idea: Idea }[] = [
       ],
       search_intent: "informacional",
       angle:
-        "Sistema práctico para controlar la operación diaria de delivery en varias sucursales (ritmo, alertas, dueños de la mesa).",
+        "Sistema práctico para controlar la operación diaria de delivery en varias sucursales.",
       title_es: "Cómo controlar la operación de delivery en varias sucursales",
       title_en: "How to run multi-location delivery with a daily control checklist",
       related_questions: [
@@ -112,10 +117,9 @@ const RECOVER_BATCH: { destino: Destino; idea: Idea }[] = [
   },
 ];
 
-/** Solo ideación (barato, para validar temas). No escribe ni cambia estado. */
 export async function runIdeation(): Promise<void> {
   const state = loadState();
-  for (const destino of DESTINOS) {
+  for (const destino of activeDestinos()) {
     const ideas = await searchIdeas(
       destino,
       SEEDS[destino],
@@ -128,10 +132,11 @@ export async function runIdeation(): Promise<void> {
   }
 }
 
-/** Flujo completo: idea → redacta → genera HTML → actualiza estado + índice. */
 export async function runFull(): Promise<void> {
   const state = loadState();
-  for (const destino of DESTINOS) {
+  const lanes = activeDestinos();
+  log.info(`Carriles activos: ${lanes.join(", ")}`);
+  for (const destino of lanes) {
     try {
       const ideas = await searchIdeas(
         destino,
@@ -152,7 +157,6 @@ export async function runFull(): Promise<void> {
   log.ok(`Total publicado: ${state.published.length} posts (histórico).`);
 }
 
-/** Republica temas ya generados en Actions fallidos (sin Buscador). */
 export async function runRecover(): Promise<void> {
   const state = loadState();
   for (const { destino, idea } of RECOVER_BATCH) {

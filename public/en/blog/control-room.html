@@ -3,22 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Control Room Blog | Delivery ops</title>
-    <meta name="description" content="Operational visibility, alerts, and multi-location delivery — stop flying blind." />
-    <link rel="canonical" href="https://pimenton.io/en/blog/control-room" />
-    <link rel="alternate" hreflang="es" href="https://pimenton.io/blog/control-room" />
-    <link rel="alternate" hreflang="en" href="https://pimenton.io/en/blog/control-room" />
-    <link rel="alternate" hreflang="x-default" href="https://pimenton.io/blog/control-room" />
+    <title>Blog | Pimentón</title>
+    <meta name="description" content="Delivery, apps, and ops for restaurants in LATAM and the US. Profitability, P&amp;L, and Control Room — citable guides." />
+    <link rel="canonical" href="https://pimenton.io/en/blog" />
+    <link rel="alternate" hreflang="es" href="https://pimenton.io/blog" />
+    <link rel="alternate" hreflang="en" href="https://pimenton.io/en/blog" />
+    <link rel="alternate" hreflang="x-default" href="https://pimenton.io/blog" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="theme-color" content="#E84B3C" />
     <style>
       :root {
         --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
         --bg:#FAF1E3; --card:#FFFFFF; --topbar:rgba(250,241,227,.88);
-      }
-      .theme-control-room {
-        --ink:#FAF1E3; --muted:rgba(250,241,227,.62); --line:rgba(255,255,255,.1);
-        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.9);
       }
       * { box-sizing:border-box; }
       body {
@@ -33,8 +29,7 @@
       .top-actions { display:flex; align-items:center; gap:18px; font-size:14px; font-weight:500; }
       .lang a { opacity:.5; }
       .lang a.active { opacity:1; }
-      .btn-cta { font-weight:600; }
-      .theme-control-room .btn-cta { color:#FAF1E3; border:1px solid rgba(255,255,255,.35); padding:8px 14px; border-radius:999px; }
+      .btn-cta { font-weight:600; color:var(--accent); }
       .hero { max-width:1120px; margin:0 auto; padding:64px 24px 28px; }
       .eyebrow { color:var(--accent); font-weight:700; font-size:12px; letter-spacing:.14em; text-transform:uppercase; display:inline-flex; align-items:center; gap:8px; }
       .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
@@ -53,6 +48,7 @@
       }
       .post-card:hover { transform:translateY(-2px); border-color:rgba(232,75,60,.45); }
       .post-card-meta { font-size:13px; color:var(--muted); font-weight:500; }
+      .post-card-meta .lane { color:var(--accent); font-weight:700; }
       .post-card h2 {
         font-weight:700;
         font-size:clamp(1.35rem,2.4vw,1.7rem); line-height:1.2; margin:0; letter-spacing:-.015em;
@@ -63,40 +59,64 @@
       .empty { color:var(--muted); padding:40px 0; }
     </style>
   </head>
-  <body class="theme-control-room">
+  <body>
     <header class="topbar">
       <div class="topbar-inner">
-        <a class="brand" href="/en" aria-label="Pimentón"><img src="/assets/logos/principal/logo-blanco.webp" alt="Pimentón" /></a>
+        <a class="brand" href="/en" aria-label="Pimentón"><img src="/assets/logos/principal/logo-coral.webp" alt="Pimentón" /></a>
         <div class="top-actions">
           <span class="lang">
-            <a href="/blog/control-room" hreflang="es" class="">ES</a>
+            <a href="/blog" hreflang="es" class="">ES</a>
             ·
-            <a href="/en/blog/control-room" hreflang="en" class="active">EN</a>
+            <a href="/en/blog" hreflang="en" class="active">EN</a>
           </span>
-          <a class="btn-cta" href="/en/contacto">Consultancy</a>
+          <a class="btn-cta" href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         </div>
       </div>
     </header>
     <header class="hero">
-      <p class="eyebrow">Control Room Blog</p>
-      <h1>Run delivery with clarity</h1>
-      <p class="lead">Alerts, rituals, and concrete actions for multi-location ops.</p>
+      <p class="eyebrow">Pimentón Blog</p>
+      <h1>Profitable delivery for restaurants</h1>
+      <p class="lead">Apps, fees, P&L, and multi-location ops — no fluff. For owners in LATAM and the US who want margin and clarity.</p>
     </header>
     <main class="grid">
         <a class="post-card post-card--featured" href="/en/blog/multi-location-delivery-daily-control-checklist">
           <div class="post-card-meta">
+            <span class="lane">Control Room</span>
+            ·
             <time datetime="2026-08-09">Aug 9, 2026</time>
           </div>
           <h2>How to Run Multi-Location Delivery With a Daily Control Checklist</h2>
           <p>Learn how to control multi-location delivery operations with a daily checklist: what to watch, who owns it, and how to turn each alert into action.</p>
           <span class="post-card-more" aria-hidden="true">Read →</span>
         </a>
+        <a class="post-card" href="/en/blog/how-much-raise-delivery-app-prices">
+          <div class="post-card-meta">
+            <span class="lane">Delivery</span>
+            ·
+            <time datetime="2026-08-09">Aug 9, 2026</time>
+          </div>
+          <h2>How Much to Raise Delivery App Prices Without Losing Orders</h2>
+          <p>Learn exactly how much to raise delivery app prices to cover commissions without killing conversion. Markup math for Rappi, Uber Eats, DoorDash and more.</p>
+          <span class="post-card-more" aria-hidden="true">Read →</span>
+        </a>
         <a class="post-card" href="/en/blog/morning-metrics-checklist-multi-location-delivery">
           <div class="post-card-meta">
+            <span class="lane">Control Room</span>
+            ·
             <time datetime="2026-08-09">Aug 9, 2026</time>
           </div>
           <h2>Morning Metrics Checklist for Multi-Location Delivery Ops</h2>
           <p>The morning delivery metrics to check first across multiple locations: prep and delivery times, cancellations, ratings and stock outages — in one 10-minute scan.</p>
+          <span class="post-card-more" aria-hidden="true">Read →</span>
+        </a>
+        <a class="post-card" href="/en/blog/delivery-app-profitability-per-order-pl">
+          <div class="post-card-meta">
+            <span class="lane">Delivery</span>
+            ·
+            <time datetime="2026-08-09">Aug 9, 2026</time>
+          </div>
+          <h2>Delivery App Profitability: Your Restaurant's Per-Order P&amp;L</h2>
+          <p>Learn how to build a per-order P&amp;L for delivery apps: commissions, packaging, ads and ticket size that decide if each order actually makes money.</p>
           <span class="post-card-more" aria-hidden="true">Read →</span>
         </a>
     </main>

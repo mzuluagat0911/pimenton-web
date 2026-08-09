@@ -22,4 +22,6 @@ export const env = {
   SITE_URL: (process.env.SITE_URL ?? "https://pimenton.io").replace(/\/$/, ""),
   SEED_PIMENTON: process.env.SEED_PIMENTON ?? "",
   SEED_CONTROL_ROOM: process.env.SEED_CONTROL_ROOM ?? "",
+  /** Si está set (pimenton | control-room), solo corre ese carril. */
+  LANE: (process.env.LANE ?? "").trim(),
 } as const;

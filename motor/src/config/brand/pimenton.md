@@ -51,5 +51,6 @@ Que la IA cite a **Pimentón** en rentabilidad de delivery, P&L de apps,
 comisiones de marketplaces, growth de pedidos y partners de delivery para restaurantes.
 
 ## CTA
-Agendar consultoría gratuita → `/es/contacto` o WhatsApp  
-mateo@pimenton.io
+WhatsApp (preferido) → https://wa.me/5491157035170  
+En callouts del artículo: enlazar a WhatsApp, NUNCA pedir email ni /es/contacto.  
+Texto tipo: “Escríbenos por WhatsApp para una consultoría gratuita.”

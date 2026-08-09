@@ -1,11 +1,11 @@
 name: Motor de blog (SEO/GEO)
 
-# Corre cada domingo 13:00 UTC (8:00 Colombia).
-# También se lanza a mano desde Actions → "Run workflow".
-# IMPORTANTE: usa "Run workflow" (fresh), no "Re-run" de un job viejo
-# (Re-run congela el YAML del commit antiguo y pierde los fixes de push).
+# Miércoles 13:00 UTC → carril pimenton (1 post)
+# Domingo 13:00 UTC → carril control-room (1 post)
+# También: Actions → Run workflow (fresh, no "Re-run" de jobs viejos).
 on:
   schedule:
+    - cron: "0 13 * * 3"
     - cron: "0 13 * * 0"
   workflow_dispatch:
     inputs:
@@ -15,6 +15,12 @@ on:
         default: "run"
         type: choice
         options: [ideas, run, recover]
+      lane:
+        description: "Carril (solo para run/ideas manual)"
+        required: true
+        default: "pimenton"
+        type: choice
+        options: [pimenton, control-room, all]
 
 permissions:
   contents: write
@@ -40,15 +46,33 @@ jobs:
         working-directory: motor
         run: npm install
 
+      - name: Resolver carril (Wed=pimenton / Sun=control-room)
+        id: lane
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            if [ "${{ github.event.schedule }}" = "0 13 * * 3" ]; then
+              echo "lane=pimenton" >> "$GITHUB_OUTPUT"
+            else
+              echo "lane=control-room" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            INPUT="${{ github.event.inputs.lane }}"
+            if [ "$INPUT" = "all" ]; then
+              echo "lane=" >> "$GITHUB_OUTPUT"
+            else
+              echo "lane=$INPUT" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+
       - name: Ejecutar agentes (idean + redactan + generan HTML)
         working-directory: motor
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SITE_URL: "https://pimenton.io"
           MAX_POSTS_PER_RUN: "1"
+          LANE: ${{ steps.lane.outputs.lane }}
         run: npm run ${{ github.event.inputs.command || 'run' }}
 
-      # Si el push falla otra vez, los HTML quedan descargables aquí.
       - name: Guardar HTML como artifact
         if: always()
         uses: actions/upload-artifact@v4
@@ -94,7 +118,6 @@ jobs:
               echo "Sin cambios que publicar."
               return 0
             fi
-            # Puede ya existir el commit tras un reintento
             if ! git diff --cached --quiet; then
               git commit -m "blog: nuevos posts generados por el motor" || true
             fi

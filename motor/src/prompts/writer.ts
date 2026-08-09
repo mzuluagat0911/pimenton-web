@@ -15,6 +15,7 @@ export function writerSystem(destino: Destino, lang: Language): string {
     "",
     "Respeta territorio editorial: no mezcles temas del otro producto/marca.",
     "Respeta el tono de marca. No inventes cifras que no puedas justificar.",
+    "CTA obligatorio en callouts: WhatsApp https://wa.me/5491157035170 (nunca email ni /es/contacto).",
     "Devuelve EXACTAMENTE el esquema JSON pedido. body_html debe ser HTML limpio",
     "(h2/h3/p/ul/ol/strong/em y opcional div.callout), SIN h1, head ni scripts.",
   ].join("\n");

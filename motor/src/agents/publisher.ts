@@ -106,33 +106,32 @@ function patchTeaser(filePath: string, destino: Destino, cardsHtml: string): voi
   log.ok(`Teaser ${destino} actualizado en ${filePath}`);
 }
 
-/** Regenera índices ES/EN por carril, sitemap-blog y teasers en landings. */
+/** Regenera índice unificado ES/EN, sitemap-blog y teasers. */
 export function rebuildIndex(posts: PublishedPost[]): void {
   mkdirSync(join(PUBLIC_ROOT, "blog"), { recursive: true });
   mkdirSync(join(PUBLIC_ROOT, "en", "blog"), { recursive: true });
 
   writeFileSync(
     join(PUBLIC_ROOT, "blog", "index.html"),
-    renderBlogIndex(posts, env.SITE_URL, "pimenton", "es"),
+    renderBlogIndex(posts, env.SITE_URL, "all", "es"),
     "utf8",
   );
   writeFileSync(
     join(PUBLIC_ROOT, "en", "blog", "index.html"),
-    renderBlogIndex(posts, env.SITE_URL, "pimenton", "en"),
+    renderBlogIndex(posts, env.SITE_URL, "all", "en"),
     "utf8",
   );
-  // Archivo plano (no carpeta): /blog/control-room → control-room.html
+  // Alias legacy: /blog/control-room → mismo hub unificado
   writeFileSync(
     join(PUBLIC_ROOT, "blog", "control-room.html"),
-    renderBlogIndex(posts, env.SITE_URL, "control-room", "es"),
+    renderBlogIndex(posts, env.SITE_URL, "all", "es"),
     "utf8",
   );
   writeFileSync(
     join(PUBLIC_ROOT, "en", "blog", "control-room.html"),
-    renderBlogIndex(posts, env.SITE_URL, "control-room", "en"),
+    renderBlogIndex(posts, env.SITE_URL, "all", "en"),
     "utf8",
   );
-  // Sitemap solo del blog (el sitio Next usa app/sitemap.ts + state.json).
   writeFileSync(join(PUBLIC_ROOT, "sitemap-blog.xml"), renderSitemap(posts, env.SITE_URL), "utf8");
 
   const teasersDir = join(REPO_ROOT, "data", "blog-teasers");
@@ -140,13 +139,13 @@ export function rebuildIndex(posts: PublishedPost[]): void {
   patchTeaser(
     join(teasersDir, "home.html"),
     "pimenton",
-    renderBlogTeaserCards(posts, "pimenton", "es", 3),
+    renderBlogTeaserCards(posts, "all", "es", 3),
   );
   patchTeaser(
     join(teasersDir, "control-room.html"),
     "control-room",
-    renderBlogTeaserCards(posts, "control-room", "es", 3),
+    renderBlogTeaserCards(posts, "all", "es", 3),
   );
 
-  log.ok("Índices Pimentón/Control Room + teasers + sitemap-blog regenerados.");
+  log.ok("Índice unificado + teasers + sitemap-blog regenerados.");
 }

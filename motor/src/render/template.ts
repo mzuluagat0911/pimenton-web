@@ -3,6 +3,7 @@
 // footer, schema, hreflang) alineado al brand Pimentón.
 
 import type { Destino } from "../lib/state.js";
+import { WHATSAPP_CTA_EN, WHATSAPP_CTA_ES } from "../config/cta.js";
 
 export interface FaqItem {
   q: string;
@@ -35,66 +36,62 @@ export interface RenderContext {
 const T = {
   pimenton: {
     es: {
-      nav: { home: "Inicio", blog: "Blog", schedule: "Consultoría" },
+      nav: { home: "Inicio", blog: "Blog", schedule: "WhatsApp" },
       blogHref: "/blog",
       homeHref: "/es",
       ctaTitle: "¿Listo a potenciar tu delivery?",
       ctaText:
-        "Agenda una consultoría gratuita. Sales con un diagnóstico claro de canales, ops y próximos pasos por impacto.",
-      ctaLabel: "Agendar consultoría gratis",
-      ctaHref: "/es/contacto",
+        "Escríbenos por WhatsApp. En minutos coordinamos una consultoría gratuita con diagnóstico de canales, ops y próximos pasos.",
+      ctaLabel: "Escribir por WhatsApp",
+      ctaHref: WHATSAPP_CTA_ES,
       faqTitle: "Preguntas frecuentes",
-      footerLinks:
-        '<a href="/es">Inicio</a> · <a href="/blog">Blog</a> · <a href="/es/contacto">Contacto</a>',
+      footerLinks: `<a href="/es">Inicio</a> · <a href="/blog">Blog</a> · <a href="${WHATSAPP_CTA_ES}">WhatsApp</a>`,
       breadcrumbBlog: "Blog",
       breadcrumbBlogUrl: "/blog",
     },
     en: {
-      nav: { home: "Home", blog: "Blog", schedule: "Consultancy" },
+      nav: { home: "Home", blog: "Blog", schedule: "WhatsApp" },
       blogHref: "/en/blog",
       homeHref: "/en",
       ctaTitle: "Ready to supercharge your delivery?",
       ctaText:
-        "Book a free consultancy. You'll leave with a clear diagnosis of channels, ops, and prioritized next steps.",
-      ctaLabel: "Book free consultancy",
-      ctaHref: "/en/contacto",
+        "Message us on WhatsApp. We'll book a free consultancy with a clear diagnosis of channels, ops, and next steps.",
+      ctaLabel: "Message on WhatsApp",
+      ctaHref: WHATSAPP_CTA_EN,
       faqTitle: "Frequently asked questions",
-      footerLinks:
-        '<a href="/en">Home</a> · <a href="/en/blog">Blog</a> · <a href="/en/contacto">Contact</a>',
+      footerLinks: `<a href="/en">Home</a> · <a href="/en/blog">Blog</a> · <a href="${WHATSAPP_CTA_EN}">WhatsApp</a>`,
       breadcrumbBlog: "Blog",
       breadcrumbBlogUrl: "/en/blog",
     },
   },
   "control-room": {
     es: {
-      nav: { home: "Inicio", blog: "Blog Ops", schedule: "Consultoría" },
-      blogHref: "/blog/control-room",
+      nav: { home: "Inicio", blog: "Blog", schedule: "WhatsApp" },
+      blogHref: "/blog",
       homeHref: "/es",
       ctaTitle: "¿Quieres ver tu delivery con claridad?",
       ctaText:
-        "Agenda 30 minutos. Revisamos qué está rompiendo el ritmo multi-sucursal y qué mover primero.",
-      ctaLabel: "Agendar consultoría",
-      ctaHref: "/es/contacto",
+        "Escríbenos por WhatsApp. Revisamos qué está rompiendo el ritmo multi-sucursal y qué mover primero.",
+      ctaLabel: "Escribir por WhatsApp",
+      ctaHref: WHATSAPP_CTA_ES,
       faqTitle: "Preguntas frecuentes",
-      footerLinks:
-        '<a href="/es">Inicio</a> · <a href="/blog/control-room">Blog Ops</a> · <a href="/es/contacto">Contacto</a>',
-      breadcrumbBlog: "Blog Control Room",
-      breadcrumbBlogUrl: "/blog/control-room",
+      footerLinks: `<a href="/es">Inicio</a> · <a href="/blog">Blog</a> · <a href="${WHATSAPP_CTA_ES}">WhatsApp</a>`,
+      breadcrumbBlog: "Blog",
+      breadcrumbBlogUrl: "/blog",
     },
     en: {
-      nav: { home: "Home", blog: "Ops Blog", schedule: "Consultancy" },
-      blogHref: "/en/blog/control-room",
+      nav: { home: "Home", blog: "Blog", schedule: "WhatsApp" },
+      blogHref: "/en/blog",
       homeHref: "/en",
       ctaTitle: "Want clear visibility on your delivery?",
       ctaText:
-        "Book 30 minutes. We'll review what's breaking multi-location rhythm and what to fix first.",
-      ctaLabel: "Book consultancy",
-      ctaHref: "/en/contacto",
+        "Message us on WhatsApp. We'll review what's breaking multi-location rhythm and what to fix first.",
+      ctaLabel: "Message on WhatsApp",
+      ctaHref: WHATSAPP_CTA_EN,
       faqTitle: "Frequently asked questions",
-      footerLinks:
-        '<a href="/en">Home</a> · <a href="/en/blog/control-room">Ops Blog</a> · <a href="/en/contacto">Contact</a>',
-      breadcrumbBlog: "Control Room Blog",
-      breadcrumbBlogUrl: "/en/blog/control-room",
+      footerLinks: `<a href="/en">Home</a> · <a href="/en/blog">Blog</a> · <a href="${WHATSAPP_CTA_EN}">WhatsApp</a>`,
+      breadcrumbBlog: "Blog",
+      breadcrumbBlogUrl: "/en/blog",
     },
   },
 } as const;
@@ -302,7 +299,7 @@ ${faqAccordion(draft.faq)}
           <div class="cta">
             <h2>${esc(t.ctaTitle)}</h2>
             <p>${esc(t.ctaText)}</p>
-            <a class="btn" href="${t.ctaHref}">${esc(t.ctaLabel)}</a>
+            <a class="btn" href="${t.ctaHref}" target="_blank" rel="noopener noreferrer">${esc(t.ctaLabel)}</a>
           </div>
         </article>
       </div>

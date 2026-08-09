@@ -1,4 +1,5 @@
 import type { Destino, PublishedPost } from "../lib/state.js";
+import { WHATSAPP_CTA_EN, WHATSAPP_CTA_ES } from "../config/cta.js";
 
 type IndexLang = "es" | "en";
 
@@ -16,114 +17,95 @@ function formatDate(iso: string, lang: IndexLang): string {
   });
 }
 
-const COPY = {
-  pimenton: {
-    es: {
-      title: "Blog | Pimentón",
-      description:
-        "Delivery y apps para restaurantes en LATAM y USA. Rentabilidad, P&L y growth — guías citables.",
-      eyebrow: "Blog Pimentón",
-      h1: "Delivery rentable para restaurantes",
-      lead: "Apps, comisiones, P&L y growth — sin humo. Para dueños en LATAM y USA que ya hacen delivery y quieren margen.",
-      cta: "Consultoría",
-      empty: "Pronto, los primeros artículos.",
-      path: "/blog",
-      agenda: "/es/contacto",
-      brandHref: "/es",
-      brandAlt: "Pimentón",
-      logo: "/assets/logos/principal/logo-coral.webp",
-    },
-    en: {
-      title: "Blog | Pimentón",
-      description:
-        "Delivery apps for restaurants in LATAM and the US. Profitability, P&L, and growth — citable guides.",
-      eyebrow: "Pimentón Blog",
-      h1: "Profitable delivery for restaurants",
-      lead: "Apps, fees, P&L, and growth — no fluff. For owners in LATAM and the US who already deliver and want margin.",
-      cta: "Consultancy",
-      empty: "First articles coming soon.",
-      path: "/en/blog",
-      agenda: "/en/contacto",
-      brandHref: "/en",
-      brandAlt: "Pimentón",
-      logo: "/assets/logos/principal/logo-coral.webp",
-    },
+/** Hub unificado: Pimentón + Control Room juntos. */
+const HUB = {
+  es: {
+    title: "Blog | Pimentón",
+    description:
+      "Delivery, apps y ops para restaurantes en LATAM y USA. Rentabilidad, P&L y Control Room — guías citables.",
+    eyebrow: "Blog Pimentón",
+    h1: "Delivery rentable para restaurantes",
+    lead: "Apps, comisiones, P&L y ops multi-sucursal — sin humo. Para dueños en LATAM y USA que quieren margen y claridad.",
+    cta: "WhatsApp",
+    empty: "Pronto, los primeros artículos.",
+    path: "/blog",
+    agenda: WHATSAPP_CTA_ES,
+    brandHref: "/es",
+    brandAlt: "Pimentón",
+    logo: "/assets/logos/principal/logo-coral.webp",
   },
-  "control-room": {
-    es: {
-      title: "Blog Control Room | Ops de delivery",
-      description:
-        "Visibilidad operativa, alertas y multi-sucursal para no operar el delivery a ciegas.",
-      eyebrow: "Blog Control Room",
-      h1: "Opera el delivery con claridad",
-      lead: "Alertas, rituales y acciones concretas — para ops multi-sucursal.",
-      cta: "Consultoría",
-      empty: "Pronto, guías de ops.",
-      path: "/blog/control-room",
-      agenda: "/es/contacto",
-      brandHref: "/es",
-      brandAlt: "Pimentón",
-      logo: "/assets/logos/principal/logo-blanco.webp",
-    },
-    en: {
-      title: "Control Room Blog | Delivery ops",
-      description:
-        "Operational visibility, alerts, and multi-location delivery — stop flying blind.",
-      eyebrow: "Control Room Blog",
-      h1: "Run delivery with clarity",
-      lead: "Alerts, rituals, and concrete actions for multi-location ops.",
-      cta: "Consultancy",
-      empty: "Ops guides coming soon.",
-      path: "/en/blog/control-room",
-      agenda: "/en/contacto",
-      brandHref: "/en",
-      brandAlt: "Pimentón",
-      logo: "/assets/logos/principal/logo-blanco.webp",
-    },
+  en: {
+    title: "Blog | Pimentón",
+    description:
+      "Delivery, apps, and ops for restaurants in LATAM and the US. Profitability, P&L, and Control Room — citable guides.",
+    eyebrow: "Pimentón Blog",
+    h1: "Profitable delivery for restaurants",
+    lead: "Apps, fees, P&L, and multi-location ops — no fluff. For owners in LATAM and the US who want margin and clarity.",
+    cta: "WhatsApp",
+    empty: "First articles coming soon.",
+    path: "/en/blog",
+    agenda: WHATSAPP_CTA_EN,
+    brandHref: "/en",
+    brandAlt: "Pimentón",
+    logo: "/assets/logos/principal/logo-coral.webp",
   },
 } as const;
+
+function mapPost(p: PublishedPost, lang: IndexLang) {
+  if (lang === "en" && p.pathEn) {
+    return {
+      href: p.pathEn,
+      title: p.titleEn ?? p.title,
+      description: p.descriptionEn ?? p.description,
+      date: p.date,
+      destino: p.destino,
+    };
+  }
+  return {
+    href: p.path,
+    title: p.title,
+    description: p.description,
+    date: p.date,
+    destino: p.destino,
+  };
+}
+
+function postsAll(posts: PublishedPost[], lang: IndexLang) {
+  return posts.slice().reverse().map((p) => mapPost(p, lang));
+}
 
 function postsFor(posts: PublishedPost[], destino: Destino, lang: IndexLang) {
   return posts
     .filter((p) => p.destino === destino)
     .slice()
     .reverse()
-    .map((p) => {
-      if (lang === "en" && p.pathEn) {
-        return {
-          href: p.pathEn,
-          title: p.titleEn ?? p.title,
-          description: p.descriptionEn ?? p.description,
-          date: p.date,
-        };
-      }
-      return {
-        href: p.path,
-        title: p.title,
-        description: p.description,
-        date: p.date,
-      };
-    });
+    .map((p) => mapPost(p, lang));
 }
 
-/** Índice completo /blog o /blog/control-room (y versiones EN). */
+function laneLabel(destino: Destino, lang: IndexLang): string {
+  if (destino === "control-room") return lang === "es" ? "Control Room" : "Control Room";
+  return lang === "es" ? "Delivery" : "Delivery";
+}
+
+/** Índice unificado /blog (todos los carriles). */
 export function renderBlogIndex(
   posts: PublishedPost[],
   siteUrl: string,
-  destino: Destino = "pimenton",
+  _destino: Destino | "all" = "all",
   lang: IndexLang = "es",
 ): string {
-  const c = COPY[destino][lang];
-  const list = postsFor(posts, destino, lang);
+  const c = HUB[lang];
+  const list = postsAll(posts, lang);
   const canonical = `${siteUrl}${c.path}`;
-  const altEs = `${siteUrl}${COPY[destino].es.path}`;
-  const altEn = `${siteUrl}${COPY[destino].en.path}`;
-  const theme = destino === "control-room" ? "theme-control-room" : "theme-pimenton";
+  const altEs = `${siteUrl}${HUB.es.path}`;
+  const altEn = `${siteUrl}${HUB.en.path}`;
 
   const cards = list
     .map(
       (p, i) => `        <a class="post-card${i === 0 ? " post-card--featured" : ""}" href="${p.href}">
           <div class="post-card-meta">
+            <span class="lane">${esc(laneLabel(p.destino, lang))}</span>
+            ·
             <time datetime="${esc(p.date)}">${esc(formatDate(p.date, lang))}</time>
           </div>
           <h2>${esc(p.title)}</h2>
@@ -151,10 +133,6 @@ export function renderBlogIndex(
         --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
         --bg:#FAF1E3; --card:#FFFFFF; --topbar:rgba(250,241,227,.88);
       }
-      .theme-control-room {
-        --ink:#FAF1E3; --muted:rgba(250,241,227,.62); --line:rgba(255,255,255,.1);
-        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.9);
-      }
       * { box-sizing:border-box; }
       body {
         margin:0;
@@ -168,8 +146,7 @@ export function renderBlogIndex(
       .top-actions { display:flex; align-items:center; gap:18px; font-size:14px; font-weight:500; }
       .lang a { opacity:.5; }
       .lang a.active { opacity:1; }
-      .btn-cta { font-weight:600; }
-      .theme-control-room .btn-cta { color:#FAF1E3; border:1px solid rgba(255,255,255,.35); padding:8px 14px; border-radius:999px; }
+      .btn-cta { font-weight:600; color:var(--accent); }
       .hero { max-width:1120px; margin:0 auto; padding:64px 24px 28px; }
       .eyebrow { color:var(--accent); font-weight:700; font-size:12px; letter-spacing:.14em; text-transform:uppercase; display:inline-flex; align-items:center; gap:8px; }
       .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
@@ -188,6 +165,7 @@ export function renderBlogIndex(
       }
       .post-card:hover { transform:translateY(-2px); border-color:rgba(232,75,60,.45); }
       .post-card-meta { font-size:13px; color:var(--muted); font-weight:500; }
+      .post-card-meta .lane { color:var(--accent); font-weight:700; }
       .post-card h2 {
         font-weight:700;
         font-size:clamp(1.35rem,2.4vw,1.7rem); line-height:1.2; margin:0; letter-spacing:-.015em;
@@ -198,17 +176,17 @@ export function renderBlogIndex(
       .empty { color:var(--muted); padding:40px 0; }
     </style>
   </head>
-  <body class="${theme}">
+  <body>
     <header class="topbar">
       <div class="topbar-inner">
         <a class="brand" href="${c.brandHref}" aria-label="${esc(c.brandAlt)}"><img src="${c.logo}" alt="${esc(c.brandAlt)}" /></a>
         <div class="top-actions">
           <span class="lang">
-            <a href="${COPY[destino].es.path}" hreflang="es" class="${lang === "es" ? "active" : ""}">ES</a>
+            <a href="${HUB.es.path}" hreflang="es" class="${lang === "es" ? "active" : ""}">ES</a>
             ·
-            <a href="${COPY[destino].en.path}" hreflang="en" class="${lang === "en" ? "active" : ""}">EN</a>
+            <a href="${HUB.en.path}" hreflang="en" class="${lang === "en" ? "active" : ""}">EN</a>
           </span>
-          <a class="btn-cta" href="${c.agenda}">${c.cta}</a>
+          <a class="btn-cta" href="${c.agenda}" target="_blank" rel="noopener noreferrer">${c.cta}</a>
         </div>
       </div>
     </header>
@@ -225,14 +203,17 @@ ${cards || `      <p class="empty">${c.empty}</p>`}
 `;
 }
 
-/** Cards HTML para incrustar en landings (sin documento completo). */
+/** Cards HTML para incrustar en landings (todos los carriles por defecto). */
 export function renderBlogTeaserCards(
   posts: PublishedPost[],
-  destino: Destino,
+  destino: Destino | "all" = "all",
   lang: IndexLang = "es",
   limit = 3,
 ): string {
-  const list = postsFor(posts, destino, lang).slice(0, limit);
+  const list =
+    destino === "all"
+      ? postsAll(posts, lang).slice(0, limit)
+      : postsFor(posts, destino, lang).slice(0, limit);
   if (!list.length) {
     return lang === "es"
       ? `<p class="blog-teaser-empty">Pronto publicamos las primeras guías.</p>`
