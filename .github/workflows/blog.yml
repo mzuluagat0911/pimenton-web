@@ -48,5 +48,7 @@ jobs:
             echo "Sin cambios que publicar."
           else
             git commit -m "blog: nuevos posts generados por el motor"
-            git push
+            # main pudo avanzar (hotfix/copy) mientras el motor corría
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
