@@ -71,6 +71,8 @@ jobs:
           SITE_URL: "https://pimenton.io"
           MAX_POSTS_PER_RUN: "1"
           LANE: ${{ steps.lane.outputs.lane }}
+          GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID }}
+          GOOGLE_SITE_VERIFICATION: ${{ secrets.GOOGLE_SITE_VERIFICATION }}
         run: npm run ${{ github.event.inputs.command || 'run' }}
 
       - name: Guardar HTML como artifact

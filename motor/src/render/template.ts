@@ -4,6 +4,7 @@
 
 import type { Destino } from "../lib/state.js";
 import { WHATSAPP_CTA_EN, WHATSAPP_CTA_ES } from "../config/cta.js";
+import { analyticsHeadSnippets } from "../config/analytics.js";
 
 export interface FaqItem {
   q: string;
@@ -204,7 +205,7 @@ export function renderArticle(draft: ArticleDraft, ctx: RenderContext): string {
     <meta name="theme-color" content="#E84B3C" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-${jsonLd(draft, ctx, canonical, ogImage)}
+${analyticsHeadSnippets()}${jsonLd(draft, ctx, canonical, ogImage)}
     <style>
       :root {
         --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;

@@ -1,5 +1,6 @@
 import type { Destino, PublishedPost } from "../lib/state.js";
 import { WHATSAPP_CTA_EN, WHATSAPP_CTA_ES } from "../config/cta.js";
+import { analyticsHeadSnippets } from "../config/analytics.js";
 
 type IndexLang = "es" | "en";
 
@@ -128,7 +129,7 @@ export function renderBlogIndex(
     <link rel="alternate" hreflang="x-default" href="${altEs}" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="theme-color" content="#E84B3C" />
-    <style>
+${analyticsHeadSnippets()}    <style>
       :root {
         --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
         --bg:#FAF1E3; --card:#FFFFFF; --topbar:rgba(250,241,227,.88);

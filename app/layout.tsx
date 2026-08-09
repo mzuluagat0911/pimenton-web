@@ -6,7 +6,9 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { LanguageProvider } from "@/components/i18n/LanguageContext";
 import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { SITE_URL } from "@/lib/site";
+import { GOOGLE_SITE_VERIFICATION } from "@/lib/analytics";
 import {
   DEFAULT_LOCALE,
   isLocale,
@@ -112,6 +114,9 @@ export async function generateMetadata(): Promise<Metadata> {
       description: meta.ogDescription,
       images: [meta.ogImage],
     },
+    verification: GOOGLE_SITE_VERIFICATION
+      ? { google: GOOGLE_SITE_VERIFICATION }
+      : undefined,
     icons: {
       icon: [
         { url: "/favicon.ico", sizes: "any" },
@@ -184,6 +189,7 @@ export default async function RootLayout({
           }}
         />
         <LanguageProvider initialLang={lang}>
+          <GoogleAnalytics />
           <SmoothScroll />
           <SiteHeader />
           {children}
