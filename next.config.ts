@@ -1,6 +1,14 @@
 import type { NextConfig } from "next";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const root = path.dirname(fileURLToPath(import.meta.url));
 
 const nextConfig: NextConfig = {
+  // Evita que Next tome motor/package-lock.json (u otro lockfile padre) como root.
+  turbopack: { root },
+  outputFileTracingRoot: root,
+
   // Blog SEO/GEO: HTML estático generado por /motor en public/blog.
   // URLs limpias (sin .html), igual que los rewrites de Picante.
   async rewrites() {
