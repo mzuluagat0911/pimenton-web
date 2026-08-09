@@ -79,6 +79,12 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean }) {
     e.preventDefault();
     setOpen(false);
 
+    if (href === "/blog" || href.startsWith("/blog/")) {
+      // Blog = HTML estático fuera del App Router; hard nav.
+      window.location.href = localizedHref(href);
+      return;
+    }
+
     if (href.startsWith("/")) {
       router.push(localizedHref(href));
       return;

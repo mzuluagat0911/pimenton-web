@@ -1,7 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Blog SEO/GEO: HTML estático generado por /motor en public/blog.
+  // URLs limpias (sin .html), igual que los rewrites de Picante.
+  async rewrites() {
+    return [
+      { source: "/blog", destination: "/blog/index.html" },
+      { source: "/blog/:slug", destination: "/blog/:slug.html" },
+      { source: "/en/blog", destination: "/en/blog/index.html" },
+      { source: "/en/blog/:slug", destination: "/en/blog/:slug.html" },
+    ];
+  },
 };
 
 export default nextConfig;

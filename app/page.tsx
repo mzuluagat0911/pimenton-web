@@ -1,3 +1,4 @@
+import { BlogTeasers } from "@/components/sections/BlogTeasers";
 import { Comparison } from "@/components/sections/Comparison";
 import { Consultancy } from "@/components/sections/Consultancy";
 import { ControlRoom } from "@/components/sections/ControlRoom";
@@ -23,6 +24,8 @@ export default function Home() {
       <Testimonials />
       {/* Form de consultoría justo después de la prueba social. */}
       <Consultancy />
+      {/* Teasers del motor de blog (marcadores BLOG_TEASER en data/). */}
+      <BlogTeasers destino="pimenton" className="mx-auto max-w-6xl px-6 py-16" />
       {/* Cierre cinemático: 3D gallery WebGL. */}
       <GallerySpecialists />
     </main>

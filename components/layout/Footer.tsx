@@ -111,16 +111,30 @@ export function Footer() {
               {navHeading}
             </h3>
             <ul className="mt-5 space-y-2.5">
-              {links.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={localizedHref(link.href)}
-                    className="text-sm text-pimenton-text-on-dark transition-colors duration-200 hover:text-pimenton-accent"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              {links.map((link) => {
+                const href = localizedHref(link.href);
+                const isBlog =
+                  link.href === "/blog" || link.href.startsWith("/blog/");
+                return (
+                  <li key={link.href}>
+                    {isBlog ? (
+                      <a
+                        href={href}
+                        className="text-sm text-pimenton-text-on-dark transition-colors duration-200 hover:text-pimenton-accent"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        href={href}
+                        className="text-sm text-pimenton-text-on-dark transition-colors duration-200 hover:text-pimenton-accent"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
 

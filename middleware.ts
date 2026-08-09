@@ -46,7 +46,9 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
+  // Excluye estáticos con extensión y el blog HTML del motor
+  // (/blog y /en/blog viven fuera del App Router + i18n).
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\..*).*)",
+    "/((?!_next/static|_next/image|favicon.ico|blog(?:/.*)?|en/blog(?:/.*)?|.*\\..*).*)",
   ],
 };

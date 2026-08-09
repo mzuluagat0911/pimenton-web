@@ -158,8 +158,20 @@ export function useCopy(): Resolved<typeof copy> {
   );
 }
 
-/** Prefija rutas internas con el idioma activo (`/contacto` → `/es/contacto`). */
+/**
+ * Prefija rutas internas con el idioma activo (`/contacto` → `/es/contacto`).
+ * El blog SEO/GEO es HTML estático fuera del App Router: ES en `/blog`,
+ * EN en `/en/blog` (no usar `/es/blog`).
+ */
 export function useLocalizedHref(): (path: string) => string {
   const { lang } = useLanguage();
-  return useCallback((path: string) => withLocale(path, lang), [lang]);
+  return useCallback(
+    (path: string) => {
+      if (path === "/blog" || path.startsWith("/blog/")) {
+        return lang === "en" ? `/en${path}` : path;
+      }
+      return withLocale(path, lang);
+    },
+    [lang],
+  );
 }
