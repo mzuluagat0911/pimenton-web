@@ -14,7 +14,7 @@ export function googleSiteVerification(): string {
   return (
     process.env.GOOGLE_SITE_VERIFICATION ??
     process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ??
-    ""
+    "lbmAEFkAWQmWQygVAsQW0qs8anyrhaUhAE_nIXK0pls"
   ).trim();
 }
 

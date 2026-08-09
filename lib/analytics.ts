@@ -8,5 +8,6 @@ export const GA_MEASUREMENT_ID = (
 ).trim();
 
 export const GOOGLE_SITE_VERIFICATION = (
-  process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? ""
+  process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ??
+  "lbmAEFkAWQmWQygVAsQW0qs8anyrhaUhAE_nIXK0pls"
 ).trim();
