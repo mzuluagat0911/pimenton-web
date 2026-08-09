@@ -1,7 +1,13 @@
 /** Snippets GA4 / Search Console para el HTML estático del blog. */
 
+const DEFAULT_GA = "G-25DBL0EY6V";
+
 export function gaMeasurementId(): string {
-  return (process.env.GA_MEASUREMENT_ID ?? process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "").trim();
+  return (
+    process.env.GA_MEASUREMENT_ID ??
+    process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ??
+    DEFAULT_GA
+  ).trim();
 }
 
 export function googleSiteVerification(): string {
