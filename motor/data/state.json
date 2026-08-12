@@ -2,7 +2,8 @@
   "covered": {
     "pimenton": [
       "rentabilidad delivery apps restaurantes",
-      "cuánto subir precios en apps de delivery"
+      "cuánto subir precios en apps de delivery",
+      "take rate real apps de delivery"
     ],
     "control-room": [
       "qué indicadores revisar delivery multi-sucursal",
@@ -57,6 +58,18 @@
       "pathEn": "/en/blog/multi-location-delivery-daily-control-checklist",
       "titleEn": "How to Run Multi-Location Delivery With a Daily Control Checklist",
       "descriptionEn": "Learn how to control multi-location delivery operations with a daily checklist: what to watch, who owns it, and how to turn each alert into action."
+    },
+    {
+      "slug": "take-rate-real-apps-delivery",
+      "destino": "pimenton",
+      "keyword": "take rate real apps de delivery",
+      "date": "2026-08-12",
+      "title": "Take Rate Real en apps de delivery: el costo verdadero de cada pedido",
+      "description": "El Take Rate Real suma comisión, ads, promos, cancelaciones y base gravable: así pasas del 28% del contrato al 35-40% efectivo por pedido.",
+      "path": "/blog/take-rate-real-apps-delivery",
+      "pathEn": "/en/blog/real-take-rate-delivery-apps",
+      "titleEn": "Real Take Rate: The True Cost of Selling on Delivery Apps",
+      "descriptionEn": "Your delivery app contract says 28% commission, but the Real Take Rate is 35-40%. See the full formula, a $100 order breakdown, and healthy benchmarks."
     }
   ]
 }
