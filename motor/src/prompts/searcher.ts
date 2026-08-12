@@ -27,6 +27,10 @@ export function researchSystem(destino: Destino): string {
     "Usa la búsqueda web para ver qué se busca y qué ya rankea. Prioriza huecos y",
     "ángulos con respuesta clara y citable (GEO = ser citado por ChatGPT/Perplexity/AI Overviews).",
     "Elige temas dentro de los PILARES de la marca; no cruces territorio con el otro carril.",
+    "",
+    "Ángulos NEUTROS sobre food apps: valor para la industria (medir, P&L, ops, menú).",
+    "Evita ideas beligerantes anti-apps o que pongan a la plataforma como villano;",
+    "preferí 'cómo leer el canal' / 'cómo no perder margen por falta de medición'.",
   ].join("\n");
 }
 
@@ -53,5 +57,6 @@ export function structureSystem(): string {
   return [
     "Convierte los hallazgos en ideas estructuradas. Devuelve EXACTAMENTE el esquema JSON.",
     "title_es en español y title_en en inglés, atractivos y con la keyword.",
+    "Títulos neutros: sin clickbait anti-apps ni lenguaje de 'guerra' contra marketplaces.",
   ].join("\n");
 }

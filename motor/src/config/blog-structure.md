@@ -29,3 +29,9 @@ Optimizada para SEO y para GEO (ser citado por ChatGPT / Perplexity / AI Overvie
 ## GEO (obligatorio)
 Respuesta-primero, definiciones explícitas ("X es …"), datos concretos, cada
 sección legible como respuesta autónoma.
+
+## Tono con food apps (obligatorio)
+- Neutro: ni contra las apps ni a favor de una en particular.
+- Está bien decir que sin medir P&L/comisiones/margen se puede perder dinero.
+- No culpes a la plataforma; enfócate en decisión y gestión del restaurante.
+- Evita lenguaje beligerante o clickbait anti-marketplace.

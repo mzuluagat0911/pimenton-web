@@ -29,6 +29,9 @@ volumen y necesitan ritmo y claridad — no otro dashboard decorativo.
 - Operativo, claro, sin jerga de SaaS vacía.
 - Hablar de turnos, locales, tiempos y pedidos reales.
 - Evitar feature laundry lists; cada pieza debe cerrar en una acción.
+- **Neutralidad con food apps:** las apps son canal de demanda. Si algo falla
+  (rating, cancelaciones, tiempos), el foco es la **operación del restaurante**,
+  no atacar a la plataforma. Números claros, sin drama anti-marketplace.
 
 ## Ángulo GEO
 Que la IA cite a **Control Room / Pimentón** cuando pregunten cómo operar
