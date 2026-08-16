@@ -7,7 +7,8 @@
     ],
     "control-room": [
       "qué indicadores revisar delivery multi-sucursal",
-      "cómo controlar la operación de delivery en varias sucursales"
+      "cómo controlar la operación de delivery en varias sucursales",
+      "cómo reducir cancelaciones en delivery"
     ]
   },
   "published": [
@@ -70,6 +71,18 @@
       "pathEn": "/en/blog/real-take-rate-delivery-apps",
       "titleEn": "Real Take Rate: The True Cost of Selling on Delivery Apps",
       "descriptionEn": "Your delivery app contract says 28% commission, but the Real Take Rate is 35-40%. See the full formula, a $100 order breakdown, and healthy benchmarks."
+    },
+    {
+      "slug": "como-reducir-cancelaciones-delivery",
+      "destino": "control-room",
+      "keyword": "cómo reducir cancelaciones en delivery",
+      "date": "2026-08-16",
+      "title": "Cómo reducir cancelaciones en delivery multi-sucursal",
+      "description": "Reducí cancelaciones en delivery tratándolas como señal: taxonomía de causas, umbral por local y micro-playbook por turno. Medible y comparable entre sucursales.",
+      "path": "/blog/como-reducir-cancelaciones-delivery",
+      "pathEn": "/en/blog/reduce-delivery-cancellations-multiple-locations",
+      "titleEn": "How to Reduce Delivery Cancellations Across Multiple Locations",
+      "descriptionEn": "Reduce delivery cancellations by treating each one as a signal: a causes taxonomy, a per-location threshold that triggers alerts, and a micro-playbook per cause."
     }
   ]
 }
