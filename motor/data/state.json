@@ -3,7 +3,8 @@
     "pimenton": [
       "rentabilidad delivery apps restaurantes",
       "cuánto subir precios en apps de delivery",
-      "take rate real apps de delivery"
+      "take rate real apps de delivery",
+      "cómo leer la liquidación de una app de delivery"
     ],
     "control-room": [
       "qué indicadores revisar delivery multi-sucursal",
@@ -83,6 +84,18 @@
       "pathEn": "/en/blog/reduce-delivery-cancellations-multiple-locations",
       "titleEn": "How to Reduce Delivery Cancellations Across Multiple Locations",
       "descriptionEn": "Reduce delivery cancellations by treating each one as a signal: a causes taxonomy, a per-location threshold that triggers alerts, and a micro-playbook per cause."
+    },
+    {
+      "slug": "como-leer-liquidacion-app-delivery",
+      "destino": "pimenton",
+      "keyword": "cómo leer la liquidación de una app de delivery",
+      "date": "2026-08-19",
+      "title": "Cómo leer la liquidación de una app de delivery (línea por línea)",
+      "description": "Aprende a leer la liquidación de una app de delivery línea por línea: comisión, tarifas, ads, promos, ajustes y depósito neto. Concilia antes de opinar del canal.",
+      "path": "/blog/como-leer-liquidacion-app-delivery",
+      "pathEn": "/en/blog/delivery-app-payout-statement-explained",
+      "titleEn": "How to Read a Delivery App Payout Statement (Line by Line)",
+      "descriptionEn": "Learn to read a delivery app payout statement line by line: gross sales, commission, service fees, ads, co-funded promos, adjustments and net deposit."
     }
   ]
 }

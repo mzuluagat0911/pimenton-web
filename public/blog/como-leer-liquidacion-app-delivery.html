@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Cómo leer la liquidación de una app de delivery (línea por línea)</title>
+    <meta name="description" content="Aprende a leer la liquidación de una app de delivery línea por línea: comisión, tarifas, ads, promos, ajustes y depósito neto. Concilia antes de opinar del canal." />
+    <meta name="keywords" content="cómo leer la liquidación de una app de delivery, cómo entender el estado de cuenta de Rappi restaurante, por qué me depositan menos de lo que vendí en la app, diferencia entre comisión tarifa de servicio y ads en apps de delivery, qué son los ajustes y contracargos en el payout de delivery, cómo conciliar ventas de delivery con lo que depositó la app, reporte de liquidación PedidosYa comisión vs promos cofinanciadas, estado de cuenta Uber Eats restaurante cómo interpretarlo, delivery app payout statement explained restaurant" />
+    <link rel="canonical" href="https://pimenton.io/blog/como-leer-liquidacion-app-delivery" />
+    <link rel="alternate" hreflang="es" href="https://pimenton.io/blog/como-leer-liquidacion-app-delivery" />
+    <link rel="alternate" hreflang="en" href="https://pimenton.io/en/blog/delivery-app-payout-statement-explained" />
+    <link rel="alternate" hreflang="x-default" href="https://pimenton.io/blog/como-leer-liquidacion-app-delivery" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Cómo leer la liquidación de una app de delivery (línea por línea)" />
+    <meta property="og:description" content="Aprende a leer la liquidación de una app de delivery línea por línea: comisión, tarifas, ads, promos, ajustes y depósito neto. Concilia antes de opinar del canal." />
+    <meta property="og:url" content="https://pimenton.io/blog/como-leer-liquidacion-app-delivery" />
+    <meta property="og:image" content="https://pimenton.io/og-default.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Cómo leer la liquidación de una app de delivery (línea por línea)" />
+    <meta name="twitter:description" content="Aprende a leer la liquidación de una app de delivery línea por línea: comisión, tarifas, ads, promos, ajustes y depósito neto. Concilia antes de opinar del canal." />
+    <meta name="twitter:image" content="https://pimenton.io/og-default.png" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Cómo leer la liquidación de una app de delivery: guía renglón por renglón",
+      "description": "Aprende a leer la liquidación de una app de delivery línea por línea: comisión, tarifas, ads, promos, ajustes y depósito neto. Concilia antes de opinar del canal.",
+      "inLanguage": "es",
+      "author": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "url": "https://pimenton.io/es"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://pimenton.io/og-default.png"
+            }
+      },
+      "datePublished": "2026-08-19",
+      "dateModified": "2026-08-19",
+      "mainEntityOfPage": "https://pimenton.io/blog/como-leer-liquidacion-app-delivery",
+      "image": "https://pimenton.io/og-default.png"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "¿Por qué me depositan menos de lo que vendí en la app?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Porque del subtotal de tus ventas se descuentan varios conceptos: comisión de la app, tarifas de servicio/procesamiento, tu inversión en ads, tu parte de promos cofinanciadas, ajustes o contracargos por reembolsos e impuestos. La liquidación detalla cada uno; la diferencia entre venta bruta y depósito neto es la suma de todos esos renglones."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Qué incluye exactamente la comisión de la app?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "La comisión (o take rate) es el porcentaje que cobra la plataforma por operar el canal: visibilidad en el marketplace, procesamiento y, en algunos casos, la logística de entrega. Es una línea distinta de las tarifas de servicio y de la inversión en ads, aunque muchos restaurantes las confunden y las suman todas juntas."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Qué son las promos cofinanciadas y quién las paga?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Son descuentos al cliente (2x1, envío gratis, % off) cuyo costo se reparte entre la app y el restaurante. La liquidación muestra exactamente qué parte pusiste tú. Bien usadas traen pedidos incrementales; mal usadas regalan margen a clientes que igual iban a comprar, por eso tu porción debe caber en la contribución por pedido."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Qué son los ajustes, contracargos o refunds y por qué me los descuentan?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Son reembolsos que la app le devolvió al cliente por problemas en el pedido: faltantes, cancelaciones o fallas de calidad. Se restan de tu depósito porque el dinero ya salió hacia el cliente. Si aparecen con frecuencia, suelen indicar temas operativos (empaque, tiempos, exactitud) más que un problema de la plataforma."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Cómo separo lo que es comisión de lo que es inversión en ads?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "En la liquidación son líneas distintas: la comisión es un costo fijo del canal por operar en la app, mientras que los ads son gasto de marketing que tú activaste voluntariamente. Sepáralos en tu P&L: la comisión va como costo de canal y los ads se evalúan por su retorno (ROAS), no como parte de lo que 'cobra' la app."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Inicio",
+                  "item": "https://pimenton.io/es"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://pimenton.io/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Cómo leer la liquidación de una app de delivery: guía renglón por renglón",
+                  "item": "https://pimenton.io/blog/como-leer-liquidacion-app-delivery"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+  </head>
+  <body class="theme-pimenton">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/es" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-coral.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/es">Inicio</a>
+          <a href="/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma">
+            <a class="active" href="/blog/como-leer-liquidacion-app-delivery" hreflang="es">ES</a>
+            <a class="" href="/en/blog/delivery-app-payout-statement-explained" hreflang="en">EN</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Delivery &amp; Growth</p>
+          <h1>Cómo leer la liquidación de una app de delivery: guía renglón por renglón</h1>
+          <p class="lead-answer"><p>La liquidación de una app de delivery es el documento que muestra cómo se pasa de tu <strong>venta bruta</strong> al <strong>depósito neto</strong>, restando comisión, tarifas, ads, tu parte de promos cofinanciadas, ajustes/contracargos e impuestos. Te depositan menos de lo que vendiste porque cada uno de esos renglones se descuenta del subtotal. Para saber si el canal te deja margen, tienes que conciliar la liquidación con tus ventas y llevar cada línea a tu P&L de delivery.</p></p>
+          <p class="byline">Por Pimentón · 2026-08-19 · 5 min de lectura</p>
+<p>Ver que vendiste $10.000 en la app y que te depositaron $6.500 asusta la primera vez. Pero esa diferencia no es un misterio: está detallada, renglón por renglón, en la <strong>liquidación</strong> (o payout statement / estado de cuenta) que cada plataforma te entrega. El problema casi nunca es "la app te cobra de más"; es que nadie en el restaurante lee ese documento con lupa y lo concilia contra las ventas. Aquí desarmamos la liquidación línea por línea y conectamos cada una con tu P&L de delivery.</p><h2>Qué es una liquidación de app de delivery</h2><p>La <strong>liquidación</strong> es el reporte que resume, en un período determinado, todas las transacciones de tu restaurante en la app y cómo se llega al monto que finalmente te depositan. Rappi, PedidosYa, Uber Eats, DiDi Food, DoorDash y Grubhub usan nombres distintos y layouts distintos, pero todas siguen la misma lógica: parten de la venta bruta y van descontando conceptos hasta llegar al neto.</p><p>Leerla bien es la única forma de responder tres preguntas: ¿me pagaron lo correcto?, ¿qué conceptos me están costando más?, y ¿el pedido dejó margen o no?</p><h2>Anatomía de la liquidación, renglón por renglón</h2><p>Este es el recorrido típico de arriba hacia abajo. Los nombres cambian según la app, pero el concepto se repite.</p><ul><li><strong>Venta bruta (subtotal de productos):</strong> la suma de tus platos a precio de menú, sin envío ni propina. Es tu punto de partida y debería coincidir con lo que reportó tu POS.</li><li><strong>Comisión de la app (take rate):</strong> el porcentaje que cobra la plataforma por operar el canal (visibilidad, procesamiento, a veces logística). Suele calcularse sobre el subtotal. Es tu costo de canal más grande.</li><li><strong>Tarifa de servicio / fee de procesamiento de pago:</strong> cargo aparte de la comisión, muchas veces ligado al procesamiento de la tarjeta. No lo confundas con la comisión: son líneas distintas.</li><li><strong>Ads / inversión en publicidad dentro de la app:</strong> lo que gastaste en promocionar tu marca dentro del marketplace. <em>No es una comisión</em>: es inversión de marketing que tú decidiste activar. Debe ir en otra línea de tu P&L.</li><li><strong>Promos cofinanciadas:</strong> descuentos (2x1, envío gratis, % off) donde tú pones una parte y la app pone otra. La liquidación muestra tu porción como descuento sobre la venta.</li><li><strong>Ajustes, contracargos y refunds:</strong> devoluciones a clientes por pedidos con problemas (faltantes, cancelaciones, calidad). Se restan del depósito porque el cliente ya recibió su reembolso.</li><li><strong>Impuestos:</strong> según el país, la app puede retener o reportar impuestos sobre ventas o sobre sus fees. Revisa qué se retiene y qué solo se informa.</li><li><strong>Depósito neto:</strong> lo que efectivamente entra a tu cuenta. Venta bruta menos todo lo anterior.</li></ul><h2>Comisión, tarifa de servicio y ads no son lo mismo</h2><p>Este es el error más común al leer una liquidación: meter todo en la misma bolsa de "lo que me cobra la app". Separa siempre tres cosas:</p><ol><li><strong>Comisión:</strong> costo de operar en el canal. No lo controlas pedido a pedido; sí lo negocias y lo modelas en tu pricing.</li><li><strong>Tarifas fijas o de procesamiento:</strong> costos transaccionales, normalmente pequeños por pedido pero que suman en volumen.</li><li><strong>Ads:</strong> inversión de marketing 100% tuya. Si la mezclas con la comisión, vas a creer que "la app subió el take rate" cuando en realidad tú activaste más campañas.</li></ol><p>La diferencia importa porque en tu P&L la comisión y las tarifas son <em>costo del canal</em>, mientras que los ads son <em>gasto de adquisición</em> que debe evaluarse por su retorno (ROAS), no como un mal necesario.</p><h2>Promos cofinanciadas y ajustes: dónde se va el margen sin que lo notes</h2><p>Las <strong>promos cofinanciadas</strong> son acuerdos donde el descuento al cliente se reparte entre la app y tú. Bien usadas, traen pedidos incrementales; mal usadas, regalan margen a clientes que ya iban a comprar. La liquidación te dice exactamente cuánto pusiste tú: ese número tiene que caber en tu contribución por pedido.</p><p>Los <strong>ajustes y contracargos</strong> son reembolsos a clientes por problemas operativos. Si aparecen seguido, no es un tema de la plataforma: es una señal de ops (empaque, faltantes, tiempos). Revisar esta línea semana a semana te dice dónde estás perdiendo dinero por calidad, no por comisión.</p><h2>Cómo conciliar la liquidación con tus ventas</h2><p>Conciliar es cruzar lo que dice la app contra lo que dice tu sistema. Un proceso simple y repetible:</p><ol><li>Exporta la liquidación del período y el reporte de ventas de delivery de tu POS.</li><li>Compara la <strong>venta bruta</strong> de ambos. Si no coincide, hay pedidos sin registrar, cancelados o mal cargados.</li><li>Suma por concepto: comisión, tarifas, ads, tu parte de promos, ajustes. Verifica que los porcentajes sean los pactados.</li><li>Confirma que <em>venta bruta − todos los descuentos = depósito neto</em>.</li><li>Lleva cada concepto a la línea correspondiente de tu P&L de delivery.</li></ol><p>Hacer esto una vez al mes (idealmente por semana) es la diferencia entre gestionar el canal y adivinar.</p><h2>Cómo llevar cada línea a tu P&L de delivery</h2><p>El P&L de delivery convierte la liquidación en una decisión. Un mapeo directo:</p><ul><li><strong>Venta bruta</strong> → ingresos del canal.</li><li><strong>Comisión + tarifas</strong> → costo de canal.</li><li><strong>Ads</strong> → costo de marketing/adquisición.</li><li><strong>Promos cofinanciadas (tu parte)</strong> → descuentos.</li><li><strong>Ajustes/contracargos</strong> → mermas operativas.</li><li>Contra todo eso restas tu <strong>costo de producto (CMV)</strong> y el <strong>packaging</strong>.</li></ul><p>Lo que queda es tu <strong>contribución por pedido</strong>. Si es positiva, el canal paga; si es negativa, sabes exactamente qué línea ajustar: precio, mix de promos, ads o calidad de ops. La conclusión sobre "si el delivery conviene" viene después de este número, no antes.</p><div class="callout"><p>¿Quieres dejar de leer liquidaciones a mano y ver la contribución real por pedido en cada app? En Pimentón conciliamos tus payouts y armamos tu P&L de delivery para que cada pedido pague. <strong>Escríbenos por WhatsApp para una consultoría gratuita:</strong> <a href="https://wa.me/5491157035170">wa.me/5491157035170</a>.</p></div>
+          <h2 id="faq">Preguntas frecuentes</h2>
+          <div class="faq">
+            <details>
+              <summary>¿Por qué me depositan menos de lo que vendí en la app?</summary>
+              <p>Porque del subtotal de tus ventas se descuentan varios conceptos: comisión de la app, tarifas de servicio/procesamiento, tu inversión en ads, tu parte de promos cofinanciadas, ajustes o contracargos por reembolsos e impuestos. La liquidación detalla cada uno; la diferencia entre venta bruta y depósito neto es la suma de todos esos renglones.</p>
+            </details>
+            <details>
+              <summary>¿Qué incluye exactamente la comisión de la app?</summary>
+              <p>La comisión (o take rate) es el porcentaje que cobra la plataforma por operar el canal: visibilidad en el marketplace, procesamiento y, en algunos casos, la logística de entrega. Es una línea distinta de las tarifas de servicio y de la inversión en ads, aunque muchos restaurantes las confunden y las suman todas juntas.</p>
+            </details>
+            <details>
+              <summary>¿Qué son las promos cofinanciadas y quién las paga?</summary>
+              <p>Son descuentos al cliente (2x1, envío gratis, % off) cuyo costo se reparte entre la app y el restaurante. La liquidación muestra exactamente qué parte pusiste tú. Bien usadas traen pedidos incrementales; mal usadas regalan margen a clientes que igual iban a comprar, por eso tu porción debe caber en la contribución por pedido.</p>
+            </details>
+            <details>
+              <summary>¿Qué son los ajustes, contracargos o refunds y por qué me los descuentan?</summary>
+              <p>Son reembolsos que la app le devolvió al cliente por problemas en el pedido: faltantes, cancelaciones o fallas de calidad. Se restan de tu depósito porque el dinero ya salió hacia el cliente. Si aparecen con frecuencia, suelen indicar temas operativos (empaque, tiempos, exactitud) más que un problema de la plataforma.</p>
+            </details>
+            <details>
+              <summary>¿Cómo separo lo que es comisión de lo que es inversión en ads?</summary>
+              <p>En la liquidación son líneas distintas: la comisión es un costo fijo del canal por operar en la app, mientras que los ads son gasto de marketing que tú activaste voluntariamente. Sepáralos en tu P&amp;L: la comisión va como costo de canal y los ads se evalúan por su retorno (ROAS), no como parte de lo que 'cobra' la app.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>¿Listo a potenciar tu delivery?</h2>
+            <p>Escríbenos por WhatsApp. En minutos coordinamos una consultoría gratuita con diagnóstico de canales, ops y próximos pasos.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/es">Inicio</a> · <a href="/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
