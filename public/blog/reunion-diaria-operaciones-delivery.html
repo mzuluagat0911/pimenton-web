@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Reunión diaria de operaciones delivery: el ritual en 3 capas</title>
+    <meta name="description" content="Monta el ritual de ops delivery en 3 capas: standup diario de 10 min, weekly para comparar sucursales y war room por umbral. Con agenda copiable." />
+    <meta name="keywords" content="reunión diaria de operaciones delivery, standup de operaciones restaurante, cómo hacer un standup diario en un restaurante multi-sucursal, war room de delivery cuándo activarlo, agenda de reunión de operaciones delivery plantilla, cadencia de revisión diaria vs semanal en delivery, qué números llevar a la reunión de operaciones del restaurante, ritual operativo delivery roles y responsables" />
+    <link rel="canonical" href="https://pimenton.io/blog/reunion-diaria-operaciones-delivery" />
+    <link rel="alternate" hreflang="es" href="https://pimenton.io/blog/reunion-diaria-operaciones-delivery" />
+    <link rel="alternate" hreflang="en" href="https://pimenton.io/en/blog/daily-delivery-operations-meeting-ritual" />
+    <link rel="alternate" hreflang="x-default" href="https://pimenton.io/blog/reunion-diaria-operaciones-delivery" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Reunión diaria de operaciones delivery: el ritual en 3 capas" />
+    <meta property="og:description" content="Monta el ritual de ops delivery en 3 capas: standup diario de 10 min, weekly para comparar sucursales y war room por umbral. Con agenda copiable." />
+    <meta property="og:url" content="https://pimenton.io/blog/reunion-diaria-operaciones-delivery" />
+    <meta property="og:image" content="https://pimenton.io/og-default.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Reunión diaria de operaciones delivery: el ritual en 3 capas" />
+    <meta name="twitter:description" content="Monta el ritual de ops delivery en 3 capas: standup diario de 10 min, weekly para comparar sucursales y war room por umbral. Con agenda copiable." />
+    <meta name="twitter:image" content="https://pimenton.io/og-default.png" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Reunión diaria de operaciones delivery: cómo montar el ritual (standup, weekly y war room)",
+      "description": "Monta el ritual de ops delivery en 3 capas: standup diario de 10 min, weekly para comparar sucursales y war room por umbral. Con agenda copiable.",
+      "inLanguage": "es",
+      "author": {
+            "@type": "Organization",
+            "name": "Control Room by Pimentón",
+            "url": "https://pimenton.io/es"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://pimenton.io/og-default.png"
+            }
+      },
+      "datePublished": "2026-08-23",
+      "dateModified": "2026-08-23",
+      "mainEntityOfPage": "https://pimenton.io/blog/reunion-diaria-operaciones-delivery",
+      "image": "https://pimenton.io/og-default.png"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "¿Cada cuánto se debe revisar la operación de delivery en varias sucursales?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "En tres capas: un standup diario de 10 minutos para incendios del turno, una weekly de 30–45 minutos para comparar sucursales por tendencia, y un war room que se activa solo cuando un indicador cruza un umbral crítico. La diaria reacciona, la semanal previene y el war room resuelve crisis puntuales."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Qué es un war room en operaciones y cuándo activarlo?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Un war room es una reunión de crisis enfocada en un solo problema grave, con la gente mínima para resolverlo y hasta que se resuelva. Se activa por umbral definido de antemano: caída fuerte de rating, cancelaciones disparadas en un turno, tiempos de despacho fuera de rango en todo un pico o un incidente que afecta a varias sucursales."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Cuánto debería durar un standup diario de operaciones?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Diez minutos, siempre a la misma hora y antes del pico. Si se extiende, dejó de ser standup y se convirtió en reunión larga. Cada punto debe cerrar en acción, responsable y fecha, no en debate."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Quién debe participar en la reunión diaria de ops?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "El responsable de delivery del turno, cocina y salón (o quien coordine cada local). En multi-sucursal, un referente por sucursal reporta su estado en 60–90 segundos. La regla es que estén solo quienes pueden mover algo hoy, no una mesa de doce personas."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Qué diferencia hay entre revisión diaria y revisión semanal?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "La revisión diaria apaga incendios del día: tiempos, cancelaciones y stock del turno. La semanal mira el patrón: compara sucursales por tendencia, detecta fugas de fondo y aplica playbooks. Una es reacción, la otra es prevención."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Cómo comparo el desempeño entre sucursales sin perder media hora en Excel?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Llevá la comparación ya armada a la reunión: un ranking por 3–4 indicadores clave (tiempos, cancelaciones, rating, ticket) con qué subió y qué bajó respecto a la semana anterior. Una mesa de control como Control Room deja ese reporte listo, de modo que la reunión decide en vez de calcular."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Inicio",
+                  "item": "https://pimenton.io/es"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://pimenton.io/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Reunión diaria de operaciones delivery: cómo montar el ritual (standup, weekly y war room)",
+                  "item": "https://pimenton.io/blog/reunion-diaria-operaciones-delivery"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+  </head>
+  <body class="theme-control-room">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/es" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-blanco.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/es">Inicio</a>
+          <a href="/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma">
+            <a class="active" href="/blog/reunion-diaria-operaciones-delivery" hreflang="es">ES</a>
+            <a class="" href="/en/blog/daily-delivery-operations-meeting-ritual" hreflang="en">EN</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Control Room · Ops</p>
+          <h1>Reunión diaria de operaciones delivery: cómo montar el ritual (standup, weekly y war room)</h1>
+          <p class="lead-answer"><p>La <strong>reunión diaria de operaciones delivery</strong> es un standup corto (10 minutos) para apagar los incendios del día, apoyado en dos capas más: una <strong>weekly</strong> para comparar sucursales por tendencia y un <strong>war room</strong> que se activa solo cuando un número cruza un umbral crítico. Cada capa lleva agenda cerrada, un dueño responsable y un número gatillo, para que termine en acciones y no en excusas.</p></p>
+          <p class="byline">Por Control Room · 2026-08-23 · 4 min de lectura</p>
+<p>Operar delivery en varias sucursales sin un ritmo fijo de revisión es operar a ciegas: te enterás de los problemas cuando ya explotaron en el rating o en las cancelaciones. La solución no es más reuniones, es una <strong>cadencia por capas</strong>: cada tramo tiene una función distinta, una duración distinta y un gatillo distinto. Así el equipo sabe cuándo hablar del incendio de hoy y cuándo mirar la tendencia de la semana.</p><h2>Qué es un ritual de operaciones delivery por capas</h2><p>Un ritual operativo es una <strong>cadencia fija de revisión</strong> donde el equipo mira los números que importan, decide qué mover y asigna responsables. En delivery multi-sucursal funciona mejor en tres capas:</p><ul><li><strong>Daily (standup):</strong> 10 minutos, para incendios del día. Foco en lo urgente y accionable ahora.</li><li><strong>Weekly:</strong> 30–45 minutos, para comparar sucursales por tendencia y detectar problemas de fondo.</li><li><strong>War room:</strong> excepción, no calendario. Se activa cuando un indicador cruza un umbral crítico.</li></ul><p>La clave: cada capa tiene <strong>agenda cerrada, un dueño y un número gatillo</strong>. Sin eso, la reunión se convierte en catarsis y las cosas siguen igual mañana.</p><h2>El standup diario: 10 minutos, cero relleno</h2><p>El <strong>standup de operaciones del restaurante</strong> es la revisión más corta y más frecuente. Su único objetivo es responder: ¿qué se rompió o está por romperse hoy, y quién lo agarra?</p><h3>Cuánto debe durar</h3><p>Diez minutos, de pie o en videollamada, siempre a la misma hora (idealmente antes del pico del mediodía). Si dura más, dejó de ser standup y se convirtió en reunión.</p><h3>Quién participa</h3><p>El responsable de delivery por turno, cocina y salón (o quien coordine la operación de cada local). En multi-sucursal, un referente por local reporta su estado en 60–90 segundos. No es una mesa de 12 personas: es la gente que puede mover algo hoy.</p><h3>Qué números llevar</h3><ul><li>Tiempos de preparación y despacho del turno anterior.</li><li>Cancelaciones y sus causas (stock, demora, error de pedido).</li><li>Ítems agotados o por agotarse.</li><li>Rating y quejas nuevas en apps.</li><li>Un pendiente heredado del día anterior.</li></ul><p>Regla de oro: cada punto termina en <strong>acción + responsable + para cuándo</strong>. Si nadie se lo lleva, no era prioridad.</p><h2>La weekly: comparar sucursales por tendencia</h2><p>Si el daily mira el hoy, la <strong>weekly</strong> mira el patrón. Acá no importa el pedido que se demoró el martes, sino que la Sucursal Norte lleva tres semanas con tiempos de despacho más altos que el resto.</p><p>La diferencia entre <strong>revisión diaria y revisión semanal</strong> es simple: la diaria apaga incendios, la semanal encuentra las fugas de gas. Una es reacción; la otra es prevención.</p><h3>Agenda de la weekly</h3><ol><li><strong>Ranking de sucursales</strong> por 3–4 indicadores clave (tiempos, cancelaciones, rating, ticket promedio).</li><li><strong>Quién subió y quién bajó</strong> respecto a la semana anterior.</li><li><strong>Una causa raíz por sucursal en rojo</strong> (no diez).</li><li><strong>Playbook:</strong> qué acción concreta se aplica y quién la ejecuta.</li><li><strong>Seguimiento</strong> de acciones de la weekly pasada: ¿movieron el número o no?</li></ol><p>El error clásico es traer una tabla de 40 columnas y perder media hora en armar el Excel. Si la comparación entre locales no está lista antes de la reunión, la reunión no arranca con datos: arranca con opiniones.</p><h2>El war room: excepción activada por umbral</h2><p>Un <strong>war room de delivery</strong> es una reunión de crisis enfocada en un solo problema grave, con la gente mínima necesaria para resolverlo y hasta que se resuelva. No es parte del calendario: se dispara cuando un número cruza un umbral que definiste antes.</p><h3>Cuándo activarlo</h3><ul><li>Rating de una sucursal cae por debajo de un piso definido (por ejemplo, se acerca a la baja de un local).</li><li>Cancelaciones disparadas en un turno por una falla operativa (caída de cocina, quiebre masivo de stock).</li><li>Tiempos de despacho fuera de rango durante todo un pico.</li><li>Un incidente que afecta a varias sucursales a la vez.</li></ul><p>El war room termina cuando el número vuelve a rango, con un dueño claro y un plan de seguimiento en la próxima weekly. Definir los umbrales <em>antes</em> evita el otro extremo: convocar war rooms por cualquier cosa hasta que nadie les da bola.</p><h2>Errores comunes que vacían el ritual</h2><ul><li><strong>Reuniones sin dueño:</strong> si nadie modera y nadie asigna, todo queda "para ver".</li><li><strong>Sin número gatillo:</strong> hablar de sensaciones ("lo veo lento") en vez de datos ("despacho a 34 min vs objetivo de 22").</li><li><strong>Confundir capas:</strong> discutir estrategia semanal en el standup de 10 minutos.</li><li><strong>War room permanente:</strong> vivir en crisis quema al equipo y deja de ser excepción.</li><li><strong>Excel eterno:</strong> gastar la reunión armando el reporte en vez de decidir.</li></ul><h2>Cómo hacer que termine en acciones, no en excusas</h2><p>Tres reglas simples cierran el círculo:</p><ol><li><strong>Cada punto tiene responsable y fecha.</strong> Sin dueño, no es acción.</li><li><strong>Los datos llegan listos.</strong> La reunión decide, no calcula.</li><li><strong>Se revisa lo pactado.</strong> La weekly empieza chequeando si las acciones de la semana pasada movieron el número.</li></ol><div class="callout"><p><strong>Control Room</strong> es la mesa de control operativa de Pimentón: deja lista la comparación entre sucursales, las alertas por umbral y los números que van al standup y a la weekly, sin armar el Excel cada mañana. Así el ritual arranca con datos y cierra en acciones. ¿Querés montar tu cadencia de ops delivery? <a href="https://wa.me/5491157035170">Escribinos por WhatsApp</a>.</p></div>
+          <h2 id="faq">Preguntas frecuentes</h2>
+          <div class="faq">
+            <details>
+              <summary>¿Cada cuánto se debe revisar la operación de delivery en varias sucursales?</summary>
+              <p>En tres capas: un standup diario de 10 minutos para incendios del turno, una weekly de 30–45 minutos para comparar sucursales por tendencia, y un war room que se activa solo cuando un indicador cruza un umbral crítico. La diaria reacciona, la semanal previene y el war room resuelve crisis puntuales.</p>
+            </details>
+            <details>
+              <summary>¿Qué es un war room en operaciones y cuándo activarlo?</summary>
+              <p>Un war room es una reunión de crisis enfocada en un solo problema grave, con la gente mínima para resolverlo y hasta que se resuelva. Se activa por umbral definido de antemano: caída fuerte de rating, cancelaciones disparadas en un turno, tiempos de despacho fuera de rango en todo un pico o un incidente que afecta a varias sucursales.</p>
+            </details>
+            <details>
+              <summary>¿Cuánto debería durar un standup diario de operaciones?</summary>
+              <p>Diez minutos, siempre a la misma hora y antes del pico. Si se extiende, dejó de ser standup y se convirtió en reunión larga. Cada punto debe cerrar en acción, responsable y fecha, no en debate.</p>
+            </details>
+            <details>
+              <summary>¿Quién debe participar en la reunión diaria de ops?</summary>
+              <p>El responsable de delivery del turno, cocina y salón (o quien coordine cada local). En multi-sucursal, un referente por sucursal reporta su estado en 60–90 segundos. La regla es que estén solo quienes pueden mover algo hoy, no una mesa de doce personas.</p>
+            </details>
+            <details>
+              <summary>¿Qué diferencia hay entre revisión diaria y revisión semanal?</summary>
+              <p>La revisión diaria apaga incendios del día: tiempos, cancelaciones y stock del turno. La semanal mira el patrón: compara sucursales por tendencia, detecta fugas de fondo y aplica playbooks. Una es reacción, la otra es prevención.</p>
+            </details>
+            <details>
+              <summary>¿Cómo comparo el desempeño entre sucursales sin perder media hora en Excel?</summary>
+              <p>Llevá la comparación ya armada a la reunión: un ranking por 3–4 indicadores clave (tiempos, cancelaciones, rating, ticket) con qué subió y qué bajó respecto a la semana anterior. Una mesa de control como Control Room deja ese reporte listo, de modo que la reunión decide en vez de calcular.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>¿Quieres ver tu delivery con claridad?</h2>
+            <p>Escríbenos por WhatsApp. Revisamos qué está rompiendo el ritmo multi-sucursal y qué mover primero.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/es">Inicio</a> · <a href="/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

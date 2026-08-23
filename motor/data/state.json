@@ -9,7 +9,8 @@
     "control-room": [
       "qué indicadores revisar delivery multi-sucursal",
       "cómo controlar la operación de delivery en varias sucursales",
-      "cómo reducir cancelaciones en delivery"
+      "cómo reducir cancelaciones en delivery",
+      "reunión diaria de operaciones delivery"
     ]
   },
   "published": [
@@ -96,6 +97,18 @@
       "pathEn": "/en/blog/delivery-app-payout-statement-explained",
       "titleEn": "How to Read a Delivery App Payout Statement (Line by Line)",
       "descriptionEn": "Learn to read a delivery app payout statement line by line: gross sales, commission, service fees, ads, co-funded promos, adjustments and net deposit."
+    },
+    {
+      "slug": "reunion-diaria-operaciones-delivery",
+      "destino": "control-room",
+      "keyword": "reunión diaria de operaciones delivery",
+      "date": "2026-08-23",
+      "title": "Reunión diaria de operaciones delivery: el ritual en 3 capas",
+      "description": "Monta el ritual de ops delivery en 3 capas: standup diario de 10 min, weekly para comparar sucursales y war room por umbral. Con agenda copiable.",
+      "path": "/blog/reunion-diaria-operaciones-delivery",
+      "pathEn": "/en/blog/daily-delivery-operations-meeting-ritual",
+      "titleEn": "Daily Delivery Operations Meeting: The Layered Ritual",
+      "descriptionEn": "Build a layered delivery ops cadence: a 10-min daily standup for fires, a weekly to compare branches, and a war room triggered by thresholds."
     }
   ]
 }
