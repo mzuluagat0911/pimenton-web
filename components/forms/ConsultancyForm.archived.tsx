@@ -712,7 +712,7 @@ function StepDetails({
         required
         value={data.phone}
         onChange={(v) => dispatch({ type: "patch", patch: { phone: v } })}
-        placeholder="+54 9 11 5703 5170"
+        placeholder="+54 9 11 4042 5909"
         type="tel"
         autoComplete="tel"
         inputMode="tel"
