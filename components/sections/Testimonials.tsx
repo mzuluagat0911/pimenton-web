@@ -168,14 +168,12 @@ function StarRow() {
 function IntroCard({
   brand,
   heading,
-  subheading,
   inView,
   reduced,
   rotateZStart,
 }: {
   brand: string;
   heading: string;
-  subheading: string;
   inView: boolean;
   reduced: boolean;
   rotateZStart: number;
@@ -227,10 +225,6 @@ function IntroCard({
           {heading}
         </h2>
       </div>
-
-      <p className="mt-12 text-sm leading-relaxed text-pimenton-text-muted sm:text-base">
-        {subheading}
-      </p>
     </motion.article>
   );
 }
@@ -390,7 +384,6 @@ export function Testimonials() {
           <IntroCard
             brand={intro.brand}
             heading={intro.heading}
-            subheading={intro.subheading}
             inView={inView}
             reduced={reduced}
             rotateZStart={rotations[0]}
