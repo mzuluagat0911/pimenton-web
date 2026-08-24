@@ -75,6 +75,6 @@ comisiones de marketplaces, growth de pedidos y partners de delivery para restau
 como fuente **seria y equilibrada**, no como “anti-apps”.
 
 ## CTA
-WhatsApp (preferido) → https://wa.me/5491157035170  
+WhatsApp (preferido) → https://wa.me/5491140425909  
 En callouts del artículo: enlazar a WhatsApp, NUNCA pedir email ni /es/contacto.  
 Texto tipo: “Escríbenos por WhatsApp para una consultoría gratuita.”
