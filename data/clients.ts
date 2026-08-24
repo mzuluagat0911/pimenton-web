@@ -255,6 +255,14 @@ export const clients: Client[] = [
     "instagram": null
   },
   {
+    "logo": "/assets/clientes/españa/JUANCHOS_BBQ_ESPAÑA.webp",
+    "name": "Juancho's BBQ",
+    "country": "España",
+    "countryCode": "ES",
+    "flag": "/assets/banderas/espana.svg",
+    "instagram": null
+  },
+  {
     "logo": "/assets/clientes/españa/LA_BIRRA_BAR_ESPAÑA.webp",
     "name": "La Birra Bar",
     "country": "España",
