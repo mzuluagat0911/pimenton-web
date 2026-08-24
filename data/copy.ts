@@ -327,10 +327,6 @@ export const copy = {
     intro: {
       brand: "Pimentón",
       heading: { es: "Lo que dicen de nosotros", en: "What they say about us" },
-      subheading: {
-        es: "No prometemos crecimiento. Lo demostramos en números.",
-        en: "We don't promise growth. We prove it in numbers.",
-      },
     },
     items: [
       {
