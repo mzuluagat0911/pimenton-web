@@ -4,7 +4,8 @@
       "rentabilidad delivery apps restaurantes",
       "cuánto subir precios en apps de delivery",
       "take rate real apps de delivery",
-      "cómo leer la liquidación de una app de delivery"
+      "cómo leer la liquidación de una app de delivery",
+      "cómo aparecer primero en apps de delivery"
     ],
     "control-room": [
       "qué indicadores revisar delivery multi-sucursal",
@@ -109,6 +110,18 @@
       "pathEn": "/en/blog/daily-delivery-operations-meeting-ritual",
       "titleEn": "Daily Delivery Operations Meeting: The Layered Ritual",
       "descriptionEn": "Build a layered delivery ops cadence: a 10-min daily standup for fires, a weekly to compare branches, and a war room triggered by thresholds."
+    },
+    {
+      "slug": "como-aparecer-primero-apps-delivery",
+      "destino": "pimenton",
+      "keyword": "cómo aparecer primero en apps de delivery",
+      "date": "2026-08-26",
+      "title": "Cómo aparecer primero en apps de delivery sin quemar tu margen",
+      "description": "Aprende cómo aparecer primero en apps de delivery separando las palancas que controlas de las del algoritmo, y cruzando cada una con tu margen por pedido.",
+      "path": "/blog/como-aparecer-primero-apps-delivery",
+      "pathEn": "/en/blog/rank-higher-delivery-apps-profitable-orders",
+      "titleEn": "How to Rank Higher on Delivery Apps Without Killing Your Margin",
+      "descriptionEn": "Learn how to rank higher on delivery apps like Uber Eats, Rappi and DoorDash—and turn visibility into profitable orders, not volume you sell at a loss."
     }
   ]
 }
