@@ -35,7 +35,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
+          # El commit que disparó el run (schedule = tip de main; dispatch = rama elegida).
+          # Así un Run workflow desde una rama con template nuevo genera con esa estructura.
+          ref: ${{ github.sha }}
           fetch-depth: 0
 
       - uses: actions/setup-node@v4
