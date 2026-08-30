@@ -3,12 +3,15 @@
 import { splitHighlight } from "@/components/ui-custom/Highlight";
 import { useT } from "@/components/i18n/LanguageContext";
 import type { Insight } from "@/data/insights";
+import { ArticleStats } from "./ArticleStats";
+import { ArticleChart } from "./ArticleChart";
+import { ArticleFigure } from "./ArticleFigure";
 
 /**
  * Cuerpo del artículo — client component (resuelve el idioma activo con
  * useT(); el SSR/primer render es "es", así el contenido por defecto queda en
- * el HTML). Ancho de lectura ~720px, leading generoso. Bullets con marcador
- * coral (guion). Conclusión con borde coral (remate).
+ * el HTML). Ancho de lectura ~720px, leading generoso. Cifras, gráficos y
+ * fotos editoriales intercalados entre el texto.
  */
 export function ArticleBody({ insight }: { insight: Insight }) {
   const t = useT();
@@ -26,6 +29,11 @@ export function ArticleBody({ insight }: { insight: Insight }) {
             </p>
           ))}
         </div>
+
+        {insight.stats && <ArticleStats stats={insight.stats} />}
+        {insight.featuredChart && (
+          <ArticleChart chart={insight.featuredChart} featured />
+        )}
 
         {/* Secciones */}
         {insight.secciones.map((sec, si) => (
@@ -70,6 +78,9 @@ export function ArticleBody({ insight }: { insight: Insight }) {
                 {t(p)}
               </p>
             ))}
+
+            {sec.figure && <ArticleFigure figure={sec.figure} />}
+            {sec.chart && <ArticleChart chart={sec.chart} />}
           </div>
         ))}
 

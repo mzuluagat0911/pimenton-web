@@ -130,6 +130,7 @@ body {
   border-radius: 1rem;
   text-decoration: none;
   color: inherit;
+  overflow: hidden;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 .blog-teaser-card:hover {
@@ -170,5 +171,24 @@ body {
 .blog-teasers-more a {
   color: var(--color-pimenton-accent);
   text-decoration: none;
+}
+
+.blog-teaser-cover {
+  display: block;
+  margin: -1.25rem -1.35rem 0.85rem;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 1rem 1rem 0 0;
+  background: var(--color-pimenton-bg-soft);
+}
+.blog-teaser-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.blog-teaser-card:hover .blog-teaser-cover img {
+  transform: scale(1.04);
 }
 

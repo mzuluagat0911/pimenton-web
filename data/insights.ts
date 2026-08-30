@@ -11,6 +11,36 @@
 
 type Localized = { es: string; en: string };
 
+export interface InsightStat {
+  value: Localized;
+  label: Localized;
+}
+
+export interface InsightChartItem {
+  label: Localized;
+  /** Ancho de barra / slice (0–100). */
+  value: number;
+  /** Texto mostrado a la derecha (si falta, se usa `${value}%`). */
+  display?: Localized;
+  /** Resalta en coral (la cifra que importa). */
+  accent?: boolean;
+}
+
+export interface InsightChart {
+  kind: "bars" | "stack" | "compare" | "steps";
+  kicker?: Localized;
+  title: Localized;
+  caption?: Localized;
+  tone?: "dark" | "light";
+  items: InsightChartItem[];
+}
+
+export interface InsightFigure {
+  src: string;
+  alt: Localized;
+  caption: Localized;
+}
+
 export interface InsightSeccion {
   heading: Localized;
   /** Palabra/segmento del heading a resaltar en coral (opcional) */
@@ -19,6 +49,10 @@ export interface InsightSeccion {
   bullets?: Localized[];
   /** Párrafos después de los bullets */
   cierreParrafos?: Localized[];
+  /** Foto editorial relacionada con la sección */
+  figure?: InsightFigure;
+  /** Gráfico o comparativa de la sección */
+  chart?: InsightChart;
 }
 
 export interface Insight {
@@ -40,6 +74,10 @@ export interface Insight {
   metaDescription: string;
   /** Párrafos de apertura */
   intro: Localized[];
+  /** Cifras de cabecera (después del intro) */
+  stats?: InsightStat[];
+  /** Gráfico destacado, justo debajo de las cifras */
+  featuredChart?: InsightChart;
   secciones: InsightSeccion[];
   /** Párrafos de cierre (remate) */
   conclusion: Localized[];
@@ -78,6 +116,53 @@ export const insights: Insight[] = [
         en: "On marketplaces it's common to see orders rise while margin dilutes between commissions, poorly designed promotions, and misaligned prices. The problem usually isn't a lack of sales, but a lack of strategic structure.",
       },
     ],
+    stats: [
+      {
+        value: { es: "30%", en: "30%" },
+        label: {
+          es: "del ticket se va en comisión, antes de cocinar.",
+          en: "of the ticket goes to commission, before you cook.",
+        },
+      },
+      {
+        value: { es: "15%", en: "15%" },
+        label: {
+          es: "margen típico cuando nadie arma el P&L por pedido.",
+          en: "typical margin when nobody builds a P&L per order.",
+        },
+      },
+      {
+        value: { es: "0", en: "0" },
+        label: {
+          es: "decisiones buenas sin dato de contribución.",
+          en: "good decisions without contribution data.",
+        },
+      },
+    ],
+    featuredChart: {
+      kind: "stack",
+      kicker: { es: "Ejemplo ilustrativo", en: "Illustrative example" },
+      title: {
+        es: "A dónde se va un pedido de $100",
+        en: "Where a $100 order actually goes",
+      },
+      caption: {
+        es: "Sin P&L por orden, el margen se diluye entre comisión, packaging y promos. Cada restaurante tiene su propia estructura: esto es una foto típica, no una promesa.",
+        en: "Without a P&L per order, margin dilutes across commission, packaging, and promos. Every restaurant has its own structure — this is a typical snapshot, not a promise.",
+      },
+      items: [
+        { label: { es: "Comida", en: "Food" }, value: 32, display: { es: "$32", en: "$32" } },
+        { label: { es: "Comisión", en: "Commission" }, value: 28, display: { es: "$28", en: "$28" } },
+        { label: { es: "Packaging y ads", en: "Packaging & ads" }, value: 12, display: { es: "$12", en: "$12" } },
+        { label: { es: "Promo", en: "Promo" }, value: 10, display: { es: "$10", en: "$10" } },
+        {
+          label: { es: "Margen", en: "Margin" },
+          value: 18,
+          display: { es: "$18", en: "$18" },
+          accent: true,
+        },
+      ],
+    },
     secciones: [
       {
         heading: {
@@ -112,6 +197,31 @@ export const insights: Insight[] = [
             en: "Without this information, the channel grows in a disorganized way.",
           },
         ],
+        chart: {
+          kind: "compare",
+          kicker: { es: "El mismo mes", en: "The same month" },
+          title: {
+            es: "Dos lecturas del canal. Sólo una paga.",
+            en: "Two readings of the channel. Only one pays.",
+          },
+          caption: {
+            es: "Celebrar órdenes mientras el margen cae es el error más caro del delivery.",
+            en: "Celebrating orders while margin falls is delivery's most expensive mistake.",
+          },
+          items: [
+            {
+              label: { es: "Órdenes (lo que se celebra)", en: "Orders (what gets celebrated)" },
+              value: 42,
+              display: { es: "+42%", en: "+42%" },
+            },
+            {
+              label: { es: "Margen por pedido (lo que importa)", en: "Margin per order (what matters)" },
+              value: 18,
+              display: { es: "−18%", en: "−18%" },
+              accent: true,
+            },
+          ],
+        },
       },
       {
         heading: {
@@ -139,6 +249,17 @@ export const insights: Insight[] = [
             en: "A strategic promotion must have a clear goal: increase margin, visibility, or acquisition. If it doesn't serve a function, it's eroding profitability.",
           },
         ],
+        figure: {
+          src: "/assets/gallery/dashboard-analisis.webp",
+          alt: {
+            es: "Tablero de análisis de delivery con métricas de margen y pedidos",
+            en: "Delivery analytics dashboard with margin and order metrics",
+          },
+          caption: {
+            es: "Si la promo no aparece en un tablero de contribución, se está evaluando por volumen — no por margen.",
+            en: "If the promo doesn't show up on a contribution dashboard, you're judging it by volume — not margin.",
+          },
+        },
       },
       {
         heading: {
@@ -169,6 +290,17 @@ export const insights: Insight[] = [
             en: "Delivery isn't just posting your physical menu on an app. It's designing a strategic digital experience.",
           },
         ],
+        figure: {
+          src: "/assets/gallery/plato-burguer.webp",
+          alt: {
+            es: "Plato de burger gourmet listo para delivery",
+            en: "Gourmet burger plate ready for delivery",
+          },
+          caption: {
+            es: "El producto de mayor margen tiene que verse primero. En la app, lo que no se ve no se vende.",
+            en: "The highest-margin product has to be seen first. In the app, what isn't seen doesn't sell.",
+          },
+        },
       },
       {
         heading: {
@@ -193,6 +325,17 @@ export const insights: Insight[] = [
             en: "But that requires daily management, data analysis, and constant adjustments. It's not automatic. It's strategic.",
           },
         ],
+        figure: {
+          src: "/assets/services/service_gestion-integral.webp",
+          alt: {
+            es: "Operación integral de delivery: cocina, packing y control",
+            en: "End-to-end delivery operations: kitchen, packing, and control",
+          },
+          caption: {
+            es: "Cuando el canal se opera como unidad de negocio, cocina, pricing y data dejan de vivir en silos.",
+            en: "When the channel is run as a business unit, kitchen, pricing, and data stop living in silos.",
+          },
+        },
       },
     ],
     conclusion: [
@@ -235,6 +378,60 @@ export const insights: Insight[] = [
         en: "Many restaurants try to grow by increasing orders. But a smarter strategy is to get each order to bill more. The impact on margin is immediate… and much healthier.",
       },
     ],
+    stats: [
+      {
+        value: { es: "+15%", en: "+15%" },
+        label: {
+          es: "de ticket extra, sin descuento permanente.",
+          en: "extra ticket, with no permanent discount.",
+        },
+      },
+      {
+        value: { es: "3×", en: "3×" },
+        label: {
+          es: "más sano que empujar volumen a costa de margen.",
+          en: "healthier than pushing volume at the cost of margin.",
+        },
+      },
+      {
+        value: { es: "0", en: "0" },
+        label: {
+          es: "promos agresivas necesarias para vender mejor.",
+          en: "aggressive promos needed to sell better.",
+        },
+      },
+    ],
+    featuredChart: {
+      kind: "bars",
+      kicker: { es: "Impacto relativo", en: "Relative impact" },
+      title: {
+        es: "Qué mueve más el margen (sin quemar precio)",
+        en: "What moves margin more (without burning price)",
+      },
+      caption: {
+        es: "Un +15% de ticket suele dejar más contribución que un +30% de órdenes comprado con descuento. El volumen sin ticket es ruido.",
+        en: "A +15% ticket usually leaves more contribution than a +30% order lift bought with discounts. Volume without ticket is noise.",
+      },
+      tone: "dark",
+      items: [
+        {
+          label: { es: "Subir ticket 15% con combos", en: "Raise ticket 15% with combos" },
+          value: 92,
+          display: { es: "Alto", en: "High" },
+          accent: true,
+        },
+        {
+          label: { es: "Subir órdenes 30% con promo", en: "Raise orders 30% with a promo" },
+          value: 48,
+          display: { es: "Medio", en: "Medium" },
+        },
+        {
+          label: { es: "Bajar precios para competir", en: "Cut prices to compete" },
+          value: 18,
+          display: { es: "Negativo", en: "Negative" },
+        },
+      ],
+    },
     secciones: [
       {
         heading: {
@@ -256,6 +453,31 @@ export const insights: Insight[] = [
             en: "If your average ticket rises 15%, the impact on margin can be greater than a 30% increase in orders. And it requires no discounts.",
           },
         ],
+        chart: {
+          kind: "compare",
+          kicker: { es: "Misma cocina", en: "Same kitchen" },
+          title: {
+            es: "+15% ticket vs +30% órdenes",
+            en: "+15% ticket vs +30% orders",
+          },
+          caption: {
+            es: "Más pedidos implican más packing, más picos y más comisión. Más ticket aprovecha el pedido que ya entró.",
+            en: "More orders mean more packing, more peaks, and more commission. More ticket leverages the order that already came in.",
+          },
+          items: [
+            {
+              label: { es: "Ticket promedio", en: "Average ticket" },
+              value: 15,
+              display: { es: "+15%", en: "+15%" },
+              accent: true,
+            },
+            {
+              label: { es: "Órdenes con descuento", en: "Discounted orders" },
+              value: 30,
+              display: { es: "+30%", en: "+30%" },
+            },
+          ],
+        },
       },
       {
         heading: {
@@ -289,6 +511,34 @@ export const insights: Insight[] = [
             en: "The goal isn't to sell cheaper. It's to sell more complete.",
           },
         ],
+        figure: {
+          src: "/assets/gallery/plato-sushi.webp",
+          alt: {
+            es: "Plato de sushi premium, ejemplo de producto con ticket alto",
+            en: "Premium sushi plate, an example of a high-ticket product",
+          },
+          caption: {
+            es: "Un combo bien armado agrupa alto margen (plato + bebida + extra) y se siente como valor, no como descuento.",
+            en: "A well-built combo groups high margin (main + drink + extra) and feels like value, not a discount.",
+          },
+        },
+        chart: {
+          kind: "stack",
+          kicker: { es: "Combo de alto margen", en: "High-margin combo" },
+          title: {
+            es: "Cómo se arma un ticket más completo",
+            en: "How a more complete ticket is built",
+          },
+          caption: {
+            es: "El plato abre la orden. La bebida y el extra son el ticket que casi nadie pelea — y donde vive el margen.",
+            en: "The main opens the order. The drink and the extra are the ticket almost nobody fights over — and where margin lives.",
+          },
+          items: [
+            { label: { es: "Plato principal", en: "Main" }, value: 58, display: { es: "58%", en: "58%" } },
+            { label: { es: "Bebida", en: "Drink" }, value: 24, display: { es: "24%", en: "24%" }, accent: true },
+            { label: { es: "Extra / postre", en: "Side / dessert" }, value: 18, display: { es: "18%", en: "18%" } },
+          ],
+        },
       },
       {
         heading: {
@@ -315,6 +565,17 @@ export const insights: Insight[] = [
         cierreParrafos: [
           { es: "El orden impacta directamente en el ticket.", en: "Order directly impacts the ticket." },
         ],
+        figure: {
+          src: "/assets/gallery/plato-burguer.webp",
+          alt: {
+            es: "Burger gourmet con presentación de alto valor percibido",
+            en: "Gourmet burger with high perceived-value presentation",
+          },
+          caption: {
+            es: "Foto, descripción y posición en el menú son pricing. El producto premium escondido al final no existe.",
+            en: "Photo, description, and menu position are pricing. A premium product hidden at the bottom doesn't exist.",
+          },
+        },
       },
       {
         heading: {
@@ -336,6 +597,17 @@ export const insights: Insight[] = [
             en: "When set up well, upselling raises the average ticket, creates no friction, and increases margin without lowering prices. But it requires constant analysis.",
           },
         ],
+        figure: {
+          src: "/assets/gallery/preparacion-burguer.webp",
+          alt: {
+            es: "Preparación de burger en cocina para un pedido delivery",
+            en: "Burger being prepared in the kitchen for a delivery order",
+          },
+          caption: {
+            es: "El upsell tiene que ser operable: si la cocina no puede sumar el extra en 30 segundos, la sugerencia de la app es teatro.",
+            en: "The upsell has to be operable: if the kitchen can't add the extra in 30 seconds, the app suggestion is theater.",
+          },
+        },
       },
       {
         heading: {
@@ -406,6 +678,70 @@ export const insights: Insight[] = [
         en: "Many restaurants run the digital channel reactively: they upload the menu, turn on promotions, and wait for results. But the brands that grow sustainably manage it with structure, data, and daily strategy. This is the roadmap to do it right.",
       },
     ],
+    stats: [
+      {
+        value: { es: "5", en: "5" },
+        label: {
+          es: "pasos. No un proyecto eterno.",
+          en: "steps. Not an endless project.",
+        },
+      },
+      {
+        value: { es: "1", en: "1" },
+        label: {
+          es: "unidad de negocio, no un extra de la cocina.",
+          en: "business unit, not a kitchen side quest.",
+        },
+      },
+      {
+        value: { es: "24/7", en: "24/7" },
+        label: {
+          es: "el canal no se opera solo.",
+          en: "the channel does not run itself.",
+        },
+      },
+    ],
+    featuredChart: {
+      kind: "steps",
+      kicker: { es: "Hoja de ruta", en: "Roadmap" },
+      title: {
+        es: "De canal reactivo a unidad de negocio",
+        en: "From reactive channel to business unit",
+      },
+      caption: {
+        es: "El orden importa: sin números reales, el menú y las promos se diseñan a ciegas.",
+        en: "Order matters: without real numbers, the menu and promos are designed blind.",
+      },
+      tone: "dark",
+      items: [
+        {
+          label: { es: "Entender tus números reales", en: "Understand your real numbers" },
+          value: 20,
+          display: { es: "Margen, ticket, comisión, promos", en: "Margin, ticket, commission, promos" },
+        },
+        {
+          label: { es: "Diseñar el menú para vender mejor", en: "Design the menu to sell better" },
+          value: 40,
+          display: { es: "Arquitectura, fotos, combos", en: "Architecture, photos, combos" },
+        },
+        {
+          label: { es: "Promociones con objetivo", en: "Promotions with a goal" },
+          value: 60,
+          display: { es: "Visibilidad, adquisición o margen", en: "Visibility, acquisition, or margin" },
+        },
+        {
+          label: { es: "Gestión diaria del canal", en: "Daily channel management" },
+          value: 80,
+          display: { es: "Precios, ranking, stock", en: "Prices, ranking, stock" },
+        },
+        {
+          label: { es: "Integrarlo al resto del negocio", en: "Integrate it with the rest of the business" },
+          value: 100,
+          display: { es: "Marca, cocina, fidelización", en: "Brand, kitchen, loyalty" },
+          accent: true,
+        },
+      ],
+    },
     secciones: [
       {
         heading: {
@@ -433,6 +769,17 @@ export const insights: Insight[] = [
             en: "Without this foundation, any decision is just intuition.",
           },
         ],
+        figure: {
+          src: "/assets/gallery/dashboard-analisis.webp",
+          alt: {
+            es: "Dashboard de métricas de delivery: ticket, margen y pedidos",
+            en: "Delivery metrics dashboard: ticket, margin, and orders",
+          },
+          caption: {
+            es: "Paso 1: si no está en el tablero, no existe. Margen por producto, ticket, comisión real, costo de promos.",
+            en: "Step 1: if it isn't on the dashboard, it doesn't exist. Margin per product, ticket, real commission, promo cost.",
+          },
+        },
       },
       {
         heading: {
@@ -459,6 +806,17 @@ export const insights: Insight[] = [
             en: "Menu design directly impacts revenue and profitability.",
           },
         ],
+        figure: {
+          src: "/assets/gallery/plato-sushi.webp",
+          alt: {
+            es: "Plato de sushi con presentación pensada para foto de menú digital",
+            en: "Sushi plate with presentation designed for a digital menu photo",
+          },
+          caption: {
+            es: "La carta física no se copia a la app. Se rediseña: menos categorías, más margen arriba, fotos que venden.",
+            en: "The physical menu isn't copied into the app. It's redesigned: fewer categories, more margin up top, photos that sell.",
+          },
+        },
       },
       {
         heading: {
@@ -490,6 +848,36 @@ export const insights: Insight[] = [
             en: "Promoting without a strategy can increase sales… and reduce margin.",
           },
         ],
+        chart: {
+          kind: "bars",
+          kicker: { es: "Objetivo de la promo", en: "Promo goal" },
+          title: {
+            es: "No todas las promos sirven para lo mismo",
+            en: "Not every promo is for the same job",
+          },
+          caption: {
+            es: "Si no definís el objetivo, la promo por defecto es descuento permanente — y eso no es estrategia.",
+            en: "If you don't define the goal, the default promo is a permanent discount — and that isn't a strategy.",
+          },
+          items: [
+            {
+              label: { es: "Visibilidad (aparecer más)", en: "Visibility (show up more)" },
+              value: 70,
+              display: { es: "Corto plazo", en: "Short term" },
+            },
+            {
+              label: { es: "Adquisición (cliente nuevo)", en: "Acquisition (new customer)" },
+              value: 55,
+              display: { es: "Con tope", en: "Capped" },
+            },
+            {
+              label: { es: "Rentabilidad (ticket / mix)", en: "Profitability (ticket / mix)" },
+              value: 88,
+              display: { es: "La que escala", en: "The one that scales" },
+              accent: true,
+            },
+          ],
+        },
       },
       {
         heading: {
@@ -514,6 +902,17 @@ export const insights: Insight[] = [
         cierreParrafos: [
           { es: "No es un canal “automático”.", en: "It's not an “automatic” channel." },
         ],
+        figure: {
+          src: "/assets/gallery/preparacion-pedido-veggie.webp",
+          alt: {
+            es: "Preparación de un pedido veggie en cocina, operación diaria de delivery",
+            en: "Veggie order being prepared in the kitchen, daily delivery operations",
+          },
+          caption: {
+            es: "La gestión diaria es prosaica: stock, tiempos, ranking, precios. El algoritmo se mueve; el restaurante también tiene que moverse.",
+            en: "Daily management is prosaic: stock, times, ranking, prices. The algorithm moves; the restaurant has to move too.",
+          },
+        },
       },
       {
         heading: {
@@ -536,6 +935,17 @@ export const insights: Insight[] = [
             en: "When it's aligned with internal operations, it boosts the whole business. When it isn't, it creates friction.",
           },
         ],
+        figure: {
+          src: "/assets/gallery/repartidor-rappi.webp",
+          alt: {
+            es: "Repartidor entregando un pedido: el delivery como cara de la marca",
+            en: "Courier delivering an order: delivery as the face of the brand",
+          },
+          caption: {
+            es: "El cliente no separa “la app” de tu restaurante. Packaging, tiempos y trato son marca — aunque el pedido haya salido por marketplace.",
+            en: "The customer doesn't separate “the app” from your restaurant. Packaging, times, and handling are brand — even if the order left through a marketplace.",
+          },
+        },
       },
     ],
     conclusion: [

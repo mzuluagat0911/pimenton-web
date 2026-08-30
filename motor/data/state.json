@@ -11,7 +11,8 @@
       "qué indicadores revisar delivery multi-sucursal",
       "cómo controlar la operación de delivery en varias sucursales",
       "cómo reducir cancelaciones en delivery",
-      "reunión diaria de operaciones delivery"
+      "reunión diaria de operaciones delivery",
+      "cómo recuperar rating delivery multi-sucursal"
     ]
   },
   "published": [
@@ -122,6 +123,18 @@
       "pathEn": "/en/blog/rank-higher-delivery-apps-profitable-orders",
       "titleEn": "How to Rank Higher on Delivery Apps Without Killing Your Margin",
       "descriptionEn": "Learn how to rank higher on delivery apps like Uber Eats, Rappi and DoorDash—and turn visibility into profitable orders, not volume you sell at a loss."
+    },
+    {
+      "slug": "como-recuperar-rating-delivery-multi-sucursal",
+      "destino": "control-room",
+      "keyword": "cómo recuperar rating delivery multi-sucursal",
+      "date": "2026-08-30",
+      "title": "Cómo recuperar el rating en apps de delivery cuando se cae una sucursal",
+      "description": "Recuperá el rating de una sucursal en 48 h: etiquetá quejas, umbral por local y playbook de tiempos, packing y pedido correcto. Sin pedir estrellas.",
+      "path": "/blog/como-recuperar-rating-delivery-multi-sucursal",
+      "pathEn": "/en/blog/recover-delivery-app-rating-multi-location",
+      "titleEn": "How to recover a delivery app rating when one location drops",
+      "descriptionEn": "Recover a location's delivery-app rating in 48 hours: tag complaints, set a per-store threshold, and fix times, packing, and wrong orders — don't beg for stars."
     }
   ]
 }

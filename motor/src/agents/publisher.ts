@@ -87,6 +87,41 @@ export async function publishIdea(destino: Destino, idea: Idea): Promise<Publish
   };
 }
 
+/** Publica un par ES/EN ya redactado (sin llamar al writer de Anthropic). */
+export function publishDrafts(
+  destino: Destino,
+  idea: Idea,
+  es: WriterOutput,
+  en: WriterOutput,
+  date = new Date().toISOString().slice(0, 10),
+): PublishedPost {
+  const esPath = `/blog/${es.slug}`;
+  const enPath = `/en/blog/${en.slug}`;
+  const ctx = { siteUrl: env.SITE_URL, esPath, enPath };
+
+  const esHtml = renderArticle(toArticle(destino, "es", es, date), ctx);
+  const enHtml = renderArticle(toArticle(destino, "en", en, date), ctx);
+
+  mkdirSync(join(PUBLIC_ROOT, "blog"), { recursive: true });
+  mkdirSync(join(PUBLIC_ROOT, "en", "blog"), { recursive: true });
+  writeFileSync(join(PUBLIC_ROOT, "blog", `${es.slug}.html`), esHtml, "utf8");
+  writeFileSync(join(PUBLIC_ROOT, "en", "blog", `${en.slug}.html`), enHtml, "utf8");
+  log.ok(`[${destino}] Publicado (drafts): ${esPath} + ${enPath}`);
+
+  return {
+    slug: es.slug,
+    destino,
+    keyword: idea.keyword_primary,
+    date,
+    title: es.title,
+    description: es.meta_description,
+    path: esPath,
+    pathEn: enPath,
+    titleEn: en.title,
+    descriptionEn: en.meta_description,
+  };
+}
+
 function patchTeaser(filePath: string, destino: Destino, cardsHtml: string): void {
   if (!existsSync(filePath)) {
     log.warn(`No existe ${filePath}; teaser ${destino} omitido.`);

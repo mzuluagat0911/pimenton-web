@@ -8,6 +8,8 @@ Optimizada para SEO y para GEO (ser citado por ChatGPT / Perplexity / AI Overvie
   `<em>` y, opcionalmente, un `<div class="callout"><p>…</p></div>` para el
   bloque de producto/marca. NADA de `<h1>` (ese va aparte en headline), ni
   `<html>`, `<head>`, `<style>` ni scripts. HTML limpio y bien formado.
+  No insertes imágenes ni gráficos: el renderizador adjunta portada, cifras
+  y un gráfico según el tema del artículo.
 
 ## Estructura (en este orden dentro de body_html)
 1. Introducción breve (1 párrafo): por qué importa el tema.

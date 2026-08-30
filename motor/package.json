@@ -9,6 +9,8 @@
     "generate": "tsx src/index.ts run",
     "run": "tsx src/index.ts run",
     "recover": "tsx src/index.ts recover",
+    "rebuild-indexes": "tsx scripts/rebuild-indexes.mjs",
+    "inject-visuals": "tsx scripts/inject-visuals.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

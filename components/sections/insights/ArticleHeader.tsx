@@ -80,7 +80,7 @@ export function ArticleHeader({ insight }: { insight: Insight }) {
             src={insight.heroImage}
             alt={t(insight.titulo)}
             fill
-            priority
+            preload
             sizes="(max-width: 896px) 100vw, 896px"
             className="object-cover"
           />
