@@ -299,6 +299,53 @@ const PACKS: Record<string, ArticleVisual> = {
       },
     },
   },
+  rating: {
+    cover: {
+      src: IMG.courier,
+      alt: {
+        es: "Repartidor entregando un pedido: el rating se cocina en la calle",
+        en: "Courier handing off an order: rating is cooked on the street",
+      },
+      caption: {
+        es: "El cliente no separa la app de tu sucursal. Tiempos, packing y pedido correcto son el rating.",
+        en: "The customer doesn't separate the app from your location. Times, packing, and a correct order are the rating.",
+      },
+    },
+    stats: [
+      { value: "48h", label: { es: "ventana para frenar la caída", en: "window to stop the drop" } },
+      { value: "1", label: { es: "sucursal. Nunca promediés la cadena", en: "location. Never average the chain" } },
+      { value: "4", label: { es: "causas que sí mueven estrellas", en: "causes that actually move stars" } },
+    ],
+    chart: {
+      kind: "bars",
+      kicker: { es: "Qué mueve el rating", en: "What moves rating" },
+      title: {
+        es: "Las quejas que bajan estrellas (y el orden para atacarlas)",
+        en: "The complaints that drop stars (and the order to attack them)",
+      },
+      caption: {
+        es: "Ilustrativo. Pedí las 20 reseñas bajas de la sucursal en rojo y etiquetalas: si no hay causa, no hay playbook.",
+        en: "Illustrative. Pull the 20 low reviews from the red location and tag them: no cause, no playbook.",
+      },
+      items: [
+        { label: { es: "Tiempo / frío", en: "Time / cold food" }, value: 88, display: { es: "1º", en: "1st" }, accent: true },
+        { label: { es: "Pedido errado / incompleto", en: "Wrong / incomplete order" }, value: 72, display: { es: "2º", en: "2nd" } },
+        { label: { es: "Packing / derrame", en: "Packing / spills" }, value: 58, display: { es: "3º", en: "3rd" } },
+        { label: { es: "86 / ítem faltante", en: "86 / missing item" }, value: 45, display: { es: "4º", en: "4th" } },
+      ],
+    },
+    mid: {
+      src: IMG.kitchen,
+      alt: {
+        es: "Cocina armando un pedido: donde se gana o se pierde el rating",
+        en: "Kitchen packing an order: where rating is won or lost",
+      },
+      caption: {
+        es: "El rating se recupera en el pase, no en un mensaje pidiendo 5 estrellas.",
+        en: "Rating is recovered at the pass, not in a message asking for 5 stars.",
+      },
+    },
+  },
 };
 
 const SLUG_PACK: Record<string, keyof typeof PACKS> = {
@@ -321,6 +368,8 @@ const SLUG_PACK: Record<string, keyof typeof PACKS> = {
   "reunion-diaria-operaciones-delivery": "ops",
   "daily-delivery-operations-meeting-ritual": "ops",
   "control-room": "ops",
+  "como-recuperar-rating-delivery-multi-sucursal": "rating",
+  "recover-delivery-app-rating-multi-location": "rating",
 };
 
 function packFor(slug: string): ArticleVisual {
@@ -330,6 +379,7 @@ function packFor(slug: string): ArticleVisual {
   if (/precio|ticket|price/.test(slug)) return PACKS.ticket;
   if (/cancel/.test(slug)) return PACKS.cancel;
   if (/aparecer|rank/.test(slug)) return PACKS.rank;
+  if (/rating|reseña|review/.test(slug)) return PACKS.rating;
   return PACKS.ops;
 }
 
