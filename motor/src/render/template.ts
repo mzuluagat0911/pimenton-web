@@ -5,6 +5,11 @@
 import type { Destino } from "../lib/state.js";
 import { WHATSAPP_CTA_EN, WHATSAPP_CTA_ES } from "../config/cta.js";
 import { analyticsHeadSnippets } from "../config/analytics.js";
+import {
+  coverFor,
+  injectArticleVisuals,
+  VISUALS_STYLESHEET,
+} from "./visuals.js";
 
 export interface FaqItem {
   q: string;
@@ -171,7 +176,8 @@ function jsonLd(draft: ArticleDraft, ctx: RenderContext, canonical: string, ogIm
 
 export function renderArticle(draft: ArticleDraft, ctx: RenderContext): string {
   const t = T[draft.destino][draft.lang];
-  const ogImage = ctx.ogImage ?? `${ctx.siteUrl}/og-default.png`;
+  const cover = coverFor(draft.slug);
+  const ogImage = ctx.ogImage ?? `${ctx.siteUrl}${cover.src}`;
   const esUrl = `${ctx.siteUrl}${ctx.esPath}`;
   const enUrl = `${ctx.siteUrl}${ctx.enPath}`;
   const canonical = draft.lang === "es" ? esUrl : enUrl;
@@ -181,7 +187,7 @@ export function renderArticle(draft: ArticleDraft, ctx: RenderContext): string {
       ? "/assets/logos/principal/logo-blanco.webp"
       : "/assets/logos/principal/logo-coral.webp";
 
-  return `<!doctype html>
+  const html = `<!doctype html>
 <html lang="${draft.lang}">
   <head>
     <meta charset="UTF-8" />
@@ -267,6 +273,7 @@ ${analyticsHeadSnippets()}${jsonLd(draft, ctx, canonical, ogImage)}
       .foot a { color:var(--muted); text-decoration:none; }
       .foot a:hover { color:var(--ink); }
     </style>
+    <link rel="stylesheet" href="${VISUALS_STYLESHEET}" />
   </head>
   <body class="${themeClass}">
     <header class="topbar">
@@ -314,4 +321,5 @@ ${faqAccordion(draft.faq)}
   </body>
 </html>
 `;
+  return injectArticleVisuals(html, draft.slug, draft.lang);
 }

@@ -1,6 +1,7 @@
 import type { Destino, PublishedPost } from "../lib/state.js";
 import { WHATSAPP_CTA_EN, WHATSAPP_CTA_ES } from "../config/cta.js";
 import { analyticsHeadSnippets } from "../config/analytics.js";
+import { coverFor } from "./visuals.js";
 
 type IndexLang = "es" | "en";
 
@@ -52,6 +53,11 @@ const HUB = {
   },
 } as const;
 
+function slugFromHref(href: string): string {
+  const parts = href.split("/").filter(Boolean);
+  return parts[parts.length - 1] ?? "";
+}
+
 function mapPost(p: PublishedPost, lang: IndexLang) {
   if (lang === "en" && p.pathEn) {
     return {
@@ -102,8 +108,10 @@ export function renderBlogIndex(
   const altEn = `${siteUrl}${HUB.en.path}`;
 
   const cards = list
-    .map(
-      (p, i) => `        <a class="post-card${i === 0 ? " post-card--featured" : ""}" href="${p.href}">
+    .map((p, i) => {
+      const cover = coverFor(slugFromHref(p.href));
+      return `        <a class="post-card${i === 0 ? " post-card--featured" : ""}" href="${p.href}">
+          <div class="post-card-cover"><img src="${esc(cover.src)}" alt="${esc(cover.alt[lang])}" width="800" height="500" /></div>
           <div class="post-card-meta">
             <span class="lane">${esc(laneLabel(p.destino, lang))}</span>
             ·
@@ -112,8 +120,8 @@ export function renderBlogIndex(
           <h2>${esc(p.title)}</h2>
           <p>${esc(p.description)}</p>
           <span class="post-card-more" aria-hidden="true">${lang === "es" ? "Leer" : "Read"} →</span>
-        </a>`,
-    )
+        </a>`;
+    })
     .join("\n");
 
   return `<!doctype html>
@@ -162,6 +170,7 @@ ${analyticsHeadSnippets()}    <style>
         display:flex; flex-direction:column; gap:12px;
         background:var(--card); border:1px solid var(--line);
         border-radius:18px; padding:28px 26px 24px;
+        overflow:hidden;
         transition: transform .2s ease, border-color .2s ease;
       }
       .post-card:hover { transform:translateY(-2px); border-color:rgba(232,75,60,.45); }
@@ -176,6 +185,7 @@ ${analyticsHeadSnippets()}    <style>
       .post-card-more { margin-top:8px; font-size:14px; font-weight:600; color:var(--accent); }
       .empty { color:var(--muted); padding:40px 0; }
     </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
   </head>
   <body>
     <header class="topbar">
@@ -221,13 +231,15 @@ export function renderBlogTeaserCards(
       : `<p class="blog-teaser-empty">First guides coming soon.</p>`;
   }
   return list
-    .map(
-      (p) => `<a class="blog-teaser-card" href="${p.href}">
+    .map((p) => {
+      const cover = coverFor(slugFromHref(p.href));
+      return `<a class="blog-teaser-card" href="${p.href}">
+  <span class="blog-teaser-cover"><img src="${esc(cover.src)}" alt="${esc(cover.alt[lang])}" width="640" height="400" /></span>
   <time datetime="${esc(p.date)}">${esc(formatDate(p.date, lang))}</time>
   <h3>${esc(p.title)}</h3>
   <p>${esc(p.description)}</p>
   <span class="blog-teaser-more">${lang === "es" ? "Leer artículo" : "Read article"} →</span>
-</a>`,
-    )
+</a>`;
+    })
     .join("\n");
 }
