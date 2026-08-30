@@ -12,7 +12,8 @@
       "cómo controlar la operación de delivery en varias sucursales",
       "cómo reducir cancelaciones en delivery",
       "reunión diaria de operaciones delivery",
-      "cómo recuperar rating delivery multi-sucursal"
+      "cómo recuperar rating delivery multi-sucursal",
+      "tiempo de preparación delivery"
     ]
   },
   "published": [
@@ -135,6 +136,18 @@
       "pathEn": "/en/blog/recover-delivery-app-rating-multi-location",
       "titleEn": "How to recover a delivery app rating when one location drops",
       "descriptionEn": "Recover a location's delivery-app rating in 48 hours: tag complaints, set a per-store threshold, and fix times, packing, and wrong orders — don't beg for stars."
+    },
+    {
+      "slug": "tiempo-de-preparacion-delivery",
+      "destino": "control-room",
+      "keyword": "tiempo de preparación delivery",
+      "date": "2026-08-30",
+      "title": "Tiempo de preparación en delivery: cómo medirlo y reducirlo",
+      "description": "El prep time es el tramo que controla tu cocina. Aprende a medirlo, ponerle alertas verde/ámbar/rojo y bajarlo por sucursal y franja horaria.",
+      "path": "/blog/tiempo-de-preparacion-delivery",
+      "pathEn": "/en/blog/kitchen-prep-time-multi-location-delivery",
+      "titleEn": "Kitchen Prep Time for Multi-Location Delivery: Measure, Alert, Reduce",
+      "descriptionEn": "Prep time is the part of the delivery clock your kitchen controls. Learn to measure it, set green/amber/red alerts, and reduce it across locations."
     }
   ]
 }
