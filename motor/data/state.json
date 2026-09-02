@@ -5,7 +5,8 @@
       "cuánto subir precios en apps de delivery",
       "take rate real apps de delivery",
       "cómo leer la liquidación de una app de delivery",
-      "cómo aparecer primero en apps de delivery"
+      "cómo aparecer primero en apps de delivery",
+      "en cuántas apps de delivery debería estar mi restaurante"
     ],
     "control-room": [
       "qué indicadores revisar delivery multi-sucursal",
@@ -148,6 +149,18 @@
       "pathEn": "/en/blog/kitchen-prep-time-multi-location-delivery",
       "titleEn": "Kitchen Prep Time for Multi-Location Delivery: Measure, Alert, Reduce",
       "descriptionEn": "Prep time is the part of the delivery clock your kitchen controls. Learn to measure it, set green/amber/red alerts, and reduce it across locations."
+    },
+    {
+      "slug": "cuantas-apps-delivery-restaurante",
+      "destino": "pimenton",
+      "keyword": "en cuántas apps de delivery debería estar mi restaurante",
+      "date": "2026-09-02",
+      "title": "¿En cuántas apps de delivery debería estar mi restaurante?",
+      "description": "Decide en cuántas apps de delivery estar según contribución por pedido, no por intuición. Multi-app vs. concentrar volumen, con criterios y números.",
+      "path": "/blog/cuantas-apps-delivery-restaurante",
+      "pathEn": "/en/blog/how-many-delivery-apps-restaurant",
+      "titleEn": "How Many Delivery Apps Should a Restaurant Be On? Multi-App vs. Concentrating Volume",
+      "descriptionEn": "Decide how many delivery apps your restaurant needs using contribution per order, not guesswork. Multi-app vs. concentrating volume, with LATAM + USA numbers."
     }
   ]
 }
