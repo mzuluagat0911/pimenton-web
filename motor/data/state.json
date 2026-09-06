@@ -14,7 +14,8 @@
       "cómo reducir cancelaciones en delivery",
       "reunión diaria de operaciones delivery",
       "cómo recuperar rating delivery multi-sucursal",
-      "tiempo de preparación delivery"
+      "tiempo de preparación delivery",
+      "cómo comparar sucursales de delivery"
     ]
   },
   "published": [
@@ -161,6 +162,18 @@
       "pathEn": "/en/blog/how-many-delivery-apps-restaurant",
       "titleEn": "How Many Delivery Apps Should a Restaurant Be On? Multi-App vs. Concentrating Volume",
       "descriptionEn": "Decide how many delivery apps your restaurant needs using contribution per order, not guesswork. Multi-app vs. concentrating volume, with LATAM + USA numbers."
+    },
+    {
+      "slug": "como-comparar-sucursales-delivery",
+      "destino": "control-room",
+      "keyword": "cómo comparar sucursales de delivery",
+      "date": "2026-09-06",
+      "title": "Cómo comparar sucursales de delivery de forma justa",
+      "description": "Método de 3 capas para comparar sucursales de delivery sin sesgo: normaliza por volumen, franja y mix, y compara same-store antes de rankear.",
+      "path": "/blog/como-comparar-sucursales-delivery",
+      "pathEn": "/en/blog/compare-delivery-locations-fairly",
+      "titleEn": "How to Compare Delivery Locations Fairly: Normalize First",
+      "descriptionEn": "Compare delivery locations the right way: normalize by volume, shift and mix, then use same-store trends so your ranking drives real interventions."
     }
   ]
 }

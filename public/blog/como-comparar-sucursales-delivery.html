@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Cómo comparar sucursales de delivery de forma justa</title>
+    <meta name="description" content="Método de 3 capas para comparar sucursales de delivery sin sesgo: normaliza por volumen, franja y mix, y compara same-store antes de rankear." />
+    <meta name="keywords" content="cómo comparar sucursales de delivery, cómo comparar el rendimiento de dos locales de delivery, comparar sucursales delivery sin Excel, ranking de sucursales delivery justo, normalizar métricas delivery por volumen y horario, por qué una sucursal parece peor en delivery y no lo es, benchmark interno de locales de delivery" />
+    <link rel="canonical" href="https://pimenton.io/blog/como-comparar-sucursales-delivery" />
+    <link rel="alternate" hreflang="es" href="https://pimenton.io/blog/como-comparar-sucursales-delivery" />
+    <link rel="alternate" hreflang="en" href="https://pimenton.io/en/blog/compare-delivery-locations-fairly" />
+    <link rel="alternate" hreflang="x-default" href="https://pimenton.io/blog/como-comparar-sucursales-delivery" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Cómo comparar sucursales de delivery de forma justa" />
+    <meta property="og:description" content="Método de 3 capas para comparar sucursales de delivery sin sesgo: normaliza por volumen, franja y mix, y compara same-store antes de rankear." />
+    <meta property="og:url" content="https://pimenton.io/blog/como-comparar-sucursales-delivery" />
+    <meta property="og:image" content="https://pimenton.io/assets/services/service_tecnologia.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Cómo comparar sucursales de delivery de forma justa" />
+    <meta name="twitter:description" content="Método de 3 capas para comparar sucursales de delivery sin sesgo: normaliza por volumen, franja y mix, y compara same-store antes de rankear." />
+    <meta name="twitter:image" content="https://pimenton.io/assets/services/service_tecnologia.webp" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Cómo comparar sucursales de delivery: normalizar antes de rankear",
+      "description": "Método de 3 capas para comparar sucursales de delivery sin sesgo: normaliza por volumen, franja y mix, y compara same-store antes de rankear.",
+      "inLanguage": "es",
+      "author": {
+            "@type": "Organization",
+            "name": "Control Room by Pimentón",
+            "url": "https://pimenton.io/es"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://pimenton.io/assets/services/service_tecnologia.webp"
+            }
+      },
+      "datePublished": "2026-09-06",
+      "dateModified": "2026-09-06",
+      "mainEntityOfPage": "https://pimenton.io/blog/como-comparar-sucursales-delivery",
+      "image": "https://pimenton.io/assets/services/service_tecnologia.webp"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": []
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Inicio",
+                  "item": "https://pimenton.io/es"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://pimenton.io/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Cómo comparar sucursales de delivery: normalizar antes de rankear",
+                  "item": "https://pimenton.io/blog/como-comparar-sucursales-delivery"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-control-room">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/es" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-blanco.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/es">Inicio</a>
+          <a href="/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491140425909?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma">
+            <a class="active" href="/blog/como-comparar-sucursales-delivery" hreflang="es">ES</a>
+            <a class="" href="/en/blog/compare-delivery-locations-fairly" hreflang="en">EN</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Control Room · Ops</p>
+          <h1>Cómo comparar sucursales de delivery: normalizar antes de rankear</h1>
+          <p class="lead-answer"><p>Comparar sucursales de delivery de forma justa significa <strong>normalizar antes de rankear</strong>: ajustar las métricas por volumen, por franja horaria y mix de productos, y comparar cada local contra sí mismo en el tiempo (same-store). Solo así un ranking refleja la operación real y no el tamaño o el horario del local. Sin normalizar, una sucursal chica o de horario complicado parece peor sin serlo.</p></p>
+          <p class="byline">Por Control Room · 2026-09-06 · 3 min de lectura</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/services/service_tecnologia.webp" alt="Control room de delivery multi-sucursal" width="1200" height="800" loading="eager" />
+  <figcaption>Un ritual de 10 minutos vale más que un dashboard que nadie abre.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>10'</b><span>standup diario, no una reunión eterna</span></div>
+    <div class="blog-stat"><b>3</b><span>capas: diario, weekly, war room</span></div>
+    <div class="blog-stat"><b>1</b><span>tablero. El resto es ruido</span></div>
+</div>
+<figure class="blog-chart blog-chart--bars" data-blog-visuals="lead">
+  <p class="chart-kicker">Ritual de ops</p>
+  <figcaption>Qué se mira cada mañana (y en qué orden)</figcaption>
+  <div class="bars">
+    <div class="bar-row is-accent">
+      <div class="bar-meta"><span>Cancelaciones / 86</span><b>1º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-0" style="width:90%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Tiempo de prep</span><b>2º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-1" style="width:75%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Conectividad / stock</span><b>3º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-2" style="width:62%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ticket y mix</span><b>4º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-3" style="width:50%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ads y ranking</span><b>5º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-4" style="width:38%"></span></div>
+    </div>
+  </div>
+  <p class="chart-note">Si el tablero no cabe en una pantalla, no se usa. Cinco indicadores, dueño, umbral, decisión.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>Cuando tenés varios locales operando delivery, la tentación es armar un tablero con el rating y los tiempos de cada uno y ordenarlos de mejor a peor. El problema es que ese ranking casi siempre es injusto: castiga a la sucursal chica, a la del turno noche y a la que vende un mix más difícil. Comparar sin normalizar es como cronometrar dos corredores sin saber que uno corrió cuesta arriba. Este artículo te da un método de tres capas para que la comparación entre locales sea legítima y termine en una intervención priorizada, no en un gráfico decorativo.</p><h2>Por qué comparar sucursales de delivery en crudo engaña</h2><p>Comparar en crudo es ordenar locales por sus números absolutos sin ajustar por contexto. El resultado engaña por tres motivos:</p><ul><li><strong>Volumen distinto:</strong> una sucursal con 40 pedidos por turno y otra con 200 no juegan el mismo partido. Un error en la chica pesa mucho más en el porcentaje.</li><li><strong>Franja horaria:</strong> el pico de las 21 h no se opera igual que el mediodía tranquilo. Tiempos y cancelaciones se disparan naturalmente en las horas cargadas.</li><li><strong>Mix de productos:</strong> un local que vende más combos armados o platos de cocción lenta tendrá tiempos de preparación más altos por su carta, no por su equipo.</li></ul><p>Si no ajustás por esto, terminás interviniendo a la sucursal equivocada y dejando quieta a la que de verdad tiene un problema.</p><h2>Capa 1: normalizar por volumen</h2><p>Normalizar por volumen es convertir números absolutos en tasas para que locales de tamaño distinto sean comparables. La regla práctica:</p><ul><li><strong>Comparás en porcentaje</strong> todo lo que depende del tamaño: tasa de cancelación, % de pedidos fuera de tiempo, % de pedidos con reclamo, rating promedio.</li><li><strong>Comparás en absoluto</strong> solo lo que querés dimensionar como impacto: cantidad de pedidos perdidos, plata dejada en la mesa, cantidad de reclamos del turno.</li></ul><p>Un ejemplo: la Sucursal A tuvo 6 cancelaciones sobre 40 pedidos (15%) y la B tuvo 10 sobre 200 (5%). En absoluto la B 
+          <h2 id="faq">Preguntas frecuentes</h2>
+          <div class="faq">
+
+          </div>
+          <div class="cta">
+            <figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/services/service_gestion-integral.webp" alt="Equipo operando delivery con un tablero compartido" width="1200" height="800" loading="lazy" />
+  <figcaption>Weekly compara sucursales. War room se abre por umbral, no por costumbre.</figcaption>
+</figure>
+          <h2>¿Quieres ver tu delivery con claridad?</h2>
+            <p>Escríbenos por WhatsApp. Revisamos qué está rompiendo el ritmo multi-sucursal y qué mover primero.</p>
+            <a class="btn" href="https://wa.me/5491140425909?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/es">Inicio</a> · <a href="/blog">Blog</a> · <a href="https://wa.me/5491140425909?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

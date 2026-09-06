@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>How to Compare Delivery Locations Fairly: Normalize First</title>
+    <meta name="description" content="Compare delivery locations the right way: normalize by volume, shift and mix, then use same-store trends so your ranking drives real interventions." />
+    <meta name="keywords" content="how to compare delivery locations, compare two delivery stores performance, compare delivery locations without Excel, fair delivery location ranking, normalize delivery metrics by volume and shift, why a location looks worse in delivery, internal delivery benchmark" />
+    <link rel="canonical" href="https://pimenton.io/en/blog/compare-delivery-locations-fairly" />
+    <link rel="alternate" hreflang="es" href="https://pimenton.io/blog/como-comparar-sucursales-delivery" />
+    <link rel="alternate" hreflang="en" href="https://pimenton.io/en/blog/compare-delivery-locations-fairly" />
+    <link rel="alternate" hreflang="x-default" href="https://pimenton.io/blog/como-comparar-sucursales-delivery" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="How to Compare Delivery Locations Fairly: Normalize First" />
+    <meta property="og:description" content="Compare delivery locations the right way: normalize by volume, shift and mix, then use same-store trends so your ranking drives real interventions." />
+    <meta property="og:url" content="https://pimenton.io/en/blog/compare-delivery-locations-fairly" />
+    <meta property="og:image" content="https://pimenton.io/assets/services/service_tecnologia.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="How to Compare Delivery Locations Fairly: Normalize First" />
+    <meta name="twitter:description" content="Compare delivery locations the right way: normalize by volume, shift and mix, then use same-store trends so your ranking drives real interventions." />
+    <meta name="twitter:image" content="https://pimenton.io/assets/services/service_tecnologia.webp" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "How to Compare Delivery Locations Fairly: Normalize Before You Rank",
+      "description": "Compare delivery locations the right way: normalize by volume, shift and mix, then use same-store trends so your ranking drives real interventions.",
+      "inLanguage": "en",
+      "author": {
+            "@type": "Organization",
+            "name": "Control Room by Pimentón",
+            "url": "https://pimenton.io/en"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://pimenton.io/assets/services/service_tecnologia.webp"
+            }
+      },
+      "datePublished": "2026-09-06",
+      "dateModified": "2026-09-06",
+      "mainEntityOfPage": "https://pimenton.io/en/blog/compare-delivery-locations-fairly",
+      "image": "https://pimenton.io/assets/services/service_tecnologia.webp"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "How do I compare two locations if one sells much more than the other?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Convert every metric into a rate or percentage before comparing. A store with 12 cancellations out of 400 orders (3%) is performing better than one with 6 out of 80 (7.5%), even though the absolute count is higher. Volume normalization prevents the busiest location from always looking worst."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Which metrics should be compared as percentages and which as absolutes?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Compare cancellation rate, late-order rate, accuracy, refund rate and ratings as percentages, since they scale with volume. Compare total revenue, total orders and gross margin in currency as absolutes, because there the number itself is the goal or the denominator is fixed."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Why does a location show a worse rating that isn't its operational fault?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Ratings dip during peak demand everywhere, so a store whose orders concentrate at rush hour looks worse than one with spread-out demand. Complex menu mix and higher volume also pull averages down. Normalize by shift and mix before concluding it's an operational problem."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "How often should I compare locations: per shift, weekly or monthly?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Match cadence to the decision. Use per-shift checks for live issues, weekly same-store reviews for trends and coaching, and monthly comparisons for structural calls like staffing or menu. Reviewing everything only monthly means you find problems weeks too late."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "What is a same-store comparison and why does it matter in delivery?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "A same-store comparison measures a location against its own history instead of against other stores. It matters because a store is always a fair benchmark to itself, so it removes structural differences and reveals whether a location is improving or quietly degrading week over week."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://pimenton.io/en"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://pimenton.io/en/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "How to Compare Delivery Locations Fairly: Normalize Before You Rank",
+                  "item": "https://pimenton.io/en/blog/compare-delivery-locations-fairly"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-control-room">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/en" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-blanco.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/en">Home</a>
+          <a href="/en/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491140425909?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma">
+            <a class="" href="/blog/como-comparar-sucursales-delivery" hreflang="es">ES</a>
+            <a class="active" href="/en/blog/compare-delivery-locations-fairly" hreflang="en">EN</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Control Room · Ops</p>
+          <h1>How to Compare Delivery Locations Fairly: Normalize Before You Rank</h1>
+          <p class="lead-answer"><p>To compare delivery locations fairly, <strong>normalize before you rank</strong>. Use a three-layer method: normalize by <strong>volume</strong> (turn totals into rates and percentages), by <strong>shift and menu mix</strong> (compare like-for-like windows and product types), and by <strong>same-store trends</strong> (each location against its own history). Only then does a cross-location ranking become legitimate and point to a specific intervention instead of punishing the busiest store.</p></p>
+          <p class="byline">By Control Room · 2026-09-06 · 5 min read</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/services/service_tecnologia.webp" alt="Multi-location delivery control room" width="1200" height="800" loading="eager" />
+  <figcaption>A 10-minute ritual is worth more than a dashboard nobody opens.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>10'</b><span>daily standup, not an endless meeting</span></div>
+    <div class="blog-stat"><b>3</b><span>layers: daily, weekly, war room</span></div>
+    <div class="blog-stat"><b>1</b><span>board. Everything else is noise</span></div>
+</div>
+<figure class="blog-chart blog-chart--bars" data-blog-visuals="lead">
+  <p class="chart-kicker">Ops ritual</p>
+  <figcaption>What you look at each morning (and in what order)</figcaption>
+  <div class="bars">
+    <div class="bar-row is-accent">
+      <div class="bar-meta"><span>Cancellations / 86s</span><b>1st</b></div>
+      <div class="bar-track"><span class="bar-fill seg-0" style="width:90%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Prep time</span><b>2nd</b></div>
+      <div class="bar-track"><span class="bar-fill seg-1" style="width:75%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Connectivity / stock</span><b>3rd</b></div>
+      <div class="bar-track"><span class="bar-fill seg-2" style="width:62%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ticket and mix</span><b>4th</b></div>
+      <div class="bar-track"><span class="bar-fill seg-3" style="width:50%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ads and ranking</span><b>5th</b></div>
+      <div class="bar-track"><span class="bar-fill seg-4" style="width:38%"></span></div>
+    </div>
+  </div>
+  <p class="chart-note">If the board doesn't fit on one screen, it doesn't get used. Five metrics, owner, threshold, decision.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>Ranking your delivery locations sounds simple: sort by rating, or by cancellations, or by average prep time, and crown a winner. But raw numbers lie. A high-volume location during a Friday rush is not playing the same game as a quiet suburban store on a Tuesday. If you rank before you normalize, you end up rewarding easy conditions and blaming stores for problems they didn't cause. This is how to compare delivery locations fairly — and turn the comparison into action, not decoration.</p><h2>Why raw comparisons between locations are misleading</h2><p>A fair comparison controls for the things a location can't change. Volume, time of day, and product mix all move your metrics before operations even touches them. Two examples of why one location looks "worse" and isn't:</p><ul><li><strong>Volume distortion:</strong> The store doing 400 orders a night will show more late orders in absolute terms than one doing 80 — even if its late-order <em>rate</em> is lower.</li><li><strong>Shift distortion:</strong> Ratings and prep times worsen during peak windows everywhere. If one location's demand is concentrated at rush hour, its averages look bad against a location whose demand is spread out.</li><li><strong>Mix distortion:</strong> A location that sells more complex, slow-to-assemble items will run longer prep times by design, not by neglect.</li></ul><p>None of these are operational failures. They're measurement failures. Normalization removes them so the residual difference is something you can actually act on.</p><h2>The three-layer method: normalize before you rank</h2><p>Think of it as peeling away noise in three passes. Each layer answers a different question.</p><h3>Layer 1 — Normalize by volume</h3><p>Turn every absolute count into a rate. This is the single most important move. The rule of thumb:</p><ul><li><strong>Compare in percentage:</strong> cancellation rate, late-order rate, order-accuracy rate, rating (already a ratio), attach rate, refund rate.</li><li><strong>Compare in absolute only when the denominator is fixed or the number itself is the goal:</strong> total revenue, total orders, gross margin in currency, number of five-star reviews needed to move an average.</li></ul><p>A location with 12 cancellations out of 400 orders (3%) is healthier than one with 6 out of 80 (7.5%). Volume normalization flips the ranking — correctly.</p><h3>Layer 2 — Normalize by shift and mix</h3><p>Once everything is a rate, make sure you're comparing the same conditions. Slice the day into consistent windows — lunch, afternoon, dinner peak, late night — and compare each location's dinner peak against every other location's dinner peak. Never compare one store's peak against another store's off-hours.</p><p>Do the same for menu mix. If categories drive prep time, weight or segment by category so a burger-heavy store isn't measured against a pizza-heavy one on raw minutes. The goal of Layer 2 is like-for-like: same clock, same kind of order.</p><h3>Layer 3 — Same-store comparison over time</h3><p>A same-store comparison is a location measured against <strong>its own history</strong>, not against its siblings. This is the layer retail and hospitality use to strip out structural differences entirely. Ask: is this location's cancellation rate rising or falling versus its own last four weeks? Is its dinner-peak prep time drifting up?</p><p>Same-store is powerful because it needs no fairness adjustment — a store is always a fair comparison to itself. A location that ranks mid-pack across your network but is quietly degrading week over week is often a more urgent problem than the one that's simply structurally slower and stable.</p><figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/services/service_gestion-integral.webp" alt="Team running delivery from a shared board" width="1200" height="800" loading="lazy" />
+  <figcaption>Weekly compares locations. War room opens on a threshold, not by habit.</figcaption>
+</figure>
+          <h2>From ranking to a prioritized intervention</h2><p>A fair ranking is only useful if it ends in a decision. After the three layers, you'll usually see one of three patterns per location, each with a different play:</p><ol><li><strong>Structurally hard, operationally fine:</strong> high volume or complex mix, but rates are solid and stable. Action: leave it alone, protect capacity.</li><li><strong>Structurally easy, operationally weak:</strong> low volume but poor rates. Action: this is a real operational gap — coaching, staffing, or process, not "they're just busy."</li><li><strong>Degrading same-store:</strong> rates trending the wrong way regardless of network position. Action: this jumps the queue — investigate the change this week.</li></ol><p>Prioritize by the gap you can close fastest with the biggest margin impact, not by who looks worst on a raw leaderboard.</p><h2>Common mistakes when benchmarking locations</h2><ul><li><strong>Ranking on absolutes:</strong> the busiest location almost always "loses" and it's meaningless.</li><li><strong>Blending shifts:</strong> a daily average hides that the whole problem lives in the 8–10pm window.</li><li><strong>One-off snapshots:</strong> a single bad night becomes a verdict. Rates need enough orders behind them to be stable.</li><li><strong>Blaming the app:</strong> when a rating dips, the useful question is what changed in the operation — prep time, missing items, packaging — not which platform is "unfair." The apps are the demand channel; the levers are yours.</li><li><strong>Building a dashboard nobody acts on:</strong> if the comparison doesn't name a store, a shift, and a next step, it's decoration.</li></ul><h2>Do you really need a spreadsheet for this?</h2><p>You can build all three layers in Excel — pivot tables by location, by window, by week. It works, but it breaks the moment you add locations or want it refreshed every shift instead of every month. The manual re-slicing is where most teams quietly abandon fair comparison and slide back to raw leaderboards.</p><div class="callout"><p><strong>Control Room</strong> is Pimentón's operational control table for multi-location delivery. It normalizes by volume, shift and mix automatically, tracks same-store trends per location, and surfaces the store-and-shift that actually needs attention — so your ranking ends in a prioritized action, not another decorative dashboard. Want a fair internal benchmark without the endless spreadsheet? <a href="https://wa.me/5491140425909">Talk to us on WhatsApp</a>.</p></div><h2>How often to compare locations</h2><p>Match the cadence to the decision. Use <strong>per-shift</strong> checks for live problems (a peak going sideways tonight), <strong>weekly</strong> same-store reviews for trend and coaching in your ops standup, and <strong>monthly</strong> comparisons for structural decisions like staffing or menu changes. Comparing everything monthly only guarantees you find problems four weeks late.</p>
+          <h2 id="faq">Frequently asked questions</h2>
+          <div class="faq">
+            <details>
+              <summary>How do I compare two locations if one sells much more than the other?</summary>
+              <p>Convert every metric into a rate or percentage before comparing. A store with 12 cancellations out of 400 orders (3%) is performing better than one with 6 out of 80 (7.5%), even though the absolute count is higher. Volume normalization prevents the busiest location from always looking worst.</p>
+            </details>
+            <details>
+              <summary>Which metrics should be compared as percentages and which as absolutes?</summary>
+              <p>Compare cancellation rate, late-order rate, accuracy, refund rate and ratings as percentages, since they scale with volume. Compare total revenue, total orders and gross margin in currency as absolutes, because there the number itself is the goal or the denominator is fixed.</p>
+            </details>
+            <details>
+              <summary>Why does a location show a worse rating that isn't its operational fault?</summary>
+              <p>Ratings dip during peak demand everywhere, so a store whose orders concentrate at rush hour looks worse than one with spread-out demand. Complex menu mix and higher volume also pull averages down. Normalize by shift and mix before concluding it's an operational problem.</p>
+            </details>
+            <details>
+              <summary>How often should I compare locations: per shift, weekly or monthly?</summary>
+              <p>Match cadence to the decision. Use per-shift checks for live issues, weekly same-store reviews for trends and coaching, and monthly comparisons for structural calls like staffing or menu. Reviewing everything only monthly means you find problems weeks too late.</p>
+            </details>
+            <details>
+              <summary>What is a same-store comparison and why does it matter in delivery?</summary>
+              <p>A same-store comparison measures a location against its own history instead of against other stores. It matters because a store is always a fair benchmark to itself, so it removes structural differences and reveals whether a location is improving or quietly degrading week over week.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>Want clear visibility on your delivery?</h2>
+            <p>Message us on WhatsApp. We'll review what's breaking multi-location rhythm and what to fix first.</p>
+            <a class="btn" href="https://wa.me/5491140425909?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Message on WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/en">Home</a> · <a href="/en/blog">Blog</a> · <a href="https://wa.me/5491140425909?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
