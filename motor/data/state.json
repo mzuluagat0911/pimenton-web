@@ -6,7 +6,8 @@
       "take rate real apps de delivery",
       "cómo leer la liquidación de una app de delivery",
       "cómo aparecer primero en apps de delivery",
-      "en cuántas apps de delivery debería estar mi restaurante"
+      "en cuántas apps de delivery debería estar mi restaurante",
+      "promociones en apps de delivery: cuáles convienen"
     ],
     "control-room": [
       "qué indicadores revisar delivery multi-sucursal",
@@ -174,6 +175,18 @@
       "pathEn": "/en/blog/compare-delivery-locations-fairly",
       "titleEn": "How to Compare Delivery Locations Fairly: Normalize First",
       "descriptionEn": "Compare delivery locations the right way: normalize by volume, shift and mix, then use same-store trends so your ranking drives real interventions."
+    },
+    {
+      "slug": "promociones-apps-delivery-cuales-convienen",
+      "destino": "pimenton",
+      "keyword": "promociones en apps de delivery: cuáles convienen",
+      "date": "2026-09-09",
+      "title": "Promociones en apps de delivery: cuáles convienen y cómo calcular el 2x1",
+      "description": "El descuento no es tu único costo: es descuento + cofinanciación + comisión recalculada. Fórmula del punto de equilibrio y qué promos convienen.",
+      "path": "/blog/promociones-apps-delivery-cuales-convienen",
+      "pathEn": "/en/blog/delivery-app-promotions-worth-it",
+      "titleEn": "Do Delivery App Promotions Actually Pay Off for Restaurants?",
+      "descriptionEn": "Your discount isn't your only cost. Learn the 3 stacked layers of a delivery promo, the break-even formula and which deals actually pay off."
     }
   ]
 }
