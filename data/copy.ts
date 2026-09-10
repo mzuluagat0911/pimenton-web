@@ -848,8 +848,8 @@ export const copy = {
     phones: [
       {
         region: { es: "LatAm", en: "LatAm" },
-        phone: "+54 9 11 4042 5909",
-        phoneRaw: "5491140425909",
+        phone: "+54 9 11 5703 5170",
+        phoneRaw: "5491157035170",
       },
       {
         region: { es: "Europa", en: "Europe" },
@@ -858,8 +858,8 @@ export const copy = {
       },
       {
         region: { es: "USA", en: "USA" },
-        phone: "+54 9 11 4042 5909",
-        phoneRaw: "5491140425909",
+        phone: "+54 9 11 5703 5170",
+        phoneRaw: "5491157035170",
       },
     ],
     email: "juanchi@pimenton.io",
@@ -880,7 +880,7 @@ export const copy = {
       { name: "TikTok", href: "https://www.tiktok.com/@juanchihaun" },
       {
         name: "WhatsApp",
-        href: "https://api.whatsapp.com/send/?phone=5491140425909",
+        href: "https://api.whatsapp.com/send/?phone=5491157035170",
       },
     ],
     links: [

@@ -96,7 +96,7 @@ const es = {
 <li><strong>Mirar el rating una vez a la semana</strong> y los tiempos nunca. El rating es el último en enterarse.</li>
 <li><strong>Tratar al rider como villano por defecto</strong> sin mirar minutos de espera en puerta.</li>
 </ul>
-<div class="callout"><p><strong>Control Room</strong> es la mesa de control operativa de Pimentón: rating por sucursal (no el promedio), quejas etiquetadas y umbral para abrir war room antes de que el local desaparezca del ranking. ¿Se te cayó una sucursal esta semana? <a href="https://wa.me/5491140425909">Escribinos por WhatsApp</a> y vemos qué número mover primero.</p></div>`,
+<div class="callout"><p><strong>Control Room</strong> es la mesa de control operativa de Pimentón: rating por sucursal (no el promedio), quejas etiquetadas y umbral para abrir war room antes de que el local desaparezca del ranking. ¿Se te cayó una sucursal esta semana? <a href="https://wa.me/5491157035170">Escribinos por WhatsApp</a> y vemos qué número mover primero.</p></div>`,
   faq: [
     {
       q: "¿En cuánto tiempo se recupera el rating de una sucursal?",
@@ -187,7 +187,7 @@ const en = {
 <li><strong>Watching rating weekly</strong> and times never. Rating is the last to find out.</li>
 <li><strong>Defaulting to “the rider”</strong> without looking at door wait minutes.</li>
 </ul>
-<div class="callout"><p><strong>Control Room</strong> is Pimentón's ops control desk: rating by location (not the average), tagged complaints, and a threshold to open a war room before the store disappears from the ranking. Did a location drop this week? <a href="https://wa.me/5491140425909">Message us on WhatsApp</a> and we will pick the first number to move.</p></div>`,
+<div class="callout"><p><strong>Control Room</strong> is Pimentón's ops control desk: rating by location (not the average), tagged complaints, and a threshold to open a war room before the store disappears from the ranking. Did a location drop this week? <a href="https://wa.me/5491157035170">Message us on WhatsApp</a> and we will pick the first number to move.</p></div>`,
   faq: [
     {
       q: "How long does it take to recover a store's delivery app rating?",
