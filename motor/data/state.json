@@ -16,7 +16,8 @@
       "reunión diaria de operaciones delivery",
       "cómo recuperar rating delivery multi-sucursal",
       "tiempo de preparación delivery",
-      "cómo comparar sucursales de delivery"
+      "cómo comparar sucursales de delivery",
+      "war room operaciones delivery"
     ]
   },
   "published": [
@@ -187,6 +188,18 @@
       "pathEn": "/en/blog/delivery-app-promotions-worth-it",
       "titleEn": "Do Delivery App Promotions Actually Pay Off for Restaurants?",
       "descriptionEn": "Your discount isn't your only cost. Learn the 3 stacked layers of a delivery promo, the break-even formula and which deals actually pay off."
+    },
+    {
+      "slug": "war-room-operaciones-delivery",
+      "destino": "control-room",
+      "keyword": "war room operaciones delivery",
+      "date": "2026-09-13",
+      "title": "War room de operaciones delivery: cuándo activarlo y cómo correrlo",
+      "description": "Un war room de delivery no es una sala: es un umbral. Cuándo activarlo, quién debe estar, cómo correrlo en 20 minutos y cómo cerrarlo en acciones verificadas.",
+      "path": "/blog/war-room-operaciones-delivery",
+      "pathEn": "/en/blog/delivery-war-room-multi-location-ops",
+      "titleEn": "Delivery War Room: When to Activate It and How to Run It",
+      "descriptionEn": "A delivery ops war room is a threshold, not a room. Learn the triggers, roles, 20-minute agenda and exit checklist to fix multi-location delivery fast."
     }
   ]
 }
