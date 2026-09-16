@@ -7,7 +7,8 @@
       "cómo leer la liquidación de una app de delivery",
       "cómo aparecer primero en apps de delivery",
       "en cuántas apps de delivery debería estar mi restaurante",
-      "promociones en apps de delivery: cuáles convienen"
+      "promociones en apps de delivery: cuáles convienen",
+      "cuánto cuesta el packaging en delivery"
     ],
     "control-room": [
       "qué indicadores revisar delivery multi-sucursal",
@@ -200,6 +201,18 @@
       "pathEn": "/en/blog/delivery-war-room-multi-location-ops",
       "titleEn": "Delivery War Room: When to Activate It and How to Run It",
       "descriptionEn": "A delivery ops war room is a threshold, not a room. Learn the triggers, roles, 20-minute agenda and exit checklist to fix multi-location delivery fast."
+    },
+    {
+      "slug": "cuanto-cuesta-packaging-delivery-pnl",
+      "destino": "pimenton",
+      "keyword": "cuánto cuesta el packaging en delivery",
+      "date": "2026-09-16",
+      "title": "Cuánto cuesta el packaging en delivery: guía de P&L",
+      "description": "El packaging en delivery suele costar 3-8% del ticket. Aprende a calcular el costo de empaque por pedido, presupuestarlo y optimizarlo sin bajar calidad.",
+      "path": "/blog/cuanto-cuesta-packaging-delivery-pnl",
+      "pathEn": "/en/blog/delivery-packaging-cost-per-order",
+      "titleEn": "Delivery Packaging Cost per Order: How to Measure It in Your P&L",
+      "descriptionEn": "Delivery packaging is a variable cost per order. Learn the formula, the % of ticket it should be, and when premium packaging pays for itself."
     }
   ]
 }
