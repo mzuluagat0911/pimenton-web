@@ -2,7 +2,15 @@
  * Visuales del blog estático: portada, cifras, gráficos y foto de apoyo.
  * El redactor escribe texto; el renderizador adjunta estos bloques para que
  * cada artículo no quede en un muro de párrafos.
+ *
+ * Portadas: cada slug ES (y su par EN) recibe una foto ÚNICA. Si falta
+ * entrada en COVER_BY_SLUG, se asigna automáticamente desde el pool
+ * evitando repetir imágenes ya usadas por otros posts.
  */
+
+import { existsSync, readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 export type VisualLang = "es" | "en";
 
@@ -57,7 +65,80 @@ const IMG = {
   casoLima: "/assets/casos/lima-sushi/hero.jpg",
   casoRoma: "/assets/casos/roma-del-abasto/hero.jpg",
   casoPiccola: "/assets/casos/la-piccola-italia/hero.jpg",
+  insightRentable: "/assets/insights/delivery-rentable/hero.jpg",
+  insightPro: "/assets/insights/profesionalizar-delivery/hero.jpg",
+  insightTicket: "/assets/insights/ticket-promedio/hero.jpg",
+  reseñas: "/assets/reseñas/background-resenas.webp",
+  equipo1: "/assets/equipo/equipo-valor-1-v2.webp",
+  equipo2: "/assets/equipo/equipo-valor-2-v2.webp",
+  equipo3: "/assets/equipo/equipo-valor-3-v2.webp",
 } as const;
+
+/** EN → ES para que el par bilingüe comparta la misma portada. */
+const SLUG_CANONICAL: Record<string, string> = {
+  "delivery-app-profitability-per-order-pl": "rentabilidad-delivery-apps-restaurantes",
+  "morning-metrics-checklist-multi-location-delivery": "indicadores-mañana-delivery-multi-sucursal",
+  "how-much-raise-delivery-app-prices": "cuanto-subir-precios-apps-delivery",
+  "multi-location-delivery-daily-control-checklist": "controlar-operacion-delivery-multi-sucursal",
+  "real-take-rate-delivery-apps": "take-rate-real-apps-delivery",
+  "reduce-delivery-cancellations-multiple-locations": "como-reducir-cancelaciones-delivery",
+  "delivery-app-payout-statement-explained": "como-leer-liquidacion-app-delivery",
+  "daily-delivery-operations-meeting-ritual": "reunion-diaria-operaciones-delivery",
+  "rank-higher-delivery-apps-profitable-orders": "como-aparecer-primero-apps-delivery",
+  "recover-delivery-app-rating-multi-location": "como-recuperar-rating-delivery-multi-sucursal",
+  "kitchen-prep-time-multi-location-delivery": "tiempo-de-preparacion-delivery",
+  "how-many-delivery-apps-restaurant": "cuantas-apps-delivery-restaurante",
+  "compare-delivery-locations-fairly": "como-comparar-sucursales-delivery",
+  "delivery-app-promotions-worth-it": "promociones-apps-delivery-cuales-convienen",
+  "delivery-war-room-multi-location-ops": "war-room-operaciones-delivery",
+  "delivery-packaging-cost-per-order": "cuanto-cuesta-packaging-delivery-pnl",
+};
+
+function canonicalSlug(slug: string): string {
+  return SLUG_CANONICAL[slug] ?? slug;
+}
+
+function asset(
+  src: string,
+  altEs: string,
+  altEn: string,
+  capEs: string,
+  capEn: string,
+): CoverAsset {
+  return {
+    src,
+    alt: { es: altEs, en: altEn },
+    caption: { es: capEs, en: capEn },
+  };
+}
+
+/** Pool de portadas (orden = prioridad de asignación automática). */
+const COVER_POOL: CoverAsset[] = [
+  asset(IMG.dashboard, "Tablero de análisis de delivery", "Delivery analytics dashboard", "Números del canal, sin drama.", "Channel numbers, no drama."),
+  asset(IMG.performance, "Operación midiendo performance de delivery", "Ops measuring delivery performance", "Medir antes de opinar del canal.", "Measure before judging the channel."),
+  asset(IMG.estrategia, "Estrategia de canales de delivery", "Delivery channel strategy", "Elegir dónde jugar con criterio.", "Choose where to play with criteria."),
+  asset(IMG.consultoria, "Consultoría revisando liquidación de apps", "Consultancy reviewing app payouts", "La liquidación cuenta la historia real.", "The payout tells the real story."),
+  asset(IMG.tecnologia, "Tecnología y control de pedidos", "Tech and order control", "Visibilidad para no operar a ciegas.", "Visibility so you don't fly blind."),
+  asset(IMG.gestion, "Gestión integral multi-sucursal", "Multi-location ops management", "Un ritmo, varios locales.", "One rhythm, several locations."),
+  asset(IMG.burger, "Plato de burger para menú digital", "Burger plate for a digital menu", "El menú también es pricing.", "The menu is pricing too."),
+  asset(IMG.sushi, "Plato de sushi listo para delivery", "Sushi plate ready for delivery", "Presentación que convierte en la app.", "Presentation that converts in the app."),
+  asset(IMG.kitchen, "Cocina preparando un pedido", "Kitchen preparing an order", "El pase define tiempos y rating.", "The pass defines times and rating."),
+  asset(IMG.veggie, "Pedido veggie empaquetado", "Packed veggie order", "Packaging también es margen.", "Packaging is margin too."),
+  asset(IMG.courier, "Repartidor en ruta de delivery", "Courier on a delivery route", "La última milla cierra la experiencia.", "Last mile closes the experience."),
+  asset(IMG.casoBirra, "Local de restaurante en servicio", "Restaurant floor in service", "Ops reales, no slides.", "Real ops, not slides."),
+  asset(IMG.casoEmpanadas, "Cocina de empanadas multi-sucursal", "Multi-location empanada kitchen", "Comparar locales con método.", "Compare locations with a method."),
+  asset(IMG.casoPekin, "Cocina de cadena en hora pico", "Chain kitchen at peak hour", "Volumen sin perder control.", "Volume without losing control."),
+  asset(IMG.casoLima, "Plato premium de sushi", "Premium sushi plate", "Ticket y foto van juntos.", "Ticket and photo go together."),
+  asset(IMG.casoRoma, "Interior de restaurante", "Restaurant interior", "Misma marca, distintas realidades por local.", "Same brand, different realities per location."),
+  asset(IMG.casoPiccola, "Sala de restaurante italiano", "Italian restaurant dining room", "Experiencia que también viaja en la app.", "Experience that also travels in the app."),
+  asset(IMG.insightRentable, "Delivery rentable en la práctica", "Profitable delivery in practice", "Rentabilidad es sistema, no suerte.", "Profitability is a system, not luck."),
+  asset(IMG.insightPro, "Profesionalizar el canal delivery", "Professionalizing the delivery channel", "Proceso antes que volumen.", "Process before volume."),
+  asset(IMG.insightTicket, "Subir ticket promedio en delivery", "Raising average delivery ticket", "Más ticket, mejor contribución.", "Higher ticket, better contribution."),
+  asset(IMG.reseñas, "Gestión de reseñas y rating", "Review and rating management", "El rating se gana en el pase.", "Rating is won at the pass."),
+  asset(IMG.equipo1, "Equipo de ops en acción", "Ops team in action", "Personas detrás del ritual diario.", "People behind the daily ritual."),
+  asset(IMG.equipo2, "Equipo revisando números de delivery", "Team reviewing delivery numbers", "Datos con dueño.", "Data with an owner."),
+  asset(IMG.equipo3, "Equipo de growth gastronómico", "Foodservice growth team", "Criterio de restaurante, no de slide.", "Restaurant judgment, not slideware."),
+];
 
 /** Portada única por artículo — el índice y los teasers no deben repetir foto. */
 const COVER_BY_SLUG: Record<string, CoverAsset> = {
@@ -282,10 +363,10 @@ const COVER_BY_SLUG: Record<string, CoverAsset> = {
     },
   },
   "reunion-diaria-operaciones-delivery": {
-    src: IMG.veggie,
+    src: IMG.equipo2,
     alt: {
-      es: "Pedido en preparación: el ritual diario arranca en cocina",
-      en: "Order being prepped: the daily ritual starts in the kitchen",
+      es: "Equipo revisando el ritual diario de operaciones",
+      en: "Team reviewing the daily operations ritual",
     },
     caption: {
       es: "Un standup de 10 minutos vale más que un dashboard que nadie abre.",
@@ -293,10 +374,10 @@ const COVER_BY_SLUG: Record<string, CoverAsset> = {
     },
   },
   "daily-delivery-operations-meeting-ritual": {
-    src: IMG.veggie,
+    src: IMG.equipo2,
     alt: {
-      es: "Pedido en preparación: el ritual diario arranca en cocina",
-      en: "Order being prepped: the daily ritual starts in the kitchen",
+      es: "Equipo revisando el ritual diario de operaciones",
+      en: "Team reviewing the daily operations ritual",
     },
     caption: {
       es: "Un standup de 10 minutos vale más que un dashboard que nadie abre.",
@@ -345,6 +426,72 @@ const COVER_BY_SLUG: Record<string, CoverAsset> = {
     caption: {
       es: "Sin normalizar por volumen, franja y mix, el ranking miente.",
       en: "Without normalizing by volume, shift, and mix, the ranking lies.",
+    },
+  },
+  "promociones-apps-delivery-cuales-convienen": {
+    src: IMG.insightTicket,
+    alt: {
+      es: "Promos en delivery: calcular el 2x1 antes de publicarlo",
+      en: "Delivery promos: calculate the BOGO before you publish it",
+    },
+    caption: {
+      es: "La promo buena sube contribución; la mala compra volumen a pérdida.",
+      en: "A good promo lifts contribution; a bad one buys volume at a loss.",
+    },
+  },
+  "delivery-app-promotions-worth-it": {
+    src: IMG.insightTicket,
+    alt: {
+      es: "Promos en delivery: calcular el 2x1 antes de publicarlo",
+      en: "Delivery promos: calculate the BOGO before you publish it",
+    },
+    caption: {
+      es: "La promo buena sube contribución; la mala compra volumen a pérdida.",
+      en: "A good promo lifts contribution; a bad one buys volume at a loss.",
+    },
+  },
+  "war-room-operaciones-delivery": {
+    src: IMG.equipo1,
+    alt: {
+      es: "War room de ops: cuándo activarlo y con quién",
+      en: "Ops war room: when to activate it and with whom",
+    },
+    caption: {
+      es: "No es más pantallas: es ritmo, dueños y umbrales.",
+      en: "Not more screens: rhythm, owners, and thresholds.",
+    },
+  },
+  "delivery-war-room-multi-location-ops": {
+    src: IMG.equipo1,
+    alt: {
+      es: "War room de ops: cuándo activarlo y con quién",
+      en: "Ops war room: when to activate it and with whom",
+    },
+    caption: {
+      es: "No es más pantallas: es ritmo, dueños y umbrales.",
+      en: "Not more screens: rhythm, owners, and thresholds.",
+    },
+  },
+  "cuanto-cuesta-packaging-delivery-pnl": {
+    src: IMG.veggie,
+    alt: {
+      es: "Pedido empacado: el packaging también es línea de P&L",
+      en: "Packed order: packaging is a P&L line too",
+    },
+    caption: {
+      es: "Caja, bolsa y sellos suman al costo real por pedido.",
+      en: "Box, bag, and seals add to the real cost per order.",
+    },
+  },
+  "delivery-packaging-cost-per-order": {
+    src: IMG.veggie,
+    alt: {
+      es: "Pedido empacado: el packaging también es línea de P&L",
+      en: "Packed order: packaging is a P&L line too",
+    },
+    caption: {
+      es: "Caja, bolsa y sellos suman al costo real por pedido.",
+      en: "Box, bag, and seals add to the real cost per order.",
     },
   },
   "control-room": {
@@ -646,6 +793,72 @@ const MID_BY_SLUG: Record<string, CoverAsset> = {
     caption: {
       es: "Compará tendencias normalizadas, no absolutos crudos.",
       en: "Compare normalized trends, not raw absolutes.",
+    },
+  },
+  "promociones-apps-delivery-cuales-convienen": {
+    src: IMG.insightRentable,
+    alt: {
+      es: "Promo medida contra contribución, no contra vanidad de pedidos",
+      en: "Promo measured against contribution, not order vanity",
+    },
+    caption: {
+      es: "Si no sabés el margen del plato, no sabés si la promo paga.",
+      en: "If you don't know the plate margin, you don't know if the promo pays.",
+    },
+  },
+  "delivery-app-promotions-worth-it": {
+    src: IMG.insightRentable,
+    alt: {
+      es: "Promo medida contra contribución, no contra vanidad de pedidos",
+      en: "Promo measured against contribution, not order vanity",
+    },
+    caption: {
+      es: "Si no sabés el margen del plato, no sabés si la promo paga.",
+      en: "If you don't know the plate margin, you don't know if the promo pays.",
+    },
+  },
+  "war-room-operaciones-delivery": {
+    src: IMG.equipo3,
+    alt: {
+      es: "Equipo de growth en war room de delivery",
+      en: "Growth team in a delivery war room",
+    },
+    caption: {
+      es: "Se abre por umbral: cancelaciones, rating o prep time fuera de banda.",
+      en: "Opens on a threshold: cancellations, rating, or prep time out of band.",
+    },
+  },
+  "delivery-war-room-multi-location-ops": {
+    src: IMG.equipo3,
+    alt: {
+      es: "Equipo de growth en war room de delivery",
+      en: "Growth team in a delivery war room",
+    },
+    caption: {
+      es: "Se abre por umbral: cancelaciones, rating o prep time fuera de banda.",
+      en: "Opens on a threshold: cancellations, rating, or prep time out of band.",
+    },
+  },
+  "cuanto-cuesta-packaging-delivery-pnl": {
+    src: IMG.casoPekin,
+    alt: {
+      es: "Cocina en hora pico: el packaging se decide antes del rush",
+      en: "Kitchen at peak: packaging is decided before the rush",
+    },
+    caption: {
+      es: "Costo por pedido × volumen: ahí se ve si el packaging come margen.",
+      en: "Cost per order × volume: that's where packaging eats margin.",
+    },
+  },
+  "delivery-packaging-cost-per-order": {
+    src: IMG.casoPekin,
+    alt: {
+      es: "Cocina en hora pico: el packaging se decide antes del rush",
+      en: "Kitchen at peak: packaging is decided before the rush",
+    },
+    caption: {
+      es: "Costo por pedido × volumen: ahí se ve si el packaging come margen.",
+      en: "Cost per order × volume: that's where packaging eats margin.",
     },
   },
 };
@@ -1059,11 +1272,120 @@ ${rows}
 }
 
 export function coverFor(slug: string): CoverAsset {
-  return COVER_BY_SLUG[slug] ?? packFor(slug).cover;
+  return uniqueCoverFor(slug);
 }
 
 function midFor(slug: string): CoverAsset {
-  return MID_BY_SLUG[slug] ?? packFor(slug).mid;
+  return uniqueMidFor(slug);
+}
+
+function publishedCanonicalSlugs(): string[] {
+  const here = dirname(fileURLToPath(import.meta.url));
+  const statePath = join(here, "..", "..", "data", "state.json");
+  const slugs = new Set<string>();
+  if (existsSync(statePath)) {
+    try {
+      const raw = JSON.parse(readFileSync(statePath, "utf8")) as {
+        published?: { slug?: string; pathEn?: string }[];
+      };
+      for (const p of raw.published ?? []) {
+        if (p.slug) slugs.add(canonicalSlug(p.slug));
+        if (p.pathEn) slugs.add(canonicalSlug(p.pathEn.split("/").pop() ?? ""));
+      }
+    } catch {
+      /* ignore */
+    }
+  }
+  // Fallback: preferencias explícitas si todavía no hay state.
+  if (slugs.size === 0) {
+    for (const k of Object.keys(COVER_BY_SLUG)) slugs.add(canonicalSlug(k));
+  }
+  return [...slugs].filter(Boolean).sort();
+}
+
+let coverAssignments: Map<string, CoverAsset> | null = null;
+let midAssignments: Map<string, CoverAsset> | null = null;
+
+function buildUniqueAssignments(
+  preferred: Record<string, CoverAsset>,
+  pool: CoverAsset[],
+  avoidCoverSrc?: (slug: string) => string | undefined,
+): Map<string, CoverAsset> {
+  const slugs = publishedCanonicalSlugs();
+  const map = new Map<string, CoverAsset>();
+  const used = new Set<string>();
+
+  // 1) Preferencias explícitas si no chocan (lookup por slug canónico o crudo).
+  for (const slug of slugs) {
+    const pref = preferred[slug] ?? preferred[canonicalSlug(slug)];
+    if (!pref) continue;
+    const avoid = avoidCoverSrc?.(slug);
+    if (used.has(pref.src) || (avoid && pref.src === avoid)) continue;
+    map.set(slug, pref);
+    used.add(pref.src);
+  }
+
+  // 2) Resto: pool sin repetir.
+  const free = pool.filter((a) => !used.has(a.src));
+  let i = 0;
+  for (const slug of slugs) {
+    if (map.has(slug)) continue;
+    const avoid = avoidCoverSrc?.(slug);
+    while (i < free.length && (used.has(free[i]!.src) || free[i]!.src === avoid)) i += 1;
+    const pick =
+      free[i] ??
+      pool.find((a) => !used.has(a.src) && a.src !== avoid) ??
+      pool.find((a) => !used.has(a.src));
+    if (!pick) {
+      // Pool agotado: no reutilizar portadas ya asignadas.
+      throw new Error(
+        `No quedan portadas únicas para "${slug}". Ampliá COVER_POOL o revisá preferencias duplicadas.`,
+      );
+    }
+    map.set(slug, pick);
+    used.add(pick.src);
+    i += 1;
+  }
+  return map;
+}
+
+function uniqueCoverFor(slug: string): CoverAsset {
+  if (!coverAssignments) {
+    coverAssignments = buildUniqueAssignments(COVER_BY_SLUG, COVER_POOL);
+  }
+  const key = canonicalSlug(slug);
+  return (
+    coverAssignments.get(key) ??
+    COVER_BY_SLUG[slug] ??
+    COVER_BY_SLUG[key] ??
+    COVER_POOL[0]!
+  );
+}
+
+function uniqueMidFor(slug: string): CoverAsset {
+  if (!midAssignments) {
+    midAssignments = buildUniqueAssignments(MID_BY_SLUG, COVER_POOL, (s) =>
+      uniqueCoverFor(s).src,
+    );
+  }
+  const key = canonicalSlug(slug);
+  const coverSrc = uniqueCoverFor(key).src;
+  const mid =
+    midAssignments.get(key) ??
+    MID_BY_SLUG[slug] ??
+    MID_BY_SLUG[key] ??
+    COVER_POOL.find((a) => a.src !== coverSrc) ??
+    COVER_POOL[1]!;
+  if (mid.src === coverSrc) {
+    return COVER_POOL.find((a) => a.src !== coverSrc) ?? mid;
+  }
+  return mid;
+}
+
+/** Invalidar cache (tests / rebuild tras cambiar state). */
+export function resetVisualAssignments(): void {
+  coverAssignments = null;
+  midAssignments = null;
 }
 
 export function leadVisualHtml(slug: string, lang: VisualLang): string {
