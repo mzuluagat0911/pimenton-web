@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Productos agotados en delivery: cómo medir la disponibilidad de menú por sucursal</title>
+    <meta name="description" content="Convierte los productos agotados en delivery en una métrica: tasa de disponibilidad de menú por sucursal, umbrales de alerta y ritual de chequeo por turno." />
+    <meta name="keywords" content="productos agotados en delivery, disponibilidad de menú en apps de delivery, cómo reducir productos agotados en delivery multi-sucursal, qué es la tasa de disponibilidad de menú, cuánto se pierde por ítems agotados en delivery, cómo saber qué platos se pausan más en mis locales, pausar plato vs marcar agotado, disponibilidad de menú por sucursal cómo medir" />
+    <link rel="canonical" href="https://pimenton.io/blog/productos-agotados-delivery-disponibilidad-menu" />
+    <link rel="alternate" hreflang="es" href="https://pimenton.io/blog/productos-agotados-delivery-disponibilidad-menu" />
+    <link rel="alternate" hreflang="en" href="https://pimenton.io/en/blog/out-of-stock-delivery-menu-availability" />
+    <link rel="alternate" hreflang="x-default" href="https://pimenton.io/blog/productos-agotados-delivery-disponibilidad-menu" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Productos agotados en delivery: cómo medir la disponibilidad de menú por sucursal" />
+    <meta property="og:description" content="Convierte los productos agotados en delivery en una métrica: tasa de disponibilidad de menú por sucursal, umbrales de alerta y ritual de chequeo por turno." />
+    <meta property="og:url" content="https://pimenton.io/blog/productos-agotados-delivery-disponibilidad-menu" />
+    <meta property="og:image" content="https://pimenton.io/assets/gallery/dashboard-analisis.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Productos agotados en delivery: cómo medir la disponibilidad de menú por sucursal" />
+    <meta name="twitter:description" content="Convierte los productos agotados en delivery en una métrica: tasa de disponibilidad de menú por sucursal, umbrales de alerta y ritual de chequeo por turno." />
+    <meta name="twitter:image" content="https://pimenton.io/assets/gallery/dashboard-analisis.webp" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Productos agotados en delivery: cómo medir la disponibilidad de menú por sucursal",
+      "description": "Convierte los productos agotados en delivery en una métrica: tasa de disponibilidad de menú por sucursal, umbrales de alerta y ritual de chequeo por turno.",
+      "inLanguage": "es",
+      "author": {
+            "@type": "Organization",
+            "name": "Control Room by Pimentón",
+            "url": "https://pimenton.io/es"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://pimenton.io/assets/gallery/dashboard-analisis.webp"
+            }
+      },
+      "datePublished": "2026-09-20",
+      "dateModified": "2026-09-20",
+      "mainEntityOfPage": "https://pimenton.io/blog/productos-agotados-delivery-disponibilidad-menu",
+      "image": "https://pimenton.io/assets/gallery/dashboard-analisis.webp"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "¿Qué significa que un producto esté agotado o pausado en una app de delivery?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Un producto pausado es un ítem que se desactiva de forma deliberada y temporal (por decisión operativa, falta puntual de insumo o para proteger tiempos). Un producto agotado suele ser un ítem que dejó de estar disponible sin previsión, por descontrol de stock o prep. En ambos casos deja de venderse, pero pausar es gestión y agotar por sorpresa suele ser un síntoma a corregir."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Cuánto afecta a las ventas tener ítems agotados?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Cada ítem no disponible en pico es una ventana de venta cerrada: el cliente elige otra cosa o cambia de restaurante. El impacto es medible si registrás qué peso tiene ese plato en tus tickets y cuánto tiempo estuvo agotado. Sin medirlo, esa pérdida desaparece del radar y se repite turno tras turno."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Cómo se calcula la tasa de disponibilidad de menú?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "La tasa de disponibilidad de menú es el porcentaje de ítems vendibles sobre el total publicado en una ventana de tiempo: (ítems vendibles ÷ ítems publicados) × 100. Conviene medirla por sucursal y por turno, y ponderarla por los ítems que más venden, porque agotar un plato estrella no pesa igual que agotar una guarnición secundaria."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Cuál es una tasa de agotados aceptable?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Depende de la operación, pero un buen norte es mantener los ítems top por encima del 97-98% de disponibilidad en franjas pico. Más que buscar cero agotados, el objetivo es que cada ítem no disponible sea una decisión con motivo y hora de reactivación, no una sorpresa recurrente."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Por qué un local agota más ítems que otro con el mismo menú?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Casi siempre por diferencias de ritmo operativo: proyección de compras distinta, prep desalineado con la demanda de cada franja, comunicación de turno floja o criterios inconsistentes para pausar. Comparar la disponibilidad por sucursal expone estas diferencias sin necesidad de auditorías largas."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Qué revisar en cada turno para no perder ventas por faltantes?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Al inicio de cada franja pico, revisá qué ítems están pausados o agotados en cada local, confirmá que cada pausa tenga motivo y hora de reactivación, reactivá todo lo que ya tenga stock listo y anotá las reincidencias para ajustar compras y prep. Es un chequeo de pocos minutos que evita pérdidas silenciosas."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Inicio",
+                  "item": "https://pimenton.io/es"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://pimenton.io/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Productos agotados en delivery: cómo medir la disponibilidad de menú por sucursal",
+                  "item": "https://pimenton.io/blog/productos-agotados-delivery-disponibilidad-menu"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-control-room">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/es" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-blanco.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/es">Inicio</a>
+          <a href="/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma">
+            <a class="active" href="/blog/productos-agotados-delivery-disponibilidad-menu" hreflang="es">ES</a>
+            <a class="" href="/en/blog/out-of-stock-delivery-menu-availability" hreflang="en">EN</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Control Room · Ops</p>
+          <h1>Productos agotados en delivery: cómo medir la disponibilidad de menú por sucursal</h1>
+          <p class="lead-answer"><p>Los <strong>productos agotados en delivery</strong> son ítems que dejan de venderse en la app porque se pausan por decisión o se agotan por descontrol de cocina o stock. La forma de gestionarlos es medir la <strong>tasa de disponibilidad de menú</strong>: el porcentaje del menú activo y vendible por sucursal y por turno. Con un umbral de alerta por ítem, un responsable y un gatillo de acción, el agotado deja de ser un problema invisible de cocina y se convierte en un indicador operativo comparable entre locales.</p></p>
+          <p class="byline">Por Control Room · 2026-09-20 · 5 min de lectura</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/gallery/dashboard-analisis.webp" alt="Tablero de análisis de delivery" width="1200" height="800" loading="eager" />
+  <figcaption>Números del canal, sin drama.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>10'</b><span>standup diario, no una reunión eterna</span></div>
+    <div class="blog-stat"><b>3</b><span>capas: diario, weekly, war room</span></div>
+    <div class="blog-stat"><b>1</b><span>tablero. El resto es ruido</span></div>
+</div>
+<figure class="blog-chart blog-chart--bars" data-blog-visuals="lead">
+  <p class="chart-kicker">Ritual de ops</p>
+  <figcaption>Qué se mira cada mañana (y en qué orden)</figcaption>
+  <div class="bars">
+    <div class="bar-row is-accent">
+      <div class="bar-meta"><span>Cancelaciones / 86</span><b>1º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-0" style="width:90%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Tiempo de prep</span><b>2º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-1" style="width:75%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Conectividad / stock</span><b>3º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-2" style="width:62%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ticket y mix</span><b>4º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-3" style="width:50%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ads y ranking</span><b>5º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-4" style="width:38%"></span></div>
+    </div>
+  </div>
+  <p class="chart-note">Si el tablero no cabe en una pantalla, no se usa. Cinco indicadores, dueño, umbral, decisión.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>En delivery, un plato que aparece como no disponible es una venta que no ocurre y un cliente que probablemente elige otra cosa —o directamente otro restaurante—. El problema es que la mayoría de los equipos trata el agotado como un incidente puntual de cocina, cuando en realidad es una <strong>métrica de operaciones</strong> que se puede medir, comparar entre sucursales y anticipar. Reencuadrar el faltante como dato cambia la conversación: dejás de apagar incendios y empezás a ver dónde y cuándo se te escapan ventas.</p><h2>Qué es la tasa de disponibilidad de menú</h2><p>La <strong>tasa de disponibilidad de menú</strong> es el porcentaje del menú activo que está realmente vendible en un momento dado. Si tenés 100 ítems publicados y 8 están pausados o marcados como agotados, tu disponibilidad es del 92%. Es una métrica simple pero potente porque se puede medir por <strong>ítem, por turno y por sucursal</strong>, y eso la vuelve comparable.</p><p>La fórmula base es directa:</p><ul><li><strong>Disponibilidad (%) = (ítems vendibles ÷ ítems publicados) × 100</strong>, medida en una ventana de tiempo.</li><li>Mejor aún: ponderarla por <em>ítems que importan</em> (los top de ventas), porque agotar un plato estrella no pesa igual que agotar una guarnición secundaria.</li></ul><p>Medida así, la disponibilidad funciona como una <strong>alerta temprana</strong>: cuando cae, algo en la operación —compras, prep, comunicación de turno— se está rompiendo antes de que se note en la facturación.</p><h2>Pausar por decisión vs. agotar por descontrol</h2><p>Acá está el giro clave. No todos los ítems no disponibles son iguales, y confundirlos es lo que impide mejorar.</p><h3>Pausar plato: una decisión operativa</h3><p>Pausar es una acción deliberada y temporal: se cortó un insumo puntual, hay una demora de cocina en pico, o se decide sacar un plato complejo para proteger los tiempos de entrega. Es gestión. Tiene un motivo y, idealmente, una hora de reactivación.</p><h3>Marcar agotado: muchas veces un síntoma de descontrol</h3><p>Agotar por sorpresa —quedarte sin producto sin haberlo previsto— suele ser un síntoma: mala proyección de compras, prep insuficiente, o falta de comunicación entre cocina y quien administra la app. Cuando el mismo ítem se agota tres viernes seguidos, no es mala suerte: es un patrón.</p><p>Distinguir <strong>pausar vs. agotar</strong> te permite separar el ruido de la señal. Un local con alta disponibilidad y pausas puntuales bien gestionadas opera distinto a uno que agota sin control aunque el porcentaje se vea parecido.</p><figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/services/service_performance.webp" alt="Operación midiendo performance de delivery" width="1200" height="800" loading="lazy" />
+  <figcaption>Medir antes de opinar del canal.</figcaption>
+</figure>
+          <h2>Cuánto se pierde y por qué un local agota más que otro</h2><p>No hace falta inventar cifras para entender el impacto: cada ítem agotado en pico es una ventana de venta cerrada. Si un plato representa, por ejemplo, el 6% de tus tickets y está no disponible las tres horas centrales del viernes, esa pérdida es medible y recurrente. Sin registrarla, simplemente desaparece del radar.</p><p>La pregunta más útil en multi-sucursal es: <strong>¿por qué un local agota más ítems que otro con el mismo menú?</strong> Las causas típicas:</p><ul><li><strong>Proyección de compras distinta</strong> entre gerentes.</li><li><strong>Prep desalineado</strong> con la demanda real de cada franja.</li><li><strong>Comunicación de turno floja</strong>: nadie reactiva un ítem cuando vuelve a haber stock.</li><li><strong>Criterio inconsistente</strong>: un local pausa para proteger tiempos, otro deja agotar sin registro.</li></ul><p>Comparar la disponibilidad por sucursal expone estas diferencias sin necesidad de un Excel eterno. El local que agota de más no tiene peor cocina: tiene peor ritmo de control.</p><h2>Mini-playbook: umbral, responsable y gatillo</h2><p>Medir sin actuar no sirve. Traducí la disponibilidad en un playbook con tres piezas por cada ítem clave:</p><ol><li><strong>Umbral de alerta</strong>: por ejemplo, disponibilidad de menú por debajo del 95% en turno pico, o un ítem top agotado más de 30 minutos.</li><li><strong>Responsable</strong>: quién ve la alerta y quién la resuelve (gerente de turno, encargado de cocina).</li><li><strong>Gatillo de acción</strong>: qué se hace cuando salta —reactivar, reponer, ajustar prep del próximo turno, o pausar formalmente con hora de vuelta.</li></ol><p>El objetivo no es cero agotados: es que cada no disponible sea una <strong>decisión</strong>, no una sorpresa. Una tasa aceptable depende de tu operación, pero un buen norte es mantener los ítems top por encima del 97-98% de disponibilidad en pico y revisar cualquier patrón que se repita.</p><h2>El ritual: chequeo al inicio de cada franja pico</h2><p>La disponibilidad se gana en los cinco minutos antes del pico, no durante. Instaurá un chequeo fijo al arrancar cada franja (almuerzo, tarde, cena):</p><ul><li>Revisar qué ítems están pausados o agotados <strong>ahora mismo</strong> en la app de cada local.</li><li>Confirmar que cada pausa tenga motivo y hora estimada de reactivación.</li><li>Reactivar todo lo que ya tenga stock o prep listo.</li><li>Anotar reincidencias para ajustar compras y prep del día siguiente.</li></ul><p>Este ritual convierte el agotado en una conversación de 3 minutos por turno en lugar de una pérdida silenciosa que se descubre a fin de mes.</p><div class="callout"><p><strong>Control Room</strong> es la mesa de control operativa de Pimentón: te muestra la disponibilidad de menú por sucursal y turno, marca qué ítems se pausan o agotan más y dispara alertas para que cada faltante sea una decisión y no una sorpresa. ¿Querés ver dónde se te escapan ventas por productos agotados? <a href="https://wa.me/5491157035170">Escribinos por WhatsApp</a>.</p></div><h2>Errores comunes al medir agotados</h2><ul><li><strong>Mirar solo el promedio del día</strong> y perder el pico, que es cuando más duele.</li><li><strong>No separar pausar de agotar</strong>, mezclando gestión con descontrol.</li><li><strong>Tratar todos los ítems igual</strong> sin ponderar por ventas.</li><li><strong>No asignar responsable</strong>: la alerta que no tiene dueño no se resuelve.</li><li><strong>No comparar entre locales</strong>, perdiéndote el patrón que explica la diferencia.</li></ul><p>Empezá por medir la disponibilidad de tus 10 ítems top por sucursal y turno. Con ese dato y un ritual de chequeo, el agotado deja de ser un misterio de cocina y pasa a ser un indicador que podés bajar semana a semana.</p>
+          <h2 id="faq">Preguntas frecuentes</h2>
+          <div class="faq">
+            <details>
+              <summary>¿Qué significa que un producto esté agotado o pausado en una app de delivery?</summary>
+              <p>Un producto pausado es un ítem que se desactiva de forma deliberada y temporal (por decisión operativa, falta puntual de insumo o para proteger tiempos). Un producto agotado suele ser un ítem que dejó de estar disponible sin previsión, por descontrol de stock o prep. En ambos casos deja de venderse, pero pausar es gestión y agotar por sorpresa suele ser un síntoma a corregir.</p>
+            </details>
+            <details>
+              <summary>¿Cuánto afecta a las ventas tener ítems agotados?</summary>
+              <p>Cada ítem no disponible en pico es una ventana de venta cerrada: el cliente elige otra cosa o cambia de restaurante. El impacto es medible si registrás qué peso tiene ese plato en tus tickets y cuánto tiempo estuvo agotado. Sin medirlo, esa pérdida desaparece del radar y se repite turno tras turno.</p>
+            </details>
+            <details>
+              <summary>¿Cómo se calcula la tasa de disponibilidad de menú?</summary>
+              <p>La tasa de disponibilidad de menú es el porcentaje de ítems vendibles sobre el total publicado en una ventana de tiempo: (ítems vendibles ÷ ítems publicados) × 100. Conviene medirla por sucursal y por turno, y ponderarla por los ítems que más venden, porque agotar un plato estrella no pesa igual que agotar una guarnición secundaria.</p>
+            </details>
+            <details>
+              <summary>¿Cuál es una tasa de agotados aceptable?</summary>
+              <p>Depende de la operación, pero un buen norte es mantener los ítems top por encima del 97-98% de disponibilidad en franjas pico. Más que buscar cero agotados, el objetivo es que cada ítem no disponible sea una decisión con motivo y hora de reactivación, no una sorpresa recurrente.</p>
+            </details>
+            <details>
+              <summary>¿Por qué un local agota más ítems que otro con el mismo menú?</summary>
+              <p>Casi siempre por diferencias de ritmo operativo: proyección de compras distinta, prep desalineado con la demanda de cada franja, comunicación de turno floja o criterios inconsistentes para pausar. Comparar la disponibilidad por sucursal expone estas diferencias sin necesidad de auditorías largas.</p>
+            </details>
+            <details>
+              <summary>¿Qué revisar en cada turno para no perder ventas por faltantes?</summary>
+              <p>Al inicio de cada franja pico, revisá qué ítems están pausados o agotados en cada local, confirmá que cada pausa tenga motivo y hora de reactivación, reactivá todo lo que ya tenga stock listo y anotá las reincidencias para ajustar compras y prep. Es un chequeo de pocos minutos que evita pérdidas silenciosas.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>¿Quieres ver tu delivery con claridad?</h2>
+            <p>Escríbenos por WhatsApp. Revisamos qué está rompiendo el ritmo multi-sucursal y qué mover primero.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/es">Inicio</a> · <a href="/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

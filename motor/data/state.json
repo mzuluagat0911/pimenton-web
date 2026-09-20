@@ -18,7 +18,8 @@
       "cómo recuperar rating delivery multi-sucursal",
       "tiempo de preparación delivery",
       "cómo comparar sucursales de delivery",
-      "war room operaciones delivery"
+      "war room operaciones delivery",
+      "productos agotados en delivery"
     ]
   },
   "published": [
@@ -213,6 +214,18 @@
       "pathEn": "/en/blog/delivery-packaging-cost-per-order",
       "titleEn": "Delivery Packaging Cost per Order: How to Measure It in Your P&L",
       "descriptionEn": "Delivery packaging is a variable cost per order. Learn the formula, the % of ticket it should be, and when premium packaging pays for itself."
+    },
+    {
+      "slug": "productos-agotados-delivery-disponibilidad-menu",
+      "destino": "control-room",
+      "keyword": "productos agotados en delivery",
+      "date": "2026-09-20",
+      "title": "Productos agotados en delivery: cómo medir la disponibilidad de menú por sucursal",
+      "description": "Convierte los productos agotados en delivery en una métrica: tasa de disponibilidad de menú por sucursal, umbrales de alerta y ritual de chequeo por turno.",
+      "path": "/blog/productos-agotados-delivery-disponibilidad-menu",
+      "pathEn": "/en/blog/out-of-stock-delivery-menu-availability",
+      "titleEn": "Out-of-Stock Items in Delivery: Measure Menu Availability by Location",
+      "descriptionEn": "Menu availability rate is the % of active minutes your items are orderable. Learn how to measure it by location, set alert thresholds, and stop losing sales."
     }
   ]
 }

@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Out-of-Stock Items in Delivery: Measure Menu Availability by Location</title>
+    <meta name="description" content="Menu availability rate is the % of active minutes your items are orderable. Learn how to measure it by location, set alert thresholds, and stop losing sales." />
+    <meta name="keywords" content="out-of-stock items delivery, menu availability in delivery apps, how to reduce out-of-stock items multi-location delivery, what is menu availability rate, how much you lose from out-of-stock delivery items, which dishes get paused most across locations, pause item vs mark out of stock, measure menu availability by location, unavailable items delivery sales impact" />
+    <link rel="canonical" href="https://pimenton.io/en/blog/out-of-stock-delivery-menu-availability" />
+    <link rel="alternate" hreflang="es" href="https://pimenton.io/blog/productos-agotados-delivery-disponibilidad-menu" />
+    <link rel="alternate" hreflang="en" href="https://pimenton.io/en/blog/out-of-stock-delivery-menu-availability" />
+    <link rel="alternate" hreflang="x-default" href="https://pimenton.io/blog/productos-agotados-delivery-disponibilidad-menu" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Out-of-Stock Items in Delivery: Measure Menu Availability by Location" />
+    <meta property="og:description" content="Menu availability rate is the % of active minutes your items are orderable. Learn how to measure it by location, set alert thresholds, and stop losing sales." />
+    <meta property="og:url" content="https://pimenton.io/en/blog/out-of-stock-delivery-menu-availability" />
+    <meta property="og:image" content="https://pimenton.io/assets/gallery/dashboard-analisis.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Out-of-Stock Items in Delivery: Measure Menu Availability by Location" />
+    <meta name="twitter:description" content="Menu availability rate is the % of active minutes your items are orderable. Learn how to measure it by location, set alert thresholds, and stop losing sales." />
+    <meta name="twitter:image" content="https://pimenton.io/assets/gallery/dashboard-analisis.webp" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Out-of-Stock Items in Delivery: How to Measure Menu Availability by Location",
+      "description": "Menu availability rate is the % of active minutes your items are orderable. Learn how to measure it by location, set alert thresholds, and stop losing sales.",
+      "inLanguage": "en",
+      "author": {
+            "@type": "Organization",
+            "name": "Control Room by Pimentón",
+            "url": "https://pimenton.io/en"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://pimenton.io/assets/gallery/dashboard-analisis.webp"
+            }
+      },
+      "datePublished": "2026-09-20",
+      "dateModified": "2026-09-20",
+      "mainEntityOfPage": "https://pimenton.io/en/blog/out-of-stock-delivery-menu-availability",
+      "image": "https://pimenton.io/assets/gallery/dashboard-analisis.webp"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "What does it mean when an item is out of stock or paused in a delivery app?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "It means the item can't currently be ordered. There are two causes: a planned pause, where you deliberately turn an item off to protect kitchen speed or margin, and an uncontrolled stockout, where it disappears because prep ran short or nobody re-enabled it. The first is a decision; the second is a lost-sale problem."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "How much do out-of-stock items affect sales?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "More than most teams estimate, because the loss is invisible in the P&L. Every peak minute a top-seller is unavailable is an order you never receive, plus its add-ons and a share of customers who leave the app entirely. Sizing it per top item over a week usually reveals a meaningful, recurring loss."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "How is menu availability rate calculated?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Menu availability rate is the percentage of active operating minutes that an item is orderable. If your kitchen is live 600 minutes and an item is paused for 90, it ran at 85% availability. Measure it per item, per shift, and per location rather than as a single daily average, since a good day-long number can hide a disastrous peak hour."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Why does one location run out of items more than another with the same menu?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Because availability reflects operational discipline, not the menu itself. Two stores with identical dishes differ in prep pars, staging before peak, and whether someone re-enables items on time. The store with a clear owner and a pre-peak check will post higher availability on the same menu."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://pimenton.io/en"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://pimenton.io/en/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Out-of-Stock Items in Delivery: How to Measure Menu Availability by Location",
+                  "item": "https://pimenton.io/en/blog/out-of-stock-delivery-menu-availability"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-control-room">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/en" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-blanco.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/en">Home</a>
+          <a href="/en/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma">
+            <a class="" href="/blog/productos-agotados-delivery-disponibilidad-menu" hreflang="es">ES</a>
+            <a class="active" href="/en/blog/out-of-stock-delivery-menu-availability" hreflang="en">EN</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Control Room · Ops</p>
+          <h1>Out-of-Stock Items in Delivery: How to Measure Menu Availability by Location</h1>
+          <p class="lead-answer"><p><strong>Menu availability rate is the percentage of your operating minutes that a menu item is actually orderable in a delivery app.</strong> Treat out-of-stock not as a kitchen accident but as a measurable ops metric: track it per item, per shift, and per location, then separate <em>planned pauses</em> (a decision) from <em>uncontrolled stockouts</em> (a loss). A dish that sits at 85% availability during peak is silently bleeding sales — every unavailable minute on a high-demand item is an order you never received.</p></p>
+          <p class="byline">By Control Room · 2026-09-20 · 5 min read</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/gallery/dashboard-analisis.webp" alt="Delivery analytics dashboard" width="1200" height="800" loading="eager" />
+  <figcaption>Channel numbers, no drama.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>10'</b><span>daily standup, not an endless meeting</span></div>
+    <div class="blog-stat"><b>3</b><span>layers: daily, weekly, war room</span></div>
+    <div class="blog-stat"><b>1</b><span>board. Everything else is noise</span></div>
+</div>
+<figure class="blog-chart blog-chart--bars" data-blog-visuals="lead">
+  <p class="chart-kicker">Ops ritual</p>
+  <figcaption>What you look at each morning (and in what order)</figcaption>
+  <div class="bars">
+    <div class="bar-row is-accent">
+      <div class="bar-meta"><span>Cancellations / 86s</span><b>1st</b></div>
+      <div class="bar-track"><span class="bar-fill seg-0" style="width:90%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Prep time</span><b>2nd</b></div>
+      <div class="bar-track"><span class="bar-fill seg-1" style="width:75%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Connectivity / stock</span><b>3rd</b></div>
+      <div class="bar-track"><span class="bar-fill seg-2" style="width:62%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ticket and mix</span><b>4th</b></div>
+      <div class="bar-track"><span class="bar-fill seg-3" style="width:50%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ads and ranking</span><b>5th</b></div>
+      <div class="bar-track"><span class="bar-fill seg-4" style="width:38%"></span></div>
+    </div>
+  </div>
+  <p class="chart-note">If the board doesn't fit on one screen, it doesn't get used. Five metrics, owner, threshold, decision.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>Every restaurant on delivery loses orders it never sees. A customer opens the app, wants the top-seller, finds it greyed out, and picks another restaurant. No complaint, no refund, no trace — just a sale that never happened. Most teams treat "out of stock" as a kitchen problem to fix in the moment. The operational shift is to treat it as a <strong>metric you measure, compare across locations, and act on before peak</strong>.</p><h2>What menu availability actually is</h2><p><strong>Menu availability rate is the share of your active operating minutes that an item can be ordered.</strong> If your kitchen is live 600 minutes in a shift and your best-selling burger is paused for 90 of them, that item ran at 85% availability. Simple to define, brutal to ignore once you see it per dish.</p><p>The number matters because it turns a vague feeling ("we ran out of stuff again") into something you can rank, threshold, and assign to a person. You stop arguing about whether availability is "fine" and start reading it like any other operational indicator: green, watch, or act.</p><h3>Pause by decision vs. stock out by loss of control</h3><p>Not every unavailable item is a failure. There are two very different reasons a dish goes dark, and mixing them is the most common mistake:</p><ul><li><strong>Planned pause (a decision):</strong> you turn off a slow, low-margin, or prep-heavy item during peak on purpose to protect kitchen speed. This is control.</li><li><strong>Uncontrolled stockout (a loss):</strong> a high-demand item disappears because prep ran short, someone forgot to re-enable it, or nobody was watching. This is money leaking.</li></ul><p>The same greyed-out dish means opposite things depending on the cause. A healthy availability report tags each pause so a 90% rate driven by deliberate decisions looks nothing like a 90% rate driven by chaos.</p><h2>How much unavailable items cost you</h2><p>The loss is easy to estimate and easy to underestimate. Take a top-seller: if it normally sells 40 units on a Friday night and it's unavailable for a third of peak, you didn't lose a third of 40 — you lost the orders <em>and</em> the add-ons attached to them, plus a share of customers who left the app entirely.</p><p>A quick way to size it per item:</p><ol><li>Estimate the item's orders per available hour during peak.</li><li>Multiply by the hours it was unavailable during peak.</li><li>Multiply by average ticket for orders containing that item.</li></ol><p>Do this for your top five sellers across a week and the number stops being abstract. The point is not drama — it's that <strong>without measuring availability you can't see this loss at all</strong>. It never shows up in your P&L as a line; it hides as sales that simply didn't arrive.</p><h3>Does an out-of-stock item hurt rating or visibility?</h3><p>Indirectly, yes. Repeatedly showing an available item that then can't be fulfilled, or forcing cancellations because something ran out mid-order, feeds bad experiences and cancellations — and those do affect how a location performs on the app. The clean fix is operational: pause honestly and early rather than accept an order you can't deliver.</p><figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/services/service_performance.webp" alt="Ops measuring delivery performance" width="1200" height="800" loading="lazy" />
+  <figcaption>Measure before judging the channel.</figcaption>
+</figure>
+          <h2>How to measure it by location</h2><p>Multi-location is where availability gets interesting, because two stores with the identical menu will post very different rates. One local agrees on prep pars and re-enables items on time; another under-preps and forgets to flip items back on. Same menu, different discipline.</p><p>To compare fairly, measure three dimensions:</p><ul><li><strong>By item:</strong> which dishes go unavailable most, and are they high-sellers?</li><li><strong>By shift:</strong> availability during peak is worth far more than availability at 3 p.m.</li><li><strong>By location:</strong> rank stores so the outlier is obvious without an eternal spreadsheet.</li></ul><p>A useful reference: aim for <strong>high-nineties availability on your top-selling items during peak</strong>, and treat any core seller dropping below the low nineties as an alert, not a footnote. The exact threshold is yours — the discipline is having one.</p><h2>A mini-playbook: from metric to action</h2><p>A metric only matters if it triggers something. Turn availability into a short, boring, repeatable routine:</p><ol><li><strong>Set a threshold per item and shift.</strong> Example: any top-10 seller below 95% availability during peak triggers an alert.</li><li><strong>Name an owner.</strong> One person per location owns menu availability for the shift — usually the shift lead, not "the kitchen" in general.</li><li><strong>Define the trigger and action.</strong> Alert fires → owner checks whether it was a planned pause or a stockout → if stockout, adjust prep par for next service and log it.</li><li><strong>Run a pre-peak check.</strong> Fifteen minutes before each rush, the owner confirms every core seller is live and prep is staged. This one ritual prevents most silent losses.</li></ol><h3>Common mistakes</h3><ul><li>Treating all pauses as equal instead of tagging decision vs. loss.</li><li>Measuring a daily average that hides a disastrous peak hour.</li><li>Fixing availability reactively when a customer complains, instead of before the rush.</li><li>Comparing locations on gut feeling with no per-item, per-shift number.</li></ul><div class="callout"><p><strong>Control Room</strong> is the operational control desk over your delivery: it surfaces which items get paused most, by shift and by location, so you can tell a planned pause from an uncontrolled stockout and act before peak — not after the sales are gone. Want to see menu availability across your stores in one view? <a href="https://wa.me/5491157035170">Talk to us on WhatsApp</a>.</p></div><h2>The takeaway</h2><p>Out-of-stock is not a kitchen accident to shrug off — it's a measurable early-warning signal. Track availability per item, shift, and location; separate decisions from losses; set a threshold with an owner and a trigger; and check core sellers before every rush. That's how a greyed-out dish stops being invisible money and becomes a number you manage.</p>
+          <h2 id="faq">Frequently asked questions</h2>
+          <div class="faq">
+            <details>
+              <summary>What does it mean when an item is out of stock or paused in a delivery app?</summary>
+              <p>It means the item can't currently be ordered. There are two causes: a planned pause, where you deliberately turn an item off to protect kitchen speed or margin, and an uncontrolled stockout, where it disappears because prep ran short or nobody re-enabled it. The first is a decision; the second is a lost-sale problem.</p>
+            </details>
+            <details>
+              <summary>How much do out-of-stock items affect sales?</summary>
+              <p>More than most teams estimate, because the loss is invisible in the P&amp;L. Every peak minute a top-seller is unavailable is an order you never receive, plus its add-ons and a share of customers who leave the app entirely. Sizing it per top item over a week usually reveals a meaningful, recurring loss.</p>
+            </details>
+            <details>
+              <summary>How is menu availability rate calculated?</summary>
+              <p>Menu availability rate is the percentage of active operating minutes that an item is orderable. If your kitchen is live 600 minutes and an item is paused for 90, it ran at 85% availability. Measure it per item, per shift, and per location rather than as a single daily average, since a good day-long number can hide a disastrous peak hour.</p>
+            </details>
+            <details>
+              <summary>Why does one location run out of items more than another with the same menu?</summary>
+              <p>Because availability reflects operational discipline, not the menu itself. Two stores with identical dishes differ in prep pars, staging before peak, and whether someone re-enables items on time. The store with a clear owner and a pre-peak check will post higher availability on the same menu.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>Want clear visibility on your delivery?</h2>
+            <p>Message us on WhatsApp. We'll review what's breaking multi-location rhythm and what to fix first.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Message on WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/en">Home</a> · <a href="/en/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
