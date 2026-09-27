@@ -20,7 +20,8 @@
       "tiempo de preparación delivery",
       "cómo comparar sucursales de delivery",
       "war room operaciones delivery",
-      "productos agotados en delivery"
+      "productos agotados en delivery",
+      "cuándo pausar la tienda en apps de delivery"
     ]
   },
   "published": [
@@ -239,6 +240,18 @@
       "pathEn": "/en/blog/delivery-contribution-margin-per-order",
       "titleEn": "Delivery Contribution Margin Per Order: Formula, Example & Template",
       "descriptionEn": "Learn to calculate delivery contribution margin per order with a clear formula, a line-by-line example and a template that works in LATAM and the USA."
+    },
+    {
+      "slug": "cuando-pausar-tienda-apps-delivery",
+      "destino": "control-room",
+      "keyword": "cuándo pausar la tienda en apps de delivery",
+      "date": "2026-09-27",
+      "title": "¿Cuándo pausar la tienda en apps de delivery? Guía con datos",
+      "description": "Matriz de decisión con umbrales claros para pausar, extender el tiempo de prep o cambiar el ítem agotado cuando la cocina se satura, sin perder margen.",
+      "path": "/blog/cuando-pausar-tienda-apps-delivery",
+      "pathEn": "/en/blog/when-to-pause-store-delivery-apps",
+      "titleEn": "When to Pause Your Store on Delivery Apps: Decide With Data",
+      "descriptionEn": "A data-driven decision matrix to know when to pause your delivery store, extend prep time, or 86 a single item when the kitchen is slammed."
     }
   ]
 }
