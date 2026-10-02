@@ -377,6 +377,25 @@ function countryLabelEs(iso: string, fallback: string): string {
 }
 
 /**
+ * El CRM solo reconoce estos nombres. Cualquier otro país se envía igual
+ * y la oportunidad queda pendiente de revisión manual.
+ * México va sin tilde; USA del form se traduce a "Estados Unidos".
+ */
+const CRM_PAIS: Record<string, string> = {
+  mexico: "Mexico",
+  méxico: "Mexico",
+  usa: "Estados Unidos",
+  "estados unidos": "Estados Unidos",
+  "emiratos arabes unidos": "Emiratos Arabes Unidos",
+  "emiratos árabes unidos": "Emiratos Arabes Unidos",
+};
+
+function crmPais(label: string): string {
+  const key = label.trim().toLocaleLowerCase("es");
+  return CRM_PAIS[key] ?? label.trim();
+}
+
+/**
  * Arma el payload del lead para el webhook del Sheet. Categorías como string
  * separado por coma con labels legibles; país y sucursales en español.
  */
@@ -385,7 +404,7 @@ export function buildLeadPayload(snap: FormSnapshot, lang: Lang): LeadPayload {
     nombre: snap.restaurant.trim(),
     whatsapp: snap.phone.trim(),
     categorias: snap.categories.map(categoryLabelEs).join(", "),
-    pais: countryLabelEs(snap.countryIso, snap.countryLabel),
+    pais: crmPais(countryLabelEs(snap.countryIso, snap.countryLabel)),
     sucursales: sizeLabelEs(snap.size),
     idioma: lang === "en" ? "EN" : "ES",
   };

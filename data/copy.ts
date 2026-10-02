@@ -524,6 +524,15 @@ export const copy = {
         es: "Enviar y abrir WhatsApp",
         en: "Send and open WhatsApp",
       },
+      sendingLabel: { es: "Enviando…", en: "Sending…" },
+      errorInvalid: {
+        es: "Revisa los datos e inténtalo de nuevo.",
+        en: "Check the details and try again.",
+      },
+      errorUnavailable: {
+        es: "No pudimos registrar tu consulta. Inténtalo de nuevo en un momento.",
+        en: "We couldn't register your request. Please try again in a moment.",
+      },
     },
     nav: {
       back: { es: "Atrás", en: "Back" },

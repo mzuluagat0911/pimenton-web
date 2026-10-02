@@ -918,6 +918,9 @@ function SuccessScreen({
 
 export function ConsultationForm() {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const submittedRef = useRef(false);
   const reduced = useReducedMotion() ?? false;
   const formCopy = useCopy().consultationForm;
   const { lang } = useLanguage();
@@ -940,18 +943,34 @@ export function ConsultationForm() {
     };
   }, [state.data]);
 
-  const submitForm = useCallback(() => {
+  const submitForm = useCallback(async () => {
+    if (submitting || submittedRef.current) return;
     if (!isValid(4, state.data)) return;
     const snap = buildSnapshot();
     if (!snap) return;
-    // Respaldo CRM: dispara el lead al Google Sheet en segundo plano. Es un
-    // AÑADIDO a WhatsApp, fire-and-forget y a prueba de fallos — nunca bloquea
-    // ni demora la apertura de WhatsApp (que sigue siendo el canal principal).
-    sendLead(buildLeadPayload(snap, lang));
-    const link = buildWhatsappLink(snap, lang);
-    window.open(link, "_blank", "noopener,noreferrer");
-    dispatch({ type: "next" });
-  }, [state.data, buildSnapshot, lang]);
+
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      const result = await sendLead(buildLeadPayload(snap, lang));
+      if (!result.ok) {
+        setSubmitError(
+          result.kind === "invalid"
+            ? formCopy.step4.errorInvalid
+            : formCopy.step4.errorUnavailable,
+        );
+        return;
+      }
+      submittedRef.current = true;
+      const link = buildWhatsappLink(snap, lang);
+      window.open(link, "_blank", "noopener,noreferrer");
+      dispatch({ type: "next" });
+    } catch {
+      setSubmitError(formCopy.step4.errorUnavailable);
+    } finally {
+      setSubmitting(false);
+    }
+  }, [submitting, state.data, buildSnapshot, lang, formCopy.step4]);
 
   // Para el botón de WhatsApp en success — pre-armamos el link una vez
   // estamos en success (no antes, los datos pueden no estar completos).
@@ -1070,11 +1089,20 @@ export function ConsultationForm() {
           </div>
 
           {/* Footer / navegación */}
-          <div className="mt-8 flex items-center justify-between border-t border-pimenton-border pt-5">
+          <div className="mt-8 border-t border-pimenton-border pt-5">
+            {submitError && (
+              <p
+                role="alert"
+                className="mb-4 text-sm text-pimenton-accent sm:text-base"
+              >
+                {submitError}
+              </p>
+            )}
+            <div className="flex items-center justify-between">
             <button
               type="button"
               onClick={() => dispatch({ type: "back" })}
-              disabled={state.step === 1}
+              disabled={state.step === 1 || submitting}
               className="inline-flex cursor-pointer items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-pimenton-text-soft outline-none transition-colors hover:text-pimenton-text focus-visible:ring-2 focus-visible:ring-pimenton-accent disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:text-pimenton-text-soft sm:text-base"
             >
               <ArrowLeft className="size-4" />
@@ -1084,12 +1112,18 @@ export function ConsultationForm() {
             <button
               type="button"
               onClick={handleNext}
-              disabled={!valid}
+              disabled={!valid || submitting}
+              aria-busy={submitting}
               className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-pimenton-accent px-5 py-3 text-sm font-semibold text-pimenton-bg shadow-md shadow-pimenton-accent/25 outline-none transition-all hover:shadow-pimenton-accent/40 focus-visible:ring-2 focus-visible:ring-pimenton-accent focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none sm:px-6 sm:text-base"
             >
-              {state.step === 4 ? formCopy.step4.submitLabel : formCopy.nav.next}
+              {state.step === 4
+                ? submitting
+                  ? formCopy.step4.sendingLabel
+                  : formCopy.step4.submitLabel
+                : formCopy.nav.next}
               <ArrowRight className="size-4" />
             </button>
+            </div>
           </div>
         </>
       ) : (

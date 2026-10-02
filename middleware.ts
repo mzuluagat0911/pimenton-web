@@ -49,6 +49,6 @@ export const config = {
   // Excluye estáticos con extensión y el blog HTML del motor
   // (/blog y /en/blog viven fuera del App Router + i18n).
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|blog(?:/.*)?|en/blog(?:/.*)?|.*\\..*).*)",
+    "/((?!_next/static|_next/image|favicon.ico|api(?:/.*)?|blog(?:/.*)?|en/blog(?:/.*)?|.*\\..*).*)",
   ],
 };
