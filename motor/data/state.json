@@ -22,7 +22,8 @@
       "cómo comparar sucursales de delivery",
       "war room operaciones delivery",
       "productos agotados en delivery",
-      "cuándo pausar la tienda en apps de delivery"
+      "cuándo pausar la tienda en apps de delivery",
+      "tasa de error en pedidos delivery"
     ]
   },
   "published": [
@@ -265,6 +266,18 @@
       "pathEn": "/en/blog/improve-restaurant-rating-delivery-apps",
       "titleEn": "How to Improve Your Restaurant Rating on Delivery Apps",
       "descriptionEn": "Your delivery app rating is an operational signal you control. Learn the 3 levers behind it and a weekly channel-health scoreboard to recover stars."
+    },
+    {
+      "slug": "tasa-error-pedidos-delivery",
+      "destino": "control-room",
+      "keyword": "tasa de error en pedidos delivery",
+      "date": "2026-10-04",
+      "title": "Tasa de error en pedidos delivery: cómo medirla por sucursal",
+      "description": "La tasa de error en pedidos delivery es pedidos con incidencia sobre pedidos totales. Aprende a medirla, segmentarla por sucursal y reducirla con un playbook.",
+      "path": "/blog/tasa-error-pedidos-delivery",
+      "pathEn": "/en/blog/delivery-order-error-rate-by-location",
+      "titleEn": "Delivery Order Error Rate: Measure & Reduce It by Location",
+      "descriptionEn": "Order error rate = orders with an incident ÷ total orders. Learn to measure, segment by location and shift, set alert thresholds and run a recovery playbook."
     }
   ]
 }

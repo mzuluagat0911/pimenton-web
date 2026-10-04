@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Delivery Order Error Rate: Measure &amp; Reduce It by Location</title>
+    <meta name="description" content="Order error rate = orders with an incident ÷ total orders. Learn to measure, segment by location and shift, set alert thresholds and run a recovery playbook." />
+    <meta name="keywords" content="delivery order error rate, order accuracy restaurant, how to measure delivery order errors, wrong orders multi-location delivery, what is order accuracy in a restaurant, how to reduce delivery dispatch errors, incomplete vs wrong orders delivery, which location fails most on orders" />
+    <link rel="canonical" href="https://pimenton.io/en/blog/delivery-order-error-rate-by-location" />
+    <link rel="alternate" hreflang="es" href="https://pimenton.io/blog/tasa-error-pedidos-delivery" />
+    <link rel="alternate" hreflang="en" href="https://pimenton.io/en/blog/delivery-order-error-rate-by-location" />
+    <link rel="alternate" hreflang="x-default" href="https://pimenton.io/blog/tasa-error-pedidos-delivery" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Delivery Order Error Rate: Measure &amp; Reduce It by Location" />
+    <meta property="og:description" content="Order error rate = orders with an incident ÷ total orders. Learn to measure, segment by location and shift, set alert thresholds and run a recovery playbook." />
+    <meta property="og:url" content="https://pimenton.io/en/blog/delivery-order-error-rate-by-location" />
+    <meta property="og:image" content="https://pimenton.io/assets/gallery/dashboard-analisis.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Delivery Order Error Rate: Measure &amp; Reduce It by Location" />
+    <meta name="twitter:description" content="Order error rate = orders with an incident ÷ total orders. Learn to measure, segment by location and shift, set alert thresholds and run a recovery playbook." />
+    <meta name="twitter:image" content="https://pimenton.io/assets/gallery/dashboard-analisis.webp" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Delivery Order Error Rate: How to Measure and Reduce It by Location",
+      "description": "Order error rate = orders with an incident ÷ total orders. Learn to measure, segment by location and shift, set alert thresholds and run a recovery playbook.",
+      "inLanguage": "en",
+      "author": {
+            "@type": "Organization",
+            "name": "Control Room by Pimentón",
+            "url": "https://pimenton.io/en"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://pimenton.io/assets/gallery/dashboard-analisis.webp"
+            }
+      },
+      "datePublished": "2026-10-04",
+      "dateModified": "2026-10-04",
+      "mainEntityOfPage": "https://pimenton.io/en/blog/delivery-order-error-rate-by-location",
+      "image": "https://pimenton.io/assets/gallery/dashboard-analisis.webp"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "How is delivery order error rate calculated?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Divide the number of orders with any incident (wrong, incomplete, or missing items) by total orders in the same period, then multiply by 100. For comparison across locations, everyone must use the same definition of \"incident\" and always normalize by order volume."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "What order error percentage is acceptable for a restaurant?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "There's no universal standard, but many high-volume delivery operations treat under 1–2% as healthy and flag anything above 2–3% for review. What matters most is setting your own baseline, tracking it weekly, and reacting when a location or shift crosses your threshold."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "What's the difference between an incomplete, wrong, and missing order?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "An incomplete order is correct but missing an item (usually a packing problem). A wrong order has a different item than ordered (usually a prep or ticket problem). A missing order was never handed off correctly or went to the wrong courier (a staging and handoff problem). Each type points to a different fix."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Why does one location get more wrong-item complaints than another?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Usually it's volume, staffing at peak shifts, or a weak packing and ticket-reading process — not luck. Compare error rate normalized by orders, then slice by shift: a location that only breaks at peak has a capacity issue, while one that fails all day has a process or training issue."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Do order errors affect your rating on the apps?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. Wrong, incomplete, or missing orders drive refunds and negative reviews, which pull down your rating. The app surfaces the symptom through ratings and chargebacks, but the cause and the cure are in your operation — the packing station, prep line, and handoff."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "How often should I review order errors per location?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Do a short weekly pass per location plus a monthly cross-location comparison. Weekly cadence catches drift before it damages your rating; monthly review lets you rank locations and spot the shift or error type that repeats."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://pimenton.io/en"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://pimenton.io/en/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Delivery Order Error Rate: How to Measure and Reduce It by Location",
+                  "item": "https://pimenton.io/en/blog/delivery-order-error-rate-by-location"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-control-room">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/en" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-blanco.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/en">Home</a>
+          <a href="/en/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma">
+            <a class="" href="/blog/tasa-error-pedidos-delivery" hreflang="es">ES</a>
+            <a class="active" href="/en/blog/delivery-order-error-rate-by-location" hreflang="en">EN</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Control Room · Ops</p>
+          <h1>Delivery Order Error Rate: How to Measure and Reduce It by Location</h1>
+          <p class="lead-answer"><p><strong>Delivery order error rate is the share of orders that arrive with an incident</strong> — wrong, incomplete, or missing items — divided by total orders in the same period: <em>errors ÷ total orders × 100</em>. Treat it as an operational metric, not a kitchen anecdote: segment it by location, shift, and error type, set an alert threshold (most high-volume operations watch anything above 2–3%), and attach a recovery playbook so every spike turns into a fix.</p></p>
+          <p class="byline">By Control Room · 2026-10-04 · 5 min read</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/gallery/dashboard-analisis.webp" alt="Delivery analytics dashboard" width="1200" height="800" loading="eager" />
+  <figcaption>Channel numbers, no drama.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>10'</b><span>daily standup, not an endless meeting</span></div>
+    <div class="blog-stat"><b>3</b><span>layers: daily, weekly, war room</span></div>
+    <div class="blog-stat"><b>1</b><span>board. Everything else is noise</span></div>
+</div>
+<figure class="blog-chart blog-chart--bars" data-blog-visuals="lead">
+  <p class="chart-kicker">Ops ritual</p>
+  <figcaption>What you look at each morning (and in what order)</figcaption>
+  <div class="bars">
+    <div class="bar-row is-accent">
+      <div class="bar-meta"><span>Cancellations / 86s</span><b>1st</b></div>
+      <div class="bar-track"><span class="bar-fill seg-0" style="width:90%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Prep time</span><b>2nd</b></div>
+      <div class="bar-track"><span class="bar-fill seg-1" style="width:75%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Connectivity / stock</span><b>3rd</b></div>
+      <div class="bar-track"><span class="bar-fill seg-2" style="width:62%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ticket and mix</span><b>4th</b></div>
+      <div class="bar-track"><span class="bar-fill seg-3" style="width:50%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ads and ranking</span><b>5th</b></div>
+      <div class="bar-track"><span class="bar-fill seg-4" style="width:38%"></span></div>
+    </div>
+  </div>
+  <p class="chart-note">If the board doesn't fit on one screen, it doesn't get used. Five metrics, owner, threshold, decision.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>A wrong order feels like a one-off: a missing side, the wrong protein, a forgotten drink. But across several locations and hundreds of orders a week, those "one-offs" become a pattern that quietly erodes your rating, your refunds, and your margin. The food app only shows the symptom — a bad review, a chargeback, a complaint. The cure lives in your operation. To fix it, you first have to measure it.</p><h2>What order accuracy and error rate actually mean</h2><p><strong>Order accuracy is the percentage of orders delivered exactly as the customer ordered them.</strong> The <strong>order error rate</strong> is its mirror: the share of orders with any incident. The formula is simple and should be the same across every location:</p><ul><li><strong>Error rate = orders with an incident ÷ total orders × 100.</strong></li></ul><p>"Incident" needs one shared definition so numbers are comparable. A practical rule: any order where the customer received something different from what they paid for — wrong item, missing item, incomplete combo, or quality failure (cold, spilled, damaged). If each manager counts errors differently, you can't compare locations, and the metric becomes noise.</p><h3>Why it belongs on your control board</h3><p>Error rate is a leading indicator of three things that cost real money: refunds, rating drops, and repeat-customer loss. A single point of error rate across thousands of monthly orders is not cosmetic — it's a line in your P&L. Measuring it weekly turns a vague "we've had some complaints" into a number you can act on.</p><h2>Segment the error, or you'll fix the wrong thing</h2><p>A flat error rate tells you something is wrong; segmentation tells you <em>what</em>. Break the number down along three axes before you touch the kitchen.</p><h3>By error type</h3><p>Three categories cover almost everything, and each points to a different root cause:</p><ul><li><strong>Incomplete order:</strong> the order is right but missing an item (a drink, a sauce, a side). Usually a <em>packing or dispatch</em> problem, not cooking.</li><li><strong>Wrong order:</strong> the customer got a different item than ordered. Often a <em>ticket-reading or station</em> problem.</li><li><strong>Missing order / handoff error:</strong> the whole order was never handed off correctly, or the wrong bag went to the wrong courier. A <em>staging and handoff</em> problem.</li></ul><p>Separating "incomplete" from "wrong" matters because the fixes are opposite: incomplete orders are solved with a packing checklist and a final-item scan; wrong orders are solved at the prep line and ticket flow.</p><h3>By location and shift</h3><p>Once you have a clean, shared definition, rank your locations by error rate — not by raw complaint count, which just reflects volume. The location with 40 complaints and 4,000 orders (1%) is healthier than the one with 20 complaints and 800 orders (2.5%). Then slice by shift: a location that's fine at lunch and breaks at Friday dinner has a <strong>capacity and staffing</strong> problem, not a training problem.</p><figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/services/service_performance.webp" alt="Ops measuring delivery performance" width="1200" height="800" loading="lazy" />
+  <figcaption>Measure before judging the channel.</figcaption>
+</figure>
+          <h2>How to measure it without an Excel marathon</h2><p>You don't need a data team. You need a consistent intake and a weekly cadence.</p><ol><li><strong>Capture every incident in one place.</strong> Pull refunds and complaints from each app, plus internal reports, into a single log with fields: date, location, shift, error type, item, and whether a refund was issued.</li><li><strong>Normalize by volume.</strong> Always divide by total orders for that location and period. Absolute counts hide the real offenders.</li><li><strong>Set a threshold and an alert.</strong> Pick a target (many high-volume delivery operations treat 2–3% as the watch line and under 1–2% as healthy). Any location or shift that crosses it gets flagged — not at month-end, but the same week.</li><li><strong>Review on a fixed rhythm.</strong> A 15-minute weekly pass per location, plus a monthly cross-location comparison, is enough to catch drift before it becomes a rating problem.</li></ol><p>The goal is a number that any manager can read the same way, every week, for every location.</p><h2>How to tell a kitchen error from a dispatch error</h2><p>This is where most operations guess — and guess wrong. Use the error type to route the diagnosis:</p><ul><li>If the item made was <strong>incorrect or poor quality</strong>, it's a <em>kitchen/prep</em> issue: ticket legibility, station load, recipe adherence.</li><li>If the item was <strong>correct but missing or swapped in the bag</strong>, it's a <em>packing/dispatch</em> issue: no final checklist, no label match, bags staged too close together.</li><li>If orders break <strong>only during peak shifts</strong>, it's a <em>capacity</em> issue regardless of category — the process works until volume exceeds it.</li></ul><p>A quick test: pull ten recent incidents at the worst location and tag each as made-wrong vs. packed-wrong. The split tells you where to spend the next fix.</p><h2>From the number to a recovery playbook</h2><p>Measuring is half the job. The other half is a repeatable response so a spike never just "happens again."</p><h3>Prevention side</h3><ul><li><strong>Final-item checklist at packing</strong> — the single highest-leverage fix for incomplete orders.</li><li><strong>Label-to-bag match</strong> before handoff to the courier, to kill swapped orders.</li><li><strong>Peak-shift staffing</strong> at the pack/dispatch station on your worst shifts.</li></ul><h3>Recovery side (when a customer reports a bad order)</h3><ol><li><strong>Resolve fast:</strong> acknowledge, refund or resend per policy, and respond to the review within hours, not days.</li><li><strong>Log it:</strong> every report feeds the same incident log — no exceptions.</li><li><strong>Close the loop:</strong> if one location or shift repeats the same error type, it becomes an agenda item in the next ops review, with an owner and a date.</li></ol><p>Remember the app's role here is neutral: it surfaces the symptom through rating and refunds. Blaming the platform doesn't move your error rate. Fixing the pack station does.</p><div class="callout"><p><strong>Control Room</strong> is Pimentón's operational control table for multi-location delivery. It brings order incidents, refunds, and ratings into one view, normalized by volume, so you can see which location and shift actually fails most — and turn each alert into a recovery action instead of another spreadsheet. Want to set up error-rate tracking across your locations? <a href="https://wa.me/5491157035170">Talk to us on WhatsApp</a>.</p></div><h2>Common mistakes to avoid</h2><ul><li><strong>Counting complaints, not rate.</strong> Raw counts punish your busiest locations and hide low-volume offenders.</li><li><strong>One definition per manager.</strong> If "error" means different things at each site, comparison is meaningless.</li><li><strong>Reviewing monthly.</strong> By month-end the rating damage is done and the shift that caused it is a blur.</li><li><strong>Fixing the kitchen when it's a packing problem</strong> — or vice versa. Segment first, fix second.</li></ul><p>Order error rate is one of the clearest operational signals you have in delivery: defined, countable, comparable, and directly tied to money. Measure it the same way everywhere, watch it weekly, and give every spike an owner and a playbook. That's how a complaint stops being an anecdote and starts being a fix.</p>
+          <h2 id="faq">Frequently asked questions</h2>
+          <div class="faq">
+            <details>
+              <summary>How is delivery order error rate calculated?</summary>
+              <p>Divide the number of orders with any incident (wrong, incomplete, or missing items) by total orders in the same period, then multiply by 100. For comparison across locations, everyone must use the same definition of &quot;incident&quot; and always normalize by order volume.</p>
+            </details>
+            <details>
+              <summary>What order error percentage is acceptable for a restaurant?</summary>
+              <p>There's no universal standard, but many high-volume delivery operations treat under 1–2% as healthy and flag anything above 2–3% for review. What matters most is setting your own baseline, tracking it weekly, and reacting when a location or shift crosses your threshold.</p>
+            </details>
+            <details>
+              <summary>What's the difference between an incomplete, wrong, and missing order?</summary>
+              <p>An incomplete order is correct but missing an item (usually a packing problem). A wrong order has a different item than ordered (usually a prep or ticket problem). A missing order was never handed off correctly or went to the wrong courier (a staging and handoff problem). Each type points to a different fix.</p>
+            </details>
+            <details>
+              <summary>Why does one location get more wrong-item complaints than another?</summary>
+              <p>Usually it's volume, staffing at peak shifts, or a weak packing and ticket-reading process — not luck. Compare error rate normalized by orders, then slice by shift: a location that only breaks at peak has a capacity issue, while one that fails all day has a process or training issue.</p>
+            </details>
+            <details>
+              <summary>Do order errors affect your rating on the apps?</summary>
+              <p>Yes. Wrong, incomplete, or missing orders drive refunds and negative reviews, which pull down your rating. The app surfaces the symptom through ratings and chargebacks, but the cause and the cure are in your operation — the packing station, prep line, and handoff.</p>
+            </details>
+            <details>
+              <summary>How often should I review order errors per location?</summary>
+              <p>Do a short weekly pass per location plus a monthly cross-location comparison. Weekly cadence catches drift before it damages your rating; monthly review lets you rank locations and spot the shift or error type that repeats.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>Want clear visibility on your delivery?</h2>
+            <p>Message us on WhatsApp. We'll review what's breaking multi-location rhythm and what to fix first.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Message on WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/en">Home</a> · <a href="/en/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Tasa de error en pedidos delivery: cómo medirla por sucursal</title>
+    <meta name="description" content="La tasa de error en pedidos delivery es pedidos con incidencia sobre pedidos totales. Aprende a medirla, segmentarla por sucursal y reducirla con un playbook." />
+    <meta name="keywords" content="tasa de error en pedidos delivery, precisión de pedidos en delivery, cómo medir errores en pedidos de delivery, pedidos incorrectos delivery multi-sucursal, qué es order accuracy en un restaurante, cómo reducir errores de despacho en delivery, pedidos incompletos vs pedidos equivocados delivery, cómo saber qué sucursal falla más en los pedidos" />
+    <link rel="canonical" href="https://pimenton.io/blog/tasa-error-pedidos-delivery" />
+    <link rel="alternate" hreflang="es" href="https://pimenton.io/blog/tasa-error-pedidos-delivery" />
+    <link rel="alternate" hreflang="en" href="https://pimenton.io/en/blog/delivery-order-error-rate-by-location" />
+    <link rel="alternate" hreflang="x-default" href="https://pimenton.io/blog/tasa-error-pedidos-delivery" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Tasa de error en pedidos delivery: cómo medirla por sucursal" />
+    <meta property="og:description" content="La tasa de error en pedidos delivery es pedidos con incidencia sobre pedidos totales. Aprende a medirla, segmentarla por sucursal y reducirla con un playbook." />
+    <meta property="og:url" content="https://pimenton.io/blog/tasa-error-pedidos-delivery" />
+    <meta property="og:image" content="https://pimenton.io/assets/gallery/dashboard-analisis.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tasa de error en pedidos delivery: cómo medirla por sucursal" />
+    <meta name="twitter:description" content="La tasa de error en pedidos delivery es pedidos con incidencia sobre pedidos totales. Aprende a medirla, segmentarla por sucursal y reducirla con un playbook." />
+    <meta name="twitter:image" content="https://pimenton.io/assets/gallery/dashboard-analisis.webp" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Tasa de error en pedidos delivery: cómo medirla y reducirla por sucursal",
+      "description": "La tasa de error en pedidos delivery es pedidos con incidencia sobre pedidos totales. Aprende a medirla, segmentarla por sucursal y reducirla con un playbook.",
+      "inLanguage": "es",
+      "author": {
+            "@type": "Organization",
+            "name": "Control Room by Pimentón",
+            "url": "https://pimenton.io/es"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://pimenton.io/assets/gallery/dashboard-analisis.webp"
+            }
+      },
+      "datePublished": "2026-10-04",
+      "dateModified": "2026-10-04",
+      "mainEntityOfPage": "https://pimenton.io/blog/tasa-error-pedidos-delivery",
+      "image": "https://pimenton.io/assets/gallery/dashboard-analisis.webp"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "¿Cómo se calcula la tasa de error de pedidos en delivery?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Se divide la cantidad de pedidos con incidencia (incompleto, equivocado o faltante) por el total de pedidos despachados y se multiplica por 100. Para que sea útil, calculala por sucursal y por turno, no como promedio global, y segmentá por tipo de error."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Qué porcentaje de errores de pedido es aceptable en un restaurante?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Como referencia operativa, por debajo del 2% se considera una operación sana, entre 2% y 4% es zona de atención, y por encima del 4% ya hay un problema sistémico que afecta rating y reembolsos. Lo ideal es fijar un umbral propio por sucursal y vigilar cuándo se supera."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Cuál es la diferencia entre pedido incompleto, equivocado y faltante?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Un pedido incompleto tiene menos ítems de los solicitados (falta algo); un pedido equivocado trae un producto distinto o sin la modificación pedida; un pedido faltante es el que no llegó o fue a otra dirección. Cada tipo apunta a una causa distinta: armado, cocina o logística."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Por qué una sucursal tiene más quejas por producto equivocado que otra?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Normalmente por diferencias en lectura de comanda, cocina o control de salida, no por mala suerte. Segmentando el error por tipo y turno se ve si es un producto puntual, una franja horaria saturada o un paso del armado que falla en ese local específico."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Los errores de pedido afectan el rating en las apps?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Sí. Las apps exponen el síntoma a través del rating, las quejas y los reembolsos, pero la causa está en la operación del restaurante. Reducir la tasa de error en el armado y la cocina es lo que mejora el rating de forma sostenida."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Cada cuánto debería revisar los errores de pedido por local?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Una lectura rápida diaria de incidencias por sucursal, una revisión semanal comparando locales y tipos de error, y un war room puntual cuando una sucursal supera su umbral varios turnos seguidos. La constancia es lo que hace bajar la tasa."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Inicio",
+                  "item": "https://pimenton.io/es"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://pimenton.io/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Tasa de error en pedidos delivery: cómo medirla y reducirla por sucursal",
+                  "item": "https://pimenton.io/blog/tasa-error-pedidos-delivery"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-control-room">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/es" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-blanco.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/es">Inicio</a>
+          <a href="/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma">
+            <a class="active" href="/blog/tasa-error-pedidos-delivery" hreflang="es">ES</a>
+            <a class="" href="/en/blog/delivery-order-error-rate-by-location" hreflang="en">EN</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Control Room · Ops</p>
+          <h1>Tasa de error en pedidos delivery: cómo medirla y reducirla por sucursal</h1>
+          <p class="lead-answer"><p>La <strong>tasa de error en pedidos delivery</strong> es la cantidad de pedidos con alguna incidencia (incompleto, equivocado o faltante) dividida por el total de pedidos despachados, expresada en porcentaje. Se mide por sucursal y turno, se segmenta por tipo de error y se cruza con rating y reembolsos para saber qué local falla más y por qué. Un rango operativo saludable suele estar por debajo del 2–3%; arriba de eso el problema ya es sistémico, no anecdótico.</p></p>
+          <p class="byline">Por Control Room · 2026-10-04 · 5 min de lectura</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/gallery/dashboard-analisis.webp" alt="Tablero de análisis de delivery" width="1200" height="800" loading="eager" />
+  <figcaption>Números del canal, sin drama.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>10'</b><span>standup diario, no una reunión eterna</span></div>
+    <div class="blog-stat"><b>3</b><span>capas: diario, weekly, war room</span></div>
+    <div class="blog-stat"><b>1</b><span>tablero. El resto es ruido</span></div>
+</div>
+<figure class="blog-chart blog-chart--bars" data-blog-visuals="lead">
+  <p class="chart-kicker">Ritual de ops</p>
+  <figcaption>Qué se mira cada mañana (y en qué orden)</figcaption>
+  <div class="bars">
+    <div class="bar-row is-accent">
+      <div class="bar-meta"><span>Cancelaciones / 86</span><b>1º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-0" style="width:90%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Tiempo de prep</span><b>2º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-1" style="width:75%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Conectividad / stock</span><b>3º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-2" style="width:62%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ticket y mix</span><b>4º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-3" style="width:50%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ads y ranking</span><b>5º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-4" style="width:38%"></span></div>
+    </div>
+  </div>
+  <p class="chart-note">Si el tablero no cabe en una pantalla, no se usa. Cinco indicadores, dueño, umbral, decisión.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>En una operación multi-sucursal, un pedido mal despachado no es una anécdota de cocina: es un dato. Si se repite, se convierte en un patrón que te cuesta reembolsos, baja el rating y erosiona el margen que tanto peleás. El problema no es la app que expone la queja; el problema es operar sin medir dónde y por qué se rompe el pedido. Tratar el error como <strong>métrica de control operativo</strong> es lo que separa a quien apaga incendios de quien los previene.</p><h2>Qué es la tasa de error en pedidos delivery</h2><p>La <strong>order accuracy</strong> —o su inverso, la tasa de error— mide cuántos pedidos salieron mal respecto al total. La fórmula es simple:</p><ul><li><strong>Tasa de error = pedidos con incidencia / pedidos totales × 100.</strong></li></ul><p>Un "pedido con incidencia" es cualquiera que generó una queja, un reembolso o una devolución por contenido: producto equivocado, faltante, incompleto o mal armado. La métrica sirve de verdad cuando la calculás <strong>por sucursal y por turno</strong>, no como promedio global. El promedio esconde que un local en horario pico concentra el 70% de los errores mientras otro va limpio.</p><h3>Pedido incompleto vs. equivocado vs. faltante</h3><p>Medir sin segmentar es medir a medias. Los tres tipos más comunes son:</p><ul><li><strong>Pedido incompleto:</strong> falta un ítem del pedido (se pidieron 3 productos, llegaron 2). Suele ser error de armado o despacho.</li><li><strong>Pedido equivocado:</strong> llegó un producto distinto al solicitado (otra variante, otro sabor, sin la modificación). Suele ser error de lectura de comanda o de cocina.</li><li><strong>Pedido faltante / no entregado:</strong> el pedido completo no llegó o llegó a otra dirección. Acá pesa la logística y el handoff con el repartidor.</li></ul><p>Cada tipo apunta a una causa distinta. Si no separás, aplicás el remedio equivocado.</p><h2>Cómo medirla por sucursal y turno</h2><p>El objetivo es que la métrica sea <strong>comparable</strong> entre locales. Para eso necesitás una definición única de "incidencia" y una fuente consistente de datos. Los pasos mínimos:</p><ol><li><strong>Definí qué cuenta como error</strong> y comunicalo igual en todos los locales. Un reembolso parcial por un ítem faltante es una incidencia; una demora sin producto mal, no.</li><li><strong>Registrá el total de pedidos</strong> por sucursal y franja horaria (almuerzo, cena, pico de fin de semana).</li><li><strong>Etiquetá cada incidencia por tipo</strong> (incompleto / equivocado / faltante) y por origen probable (cocina / empaque / logística).</li><li><strong>Calculá la tasa</strong> local por local y ordená de peor a mejor.</li></ol><p>Así respondés la pregunta clave: <em>¿qué sucursal falla más en los pedidos y en qué turno?</em> No es lo mismo un local con 1,5% repartido parejo que otro con 4% concentrado en la cena del viernes: el segundo tiene un cuello de botella específico que podés atacar.</p><h3>Cómo diferenciar error de cocina de error de despacho</h3><p>Es la distinción que más ahorra tiempo. Un <strong>error de cocina</strong> produce producto equivocado o mal preparado: la hamburguesa salió con cebolla cuando se pidió sin. Un <strong>error de empaque/despacho</strong> produce faltantes e incompletos: el producto estaba bien hecho pero no entró a la bolsa, o se mezcló con otro pedido. La señal rápida: si predominan los "equivocados", mirá comanda y cocina; si predominan los "faltantes/incompletos", mirá la estación de armado y el check de salida.</p><figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/services/service_performance.webp" alt="Operación midiendo performance de delivery" width="1200" height="800" loading="lazy" />
+  <figcaption>Medir antes de opinar del canal.</figcaption>
+</figure>
+          <h2>Umbrales de alerta: cuándo preocuparse</h2><p>No existe un número oficial universal, pero como referencia operativa:</p><ul><li><strong>Por debajo de 2%:</strong> operación sana, ruido normal.</li><li><strong>2% a 4%:</strong> zona de atención, revisar por tipo y turno.</li><li><strong>Arriba de 4%:</strong> problema sistémico; el rating y los reembolsos ya te están pegando.</li></ul><p>Lo importante no es clavar un número mágico sino fijar <strong>un umbral propio</strong> por sucursal y que salte una alerta cuando se supera dos turnos seguidos. Ahí el dato deja de ser reporte y pasa a ser disparador de acción.</p><h2>Errores comunes al medir (y al no medir)</h2><ul><li><strong>Usar solo el promedio global:</strong> esconde al local que arrastra el número.</li><li><strong>No separar tipo de error:</strong> te lleva a capacitar cocina cuando el problema es el empaque.</li><li><strong>Confundir síntoma con causa:</strong> el rating en la app y los reembolsos son el <em>síntoma</em>; la plataforma solo lo expone. La cura está en tu estación de armado y tu comanda.</li><li><strong>No cerrar el loop:</strong> detectar el error y no tener un playbook de recovery es quedarse a mitad de camino.</li></ul><h2>De dato a acción: playbook de recovery</h2><p>La métrica recién sirve cuando dispara una respuesta estandarizada. Qué hacer cuando un cliente reporta un pedido mal:</p><ol><li><strong>Resolver con el cliente</strong> primero: reposición o reembolso rápido según política, sin fricción.</li><li><strong>Registrar la incidencia</strong> con tipo, turno y sucursal —ese dato alimenta la tasa.</li><li><strong>Buscar el patrón:</strong> ¿es un producto puntual, un turno, una persona en armado?</li><li><strong>Ajustar el punto que falla:</strong> doble check de salida, foto del armado, comanda más clara, re-briefing de un ítem conflictivo.</li><li><strong>Verificar en la próxima revisión</strong> que la tasa bajó donde actuaste.</li></ol><div class="callout"><p><strong>Control Room</strong> es la mesa de control operativa de Pimentón: te muestra la tasa de error por sucursal y turno, dispara alertas cuando un local supera su umbral y conecta cada incidencia con rating y reembolsos para que sepas dónde actuar primero. Menos Excel eterno, más decisiones de turno. ¿Querés verlo con tus locales? <a href="https://wa.me/5491157035170">Escribinos por WhatsApp</a>.</p></div><h2>Cadencia de revisión</h2><p>Un error aislado se atiende en el momento; el patrón se revisa con ritmo. Una cadencia que funciona: <strong>lectura diaria rápida</strong> de incidencias por local, <strong>revisión semanal</strong> comparando sucursales y tipos de error, y un <strong>war room</strong> puntual cuando una sucursal rompe su umbral varios turnos seguidos. La disciplina de mirar siempre lo mismo es lo que hace que la tasa baje y se quede baja.</p>
+          <h2 id="faq">Preguntas frecuentes</h2>
+          <div class="faq">
+            <details>
+              <summary>¿Cómo se calcula la tasa de error de pedidos en delivery?</summary>
+              <p>Se divide la cantidad de pedidos con incidencia (incompleto, equivocado o faltante) por el total de pedidos despachados y se multiplica por 100. Para que sea útil, calculala por sucursal y por turno, no como promedio global, y segmentá por tipo de error.</p>
+            </details>
+            <details>
+              <summary>¿Qué porcentaje de errores de pedido es aceptable en un restaurante?</summary>
+              <p>Como referencia operativa, por debajo del 2% se considera una operación sana, entre 2% y 4% es zona de atención, y por encima del 4% ya hay un problema sistémico que afecta rating y reembolsos. Lo ideal es fijar un umbral propio por sucursal y vigilar cuándo se supera.</p>
+            </details>
+            <details>
+              <summary>¿Cuál es la diferencia entre pedido incompleto, equivocado y faltante?</summary>
+              <p>Un pedido incompleto tiene menos ítems de los solicitados (falta algo); un pedido equivocado trae un producto distinto o sin la modificación pedida; un pedido faltante es el que no llegó o fue a otra dirección. Cada tipo apunta a una causa distinta: armado, cocina o logística.</p>
+            </details>
+            <details>
+              <summary>¿Por qué una sucursal tiene más quejas por producto equivocado que otra?</summary>
+              <p>Normalmente por diferencias en lectura de comanda, cocina o control de salida, no por mala suerte. Segmentando el error por tipo y turno se ve si es un producto puntual, una franja horaria saturada o un paso del armado que falla en ese local específico.</p>
+            </details>
+            <details>
+              <summary>¿Los errores de pedido afectan el rating en las apps?</summary>
+              <p>Sí. Las apps exponen el síntoma a través del rating, las quejas y los reembolsos, pero la causa está en la operación del restaurante. Reducir la tasa de error en el armado y la cocina es lo que mejora el rating de forma sostenida.</p>
+            </details>
+            <details>
+              <summary>¿Cada cuánto debería revisar los errores de pedido por local?</summary>
+              <p>Una lectura rápida diaria de incidencias por sucursal, una revisión semanal comparando locales y tipos de error, y un war room puntual cuando una sucursal supera su umbral varios turnos seguidos. La constancia es lo que hace bajar la tasa.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>¿Quieres ver tu delivery con claridad?</h2>
+            <p>Escríbenos por WhatsApp. Revisamos qué está rompiendo el ritmo multi-sucursal y qué mover primero.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/es">Inicio</a> · <a href="/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
