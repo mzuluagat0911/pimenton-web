@@ -4,6 +4,7 @@ import { dirname, join } from "node:path";
 import { log } from "../lib/logger.js";
 import { env } from "../config/env.js";
 import { renderArticle, type ArticleDraft } from "../render/template.js";
+import { linkCoverPair } from "../render/visuals.js";
 import { renderBlogIndex, renderBlogTeaserCards } from "../render/blogIndex.js";
 import { renderSitemap } from "../render/sitemap.js";
 import type { Destino, Idea, Language, WriterOutput } from "../types.js";
@@ -63,6 +64,7 @@ export async function publishIdea(destino: Destino, idea: Idea): Promise<Publish
   const esPath = `/blog/${es.slug}`;
   const enPath = `/en/blog/${en.slug}`;
   const ctx = { siteUrl: env.SITE_URL, esPath, enPath };
+  linkCoverPair(es.slug, en.slug);
 
   const esHtml = renderArticle(toArticle(destino, "es", es, date), ctx);
   const enHtml = renderArticle(toArticle(destino, "en", en, date), ctx);
@@ -98,6 +100,7 @@ export function publishDrafts(
   const esPath = `/blog/${es.slug}`;
   const enPath = `/en/blog/${en.slug}`;
   const ctx = { siteUrl: env.SITE_URL, esPath, enPath };
+  linkCoverPair(es.slug, en.slug);
 
   const esHtml = renderArticle(toArticle(destino, "es", es, date), ctx);
   const enHtml = renderArticle(toArticle(destino, "en", en, date), ctx);

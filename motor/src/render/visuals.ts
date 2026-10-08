@@ -11,6 +11,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { canonicalSiteUrl } from "../config/site-url.js";
 
 export type VisualLang = "es" | "en";
 
@@ -72,6 +73,24 @@ const IMG = {
   equipo1: "/assets/equipo/equipo-valor-1-v2.webp",
   equipo2: "/assets/equipo/equipo-valor-2-v2.webp",
   equipo3: "/assets/equipo/equipo-valor-3-v2.webp",
+  equipoCompleto: "/assets/equipo/equipo-completo-v2.webp",
+  equipoHero: "/assets/video/equipo-hero-desktop-poster.webp",
+  coverPass: "/assets/blog-covers/cover-pass-bags.jpg",
+  coverBurgerBox: "/assets/blog-covers/cover-burger-box.jpg",
+  coverPizza: "/assets/blog-covers/cover-pizza-peel.jpg",
+  coverSushiBox: "/assets/blog-covers/cover-sushi-box.jpg",
+  coverCourierWindow: "/assets/blog-covers/cover-courier-window.jpg",
+  coverMise: "/assets/blog-covers/cover-mise-en-place.jpg",
+  coverStorefronts: "/assets/blog-covers/cover-two-storefronts.jpg",
+  coverHuddle: "/assets/blog-covers/cover-huddle.jpg",
+  coverPackaging: "/assets/blog-covers/cover-packaging-line.jpg",
+  coverEmpanadas: "/assets/blog-covers/cover-empanadas.jpg",
+  coverTacos: "/assets/blog-covers/cover-tacos.jpg",
+  coverPastry: "/assets/blog-covers/cover-coffee-pastry.jpg",
+  coverInventory: "/assets/blog-covers/cover-inventory.jpg",
+  coverTablet: "/assets/blog-covers/cover-tablet-expo.jpg",
+  coverDining: "/assets/blog-covers/cover-dining-bags.jpg",
+  coverGrill: "/assets/blog-covers/cover-grill.jpg",
 } as const;
 
 /** EN → ES para que el par bilingüe comparta la misma portada. */
@@ -92,10 +111,54 @@ const SLUG_CANONICAL: Record<string, string> = {
   "delivery-app-promotions-worth-it": "promociones-apps-delivery-cuales-convienen",
   "delivery-war-room-multi-location-ops": "war-room-operaciones-delivery",
   "delivery-packaging-cost-per-order": "cuanto-cuesta-packaging-delivery-pnl",
+  "out-of-stock-delivery-menu-availability": "productos-agotados-delivery-disponibilidad-menu",
+  "delivery-contribution-margin-per-order": "margen-contribucion-pedido-delivery",
+  "when-to-pause-store-delivery-apps": "cuando-pausar-tienda-apps-delivery",
+  "improve-restaurant-rating-delivery-apps": "como-mejorar-rating-apps-delivery",
+  "delivery-order-error-rate-by-location": "tasa-error-pedidos-delivery",
 };
 
+/** Pares EN→ES registrados en esta corrida, antes de que state.json los tenga. */
+const runtimePairs = new Map<string, string>();
+
+/**
+ * El artículo EN y el ES son el mismo post: comparten portada.
+ * Llamar antes de renderizar el par, si todavía no está en state.json.
+ */
+export function linkCoverPair(esSlug: string, enSlug: string): void {
+  if (enSlug && enSlug !== esSlug) runtimePairs.set(enSlug, esSlug);
+  resetVisualAssignments();
+}
+
+let pairCache: Map<string, string> | null = null;
+
+function slugPairs(): Map<string, string> {
+  if (pairCache) return pairCache;
+  const map = new Map<string, string>([
+    ...Object.entries(SLUG_CANONICAL),
+    ...runtimePairs,
+  ]);
+  const here = dirname(fileURLToPath(import.meta.url));
+  const statePath = join(here, "..", "..", "data", "state.json");
+  if (existsSync(statePath)) {
+    try {
+      const raw = JSON.parse(readFileSync(statePath, "utf8")) as {
+        published?: { slug?: string; pathEn?: string }[];
+      };
+      for (const p of raw.published ?? []) {
+        const en = p.pathEn?.split("/").pop();
+        if (p.slug && en) map.set(en, p.slug);
+      }
+    } catch {
+      /* ignore */
+    }
+  }
+  pairCache = map;
+  return map;
+}
+
 function canonicalSlug(slug: string): string {
-  return SLUG_CANONICAL[slug] ?? slug;
+  return slugPairs().get(slug) ?? slug;
 }
 
 function asset(
@@ -138,6 +201,24 @@ const COVER_POOL: CoverAsset[] = [
   asset(IMG.equipo1, "Equipo de ops en acción", "Ops team in action", "Personas detrás del ritual diario.", "People behind the daily ritual."),
   asset(IMG.equipo2, "Equipo revisando números de delivery", "Team reviewing delivery numbers", "Datos con dueño.", "Data with an owner."),
   asset(IMG.equipo3, "Equipo de growth gastronómico", "Foodservice growth team", "Criterio de restaurante, no de slide.", "Restaurant judgment, not slideware."),
+  asset(IMG.equipoCompleto, "Equipo de Pimentón junto", "Pimentón team together", "La operación tiene dueños.", "The operation has owners."),
+  asset(IMG.equipoHero, "Equipo en la operación diaria", "Team in the daily operation", "Personas, no solo tableros.", "People, not just dashboards."),
+  asset(IMG.coverPass, "Bolsas de delivery en el pase", "Delivery bags at the pass", "El pase es donde se gana el pedido.", "The pass is where the order is won."),
+  asset(IMG.coverBurgerBox, "Burger entrando a la caja de delivery", "Burger going into a delivery box", "Empaque y presentación viajan juntos.", "Packaging and presentation travel together."),
+  asset(IMG.coverPizza, "Pizza saliendo del horno para delivery", "Pizza leaving the oven for delivery", "El horno marca el reloj del canal.", "The oven sets the channel clock."),
+  asset(IMG.coverSushiBox, "Sushi armado para llevar", "Sushi packed to go", "El armado también es margen.", "Plating is margin too."),
+  asset(IMG.coverCourierWindow, "Ventana de retiro para repartidores", "Courier pickup window", "La última milla empieza en el local.", "Last mile starts at the store."),
+  asset(IMG.coverMise, "Mise en place antes del servicio", "Mise en place before service", "Si falta insumo, falla el pedido.", "If an item is missing, the order fails."),
+  asset(IMG.coverStorefronts, "Dos locales de la misma calle", "Two storefronts on the same street", "Cada local es una operación distinta.", "Each location is its own operation."),
+  asset(IMG.coverHuddle, "Reunión corta de cocina antes del turno", "Short kitchen huddle before the shift", "Diez minutos alinean el turno.", "Ten minutes align the shift."),
+  asset(IMG.coverPackaging, "Estación de packaging de delivery", "Delivery packaging station", "Caja, bolsa y sello son costo.", "Box, bag, and seal are cost."),
+  asset(IMG.coverEmpanadas, "Empanadas listas para despachar", "Empanadas ready to dispatch", "Volumen con el mismo estándar.", "Volume with the same standard."),
+  asset(IMG.coverTacos, "Tacos porcionados para llevar", "Tacos portioned for takeaway", "La porción define el ticket.", "The portion defines the ticket."),
+  asset(IMG.coverPastry, "Café y medialunas para delivery de mañana", "Coffee and pastries for the morning delivery", "El turno de la mañana también es canal.", "The morning shift is a channel too."),
+  asset(IMG.coverInventory, "Depósito de insumos del restaurante", "Restaurant ingredient storage", "Stock corto se ve en cancelaciones.", "Short stock shows up as cancellations."),
+  asset(IMG.coverTablet, "Tablet de expo en la cocina", "Expo tablet in the kitchen", "Un tablero, un dueño, un umbral.", "One board, one owner, one threshold."),
+  asset(IMG.coverDining, "Bolsas de delivery en el salón", "Delivery bags in the dining room", "El canal convive con el salón.", "The channel lives next to the dining room."),
+  asset(IMG.coverGrill, "Parrilla en hora pico", "Grill at peak hour", "El pico no perdona el prep time.", "Peak hour does not forgive prep time."),
 ];
 
 /** Portada única por artículo — el índice y los teasers no deben repetir foto. */
@@ -1349,17 +1430,26 @@ function buildUniqueAssignments(
   return map;
 }
 
+function takeUnused(pool: CoverAsset[], used: Set<string>, avoid?: string): CoverAsset | undefined {
+  return pool.find((a) => !used.has(a.src) && a.src !== avoid);
+}
+
 function uniqueCoverFor(slug: string): CoverAsset {
   if (!coverAssignments) {
     coverAssignments = buildUniqueAssignments(COVER_BY_SLUG, COVER_POOL);
   }
   const key = canonicalSlug(slug);
-  return (
-    coverAssignments.get(key) ??
-    COVER_BY_SLUG[slug] ??
-    COVER_BY_SLUG[key] ??
-    COVER_POOL[0]!
-  );
+  const hit = coverAssignments.get(key);
+  if (hit) return hit;
+  const used = new Set([...coverAssignments.values()].map((a) => a.src));
+  const pick = takeUnused(COVER_POOL, used);
+  if (!pick) {
+    throw new Error(
+      `No quedan portadas únicas para "${key}". Ampliá COVER_POOL o revisá preferencias duplicadas.`,
+    );
+  }
+  coverAssignments.set(key, pick);
+  return pick;
 }
 
 function uniqueMidFor(slug: string): CoverAsset {
@@ -1370,14 +1460,19 @@ function uniqueMidFor(slug: string): CoverAsset {
   }
   const key = canonicalSlug(slug);
   const coverSrc = uniqueCoverFor(key).src;
-  const mid =
-    midAssignments.get(key) ??
-    MID_BY_SLUG[slug] ??
-    MID_BY_SLUG[key] ??
-    COVER_POOL.find((a) => a.src !== coverSrc) ??
-    COVER_POOL[1]!;
+  let mid = midAssignments.get(key);
+  if (!mid) {
+    const used = new Set([...midAssignments.values()].map((a) => a.src));
+    mid = takeUnused(COVER_POOL, used, coverSrc);
+    if (!mid) {
+      throw new Error(
+        `No quedan fotos de apoyo únicas para "${key}". Ampliá COVER_POOL.`,
+      );
+    }
+    midAssignments.set(key, mid);
+  }
   if (mid.src === coverSrc) {
-    return COVER_POOL.find((a) => a.src !== coverSrc) ?? mid;
+    return takeUnused(COVER_POOL, new Set(), coverSrc) ?? mid;
   }
   return mid;
 }
@@ -1386,6 +1481,7 @@ function uniqueMidFor(slug: string): CoverAsset {
 export function resetVisualAssignments(): void {
   coverAssignments = null;
   midAssignments = null;
+  pairCache = null;
 }
 
 export function leadVisualHtml(slug: string, lang: VisualLang): string {
@@ -1423,7 +1519,7 @@ export function injectArticleVisuals(html: string, slug: string, lang: VisualLan
   out = out.replace(LEAD_RE, "").replace(MID_RE, "");
 
   const cover = coverFor(slug);
-  const coverAbs = `https://pimenton.io${cover.src}`;
+  const coverAbs = `${canonicalSiteUrl(process.env.SITE_URL)}${cover.src}`;
   // Mantener OG / Twitter / JSON-LD alineados con la portada única del artículo.
   out = out.replace(
     /(<meta property="og:image" content=")[^"]*("\s*\/?>)/,
