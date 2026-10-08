@@ -10,7 +10,8 @@
       "promociones en apps de delivery: cuáles convienen",
       "cuánto cuesta el packaging en delivery",
       "margen de contribución por pedido de delivery",
-      "cómo mejorar el rating en apps de delivery"
+      "cómo mejorar el rating en apps de delivery",
+      "punto de equilibrio delivery restaurante"
     ],
     "control-room": [
       "qué indicadores revisar delivery multi-sucursal",
@@ -278,6 +279,18 @@
       "pathEn": "/en/blog/delivery-order-error-rate-by-location",
       "titleEn": "Delivery Order Error Rate: Measure & Reduce It by Location",
       "descriptionEn": "Order error rate = orders with an incident ÷ total orders. Learn to measure, segment by location and shift, set alert thresholds and run a recovery playbook."
+    },
+    {
+      "slug": "punto-de-equilibrio-delivery-restaurante",
+      "destino": "pimenton",
+      "keyword": "punto de equilibrio delivery restaurante",
+      "date": "2026-10-08",
+      "title": "Punto de equilibrio del delivery: cuántos pedidos por día necesita tu restaurante",
+      "description": "Fórmula clara para calcular el punto de equilibrio del delivery: divide tu costo fijo asignable entre la contribución por pedido y sabe cuántos pedidos/día necesitas.",
+      "path": "/blog/punto-de-equilibrio-delivery-restaurante",
+      "pathEn": "/en/blog/delivery-break-even-point-orders-per-day",
+      "titleEn": "Delivery Break-Even Point: How Many Orders Per Day to Make the Channel Pay",
+      "descriptionEn": "Learn the exact formula to calculate your delivery break-even point: assignable fixed costs divided by contribution per order. Worked examples for LATAM and USA."
     }
   ]
 }
