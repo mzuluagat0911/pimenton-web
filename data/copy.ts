@@ -163,23 +163,20 @@ export const copy = {
       es: "Tu delivery cambia cuando alguien lo opera en serio.",
       en: "Your delivery changes when someone runs it for real.",
     },
+    // Debe ser substring EXACTO del heading en cada idioma (splitHighlight).
+    headingAccent: {
+      es: "opera en serio.",
+      en: "runs it for real.",
+    },
     off: {
       title: { es: "Sin Pimentón", en: "Without Pimentón" },
       footer: { es: "A ciegas", en: "Flying blind" },
-      toggleKicker: { es: "Prueba la diferencia", en: "See the difference" },
-      toggleLabel: { es: "Activa Pimentón", en: "Turn on Pimentón" },
     },
     on: {
       title: { es: "Con Pimentón", en: "With Pimentón" },
       footer: { es: "Con datos reales", en: "With real data" },
-      toggleKicker: { es: "Pimentón activo", en: "Pimentón on" },
-      toggleLabel: { es: "Toca para desactivar", en: "Tap to turn off" },
     },
     footerLabel: { es: "Decisiones de canal", en: "Channel decisions" },
-    toggleAria: {
-      es: "Activar Pimentón en mi delivery",
-      en: "Turn on Pimentón for my delivery",
-    },
     items: [
       {
         off: {
