@@ -24,7 +24,8 @@
       "war room operaciones delivery",
       "productos agotados en delivery",
       "cuándo pausar la tienda en apps de delivery",
-      "tasa de error en pedidos delivery"
+      "tasa de error en pedidos delivery",
+      "qué hacer cuando un indicador de delivery se dispara"
     ]
   },
   "published": [
@@ -291,6 +292,18 @@
       "pathEn": "/en/blog/delivery-break-even-point-orders-per-day",
       "titleEn": "Delivery Break-Even Point: How Many Orders Per Day to Make the Channel Pay",
       "descriptionEn": "Learn the exact formula to calculate your delivery break-even point: assignable fixed costs divided by contribution per order. Worked examples for LATAM and USA."
+    },
+    {
+      "slug": "que-hacer-cuando-indicador-delivery-se-dispara",
+      "destino": "control-room",
+      "keyword": "qué hacer cuando un indicador de delivery se dispara",
+      "date": "2026-10-11",
+      "title": "De la alerta al playbook de delivery: cómo actuar cuando un indicador se dispara",
+      "description": "Qué hacer cuando un indicador de delivery se dispara: playbooks condicionales (si X → mirá Y → movés Z) para tiempos, ventas, cancelaciones y rating.",
+      "path": "/blog/que-hacer-cuando-indicador-delivery-se-dispara",
+      "pathEn": "/en/blog/delivery-metric-spike-playbook",
+      "titleEn": "From Alert to Playbook: Delivery Metric Response Guide",
+      "descriptionEn": "When a delivery metric spikes, use an if-then playbook: look here, move this, assign an owner, set a deadline. Four concrete ops plays inside."
     }
   ]
 }

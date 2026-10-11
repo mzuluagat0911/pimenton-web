@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>From Alert to Playbook: Delivery Metric Response Guide</title>
+    <meta name="description" content="When a delivery metric spikes, use an if-then playbook: look here, move this, assign an owner, set a deadline. Four concrete ops plays inside." />
+    <meta name="keywords" content="what to do when a delivery metric spikes, delivery operations playbook, how to turn a delivery metric into action, delivery time spike protocol, dropping sales in a delivery location, delivery manager operations playbook, how to prioritize operational problems, delivery alert thresholds, from KPI to decision in restaurant operations, how to document a delivery operating procedure" />
+    <link rel="canonical" href="https://pimenton.io/en/blog/delivery-metric-spike-playbook" />
+    <link rel="alternate" hreflang="es" href="https://pimenton.io/blog/que-hacer-cuando-indicador-delivery-se-dispara" />
+    <link rel="alternate" hreflang="en" href="https://pimenton.io/en/blog/delivery-metric-spike-playbook" />
+    <link rel="alternate" hreflang="x-default" href="https://pimenton.io/blog/que-hacer-cuando-indicador-delivery-se-dispara" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="From Alert to Playbook: Delivery Metric Response Guide" />
+    <meta property="og:description" content="When a delivery metric spikes, use an if-then playbook: look here, move this, assign an owner, set a deadline. Four concrete ops plays inside." />
+    <meta property="og:url" content="https://pimenton.io/en/blog/delivery-metric-spike-playbook" />
+    <meta property="og:image" content="https://www.pimenton.io/assets/reseñas/background-resenas.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="From Alert to Playbook: Delivery Metric Response Guide" />
+    <meta name="twitter:description" content="When a delivery metric spikes, use an if-then playbook: look here, move this, assign an owner, set a deadline. Four concrete ops plays inside." />
+    <meta name="twitter:image" content="https://www.pimenton.io/assets/reseñas/background-resenas.webp" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "From Alert to Playbook: What to Do When a Delivery Metric Spikes",
+      "description": "When a delivery metric spikes, use an if-then playbook: look here, move this, assign an owner, set a deadline. Four concrete ops plays inside.",
+      "inLanguage": "en",
+      "author": {
+            "@type": "Organization",
+            "name": "Control Room by Pimentón",
+            "url": "https://pimenton.io/en"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.pimenton.io/assets/reseñas/background-resenas.webp"
+            }
+      },
+      "datePublished": "2026-10-11",
+      "dateModified": "2026-10-11",
+      "mainEntityOfPage": "https://pimenton.io/en/blog/delivery-metric-spike-playbook",
+      "image": "https://www.pimenton.io/assets/reseñas/background-resenas.webp"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "How do I know if an alert needs immediate action or can wait until shift close?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Ask whether the problem is compounding right now. If each minute makes it worse — delivery times climbing during peak, a live cancellation streak, a store offline — act mid-shift. If it's a one-off or a slow trend, handle it at close or in your weekly review."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "What do I do first if delivery times and cancellations spike at the same time?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Treat them as one incident and attack the time first, since rising times usually cause the cancellations downstream. Relieve the kitchen bottleneck or throttle incoming orders, then re-check whether cancellations drain on their own before acting on them separately."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "How do you turn a KPI into a repeatable procedure?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Write it as one line: trigger → inspect → action → owner → deadline. Store it where the shift can reach it, run it the same way every time, and update the thresholds as your baselines change. Repetition is what turns a metric into a reflex."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "What threshold of rating, time, or cancellation justifies intervening?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Use each store's own trailing average as the baseline rather than a universal number. Intervene when a metric breaks its normal band for two or more consecutive time slots, or when cancellations or negative comments cluster around the same cause."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Who executes the action — the store or the operations center?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The store's shift lead or manager usually executes, because the levers are in the kitchen, the shift, and the handoff. The operations center sets thresholds, verifies visibility from the outside, tracks patterns across stores, and escalates when a local fix isn't working."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "How do I stop firefighting the same location over and over?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "If one store absorbs all your attention, the cause is structural — staffing, layout, or routing — not a daily incident. Log repeat events, look for the common trigger, and fix the root once instead of running the same play every shift."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://pimenton.io/en"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://pimenton.io/en/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "From Alert to Playbook: What to Do When a Delivery Metric Spikes",
+                  "item": "https://pimenton.io/en/blog/delivery-metric-spike-playbook"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-control-room">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/en" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-blanco.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/en">Home</a>
+          <a href="/en/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma">
+            <a class="" href="/blog/que-hacer-cuando-indicador-delivery-se-dispara" hreflang="es">ES</a>
+            <a class="active" href="/en/blog/delivery-metric-spike-playbook" hreflang="en">EN</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Control Room · Ops</p>
+          <h1>From Alert to Playbook: What to Do When a Delivery Metric Spikes</h1>
+          <p class="lead-answer"><p>When a delivery metric spikes, don't just stare at the dashboard: run an if-then playbook. Confirm the signal is real, look at the one underlying cause, make a single corrective move, assign a clear owner, and set a time box to re-check. A metric without an owner and a deadline is noise, not action.</p></p>
+          <p class="byline">By Control Room · 2026-10-11 · 5 min read</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/reseñas/background-resenas.webp" alt="Review and rating management" width="1200" height="800" loading="eager" />
+  <figcaption>Rating is won at the pass.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>30%</b><span>typical commission on the ticket</span></div>
+    <div class="blog-stat"><b>15%</b><span>margin when nobody measures contribution</span></div>
+    <div class="blog-stat"><b>$100</b><span>sample order, broken down below</span></div>
+</div>
+<figure class="blog-chart blog-chart--stack" data-blog-visuals="lead">
+  <p class="chart-kicker">Illustrative example</p>
+  <figcaption>Where a $100 order actually goes</figcaption>
+  <div class="stack" role="img" aria-label="Where a $100 order actually goes">
+    <span class="seg seg-0" style="flex:32" title="Food $32"></span>
+    <span class="seg seg-1" style="flex:28" title="Commission $28"></span>
+    <span class="seg seg-2" style="flex:12" title="Packaging &amp; ads $12"></span>
+    <span class="seg seg-3" style="flex:10" title="Promo $10"></span>
+    <span class="seg seg-4 is-accent" style="flex:18" title="Margin $18"></span>
+  </div>
+  <ul class="legend">
+    <li><i class="swatch seg-0"></i>Food <b>$32</b></li>
+    <li><i class="swatch seg-1"></i>Commission <b>$28</b></li>
+    <li><i class="swatch seg-2"></i>Packaging &amp; ads <b>$12</b></li>
+    <li><i class="swatch seg-3"></i>Promo <b>$10</b></li>
+    <li><i class="swatch seg-4 is-accent"></i>Margin <b>$18</b></li>
+  </ul>
+  <p class="chart-note">Food, commission, packaging, ads, and promo eat the ticket before margin. Every restaurant has its own structure.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>Every delivery operation generates alerts: prep times creeping up, cancellations stacking, sales flat in one store, rating sliding. The problem is rarely a shortage of data — it's that a spike sits on a screen without becoming a decision. This piece skips another list of KPIs and gives you conditional playbooks: <strong>if X happens → look at Y → move Z → who owns it → by when</strong>. The goal is simple: turn an alert into a repeatable move you can run during the shift, not after the damage is done.</p><h2>Why a metric needs a playbook, not just a dashboard</h2><p>A <strong>playbook</strong> is a documented, repeatable response to a specific signal: the trigger, what to inspect, the corrective action, the owner, and the time box to verify. Without it, the same spike gets handled differently depending on who's on shift — or ignored until the close-of-day report.</p><p>Food apps are part of this picture as a <em>channel</em> and a <em>signal</em>: they show you when prep is slow or orders are being dropped. But the lever is almost always inside your four walls — the kitchen, the shift, the routing, the staffing. The app surfaces the symptom; your operation fixes the cause.</p><h2>Before you move: is this alert urgent or can it wait?</h2><p>Not every spike deserves a war room. Sort each alert into three buckets:</p><ul><li><strong>Act now (mid-shift):</strong> the problem is live and compounding — delivery times climbing during peak, a cancellation streak, a store going offline unexpectedly.</li><li><strong>Act at shift close:</strong> the metric moved but the shift is stable — a single bad rating, a one-off slow order, a minor dip.</li><li><strong>Act this week:</strong> a trend, not an incident — sales drifting down over days, rating sliding half a point across two weeks.</li></ul><p>The test: <em>is it compounding right now?</em> If each passing minute makes it worse, it's an act-now. If it's a pattern, it belongs in your weekly review, not a panic.</p><figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/equipo/equipo-valor-1-v2.webp" alt="Ops team in action" width="1200" height="800" loading="lazy" />
+  <figcaption>People behind the daily ritual.</figcaption>
+</figure>
+          <h2>Four mini-playbooks you can run today</h2><h3>Playbook 1 — Delivery time is climbing</h3><ul><li><strong>Trigger:</strong> prep or total delivery time rises meaningfully above your normal band for 2+ consecutive time slots.</li><li><strong>Look at:</strong> kitchen queue depth, number of active couriers waiting, and whether a single item is the bottleneck.</li><li><strong>Move:</strong> if the kitchen is backed up, temporarily pause or hide the slowest-prep items; if couriers are waiting, stagger ticket release; if it's one item, 86 it or pre-batch it.</li><li><strong>Owner:</strong> shift lead at the store.</li><li><strong>By when:</strong> re-check in 20 minutes; if times haven't dropped, escalate to ops.</li></ul><h3>Playbook 2 — Sales dropped in one location</h3><ul><li><strong>Trigger:</strong> one store's orders fall well below its own trailing average while sister stores hold steady.</li><li><strong>Look at:</strong> is the store actually online and visible? Check availability status, menu outages, and whether items are marked unavailable.</li><li><strong>Move:</strong> reopen the store or item if it was auto-paused, restore stock, confirm hours are set correctly.</li><li><strong>Owner:</strong> store manager; ops verifies visibility from the outside.</li><li><strong>By when:</strong> within 15 minutes — a store silently offline is pure lost revenue.</li></ul><h3>Playbook 3 — Cancellation streak</h3><ul><li><strong>Trigger:</strong> three or more cancellations in a short window, or a cancellation rate above your baseline.</li><li><strong>Look at:</strong> the reason codes — stockout, store too busy, courier no-show, or address issues.</li><li><strong>Move:</strong> if stockouts, update availability immediately; if "too busy," throttle incoming orders instead of rejecting them; if courier gaps, check the handoff zone.</li><li><strong>Owner:</strong> shift lead, with ops tracking the pattern across stores.</li><li><strong>By when:</strong> act within the shift; document the reason mix for the weekly review.</li></ul><h3>Playbook 4 — Rating is sliding</h3><ul><li><strong>Trigger:</strong> rating drops, or negative comments cluster around the same theme (cold food, missing items, slow).</li><li><strong>Look at:</strong> packaging, prep-to-pickup time, and order accuracy on recent tickets.</li><li><strong>Move:</strong> tighten the item-check step before handoff, adjust packaging for heat retention, and run a short recovery message protocol for affected customers.</li><li><strong>Owner:</strong> store manager for execution; ops for the recovery cadence.</li><li><strong>By when:</strong> address at shift close; review the comment themes weekly.</li></ul><h2>What to do when two things spike at once</h2><p>When times <em>and</em> cancellations rise together, treat them as one incident, not two. Rising times usually cause the cancellations downstream, so <strong>attack the time first</strong>: relieve the kitchen bottleneck or throttle intake. Fixing the root almost always drains the second alert. The priority rule is simple: handle the metric that is <em>causing</em> the others before the ones that are merely <em>reacting</em>.</p><h2>Common mistakes that keep you firefighting</h2><ul><li><strong>No thresholds.</strong> "Times are high" means nothing without a number. Define a normal band per store so an alert is objective, not a gut call.</li><li><strong>No owner.</strong> An alert everyone sees and no one owns gets handled by no one. Name the person and the backup.</li><li><strong>No time box.</strong> Without a re-check deadline, you never learn whether the move worked.</li><li><strong>Always the same store.</strong> If one location eats all your attention, the problem is structural — staffing, layout, or routing — not a daily fire. Log repeat incidents and fix the cause once.</li></ul><h2>From KPI to documented procedure</h2><p>To make a metric repeatable, write it down in one line everyone can follow: <em>trigger → inspect → action → owner → deadline</em>. Store these playbooks where the shift can reach them, review them weekly, and update the thresholds as your baselines shift. The first time you run a play it feels slow; by the fifth, it's muscle memory — and that's when firefighting turns into operating.</p><div class="callout"><p>Running delivery across several stores and tired of reacting late? <strong>Control Room</strong> is Pimentón's operational control desk: it surfaces the spike, flags which store hurts, and helps you turn each alert into an owned, time-boxed play — so you stop operating blind. <a href="https://wa.me/5491157035170">Talk to us on WhatsApp</a>.</p></div>
+          <h2 id="faq">Frequently asked questions</h2>
+          <div class="faq">
+            <details>
+              <summary>How do I know if an alert needs immediate action or can wait until shift close?</summary>
+              <p>Ask whether the problem is compounding right now. If each minute makes it worse — delivery times climbing during peak, a live cancellation streak, a store offline — act mid-shift. If it's a one-off or a slow trend, handle it at close or in your weekly review.</p>
+            </details>
+            <details>
+              <summary>What do I do first if delivery times and cancellations spike at the same time?</summary>
+              <p>Treat them as one incident and attack the time first, since rising times usually cause the cancellations downstream. Relieve the kitchen bottleneck or throttle incoming orders, then re-check whether cancellations drain on their own before acting on them separately.</p>
+            </details>
+            <details>
+              <summary>How do you turn a KPI into a repeatable procedure?</summary>
+              <p>Write it as one line: trigger → inspect → action → owner → deadline. Store it where the shift can reach it, run it the same way every time, and update the thresholds as your baselines change. Repetition is what turns a metric into a reflex.</p>
+            </details>
+            <details>
+              <summary>What threshold of rating, time, or cancellation justifies intervening?</summary>
+              <p>Use each store's own trailing average as the baseline rather than a universal number. Intervene when a metric breaks its normal band for two or more consecutive time slots, or when cancellations or negative comments cluster around the same cause.</p>
+            </details>
+            <details>
+              <summary>Who executes the action — the store or the operations center?</summary>
+              <p>The store's shift lead or manager usually executes, because the levers are in the kitchen, the shift, and the handoff. The operations center sets thresholds, verifies visibility from the outside, tracks patterns across stores, and escalates when a local fix isn't working.</p>
+            </details>
+            <details>
+              <summary>How do I stop firefighting the same location over and over?</summary>
+              <p>If one store absorbs all your attention, the cause is structural — staffing, layout, or routing — not a daily incident. Log repeat events, look for the common trigger, and fix the root once instead of running the same play every shift.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>Want clear visibility on your delivery?</h2>
+            <p>Message us on WhatsApp. We'll review what's breaking multi-location rhythm and what to fix first.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Message on WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/en">Home</a> · <a href="/en/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
