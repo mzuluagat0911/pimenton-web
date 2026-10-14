@@ -11,7 +11,8 @@
       "cuánto cuesta el packaging en delivery",
       "margen de contribución por pedido de delivery",
       "cómo mejorar el rating en apps de delivery",
-      "punto de equilibrio delivery restaurante"
+      "punto de equilibrio delivery restaurante",
+      "delivery propio o apps de delivery"
     ],
     "control-room": [
       "qué indicadores revisar delivery multi-sucursal",
@@ -304,6 +305,18 @@
       "pathEn": "/en/blog/delivery-metric-spike-playbook",
       "titleEn": "From Alert to Playbook: Delivery Metric Response Guide",
       "descriptionEn": "When a delivery metric spikes, use an if-then playbook: look here, move this, assign an owner, set a deadline. Four concrete ops plays inside."
+    },
+    {
+      "slug": "delivery-propio-o-apps-de-delivery",
+      "destino": "pimenton",
+      "keyword": "delivery propio o apps de delivery",
+      "date": "2026-10-14",
+      "title": "Delivery propio o apps de delivery: decidir con números",
+      "description": "Delivery propio o apps de delivery: marco de decisión por capas de costo (demanda, logística, operación) y la regla de volumen para elegir bien.",
+      "path": "/blog/delivery-propio-o-apps-de-delivery",
+      "pathEn": "/en/blog/own-delivery-vs-delivery-apps",
+      "titleEn": "Own Delivery vs Delivery Apps: Decide With Numbers",
+      "descriptionEn": "Own delivery vs delivery apps: the real cost nobody adds is demand. Use a layered cost model and a volume rule to decide the right channel mix."
     }
   ]
 }
