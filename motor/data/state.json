@@ -26,7 +26,8 @@
       "productos agotados en delivery",
       "cuándo pausar la tienda en apps de delivery",
       "tasa de error en pedidos delivery",
-      "qué hacer cuando un indicador de delivery se dispara"
+      "qué hacer cuando un indicador de delivery se dispara",
+      "mesa de control de delivery multi-sucursal"
     ]
   },
   "published": [
@@ -317,6 +318,18 @@
       "pathEn": "/en/blog/own-delivery-vs-delivery-apps",
       "titleEn": "Own Delivery vs Delivery Apps: Decide With Numbers",
       "descriptionEn": "Own delivery vs delivery apps: the real cost nobody adds is demand. Use a layered cost model and a volume rule to decide the right channel mix."
+    },
+    {
+      "slug": "mesa-control-delivery-multi-sucursal",
+      "destino": "control-room",
+      "keyword": "mesa de control de delivery multi-sucursal",
+      "date": "2026-10-18",
+      "title": "Mesa de control de delivery multi-sucursal: cómo montarla",
+      "description": "Diseña una mesa de control de delivery multi-sucursal en 3 capas: pulso diario, alertas en vivo y revisión semanal. Quién mira qué y cómo pasar del dato a la acción.",
+      "path": "/blog/mesa-control-delivery-multi-sucursal",
+      "pathEn": "/en/blog/delivery-control-room-multi-location",
+      "titleEn": "How to Build a Delivery Control Room for Multi-Location Restaurants",
+      "descriptionEn": "Design a delivery control room for multi-location restaurants: three layers, who watches what, how to prioritize alerts, and turning data into action."
     }
   ]
 }

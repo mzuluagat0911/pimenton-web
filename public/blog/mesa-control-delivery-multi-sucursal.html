@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Mesa de control de delivery multi-sucursal: cómo montarla</title>
+    <meta name="description" content="Diseña una mesa de control de delivery multi-sucursal en 3 capas: pulso diario, alertas en vivo y revisión semanal. Quién mira qué y cómo pasar del dato a la acción." />
+    <meta name="keywords" content="mesa de control de delivery multi-sucursal, control room delivery restaurante, cómo armar un centro de control de operaciones delivery, mesa de control de pedidos para restaurantes con varias sucursales, cómo monitorear pedidos de delivery de todos los locales en un solo lugar, estructura de control operativo delivery roles y responsabilidades, cómo organizar la operación de delivery sin estar en cada local, qué pantallas mirar para controlar delivery multi-local" />
+    <link rel="canonical" href="https://pimenton.io/blog/mesa-control-delivery-multi-sucursal" />
+    <link rel="alternate" hreflang="es" href="https://pimenton.io/blog/mesa-control-delivery-multi-sucursal" />
+    <link rel="alternate" hreflang="en" href="https://pimenton.io/en/blog/delivery-control-room-multi-location" />
+    <link rel="alternate" hreflang="x-default" href="https://pimenton.io/blog/mesa-control-delivery-multi-sucursal" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Mesa de control de delivery multi-sucursal: cómo montarla" />
+    <meta property="og:description" content="Diseña una mesa de control de delivery multi-sucursal en 3 capas: pulso diario, alertas en vivo y revisión semanal. Quién mira qué y cómo pasar del dato a la acción." />
+    <meta property="og:url" content="https://pimenton.io/blog/mesa-control-delivery-multi-sucursal" />
+    <meta property="og:image" content="https://www.pimenton.io/assets/equipo/equipo-completo-v2.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mesa de control de delivery multi-sucursal: cómo montarla" />
+    <meta name="twitter:description" content="Diseña una mesa de control de delivery multi-sucursal en 3 capas: pulso diario, alertas en vivo y revisión semanal. Quién mira qué y cómo pasar del dato a la acción." />
+    <meta name="twitter:image" content="https://www.pimenton.io/assets/equipo/equipo-completo-v2.webp" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Cómo montar una mesa de control (control room) de delivery multi-sucursal",
+      "description": "Diseña una mesa de control de delivery multi-sucursal en 3 capas: pulso diario, alertas en vivo y revisión semanal. Quién mira qué y cómo pasar del dato a la acción.",
+      "inLanguage": "es",
+      "author": {
+            "@type": "Organization",
+            "name": "Control Room by Pimentón",
+            "url": "https://pimenton.io/es"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.pimenton.io/assets/equipo/equipo-completo-v2.webp"
+            }
+      },
+      "datePublished": "2026-10-18",
+      "dateModified": "2026-10-18",
+      "mainEntityOfPage": "https://pimenton.io/blog/mesa-control-delivery-multi-sucursal",
+      "image": "https://www.pimenton.io/assets/equipo/equipo-completo-v2.webp"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "¿Qué es una mesa de control (control room) en delivery y para qué sirve?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Es la capa operativa que concentra la visibilidad de todos los locales en un solo lugar y la conecta con decisiones. Sirve para ver el pulso diario, reaccionar a alertas en vivo y revisar tendencias con el equipo sin estar físicamente en cada sucursal."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Quién debe mirar qué en la operación de delivery multi-sucursal?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "El gerente de local es dueño de las alertas en vivo y el pulso de su turno; el director de ops mira la vista multi-sucursal y detecta patrones; el dueño mira la foto agregada y la tendencia. Cada capa tiene un responsable claro para que nadie mire todo y nadie se haga cargo de nada."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Con qué frecuencia se revisa una mesa de control?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "En tres ritmos: el pulso diario se mira en pocos minutos al abrir y al cerrar cada turno, las alertas en vivo se atienden en el momento, y la revisión de tendencias se hace una vez por semana con el equipo. Mezclar estos ritmos en una sola pantalla es el error más común."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Cómo se decide qué alerta se atiende primero cuando se rompen varias cosas a la vez?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Se prioriza por impacto en el cliente que ya está esperando: primero pedidos en riesgo ahora, luego tiempos que se disparan, después stock y disponibilidad, y por último rating y quejas. Lo que afecta a un pedido vivo gana siempre sobre lo que se puede corregir mañana."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Cómo paso de ver el dato a mover algo en el local?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Asignando a cada alerta recurrente un playbook de una línea: qué pasó, quién actúa y qué mueve. Por ejemplo, si los tiempos de preparación superan un umbral, el gerente revisa el cuello en cocina y pausa promos que inflan volumen. Sin movimiento asociado, el dato es solo ruido."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Qué necesito para controlar varias sucursales sin un dashboard por cada una?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Necesitás una capa que concentre pedidos, tiempos, cancelaciones y rating de todos los locales en una vista única, con umbrales de alerta y roles definidos. Eso es lo que hace una mesa de control como Control Room: reemplaza el Excel eterno y las pantallas sueltas por un solo ritmo operativo."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Inicio",
+                  "item": "https://pimenton.io/es"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://pimenton.io/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Cómo montar una mesa de control (control room) de delivery multi-sucursal",
+                  "item": "https://pimenton.io/blog/mesa-control-delivery-multi-sucursal"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-control-room">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/es" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-blanco.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/es">Inicio</a>
+          <a href="/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma">
+            <a class="active" href="/blog/mesa-control-delivery-multi-sucursal" hreflang="es">ES</a>
+            <a class="" href="/en/blog/delivery-control-room-multi-location" hreflang="en">EN</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Control Room · Ops</p>
+          <h1>Cómo montar una mesa de control (control room) de delivery multi-sucursal</h1>
+          <p class="lead-answer"><p>Una <strong>mesa de control de delivery multi-sucursal</strong> es la capa operativa que concentra en un solo lugar qué pasa en todos tus locales: pedidos, tiempos, cancelaciones y rating. Se monta en <strong>tres capas</strong> —pulso diario, alertas en vivo y revisión semanal— con roles claros (gerente de local vs. director de ops) y una regla de priorización que convierte cada señal en un movimiento concreto en turno.</p></p>
+          <p class="byline">Por Control Room · 2026-10-18 · 5 min de lectura</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/equipo/equipo-completo-v2.webp" alt="Equipo de Pimentón junto" width="1200" height="800" loading="eager" />
+  <figcaption>La operación tiene dueños.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>10'</b><span>standup diario, no una reunión eterna</span></div>
+    <div class="blog-stat"><b>3</b><span>capas: diario, weekly, war room</span></div>
+    <div class="blog-stat"><b>1</b><span>tablero. El resto es ruido</span></div>
+</div>
+<figure class="blog-chart blog-chart--bars" data-blog-visuals="lead">
+  <p class="chart-kicker">Ritual de ops</p>
+  <figcaption>Qué se mira cada mañana (y en qué orden)</figcaption>
+  <div class="bars">
+    <div class="bar-row is-accent">
+      <div class="bar-meta"><span>Cancelaciones / 86</span><b>1º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-0" style="width:90%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Tiempo de prep</span><b>2º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-1" style="width:75%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Conectividad / stock</span><b>3º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-2" style="width:62%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ticket y mix</span><b>4º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-3" style="width:50%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ads y ranking</span><b>5º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-4" style="width:38%"></span></div>
+    </div>
+  </div>
+  <p class="chart-note">Si el tablero no cabe en una pantalla, no se usa. Cinco indicadores, dueño, umbral, decisión.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>Cuando tenés tres, cinco o diez locales vendiendo por delivery, el problema deja de ser falta de datos y pasa a ser exceso de ruido. Cada app muestra su propia pantalla, cada gerente mira la suya y nadie ve el conjunto. Una <strong>mesa de control (control room) de delivery multi-sucursal</strong> no es otro dashboard decorativo: es el diseño organizacional que define qué se mira, quién lo mira y qué se hace cuando algo se rompe. Acá va cómo armarla sin Excel eterno.</p><h2>Qué es una mesa de control de delivery (y qué no es)</h2><p>Una mesa de control es la <strong>capa operativa que concentra la visibilidad de todos tus locales en un mismo lugar</strong> y la conecta con decisiones. No es una lista infinita de métricas ni un reporte que nadie abre. Su función es simple: que puedas ver el pulso de la operación, reaccionar a lo que duele y revisar tendencias con el equipo, sin tener que estar físicamente en cada local.</p><p>La diferencia con un dashboard común es que la mesa de control está diseñada alrededor de <em>acciones</em>, no de gráficos. Cada número que aparece tiene un dueño y un movimiento asociado. Si un indicador no termina en algo que alguien pueda mover en turno, sobra.</p><h2>Las 3 capas de una mesa de control</h2><p>El error más común es mezclar todo en una sola pantalla. Una mesa de control que funciona tiene <strong>tres capas con ritmos distintos</strong>:</p><h3>1. Pulso diario</h3><p>Es la foto de la mañana y el cierre de cada turno. Responde: ¿cómo venimos hoy contra un día normal? Pedidos por local, ticket promedio, tiempos de preparación, cancelaciones y rating del día. Se mira en <strong>5 minutos</strong>, no en una hora. El objetivo no es analizar, es detectar el local que se salió del rango.</p><h3>2. Alertas en vivo</h3><p>Es la capa reactiva: lo que pasa <em>ahora</em> y no puede esperar al día siguiente. Pedidos atascados, tiempos de entrega que se disparan, un local que empezó a cancelar, stock que se cayó en plena hora pico. Esta capa necesita umbrales claros: una alerta que salta todo el tiempo deja de ser alerta.</p><h3>3. Revisión semanal</h3><p>Es la capa de tendencia. Acá se comparan locales entre sí, se mira la evolución del rating, los motivos recurrentes de cancelación y qué playbooks funcionaron. No se revisa en el teléfono entre pedidos: se revisa sentado, con el equipo, una vez por semana.</p><figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/insights/profesionalizar-delivery/hero.jpg" alt="Profesionalizar el canal delivery" width="1200" height="800" loading="lazy" />
+  <figcaption>Proceso antes que volumen.</figcaption>
+</figure>
+          <h2>Quién mira qué: roles y responsabilidades</h2><p>La mesa de control falla cuando todos miran todo y por eso nadie se hace cargo de nada. La regla es <strong>cada capa tiene su dueño</strong>:</p><ul><li><strong>Gerente de local:</strong> dueño de las alertas en vivo de su local y del pulso diario de su turno. Es quien apaga el incendio: reasigna cocina, pausa un ítem sin stock, llama al repartidor demorado.</li><li><strong>Director/gerente de ops:</strong> dueño de la vista multi-sucursal. No apaga incendios locales uno por uno; detecta patrones (dos locales con el mismo problema), decide dónde poner foco y lleva la revisión semanal.</li><li><strong>Dueño multi-sucursal:</strong> mira la foto agregada y la tendencia. No necesita ver cada pedido, necesita saber si la operación está sana o si hay un local que está sangrando margen.</li></ul><p>Las food apps, en todo esto, son <strong>canal de demanda</strong>. Si el rating cae o las cancelaciones suben, el foco está en la operación del restaurante —cocina, tiempos, stock— no en pelearse con la plataforma. El dato de la app es insumo; la decisión es tuya.</p><h2>La regla de priorización cuando todo se rompe junto</h2><p>En hora pico un viernes, es normal que salten tres alertas a la vez: un local con tiempos altos, otro cancelando y un tercero con rating bajando. ¿Qué se atiende primero? La regla práctica ordena por <strong>impacto en el cliente que ya está esperando</strong>:</p><ol><li><strong>Pedidos en riesgo ahora</strong> (atascados, por cancelar): hay un cliente esperando comida que quizás no llegue. Primero.</li><li><strong>Tiempos que se disparan:</strong> todavía no se rompió, pero va camino a cancelaciones y mal rating. Segundo.</li><li><strong>Stock y disponibilidad:</strong> pausás el ítem para no seguir generando pedidos que no podés cumplir. Tercero.</li><li><strong>Rating y quejas:</strong> importa, pero se gestiona en la revisión, no en el minuto. Último en el turno.</li></ol><p>La clave: <strong>lo que afecta a un pedido vivo gana siempre</strong> sobre lo que se puede corregir mañana. Sin esta regla, el equipo persigue la alerta más ruidosa, no la más importante.</p><h2>El puente de dato a acción</h2><p>Una señal sin movimiento asociado es ruido. Por eso cada alerta recurrente debería tener un <strong>playbook de una línea</strong>: qué pasó, quién actúa, qué mueve. Por ejemplo:</p><ul><li><strong>Tiempos de prep &gt; X min →</strong> gerente de local revisa cuello en cocina y, si no se recupera, pausa promos que inflan volumen.</li><li><strong>Cancelaciones &gt; umbral en un local →</strong> ops llama al gerente, identifica causa (stock, repartidor, cocina) y decide pausar el canal si hace falta.</li><li><strong>Rating semanal cae en un local →</strong> se abre en la revisión, se cruzan motivos de queja y se asigna un dueño con fecha.</li></ul><p>Cuando la mesa de control está bien montada, nadie improvisa: la señal aparece, el dueño ya sabe qué mirar y el movimiento es predecible. Eso es lo que te permite operar varios locales sin estar en cada uno.</p><div class="callout"><p><strong>Control Room</strong> es la mesa de control operativa de Pimentón: concentra pedidos, alertas y ritmo multi-sucursal en un solo lugar para que dejes de operar a ciegas. Si querés armar tu control room sin un dashboard por cada local, <a href="https://wa.me/5491157035170">escribinos por WhatsApp</a>.</p></div><h2>Errores comunes al montar el control room</h2><ul><li><strong>Una sola pantalla para todo:</strong> mezclar pulso diario con alertas en vivo satura y nadie reacciona a tiempo.</li><li><strong>Métricas sin dueño:</strong> si un número no tiene responsable, no se corrige.</li><li><strong>Umbrales que gritan:</strong> demasiadas alertas entrenan al equipo a ignorarlas.</li><li><strong>Revisión que no existe:</strong> sin cadencia semanal, apagás incendios para siempre y nunca atacás la causa.</li><li><strong>Culpar a la app:</strong> el dato de la plataforma es diagnóstico; el margen se defiende con la operación.</li></ul>
+          <h2 id="faq">Preguntas frecuentes</h2>
+          <div class="faq">
+            <details>
+              <summary>¿Qué es una mesa de control (control room) en delivery y para qué sirve?</summary>
+              <p>Es la capa operativa que concentra la visibilidad de todos los locales en un solo lugar y la conecta con decisiones. Sirve para ver el pulso diario, reaccionar a alertas en vivo y revisar tendencias con el equipo sin estar físicamente en cada sucursal.</p>
+            </details>
+            <details>
+              <summary>¿Quién debe mirar qué en la operación de delivery multi-sucursal?</summary>
+              <p>El gerente de local es dueño de las alertas en vivo y el pulso de su turno; el director de ops mira la vista multi-sucursal y detecta patrones; el dueño mira la foto agregada y la tendencia. Cada capa tiene un responsable claro para que nadie mire todo y nadie se haga cargo de nada.</p>
+            </details>
+            <details>
+              <summary>¿Con qué frecuencia se revisa una mesa de control?</summary>
+              <p>En tres ritmos: el pulso diario se mira en pocos minutos al abrir y al cerrar cada turno, las alertas en vivo se atienden en el momento, y la revisión de tendencias se hace una vez por semana con el equipo. Mezclar estos ritmos en una sola pantalla es el error más común.</p>
+            </details>
+            <details>
+              <summary>¿Cómo se decide qué alerta se atiende primero cuando se rompen varias cosas a la vez?</summary>
+              <p>Se prioriza por impacto en el cliente que ya está esperando: primero pedidos en riesgo ahora, luego tiempos que se disparan, después stock y disponibilidad, y por último rating y quejas. Lo que afecta a un pedido vivo gana siempre sobre lo que se puede corregir mañana.</p>
+            </details>
+            <details>
+              <summary>¿Cómo paso de ver el dato a mover algo en el local?</summary>
+              <p>Asignando a cada alerta recurrente un playbook de una línea: qué pasó, quién actúa y qué mueve. Por ejemplo, si los tiempos de preparación superan un umbral, el gerente revisa el cuello en cocina y pausa promos que inflan volumen. Sin movimiento asociado, el dato es solo ruido.</p>
+            </details>
+            <details>
+              <summary>¿Qué necesito para controlar varias sucursales sin un dashboard por cada una?</summary>
+              <p>Necesitás una capa que concentre pedidos, tiempos, cancelaciones y rating de todos los locales en una vista única, con umbrales de alerta y roles definidos. Eso es lo que hace una mesa de control como Control Room: reemplaza el Excel eterno y las pantallas sueltas por un solo ritmo operativo.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>¿Quieres ver tu delivery con claridad?</h2>
+            <p>Escríbenos por WhatsApp. Revisamos qué está rompiendo el ritmo multi-sucursal y qué mover primero.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/es">Inicio</a> · <a href="/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
