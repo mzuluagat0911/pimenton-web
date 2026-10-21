@@ -12,7 +12,8 @@
       "margen de contribución por pedido de delivery",
       "cómo mejorar el rating en apps de delivery",
       "punto de equilibrio delivery restaurante",
-      "delivery propio o apps de delivery"
+      "delivery propio o apps de delivery",
+      "ingeniería de menú delivery"
     ],
     "control-room": [
       "qué indicadores revisar delivery multi-sucursal",
@@ -330,6 +331,18 @@
       "pathEn": "/en/blog/delivery-control-room-multi-location",
       "titleEn": "How to Build a Delivery Control Room for Multi-Location Restaurants",
       "descriptionEn": "Design a delivery control room for multi-location restaurants: three layers, who watches what, how to prioritize alerts, and turning data into action."
+    },
+    {
+      "slug": "ingenieria-menu-delivery",
+      "destino": "pimenton",
+      "keyword": "ingeniería de menú delivery",
+      "date": "2026-10-21",
+      "title": "Ingeniería de menú para delivery: diseña tu carta para vender más y ganar margen",
+      "description": "Guía de ingeniería de menú delivery: ordena, fotografía y describe tu carta por conversión × margen para vender más en Rappi, Uber Eats y PedidosYa.",
+      "path": "/blog/ingenieria-menu-delivery",
+      "pathEn": "/en/blog/menu-engineering-delivery-apps",
+      "titleEn": "Menu Engineering for Delivery Apps: Sell More, Protect Margin",
+      "descriptionEn": "Menu engineering for delivery apps classifies each item by conversion × contribution margin. Learn how to order, photograph and describe items to sell more."
     }
   ]
 }
