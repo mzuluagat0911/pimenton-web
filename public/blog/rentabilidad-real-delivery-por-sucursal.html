@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Cómo calcular la rentabilidad real del delivery por sucursal</title>
+    <meta name="description" content="Guía operativa para calcular el margen real del delivery por local: qué costos restar, cómo comparar sucursales y convertir cada caída de margen en acción." />
+    <meta name="keywords" content="cómo calcular la rentabilidad real del delivery por sucursal, cómo saber si una sucursal de delivery pierde plata, margen de contribución por canal de delivery, cómo medir rentabilidad por pedido en delivery, costos ocultos del delivery en restaurantes multi-sucursal, qué comisión de apps puedo absorber sin perder margen, P&amp;L operativo de delivery por local, cómo comparar rentabilidad entre sucursales de delivery, ticket promedio vs margen real en delivery, por qué una sucursal vende más y gana menos en delivery" />
+    <link rel="canonical" href="https://pimenton.io/blog/rentabilidad-real-delivery-por-sucursal" />
+    <link rel="alternate" hreflang="es" href="https://pimenton.io/blog/rentabilidad-real-delivery-por-sucursal" />
+    <link rel="alternate" hreflang="en" href="https://pimenton.io/en/blog/delivery-profitability-by-location" />
+    <link rel="alternate" hreflang="x-default" href="https://pimenton.io/blog/rentabilidad-real-delivery-por-sucursal" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Cómo calcular la rentabilidad real del delivery por sucursal" />
+    <meta property="og:description" content="Guía operativa para calcular el margen real del delivery por local: qué costos restar, cómo comparar sucursales y convertir cada caída de margen en acción." />
+    <meta property="og:url" content="https://pimenton.io/blog/rentabilidad-real-delivery-por-sucursal" />
+    <meta property="og:image" content="https://www.pimenton.io/assets/blog-covers/cover-pass-bags.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Cómo calcular la rentabilidad real del delivery por sucursal" />
+    <meta name="twitter:description" content="Guía operativa para calcular el margen real del delivery por local: qué costos restar, cómo comparar sucursales y convertir cada caída de margen en acción." />
+    <meta name="twitter:image" content="https://www.pimenton.io/assets/blog-covers/cover-pass-bags.jpg" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Cómo calcular la rentabilidad real del delivery por sucursal: guía operativa paso a paso",
+      "description": "Guía operativa para calcular el margen real del delivery por local: qué costos restar, cómo comparar sucursales y convertir cada caída de margen en acción.",
+      "inLanguage": "es",
+      "author": {
+            "@type": "Organization",
+            "name": "Control Room by Pimentón",
+            "url": "https://pimenton.io/es"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.pimenton.io/assets/blog-covers/cover-pass-bags.jpg"
+            }
+      },
+      "datePublished": "2026-10-25",
+      "dateModified": "2026-10-25",
+      "mainEntityOfPage": "https://pimenton.io/blog/rentabilidad-real-delivery-por-sucursal",
+      "image": "https://www.pimenton.io/assets/blog-covers/cover-pass-bags.jpg"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "¿Qué costos tengo que restar para saber la rentabilidad real de un pedido de delivery?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Partí de la venta neta y restá el costo de producto (CMV real), la comisión de la app, promociones y descuentos, reembolsos y compensaciones, el costo de los agotados y el impacto de los tiempos largos. Lo que queda es el margen de contribución real por pedido, muy distinto del ticket bruto."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Cómo separo el margen por canal (app A, app B, web propia) por sucursal?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Etiquetá cada pedido por canal y por local, aplicá la comisión y las promos específicas de ese canal y calculá el margen de contribución por canal en lugar de un promedio general. Así ves si una sucursal gana en web propia pero pierde en una app donde concentró descuentos."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Por qué una sucursal con más pedidos puede ser menos rentable?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Porque el volumen no es margen. Un local puede vender más apoyado en promos agresivas, con más reembolsos, agotados o tiempos largos que se comen la contribución. Sin abrir el margen por canal y por línea de costo, el ticket alto esconde que ese local aporta menos al bolsillo."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Cada cuánto debería revisar el margen por local?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "El margen operativo se revisa semanal, con un dueño por sucursal, para poder corregir dentro del turno. La revisión mensual queda para la mirada contable. El ritmo semanal permite detectar la erosión antes de que arruine el mes."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿La comisión de la app es el problema o es mi mix de productos y tiempos?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "La comisión es una línea de costo a gestionar, no un villano. Si tras descontarla el canal sigue dejando margen y volumen incremental, cumple su función. Cuando el margen neto es cero o negativo, el origen suele estar en el mix de productos, el peso de las promos o los tiempos, no solo en el porcentaje."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Inicio",
+                  "item": "https://pimenton.io/es"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://pimenton.io/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Cómo calcular la rentabilidad real del delivery por sucursal: guía operativa paso a paso",
+                  "item": "https://pimenton.io/blog/rentabilidad-real-delivery-por-sucursal"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-control-room">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/es" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-blanco.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/es">Inicio</a>
+          <a href="/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma">
+            <a class="active" href="/blog/rentabilidad-real-delivery-por-sucursal" hreflang="es">ES</a>
+            <a class="" href="/en/blog/delivery-profitability-by-location" hreflang="en">EN</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Control Room · Ops</p>
+          <h1>Cómo calcular la rentabilidad real del delivery por sucursal: guía operativa paso a paso</h1>
+          <p class="lead-answer"><p>La rentabilidad real del delivery por sucursal es el <strong>margen de contribución por local y por canal</strong>: ventas netas menos costo de producto, comisiones de apps, promociones, reembolsos y el costo de los agotados y tiempos largos. Se calcula pedido a pedido, se consolida por sucursal y se revisa cada semana con un dueño por local. No es un número contable de fin de mes: es una alerta operativa que se vigila dentro de la mesa de control.</p></p>
+          <p class="byline">Por Control Room · 2026-10-25 · 5 min de lectura</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/blog-covers/cover-pass-bags.jpg" alt="Bolsas de delivery en el pase" width="1200" height="800" loading="eager" />
+  <figcaption>El pase es donde se gana el pedido.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>30%</b><span>comisión típica sobre el ticket</span></div>
+    <div class="blog-stat"><b>15%</b><span>margen cuando nadie mide contribución</span></div>
+    <div class="blog-stat"><b>$100</b><span>ejemplo de pedido, desarmado abajo</span></div>
+</div>
+<figure class="blog-chart blog-chart--stack" data-blog-visuals="lead">
+  <p class="chart-kicker">Ejemplo ilustrativo</p>
+  <figcaption>A dónde se va un pedido de $100</figcaption>
+  <div class="stack" role="img" aria-label="A dónde se va un pedido de $100">
+    <span class="seg seg-0" style="flex:32" title="Comida $32"></span>
+    <span class="seg seg-1" style="flex:28" title="Comisión $28"></span>
+    <span class="seg seg-2" style="flex:12" title="Packaging y ads $12"></span>
+    <span class="seg seg-3" style="flex:10" title="Promo $10"></span>
+    <span class="seg seg-4 is-accent" style="flex:18" title="Margen $18"></span>
+  </div>
+  <ul class="legend">
+    <li><i class="swatch seg-0"></i>Comida <b>$32</b></li>
+    <li><i class="swatch seg-1"></i>Comisión <b>$28</b></li>
+    <li><i class="swatch seg-2"></i>Packaging y ads <b>$12</b></li>
+    <li><i class="swatch seg-3"></i>Promo <b>$10</b></li>
+    <li><i class="swatch seg-4 is-accent"></i>Margen <b>$18</b></li>
+  </ul>
+  <p class="chart-note">Comida, comisión, packaging, ads y promo se comen el ticket antes del margen. Cada restaurante tiene su propia estructura.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>Vender más no significa ganar más. En delivery multi-sucursal es común que el local con más pedidos sea el que menos aporta al bolsillo, porque el margen se escapa en líneas que nadie mira a tiempo: comisiones, promos acumuladas, reembolsos por quejas, platos agotados en hora pico y tiempos largos que disparan cancelaciones. Calcular la rentabilidad real por sucursal es dejar de operar a ciegas y empezar a tratar el margen como lo que es: una métrica operativa, no un reporte que llega tarde.</p><h2>Qué es la rentabilidad real del delivery por sucursal</h2><p>La <strong>rentabilidad real del delivery por sucursal</strong> es el margen de contribución que deja cada local después de restar todos los costos variables asociados a esos pedidos. No es la facturación bruta ni el ticket promedio: es lo que queda cuando descontás producto, comisiones, descuentos y fricción operativa.</p><p>La diferencia clave con el enfoque contable es el <em>timing</em>. El P&L de fin de mes explica lo que ya pasó. El margen operativo se mira semanal (y a veces diario) para poder corregir en el turno. Dos lentes distintas: una para el contador, otra para quien dirige operaciones.</p><h2>Qué costos restar para saber el margen real por pedido</h2><p>Para calcular el margen de contribución por pedido, partí de la venta neta y restá, en orden:</p><ul><li><strong>Costo de producto (CMV):</strong> insumos reales del plato, no el precio de carta.</li><li><strong>Comisión de la app:</strong> el porcentaje que cobra el canal. Es una línea de costo a gestionar, no un enemigo.</li><li><strong>Promociones y descuentos:</strong> 2x1, envíos gratis bonificados, cupones. Suman volumen y restan margen.</li><li><strong>Reembolsos y compensaciones:</strong> pedidos mal armados, faltantes, quejas que terminan en devolución.</li><li><strong>Costo de agotados:</strong> ventas que no ocurrieron por quiebre de stock en hora pico (margen perdido).</li><li><strong>Costo de tiempos largos:</strong> demoras que elevan cancelaciones y bajan rating, lo que encarece conseguir el próximo pedido.</li></ul><p>Lo que queda es el <strong>margen de contribución por pedido</strong>. Multiplicado por el volumen y consolidado por local, tenés la rentabilidad real de la sucursal.</p><figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/insights/profesionalizar-delivery/hero.jpg" alt="Profesionalizar el canal delivery" width="1200" height="800" loading="lazy" />
+  <figcaption>Proceso antes que volumen.</figcaption>
+</figure>
+          <h2>Cómo separar el margen por canal dentro de cada sucursal</h2><p>No alcanza con el total del local. Una misma sucursal puede ganar con la web propia y perder en una app donde concentró promos. Por eso el margen se abre en dos dimensiones: <strong>por sucursal</strong> y <strong>por canal</strong> (app A, app B, web propia).</p><p>El método es simple y disciplinado:</p><ol><li>Etiquetá cada pedido por canal y por local.</li><li>Aplicá la comisión y las promos específicas de ese canal.</li><li>Calculá el margen de contribución por canal, no un promedio general.</li><li>Compará: dónde el ticket es alto pero el margen bajo, y dónde pasa lo contrario.</li></ol><p>Ahí aparece la respuesta a por qué un local vende más y gana menos: suele tener mejor ticket promedio pero peor mix de margen, más dependencia de promos o más fricción operativa que se come la diferencia.</p><h2>Qué comisión podés absorber sin perder margen</h2><p>La pregunta correcta no es "¿la comisión es muy alta?" sino "¿qué comisión soporta mi margen con este mix y estos tiempos?". La comisión es una variable del cálculo, no la causa única del problema.</p><p>Para definir cuánto absorber, mirá el margen de contribución <em>después</em> de comisión por canal. Si un canal sigue dejando margen positivo y volumen incremental, la comisión está cumpliendo su función: traer demanda. Si el margen neto es cero o negativo, el problema rara vez es solo la comisión: suele ser el mix de productos, el peso de las promos o los tiempos. Antes de pelear el porcentaje, revisá tu propia operación.</p><h2>Errores comunes al medir rentabilidad por local</h2><ul><li><strong>Mirar ticket promedio como proxy de margen:</strong> un ticket alto con mucho descuento puede rendir menos que uno chico sin promo.</li><li><strong>Promediar todas las sucursales:</strong> el promedio esconde al local que pierde plata.</li><li><strong>Ignorar los costos ocultos:</strong> agotados, reembolsos y tiempos no aparecen en la factura de la app, pero erosionan margen igual.</li><li><strong>Revisar solo a fin de mes:</strong> cuando el P&L llega, el turno ya pasó y la acción llegó tarde.</li><li><strong>No tener dueño:</strong> si el margen de un local no tiene responsable, nadie lo mueve.</li></ul><h2>De la caída de margen a la acción concreta</h2><p>Cada línea del margen se conecta con una palanca operativa que el equipo puede mover en el turno:</p><ul><li><strong>Comisión alta sin margen:</strong> ajustá mix, subí productos de mayor margen o revisá precios por canal.</li><li><strong>Promos comiéndose el margen:</strong> acotá la ventana horaria o el combo bonificado.</li><li><strong>Reembolsos arriba:</strong> auditá armado de pedidos y packaging en esa cocina.</li><li><strong>Agotados en pico:</strong> reforzá prep y stock de los best-sellers de ese local.</li><li><strong>Tiempos largos:</strong> revisá dotación del turno y secuencia de despacho.</li></ul><p>Así el margen deja de ser un número frío y se vuelve un <strong>playbook</strong>: un indicador que baja, una causa identificada y una acción asignada a una persona.</p><div class="callout"><p>En <strong>Control Room</strong> el margen por local y por canal se vigila como una alerta más: cadencia semanal, un dueño por sucursal y cada línea conectada a una palanca que el equipo mueve en el turno. Si querés dejar de enterarte a fin de mes, escribinos por <a href="https://wa.me/5491157035170">WhatsApp</a>.</p></div><h2>Cada cuánto revisarlo y con qué ritual</h2><p>El margen operativo se revisa <strong>semanal</strong>, con un responsable por local y un standup corto que compara sucursales lado a lado. La revisión mensual queda para la mirada contable. El objetivo del ritmo semanal es simple: detectar la erosión antes de que se convierta en un mes perdido, y salir de la reunión con acciones, no con diagnósticos.</p>
+          <h2 id="faq">Preguntas frecuentes</h2>
+          <div class="faq">
+            <details>
+              <summary>¿Qué costos tengo que restar para saber la rentabilidad real de un pedido de delivery?</summary>
+              <p>Partí de la venta neta y restá el costo de producto (CMV real), la comisión de la app, promociones y descuentos, reembolsos y compensaciones, el costo de los agotados y el impacto de los tiempos largos. Lo que queda es el margen de contribución real por pedido, muy distinto del ticket bruto.</p>
+            </details>
+            <details>
+              <summary>¿Cómo separo el margen por canal (app A, app B, web propia) por sucursal?</summary>
+              <p>Etiquetá cada pedido por canal y por local, aplicá la comisión y las promos específicas de ese canal y calculá el margen de contribución por canal en lugar de un promedio general. Así ves si una sucursal gana en web propia pero pierde en una app donde concentró descuentos.</p>
+            </details>
+            <details>
+              <summary>¿Por qué una sucursal con más pedidos puede ser menos rentable?</summary>
+              <p>Porque el volumen no es margen. Un local puede vender más apoyado en promos agresivas, con más reembolsos, agotados o tiempos largos que se comen la contribución. Sin abrir el margen por canal y por línea de costo, el ticket alto esconde que ese local aporta menos al bolsillo.</p>
+            </details>
+            <details>
+              <summary>¿Cada cuánto debería revisar el margen por local?</summary>
+              <p>El margen operativo se revisa semanal, con un dueño por sucursal, para poder corregir dentro del turno. La revisión mensual queda para la mirada contable. El ritmo semanal permite detectar la erosión antes de que arruine el mes.</p>
+            </details>
+            <details>
+              <summary>¿La comisión de la app es el problema o es mi mix de productos y tiempos?</summary>
+              <p>La comisión es una línea de costo a gestionar, no un villano. Si tras descontarla el canal sigue dejando margen y volumen incremental, cumple su función. Cuando el margen neto es cero o negativo, el origen suele estar en el mix de productos, el peso de las promos o los tiempos, no solo en el porcentaje.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>¿Quieres ver tu delivery con claridad?</h2>
+            <p>Escríbenos por WhatsApp. Revisamos qué está rompiendo el ritmo multi-sucursal y qué mover primero.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/es">Inicio</a> · <a href="/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -28,7 +28,8 @@
       "cuándo pausar la tienda en apps de delivery",
       "tasa de error en pedidos delivery",
       "qué hacer cuando un indicador de delivery se dispara",
-      "mesa de control de delivery multi-sucursal"
+      "mesa de control de delivery multi-sucursal",
+      "cómo calcular la rentabilidad real del delivery por sucursal"
     ]
   },
   "published": [
@@ -343,6 +344,18 @@
       "pathEn": "/en/blog/menu-engineering-delivery-apps",
       "titleEn": "Menu Engineering for Delivery Apps: Sell More, Protect Margin",
       "descriptionEn": "Menu engineering for delivery apps classifies each item by conversion × contribution margin. Learn how to order, photograph and describe items to sell more."
+    },
+    {
+      "slug": "rentabilidad-real-delivery-por-sucursal",
+      "destino": "control-room",
+      "keyword": "cómo calcular la rentabilidad real del delivery por sucursal",
+      "date": "2026-10-25",
+      "title": "Cómo calcular la rentabilidad real del delivery por sucursal",
+      "description": "Guía operativa para calcular el margen real del delivery por local: qué costos restar, cómo comparar sucursales y convertir cada caída de margen en acción.",
+      "path": "/blog/rentabilidad-real-delivery-por-sucursal",
+      "pathEn": "/en/blog/delivery-profitability-by-location",
+      "titleEn": "How to Calculate Real Delivery Profitability by Location",
+      "descriptionEn": "Learn to calculate real delivery profitability per location: subtract commissions, promos, refunds and time costs to find contribution margin per order."
     }
   ]
 }

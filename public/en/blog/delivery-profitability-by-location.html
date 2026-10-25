@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>How to Calculate Real Delivery Profitability by Location</title>
+    <meta name="description" content="Learn to calculate real delivery profitability per location: subtract commissions, promos, refunds and time costs to find contribution margin per order." />
+    <meta name="keywords" content="how to calculate real delivery profitability by location, contribution margin per delivery channel, how to measure profitability per delivery order, hidden delivery costs multi-location restaurants, operational delivery P&amp;L per store, compare delivery profitability between locations, average ticket vs real margin in delivery, why a location sells more and earns less in delivery" />
+    <link rel="canonical" href="https://pimenton.io/en/blog/delivery-profitability-by-location" />
+    <link rel="alternate" hreflang="es" href="https://pimenton.io/blog/rentabilidad-real-delivery-por-sucursal" />
+    <link rel="alternate" hreflang="en" href="https://pimenton.io/en/blog/delivery-profitability-by-location" />
+    <link rel="alternate" hreflang="x-default" href="https://pimenton.io/blog/rentabilidad-real-delivery-por-sucursal" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="How to Calculate Real Delivery Profitability by Location" />
+    <meta property="og:description" content="Learn to calculate real delivery profitability per location: subtract commissions, promos, refunds and time costs to find contribution margin per order." />
+    <meta property="og:url" content="https://pimenton.io/en/blog/delivery-profitability-by-location" />
+    <meta property="og:image" content="https://www.pimenton.io/assets/blog-covers/cover-pass-bags.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="How to Calculate Real Delivery Profitability by Location" />
+    <meta name="twitter:description" content="Learn to calculate real delivery profitability per location: subtract commissions, promos, refunds and time costs to find contribution margin per order." />
+    <meta name="twitter:image" content="https://www.pimenton.io/assets/blog-covers/cover-pass-bags.jpg" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "How to Calculate Real Delivery Profitability by Location: A Step-by-Step Operational Guide",
+      "description": "Learn to calculate real delivery profitability per location: subtract commissions, promos, refunds and time costs to find contribution margin per order.",
+      "inLanguage": "en",
+      "author": {
+            "@type": "Organization",
+            "name": "Control Room by Pimentón",
+            "url": "https://pimenton.io/en"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.pimenton.io/assets/blog-covers/cover-pass-bags.jpg"
+            }
+      },
+      "datePublished": "2026-10-25",
+      "dateModified": "2026-10-25",
+      "mainEntityOfPage": "https://pimenton.io/en/blog/delivery-profitability-by-location",
+      "image": "https://www.pimenton.io/assets/blog-covers/cover-pass-bags.jpg"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "What costs do I subtract to find the real profitability of a delivery order?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Subtract real food cost (including substitutions), app commission, promos and discounts, refunds and compensations, and packaging from the net revenue you actually collect. What remains is the contribution margin per order. Skipping refunds and sold-out substitutions is the most common reason margin looks higher than it really is."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "How do I separate margin by channel (app A, app B, own web) per location?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Pull net revenue per channel for each store, apply that channel's specific commission, tag promos and refunds to the channel that generated them, then compute contribution margin % per channel per store. Blended numbers hide the one channel or location dragging the group down."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Why can a location with more orders be less profitable?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Because profitability is per-order contribution, not volume. If incremental orders carry heavy promos, high refund rates, sold-out substitutions, or slow prep times that trigger cancellations, each extra order can add negative margin. High sales with thin or negative contribution per order means more volume quietly loses more money."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "How often should I review margin per location?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Weekly, with one named owner per store comparing contribution margin against a baseline. A monthly P&L only confirms a loss after it happened; a weekly operational review catches erosion while the team can still adjust mix, promos, prep and staffing during the shift."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Is the app commission the problem, or is it my product mix and times?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Commission is a fixed cost line you agreed to — it's an input to manage, not a villain. The variables you actually control are product mix, ticket construction, promo discipline, prep times and refund rates. Fix those first; the commission you can absorb depends entirely on how healthy those operational levers are."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://pimenton.io/en"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://pimenton.io/en/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "How to Calculate Real Delivery Profitability by Location: A Step-by-Step Operational Guide",
+                  "item": "https://pimenton.io/en/blog/delivery-profitability-by-location"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-control-room">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/en" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-blanco.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/en">Home</a>
+          <a href="/en/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma">
+            <a class="" href="/blog/rentabilidad-real-delivery-por-sucursal" hreflang="es">ES</a>
+            <a class="active" href="/en/blog/delivery-profitability-by-location" hreflang="en">EN</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Control Room · Ops</p>
+          <h1>How to Calculate Real Delivery Profitability by Location: A Step-by-Step Operational Guide</h1>
+          <p class="lead-answer"><p><strong>Real delivery profitability per location</strong> is the contribution margin left after you subtract, order by order, every variable cost from the delivery revenue: food cost, app commission, promos and discounts, refunds, sold-out substitutions, and packaging. The formula per order is: <em>net revenue − (food cost + commission + promo + refunds + packaging)</em>. Track it as a weekly operational metric with one owner per store, not as a monthly accounting afterthought — that's how you catch a location that sells more but earns less.</p></p>
+          <p class="byline">By Control Room · 2026-10-25 · 4 min read</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/blog-covers/cover-pass-bags.jpg" alt="Delivery bags at the pass" width="1200" height="800" loading="eager" />
+  <figcaption>The pass is where the order is won.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>30%</b><span>typical commission on the ticket</span></div>
+    <div class="blog-stat"><b>15%</b><span>margin when nobody measures contribution</span></div>
+    <div class="blog-stat"><b>$100</b><span>sample order, broken down below</span></div>
+</div>
+<figure class="blog-chart blog-chart--stack" data-blog-visuals="lead">
+  <p class="chart-kicker">Illustrative example</p>
+  <figcaption>Where a $100 order actually goes</figcaption>
+  <div class="stack" role="img" aria-label="Where a $100 order actually goes">
+    <span class="seg seg-0" style="flex:32" title="Food $32"></span>
+    <span class="seg seg-1" style="flex:28" title="Commission $28"></span>
+    <span class="seg seg-2" style="flex:12" title="Packaging &amp; ads $12"></span>
+    <span class="seg seg-3" style="flex:10" title="Promo $10"></span>
+    <span class="seg seg-4 is-accent" style="flex:18" title="Margin $18"></span>
+  </div>
+  <ul class="legend">
+    <li><i class="swatch seg-0"></i>Food <b>$32</b></li>
+    <li><i class="swatch seg-1"></i>Commission <b>$28</b></li>
+    <li><i class="swatch seg-2"></i>Packaging &amp; ads <b>$12</b></li>
+    <li><i class="swatch seg-3"></i>Promo <b>$10</b></li>
+    <li><i class="swatch seg-4 is-accent"></i>Margin <b>$18</b></li>
+  </ul>
+  <p class="chart-note">Food, commission, packaging, ads, and promo eat the ticket before margin. Every restaurant has its own structure.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>A location can top the sales ranking and still quietly bleed money. That happens when margin is treated as an accounting result that shows up at month-end, instead of an operational signal you watch every week. To know the <strong>real delivery profitability per location</strong>, you have to rebuild the margin line by line — and connect each line to a lever the team can actually move during a shift.</p><h2>What "real profitability" means in delivery</h2><p>Real profitability is <strong>contribution margin</strong>: what's left from an order after every variable cost tied to that order. It is not gross sales, and it is not average ticket. Two locations with identical revenue can have completely different margins depending on their commission tier, promo load, and operational quality.</p><p>The per-order formula is simple to state and hard to ignore:</p><ul><li><strong>Net revenue</strong> (what you actually collect, after platform deductions)</li><li><strong>− Food cost</strong> (real recipe cost, including substitutions)</li><li><strong>− App commission</strong> (per channel, per order)</li><li><strong>− Promos and discounts</strong> (co-funded or fully absorbed)</li><li><strong>− Refunds and compensations</strong> (missing items, remakes)</li><li><strong>− Packaging</strong></li></ul><p>What remains is your contribution per order. Multiply by order volume and you get the location's real delivery contribution — the number that tells you if a store earns or burns.</p><h2>The hidden costs that distort the picture</h2><p>Most teams subtract food cost and commission and stop there. The margin erosion hides in the lines nobody tracks per order:</p><ul><li><strong>Refunds and compensations:</strong> every missing item or remake is a sale with negative margin. A 3% refund rate can wipe out the margin of your best-selling combo.</li><li><strong>Sold-out substitutions:</strong> when a prep item runs out and the shift swaps in a more expensive one, food cost silently climbs.</li><li><strong>Promos stacked on low-margin items:</strong> a discount on an already-thin product can push the order below break-even.</li><li><strong>Slow prep times:</strong> late orders trigger cancellations, refunds and rating damage — all costs that never appear as a "food cost" line.</li></ul><p>These are the real reasons a high-volume location underperforms. More orders don't help if each incremental order carries a shrinking or negative margin.</p><figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/insights/profesionalizar-delivery/hero.jpg" alt="Professionalizing the delivery channel" width="1200" height="800" loading="lazy" />
+  <figcaption>Process before volume.</figcaption>
+</figure>
+          <h2>How to separate margin by channel and by location</h2><p>Commission structures, promo mechanics and co-funding differ across channels, so a blended number lies. Build the margin <strong>per channel, per store</strong>:</p><ol><li><strong>Pull net revenue per channel</strong> (each app and your own web) for the week.</li><li><strong>Apply the channel's commission rate</strong> — it often varies by location tier.</li><li><strong>Tag promos to the channel that ran them</strong>, splitting co-funded vs. fully absorbed.</li><li><strong>Attribute refunds and sold-outs</strong> to the originating channel.</li><li><strong>Compute contribution margin %</strong> for each channel in each store.</li></ol><p>Now you can answer the question that matters: <em>which channel in which location is actually funding the kitchen, and which is just moving volume?</em> Apps are a demand channel — commission is a cost line to manage, not a villain. The point is to know what you can absorb before you absorb it.</p><h2>Margin as an operational alert, not a monthly report</h2><p>The shift from accounting to operations is the whole game. A monthly P&L tells you a location lost money after it already happened. An operational margin signal tells you <em>this week</em>, while you can still act.</p><h3>Set a weekly cadence with one owner per store</h3><p>Each location needs a named owner who reviews margin every week against a baseline. When contribution margin % drops below a threshold, it's an alert — treated like a spike in cancellations or a rating dip.</p><h3>Connect each line to a lever the team can move</h3><ul><li><strong>Commission heavy?</strong> Review mix and ticket construction, not the platform.</li><li><strong>Promo bleeding?</strong> Cap discounts on low-margin items; shift promos to high-margin ones.</li><li><strong>Refunds up?</strong> Audit packing accuracy and the top 3 missing-item SKUs.</li><li><strong>Sold-outs climbing?</strong> Fix prep forecasting for the busiest hours.</li><li><strong>Times slipping?</strong> Rebalance the line during peak shifts.</li></ul><p>Every margin line has a matching operational move. That's how a number becomes a playbook instead of a lament.</p><h2>Common mistakes when comparing locations</h2><ul><li><strong>Ranking by sales instead of contribution:</strong> the top-seller is often not the top-earner.</li><li><strong>Using a blended margin:</strong> it hides the one channel or store dragging the group down.</li><li><strong>Ignoring refunds and sold-outs:</strong> these are the costs that decide the month.</li><li><strong>Reviewing only at month-end:</strong> by then the margin is already lost.</li><li><strong>Blaming the app:</strong> commission is fixed input; your mix, times and quality are what you control.</li></ul><div class="callout"><p><strong>This is exactly what Control Room does.</strong> Pimentón's operational control room treats margin as a live alert per location — weekly cadence, one owner per store, each margin line connected to a shift-level lever so your team acts before month-end instead of explaining after. Want to see your real profitability per location? <a href="https://wa.me/5491157035170">Talk to us on WhatsApp</a>.</p></div>
+          <h2 id="faq">Frequently asked questions</h2>
+          <div class="faq">
+            <details>
+              <summary>What costs do I subtract to find the real profitability of a delivery order?</summary>
+              <p>Subtract real food cost (including substitutions), app commission, promos and discounts, refunds and compensations, and packaging from the net revenue you actually collect. What remains is the contribution margin per order. Skipping refunds and sold-out substitutions is the most common reason margin looks higher than it really is.</p>
+            </details>
+            <details>
+              <summary>How do I separate margin by channel (app A, app B, own web) per location?</summary>
+              <p>Pull net revenue per channel for each store, apply that channel's specific commission, tag promos and refunds to the channel that generated them, then compute contribution margin % per channel per store. Blended numbers hide the one channel or location dragging the group down.</p>
+            </details>
+            <details>
+              <summary>Why can a location with more orders be less profitable?</summary>
+              <p>Because profitability is per-order contribution, not volume. If incremental orders carry heavy promos, high refund rates, sold-out substitutions, or slow prep times that trigger cancellations, each extra order can add negative margin. High sales with thin or negative contribution per order means more volume quietly loses more money.</p>
+            </details>
+            <details>
+              <summary>How often should I review margin per location?</summary>
+              <p>Weekly, with one named owner per store comparing contribution margin against a baseline. A monthly P&amp;L only confirms a loss after it happened; a weekly operational review catches erosion while the team can still adjust mix, promos, prep and staffing during the shift.</p>
+            </details>
+            <details>
+              <summary>Is the app commission the problem, or is it my product mix and times?</summary>
+              <p>Commission is a fixed cost line you agreed to — it's an input to manage, not a villain. The variables you actually control are product mix, ticket construction, promo discipline, prep times and refund rates. Fix those first; the commission you can absorb depends entirely on how healthy those operational levers are.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>Want clear visibility on your delivery?</h2>
+            <p>Message us on WhatsApp. We'll review what's breaking multi-location rhythm and what to fix first.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Message on WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/en">Home</a> · <a href="/en/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
