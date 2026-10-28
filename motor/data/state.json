@@ -13,7 +13,8 @@
       "cómo mejorar el rating en apps de delivery",
       "punto de equilibrio delivery restaurante",
       "delivery propio o apps de delivery",
-      "ingeniería de menú delivery"
+      "ingeniería de menú delivery",
+      "ads en apps de delivery vs meta ads para restaurantes"
     ],
     "control-room": [
       "qué indicadores revisar delivery multi-sucursal",
@@ -356,6 +357,18 @@
       "pathEn": "/en/blog/delivery-profitability-by-location",
       "titleEn": "How to Calculate Real Delivery Profitability by Location",
       "descriptionEn": "Learn to calculate real delivery profitability per location: subtract commissions, promos, refunds and time costs to find contribution margin per order."
+    },
+    {
+      "slug": "ads-apps-delivery-vs-meta-ads-restaurantes",
+      "destino": "pimenton",
+      "keyword": "ads en apps de delivery vs meta ads para restaurantes",
+      "date": "2026-10-28",
+      "title": "Ads en apps de delivery vs Meta Ads para restaurantes: guía de decisión",
+      "description": "Marco neutral para decidir entre ads en apps de delivery y Meta Ads: ROAS neto de comisión, incrementalidad y cómo repartir el presupuesto.",
+      "path": "/blog/ads-apps-delivery-vs-meta-ads-restaurantes",
+      "pathEn": "/en/blog/in-app-delivery-ads-vs-meta-ads-restaurants-roas",
+      "titleEn": "In-App Delivery Ads vs Meta Ads for Restaurants: Measuring Real ROAS",
+      "descriptionEn": "In-app delivery ads vs Meta ads for restaurants: a neutral framework to measure incrementality and real commission-net ROAS, plus budget rules and examples."
     }
   ]
 }
