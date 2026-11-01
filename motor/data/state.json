@@ -30,7 +30,8 @@
       "tasa de error en pedidos delivery",
       "qué hacer cuando un indicador de delivery se dispara",
       "mesa de control de delivery multi-sucursal",
-      "cómo calcular la rentabilidad real del delivery por sucursal"
+      "cómo calcular la rentabilidad real del delivery por sucursal",
+      "tiempo de espera del repartidor en delivery"
     ]
   },
   "published": [
@@ -369,6 +370,18 @@
       "pathEn": "/en/blog/in-app-delivery-ads-vs-meta-ads-restaurants-roas",
       "titleEn": "In-App Delivery Ads vs Meta Ads for Restaurants: Measuring Real ROAS",
       "descriptionEn": "In-app delivery ads vs Meta ads for restaurants: a neutral framework to measure incrementality and real commission-net ROAS, plus budget rules and examples."
+    },
+    {
+      "slug": "tiempo-espera-repartidor-delivery",
+      "destino": "control-room",
+      "keyword": "tiempo de espera del repartidor en delivery",
+      "date": "2026-11-01",
+      "title": "Tiempo de espera del repartidor en delivery: umbral por sucursal y cómo reducirlo",
+      "description": "El tiempo de espera del repartidor mide la sincronización cocina↔rider. Aprende qué umbral vigilar por sucursal, cómo medirlo y reducirlo sin romper calidad.",
+      "path": "/blog/tiempo-espera-repartidor-delivery",
+      "pathEn": "/en/blog/delivery-rider-wait-time",
+      "titleEn": "Delivery Rider Wait Time: Thresholds and How to Reduce It",
+      "descriptionEn": "Rider wait time is a kitchen-to-rider sync signal. Learn the thresholds to watch per location, how to measure it across apps, and how to reduce it without rushing quality."
     }
   ]
 }

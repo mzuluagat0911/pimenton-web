@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Tiempo de espera del repartidor en delivery: umbral por sucursal y cómo reducirlo</title>
+    <meta name="description" content="El tiempo de espera del repartidor mide la sincronización cocina↔rider. Aprende qué umbral vigilar por sucursal, cómo medirlo y reducirlo sin romper calidad." />
+    <meta name="keywords" content="tiempo de espera del repartidor en delivery, cuánto tiempo debería esperar el repartidor en el restaurante, cómo reducir el tiempo de espera del rider en delivery, tiempo de espera del repartidor y rating en apps, por qué se acumulan repartidores en mi cocina, cómo medir el tiempo de espera del repartidor por sucursal, rider wait time restaurante multi-sucursal, pedido listo antes de que llegue el repartidor" />
+    <link rel="canonical" href="https://pimenton.io/blog/tiempo-espera-repartidor-delivery" />
+    <link rel="alternate" hreflang="es" href="https://pimenton.io/blog/tiempo-espera-repartidor-delivery" />
+    <link rel="alternate" hreflang="en" href="https://pimenton.io/en/blog/delivery-rider-wait-time" />
+    <link rel="alternate" hreflang="x-default" href="https://pimenton.io/blog/tiempo-espera-repartidor-delivery" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Tiempo de espera del repartidor en delivery: umbral por sucursal y cómo reducirlo" />
+    <meta property="og:description" content="El tiempo de espera del repartidor mide la sincronización cocina↔rider. Aprende qué umbral vigilar por sucursal, cómo medirlo y reducirlo sin romper calidad." />
+    <meta property="og:url" content="https://pimenton.io/blog/tiempo-espera-repartidor-delivery" />
+    <meta property="og:image" content="https://www.pimenton.io/assets/blog-covers/cover-pizza-peel.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tiempo de espera del repartidor en delivery: umbral por sucursal y cómo reducirlo" />
+    <meta name="twitter:description" content="El tiempo de espera del repartidor mide la sincronización cocina↔rider. Aprende qué umbral vigilar por sucursal, cómo medirlo y reducirlo sin romper calidad." />
+    <meta name="twitter:image" content="https://www.pimenton.io/assets/blog-covers/cover-pizza-peel.jpg" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Tiempo de espera del repartidor en delivery: qué umbral vigilar por sucursal y cómo reducirlo",
+      "description": "El tiempo de espera del repartidor mide la sincronización cocina↔rider. Aprende qué umbral vigilar por sucursal, cómo medirlo y reducirlo sin romper calidad.",
+      "inLanguage": "es",
+      "author": {
+            "@type": "Organization",
+            "name": "Control Room by Pimentón",
+            "url": "https://pimenton.io/es"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.pimenton.io/assets/blog-covers/cover-pizza-peel.jpg"
+            }
+      },
+      "datePublished": "2026-11-01",
+      "dateModified": "2026-11-01",
+      "mainEntityOfPage": "https://pimenton.io/blog/tiempo-espera-repartidor-delivery",
+      "image": "https://www.pimenton.io/assets/blog-covers/cover-pizza-peel.jpg"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "¿Cuánto es normal que espere un repartidor en el local?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Una espera de 2 a 4 minutos suele ser sana: el rider llega, el pedido se cierra y sale caliente. Por encima de 5–6 minutos de forma repetida conviene tratarlo como alerta. El umbral exacto depende de la capacidad de cada sucursal y de la franja horaria."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿El tiempo de espera del repartidor afecta la visibilidad o el rating en las apps?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Sí, de forma indirecta. Si el pedido se enfría esperando al rider, aparece en reseñas como \"llegó frío\" o \"tardó\", lo que baja el rating. Y si los riders esperan mucho de forma consistente, impacta la percepción de tiempos. El foco está en sincronizar la operación, no en la plataforma."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Por qué el repartidor llega y el pedido no está, o al revés?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Suele ser un problema de timing al marcar listo: o se marca demasiado pronto (el rider llega a nada) o demasiado tarde (el pedido se enfría y el rider se apila). También influye no anticipar la curva de pedidos en los picos. Es sincronización cocina↔rider, no falla de la app."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Cómo se mide el wait time del rider si uso varias apps y varias sucursales?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Necesitas consolidar el gap entre \"marcado listo\" y \"recogido\" unificado entre apps, segmentado por sucursal y franja horaria, y separado en sus dos direcciones (rider que espera vs. pedido que espera). Una mesa de control operativa como Control Room reúne esos datos en un solo lugar para evitar comparar tableros sueltos."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Qué umbral de espera debería disparar una alerta?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Define un umbral por sucursal según su capacidad; una referencia común es disparar la alerta cuando el promedio supere 6 minutos sostenidos en un pico. Lo clave es que sea un número propio de cada local y que avise durante el turno, para poder corregir en el momento."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Cómo bajo el tiempo de espera sin apurar la cocina y romper calidad?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Calibrando el momento de marcar listo para que refleje el empaque real, anticipando la curva de pedidos en los picos y ordenando la prioridad del pass entre canales. El objetivo es que la comida salga caliente justo cuando el rider está listo, no acelerar la producción a costa de la calidad."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Inicio",
+                  "item": "https://pimenton.io/es"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://pimenton.io/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Tiempo de espera del repartidor en delivery: qué umbral vigilar por sucursal y cómo reducirlo",
+                  "item": "https://pimenton.io/blog/tiempo-espera-repartidor-delivery"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-control-room">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/es" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-blanco.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/es">Inicio</a>
+          <a href="/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma">
+            <a class="active" href="/blog/tiempo-espera-repartidor-delivery" hreflang="es">ES</a>
+            <a class="" href="/en/blog/delivery-rider-wait-time" hreflang="en">EN</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Control Room · Ops</p>
+          <h1>Tiempo de espera del repartidor en delivery: qué umbral vigilar por sucursal y cómo reducirlo</h1>
+          <p class="lead-answer"><p>El <strong>tiempo de espera del repartidor</strong> es el tiempo que transcurre entre que el rider llega al local y recoge el pedido. No es culpa de la app: es una señal de qué tan bien sincroniza tu cocina el momento de <em>marcar listo</em> con la curva real de pedidos. Vigílalo en sus dos direcciones —rider que espera y pedido que se enfría— con un umbral por sucursal (una alerta razonable es a partir de 4–6 minutos) y revísalo en el standup diario.</p></p>
+          <p class="byline">Por Control Room · 2026-11-01 · 5 min de lectura</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/blog-covers/cover-pizza-peel.jpg" alt="Pizza saliendo del horno para delivery" width="1200" height="800" loading="eager" />
+  <figcaption>El horno marca el reloj del canal.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>10'</b><span>standup diario, no una reunión eterna</span></div>
+    <div class="blog-stat"><b>3</b><span>capas: diario, weekly, war room</span></div>
+    <div class="blog-stat"><b>1</b><span>tablero. El resto es ruido</span></div>
+</div>
+<figure class="blog-chart blog-chart--bars" data-blog-visuals="lead">
+  <p class="chart-kicker">Ritual de ops</p>
+  <figcaption>Qué se mira cada mañana (y en qué orden)</figcaption>
+  <div class="bars">
+    <div class="bar-row is-accent">
+      <div class="bar-meta"><span>Cancelaciones / 86</span><b>1º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-0" style="width:90%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Tiempo de prep</span><b>2º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-1" style="width:75%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Conectividad / stock</span><b>3º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-2" style="width:62%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ticket y mix</span><b>4º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-3" style="width:50%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ads y ranking</span><b>5º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-4" style="width:38%"></span></div>
+    </div>
+  </div>
+  <p class="chart-note">Si el tablero no cabe en una pantalla, no se usa. Cinco indicadores, dueño, umbral, decisión.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>Cuando se juntan tres repartidores parados en tu cocina, la reacción fácil es culpar a la app. Pero el <strong>tiempo de espera del repartidor en delivery</strong> casi nunca es un problema de la plataforma: es un problema de sincronización entre tu cocina y el rider. La app asigna al repartidor según cuándo marcas el pedido como listo. Si ese timing está mal calibrado, o esperan ellos, o se enfría tu comida. Las dos cosas cuestan dinero.</p><h2>Qué es el tiempo de espera del repartidor y por qué importa</h2><p>El <strong>tiempo de espera del repartidor</strong> es el intervalo entre que el rider llega al local y sale con el pedido en mano. Es una métrica de <em>sincronización</em>, no de velocidad de cocina aislada. Tiene dos direcciones, y ambas duelen:</p><ul><li><strong>El rider espera al pedido:</strong> ocupa un slot de reparto que no está rodando, genera presión en tu mostrador y, cuando se repite, afecta la percepción de tiempos en la app.</li><li><strong>El pedido espera al rider:</strong> la comida se enfría en el pass, baja la calidad percibida y aparece en las reseñas como "llegó frío" o "tardó mucho".</li></ul><p>La mayoría de los locales solo mira una cara. El dato valioso aparece cuando mides las dos: te dice si estás marcando listo <strong>demasiado tarde</strong> (rider parado) o <strong>demasiado pronto</strong> (pedido enfriándose).</p><h3>Cuánto debería esperar un repartidor</h3><p>No hay un número universal, pero sí un rango de trabajo: una espera de <strong>2 a 4 minutos</strong> suele ser sana —el rider llega, el pedido se cierra, sale caliente—. Por encima de <strong>5–6 minutos</strong> de forma repetida, tienes una señal de desincronización que conviene convertir en alerta. Lo importante no es el número absoluto sino la <strong>consistencia por sucursal y por franja horaria</strong>: un local con cocina chica y pico fuerte tendrá un umbral distinto al de un local con capacidad de sobra.</p><h2>Por qué se acumulan repartidores (o por qué el pedido no está)</h2><p>Cuando el rider llega y el pedido no está listo —o al revés, está listo hace diez minutos y nadie lo recoge— casi siempre hay una de estas causas:</p><ul><li><strong>El "marcar listo" es mentiroso:</strong> el equipo lo marca listo apenas entra la comanda para ganar tiempo en la métrica, y el pedido no está físicamente terminado. El rider llega a nada.</li><li><strong>El "marcar listo" llega tarde:</strong> el pedido está hecho pero nadie actualizó el estado, así que la app asigna el rider con retraso y luego todo se amontona.</li><li><strong>Lectura equivocada de la curva de pedidos:</strong> la cocina produce al ritmo que le llegan las comandas, no anticipando el pico. Cuando entran quince pedidos en diez minutos, los riders se apilan.</li><li><strong>Mezcla de canales sin prioridad:</strong> salón, mostrador y varias apps compiten por el mismo pass sin reglas claras de orden.</li></ul><p>En todos los casos, la variable que controlas es <strong>el timing del marcar listo</strong> y la anticipación a la curva. La app solo reacciona a lo que tú le informas.</p><figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/insights/profesionalizar-delivery/hero.jpg" alt="Profesionalizar el canal delivery" width="1200" height="800" loading="lazy" />
+  <figcaption>Proceso antes que volumen.</figcaption>
+</figure>
+          <h2>Cómo medir el wait time por sucursal (y sin Excel eterno)</h2><p>Medir el <strong>tiempo de espera del repartidor por sucursal</strong> con varias apps es el problema real en operaciones multi-local. Cada plataforma muestra sus propios tiempos, en su propio tablero, con su propia definición. Para que el dato sea accionable necesitas:</p><ol><li><strong>Una métrica consolidada:</strong> el gap entre "pedido marcado listo" y "pedido recogido", unificado entre apps, por sucursal.</li><li><strong>Segmentación por franja:</strong> el wait time de las 13:00 no es comparable al de las 17:00. Mide por turno y por pico.</li><li><strong>Las dos direcciones separadas:</strong> minutos de rider esperando vs. minutos de pedido esperando rider. Son problemas opuestos con soluciones opuestas.</li><li><strong>Un umbral por local:</strong> define qué nivel de espera es aceptable para cada cocina según su capacidad, y trata todo lo que lo supera como excepción a revisar.</li></ol><p>Cuando esto vive en un solo lugar, dejas de comparar capturas de pantalla de cuatro apps y empiezas a ver patrones: qué sucursal desincroniza, en qué turno, y hacia qué lado.</p><h2>De dato a acción: alerta con umbral y ritual de standup</h2><p>Un número que nadie mira no cambia nada. Convierte el wait time en dos cosas concretas:</p><h3>Una alerta con umbral</h3><p>Configura un disparo cuando el tiempo de espera promedio de una sucursal supere su umbral durante una franja (por ejemplo, más de 6 minutos sostenidos en el pico de almuerzo). La alerta no es para castigar: es para que el encargado del turno sepa <strong>en el momento</strong> que hay desincronización y ajuste el ritmo de la cocina o el timing del marcar listo.</p><h3>Un ritual en el standup</h3><p>En la reunión diaria de operaciones, revisa el wait time de la jornada anterior por sucursal, en sus dos direcciones. Preguntas útiles:</p><ul><li>¿Qué local tuvo riders parados y cuántos minutos de slot se perdieron?</li><li>¿Qué local tuvo pedidos enfriándose y apareció en reseñas por calidad o tiempo?</li><li>¿El problema fue el momento de marcar listo o la anticipación a la curva?</li><li>¿Qué ajuste concreto probamos hoy en esa sucursal?</li></ul><div class="callout"><p><strong>Control Room</strong> es la mesa de control operativa de Pimentón: consolida el tiempo de espera del repartidor por sucursal y por app, lo separa en sus dos direcciones y te avisa cuando una cocina cruza su umbral —para que lo resuelvas en el turno, no en el reporte de fin de mes. ¿Operas varios locales y quieres ver dónde se desincroniza cocina y rider? <a href="https://wa.me/5491157035170">Escríbenos por WhatsApp</a>.</p></div><h2>Cómo reducir el tiempo de espera sin romper la calidad</h2><p>Bajar el wait time no significa apurar la cocina hasta que la comida salga mal. Significa <strong>sincronizar mejor</strong>:</p><ul><li><strong>Calibra el momento de marcar listo:</strong> que refleje cuándo el pedido está realmente empacado, no cuándo entra la comanda. Un estado honesto hace que la app asigne el rider en el momento correcto.</li><li><strong>Anticipa la curva:</strong> si conoces tus picos, prepara componentes y escalona la producción antes de que lleguen los quince pedidos juntos.</li><li><strong>Ordena la prioridad del pass:</strong> reglas claras entre salón, mostrador y apps para que nadie quede atrás por azar.</li><li><strong>Ajusta por sucursal:</strong> lo que funciona en el local grande no aplica al chico. Usa el umbral propio de cada cocina como referencia.</li><li><strong>Cierra el loop:</strong> mide si el ajuste movió el número en los días siguientes. Si no, cambia la hipótesis.</li></ul><p>El objetivo es que el pedido salga caliente justo cuando el rider está listo para llevarlo. Ni el rider esperando, ni la comida enfriándose. Esa sincronización es lo que protege a la vez tu slot de reparto, tu rating y tu margen.</p>
+          <h2 id="faq">Preguntas frecuentes</h2>
+          <div class="faq">
+            <details>
+              <summary>¿Cuánto es normal que espere un repartidor en el local?</summary>
+              <p>Una espera de 2 a 4 minutos suele ser sana: el rider llega, el pedido se cierra y sale caliente. Por encima de 5–6 minutos de forma repetida conviene tratarlo como alerta. El umbral exacto depende de la capacidad de cada sucursal y de la franja horaria.</p>
+            </details>
+            <details>
+              <summary>¿El tiempo de espera del repartidor afecta la visibilidad o el rating en las apps?</summary>
+              <p>Sí, de forma indirecta. Si el pedido se enfría esperando al rider, aparece en reseñas como &quot;llegó frío&quot; o &quot;tardó&quot;, lo que baja el rating. Y si los riders esperan mucho de forma consistente, impacta la percepción de tiempos. El foco está en sincronizar la operación, no en la plataforma.</p>
+            </details>
+            <details>
+              <summary>¿Por qué el repartidor llega y el pedido no está, o al revés?</summary>
+              <p>Suele ser un problema de timing al marcar listo: o se marca demasiado pronto (el rider llega a nada) o demasiado tarde (el pedido se enfría y el rider se apila). También influye no anticipar la curva de pedidos en los picos. Es sincronización cocina↔rider, no falla de la app.</p>
+            </details>
+            <details>
+              <summary>¿Cómo se mide el wait time del rider si uso varias apps y varias sucursales?</summary>
+              <p>Necesitas consolidar el gap entre &quot;marcado listo&quot; y &quot;recogido&quot; unificado entre apps, segmentado por sucursal y franja horaria, y separado en sus dos direcciones (rider que espera vs. pedido que espera). Una mesa de control operativa como Control Room reúne esos datos en un solo lugar para evitar comparar tableros sueltos.</p>
+            </details>
+            <details>
+              <summary>¿Qué umbral de espera debería disparar una alerta?</summary>
+              <p>Define un umbral por sucursal según su capacidad; una referencia común es disparar la alerta cuando el promedio supere 6 minutos sostenidos en un pico. Lo clave es que sea un número propio de cada local y que avise durante el turno, para poder corregir en el momento.</p>
+            </details>
+            <details>
+              <summary>¿Cómo bajo el tiempo de espera sin apurar la cocina y romper calidad?</summary>
+              <p>Calibrando el momento de marcar listo para que refleje el empaque real, anticipando la curva de pedidos en los picos y ordenando la prioridad del pass entre canales. El objetivo es que la comida salga caliente justo cuando el rider está listo, no acelerar la producción a costa de la calidad.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>¿Quieres ver tu delivery con claridad?</h2>
+            <p>Escríbenos por WhatsApp. Revisamos qué está rompiendo el ritmo multi-sucursal y qué mover primero.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/es">Inicio</a> · <a href="/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
