@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Incremental Delivery Orders: Measure New Sales vs. Dine-In Cannibalization</title>
+    <meta name="description" content="Learn how to measure incremental delivery sales: tell new demand from cannibalized dine-in with simple geo, hour and promo tests—no expensive tools needed." />
+    <meta name="keywords" content="pedidos incrementales delivery, does delivery cannibalize dine-in, are delivery app orders incremental, incremental sales delivery apps restaurant, ventas incrementales delivery apps, canibalización delivery vs salón, cómo medir si el delivery es rentable" />
+    <link rel="canonical" href="https://pimenton.io/en/blog/incremental-delivery-orders-cannibalization" />
+    <link rel="alternate" hreflang="es" href="https://pimenton.io/blog/pedidos-incrementales-delivery" />
+    <link rel="alternate" hreflang="en" href="https://pimenton.io/en/blog/incremental-delivery-orders-cannibalization" />
+    <link rel="alternate" hreflang="x-default" href="https://pimenton.io/blog/pedidos-incrementales-delivery" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Incremental Delivery Orders: Measure New Sales vs. Dine-In Cannibalization" />
+    <meta property="og:description" content="Learn how to measure incremental delivery sales: tell new demand from cannibalized dine-in with simple geo, hour and promo tests—no expensive tools needed." />
+    <meta property="og:url" content="https://pimenton.io/en/blog/incremental-delivery-orders-cannibalization" />
+    <meta property="og:image" content="https://www.pimenton.io/assets/blog-covers/cover-sushi-box.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Incremental Delivery Orders: Measure New Sales vs. Dine-In Cannibalization" />
+    <meta name="twitter:description" content="Learn how to measure incremental delivery sales: tell new demand from cannibalized dine-in with simple geo, hour and promo tests—no expensive tools needed." />
+    <meta name="twitter:image" content="https://www.pimenton.io/assets/blog-covers/cover-sushi-box.jpg" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Incremental Delivery Orders: How to Measure If Delivery Apps Bring New Sales or Cannibalize Dine-In",
+      "description": "Learn how to measure incremental delivery sales: tell new demand from cannibalized dine-in with simple geo, hour and promo tests—no expensive tools needed.",
+      "inLanguage": "en",
+      "author": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "url": "https://pimenton.io/en"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.pimenton.io/assets/blog-covers/cover-sushi-box.jpg"
+            }
+      },
+      "datePublished": "2026-11-04",
+      "dateModified": "2026-11-04",
+      "mainEntityOfPage": "https://pimenton.io/en/blog/incremental-delivery-orders-cannibalization",
+      "image": "https://www.pimenton.io/assets/blog-covers/cover-sushi-box.jpg"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "Does delivery take sales away from my dining room?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Partly, sometimes—but usually less than owners assume. Cannibalization is highest when delivery and dine-in share the same customers, hours, and trade zone, and lowest when delivery reaches zones or hours your dining room can't. The only way to know your true split is to measure new-vs-returning customers and watch total sales, not just the delivery channel."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "How do I measure how many delivery customers are new vs. recurring?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Start with the new-vs-returning customer split most app dashboards already provide (Rappi, Uber Eats, PedidosYa, DoorDash, DiDi Food). Cross it with delivery zone and daypart data: orders from outside your walk-in radius or during slow hours are strong signals of net-new demand. A steady flow of first-time users indicates real incremental sales."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "What is channel cannibalization in a restaurant?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Cannibalization is when sales simply shift from one channel to another—say, a dine-in customer who now orders delivery—without adding any total volume. It matters because a cannibalized order can look profitable on its own while actually replacing a higher-margin sale you already had. Incremental sales, by contrast, are net-new revenue the channel created."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "How do I know if an app promo brought new demand or just discounted people who were already buying?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Run a controlled on/off test: turn the promo off for a defined window and watch total sales across all channels. If total sales barely move, the promo was mostly subsidizing existing customers—low incrementality. If total sales drop meaningfully, the promo was genuinely pulling in new demand worth paying for."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "How much should delivery weigh in my total sales?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "There's no single right percentage—it depends on your concept, kitchen capacity, and city. The useful test is whether scaling delivery grows your total revenue and total contribution rather than just rotating the mix. If total sales and margin stay healthy as delivery grows, the weight is fine, whatever the number."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://pimenton.io/en"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://pimenton.io/en/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Incremental Delivery Orders: How to Measure If Delivery Apps Bring New Sales or Cannibalize Dine-In",
+                  "item": "https://pimenton.io/en/blog/incremental-delivery-orders-cannibalization"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-pimenton">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/en" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-coral.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/en">Home</a>
+          <a href="/en/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma">
+            <a class="" href="/blog/pedidos-incrementales-delivery" hreflang="es">ES</a>
+            <a class="active" href="/en/blog/incremental-delivery-orders-cannibalization" hreflang="en">EN</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Delivery &amp; Growth</p>
+          <h1>Incremental Delivery Orders: How to Measure If Delivery Apps Bring New Sales or Cannibalize Dine-In</h1>
+          <p class="lead-answer"><p><strong>Incremental delivery orders are the sales a restaurant gains that it would not have made otherwise</strong>—new customers, zones, and hours the dining room never reached. The rest is cannibalization: delivery demand that simply replaces a dine-in or pickup sale you already had. To know your real channel value, estimate what share of delivery orders is genuinely new versus displaced, using new-vs-returning customer data in each app panel, controlled geo/hour tests, and promo on/off experiments. The risk isn't the app—it's investing blind without measuring incrementality.</p></p>
+          <p class="byline">By Pimentón · 2026-11-04 · 5 min read</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/blog-covers/cover-sushi-box.jpg" alt="Sushi packed to go" width="1200" height="800" loading="eager" />
+  <figcaption>Plating is margin too.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>10'</b><span>daily standup, not an endless meeting</span></div>
+    <div class="blog-stat"><b>3</b><span>layers: daily, weekly, war room</span></div>
+    <div class="blog-stat"><b>1</b><span>board. Everything else is noise</span></div>
+</div>
+<figure class="blog-chart blog-chart--bars" data-blog-visuals="lead">
+  <p class="chart-kicker">Ops ritual</p>
+  <figcaption>What you look at each morning (and in what order)</figcaption>
+  <div class="bars">
+    <div class="bar-row is-accent">
+      <div class="bar-meta"><span>Cancellations / 86s</span><b>1st</b></div>
+      <div class="bar-track"><span class="bar-fill seg-0" style="width:90%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Prep time</span><b>2nd</b></div>
+      <div class="bar-track"><span class="bar-fill seg-1" style="width:75%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Connectivity / stock</span><b>3rd</b></div>
+      <div class="bar-track"><span class="bar-fill seg-2" style="width:62%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ticket and mix</span><b>4th</b></div>
+      <div class="bar-track"><span class="bar-fill seg-3" style="width:50%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ads and ranking</span><b>5th</b></div>
+      <div class="bar-track"><span class="bar-fill seg-4" style="width:38%"></span></div>
+    </div>
+  </div>
+  <p class="chart-note">If the board doesn't fit on one screen, it doesn't get used. Five metrics, owner, threshold, decision.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>Delivery apps bring demand, but not every order is "extra" money. Some orders come from customers who would have walked into your restaurant anyway—they just chose the app for convenience. Others are pure new demand: people in zones, hours, or moments your dining room never captured. If you don't separate the two, you can over-invest in a channel that looks big but adds little, or under-invest in one that's quietly bringing you new customers. This is the concept of <strong>incremental delivery orders</strong>, and measuring it is how you decide where your next dollar goes.</p><h2>What "incremental" actually means</h2><p><strong>An incremental order is net-new revenue that would not exist without the delivery channel.</strong> A non-incremental (cannibalized) order is one that shifted from another channel you already owned—dine-in, pickup, or your own delivery—without adding total volume.</p><p>Why this matters: a delivery order can have a <em>positive per-order contribution</em> (it covers food cost, packaging, commission, and still leaves margin) and still be <em>bad business</em> if it stole a higher-margin dine-in ticket. The real question isn't "does this order pay?" It's "how much total sales did the channel add on top of what I already had?"</p><p>Think of it as two layers:</p><ul><li><strong>Per-order economics:</strong> contribution margin after commission, packaging, and discounts.</li><li><strong>Incrementality:</strong> what percentage of those orders is genuinely new demand versus displaced demand.</li></ul><p>Channel value = volume × contribution per order × incrementality rate. Ignore the last term and your math is incomplete.</p><h2>Does delivery cannibalize dine-in? The honest answer</h2><p>Sometimes yes, often partly—but far less than owners fear, and it varies by concept and city. Cannibalization is usually highest when delivery and dine-in share the <strong>same customers, same hours, and same trade zone</strong>. It's lowest when delivery reaches people the restaurant physically can't: office towers at lunch, residential zones outside walking distance, late-night windows, or rainy days when nobody leaves home.</p><p>So the useful framing is not "delivery vs. dine-in." It's: <em>which delivery orders expand your reach, and which just relocate a sale you'd have made anyway?</em> Apps are a discovery engine for new customers—your job is to measure how much of that discovery is real.</p><figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/insights/profesionalizar-delivery/hero.jpg" alt="Professionalizing the delivery channel" width="1200" height="800" loading="lazy" />
+  <figcaption>Process before volume.</figcaption>
+</figure>
+          <h2>How to measure incrementality without expensive tools</h2><p>You don't need attribution software. You need a few disciplined tests and the data already sitting in your app dashboards and POS.</p><h3>1. Read new vs. returning customers in each app panel</h3><p>Most delivery platforms (Rappi, PedidosYa, Uber Eats, DoorDash, DiDi Food) show a <strong>new vs. recurring customer split</strong>. A healthy incremental signal is a steady flow of first-time customers. If 90% of your app orders are the same recurring users who also visit your dining room, more of that volume is likely displacement. A high share of genuinely new users points to real expansion.</p><h3>2. Run geography and hour tests</h3><p>Compare orders by delivery zone and daypart against your dine-in footprint. Orders coming from zones outside your walk-in radius, or during hours when the dining room is slow, are strong candidates for incremental demand. If delivery spikes exactly when your dining room is also full—same zone, same peak—watch for cannibalization.</p><h3>3. Do a controlled promo on/off test</h3><p>Turn a discount or app promotion off for a defined window (say two weeks) and watch what happens to <strong>total sales across all channels</strong>, not just delivery. If total sales barely move, the promo was mostly subsidizing people who would have bought anyway—low incrementality. If total sales drop meaningfully, the promo was pulling in net-new demand. This single test answers one of the most expensive questions in delivery: <em>am I paying to discount existing customers?</em></p><h3>4. Watch total sales when you scale a channel</h3><p>When you add a new app or push paid visibility, track whether <strong>company-wide revenue grows or just the mix shifts</strong>. If delivery grows 20% while dine-in falls 15% and total is flat, you bought cannibalization. If delivery grows and total climbs with it, that's incremental.</p><h2>A simple formula for real channel value</h2><p>Use this back-of-envelope estimate per app or per channel:</p><ol><li><strong>Contribution per order</strong> = average ticket − food cost − packaging − commission − per-order ad/discount cost.</li><li><strong>Incrementality rate</strong> = estimated % of orders that are net-new demand (from your new-customer split and geo/hour tests).</li><li><strong>Real monthly channel value</strong> = orders × contribution per order × incrementality rate.</li></ol><p>Example (illustrative, use your own numbers): 1,000 orders, $4 contribution each, 70% incrementality → real value ≈ $2,800/month, not the $4,000 the raw contribution suggests. The 30% gap is sales you already had. Even a rough incrementality estimate beats assuming it's 100%.</p><h2>Common mistakes that distort the picture</h2><ul><li><strong>Counting every delivery order as new revenue.</strong> This overstates channel value and justifies overspending on ads and promos.</li><li><strong>Assuming all delivery is cannibalization.</strong> The opposite error—it makes owners cut a channel that's bringing new customers.</li><li><strong>Judging promos by delivery sales alone.</strong> A promo that lifts delivery but flattens total sales isn't working; you only see that when you look at the whole P&L.</li><li><strong>Blaming the app for a flat total.</strong> The commission and the platform aren't the problem—the problem is running the channel without measuring incrementality. Mide antes de culpar al canal.</li><li><strong>Ignoring own-delivery vs. app overlap.</strong> Your own delivery can cannibalize app orders and vice versa; measure the net, not each silo.</li></ul><div class="callout"><p>Not sure how much of your delivery is truly incremental? At Pimentón we help restaurants in LATAM and the USA separate new demand from cannibalized sales, build a real delivery P&L, and decide where each dollar actually pays. <strong>Message us on WhatsApp for a free consultation:</strong> <a href="https://wa.me/5491157035170">wa.me/5491157035170</a>.</p></div><h2>How much should delivery weigh in your total sales?</h2><p>There's no universal number—it depends on your concept, kitchen capacity, and city. The better benchmark is directional: delivery should grow your <strong>total</strong> revenue and total contribution, not just rotate the mix. If scaling delivery lifts total sales and keeps margin healthy after commissions and packaging, the weight is fine—whether that's 20% or 60% of sales. The moment delivery grows but total stays flat, you've hit your cannibalization ceiling and should optimize margin and incrementality before chasing more volume.</p>
+          <h2 id="faq">Frequently asked questions</h2>
+          <div class="faq">
+            <details>
+              <summary>Does delivery take sales away from my dining room?</summary>
+              <p>Partly, sometimes—but usually less than owners assume. Cannibalization is highest when delivery and dine-in share the same customers, hours, and trade zone, and lowest when delivery reaches zones or hours your dining room can't. The only way to know your true split is to measure new-vs-returning customers and watch total sales, not just the delivery channel.</p>
+            </details>
+            <details>
+              <summary>How do I measure how many delivery customers are new vs. recurring?</summary>
+              <p>Start with the new-vs-returning customer split most app dashboards already provide (Rappi, Uber Eats, PedidosYa, DoorDash, DiDi Food). Cross it with delivery zone and daypart data: orders from outside your walk-in radius or during slow hours are strong signals of net-new demand. A steady flow of first-time users indicates real incremental sales.</p>
+            </details>
+            <details>
+              <summary>What is channel cannibalization in a restaurant?</summary>
+              <p>Cannibalization is when sales simply shift from one channel to another—say, a dine-in customer who now orders delivery—without adding any total volume. It matters because a cannibalized order can look profitable on its own while actually replacing a higher-margin sale you already had. Incremental sales, by contrast, are net-new revenue the channel created.</p>
+            </details>
+            <details>
+              <summary>How do I know if an app promo brought new demand or just discounted people who were already buying?</summary>
+              <p>Run a controlled on/off test: turn the promo off for a defined window and watch total sales across all channels. If total sales barely move, the promo was mostly subsidizing existing customers—low incrementality. If total sales drop meaningfully, the promo was genuinely pulling in new demand worth paying for.</p>
+            </details>
+            <details>
+              <summary>How much should delivery weigh in my total sales?</summary>
+              <p>There's no single right percentage—it depends on your concept, kitchen capacity, and city. The useful test is whether scaling delivery grows your total revenue and total contribution rather than just rotating the mix. If total sales and margin stay healthy as delivery grows, the weight is fine, whatever the number.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>Ready to supercharge your delivery?</h2>
+            <p>Message us on WhatsApp. We'll book a free consultancy with a clear diagnosis of channels, ops, and next steps.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Message on WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/en">Home</a> · <a href="/en/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
