@@ -2,245 +2,242 @@
 
 import { useEffect, useRef, useState } from "react";
 import {
-  AnimatePresence,
   motion,
   useInView,
+  useMotionTemplate,
   useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
 } from "motion/react";
 import { Check, X } from "lucide-react";
 import { splitHighlight } from "@/components/ui-custom/Highlight";
 import { useCopy } from "@/components/i18n/LanguageContext";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
-const ITEM_STAGGER = 0.08;
 
-type CrossFadeProps = {
-  active: boolean;
-  delay?: number;
-  duration?: number;
-  className?: string;
-  offClassName?: string;
-  onClassName?: string;
-  off: React.ReactNode;
-  on: React.ReactNode;
-};
+type Variant = "off" | "on";
+type ComparisonCopy = ReturnType<typeof useCopy>["comparison"];
 
-function CrossFade({
-  active,
-  delay = 0,
-  duration = 0.4,
+/**
+ * Apila los textos OFF y ON en la misma celda de grid, mostrando solo el
+ * del variant y dejando el otro `invisible` (ocupa espacio, no se ve).
+ * CLAVE del wipe: ambas caras de la card renderizan AMBOS textos, así las
+ * dos caras miden EXACTAMENTE lo mismo y la revelación calza fila por fila.
+ */
+function Stacked({
+  variant,
+  off,
+  on,
   className = "",
   offClassName = "",
   onClassName = "",
-  off,
-  on,
-}: CrossFadeProps) {
+}: {
+  variant: Variant;
+  off: React.ReactNode;
+  on: React.ReactNode;
+  className?: string;
+  offClassName?: string;
+  onClassName?: string;
+}) {
   return (
     <span className={`grid ${className}`}>
-      <motion.span
-        animate={{ opacity: active ? 0 : 1, y: active ? -4 : 0 }}
-        transition={{ duration, delay, ease: EASE }}
-        className={`col-start-1 row-start-1 ${offClassName}`}
+      <span
+        className={`col-start-1 row-start-1 ${offClassName} ${
+          variant === "off" ? "" : "invisible"
+        }`}
       >
         {off}
-      </motion.span>
-      <motion.span
-        animate={{ opacity: active ? 1 : 0, y: active ? 0 : 4 }}
-        transition={{ duration, delay, ease: EASE }}
-        className={`col-start-1 row-start-1 ${onClassName}`}
+      </span>
+      <span
+        className={`col-start-1 row-start-1 ${onClassName} ${
+          variant === "on" ? "" : "invisible"
+        }`}
       >
         {on}
-      </motion.span>
+      </span>
     </span>
   );
 }
 
-function ComparisonItem({
-  offText,
-  onText,
-  index,
-  active,
-  reduced,
-  scanning,
+/**
+ * Una cara completa de la card ("Sin Pimentón" / "Con Pimentón"), estática:
+ * la animación ya no vive acá — la hace el scroll, que revela la cara ON
+ * por encima de la OFF con un clip-path. Misma estructura y padding en
+ * ambas caras (ver Stacked) para que el wipe alinee perfecto.
+ */
+function CardFace({
+  variant,
+  copy,
 }: {
-  offText: string;
-  onText: string;
-  index: number;
-  active: boolean;
-  reduced: boolean;
-  scanning: boolean;
+  variant: Variant;
+  copy: ComparisonCopy;
 }) {
-  // Durante el escáner: stagger más amplio (los ítems se prenden uno por uno,
-  // en sincronía con el barrido) y flip más lento, para que se vea claro.
-  const stagger = scanning ? 0.22 : ITEM_STAGGER;
-  const delay = reduced ? 0 : index * stagger;
-  const iconDuration = reduced ? 0.2 : scanning ? 0.5 : 0.35;
-  const textDuration = reduced ? 0.2 : scanning ? 0.55 : 0.45;
+  const isOn = variant === "on";
+  const { off, on, footerLabel, items } = copy;
 
   return (
-    <li className="grid grid-cols-[auto_1fr] items-start gap-3 py-3.5 sm:gap-4 sm:py-4">
-      {/* Icon — stacked ✕ and ✓ */}
-      <div className="relative mt-0.5 size-6 sm:size-7">
-        <motion.span
-          aria-hidden
-          animate={{
-            opacity: active ? 0 : 1,
-            scale: active ? (reduced ? 1 : 0.6) : 1,
-            rotate: reduced ? 0 : active ? -90 : 0,
-          }}
-          transition={{ duration: iconDuration, delay, ease: EASE }}
-          className="absolute inset-0 flex items-center justify-center rounded-full border border-pimenton-dark-border bg-pimenton-dark text-pimenton-text-on-dark-muted"
-        >
-          <X className="size-3.5 sm:size-4" strokeWidth={2.5} />
-        </motion.span>
-        <motion.span
-          aria-hidden
-          animate={{
-            opacity: active ? 1 : 0,
-            scale: active ? 1 : reduced ? 1 : 0.6,
-            rotate: reduced ? 0 : active ? 0 : 90,
-          }}
-          transition={{ duration: iconDuration, delay, ease: EASE }}
-          className="absolute inset-0 flex items-center justify-center rounded-full bg-pimenton-accent text-pimenton-bg"
-        >
-          <Check className="size-3.5 sm:size-4" strokeWidth={3} />
-        </motion.span>
+    <div
+      className={`rounded-2xl border-2 ${
+        isOn
+          ? "border-pimenton-accent bg-pimenton-dark-soft"
+          : "border-pimenton-dark-border bg-pimenton-dark-surface shadow-[0_8px_24px_-16px_rgba(0,0,0,0.5)]"
+      }`}
+    >
+      {/* Card header */}
+      <div className="px-6 pt-6 sm:px-10 sm:pt-8">
+        <Stacked
+          variant={variant}
+          off={off.title}
+          on={
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src="/assets/logos/principal/logo-coral.webp"
+              alt={on.title}
+              className="h-7 w-auto sm:h-9"
+              draggable={false}
+            />
+          }
+          className="items-center justify-items-start"
+          offClassName="font-display text-xl font-semibold tracking-tight text-pimenton-text-on-dark-muted sm:text-2xl"
+        />
       </div>
 
-      {/* Text — stacked off and on */}
-      <div className="grid text-sm leading-snug sm:text-base">
-        <motion.p
-          animate={{ opacity: active ? 0 : 1, y: active ? -4 : 0 }}
-          transition={{ duration: textDuration, delay, ease: EASE }}
-          className="col-start-1 row-start-1 text-pimenton-text-on-dark-muted"
-        >
-          {offText}
-        </motion.p>
-        <motion.p
-          animate={{ opacity: active ? 1 : 0, y: active ? 0 : 4 }}
-          transition={{ duration: textDuration, delay, ease: EASE }}
-          className="col-start-1 row-start-1 text-pimenton-text-on-dark"
-        >
-          {onText}
-        </motion.p>
+      {/* Items list */}
+      <ul className="mt-6 divide-y divide-pimenton-dark-border/60 px-6 sm:mt-8 sm:px-10">
+        {items.map((item, i) => (
+          <li
+            key={i}
+            className="grid grid-cols-[auto_1fr] items-start gap-3 py-3.5 sm:gap-4 sm:py-4"
+          >
+            {/* Icon — ✕ (off) / ✓ coral (on) */}
+            <span className="relative mt-0.5 block size-6 sm:size-7">
+              {isOn ? (
+                <span className="absolute inset-0 flex items-center justify-center rounded-full bg-pimenton-accent text-pimenton-bg">
+                  <Check className="size-3.5 sm:size-4" strokeWidth={3} />
+                </span>
+              ) : (
+                <span className="absolute inset-0 flex items-center justify-center rounded-full border border-pimenton-dark-border bg-pimenton-dark text-pimenton-text-on-dark-muted">
+                  <X className="size-3.5 sm:size-4" strokeWidth={2.5} />
+                </span>
+              )}
+            </span>
+
+            <Stacked
+              variant={variant}
+              off={item.off}
+              on={item.on}
+              className="text-sm leading-snug sm:text-base"
+              offClassName="text-pimenton-text-on-dark-muted"
+              onClassName="text-pimenton-text-on-dark"
+            />
+          </li>
+        ))}
+      </ul>
+
+      {/* Card footer */}
+      <div className="mt-4 flex items-center justify-between gap-3 border-t border-pimenton-dark-border/60 px-6 py-4 sm:px-10">
+        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-text-on-dark-muted sm:text-xs">
+          {footerLabel}
+        </span>
+        <Stacked
+          variant={variant}
+          off={off.footer}
+          on={on.footer}
+          className="text-sm sm:text-base"
+          offClassName="text-pimenton-text-on-dark-muted"
+          onClassName="font-medium text-pimenton-accent"
+        />
       </div>
-    </li>
+    </div>
   );
 }
 
 /**
- * Switch tipo iOS — riel ovalado + thumb circular que se desliza.
- * - OFF: riel dark-surface + thumb crema a la izquierda + halo de invitación
- *   (anillo coral que respira) → invita a tocarlo.
- * - ON: riel coral con glow + thumb a la derecha. Sin pulso (queda "calmo").
- * Tamaño: w-24 h-14 (96 × 56) — tap target generoso, supera 44×44.
+ * ANTES / DESPUÉS con revelación manejada por el scroll (pin + scrub).
+ *
+ * Llegás scrolleando y la card se ve "Sin Pimentón". Cuando queda centrada
+ * en el viewport, el scroll se fija (sticky) y el progreso del scroll va
+ * revelando la cara "Con Pimentón" de arriba hacia abajo — una línea de
+ * escaneo coral marca el borde de la revelación. Al completarse, el scroll
+ * se suelta y seguís de largo. Reversible: scrollear hacia arriba
+ * des-revela. Sin botón ON/OFF.
+ *
+ * Geometría del pin — SIN aire muerto en el flujo: el sticky mide lo que
+ * mide la card (no 100vh), así que antes del pin la card sigue al heading
+ * con el mt del sistema, y después del pin queda pegada al final del
+ * spacer con el py normal de sección. El centrado durante el pin se logra
+ * midiendo la card (ResizeObserver): top = (viewport − card) / 2. El
+ * runway (cuánto scroll dura el pin) es un div invisible de 120vh debajo.
+ *
+ * El respiro de la revelación sale solo de la geometría: el tracking
+ * (["start start","end end"] del spacer) arranca ~pinTop DESPUÉS de
+ * fijarse y llega a 1 ~pinTop ANTES de soltarse — no hace falta remapear.
+ *
+ * Reduced motion: sin pin ni wipe — cross-fade simple a "Con Pimentón"
+ * cuando la sección entra en viewport.
  */
-function SwitchToggle({
-  active,
-  onToggle,
-  reduced,
-  aria,
-}: {
-  active: boolean;
-  onToggle: () => void;
-  reduced: boolean;
-  aria: string;
-}) {
-  // Distancia que viaja el thumb. Riel 96px, padding 6px×2, thumb 44px →
-  // 96 − 12 − 44 = 40px.
-  const TRAVEL = 40;
-  return (
-    <button
-      type="button"
-      role="switch"
-      aria-checked={active}
-      aria-label={aria}
-      onClick={onToggle}
-      className="relative flex h-14 w-24 cursor-pointer items-center rounded-full p-1.5 outline-none transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-pimenton-accent focus-visible:ring-offset-2 focus-visible:ring-offset-pimenton-dark"
-      style={{
-        backgroundColor: active
-          ? "var(--color-pimenton-accent)"
-          : "var(--color-pimenton-dark-surface)",
-        borderWidth: active ? 0 : 1,
-        borderStyle: "solid",
-        borderColor: "var(--color-pimenton-dark-border)",
-        boxShadow: active
-          ? "0 0 32px 0 rgba(232, 75, 60, 0.5)"
-          : "inset 0 1px 0 0 rgba(0,0,0,0.25)",
-      }}
-    >
-      {/* Halo de invitación — sólo cuando OFF, respeta reduced-motion.
-          Coherente con el latido del Control Room. */}
-      {!reduced && !active && (
-        <motion.span
-          aria-hidden
-          className="pointer-events-none absolute inset-0 rounded-full ring-2 ring-pimenton-accent"
-          animate={{ scale: [1, 1.18, 1], opacity: [0, 0.7, 0] }}
-          transition={{
-            duration: 2.4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      )}
-
-      {/* Thumb */}
-      <motion.span
-        aria-hidden
-        className="block size-11 rounded-full bg-pimenton-bg shadow-[0_2px_6px_-1px_rgba(0,0,0,0.4)]"
-        animate={{ x: active ? TRAVEL : 0 }}
-        transition={
-          reduced
-            ? { duration: 0.2, ease: EASE }
-            : { type: "spring", stiffness: 520, damping: 32, mass: 0.6 }
-        }
-      />
-    </button>
-  );
-}
-
 export function Comparison() {
-  const { heading, off, on, footerLabel, toggleAria, items } =
-    useCopy().comparison;
-  const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.2 });
+  const comparison = useCopy().comparison;
+  const { heading, headingAccent } = comparison;
   const reduced = useReducedMotion() ?? false;
 
-  const [active, setActive] = useState(false);
-  const [pulseCount, setPulseCount] = useState(0);
-  // `scanning`: la PRIMERA activación al scrollear corre con una animación más
-  // lenta y secuencial (efecto "escáner" — los ítems se revelan uno a uno y el
-  // barrido baja más despacio). Los toggles manuales posteriores son rápidos.
-  const [scanning, setScanning] = useState(false);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const inView = useInView(headingRef, { once: true, amount: 0.5 });
 
-  // Al entrar en viewport se activa sola con el efecto escáner. El efecto sólo
-  // corre en la transición a inView (once: true), así que si el usuario la
-  // apaga manualmente después, queda apagada (no se vuelve a forzar).
+  const spacerRef = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
+
+  // Offset del pin para que la card quede centrada mientras está fijada.
+  // Se mide la card real (cambia por breakpoint / idioma) y se recalcula
+  // en resize. Clamp a 12px por si la card superara el alto del viewport.
+  const [pinTop, setPinTop] = useState(0);
   useEffect(() => {
-    if (!inView) return;
-    setActive(true);
-    setScanning(true);
-    setPulseCount((c) => c + 1);
-    const t = setTimeout(() => setScanning(false), 1700);
-    return () => clearTimeout(t);
-  }, [inView]);
+    const el = stickyRef.current;
+    if (!el) return;
+    const update = () =>
+      setPinTop(
+        Math.max(12, Math.round((window.innerHeight - el.offsetHeight) / 2)),
+      );
+    update();
+    // Re-medición diferida: la card puede cambiar de alto al cargar la
+    // fuente (swap de Helvetica) antes de que el RO llegue a entregar.
+    const t = setTimeout(update, 400);
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    window.addEventListener("resize", update);
+    return () => {
+      clearTimeout(t);
+      ro.disconnect();
+      window.removeEventListener("resize", update);
+    };
+  }, [reduced]);
 
-  const toggle = () => {
-    setScanning(false); // toggle manual → rápido
-    setActive((a) => !a);
-    setPulseCount((c) => c + 1);
-  };
+  const { scrollYProgress } = useScroll({
+    target: spacerRef,
+    offset: ["start start", "end end"],
+  });
+  // Spring = feel de scrub suave (mismos valores que el Control Room).
+  const progress = useSpring(scrollYProgress, {
+    stiffness: 90,
+    damping: 28,
+    mass: 0.5,
+  });
 
-  // Duraciones de cross-fade: más lentas durante el escáner.
-  const crossDur = scanning ? 0.7 : 0.4;
+  // Wipe de arriba hacia abajo: la cara ON muestra su fracción superior.
+  const clipBottom = useTransform(progress, (v) => (1 - v) * 100);
+  const clipPath = useMotionTemplate`inset(0 0 ${clipBottom}% 0)`;
+
+  // Línea de escaneo en el borde de la revelación (se desvanece en 0 y 1).
+  const linePct = useTransform(progress, (v) => v * 100);
+  const lineTop = useMotionTemplate`${linePct}%`;
+  const lineOpacity = useTransform(progress, [0, 0.02, 0.97, 1], [0, 1, 1, 0]);
 
   return (
-    <section
-      ref={ref}
-      className="relative bg-pimenton-dark px-[5%] sm:px-16 lg:px-24 py-14 sm:py-20"
-    >
+    <section className="relative bg-pimenton-dark px-[5%] sm:px-16 lg:px-24 py-14 sm:py-20">
       <div className="mx-auto max-w-4xl">
         <motion.h2
+          ref={headingRef}
           initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20 }}
           animate={
             inView
@@ -252,132 +249,70 @@ export function Comparison() {
           transition={{ duration: 0.8, ease: EASE }}
           className="max-w-3xl text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text-on-dark sm:text-4xl"
         >
-          {splitHighlight(heading, "opera en serio.", "coral")}
+          {splitHighlight(heading, headingAccent, "coral")}
         </motion.h2>
 
-        {/* The transformation card */}
-        <motion.div
-          className="relative mt-12 overflow-hidden rounded-2xl sm:mt-16"
-          animate={{
-            backgroundColor: active
-              ? "var(--color-pimenton-dark-soft)"
-              : "var(--color-pimenton-dark-surface)",
-            borderColor: active
-              ? "var(--color-pimenton-accent)"
-              : "var(--color-pimenton-dark-border)",
-            boxShadow: active
-              ? "0 24px 60px -24px rgba(232, 75, 60, 0.45)"
-              : "0 8px 24px -16px rgba(0, 0, 0, 0.5)",
-          }}
-          style={{ borderWidth: 2, borderStyle: "solid" }}
-          transition={{ duration: scanning ? 0.9 : 0.6, ease: EASE }}
-        >
-          {/* Energy pulse — vertical sweep on every toggle */}
-          <AnimatePresence>
-            {!reduced && pulseCount > 0 && (
-              <motion.span
-                key={pulseCount}
-                aria-hidden
-                initial={{ y: "-100%", opacity: scanning ? 0 : 0.8 }}
-                animate={
-                  scanning
-                    ? { y: "100%", opacity: [0, 0.9, 0.9, 0] }
-                    : { y: "100%", opacity: 0 }
-                }
-                transition={
-                  scanning
-                    ? { duration: 1.5, ease: "easeInOut", times: [0, 0.1, 0.85, 1] }
-                    : { duration: 0.9, ease: [0.22, 1, 0.36, 1] }
-                }
-                className={`pointer-events-none absolute inset-x-0 z-10 bg-gradient-to-b from-transparent to-transparent ${
-                  scanning
-                    ? "h-32 via-pimenton-accent/55"
-                    : "h-48 via-pimenton-accent/35"
-                }`}
-              />
-            )}
-          </AnimatePresence>
-
-          {/* Card header */}
-          <div className="relative z-0 px-6 pt-6 sm:px-10 sm:pt-8">
-            <CrossFade
-              active={active}
-              duration={crossDur}
-              off={off.title}
-              on={
-                /* eslint-disable-next-line @next/next/no-img-element */
-                <img
-                  src="/assets/logos/principal/logo-coral.webp"
-                  alt={on.title}
-                  className="h-7 w-auto sm:h-9"
-                  draggable={false}
+        {reduced ? (
+          // Reduced motion: card en flujo normal, sin pin; pasa a "Con
+          // Pimentón" con un fade simple al entrar la sección en viewport.
+          <div ref={spacerRef} className="relative mt-12 sm:mt-16">
+            <CardFace variant="off" copy={comparison} />
+            <motion.div
+              aria-hidden
+              className="absolute inset-0"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: inView ? 1 : 0 }}
+              transition={{ duration: 0.4, ease: EASE }}
+            >
+              <CardFace variant="on" copy={comparison} />
+            </motion.div>
+          </div>
+        ) : (
+          <div ref={spacerRef} className="relative mt-12 sm:mt-16">
+            {/* El sticky mide lo que mide la card → cero aire muerto en el
+                flujo (la separación con el heading y con la sección
+                siguiente es la del sistema). Centrado en pin vía pinTop. */}
+            <div ref={stickyRef} className="sticky" style={{ top: pinTop }}>
+              <div className="relative">
+                {/* Glow coral que crece con la revelación. Vive FUERA del
+                    clip (hermano, no hijo) para que el resplandor no quede
+                    recortado por el clip-path. */}
+                <motion.div
+                  aria-hidden
+                  className="absolute inset-0 rounded-2xl shadow-[0_24px_60px_-24px_rgba(232,75,60,0.45)]"
+                  style={{ opacity: progress }}
                 />
-              }
-              className="items-center justify-items-start"
-              offClassName="font-display text-xl font-semibold tracking-tight text-pimenton-text-on-dark-muted sm:text-2xl"
-            />
 
+                {/* ANTES — en flujo: define la altura de la card. */}
+                <CardFace variant="off" copy={comparison} />
+
+                {/* DESPUÉS — encima, revelado por el clip-path del scroll. */}
+                <motion.div
+                  aria-hidden
+                  className="absolute inset-0"
+                  style={{ clipPath }}
+                >
+                  <CardFace variant="on" copy={comparison} />
+                </motion.div>
+
+                {/* Línea de escaneo — marca el borde de la revelación y
+                    "imprime" el después a su paso (barrido hacia abajo). */}
+                <motion.div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-x-0 z-10"
+                  style={{ top: lineTop, opacity: lineOpacity }}
+                >
+                  <div className="h-16 bg-gradient-to-b from-pimenton-accent/25 to-transparent" />
+                  <div className="absolute inset-x-0 top-0 h-0.5 -translate-y-1/2 rounded-full bg-pimenton-accent shadow-[0_0_18px_2px_rgba(232,75,60,0.65)]" />
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Runway del pin: solo aporta recorrido de scroll (invisible).
+                120vh ≈ cuánto dura la card fijada mientras se revela. */}
+            <div aria-hidden className="h-[120vh]" />
           </div>
-
-          {/* Items list */}
-          <ul className="relative z-0 mt-6 divide-y divide-pimenton-dark-border/60 px-6 sm:mt-8 sm:px-10">
-            {items.map((item, i) => (
-              <ComparisonItem
-                key={i}
-                offText={item.off}
-                onText={item.on}
-                index={i}
-                active={active}
-                reduced={reduced}
-                scanning={scanning}
-              />
-            ))}
-          </ul>
-
-          {/* Card footer */}
-          <div className="relative z-0 mt-4 flex items-center justify-between gap-3 border-t border-pimenton-dark-border/60 px-6 py-4 sm:px-10">
-            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-text-on-dark-muted sm:text-xs">
-              {footerLabel}
-            </span>
-            <CrossFade
-              active={active}
-              duration={crossDur}
-              off={off.footer}
-              on={on.footer}
-              className="text-sm sm:text-base"
-              offClassName="text-pimenton-text-on-dark-muted"
-              onClassName="font-medium text-pimenton-accent"
-            />
-          </div>
-        </motion.div>
-
-        {/* Switch CTA — kicker arriba, switch en el medio, label abajo */}
-        <div className="mt-10 flex flex-col items-center gap-3 sm:mt-12">
-          <CrossFade
-            active={active}
-            duration={crossDur}
-            off={off.toggleKicker}
-            on={on.toggleKicker}
-            className="justify-items-center"
-            offClassName="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-accent sm:text-xs"
-            onClassName="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-accent sm:text-xs"
-          />
-          <SwitchToggle
-            active={active}
-            onToggle={toggle}
-            reduced={reduced}
-            aria={toggleAria}
-          />
-          <CrossFade
-            active={active}
-            duration={crossDur}
-            off={off.toggleLabel}
-            on={on.toggleLabel}
-            className="justify-items-center"
-            offClassName="text-sm font-semibold text-pimenton-text-on-dark sm:text-base"
-            onClassName="text-sm font-normal text-pimenton-text-on-dark-muted sm:text-base"
-          />
-        </div>
+        )}
       </div>
     </section>
   );
