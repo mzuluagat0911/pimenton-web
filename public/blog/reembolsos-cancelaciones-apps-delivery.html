@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Reembolsos y cancelaciones en apps de delivery: la fuga de margen oculta</title>
+    <meta name="description" content="Guía neutral para entender quién paga reembolsos, cancelaciones y error charges en apps de delivery, calcular tu fuga de margen y reducirla con un playbook." />
+    <meta name="keywords" content="reembolsos y cancelaciones en apps de delivery, cuánto me cuesta un pedido cancelado en delivery, quién paga el reembolso en apps de delivery, ajustes y descuentos en la liquidación de la app, error charges delivery apps qué son, cómo reducir reembolsos por pedidos mal armados, contracargos y disputas de calidad en apps de delivery, cuánto margen pierdo por pedidos cancelados al mes, diferencia entre cancelación del cliente, del restaurante y del repartidor" />
+    <link rel="canonical" href="https://pimenton.io/blog/reembolsos-cancelaciones-apps-delivery" />
+    <link rel="alternate" hreflang="es" href="https://pimenton.io/blog/reembolsos-cancelaciones-apps-delivery" />
+    <link rel="alternate" hreflang="en" href="https://pimenton.io/en/blog/refunds-cancellations-delivery-apps-margin-leak" />
+    <link rel="alternate" hreflang="x-default" href="https://pimenton.io/blog/reembolsos-cancelaciones-apps-delivery" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Reembolsos y cancelaciones en apps de delivery: la fuga de margen oculta" />
+    <meta property="og:description" content="Guía neutral para entender quién paga reembolsos, cancelaciones y error charges en apps de delivery, calcular tu fuga de margen y reducirla con un playbook." />
+    <meta property="og:url" content="https://pimenton.io/blog/reembolsos-cancelaciones-apps-delivery" />
+    <meta property="og:image" content="https://www.pimenton.io/assets/blog-covers/cover-courier-window.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Reembolsos y cancelaciones en apps de delivery: la fuga de margen oculta" />
+    <meta name="twitter:description" content="Guía neutral para entender quién paga reembolsos, cancelaciones y error charges en apps de delivery, calcular tu fuga de margen y reducirla con un playbook." />
+    <meta name="twitter:image" content="https://www.pimenton.io/assets/blog-covers/cover-courier-window.jpg" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Reembolsos y cancelaciones en apps de delivery: la fuga de margen que no estás midiendo",
+      "description": "Guía neutral para entender quién paga reembolsos, cancelaciones y error charges en apps de delivery, calcular tu fuga de margen y reducirla con un playbook.",
+      "inLanguage": "es",
+      "author": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "url": "https://pimenton.io/es"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.pimenton.io/assets/blog-covers/cover-courier-window.jpg"
+            }
+      },
+      "datePublished": "2026-11-11",
+      "dateModified": "2026-11-11",
+      "mainEntityOfPage": "https://pimenton.io/blog/reembolsos-cancelaciones-apps-delivery",
+      "image": "https://www.pimenton.io/assets/blog-covers/cover-courier-window.jpg"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "¿Quién asume el costo cuando un cliente pide reembolso en una app de delivery?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Depende de la causa. Si el problema es atribuible al restaurante —ítem faltante, pedido mal armado, comida fría por demora de cocina— lo absorbes tú mediante un error charge. Si el reembolso nace de una falla del repartidor o del sistema, normalmente lo cubre la plataforma."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Qué es un 'error charge' o cargo por error y cómo lo aplica la plataforma?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Un error charge es el descuento que la app te aplica cuando un reembolso al cliente se origina en un error del restaurante, como un producto faltante o incorrecto. Aparece en tu liquidación como un ajuste que se resta de tus ventas brutas antes del pago neto."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Cuánto representan los reembolsos como % de las ventas de delivery?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Una tasa sana suele ubicarse por debajo del 2–3% de las ventas de delivery. Por encima del 5% hay una fuga seria que revisar. Si facturas USD 40.000 al mes con 4% de tasa, pierdes unos USD 1.600 mensuales, casi siempre más que tu gasto en ads."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Se puede disputar un reembolso en Rappi, Uber Eats, DoorDash o PedidosYa?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Sí. La mayoría de las apps permite disputar error charges y contracargos de calidad dentro de un plazo. La clave es la evidencia: fotos del pedido armado, registro de ítems y comandas. Sin respaldo, el cargo suele quedarse descontado de tu liquidación."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "¿Cómo bajo la tasa de reembolsos sin empeorar la experiencia del cliente?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Ataca las causas controlables en origen: checklist de armado antes de sellar, empaque que aguante el traslado, pausar ítems sin stock en vez de cancelar, y disputar contracargos injustos con evidencia. No se trata de endurecer políticas, sino de fallar menos en tu cocina."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Inicio",
+                  "item": "https://pimenton.io/es"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://pimenton.io/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Reembolsos y cancelaciones en apps de delivery: la fuga de margen que no estás midiendo",
+                  "item": "https://pimenton.io/blog/reembolsos-cancelaciones-apps-delivery"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-pimenton">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/es" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-coral.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/es">Inicio</a>
+          <a href="/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma">
+            <a class="active" href="/blog/reembolsos-cancelaciones-apps-delivery" hreflang="es">ES</a>
+            <a class="" href="/en/blog/refunds-cancellations-delivery-apps-margin-leak" hreflang="en">EN</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Delivery &amp; Growth</p>
+          <h1>Reembolsos y cancelaciones en apps de delivery: la fuga de margen que no estás midiendo</h1>
+          <p class="lead-answer"><p>Los reembolsos y cancelaciones en apps de delivery son ajustes que la plataforma descuenta de tu liquidación cuando un pedido falla: cancelación, producto faltante, error de armado o disputa de calidad. <strong>No son la app robándote: son una línea real del P&L que casi nunca mides y que suele nacer en tu cocina o empaque.</strong> Quién asume el costo depende de la causa: si el error es atribuible al restaurante, lo absorbes tú (vía "error charge"); si es del repartidor o del sistema, suele cubrirlo la plataforma.</p></p>
+          <p class="byline">Por Pimentón · 2026-11-11 · 5 min de lectura</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/blog-covers/cover-courier-window.jpg" alt="Ventana de retiro para repartidores" width="1200" height="800" loading="eager" />
+  <figcaption>La última milla empieza en el local.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>35%</b><span>típico por stock / 86</span></div>
+    <div class="blog-stat"><b>28%</b><span>por tiempo de preparación</span></div>
+    <div class="blog-stat"><b>1</b><span>sucursal que desordena a las demás</span></div>
+</div>
+<figure class="blog-chart blog-chart--stack" data-blog-visuals="lead">
+  <p class="chart-kicker">Causas frecuentes</p>
+  <figcaption>De dónde salen las cancelaciones</figcaption>
+  <div class="stack" role="img" aria-label="De dónde salen las cancelaciones">
+    <span class="seg seg-0 is-accent" style="flex:35" title="Stock / 86 35%"></span>
+    <span class="seg seg-1" style="flex:28" title="Tiempo de prep 28%"></span>
+    <span class="seg seg-2" style="flex:22" title="Dirección / rider 22%"></span>
+    <span class="seg seg-3" style="flex:15" title="Otros 15%"></span>
+  </div>
+  <ul class="legend">
+    <li><i class="swatch seg-0 is-accent"></i>Stock / 86 <b>35%</b></li>
+    <li><i class="swatch seg-1"></i>Tiempo de prep <b>28%</b></li>
+    <li><i class="swatch seg-2"></i>Dirección / rider <b>22%</b></li>
+    <li><i class="swatch seg-3"></i>Otros <b>15%</b></li>
+  </ul>
+  <p class="chart-note">Distribución ilustrativa. El primer paso es etiquetar cada cancelación: sin causa, no hay palanca.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>Cada semana, tu liquidación de delivery trae una línea que la mayoría de los operadores pasa por alto: ajustes, descuentos, reembolsos y <em>error charges</em>. Parece ruido contable, pero sumados pueden comerse uno o dos puntos de margen sin que lo notes. Entender esta fuga —y de dónde nace— es la diferencia entre culpar al canal y gestionarlo. Mide antes de culpar a la app.</p><h2>Qué son los reembolsos, cancelaciones y error charges</h2><p>Son los distintos mecanismos con los que una app de delivery corrige un pedido que no salió como debía. Conviene distinguirlos porque <strong>cada uno tiene una causa y un responsable económico distinto</strong>:</p><ul><li><strong>Cancelación:</strong> el pedido se anula antes de completarse. Puede ser del cliente, del restaurante o del repartidor, y cada caso se liquida distinto.</li><li><strong>Reembolso:</strong> el cliente recibe de vuelta parte o todo el dinero por un problema (faltante, producto frío, mal armado).</li><li><strong>Error charge o cargo por error:</strong> la plataforma te descuenta el costo de un reembolso cuando el problema es atribuible al restaurante (ítem faltante, pedido incorrecto).</li><li><strong>Disputa o contracargo de calidad:</strong> reclamo del cliente por calidad que, si no disputas con evidencia, termina descontándose de tu liquidación.</li></ul><h3>La diferencia clave: quién canceló</h3><p>No todas las cancelaciones pesan igual en tu bolsillo:</p><ul><li><strong>Cancelación del cliente</strong> antes de que empieces a cocinar: normalmente no te afecta.</li><li><strong>Cancelación del cliente</strong> cuando el pedido ya estaba en preparación: según la política de cada app, puedes recibir compensación parcial por el producto.</li><li><strong>Cancelación del restaurante</strong> (sin stock, cocina saturada): suele penalizar tu rating y rara vez se compensa.</li><li><strong>Cancelación del repartidor o del sistema:</strong> generalmente la cubre la plataforma, no tú.</li></ul><h2>Quién paga el reembolso (y por qué suele nacer en tu cocina)</h2><p>La regla práctica en la mayoría de apps (Rappi, Uber Eats, DoorDash, PedidosYa, DiDi Food) es simple: <strong>el costo lo asume quien originó el error.</strong> Si faltó un ítem, si el pedido salió mal armado o si el empaque llegó volcado, el reembolso al cliente se convierte en un <em>error charge</em> contra tu restaurante. Si el problema fue de reparto o de la app, lo absorbe la plataforma.</p><p>Por eso el reembolso no es "la app contra ti": es un espejo de tu operación. La mayoría de los cargos controlables vienen de tres lugares: <strong>armado incompleto, errores de recetario y empaque que no aguanta el traslado.</strong> Son problemas de gestión, no de marketplace.</p><figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/insights/profesionalizar-delivery/hero.jpg" alt="Profesionalizar el canal delivery" width="1200" height="800" loading="lazy" />
+  <figcaption>Proceso antes que volumen.</figcaption>
+</figure>
+          <h2>Cómo calcular tu tasa de reembolso y el margen perdido</h2><p>No puedes reducir lo que no mides. Estos son los números que necesitas, idealmente por app y por sucursal:</p><ol><li><strong>Tasa de reembolso:</strong> (monto de reembolsos + error charges) ÷ ventas brutas de delivery × 100. Una referencia de industria sana suele ubicarse por debajo del 2–3% de las ventas; por encima del 5% hay una fuga seria que revisar.</li><li><strong>Costo real del pedido cancelado:</strong> no es solo el reembolso. Suma el food cost del producto perdido, el packaging y el tiempo de cocina. Un pedido cancelado en preparación puede costarte el 100% del insumo sin ingreso que lo compense.</li><li><strong>Margen perdido al mes:</strong> multiplica tu tasa de reembolso por las ventas mensuales de delivery. Si facturas USD 40.000 y tu tasa es 4%, son USD 1.600 mensuales —casi siempre más que tu inversión en ads.</li></ol><h3>Separa causas controlables de no controlables</h3><p>Clasifica cada reembolso en dos cubetas. <strong>Controlables:</strong> ítem faltante, pedido equivocado, comida fría por demora de cocina, empaque defectuoso. <strong>No controlables:</strong> cancelación del cliente temprana, falla del repartidor, caída del sistema. El objetivo no es llegar a cero —eso es imposible— sino atacar la cubeta controlable, que suele ser el 60–80% del total.</p><h2>Playbook para reducir la fuga sin empeorar la experiencia</h2><p>Bajar reembolsos no significa pelear cada disputa ni endurecer políticas con el cliente. Significa <strong>fallar menos en origen</strong>:</p><ul><li><strong>Checklist de armado antes de sellar:</strong> una verificación de ítems contra la comanda elimina la mayoría de los faltantes.</li><li><strong>Empaque a prueba de traslado:</strong> sellos, compartimentos y contenedores que aguanten 20–30 minutos de viaje. El packaging barato sale caro en reembolsos.</li><li><strong>Fotos y evidencia para disputas:</strong> registrar pedidos listos permite disputar contracargos de calidad injustos con respaldo.</li><li><strong>Pausar ítems sin stock:</strong> antes que cancelar el pedido completo, desactiva el producto en la app para evitar la penalización de rating.</li><li><strong>Revisión semanal de la línea de ajustes:</strong> abre la liquidación, filtra reembolsos y error charges, y clasifícalos por causa. Lo que se revisa, mejora.</li></ul><h3>Dónde leerlo en la liquidación semanal</h3><p>Cada plataforma lo nombra distinto —"ajustes", "adjustments", "descuentos", "error charges", "refunds"— pero siempre aparece como una deducción entre tus ventas brutas y el pago neto. El error más común es mirar solo el depósito final sin abrir el detalle. <strong>Ahí vive la fuga.</strong> Reconcilia cada semana: pedidos vendidos vs. pedidos pagados, y revisa toda diferencia que no reconozcas.</p><div class="callout"><p>En Pimentón mapeamos tu P&L de delivery completo —comisiones, packaging, ads y la línea de reembolsos/ajustes por app y sucursal— para que veas exactamente dónde se escapa el margen y qué parte es controlable. <strong>Escríbenos por WhatsApp para una consultoría gratuita:</strong> <a href="https://wa.me/5491157035170">wa.me/5491157035170</a>.</p></div><h2>El villano no es la app: es operar sin datos</h2><p>Las apps traen demanda y alimentan tu negocio. Los reembolsos y error charges son parte del costo de operar el canal, igual que la comisión o el packaging. El problema no es que existan: es no medirlos, no clasificarlos por causa y no atacar la parte que sí controlas. Con una tasa de reembolso vigilada semana a semana, recuperas margen sin tocar un solo peso de tu inversión en marketing.</p>
+          <h2 id="faq">Preguntas frecuentes</h2>
+          <div class="faq">
+            <details>
+              <summary>¿Quién asume el costo cuando un cliente pide reembolso en una app de delivery?</summary>
+              <p>Depende de la causa. Si el problema es atribuible al restaurante —ítem faltante, pedido mal armado, comida fría por demora de cocina— lo absorbes tú mediante un error charge. Si el reembolso nace de una falla del repartidor o del sistema, normalmente lo cubre la plataforma.</p>
+            </details>
+            <details>
+              <summary>¿Qué es un 'error charge' o cargo por error y cómo lo aplica la plataforma?</summary>
+              <p>Un error charge es el descuento que la app te aplica cuando un reembolso al cliente se origina en un error del restaurante, como un producto faltante o incorrecto. Aparece en tu liquidación como un ajuste que se resta de tus ventas brutas antes del pago neto.</p>
+            </details>
+            <details>
+              <summary>¿Cuánto representan los reembolsos como % de las ventas de delivery?</summary>
+              <p>Una tasa sana suele ubicarse por debajo del 2–3% de las ventas de delivery. Por encima del 5% hay una fuga seria que revisar. Si facturas USD 40.000 al mes con 4% de tasa, pierdes unos USD 1.600 mensuales, casi siempre más que tu gasto en ads.</p>
+            </details>
+            <details>
+              <summary>¿Se puede disputar un reembolso en Rappi, Uber Eats, DoorDash o PedidosYa?</summary>
+              <p>Sí. La mayoría de las apps permite disputar error charges y contracargos de calidad dentro de un plazo. La clave es la evidencia: fotos del pedido armado, registro de ítems y comandas. Sin respaldo, el cargo suele quedarse descontado de tu liquidación.</p>
+            </details>
+            <details>
+              <summary>¿Cómo bajo la tasa de reembolsos sin empeorar la experiencia del cliente?</summary>
+              <p>Ataca las causas controlables en origen: checklist de armado antes de sellar, empaque que aguante el traslado, pausar ítems sin stock en vez de cancelar, y disputar contracargos injustos con evidencia. No se trata de endurecer políticas, sino de fallar menos en tu cocina.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>¿Listo a potenciar tu delivery?</h2>
+            <p>Escríbenos por WhatsApp. En minutos coordinamos una consultoría gratuita con diagnóstico de canales, ops y próximos pasos.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/es">Inicio</a> · <a href="/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita%20de%20delivery%20con%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

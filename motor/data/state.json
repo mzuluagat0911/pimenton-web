@@ -15,7 +15,8 @@
       "delivery propio o apps de delivery",
       "ingeniería de menú delivery",
       "ads en apps de delivery vs meta ads para restaurantes",
-      "pedidos incrementales delivery"
+      "pedidos incrementales delivery",
+      "reembolsos y cancelaciones en apps de delivery"
     ],
     "control-room": [
       "qué indicadores revisar delivery multi-sucursal",
@@ -395,6 +396,18 @@
       "pathEn": "/en/blog/incremental-delivery-orders-cannibalization",
       "titleEn": "Incremental Delivery Orders: Measure New Sales vs. Dine-In Cannibalization",
       "descriptionEn": "Learn how to measure incremental delivery sales: tell new demand from cannibalized dine-in with simple geo, hour and promo tests—no expensive tools needed."
+    },
+    {
+      "slug": "reembolsos-cancelaciones-apps-delivery",
+      "destino": "pimenton",
+      "keyword": "reembolsos y cancelaciones en apps de delivery",
+      "date": "2026-11-11",
+      "title": "Reembolsos y cancelaciones en apps de delivery: la fuga de margen oculta",
+      "description": "Guía neutral para entender quién paga reembolsos, cancelaciones y error charges en apps de delivery, calcular tu fuga de margen y reducirla con un playbook.",
+      "path": "/blog/reembolsos-cancelaciones-apps-delivery",
+      "pathEn": "/en/blog/refunds-cancellations-delivery-apps-margin-leak",
+      "titleEn": "Refunds & Cancellations on Delivery Apps: The Margin Leak",
+      "descriptionEn": "Refunds, cancellations and error charges are a real P&L line. Learn who pays what, how to calculate your refund rate and how to cut the leak."
     }
   ]
 }

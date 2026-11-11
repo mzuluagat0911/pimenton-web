@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Refunds &amp; Cancellations on Delivery Apps: The Margin Leak</title>
+    <meta name="description" content="Refunds, cancellations and error charges are a real P&amp;L line. Learn who pays what, how to calculate your refund rate and how to cut the leak." />
+    <meta name="keywords" content="refunds and cancellations on delivery apps, how much does a cancelled delivery order cost, who pays the refund on delivery apps, adjustments and deductions in the app payout, error charges delivery apps explained, how to reduce refunds from wrong orders, chargebacks and quality disputes delivery apps, customer vs restaurant vs courier cancellation" />
+    <link rel="canonical" href="https://pimenton.io/en/blog/refunds-cancellations-delivery-apps-margin-leak" />
+    <link rel="alternate" hreflang="es" href="https://pimenton.io/blog/reembolsos-cancelaciones-apps-delivery" />
+    <link rel="alternate" hreflang="en" href="https://pimenton.io/en/blog/refunds-cancellations-delivery-apps-margin-leak" />
+    <link rel="alternate" hreflang="x-default" href="https://pimenton.io/blog/reembolsos-cancelaciones-apps-delivery" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Refunds &amp; Cancellations on Delivery Apps: The Margin Leak" />
+    <meta property="og:description" content="Refunds, cancellations and error charges are a real P&amp;L line. Learn who pays what, how to calculate your refund rate and how to cut the leak." />
+    <meta property="og:url" content="https://pimenton.io/en/blog/refunds-cancellations-delivery-apps-margin-leak" />
+    <meta property="og:image" content="https://www.pimenton.io/assets/blog-covers/cover-courier-window.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Refunds &amp; Cancellations on Delivery Apps: The Margin Leak" />
+    <meta name="twitter:description" content="Refunds, cancellations and error charges are a real P&amp;L line. Learn who pays what, how to calculate your refund rate and how to cut the leak." />
+    <meta name="twitter:image" content="https://www.pimenton.io/assets/blog-covers/cover-courier-window.jpg" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Refunds and Cancellations on Delivery Apps: The Margin Leak You're Not Measuring",
+      "description": "Refunds, cancellations and error charges are a real P&L line. Learn who pays what, how to calculate your refund rate and how to cut the leak.",
+      "inLanguage": "en",
+      "author": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "url": "https://pimenton.io/en"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.pimenton.io/assets/blog-covers/cover-courier-window.jpg"
+            }
+      },
+      "datePublished": "2026-11-11",
+      "dateModified": "2026-11-11",
+      "mainEntityOfPage": "https://pimenton.io/en/blog/refunds-cancellations-delivery-apps-margin-leak",
+      "image": "https://www.pimenton.io/assets/blog-covers/cover-courier-window.jpg"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "Who pays the refund when a customer requests one on a delivery app?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "It depends on the cause. When the issue is controllable — missing items, wrong order, poor quality or packaging — the refund is typically charged back to the restaurant. Logistics failures like a courier no-show or technical errors are more often absorbed by the platform, though you usually still need to flag them."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "What is an 'error charge' and how does the platform apply it?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "An error charge is an adjustment the app deducts from your payout when the delivered order didn't match what was ordered — a missing drink, wrong protein or incomplete combo. It appears in the adjustments or deductions section of your weekly statement, usually tied to a specific order."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "What percentage of delivery sales do refunds usually represent?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Most restaurants that measure it find refunds and error charges run between 2% and 5% of gross delivery sales. Anything consistently above that range signals a controllable problem — often in prep accuracy or packaging — rather than normal channel friction."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Can you dispute a refund on Rappi, Uber Eats, DoorDash or PedidosYa?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. All major platforms allow you to contest refunds and error charges that aren't your fault. Success depends on evidence: order checklists, photos of the packed order and prep timestamps. Building a weekly dispute routine recovers margin you'd otherwise lose silently."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Do cancellations affect my rating and visibility in the app?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. Restaurant-initiated cancellations and repeated quality complaints can lower your rating and reduce your visibility in the app's ranking, which costs you future orders. That indirect cost is often larger than the refund itself, so controllable cancellations are worth attacking first."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://pimenton.io/en"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://pimenton.io/en/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Refunds and Cancellations on Delivery Apps: The Margin Leak You're Not Measuring",
+                  "item": "https://pimenton.io/en/blog/refunds-cancellations-delivery-apps-margin-leak"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-pimenton">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/en" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-coral.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/en">Home</a>
+          <a href="/en/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma">
+            <a class="" href="/blog/reembolsos-cancelaciones-apps-delivery" hreflang="es">ES</a>
+            <a class="active" href="/en/blog/refunds-cancellations-delivery-apps-margin-leak" hreflang="en">EN</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Delivery &amp; Growth</p>
+          <h1>Refunds and Cancellations on Delivery Apps: The Margin Leak You're Not Measuring</h1>
+          <p class="lead-answer"><p><strong>A refund on a delivery app is money returned to the customer that, in many cases, is deducted from your payout — and it's almost always a P&L line restaurants never measure.</strong> Who pays depends on the cause: the platform often absorbs courier or logistics issues, while the restaurant typically eats refunds tied to missing items, wrong orders or quality complaints. Most operators run a refund rate between 2% and 5% of delivery sales; anything consistently above that is a controllable leak that usually starts in the kitchen or packaging, not in the app.</p></p>
+          <p class="byline">By Pimentón · 2026-11-11 · 4 min read</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/blog-covers/cover-courier-window.jpg" alt="Courier pickup window" width="1200" height="800" loading="eager" />
+  <figcaption>Last mile starts at the store.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>35%</b><span>typical from stock / 86s</span></div>
+    <div class="blog-stat"><b>28%</b><span>from prep time</span></div>
+    <div class="blog-stat"><b>1</b><span>location that drags the rest</span></div>
+</div>
+<figure class="blog-chart blog-chart--stack" data-blog-visuals="lead">
+  <p class="chart-kicker">Common causes</p>
+  <figcaption>Where cancellations actually come from</figcaption>
+  <div class="stack" role="img" aria-label="Where cancellations actually come from">
+    <span class="seg seg-0 is-accent" style="flex:35" title="Stock / 86 35%"></span>
+    <span class="seg seg-1" style="flex:28" title="Prep time 28%"></span>
+    <span class="seg seg-2" style="flex:22" title="Address / rider 22%"></span>
+    <span class="seg seg-3" style="flex:15" title="Other 15%"></span>
+  </div>
+  <ul class="legend">
+    <li><i class="swatch seg-0 is-accent"></i>Stock / 86 <b>35%</b></li>
+    <li><i class="swatch seg-1"></i>Prep time <b>28%</b></li>
+    <li><i class="swatch seg-2"></i>Address / rider <b>22%</b></li>
+    <li><i class="swatch seg-3"></i>Other <b>15%</b></li>
+  </ul>
+  <p class="chart-note">Illustrative split. The first step is tagging every cancellation: no cause, no lever.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>Every week your delivery payout arrives a little lighter than the gross sales you rang up, and the gap rarely gets a name. A big part of that difference is <strong>refunds, cancellations, error charges and quality disputes</strong>. It's not the app quietly taking money — it's a cost line that exists in every channel and that most restaurants simply don't track. Measure it, and you'll find a margin leak you can actually close.</p><h2>What refunds and cancellations actually are</h2><p>These are four different events that get lumped together and shouldn't be:</p><ul><li><strong>Refund:</strong> the customer gets money back after the order — usually for a missing item, wrong item or quality complaint. Often charged back to the restaurant when the cause is on your side.</li><li><strong>Cancellation:</strong> the order is stopped before or during preparation. The cost depends on <em>who</em> cancelled and <em>when</em>.</li><li><strong>Error charge (adjustment):</strong> a platform deduction applied when something didn't match the order — a missing drink, wrong protein, incomplete combo. It shows up as an adjustment on your payout.</li><li><strong>Quality dispute / chargeback:</strong> a formal complaint (cold food, spill, wrong order) that the platform reviews and may charge to you.</li></ul><p>The key distinction: <strong>customer cancellation, restaurant cancellation and courier cancellation are not the same cost.</strong> A customer who cancels in the first seconds usually costs you nothing. A restaurant that cancels after cooking eats the food cost and takes a rating hit. A courier issue is typically absorbed by the platform. Knowing which bucket each event falls into is step one.</p><h2>Who pays what</h2><p>There's no single rule across Rappi, Uber Eats, DoorDash, PedidosYa or DiDi Food, but the logic is consistent:</p><ul><li><strong>Restaurant pays</strong> when the cause is controllable: missing items, wrong items, undercooked or poorly packed food, long prep times that trigger cancellations.</li><li><strong>Platform/courier side absorbs</strong> many logistics failures: courier no-show, order lost in transit, app technical errors — though you often still need to flag them.</li><li><strong>Shared/grey zone:</strong> "food arrived cold" or "late delivery" can land on either side depending on timestamps and prep data.</li></ul><p>This is why framing refunds as "the app robbing you" is a mistake: most charged-back refunds trace to something that happened in your kitchen or at handoff. The problem isn't the platform — it's not measuring where the error was born.</p><figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/insights/profesionalizar-delivery/hero.jpg" alt="Professionalizing the delivery channel" width="1200" height="800" loading="lazy" />
+  <figcaption>Process before volume.</figcaption>
+</figure>
+          <h2>How to calculate your refund rate and lost margin</h2><p>You can't manage what you don't size. Run this monthly, per app:</p><ol><li><strong>Refund rate = total refunds + error charges ÷ gross delivery sales.</strong> If you refunded $1,200 on $30,000 of delivery sales, that's a 4% refund rate.</li><li><strong>Lost margin:</strong> multiply refunds by your contribution margin impact. A refunded order doesn't just lose the sale — you already paid food cost, packaging, labor and sometimes commission on it. A cancelled-after-cooking order can cost you <em>more</em> than its menu price in real terms.</li><li><strong>Controllable vs non-controllable split:</strong> tag each refund by cause. If 70% are missing/wrong items, that's your fixable share.</li></ol><p>Most restaurants that start measuring discover their refunds sit at <strong>2%–5% of delivery sales</strong>, and that half or more is controllable. On a store doing $40,000/month in delivery, trimming a 5% refund rate to 2.5% can recover over $1,000 in margin monthly — before any new marketing spend.</p><h2>Common mistakes that feed the leak</h2><ul><li><strong>Never reading the adjustments line</strong> on the weekly payout — so the cost stays invisible.</li><li><strong>Not tagging causes,</strong> which makes it impossible to tell a packaging problem from a prep-time problem.</li><li><strong>Not disputing legitimate errors.</strong> You can and should dispute refunds on Rappi, Uber Eats, DoorDash and PedidosYa when the data backs you up — photos, timestamps, order checklists.</li><li><strong>Blaming the app instead of the process.</strong> Beligerance doesn't recover margin; a packaging checklist does.</li><li><strong>Ignoring the rating impact.</strong> Cancellations and repeated quality complaints lower your rating and visibility, which quietly costs you future orders too.</li></ul><h2>A playbook to reduce the leak</h2><ol><li><strong>Install a handoff checklist:</strong> every bag gets item-counted against the ticket before it leaves. Missing items are the #1 controllable refund.</li><li><strong>Fix packaging for travel:</strong> separate hot and cold, seal liquids, vent fried items. Most "quality" disputes are packaging, not cooking.</li><li><strong>Tighten prep-time accuracy</strong> so couriers don't wait and customers don't cancel.</li><li><strong>Tag and review weekly:</strong> sort refunds by cause and attack the top two.</li><li><strong>Dispute with evidence:</strong> build a simple routine to contest error charges that aren't yours.</li></ol><div class="callout"><p>At <strong>Pimentón</strong> we treat refunds and adjustments as a real P&L line, not noise. We help you read the weekly payout, size your refund rate per app, separate controllable from non-controllable causes and build the playbook that closes the gap — so each order actually pays. <strong>Message us on WhatsApp for a free consultation:</strong> <a href="https://wa.me/5491157035170">wa.me/5491157035170</a>.</p></div><h2>How to read it in the weekly payout</h2><p>On every platform's statement, look past gross sales to the <strong>adjustments / deductions</strong> section. That's where refunds, error charges and quality disputes appear, usually itemized by order. Reconcile it against your own tickets: match each deduction to a cause, confirm which ones are legitimately yours, and flag the rest for dispute. Done weekly, this 20-minute habit turns an invisible leak into a managed number — measure before you blame the channel.</p>
+          <h2 id="faq">Frequently asked questions</h2>
+          <div class="faq">
+            <details>
+              <summary>Who pays the refund when a customer requests one on a delivery app?</summary>
+              <p>It depends on the cause. When the issue is controllable — missing items, wrong order, poor quality or packaging — the refund is typically charged back to the restaurant. Logistics failures like a courier no-show or technical errors are more often absorbed by the platform, though you usually still need to flag them.</p>
+            </details>
+            <details>
+              <summary>What is an 'error charge' and how does the platform apply it?</summary>
+              <p>An error charge is an adjustment the app deducts from your payout when the delivered order didn't match what was ordered — a missing drink, wrong protein or incomplete combo. It appears in the adjustments or deductions section of your weekly statement, usually tied to a specific order.</p>
+            </details>
+            <details>
+              <summary>What percentage of delivery sales do refunds usually represent?</summary>
+              <p>Most restaurants that measure it find refunds and error charges run between 2% and 5% of gross delivery sales. Anything consistently above that range signals a controllable problem — often in prep accuracy or packaging — rather than normal channel friction.</p>
+            </details>
+            <details>
+              <summary>Can you dispute a refund on Rappi, Uber Eats, DoorDash or PedidosYa?</summary>
+              <p>Yes. All major platforms allow you to contest refunds and error charges that aren't your fault. Success depends on evidence: order checklists, photos of the packed order and prep timestamps. Building a weekly dispute routine recovers margin you'd otherwise lose silently.</p>
+            </details>
+            <details>
+              <summary>Do cancellations affect my rating and visibility in the app?</summary>
+              <p>Yes. Restaurant-initiated cancellations and repeated quality complaints can lower your rating and reduce your visibility in the app's ranking, which costs you future orders. That indirect cost is often larger than the refund itself, so controllable cancellations are worth attacking first.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>Ready to supercharge your delivery?</h2>
+            <p>Message us on WhatsApp. We'll book a free consultancy with a clear diagnosis of channels, ops, and next steps.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Message on WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/en">Home</a> · <a href="/en/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
