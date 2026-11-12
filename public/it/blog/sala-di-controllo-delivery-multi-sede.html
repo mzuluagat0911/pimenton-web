@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Sala di controllo delivery multi-sede: come costruirla</title>
+    <meta name="description" content="Progetta una sala di controllo del delivery multi-sede in 3 livelli: polso giornaliero, alert in tempo reale e revisione settimanale. Chi guarda cosa e perché." />
+    <meta name="keywords" content="sala di controllo delivery multi-sede, control room delivery ristorante, come creare un centro di controllo operativo del delivery, monitorare gli ordini delivery di più punti vendita, come monitorare gli ordini delivery di tutti i locali in un solo posto, ruoli e responsabilità nel controllo operativo del delivery, come gestire il delivery senza essere in ogni locale, quali schermate guardare per controllare il delivery multi-sede" />
+    <link rel="canonical" href="https://www.pimenton.io/it/blog/sala-di-controllo-delivery-multi-sede" />
+    <link rel="alternate" hreflang="es" href="https://www.pimenton.io/blog/mesa-control-delivery-multi-sucursal" />
+    <link rel="alternate" hreflang="en" href="https://www.pimenton.io/en/blog/delivery-control-room-multi-location" />
+    <link rel="alternate" hreflang="it" href="https://www.pimenton.io/it/blog/sala-di-controllo-delivery-multi-sede" />
+    <link rel="alternate" hreflang="x-default" href="https://www.pimenton.io/blog/mesa-control-delivery-multi-sucursal" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Sala di controllo delivery multi-sede: come costruirla" />
+    <meta property="og:description" content="Progetta una sala di controllo del delivery multi-sede in 3 livelli: polso giornaliero, alert in tempo reale e revisione settimanale. Chi guarda cosa e perché." />
+    <meta property="og:url" content="https://www.pimenton.io/it/blog/sala-di-controllo-delivery-multi-sede" />
+    <meta property="og:image" content="https://www.pimenton.io/assets/reseñas/background-resenas.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sala di controllo delivery multi-sede: come costruirla" />
+    <meta name="twitter:description" content="Progetta una sala di controllo del delivery multi-sede in 3 livelli: polso giornaliero, alert in tempo reale e revisione settimanale. Chi guarda cosa e perché." />
+    <meta name="twitter:image" content="https://www.pimenton.io/assets/reseñas/background-resenas.webp" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="google-site-verification" content="lbmAEFkAWQmWQygVAsQW0qs8anyrhaUhAE_nIXK0pls" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-25DBL0EY6V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-25DBL0EY6V', { anonymize_ip: true });
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Come costruire una sala di controllo (control room) del delivery multi-sede",
+      "description": "Progetta una sala di controllo del delivery multi-sede in 3 livelli: polso giornaliero, alert in tempo reale e revisione settimanale. Chi guarda cosa e perché.",
+      "inLanguage": "it",
+      "author": {
+            "@type": "Organization",
+            "name": "Control Room by Pimentón",
+            "url": "https://www.pimenton.io/it"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.pimenton.io/assets/reseñas/background-resenas.webp"
+            }
+      },
+      "datePublished": "2026-10-18",
+      "dateModified": "2026-10-18",
+      "mainEntityOfPage": "https://www.pimenton.io/it/blog/sala-di-controllo-delivery-multi-sede",
+      "image": "https://www.pimenton.io/assets/reseñas/background-resenas.webp"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "Cos'è una sala di controllo (control room) nel delivery e a cosa serve?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "È il livello operativo che riunisce la visibilità su tutti i locali in un solo posto e la collega alle decisioni. Serve a vedere il polso giornaliero, reagire agli alert in tempo reale e rivedere le tendenze con il team senza essere fisicamente in ogni punto vendita."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Chi deve guardare cosa nell'operatività del delivery multi-sede?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Il responsabile del locale è titolare degli alert in tempo reale e del polso del suo turno; il direttore operativo guarda la vista multi-sede e individua gli schemi; il titolare guarda la fotografia aggregata e la tendenza. Ogni livello ha un responsabile chiaro, così non succede che tutti guardino tutto e nessuno si faccia carico di niente."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Con che frequenza si rivede una sala di controllo?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Con tre ritmi: il polso giornaliero si guarda in pochi minuti all'apertura e alla chiusura di ogni turno, gli alert in tempo reale si gestiscono sul momento, e la revisione delle tendenze si fa una volta a settimana con il team. Mescolare questi ritmi in un'unica schermata è l'errore più comune."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Come si decide quale alert gestire per primo quando si rompono più cose insieme?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Si dà priorità in base all'impatto sul cliente che sta già aspettando: prima gli ordini a rischio adesso, poi i tempi che esplodono, quindi stock e disponibilità, e per ultimi rating e reclami. Ciò che riguarda un ordine in corso vince sempre su ciò che si può correggere domani."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Come passo dal vedere il dato al muovere qualcosa nel locale?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Assegnando a ogni alert ricorrente un playbook di una riga: cosa è successo, chi agisce e cosa muove. Per esempio, se i tempi di preparazione superano una soglia, il responsabile controlla il collo di bottiglia in cucina e sospende le promo che gonfiano il volume. Senza un'azione associata, il dato è solo rumore."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Cosa mi serve per controllare più punti vendita senza una dashboard per ognuno?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Ti serve un livello che riunisca ordini, tempi, cancellazioni e rating di tutti i locali in un'unica vista, con soglie di alert e ruoli definiti. È quello che fa una sala di controllo come Control Room: sostituisce gli Excel infiniti e le schermate sparse con un unico ritmo operativo."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://www.pimenton.io/it"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://www.pimenton.io/it/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Come costruire una sala di controllo (control room) del delivery multi-sede",
+                  "item": "https://www.pimenton.io/it/blog/sala-di-controllo-delivery-multi-sede"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-control-room">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/it" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-blanco.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/it">Home</a>
+          <a href="/it/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma / Language / Lingua">
+            <a class="" href="/blog/mesa-control-delivery-multi-sucursal" hreflang="es">ES</a>
+            <a class="" href="/en/blog/delivery-control-room-multi-location" hreflang="en">EN</a>
+            <a class="active" href="/it/blog/sala-di-controllo-delivery-multi-sede" hreflang="it">IT</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Control Room · Ops</p>
+          <h1>Come costruire una sala di controllo (control room) del delivery multi-sede</h1>
+          <p class="lead-answer"><p>Una <strong>sala di controllo del delivery multi-sede</strong> è il livello operativo che riunisce in un solo posto ciò che succede in tutti i tuoi locali: ordini, tempi, cancellazioni e rating. Si costruisce su <strong>tre livelli</strong> —polso giornaliero, alert in tempo reale e revisione settimanale— con ruoli chiari (responsabile del locale vs. direttore operativo) e una regola di priorità che trasforma ogni segnale in un'azione concreta nel turno.</p></p>
+          <p class="byline">Di Control Room · 2026-10-18 · 5 min di lettura</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/reseñas/background-resenas.webp" alt="Gestione di recensioni e rating" width="1200" height="800" loading="eager" />
+  <figcaption>Il rating si conquista al pass.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>10'</b><span>standup quotidiano, non una riunione infinita</span></div>
+    <div class="blog-stat"><b>3</b><span>livelli: quotidiano, weekly, war room</span></div>
+    <div class="blog-stat"><b>1</b><span>dashboard. Il resto è rumore</span></div>
+</div>
+<figure class="blog-chart blog-chart--bars" data-blog-visuals="lead">
+  <p class="chart-kicker">Rituale ops</p>
+  <figcaption>Cosa si guarda ogni mattina (e in che ordine)</figcaption>
+  <div class="bars">
+    <div class="bar-row is-accent">
+      <div class="bar-meta"><span>Cancellazioni / 86</span><b>1º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-0" style="width:90%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Tempo di preparazione</span><b>2º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-1" style="width:75%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Connettività / stock</span><b>3º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-2" style="width:62%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Scontrino e mix</span><b>4º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-3" style="width:50%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ads e ranking</span><b>5º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-4" style="width:38%"></span></div>
+    </div>
+  </div>
+  <p class="chart-note">Se la dashboard non sta in uno schermo, non si usa. Cinque indicatori, responsabile, soglia, decisione.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>Quando hai tre, cinque o dieci locali che vendono in delivery, il problema smette di essere la mancanza di dati e diventa l'eccesso di rumore. Ogni app mostra la sua schermata, ogni manager guarda la sua e nessuno vede l'insieme. Una <strong>sala di controllo (control room) del delivery multi-sede</strong> non è l'ennesima dashboard decorativa: è il disegno organizzativo che definisce cosa si guarda, chi lo guarda e cosa si fa quando qualcosa si rompe. Ecco come costruirla senza Excel infiniti.</p><h2>Cos'è una sala di controllo del delivery (e cosa non è)</h2><p>Una sala di controllo è il <strong>livello operativo che riunisce la visibilità su tutti i tuoi locali in un unico posto</strong> e la collega alle decisioni. Non è una lista infinita di metriche né un report che nessuno apre. La sua funzione è semplice: permetterti di vedere il polso dell'operatività, reagire a ciò che fa male e rivedere le tendenze con il team, senza dover essere fisicamente in ogni locale.</p><p>La differenza con una dashboard qualunque è che la sala di controllo è progettata attorno alle <em>azioni</em>, non ai grafici. Ogni numero che compare ha un responsabile e un'azione associata. Se un indicatore non porta a qualcosa che qualcuno può muovere nel turno, è di troppo.</p><h2>I 3 livelli di una sala di controllo</h2><p>L'errore più comune è mettere tutto in un'unica schermata. Una sala di controllo che funziona ha <strong>tre livelli con ritmi diversi</strong>:</p><h3>1. Polso giornaliero</h3><p>È la fotografia del mattino e della chiusura di ogni turno. Risponde a: come stiamo andando oggi rispetto a una giornata normale? Ordini per locale, ticket medio, tempi di preparazione, cancellazioni e rating del giorno. Si guarda in <strong>5 minuti</strong>, non in un'ora. L'obiettivo non è analizzare, è individuare il locale uscito dal range.</p><h3>2. Alert in tempo reale</h3><p>È il livello reattivo: ciò che succede <em>adesso</em> e non può aspettare il giorno dopo. Ordini bloccati, tempi di consegna che esplodono, un locale che ha iniziato a cancellare, stock finito in pieno orario di punta. Questo livello ha bisogno di soglie chiare: un alert che scatta di continuo smette di essere un alert.</p><h3>3. Revisione settimanale</h3><p>È il livello delle tendenze. Qui si confrontano i locali tra loro, si guarda l'evoluzione del rating, i motivi ricorrenti di cancellazione e quali playbook hanno funzionato. Non si rivede sul telefono tra un ordine e l'altro: si rivede seduti, con il team, una volta a settimana.</p>          <figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/equipo/equipo-valor-1-v2.webp" alt="Team ops in azione" width="1200" height="800" loading="lazy" />
+  <figcaption>Persone dietro il rituale quotidiano.</figcaption>
+</figure>
+          <h2>Chi guarda cosa: ruoli e responsabilità</h2><p>La sala di controllo fallisce quando tutti guardano tutto e per questo nessuno si fa carico di niente. La regola è <strong>ogni livello ha il suo responsabile</strong>:</p><ul><li><strong>Responsabile del locale:</strong> titolare degli alert in tempo reale del suo locale e del polso giornaliero del suo turno. È chi spegne l'incendio: riorganizza la cucina, mette in pausa un articolo esaurito, chiama il rider in ritardo.</li><li><strong>Direttore/responsabile operativo:</strong> titolare della vista multi-sede. Non spegne gli incendi locali uno per uno; individua gli schemi (due locali con lo stesso problema), decide dove mettere il focus e guida la revisione settimanale.</li><li><strong>Titolare multi-sede:</strong> guarda la fotografia aggregata e la tendenza. Non ha bisogno di vedere ogni ordine, ha bisogno di sapere se l'operatività è sana o se c'è un locale che sta perdendo margine.</li></ul><p>Le food app, in tutto questo, sono un <strong>canale di domanda</strong>. Se il rating cala o le cancellazioni salgono, il focus è sull'operatività del ristorante —cucina, tempi, stock— non sul litigare con la piattaforma. Il dato dell'app è un input; la decisione è tua.</p><h2>La regola di priorità quando si rompe tutto insieme</h2><p>Nell'ora di punta di un venerdì è normale che scattino tre alert insieme: un locale con tempi alti, un altro che cancella e un terzo con il rating in calo. Cosa si gestisce per primo? La regola pratica ordina per <strong>impatto sul cliente che sta già aspettando</strong>:</p><ol><li><strong>Ordini a rischio adesso</strong> (bloccati, in via di cancellazione): c'è un cliente che aspetta cibo che forse non arriverà. Primo.</li><li><strong>Tempi che esplodono:</strong> non si è ancora rotto niente, ma si va verso cancellazioni e rating negativo. Secondo.</li><li><strong>Stock e disponibilità:</strong> metti in pausa l'articolo per non continuare a generare ordini che non puoi evadere. Terzo.</li><li><strong>Rating e reclami:</strong> contano, ma si gestiscono nella revisione, non al minuto. Ultimi nel turno.</li></ol><p>La chiave: <strong>ciò che riguarda un ordine in corso vince sempre</strong> su ciò che si può correggere domani. Senza questa regola, il team insegue l'alert più rumoroso, non il più importante.</p><h2>Il ponte dal dato all'azione</h2><p>Un segnale senza un'azione associata è rumore. Per questo ogni alert ricorrente dovrebbe avere un <strong>playbook di una riga</strong>: cosa è successo, chi agisce, cosa muove. Per esempio:</p><ul><li><strong>Tempi di prep &gt; X min →</strong> il responsabile del locale controlla il collo di bottiglia in cucina e, se non rientra, sospende le promo che gonfiano il volume.</li><li><strong>Cancellazioni &gt; soglia in un locale →</strong> ops chiama il responsabile, identifica la causa (stock, rider, cucina) e decide se mettere in pausa il canale.</li><li><strong>Rating settimanale in calo in un locale →</strong> si apre nella revisione, si incrociano i motivi dei reclami e si assegna un responsabile con una data.</li></ul><p>Quando la sala di controllo è costruita bene, nessuno improvvisa: il segnale compare, il responsabile sa già cosa guardare e l'azione è prevedibile. È questo che ti permette di gestire più locali senza essere in ognuno.</p><div class="callout"><p><strong>Control Room</strong> è la sala di controllo operativa di Pimentón: riunisce ordini, alert e ritmo multi-sede in un solo posto, così smetti di operare alla cieca. Se vuoi costruire la tua control room senza una dashboard per ogni locale, <a href="https://wa.me/5491157035170">scrivici su WhatsApp</a>.</p></div><h2>Errori comuni nel costruire la control room</h2><ul><li><strong>Un'unica schermata per tutto:</strong> mescolare polso giornaliero e alert in tempo reale satura e nessuno reagisce in tempo.</li><li><strong>Metriche senza responsabile:</strong> se un numero non ha un responsabile, non si corregge.</li><li><strong>Soglie che urlano:</strong> troppi alert abituano il team a ignorarli.</li><li><strong>Revisione che non esiste:</strong> senza una cadenza settimanale, spegni incendi per sempre e non attacchi mai la causa.</li><li><strong>Dare la colpa all'app:</strong> il dato della piattaforma è diagnosi; il margine si difende con l'operatività.</li></ul>
+          <h2 id="faq">Domande frequenti</h2>
+          <div class="faq">
+            <details>
+              <summary>Cos'è una sala di controllo (control room) nel delivery e a cosa serve?</summary>
+              <p>È il livello operativo che riunisce la visibilità su tutti i locali in un solo posto e la collega alle decisioni. Serve a vedere il polso giornaliero, reagire agli alert in tempo reale e rivedere le tendenze con il team senza essere fisicamente in ogni punto vendita.</p>
+            </details>
+            <details>
+              <summary>Chi deve guardare cosa nell'operatività del delivery multi-sede?</summary>
+              <p>Il responsabile del locale è titolare degli alert in tempo reale e del polso del suo turno; il direttore operativo guarda la vista multi-sede e individua gli schemi; il titolare guarda la fotografia aggregata e la tendenza. Ogni livello ha un responsabile chiaro, così non succede che tutti guardino tutto e nessuno si faccia carico di niente.</p>
+            </details>
+            <details>
+              <summary>Con che frequenza si rivede una sala di controllo?</summary>
+              <p>Con tre ritmi: il polso giornaliero si guarda in pochi minuti all'apertura e alla chiusura di ogni turno, gli alert in tempo reale si gestiscono sul momento, e la revisione delle tendenze si fa una volta a settimana con il team. Mescolare questi ritmi in un'unica schermata è l'errore più comune.</p>
+            </details>
+            <details>
+              <summary>Come si decide quale alert gestire per primo quando si rompono più cose insieme?</summary>
+              <p>Si dà priorità in base all'impatto sul cliente che sta già aspettando: prima gli ordini a rischio adesso, poi i tempi che esplodono, quindi stock e disponibilità, e per ultimi rating e reclami. Ciò che riguarda un ordine in corso vince sempre su ciò che si può correggere domani.</p>
+            </details>
+            <details>
+              <summary>Come passo dal vedere il dato al muovere qualcosa nel locale?</summary>
+              <p>Assegnando a ogni alert ricorrente un playbook di una riga: cosa è successo, chi agisce e cosa muove. Per esempio, se i tempi di preparazione superano una soglia, il responsabile controlla il collo di bottiglia in cucina e sospende le promo che gonfiano il volume. Senza un'azione associata, il dato è solo rumore.</p>
+            </details>
+            <details>
+              <summary>Cosa mi serve per controllare più punti vendita senza una dashboard per ognuno?</summary>
+              <p>Ti serve un livello che riunisca ordini, tempi, cancellazioni e rating di tutti i locali in un'unica vista, con soglie di alert e ruoli definiti. È quello che fa una sala di controllo come Control Room: sostituisce gli Excel infiniti e le schermate sparse con un unico ritmo operativo.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>Vuoi vedere il tuo delivery con chiarezza?</h2>
+            <p>Scrivici su WhatsApp. Analizziamo cosa sta rompendo il ritmo multi-sede e cosa sistemare per primo.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Scrivici su WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/it">Home</a> · <a href="/it/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

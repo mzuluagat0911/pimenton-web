@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Ordini incrementali nel delivery: sommano o rubano alla sala?</title>
+    <meta name="description" content="Scopri come misurare quale % dei tuoi ordini delivery è domanda nuova e quale % cannibalizza la sala, con un metodo pratico e neutrale senza strumenti costosi." />
+    <meta name="keywords" content="ordini incrementali delivery, il delivery cannibalizza la sala, come capire se le app di delivery mi portano clienti nuovi, cannibalizzazione delivery vs sala ristorante, vendite incrementali app di delivery, come misurare se il delivery è davvero redditizio, il delivery toglie clienti al ristorante, gli ordini delle app di delivery sono incrementali" />
+    <link rel="canonical" href="https://www.pimenton.io/it/blog/ordini-incrementali-delivery" />
+    <link rel="alternate" hreflang="es" href="https://www.pimenton.io/blog/pedidos-incrementales-delivery" />
+    <link rel="alternate" hreflang="en" href="https://www.pimenton.io/en/blog/incremental-delivery-orders-cannibalization" />
+    <link rel="alternate" hreflang="it" href="https://www.pimenton.io/it/blog/ordini-incrementali-delivery" />
+    <link rel="alternate" hreflang="x-default" href="https://www.pimenton.io/blog/pedidos-incrementales-delivery" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Ordini incrementali nel delivery: sommano o rubano alla sala?" />
+    <meta property="og:description" content="Scopri come misurare quale % dei tuoi ordini delivery è domanda nuova e quale % cannibalizza la sala, con un metodo pratico e neutrale senza strumenti costosi." />
+    <meta property="og:url" content="https://www.pimenton.io/it/blog/ordini-incrementali-delivery" />
+    <meta property="og:image" content="https://www.pimenton.io/assets/equipo/equipo-valor-3-v2.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ordini incrementali nel delivery: sommano o rubano alla sala?" />
+    <meta name="twitter:description" content="Scopri come misurare quale % dei tuoi ordini delivery è domanda nuova e quale % cannibalizza la sala, con un metodo pratico e neutrale senza strumenti costosi." />
+    <meta name="twitter:image" content="https://www.pimenton.io/assets/equipo/equipo-valor-3-v2.webp" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="google-site-verification" content="lbmAEFkAWQmWQygVAsQW0qs8anyrhaUhAE_nIXK0pls" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-25DBL0EY6V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-25DBL0EY6V', { anonymize_ip: true });
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Ordini incrementali nel delivery: come misurare se aggiunge vendite o cannibalizza la tua sala",
+      "description": "Scopri come misurare quale % dei tuoi ordini delivery è domanda nuova e quale % cannibalizza la sala, con un metodo pratico e neutrale senza strumenti costosi.",
+      "inLanguage": "it",
+      "author": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "url": "https://www.pimenton.io/it"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.pimenton.io/assets/equipo/equipo-valor-3-v2.webp"
+            }
+      },
+      "datePublished": "2026-11-04",
+      "dateModified": "2026-11-04",
+      "mainEntityOfPage": "https://www.pimenton.io/it/blog/ordini-incrementali-delivery",
+      "image": "https://www.pimenton.io/assets/equipo/equipo-valor-3-v2.webp"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "Il delivery toglie vendite alla sala?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "In parte può farlo: alcuni ordini delivery sono clienti che avrebbero comunque mangiato nel tuo locale (cannibalizzazione) e altri sono domanda nuova che la sala non raggiunge. L'unico modo per conoscere la proporzione è misurare clienti nuovi, zone, orari e l'effetto sulle tue vendite totali, non su un canale isolato."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Come misuro quanti clienti delivery sono nuovi vs ricorrenti?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "I pannelli di Rappi, PedidosYa, Uber Eats, DoorDash e simili mostrano clienti nuovi vs ricorrenti e la loro geografia. Un'alta percentuale di clienti nuovi e ordini da zone lontane dal tuo locale sono segnali forti che il canale ti sta portando domanda incrementale, non solo spostando quella della sala."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Cos'è la cannibalizzazione dei canali in un ristorante?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "È quando una vendita migra da un canale all'altro senza che cresca il totale: per esempio, un cliente che prima mangiava in sala ora ordina tramite app. Non c'è una vendita nuova, solo un cambio di canale che di solito porta più costi (commissione, packaging) e quindi meno margine su quella stessa vendita."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Come capisco se una promo dell'app mi ha portato domanda nuova o solo uno sconto a chi avrebbe comprato comunque?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Fai uno spegnimento controllato: sospendi la promo per 2–3 settimane e guarda le tue vendite totali. Se calano, la promo generava volume incrementale reale; se gli ordini scendono nell'app ma salgono in sala o nel delivery proprio quasi nella stessa misura, stavi pagando lo sconto a domanda che avevi già."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Quanto dovrebbe pesare il delivery sulle mie vendite totali?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Non c'è un numero unico: dipende dal tuo format, dalla posizione e dal margine per canale. La cosa chiave è fissare un obiettivo di mix consapevole e verificare che la crescita del delivery si aggiunga al fatturato totale invece di cannibalizzare soltanto la sala. Senza quell'obiettivo, investi alla cieca."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://www.pimenton.io/it"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://www.pimenton.io/it/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Ordini incrementali nel delivery: come misurare se aggiunge vendite o cannibalizza la tua sala",
+                  "item": "https://www.pimenton.io/it/blog/ordini-incrementali-delivery"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-pimenton">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/it" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-coral.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/it">Home</a>
+          <a href="/it/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma / Language / Lingua">
+            <a class="" href="/blog/pedidos-incrementales-delivery" hreflang="es">ES</a>
+            <a class="" href="/en/blog/incremental-delivery-orders-cannibalization" hreflang="en">EN</a>
+            <a class="active" href="/it/blog/ordini-incrementali-delivery" hreflang="it">IT</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Delivery &amp; Growth</p>
+          <h1>Ordini incrementali nel delivery: come misurare se aggiunge vendite o cannibalizza la tua sala</h1>
+          <p class="lead-answer"><p><strong>La vendita incrementale netta è la parte dei tuoi ordini delivery che corrisponde a domanda che prima non avevi</strong> (clienti, zone e orari che la tua sala non raggiunge), al netto di ciò che si è semplicemente spostato dal tavolo al delivery. Non basta che un ordine abbia una contribuzione positiva: se quel cliente sarebbe comunque venuto a mangiare nel tuo locale, il canale non ha aggiunto vendite, le ha solo spostate. Per saperlo misuri clienti nuovi vs ricorrenti, fai test per zona e orario e confronti le vendite totali con e senza delivery attivo.</p></p>
+          <p class="byline">Di Pimentón · 2026-11-04 · 5 min di lettura</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/equipo/equipo-valor-3-v2.webp" alt="Team di growth per la ristorazione" width="1200" height="800" loading="eager" />
+  <figcaption>Criterio da ristoratore, non da slide.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>10'</b><span>standup quotidiano, non una riunione infinita</span></div>
+    <div class="blog-stat"><b>3</b><span>livelli: quotidiano, weekly, war room</span></div>
+    <div class="blog-stat"><b>1</b><span>dashboard. Il resto è rumore</span></div>
+</div>
+<figure class="blog-chart blog-chart--bars" data-blog-visuals="lead">
+  <p class="chart-kicker">Rituale ops</p>
+  <figcaption>Cosa si guarda ogni mattina (e in che ordine)</figcaption>
+  <div class="bars">
+    <div class="bar-row is-accent">
+      <div class="bar-meta"><span>Cancellazioni / 86</span><b>1º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-0" style="width:90%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Tempo di preparazione</span><b>2º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-1" style="width:75%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Connettività / stock</span><b>3º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-2" style="width:62%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Scontrino e mix</span><b>4º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-3" style="width:50%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ads e ranking</span><b>5º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-4" style="width:38%"></span></div>
+    </div>
+  </div>
+  <p class="chart-note">Se la dashboard non sta in uno schermo, non si usa. Cinque indicatori, responsabile, soglia, decisione.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>Il delivery mostra quasi sempre una contribuzione positiva per ordine quando fai bene i conti. Ma questo risponde solo a metà della domanda. L'altra metà è: quell'ordine è una <strong>vendita nuova</strong> o è una vendita che avevi già in sala e che ora passa dall'app? Quella differenza —l'<strong>incrementalità</strong>— decide se il canale fa davvero crescere il tuo fatturato o lo ricolloca soltanto con più costi sopra. Misurarla male ti porta a sovrainvestire in promo che non aggiungono nulla, o a tagliare un canale che invece portava clienti nuovi.</p><h2>Cos'è la vendita incrementale (e perché non è la stessa cosa della contribuzione positiva)</h2><p><strong>La vendita incrementale è la domanda nuova che un canale genera e che non esisterebbe senza di esso.</strong> La cannibalizzazione è il contrario: vendite che avevi già e che migrano da un canale all'altro senza far crescere il totale. Un ordine delivery può essere 100% incrementale (un cliente di un'altra zona che non metterebbe mai piede nel tuo locale), 100% cannibalizzazione (il tuo cliente di sempre che oggi ha ordinato invece di sedersi) o un mix.</p><p>L'errore tipico è valutare il delivery guardando solo il P&L dell'ordine. Se l'ordine lascia margine, sembra che tutto sommi. Ma se quel margine viene da una vendita che avresti fatto comunque in sala —dove probabilmente lasciavi più margine, senza commissione dell'app né packaging— il canale ti ha fatto guadagnare meno, non di più. Per questo la domanda giusta non è “questo ordine è redditizio?”, ma “quanta parte di questa vendita è davvero nuova?”.</p><h2>Come stimare l'incrementalità senza strumenti costosi</h2><p>Non ti serve un modello econometrico. Ti serve la disciplina di leggere dati che hai già e fare test controllati. Quattro leve:</p><h3>1. Clienti nuovi vs ricorrenti nel pannello di ogni app</h3><p>Rappi, PedidosYa, Uber Eats, DoorDash e simili mostrano metriche di clienti nuovi vs ricorrenti. <strong>Un'alta percentuale di clienti nuovi è il primo segnale di incrementalità</strong>: chi ti scopre tramite l'app difficilmente sarebbe arrivato in sala. Controlla anche il dettaglio geografico: gli ordini da zone fuori dal tuo raggio a piedi sono quasi sempre domanda che la sala non intercetta.</p><h3>2. Test di geografia e orario</h3><p>Incrocia da dove e quando arrivano gli ordini delivery con la tua zona di influenza fisica e con le ore di punta della sala. <strong>Gli ordini da quartieri lontani, da orari di bassa occupazione del locale o da giorni fiacchi tendono a essere incrementali.</strong> Gli ordini all'ora di pranzo, dall'isolato del ristorante, con la sala piena, hanno più rischio di essere uno spostamento.</p><h3>3. Test di spegnimento controllato</h3><p>Spegni una promo aggressiva (o riduci la visibilità a pagamento) su un'app per 2–3 settimane e misura cosa succede alle tue <em>vendite totali</em>, non solo a quelle di quell'app. Se spegnendo la promo calano gli ordini delivery ma salgono quelli della sala o del delivery proprio quasi nella stessa proporzione, stavi pagando lo sconto a domanda che avevi già. Se le vendite totali calano, la promo portava volume incrementale reale.</p><h3>4. Leggi il quadro completo, non un canale isolato</h3><p>Confronta le tue vendite totali (sala + tutti i canali delivery) mese su mese quando scali un canale. <strong>Se il delivery sale del 20% ma il totale si muove appena, buona parte è stata cannibalizzazione.</strong> Se il totale sale in modo simile al delivery, c'è stata un'incrementalità genuina.</p>          <figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/equipo/equipo-valor-2-v2.webp" alt="Team che rivede i numeri del delivery" width="1200" height="800" loading="lazy" />
+  <figcaption>Dati con un responsabile.</figcaption>
+</figure>
+          <h2>Una mini-formula del valore reale del canale</h2><p>Per passare dall'intuizione al numero, stima un <strong>fattore di incrementalità</strong> (quale % degli ordini delivery è domanda nuova) e applicalo alla contribuzione:</p><ul><li><strong>Valore reale del canale</strong> = (ordini delivery × % incrementale × contribuzione per ordine) − costo del cannibalizzato.</li><li>La <strong>% incrementale</strong> la approssimi con le quattro leve: clienti nuovi, zone lontane, orari di bassa e il risultato dello spegnimento della promo.</li><li>Il <strong>costo del cannibalizzato</strong> è la differenza di margine tra vendere in sala e vendere tramite app (commissione + packaging + ads che al tavolo non avresti pagato).</li></ul><p>Non cercare la precisione decimale. Un intervallo onesto —“tra il 55% e il 70% dei nostri ordini delivery sono incrementali”— cambia già completamente quanto sei disposto a investire nel canale.</p><h2>Errori comuni nel misurare l'incrementalità</h2><ul><li><strong>Confondere la crescita del canale con la crescita del business.</strong> Più ordini dalle app non significano più fatturato totale se la sala cala in parallelo.</li><li><strong>Dare la colpa all'app invece di misurare.</strong> Il canale porta domanda; il rischio è non sapere quale parte è nuova. Il problema è la mancanza di dati, non la piattaforma.</li><li><strong>Vedere delivery proprio e app come nemici.</strong> A volte il tuo delivery proprio cannibalizza le app (e viceversa). Quello che conta è il margine ponderato dell'insieme, non battere un canale.</li><li><strong>Valutare le promo solo in base agli ordini generati.</strong> Una promo che dà solo uno sconto a chi avrebbe comprato comunque abbassa il tuo margine senza aggiungere domanda. Lo spegnimento controllato lo rivela.</li><li><strong>Non fissare un peso obiettivo del delivery.</strong> Senza un obiettivo di mix (% di vendite in delivery) investi alla cieca.</li></ul><div class="callout"><p>In Pimentón aiutiamo i ristoranti di LATAM e USA a stimare l'incrementalità reale di ogni canale e a decidere dove investire senza perdere margine. Numeri chiari, senza drammi con le app. <strong>Scrivici su WhatsApp per una consulenza gratuita:</strong> <a href="https://wa.me/5491157035170">wa.me/5491157035170</a>.</p></div><h2>Cosa fare con il risultato</h2><p>Se il tuo delivery è in gran parte incrementale, hai via libera per investire di più in visibilità, promo e mix di app: ogni ordine aggiunge domanda nuova. Se rilevi una cannibalizzazione alta, il focus cambia: differenziare l'offerta delivery da quella della sala (combo diversi, prezzi che assorbano la commissione, orari strategici) perché il canale porti persone che il locale non raggiunge, invece di competere contro il tuo stesso tavolo. La decisione è sempre del ristorante; il dato ti dice solo in quale direzione spingere.</p>
+          <h2 id="faq">Domande frequenti</h2>
+          <div class="faq">
+            <details>
+              <summary>Il delivery toglie vendite alla sala?</summary>
+              <p>In parte può farlo: alcuni ordini delivery sono clienti che avrebbero comunque mangiato nel tuo locale (cannibalizzazione) e altri sono domanda nuova che la sala non raggiunge. L'unico modo per conoscere la proporzione è misurare clienti nuovi, zone, orari e l'effetto sulle tue vendite totali, non su un canale isolato.</p>
+            </details>
+            <details>
+              <summary>Come misuro quanti clienti delivery sono nuovi vs ricorrenti?</summary>
+              <p>I pannelli di Rappi, PedidosYa, Uber Eats, DoorDash e simili mostrano clienti nuovi vs ricorrenti e la loro geografia. Un'alta percentuale di clienti nuovi e ordini da zone lontane dal tuo locale sono segnali forti che il canale ti sta portando domanda incrementale, non solo spostando quella della sala.</p>
+            </details>
+            <details>
+              <summary>Cos'è la cannibalizzazione dei canali in un ristorante?</summary>
+              <p>È quando una vendita migra da un canale all'altro senza che cresca il totale: per esempio, un cliente che prima mangiava in sala ora ordina tramite app. Non c'è una vendita nuova, solo un cambio di canale che di solito porta più costi (commissione, packaging) e quindi meno margine su quella stessa vendita.</p>
+            </details>
+            <details>
+              <summary>Come capisco se una promo dell'app mi ha portato domanda nuova o solo uno sconto a chi avrebbe comprato comunque?</summary>
+              <p>Fai uno spegnimento controllato: sospendi la promo per 2–3 settimane e guarda le tue vendite totali. Se calano, la promo generava volume incrementale reale; se gli ordini scendono nell'app ma salgono in sala o nel delivery proprio quasi nella stessa misura, stavi pagando lo sconto a domanda che avevi già.</p>
+            </details>
+            <details>
+              <summary>Quanto dovrebbe pesare il delivery sulle mie vendite totali?</summary>
+              <p>Non c'è un numero unico: dipende dal tuo format, dalla posizione e dal margine per canale. La cosa chiave è fissare un obiettivo di mix consapevole e verificare che la crescita del delivery si aggiunga al fatturato totale invece di cannibalizzare soltanto la sala. Senza quell'obiettivo, investi alla cieca.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>Pronto a far crescere il tuo delivery?</h2>
+            <p>Scrivici su WhatsApp. In pochi minuti organizziamo una consulenza gratuita con diagnosi di canali, operazioni e prossimi passi.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Scrivici su WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/it">Home</a> · <a href="/it/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

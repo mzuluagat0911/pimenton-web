@@ -362,7 +362,10 @@
       "path": "/blog/punto-de-equilibrio-delivery-restaurante",
       "pathEn": "/en/blog/delivery-break-even-point-orders-per-day",
       "titleEn": "Delivery Break-Even Point: How Many Orders Per Day to Make the Channel Pay",
-      "descriptionEn": "Learn the exact formula to calculate your delivery break-even point: assignable fixed costs divided by contribution per order. Worked examples for LATAM and USA."
+      "descriptionEn": "Learn the exact formula to calculate your delivery break-even point: assignable fixed costs divided by contribution per order. Worked examples for LATAM and USA.",
+      "pathIt": "/it/blog/punto-di-pareggio-delivery-ristorante",
+      "titleIt": "Punto di pareggio delivery: quanti ordini al giorno ti servono",
+      "descriptionIt": "La formula del punto di pareggio del delivery: dividi il costo fisso attribuibile per la contribuzione per ordine e scopri quanti ordini/giorno ti servono."
     },
     {
       "slug": "que-hacer-cuando-indicador-delivery-se-dispara",
@@ -374,7 +377,10 @@
       "path": "/blog/que-hacer-cuando-indicador-delivery-se-dispara",
       "pathEn": "/en/blog/delivery-metric-spike-playbook",
       "titleEn": "From Alert to Playbook: Delivery Metric Response Guide",
-      "descriptionEn": "When a delivery metric spikes, use an if-then playbook: look here, move this, assign an owner, set a deadline. Four concrete ops plays inside."
+      "descriptionEn": "When a delivery metric spikes, use an if-then playbook: look here, move this, assign an owner, set a deadline. Four concrete ops plays inside.",
+      "pathIt": "/it/blog/cosa-fare-quando-scatta-alert-delivery",
+      "titleIt": "Dall'alert al playbook delivery: cosa fare quando un KPI scatta",
+      "descriptionIt": "Cosa fare quando un indicatore del delivery scatta: playbook condizionali (se X → guardi Y → muovi Z) per tempi, vendite, cancellazioni e rating."
     },
     {
       "slug": "delivery-propio-o-apps-de-delivery",
@@ -386,7 +392,10 @@
       "path": "/blog/delivery-propio-o-apps-de-delivery",
       "pathEn": "/en/blog/own-delivery-vs-delivery-apps",
       "titleEn": "Own Delivery vs Delivery Apps: Decide With Numbers",
-      "descriptionEn": "Own delivery vs delivery apps: the real cost nobody adds is demand. Use a layered cost model and a volume rule to decide the right channel mix."
+      "descriptionEn": "Own delivery vs delivery apps: the real cost nobody adds is demand. Use a layered cost model and a volume rule to decide the right channel mix.",
+      "pathIt": "/it/blog/delivery-proprio-o-app-di-delivery",
+      "titleIt": "Delivery proprio o app di delivery: decidere con i numeri",
+      "descriptionIt": "Delivery proprio o app di delivery: un modello decisionale per livelli di costo (domanda, logistica, operazioni) e la regola del volume per scegliere bene."
     },
     {
       "slug": "mesa-control-delivery-multi-sucursal",
@@ -398,7 +407,10 @@
       "path": "/blog/mesa-control-delivery-multi-sucursal",
       "pathEn": "/en/blog/delivery-control-room-multi-location",
       "titleEn": "How to Build a Delivery Control Room for Multi-Location Restaurants",
-      "descriptionEn": "Design a delivery control room for multi-location restaurants: three layers, who watches what, how to prioritize alerts, and turning data into action."
+      "descriptionEn": "Design a delivery control room for multi-location restaurants: three layers, who watches what, how to prioritize alerts, and turning data into action.",
+      "pathIt": "/it/blog/sala-di-controllo-delivery-multi-sede",
+      "titleIt": "Sala di controllo delivery multi-sede: come costruirla",
+      "descriptionIt": "Progetta una sala di controllo del delivery multi-sede in 3 livelli: polso giornaliero, alert in tempo reale e revisione settimanale. Chi guarda cosa e perché."
     },
     {
       "slug": "ingenieria-menu-delivery",
@@ -410,7 +422,10 @@
       "path": "/blog/ingenieria-menu-delivery",
       "pathEn": "/en/blog/menu-engineering-delivery-apps",
       "titleEn": "Menu Engineering for Delivery Apps: Sell More, Protect Margin",
-      "descriptionEn": "Menu engineering for delivery apps classifies each item by conversion × contribution margin. Learn how to order, photograph and describe items to sell more."
+      "descriptionEn": "Menu engineering for delivery apps classifies each item by conversion × contribution margin. Learn how to order, photograph and describe items to sell more.",
+      "pathIt": "/it/blog/menu-engineering-delivery-vendere-di-piu",
+      "titleIt": "Menu engineering per il delivery: vendi di più e guadagna margine",
+      "descriptionIt": "Guida al menu engineering per il delivery: ordina, fotografa e descrivi il menu per conversione × margine e vendi di più su Rappi, Uber Eats e PedidosYa."
     },
     {
       "slug": "rentabilidad-real-delivery-por-sucursal",
@@ -422,7 +437,10 @@
       "path": "/blog/rentabilidad-real-delivery-por-sucursal",
       "pathEn": "/en/blog/delivery-profitability-by-location",
       "titleEn": "How to Calculate Real Delivery Profitability by Location",
-      "descriptionEn": "Learn to calculate real delivery profitability per location: subtract commissions, promos, refunds and time costs to find contribution margin per order."
+      "descriptionEn": "Learn to calculate real delivery profitability per location: subtract commissions, promos, refunds and time costs to find contribution margin per order.",
+      "pathIt": "/it/blog/redditivita-reale-delivery-punto-vendita",
+      "titleIt": "Redditività reale del delivery per punto vendita: come calcolarla",
+      "descriptionIt": "Guida operativa per calcolare il margine reale del delivery per locale: quali costi sottrarre, come confrontare i punti vendita e trasformare i cali in azioni."
     },
     {
       "slug": "ads-apps-delivery-vs-meta-ads-restaurantes",
@@ -434,7 +452,10 @@
       "path": "/blog/ads-apps-delivery-vs-meta-ads-restaurantes",
       "pathEn": "/en/blog/in-app-delivery-ads-vs-meta-ads-restaurants-roas",
       "titleEn": "In-App Delivery Ads vs Meta Ads for Restaurants: Measuring Real ROAS",
-      "descriptionEn": "In-app delivery ads vs Meta ads for restaurants: a neutral framework to measure incrementality and real commission-net ROAS, plus budget rules and examples."
+      "descriptionEn": "In-app delivery ads vs Meta ads for restaurants: a neutral framework to measure incrementality and real commission-net ROAS, plus budget rules and examples.",
+      "pathIt": "/it/blog/ads-app-delivery-vs-meta-ads-ristoranti",
+      "titleIt": "Ads nelle app di delivery vs Meta Ads: guida per ristoranti",
+      "descriptionIt": "Un quadro neutrale per scegliere tra ads nelle app di delivery e Meta Ads: ROAS al netto della commissione, incrementalità e come ripartire il budget."
     },
     {
       "slug": "tiempo-espera-repartidor-delivery",
@@ -446,7 +467,10 @@
       "path": "/blog/tiempo-espera-repartidor-delivery",
       "pathEn": "/en/blog/delivery-rider-wait-time",
       "titleEn": "Delivery Rider Wait Time: Thresholds and How to Reduce It",
-      "descriptionEn": "Rider wait time is a kitchen-to-rider sync signal. Learn the thresholds to watch per location, how to measure it across apps, and how to reduce it without rushing quality."
+      "descriptionEn": "Rider wait time is a kitchen-to-rider sync signal. Learn the thresholds to watch per location, how to measure it across apps, and how to reduce it without rushing quality.",
+      "pathIt": "/it/blog/tempo-attesa-rider-delivery",
+      "titleIt": "Tempo di attesa del rider nel delivery: soglia e come ridurlo",
+      "descriptionIt": "Il tempo di attesa del rider misura la sincronia cucina↔rider. Scopri quale soglia monitorare per punto vendita, come misurarlo e ridurlo senza perdere qualità."
     },
     {
       "slug": "pedidos-incrementales-delivery",
@@ -458,7 +482,10 @@
       "path": "/blog/pedidos-incrementales-delivery",
       "pathEn": "/en/blog/incremental-delivery-orders-cannibalization",
       "titleEn": "Incremental Delivery Orders: Measure New Sales vs. Dine-In Cannibalization",
-      "descriptionEn": "Learn how to measure incremental delivery sales: tell new demand from cannibalized dine-in with simple geo, hour and promo tests—no expensive tools needed."
+      "descriptionEn": "Learn how to measure incremental delivery sales: tell new demand from cannibalized dine-in with simple geo, hour and promo tests—no expensive tools needed.",
+      "pathIt": "/it/blog/ordini-incrementali-delivery",
+      "titleIt": "Ordini incrementali nel delivery: sommano o rubano alla sala?",
+      "descriptionIt": "Scopri come misurare quale % dei tuoi ordini delivery è domanda nuova e quale % cannibalizza la sala, con un metodo pratico e neutrale senza strumenti costosi."
     },
     {
       "slug": "reembolsos-cancelaciones-apps-delivery",
@@ -470,7 +497,10 @@
       "path": "/blog/reembolsos-cancelaciones-apps-delivery",
       "pathEn": "/en/blog/refunds-cancellations-delivery-apps-margin-leak",
       "titleEn": "Refunds & Cancellations on Delivery Apps: The Margin Leak",
-      "descriptionEn": "Refunds, cancellations and error charges are a real P&L line. Learn who pays what, how to calculate your refund rate and how to cut the leak."
+      "descriptionEn": "Refunds, cancellations and error charges are a real P&L line. Learn who pays what, how to calculate your refund rate and how to cut the leak.",
+      "pathIt": "/it/blog/rimborsi-cancellazioni-app-delivery",
+      "titleIt": "Rimborsi e cancellazioni nelle app di delivery: il margine perso",
+      "descriptionIt": "Guida neutrale per capire chi paga rimborsi, cancellazioni ed error charge nelle app di delivery, calcolare quanto margine perdi e ridurlo con un playbook."
     }
   ]
 }

@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Dall'alert al playbook delivery: cosa fare quando un KPI scatta</title>
+    <meta name="description" content="Cosa fare quando un indicatore del delivery scatta: playbook condizionali (se X → guardi Y → muovi Z) per tempi, vendite, cancellazioni e rating." />
+    <meta name="keywords" content="cosa fare quando un indicatore del delivery scatta, playbook operativo delivery, come trasformare un dato del delivery in un'azione, protocollo d'azione quando aumenta il tempo di consegna, cosa fare quando calano le vendite delivery in un punto vendita, playbook operazioni per responsabile delivery, come dare priorità ai problemi operativi, soglie di alert delivery, dai KPI alle decisioni nelle operazioni del ristorante" />
+    <link rel="canonical" href="https://www.pimenton.io/it/blog/cosa-fare-quando-scatta-alert-delivery" />
+    <link rel="alternate" hreflang="es" href="https://www.pimenton.io/blog/que-hacer-cuando-indicador-delivery-se-dispara" />
+    <link rel="alternate" hreflang="en" href="https://www.pimenton.io/en/blog/delivery-metric-spike-playbook" />
+    <link rel="alternate" hreflang="it" href="https://www.pimenton.io/it/blog/cosa-fare-quando-scatta-alert-delivery" />
+    <link rel="alternate" hreflang="x-default" href="https://www.pimenton.io/blog/que-hacer-cuando-indicador-delivery-se-dispara" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Dall'alert al playbook delivery: cosa fare quando un KPI scatta" />
+    <meta property="og:description" content="Cosa fare quando un indicatore del delivery scatta: playbook condizionali (se X → guardi Y → muovi Z) per tempi, vendite, cancellazioni e rating." />
+    <meta property="og:url" content="https://www.pimenton.io/it/blog/cosa-fare-quando-scatta-alert-delivery" />
+    <meta property="og:image" content="https://www.pimenton.io/assets/blog-covers/cover-pass-bags.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Dall'alert al playbook delivery: cosa fare quando un KPI scatta" />
+    <meta name="twitter:description" content="Cosa fare quando un indicatore del delivery scatta: playbook condizionali (se X → guardi Y → muovi Z) per tempi, vendite, cancellazioni e rating." />
+    <meta name="twitter:image" content="https://www.pimenton.io/assets/blog-covers/cover-pass-bags.jpg" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="google-site-verification" content="lbmAEFkAWQmWQygVAsQW0qs8anyrhaUhAE_nIXK0pls" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-25DBL0EY6V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-25DBL0EY6V', { anonymize_ip: true });
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Dall'alert al playbook: cosa fare quando un indicatore del delivery fa scattare l'allarme",
+      "description": "Cosa fare quando un indicatore del delivery scatta: playbook condizionali (se X → guardi Y → muovi Z) per tempi, vendite, cancellazioni e rating.",
+      "inLanguage": "it",
+      "author": {
+            "@type": "Organization",
+            "name": "Control Room by Pimentón",
+            "url": "https://www.pimenton.io/it"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.pimenton.io/assets/blog-covers/cover-pass-bags.jpg"
+            }
+      },
+      "datePublished": "2026-10-11",
+      "dateModified": "2026-10-11",
+      "mainEntityOfPage": "https://www.pimenton.io/it/blog/cosa-fare-quando-scatta-alert-delivery",
+      "image": "https://www.pimenton.io/assets/blog-covers/cover-pass-bags.jpg"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "Come capisco se un alert richiede un'azione immediata o può aspettare la chiusura del turno?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Se l'indicatore riguarda ordini che sono in cucina o in strada adesso —tempi in aumento o cancellazioni attive— è azione nel turno. Se è stato un intoppo già risolto o una metrica di ieri, come un rating sceso, si lavora nel ripasso di chiusura a mente fredda. Prima di agire, conferma che lo scostamento si mantenga per 30–45 minuti e non sia un picco isolato."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Cosa faccio per prima cosa se scattano insieme tempi e cancellazioni?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Quasi sempre hanno la stessa radice: la cucina è satura. Invece di attaccare i due sintomi separatamente, risolvi la causa: sospendi le promozioni che saturano, aggiungi una persona al collo di bottiglia e comunica stati reali. Dai priorità a ciò che colpisce gli ordini in corso, perché una cancellazione non si recupera."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Quale soglia di rating, tempo o cancellazioni giustifica un intervento?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Come riferimento operativo: tempo di consegna +20% sopra la tua media della fascia oraria mantenuto per 30 minuti; 3 o più cancellazioni in un'ora; e un calo del rating di 0,2 punti o più nella finestra settimanale. Adatta le soglie alla tua base storica per locale e fascia, non usare un numero fisso per tutta la rete."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Chi esegue l'azione: il locale o il centro operativo?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Le azioni nel turno —aggiungere una persona, mettere in pausa gli articoli esauriti, riaprire la disponibilità— le esegue il capoturno o il responsabile del locale. Il centro operativo confronta con il resto della rete, individua schemi ricorrenti e si occupa delle correzioni di processo di medio periodo, come rating e cause radice."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Come evito di spegnere incendi sempre nello stesso punto vendita?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Se un locale fa scattare alert ogni settimana, il problema non è il turno ma il processo. Documenta la causa radice, trasformala in un playbook con soglia, responsabile e scadenza, e rivedila nello standup. Quando la procedura è scritta e visibile, smetti di dipendere dalla memoria del manager e la soluzione diventa ripetibile."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://www.pimenton.io/it"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://www.pimenton.io/it/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Dall'alert al playbook: cosa fare quando un indicatore del delivery fa scattare l'allarme",
+                  "item": "https://www.pimenton.io/it/blog/cosa-fare-quando-scatta-alert-delivery"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-control-room">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/it" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-blanco.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/it">Home</a>
+          <a href="/it/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma / Language / Lingua">
+            <a class="" href="/blog/que-hacer-cuando-indicador-delivery-se-dispara" hreflang="es">ES</a>
+            <a class="" href="/en/blog/delivery-metric-spike-playbook" hreflang="en">EN</a>
+            <a class="active" href="/it/blog/cosa-fare-quando-scatta-alert-delivery" hreflang="it">IT</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Control Room · Ops</p>
+          <h1>Dall'alert al playbook: cosa fare quando un indicatore del delivery fa scattare l'allarme</h1>
+          <p class="lead-answer"><p>Quando un indicatore del delivery scatta, non reagire d'istinto: segui un <strong>playbook condizionale</strong> (se succede X → guardi Y → muovi Z → chi lo fa → entro quanto). Prima verifica che l'alert sia reale e non un picco isolato; poi dai priorità in base all'impatto su ordini e margine, assegna un responsabile ed esegui un'azione concreta con una scadenza. L'obiettivo non è avere più KPI, ma trasformare ogni segnale in una decisione ripetibile.</p></p>
+          <p class="byline">Di Control Room · 2026-10-11 · 5 min di lettura</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/blog-covers/cover-pass-bags.jpg" alt="Borse delivery al pass" width="1200" height="800" loading="eager" />
+  <figcaption>Al pass si vince l'ordine.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>10'</b><span>standup quotidiano, non una riunione infinita</span></div>
+    <div class="blog-stat"><b>3</b><span>livelli: quotidiano, weekly, war room</span></div>
+    <div class="blog-stat"><b>1</b><span>dashboard. Il resto è rumore</span></div>
+</div>
+<figure class="blog-chart blog-chart--bars" data-blog-visuals="lead">
+  <p class="chart-kicker">Rituale ops</p>
+  <figcaption>Cosa si guarda ogni mattina (e in che ordine)</figcaption>
+  <div class="bars">
+    <div class="bar-row is-accent">
+      <div class="bar-meta"><span>Cancellazioni / 86</span><b>1º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-0" style="width:90%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Tempo di preparazione</span><b>2º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-1" style="width:75%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Connettività / stock</span><b>3º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-2" style="width:62%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Scontrino e mix</span><b>4º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-3" style="width:50%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ads e ranking</span><b>5º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-4" style="width:38%"></span></div>
+    </div>
+  </div>
+  <p class="chart-note">Se la dashboard non sta in uno schermo, non si usa. Cinque indicatori, responsabile, soglia, decisione.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>Un numero rosso sul pannello non serve a niente se nessuno sa cosa muovere. La differenza tra un team ops che controlla il proprio delivery e uno che spegne incendi è semplice: il primo ha dei <strong>playbook</strong>, il secondo improvvisa a ogni turno. Questo articolo non ti dà l'ennesima lista di KPI; ti dà tabelle condizionali per passare <em>dall'alert all'azione</em> nei quattro scenari che fanno più male: tempi in aumento, calo delle vendite localizzato, raffica di cancellazioni e rating in discesa.</p><h2>Cos'è un playbook operativo del delivery</h2><p>Un <strong>playbook operativo del delivery</strong> è una procedura scritta che collega un segnale a un'azione: definisce la soglia che fa scattare l'alert, cosa guardare per confermare la causa, quale leva muovere, chi la esegue ed entro quanto. In sintesi: <em>se succede X → guardi Y → muovi Z → responsabile → scadenza.</em></p><p>Le app di delivery sono il canale dove il segnale appare per primo (un tempo che sale, un rating che scende), ma il problema vive quasi sempre nella cucina, nel turno o nella logistica del locale. Il pannello ti dice <strong>dove guardare</strong>; il playbook ti dice <strong>cosa fare</strong>.</p><h2>Prima di tutto: questo alert richiede un'azione subito o può aspettare la chiusura?</h2><p>Prima di correre, filtra. Non ogni numero rosso è un'emergenza. Usa tre domande:</p><ul><li><strong>È reale o è rumore?</strong> Un picco di 10 minuti con 3 ordini non è una tendenza. Guarda se lo scostamento si mantiene negli ultimi 30–45 minuti o se colpisce più ordini di fila.</li><li><strong>È in corso o è già passato?</strong> Se il problema continua in questo turno, è azione immediata. Se è stato un intoppo di due ore fa già risolto, va al ripasso di chiusura.</li><li><strong>Quanto costa aspettare?</strong> Cancellazioni e tempi sugli ordini in corso si gestiscono adesso; un rating sceso ieri si lavora a mente fredda.</li></ul><p>Regola pratica: <strong>se l'indicatore riguarda ordini che sono in cucina o in strada adesso, è azione nel turno</strong>. Il resto, al rituale di chiusura.</p>          <figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/blog-covers/cover-burger-box.jpg" alt="Burger che entra nel box delivery" width="1200" height="800" loading="lazy" />
+  <figcaption>Packaging e presentazione viaggiano insieme.</figcaption>
+</figure>
+          <h2>Quattro mini-playbook condizionali</h2><h3>1. Tempo di consegna in aumento</h3><p>Soglia suggerita: tempo di preparazione o di consegna totale <strong>+20% sopra la tua media della fascia oraria</strong>, mantenuto per 30 minuti.</p><ul><li><strong>Guarda (Y):</strong> il ritardo è in cucina (ticket fermo) o nell'attesa del rider? Separa la preparazione dalla logistica.</li><li><strong>Se è la cucina → muovi (Z):</strong> sospendi le promozioni che saturano, aggiungi una persona alla postazione collo di bottiglia, semplifica il combo più ordinato del momento.</li><li><strong>Se è la logistica → muovi (Z):</strong> controlla la disponibilità di rider nell'app ed evita di accettare ordini lontani finché non sblocchi la coda.</li><li><strong>Chi:</strong> capoturno del locale. <strong>Scadenza:</strong> azione entro 15 minuti.</li></ul><h3>2. Calo delle vendite in un punto vendita</h3><p>Soglia suggerita: ordini <strong>-25% rispetto allo stesso giorno/fascia delle ultime 4 settimane</strong> in un solo locale.</p><ul><li><strong>Guarda (Y):</strong> il locale risulta aperto e disponibile nell'app? Ci sono prodotti chiave in pausa o esauriti? È calata la visibilità per rating o per tempi?</li><li><strong>Muovi (Z):</strong> riapri la disponibilità, riattiva i prodotti esauriti, correggi orari caricati male. Se è un tema di visibilità, attacca prima la causa operativa (tempi/rating).</li><li><strong>Chi:</strong> responsabile delivery + centro operativo per confrontare con il resto della rete. <strong>Scadenza:</strong> diagnosi in 30 minuti.</li></ul><h3>3. Raffica di cancellazioni</h3><p>Soglia suggerita: <strong>3 o più cancellazioni in un'ora</strong> o un tasso sopra la tua base abituale della fascia.</p><ul><li><strong>Guarda (Y):</strong> chi cancella, il locale o il cliente? La causa è mancanza di stock, ritardo o errore di preparazione?</li><li><strong>Se cancella il locale per stock → muovi (Z):</strong> metti in pausa gli articoli senza ingredienti <em>subito</em>, non aspettare il prossimo ordine fallito.</li><li><strong>Se cancella il cliente per ritardo → muovi (Z):</strong> applica il playbook dei tempi e comunica stati reali.</li><li><strong>Chi:</strong> capoturno. <strong>Scadenza:</strong> immediata, perché ogni cancellazione colpisce rating e portafoglio.</li></ul><h3>4. Rating in discesa</h3><p>Soglia suggerita: calo <strong>di 0,2 punti o più</strong> nella finestra settimanale, o diverse recensioni negative con lo stesso motivo.</p><ul><li><strong>Guarda (Y):</strong> leggi il motivo ricorrente: temperatura, articoli mancanti, ritardo, packaging? Il rating è un sintomo, non la causa.</li><li><strong>Muovi (Z):</strong> correggi il processo dietro il motivo (controllo dell'assemblaggio, sigillatura, checklist di uscita) e attiva il recovery con i clienti coinvolti.</li><li><strong>Chi:</strong> responsabile del locale con follow-up del centro operativo. <strong>Scadenza:</strong> azione correttiva in 24–48 h, non sul momento.</li></ul><h2>Come dare priorità quando scattano due cose insieme</h2><p>Quando tempi e cancellazioni salgono insieme, quasi sempre hanno la stessa radice: la cucina è satura. <strong>Attacca prima la causa, non i due sintomi separatamente.</strong> Ordine di priorità suggerito:</p><ol><li><strong>Ciò che colpisce gli ordini in corso</strong> (tempi e cancellazioni attive).</li><li><strong>Ciò che fa perdere margine o vendite</strong> adesso (locale offline, prodotti in pausa).</li><li><strong>Ciò che erode la reputazione</strong> nel medio periodo (rating, recensioni).</li></ol><p>Un ordine cancellato non si recupera; una recensione della settimana scorsa si può ancora lavorare. Questa è la logica del triage.</p><h2>Errori comuni nel passare dal dato all'azione</h2><ul><li><strong>Reagire al rumore:</strong> muovere leve per un picco di 3 ordini. Conferma prima la tendenza.</li><li><strong>Non avere responsabile né scadenza:</strong> "bisogna migliorare i tempi" non è un'azione; "il capoturno aggiunge una persona alla piastra entro 15 minuti" sì.</li><li><strong>Spegnere sempre lo stesso incendio:</strong> se un punto vendita fa scattare alert ogni settimana, il problema non è il turno, è il processo. Documentalo e risolvi la causa radice.</li><li><strong>Dare la colpa all'app:</strong> la piattaforma mostra il segnale; il ritardo, l'articolo mancante e l'assemblaggio dipendono dal locale. Operare senza misurare costa ordini e margine.</li></ul><h2>Come documentare una procedura ripetibile</h2><p>Un KPI diventa procedura quando scrivi, in una sola riga per scenario: <strong>soglia → cosa guardare → cosa muovere → responsabile → scadenza</strong>. Salvala dove il turno la veda, rivedila nello standup e aggiornala quando un playbook fallisce. Così smetti di dipendere dalla memoria del manager star e il rituale sopravvive a qualsiasi rotazione del personale.</p><div class="callout"><p><strong>Control Room</strong> è la sala di controllo operativa di Pimentón: riunisce la visibilità sugli ordini, gli alert per soglia e il confronto multi-sede perché ogni segnale abbia il suo playbook assegnato, con responsabile e scadenza. Se stai spegnendo incendi nello stesso punto vendita ogni settimana, <a href="https://wa.me/5491157035170">scrivici su WhatsApp</a> e ti mostriamo come passare dall'alert all'azione.</p></div>
+          <h2 id="faq">Domande frequenti</h2>
+          <div class="faq">
+            <details>
+              <summary>Come capisco se un alert richiede un'azione immediata o può aspettare la chiusura del turno?</summary>
+              <p>Se l'indicatore riguarda ordini che sono in cucina o in strada adesso —tempi in aumento o cancellazioni attive— è azione nel turno. Se è stato un intoppo già risolto o una metrica di ieri, come un rating sceso, si lavora nel ripasso di chiusura a mente fredda. Prima di agire, conferma che lo scostamento si mantenga per 30–45 minuti e non sia un picco isolato.</p>
+            </details>
+            <details>
+              <summary>Cosa faccio per prima cosa se scattano insieme tempi e cancellazioni?</summary>
+              <p>Quasi sempre hanno la stessa radice: la cucina è satura. Invece di attaccare i due sintomi separatamente, risolvi la causa: sospendi le promozioni che saturano, aggiungi una persona al collo di bottiglia e comunica stati reali. Dai priorità a ciò che colpisce gli ordini in corso, perché una cancellazione non si recupera.</p>
+            </details>
+            <details>
+              <summary>Quale soglia di rating, tempo o cancellazioni giustifica un intervento?</summary>
+              <p>Come riferimento operativo: tempo di consegna +20% sopra la tua media della fascia oraria mantenuto per 30 minuti; 3 o più cancellazioni in un'ora; e un calo del rating di 0,2 punti o più nella finestra settimanale. Adatta le soglie alla tua base storica per locale e fascia, non usare un numero fisso per tutta la rete.</p>
+            </details>
+            <details>
+              <summary>Chi esegue l'azione: il locale o il centro operativo?</summary>
+              <p>Le azioni nel turno —aggiungere una persona, mettere in pausa gli articoli esauriti, riaprire la disponibilità— le esegue il capoturno o il responsabile del locale. Il centro operativo confronta con il resto della rete, individua schemi ricorrenti e si occupa delle correzioni di processo di medio periodo, come rating e cause radice.</p>
+            </details>
+            <details>
+              <summary>Come evito di spegnere incendi sempre nello stesso punto vendita?</summary>
+              <p>Se un locale fa scattare alert ogni settimana, il problema non è il turno ma il processo. Documenta la causa radice, trasformala in un playbook con soglia, responsabile e scadenza, e rivedila nello standup. Quando la procedura è scritta e visibile, smetti di dipendere dalla memoria del manager e la soluzione diventa ripetibile.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>Vuoi vedere il tuo delivery con chiarezza?</h2>
+            <p>Scrivici su WhatsApp. Analizziamo cosa sta rompendo il ritmo multi-sede e cosa sistemare per primo.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Scrivici su WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/it">Home</a> · <a href="/it/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Rimborsi e cancellazioni nelle app di delivery: il margine perso</title>
+    <meta name="description" content="Guida neutrale per capire chi paga rimborsi, cancellazioni ed error charge nelle app di delivery, calcolare quanto margine perdi e ridurlo con un playbook." />
+    <meta name="keywords" content="rimborsi e cancellazioni nelle app di delivery, quanto mi costa un ordine cancellato nel delivery, chi paga il rimborso nelle app di delivery, rettifiche e trattenute nell'estratto conto dell'app, error charge app di delivery cosa sono, come ridurre i rimborsi per ordini assemblati male, chargeback e contestazioni di qualità nelle app di delivery, quanto margine perdo al mese per ordini cancellati, differenza tra cancellazione del cliente, del ristorante e del rider" />
+    <link rel="canonical" href="https://www.pimenton.io/it/blog/rimborsi-cancellazioni-app-delivery" />
+    <link rel="alternate" hreflang="es" href="https://www.pimenton.io/blog/reembolsos-cancelaciones-apps-delivery" />
+    <link rel="alternate" hreflang="en" href="https://www.pimenton.io/en/blog/refunds-cancellations-delivery-apps-margin-leak" />
+    <link rel="alternate" hreflang="it" href="https://www.pimenton.io/it/blog/rimborsi-cancellazioni-app-delivery" />
+    <link rel="alternate" hreflang="x-default" href="https://www.pimenton.io/blog/reembolsos-cancelaciones-apps-delivery" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Rimborsi e cancellazioni nelle app di delivery: il margine perso" />
+    <meta property="og:description" content="Guida neutrale per capire chi paga rimborsi, cancellazioni ed error charge nelle app di delivery, calcolare quanto margine perdi e ridurlo con un playbook." />
+    <meta property="og:url" content="https://www.pimenton.io/it/blog/rimborsi-cancellazioni-app-delivery" />
+    <meta property="og:image" content="https://www.pimenton.io/assets/blog-covers/cover-burger-box.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Rimborsi e cancellazioni nelle app di delivery: il margine perso" />
+    <meta name="twitter:description" content="Guida neutrale per capire chi paga rimborsi, cancellazioni ed error charge nelle app di delivery, calcolare quanto margine perdi e ridurlo con un playbook." />
+    <meta name="twitter:image" content="https://www.pimenton.io/assets/blog-covers/cover-burger-box.jpg" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="google-site-verification" content="lbmAEFkAWQmWQygVAsQW0qs8anyrhaUhAE_nIXK0pls" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-25DBL0EY6V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-25DBL0EY6V', { anonymize_ip: true });
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Rimborsi e cancellazioni nelle app di delivery: la perdita di margine che non stai misurando",
+      "description": "Guida neutrale per capire chi paga rimborsi, cancellazioni ed error charge nelle app di delivery, calcolare quanto margine perdi e ridurlo con un playbook.",
+      "inLanguage": "it",
+      "author": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "url": "https://www.pimenton.io/it"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.pimenton.io/assets/blog-covers/cover-burger-box.jpg"
+            }
+      },
+      "datePublished": "2026-11-11",
+      "dateModified": "2026-11-11",
+      "mainEntityOfPage": "https://www.pimenton.io/it/blog/rimborsi-cancellazioni-app-delivery",
+      "image": "https://www.pimenton.io/assets/blog-covers/cover-burger-box.jpg"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "Chi si fa carico del costo quando un cliente chiede un rimborso in un'app di delivery?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Dipende dalla causa. Se il problema è attribuibile al ristorante —articolo mancante, ordine assemblato male, cibo freddo per ritardo della cucina— lo assorbi tu tramite un error charge. Se il rimborso nasce da un problema del rider o del sistema, normalmente lo copre la piattaforma."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Cos'è un 'error charge' o addebito per errore e come lo applica la piattaforma?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Un error charge è la trattenuta che l'app ti applica quando un rimborso al cliente nasce da un errore del ristorante, come un prodotto mancante o sbagliato. Compare nel tuo estratto conto come una rettifica che si sottrae dalle vendite lorde prima del pagamento netto."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Quanto pesano i rimborsi in % sulle vendite delivery?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Un tasso sano di solito si colloca sotto il 2–3% delle vendite delivery. Sopra il 5% c'è una perdita seria da rivedere. Se fatturi USD 40.000 al mese con un tasso del 4%, perdi circa USD 1.600 al mese, quasi sempre più della tua spesa in ads."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Si può contestare un rimborso su Rappi, Uber Eats, DoorDash o PedidosYa?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Sì. La maggior parte delle app permette di contestare error charge e chargeback di qualità entro un certo termine. La chiave sono le prove: foto dell'ordine assemblato, registro degli articoli e comande. Senza prove, l'addebito di solito resta scalato dal tuo estratto conto."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Come abbasso il tasso di rimborsi senza peggiorare l'esperienza del cliente?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Attacca le cause controllabili all'origine: checklist di assemblaggio prima di sigillare, packaging che regga il trasporto, mettere in pausa gli articoli senza stock invece di cancellare e contestare con prove i chargeback ingiusti. Non si tratta di irrigidire le policy, ma di sbagliare meno nella tua cucina."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://www.pimenton.io/it"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://www.pimenton.io/it/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Rimborsi e cancellazioni nelle app di delivery: la perdita di margine che non stai misurando",
+                  "item": "https://www.pimenton.io/it/blog/rimborsi-cancellazioni-app-delivery"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-pimenton">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/it" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-coral.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/it">Home</a>
+          <a href="/it/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma / Language / Lingua">
+            <a class="" href="/blog/reembolsos-cancelaciones-apps-delivery" hreflang="es">ES</a>
+            <a class="" href="/en/blog/refunds-cancellations-delivery-apps-margin-leak" hreflang="en">EN</a>
+            <a class="active" href="/it/blog/rimborsi-cancellazioni-app-delivery" hreflang="it">IT</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Delivery &amp; Growth</p>
+          <h1>Rimborsi e cancellazioni nelle app di delivery: la perdita di margine che non stai misurando</h1>
+          <p class="lead-answer"><p>I rimborsi e le cancellazioni nelle app di delivery sono rettifiche che la piattaforma scala dal tuo estratto conto quando un ordine va storto: cancellazione, prodotto mancante, errore di assemblaggio o contestazione di qualità. <strong>Non è l'app che ti deruba: è una voce reale del P&L che quasi mai misuri e che di solito nasce nella tua cucina o nel packaging.</strong> Chi si fa carico del costo dipende dalla causa: se l'errore è attribuibile al ristorante, lo assorbi tu (tramite "error charge"); se è del rider o del sistema, di solito lo copre la piattaforma.</p></p>
+          <p class="byline">Di Pimentón · 2026-11-11 · 5 min di lettura</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/blog-covers/cover-burger-box.jpg" alt="Burger che entra nel box delivery" width="1200" height="800" loading="eager" />
+  <figcaption>Packaging e presentazione viaggiano insieme.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>35%</b><span>tipico per stock / 86</span></div>
+    <div class="blog-stat"><b>28%</b><span>per tempi di preparazione</span></div>
+    <div class="blog-stat"><b>1</b><span>sede che manda in tilt le altre</span></div>
+</div>
+<figure class="blog-chart blog-chart--stack" data-blog-visuals="lead">
+  <p class="chart-kicker">Cause frequenti</p>
+  <figcaption>Da dove arrivano le cancellazioni</figcaption>
+  <div class="stack" role="img" aria-label="Da dove arrivano le cancellazioni">
+    <span class="seg seg-0 is-accent" style="flex:35" title="Stock / 86 35%"></span>
+    <span class="seg seg-1" style="flex:28" title="Tempo di preparazione 28%"></span>
+    <span class="seg seg-2" style="flex:22" title="Indirizzo / rider 22%"></span>
+    <span class="seg seg-3" style="flex:15" title="Altro 15%"></span>
+  </div>
+  <ul class="legend">
+    <li><i class="swatch seg-0 is-accent"></i>Stock / 86 <b>35%</b></li>
+    <li><i class="swatch seg-1"></i>Tempo di preparazione <b>28%</b></li>
+    <li><i class="swatch seg-2"></i>Indirizzo / rider <b>22%</b></li>
+    <li><i class="swatch seg-3"></i>Altro <b>15%</b></li>
+  </ul>
+  <p class="chart-note">Distribuzione illustrativa. Il primo passo è etichettare ogni cancellazione: senza causa, niente leva.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>Ogni settimana, l'estratto conto del tuo delivery riporta una voce che la maggior parte degli operatori trascura: rettifiche, trattenute, rimborsi ed <em>error charge</em>. Sembra rumore contabile, ma sommati possono mangiarsi uno o due punti di margine senza che te ne accorga. Capire questa perdita —e da dove nasce— è la differenza tra dare la colpa al canale e gestirlo. Misura prima di dare la colpa all'app.</p><h2>Cosa sono rimborsi, cancellazioni ed error charge</h2><p>Sono i diversi meccanismi con cui un'app di delivery corregge un ordine che non è andato come doveva. Conviene distinguerli perché <strong>ognuno ha una causa e un responsabile economico diversi</strong>:</p><ul><li><strong>Cancellazione:</strong> l'ordine viene annullato prima di essere completato. Può essere del cliente, del ristorante o del rider, e ogni caso viene liquidato in modo diverso.</li><li><strong>Rimborso:</strong> il cliente riceve indietro parte o tutto il denaro per un problema (articolo mancante, prodotto freddo, ordine assemblato male).</li><li><strong>Error charge o addebito per errore:</strong> la piattaforma ti scala il costo di un rimborso quando il problema è attribuibile al ristorante (articolo mancante, ordine sbagliato).</li><li><strong>Contestazione o chargeback di qualità:</strong> reclamo del cliente sulla qualità che, se non contesti con prove, finisce scalato dal tuo estratto conto.</li></ul><h3>La differenza chiave: chi ha cancellato</h3><p>Non tutte le cancellazioni pesano allo stesso modo sul tuo portafoglio:</p><ul><li><strong>Cancellazione del cliente</strong> prima che inizi a cucinare: normalmente non ti tocca.</li><li><strong>Cancellazione del cliente</strong> quando l'ordine era già in preparazione: a seconda della policy di ogni app, puoi ricevere una compensazione parziale per il prodotto.</li><li><strong>Cancellazione del ristorante</strong> (senza stock, cucina satura): di solito penalizza il tuo rating e raramente viene compensata.</li><li><strong>Cancellazione del rider o del sistema:</strong> generalmente la copre la piattaforma, non tu.</li></ul><h2>Chi paga il rimborso (e perché di solito nasce nella tua cucina)</h2><p>La regola pratica nella maggior parte delle app (Rappi, Uber Eats, DoorDash, PedidosYa, DiDi Food) è semplice: <strong>il costo lo sostiene chi ha originato l'errore.</strong> Se mancava un articolo, se l'ordine è uscito assemblato male o se la confezione è arrivata rovesciata, il rimborso al cliente diventa un <em>error charge</em> contro il tuo ristorante. Se il problema è stato della consegna o dell'app, lo assorbe la piattaforma.</p><p>Per questo il rimborso non è "l'app contro di te": è uno specchio della tua operatività. La maggior parte degli addebiti controllabili viene da tre punti: <strong>assemblaggio incompleto, errori nelle ricette e packaging che non regge il trasporto.</strong> Sono problemi di gestione, non di marketplace.</p>          <figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/blog-covers/cover-pizza-peel.jpg" alt="Pizza che esce dal forno per il delivery" width="1200" height="800" loading="lazy" />
+  <figcaption>Il forno detta il ritmo del canale.</figcaption>
+</figure>
+          <h2>Come calcolare il tuo tasso di rimborso e il margine perso</h2><p>Non puoi ridurre ciò che non misuri. Questi sono i numeri che ti servono, idealmente per app e per punto vendita:</p><ol><li><strong>Tasso di rimborso:</strong> (importo dei rimborsi + error charge) ÷ vendite lorde delivery × 100. Un riferimento di settore sano di solito si colloca sotto il 2–3% delle vendite; sopra il 5% c'è una perdita seria da rivedere.</li><li><strong>Costo reale dell'ordine cancellato:</strong> non è solo il rimborso. Somma il food cost del prodotto perso, il packaging e il tempo di cucina. Un ordine cancellato in preparazione può costarti il 100% degli ingredienti senza un ricavo che lo compensi.</li><li><strong>Margine perso al mese:</strong> moltiplica il tuo tasso di rimborso per le vendite mensili delivery. Se fatturi USD 40.000 e il tuo tasso è il 4%, sono USD 1.600 al mese —quasi sempre più del tuo investimento in ads.</li></ol><h3>Separa le cause controllabili da quelle non controllabili</h3><p>Classifica ogni rimborso in due secchi. <strong>Controllabili:</strong> articolo mancante, ordine sbagliato, cibo freddo per ritardo della cucina, packaging difettoso. <strong>Non controllabili:</strong> cancellazione anticipata del cliente, problema del rider, sistema down. L'obiettivo non è arrivare a zero —è impossibile— ma attaccare il secchio controllabile, che di solito è il 60–80% del totale.</p><h2>Playbook per ridurre la perdita senza peggiorare l'esperienza</h2><p>Abbassare i rimborsi non significa combattere ogni contestazione né irrigidire le policy con il cliente. Significa <strong>sbagliare meno all'origine</strong>:</p><ul><li><strong>Checklist di assemblaggio prima di sigillare:</strong> una verifica degli articoli contro la comanda elimina la maggior parte dei mancanti.</li><li><strong>Packaging a prova di trasporto:</strong> sigilli, scomparti e contenitori che reggano 20–30 minuti di viaggio. Il packaging economico costa caro in rimborsi.</li><li><strong>Foto e prove per le contestazioni:</strong> registrare gli ordini pronti permette di contestare con prove i chargeback di qualità ingiusti.</li><li><strong>Mettere in pausa gli articoli senza stock:</strong> invece di cancellare l'intero ordine, disattiva il prodotto nell'app per evitare la penalizzazione del rating.</li><li><strong>Revisione settimanale della voce rettifiche:</strong> apri l'estratto conto, filtra rimborsi ed error charge e classificali per causa. Ciò che si rivede, migliora.</li></ul><h3>Dove leggerlo nell'estratto conto settimanale</h3><p>Ogni piattaforma lo chiama in modo diverso —"rettifiche", "adjustments", "trattenute", "error charges", "refunds"— ma compare sempre come una deduzione tra le tue vendite lorde e il pagamento netto. L'errore più comune è guardare solo il bonifico finale senza aprire il dettaglio. <strong>Lì vive la perdita.</strong> Riconcilia ogni settimana: ordini venduti vs. ordini pagati, e verifica ogni differenza che non riconosci.</p><div class="callout"><p>In Pimentón mappiamo il tuo P&L delivery completo —commissioni, packaging, ads e la voce rimborsi/rettifiche per app e punto vendita— perché tu veda esattamente dove scappa il margine e quale parte è controllabile. <strong>Scrivici su WhatsApp per una consulenza gratuita:</strong> <a href="https://wa.me/5491157035170">wa.me/5491157035170</a>.</p></div><h2>Il cattivo non è l'app: è operare senza dati</h2><p>Le app portano domanda e alimentano il tuo business. Rimborsi ed error charge fanno parte del costo di operare il canale, come la commissione o il packaging. Il problema non è che esistano: è non misurarli, non classificarli per causa e non attaccare la parte che controlli davvero. Con un tasso di rimborso monitorato settimana dopo settimana, recuperi margine senza togliere un solo centesimo al tuo investimento in marketing.</p>
+          <h2 id="faq">Domande frequenti</h2>
+          <div class="faq">
+            <details>
+              <summary>Chi si fa carico del costo quando un cliente chiede un rimborso in un'app di delivery?</summary>
+              <p>Dipende dalla causa. Se il problema è attribuibile al ristorante —articolo mancante, ordine assemblato male, cibo freddo per ritardo della cucina— lo assorbi tu tramite un error charge. Se il rimborso nasce da un problema del rider o del sistema, normalmente lo copre la piattaforma.</p>
+            </details>
+            <details>
+              <summary>Cos'è un 'error charge' o addebito per errore e come lo applica la piattaforma?</summary>
+              <p>Un error charge è la trattenuta che l'app ti applica quando un rimborso al cliente nasce da un errore del ristorante, come un prodotto mancante o sbagliato. Compare nel tuo estratto conto come una rettifica che si sottrae dalle vendite lorde prima del pagamento netto.</p>
+            </details>
+            <details>
+              <summary>Quanto pesano i rimborsi in % sulle vendite delivery?</summary>
+              <p>Un tasso sano di solito si colloca sotto il 2–3% delle vendite delivery. Sopra il 5% c'è una perdita seria da rivedere. Se fatturi USD 40.000 al mese con un tasso del 4%, perdi circa USD 1.600 al mese, quasi sempre più della tua spesa in ads.</p>
+            </details>
+            <details>
+              <summary>Si può contestare un rimborso su Rappi, Uber Eats, DoorDash o PedidosYa?</summary>
+              <p>Sì. La maggior parte delle app permette di contestare error charge e chargeback di qualità entro un certo termine. La chiave sono le prove: foto dell'ordine assemblato, registro degli articoli e comande. Senza prove, l'addebito di solito resta scalato dal tuo estratto conto.</p>
+            </details>
+            <details>
+              <summary>Come abbasso il tasso di rimborsi senza peggiorare l'esperienza del cliente?</summary>
+              <p>Attacca le cause controllabili all'origine: checklist di assemblaggio prima di sigillare, packaging che regga il trasporto, mettere in pausa gli articoli senza stock invece di cancellare e contestare con prove i chargeback ingiusti. Non si tratta di irrigidire le policy, ma di sbagliare meno nella tua cucina.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>Pronto a far crescere il tuo delivery?</h2>
+            <p>Scrivici su WhatsApp. In pochi minuti organizziamo una consulenza gratuita con diagnosi di canali, operazioni e prossimi passi.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Scrivici su WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/it">Home</a> · <a href="/it/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
