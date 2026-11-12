@@ -15,6 +15,7 @@ export function FaqIntroText() {
       {t({
         es: "Las preguntas que más nos hacen.",
         en: "The questions we get asked most.",
+        it: "Le domande che ci fanno più spesso.",
       })}
     </p>
   );
@@ -28,6 +29,7 @@ export function FaqCta() {
       label={t({
         es: "¿Tienes otra duda? Hablemos.",
         en: "Still have a question? Let's talk.",
+        it: "Hai un altro dubbio? Parliamone.",
       })}
     />
   );

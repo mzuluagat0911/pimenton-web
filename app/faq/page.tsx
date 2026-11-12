@@ -1,84 +1,88 @@
-import type { Metadata } from "next";
 import { FaqIntroText, FaqCta } from "@/components/sections/faq/FaqIntro";
 import { Highlight } from "@/components/ui-custom/Highlight";
 import { FaqAccordion } from "@/components/sections/faq/FaqAccordion";
 import { faqs } from "@/data/faq";
+import {
+  breadcrumbList,
+  getRequestLocale,
+  jsonLdHtml,
+  pageMetadata,
+} from "@/lib/seo";
 
-import { SITE_URL as SITE } from "@/lib/site";
 const PATH = "/faq";
 
-const TITLE = "FAQ | Pimentón — Preguntas frecuentes sobre nuestro servicio";
-const DESCRIPTION =
-  "Resolvemos las dudas más comunes sobre cómo trabajamos: diferencias con una agencia, tiempos de resultados, apps de delivery, modalidades de trabajo y más.";
-
-export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
-  keywords: [
-    "preguntas frecuentes Pimentón",
-    "FAQ delivery restaurantes",
-    "cómo trabaja Pimentón",
-    "agencia vs gestión de delivery",
-    "apps de delivery marketplaces",
-    "consultoría de delivery",
-    "1st party 3rd party delivery",
-  ],
-  alternates: { canonical: PATH },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
-  // openGraph/twitter completos: el merge de metadata es shallow, así que el
-  // OG del layout se reemplaza (no se hereda).
-  openGraph: {
-    type: "website",
-    siteName: "Pimentón",
-    locale: "es_AR",
-    url: PATH,
-    title: TITLE,
-    description: DESCRIPTION,
-    images: [
-      { url: "/og-default.png", width: 1200, height: 630, alt: "Pimentón — FAQ" },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: TITLE,
-    description: DESCRIPTION,
-    images: ["/og-default.png"],
-  },
+const TITLE = {
+  es: "FAQ | Pimentón — Preguntas frecuentes sobre nuestro servicio",
+  en: "FAQ | Pimentón — Frequently asked questions about our service",
+  it: "FAQ | Pimentón — Domande frequenti sul nostro servizio",
+};
+const DESCRIPTION = {
+  es: "Resolvemos las dudas más comunes sobre cómo trabajamos: diferencias con una agencia, tiempos de resultados, apps de delivery, modalidades de trabajo y más.",
+  en: "Answers to the most common questions about how we work: how we're different from an agency, time to results, delivery apps, engagement models, and more.",
+  it: "Rispondiamo ai dubbi più comuni su come lavoriamo: differenze rispetto a un'agenzia, tempi per vedere risultati, app di delivery, modalità di collaborazione e altro.",
 };
 
-// Structured data: breadcrumb + FAQPage (apto para rich results de FAQ).
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Inicio", item: `${SITE}/` },
-        { "@type": "ListItem", position: 2, name: "FAQ", item: `${SITE}${PATH}` },
+export async function generateMetadata() {
+  return pageMetadata({
+    path: PATH,
+    title: TITLE,
+    description: DESCRIPTION,
+    keywords: {
+      es: [
+        "preguntas frecuentes Pimentón",
+        "FAQ delivery restaurantes",
+        "cómo trabaja Pimentón",
+        "agencia vs gestión de delivery",
+        "apps de delivery marketplaces",
+        "consultoría de delivery",
+        "1st party 3rd party delivery",
+      ],
+      en: [
+        "Pimentón FAQ",
+        "restaurant delivery FAQ",
+        "how Pimentón works",
+        "agency vs delivery management",
+        "delivery app marketplaces",
+        "delivery consultancy",
+        "first party third party delivery",
+      ],
+      it: [
+        "domande frequenti Pimentón",
+        "FAQ delivery ristoranti",
+        "come lavora Pimentón",
+        "agenzia vs gestione delivery",
+        "app di delivery marketplace",
+        "consulenza delivery",
+        "delivery first party third party",
       ],
     },
-    {
-      "@type": "FAQPage",
-      mainEntity: faqs.map((f) => ({
-        "@type": "Question",
-        name: f.pregunta.es,
-        acceptedAnswer: { "@type": "Answer", text: f.respuesta.es },
-      })),
-    },
-  ],
-};
+    ogAlt: { es: "Pimentón — FAQ", en: "Pimentón — FAQ", it: "Pimentón — FAQ" },
+  });
+}
 
-export default function FaqPage() {
+export default async function FaqPage() {
+  const lang = await getRequestLocale();
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      breadcrumbList(lang, [
+        { name: { es: "Inicio", en: "Home", it: "Home" }, path: "/" },
+        { name: { es: "FAQ", en: "FAQ", it: "FAQ" }, path: PATH },
+      ]),
+      {
+        "@type": "FAQPage",
+        mainEntity: faqs.map((f) => ({
+          "@type": "Question",
+          name: f.pregunta[lang] ?? f.pregunta.es,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: f.respuesta[lang] ?? f.respuesta.es,
+          },
+        })),
+      },
+    ],
+  };
+
   return (
     // El pt vive en la sección (no en <main>) para que el fondo menta llegue
     // hasta el header sólido fijo, sin una franja del color del body.
@@ -86,9 +90,7 @@ export default function FaqPage() {
       {/* JSON-LD structured data */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-        }}
+        dangerouslySetInnerHTML={{ __html: jsonLdHtml(jsonLd) }}
       />
 
       {/* Fondo menta sólido (sin texturas). Sin overflow-hidden: un ancestro

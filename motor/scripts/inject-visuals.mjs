@@ -1,5 +1,5 @@
 process.env.ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY || "sk-rebuild-only";
-process.env.SITE_URL = process.env.SITE_URL || "https://pimenton.io";
+process.env.SITE_URL = process.env.SITE_URL || "https://www.pimenton.io";
 
 const { readdirSync, readFileSync, writeFileSync } = await import("node:fs");
 const { dirname, join } = await import("node:path");
@@ -26,4 +26,5 @@ function injectDir(rel, lang) {
 
 injectDir("public/blog", "es");
 injectDir("public/en/blog", "en");
+injectDir("public/it/blog", "it");
 rebuildIndex(loadState().published);

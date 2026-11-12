@@ -243,7 +243,7 @@ function MockDashboard({
       {/* Panel órdenes (dark) */}
       <div className="rounded-xl border border-pimenton-dark-border bg-pimenton-dark p-3.5">
         <p className="font-mono text-[8px] uppercase tracking-[0.18em] text-pimenton-text-on-dark-muted">
-          {t({ es: "Órdenes 2025", en: "Orders 2025" })}
+          {t({ es: "Órdenes 2025", en: "Orders 2025", it: "Ordini 2025" })}
         </p>
         <div className="mt-1.5 flex items-end justify-between gap-3">
           <span className="font-display text-2xl font-bold tabular-nums text-pimenton-accent">
@@ -280,7 +280,7 @@ function MockDashboard({
       {/* Panel facturación (claro) */}
       <div className="rounded-xl bg-pimenton-bg p-3.5">
         <p className="font-mono text-[8px] uppercase tracking-[0.18em] text-pimenton-text-muted">
-          {t({ es: "Facturación", en: "Revenue" })}
+          {t({ es: "Facturación", en: "Revenue", it: "Fatturato" })}
         </p>
         <div className="mt-1.5 flex items-end justify-between gap-3">
           <span className="font-display text-2xl font-bold tabular-nums text-pimenton-text">
@@ -311,7 +311,7 @@ function MockDashboard({
             hasEntered={hasEntered}
             reduced={reduced}
           />{" "}
-          {t({ es: "pedidos", en: "orders" })} ·{" "}
+          {t({ es: "pedidos", en: "orders", it: "ordini" })} ·{" "}
           <RisingNumber
             base={roi.base}
             fluct={roi.fluct}
@@ -465,7 +465,7 @@ function MockNota({
       >
         <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-pimenton-text/20" />
         <p className="font-mono text-[8px] uppercase tracking-[0.18em] text-pimenton-text-muted">
-          {t({ es: "Parte diario", en: "Daily report" })} · {day.fecha}
+          {t({ es: "Parte diario", en: "Daily report", it: "Report giornaliero" })} · {day.fecha}
         </p>
         <ul className="mt-3 space-y-2 text-xs leading-snug text-pimenton-text">
           {day.items.map((item, i) => (
@@ -634,7 +634,7 @@ function MockPerfil({
       {/* En línea — constante, con halo radar */}
       <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-pimenton-dark px-2.5 py-1 text-[10px] font-medium text-pimenton-text-on-dark-muted">
         <LiveDot reduced={reduced} />
-        {t({ es: "En línea", en: "Online" })}
+        {t({ es: "En línea", en: "Online", it: "Online" })}
       </span>
     </div>
   );
@@ -763,11 +763,11 @@ export function DetrasDeCadaPedido() {
               className="text-3xl font-semibold leading-[1.12] tracking-tight text-pimenton-text-on-dark sm:text-4xl"
             >
               <span className="block">
-                {t({ es: "Detrás de cada pedido,", en: "Behind every order," })}
+                {t({ es: "Detrás de cada pedido,", en: "Behind every order,", it: "Dietro ogni ordine," })}
               </span>
               <span className="mt-1 block">
                 <Highlight color="coral">
-                  {t({ es: "hay una decisión.", en: "there's a decision." })}
+                  {t({ es: "hay una decisión.", en: "there's a decision.", it: "c'è una decisione." })}
                 </Highlight>
               </span>
             </motion.h2>
@@ -780,10 +780,12 @@ export function DetrasDeCadaPedido() {
               title={t({
                 es: "Ves todos los datos en el mismo lugar",
                 en: "See all your data in one place",
+                it: "Vedi tutti i dati in un unico posto",
               })}
               desc={t({
                 es: "Ventas, margen, ticket y promos. Decidimos con datos reales.",
                 en: "Sales, margin, ticket, and promos. We decide with real data.",
+                it: "Vendite, margine, ticket e promo. Decidiamo con dati reali.",
               })}
               index={0}
               reduced={reduced}
@@ -794,10 +796,12 @@ export function DetrasDeCadaPedido() {
               title={t({
                 es: "Operamos el canal todos los días, de punta a punta",
                 en: "We operate the channel every day, end to end",
+                it: "Operiamo il canale ogni giorno, dall'inizio alla fine",
               })}
               desc={t({
                 es: "Nos metemos en la operación, no la miramos de afuera.",
                 en: "We get into the operation — we don't watch from the outside.",
+                it: "Entriamo nell'operatività, non la guardiamo da fuori.",
               })}
               index={1}
               reduced={reduced}
@@ -808,10 +812,12 @@ export function DetrasDeCadaPedido() {
               title={t({
                 es: "Somos expertos en APPs de Delivery",
                 en: "We're delivery app experts",
+                it: "Siamo esperti di app di delivery",
               })}
               desc={t({
                 es: "Gestionamos el canal como si fuera nuestro.",
                 en: "We manage the channel as if it were ours.",
+                it: "Gestiamo il canale come se fosse nostro.",
               })}
               index={2}
               reduced={reduced}
@@ -822,10 +828,12 @@ export function DetrasDeCadaPedido() {
               title={t({
                 es: "Contarás con un equipo de Growth a cargo",
                 en: "You'll have a Growth team in charge",
+                it: "Avrai un team Growth dedicato",
               })}
               desc={t({
                 es: "Un especialista de tu región, dedicado a tu negocio.",
                 en: "A specialist from your region, dedicated to your business.",
+                it: "Uno specialista della tua regione, dedicato al tuo business.",
               })}
               index={3}
               reduced={reduced}
@@ -851,6 +859,7 @@ export function DetrasDeCadaPedido() {
               label={t({
                 es: "Hablar con un especialista",
                 en: "Talk to a specialist",
+                it: "Parla con uno specialista",
               })}
             />
           </div>

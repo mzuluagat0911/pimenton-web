@@ -46,14 +46,14 @@ export function HeroComoLoHacemos() {
         <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] tracking-tight text-pimenton-bg sm:text-6xl lg:text-7xl">
           <motion.span className="block" {...fadeUp(0)}>
             <Highlight color="coral">
-              {t({ es: "Operamos", en: "We operate" })}
+              {t({ es: "Operamos", en: "We operate", it: "Gestiamo" })}
             </Highlight>
           </motion.span>
           <motion.span className="block" {...fadeUp(0.08)}>
-            {t({ es: "tu delivery como", en: "your delivery" })}
+            {t({ es: "tu delivery como", en: "your delivery", it: "il tuo delivery come" })}
           </motion.span>
           <motion.span className="block" {...fadeUp(0.16)}>
-            {t({ es: "si fuera nuestro", en: "as if it were ours" })}
+            {t({ es: "si fuera nuestro", en: "as if it were ours", it: "se fosse nostro" })}
           </motion.span>
         </h1>
 
@@ -64,6 +64,7 @@ export function HeroComoLoHacemos() {
           {t({
             es: "Datos reales, decisiones diarias y un Growth Manager dedicado a tu negocio.",
             en: "Real data, daily decisions, and a Growth Manager dedicated to your business.",
+            it: "Dati reali, decisioni quotidiane e un Growth Manager dedicato al tuo business.",
           })}
         </motion.p>
       </div>

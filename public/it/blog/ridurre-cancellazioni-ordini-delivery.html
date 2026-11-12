@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Come ridurre le cancellazioni nel delivery multi-sede</title>
+    <meta name="description" content="Riduci le cancellazioni nel delivery trattandole come segnale: tassonomia delle cause, soglia per locale e micro-playbook per turno. Misurabile e comparabile." />
+    <meta name="keywords" content="come ridurre le cancellazioni nel delivery, come abbassare il tasso di cancellazione degli ordini, perché vengono cancellati gli ordini delivery, cause di cancellazione degli ordini nelle app di food delivery, tasso di cancellazione delivery accettabile, ridurre le cancellazioni per mancanza di stock, cancellazioni per ritardi in cucina delivery, come misurare le cancellazioni per punto vendita, ordini cancellati dal ristorante vs dal cliente" />
+    <link rel="canonical" href="https://www.pimenton.io/it/blog/ridurre-cancellazioni-ordini-delivery" />
+    <link rel="alternate" hreflang="es" href="https://www.pimenton.io/blog/como-reducir-cancelaciones-delivery" />
+    <link rel="alternate" hreflang="en" href="https://www.pimenton.io/en/blog/reduce-delivery-cancellations-multiple-locations" />
+    <link rel="alternate" hreflang="it" href="https://www.pimenton.io/it/blog/ridurre-cancellazioni-ordini-delivery" />
+    <link rel="alternate" hreflang="x-default" href="https://www.pimenton.io/blog/como-reducir-cancelaciones-delivery" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Come ridurre le cancellazioni nel delivery multi-sede" />
+    <meta property="og:description" content="Riduci le cancellazioni nel delivery trattandole come segnale: tassonomia delle cause, soglia per locale e micro-playbook per turno. Misurabile e comparabile." />
+    <meta property="og:url" content="https://www.pimenton.io/it/blog/ridurre-cancellazioni-ordini-delivery" />
+    <meta property="og:image" content="https://www.pimenton.io/assets/gallery/preparacion-burguer.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Come ridurre le cancellazioni nel delivery multi-sede" />
+    <meta name="twitter:description" content="Riduci le cancellazioni nel delivery trattandole come segnale: tassonomia delle cause, soglia per locale e micro-playbook per turno. Misurabile e comparabile." />
+    <meta name="twitter:image" content="https://www.pimenton.io/assets/gallery/preparacion-burguer.webp" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="google-site-verification" content="lbmAEFkAWQmWQygVAsQW0qs8anyrhaUhAE_nIXK0pls" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-25DBL0EY6V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-25DBL0EY6V', { anonymize_ip: true });
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Come ridurre le cancellazioni nel delivery: cause, soglie e azioni per turno",
+      "description": "Riduci le cancellazioni nel delivery trattandole come segnale: tassonomia delle cause, soglia per locale e micro-playbook per turno. Misurabile e comparabile.",
+      "inLanguage": "it",
+      "author": {
+            "@type": "Organization",
+            "name": "Control Room by Pimentón",
+            "url": "https://www.pimenton.io/it"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.pimenton.io/assets/gallery/preparacion-burguer.webp"
+            }
+      },
+      "datePublished": "2026-08-16",
+      "dateModified": "2026-08-16",
+      "mainEntityOfPage": "https://www.pimenton.io/it/blog/ridurre-cancellazioni-ordini-delivery",
+      "image": "https://www.pimenton.io/assets/gallery/preparacion-burguer.webp"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "Qual è un tasso di cancellazione normale nel delivery?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Come riferimento operativo, molte operazioni sane si muovono tra il 2% e il 5% di ordini cancellati sul totale ricevuto. Sopra l'8-10% in modo costante di solito c'è una causa strutturale. Più del numero globale, conta lo scostamento per locale e per turno rispetto alla propria base."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Perché alcuni locali cancellano più ordini di altri?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Perché ogni punto vendita ha cause e picchi diversi: un locale può cancellare per l'86 di pochi SKU la sera e un altro per ritardi in cucina nel picco di pranzo. Confrontare il numero assoluto non serve; bisogna guardare lo scostamento dalla base storica di ogni locale e turno per capire chi si stacca davvero."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Quanto incide il tempo di preparazione sulle cancellazioni?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Molto: il ritardo in cucina è una delle cause più frequenti, soprattutto nel picco. Quando il tempo reale supera quello promesso, il rider aspetta troppo e il cliente cancella per il ritardo. Confrontare i tempi di preparazione reali con quelli stimati è la prima diagnosi quando le cancellazioni salgono in un turno."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Oltre quale soglia una cancellazione smette di essere rumore e diventa un alert?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Quando supera una soglia definita sullo scostamento dalla base del locale e del turno, non su un numero assoluto. Per esempio: alert se il tasso del turno supera del 50% la sua base storica, o se una sola causa concentra più del 40% delle cancellazioni del giorno, sempre pesando un volume minimo per non reagire a una giornata storta."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Come confrontare le cancellazioni tra punti vendita senza Excel?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Etichettando ogni cancellazione per causa nel momento in cui accade e misurandola per locale e per turno con soglie sullo scostamento, non con fogli di calcolo di fine mese. Una sala di controllo come Control Room incrocia questi dati in tempo reale e mostra dove fa male e quale azione attivare, invece di ricostruire il problema in ritardo."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://www.pimenton.io/it"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://www.pimenton.io/it/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Come ridurre le cancellazioni nel delivery: cause, soglie e azioni per turno",
+                  "item": "https://www.pimenton.io/it/blog/ridurre-cancellazioni-ordini-delivery"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-control-room">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/it" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-blanco.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/it">Home</a>
+          <a href="/it/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma / Language / Lingua">
+            <a class="" href="/blog/como-reducir-cancelaciones-delivery" hreflang="es">ES</a>
+            <a class="" href="/en/blog/reduce-delivery-cancellations-multiple-locations" hreflang="en">EN</a>
+            <a class="active" href="/it/blog/ridurre-cancellazioni-ordini-delivery" hreflang="it">IT</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Control Room · Ops</p>
+          <h1>Come ridurre le cancellazioni nel delivery: cause, soglie e azioni per turno</h1>
+          <p class="lead-answer"><p>Per ridurre le cancellazioni nel delivery devi smettere di trattarle come eventi isolati e leggerle come un <strong>segnale gerarchizzato</strong>: classifica ogni cancellazione per causa (86/mancanza di stock, ritardo in cucina, indirizzo o rider, picco di domanda, errore nel menu), definisci una <strong>soglia per locale e per turno</strong> che la trasformi in alert e applica un micro-playbook per ogni causa. Così passi da "si cancellano ordini" a "a Palermo la causa #1 è l'86 di 3 SKU tra le 21 e le 23 → azione".</p></p>
+          <p class="byline">Di Control Room · 2026-08-16 · 5 min di lettura</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/gallery/preparacion-burguer.webp" alt="Cucina che prepara un ordine: dove nascono le cancellazioni" width="1200" height="800" loading="eager" />
+  <figcaption>Le cancellazioni non sono “colpa dell'app”: sono stock, tempi e dati sporchi.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>35%</b><span>tipico per stock / 86</span></div>
+    <div class="blog-stat"><b>28%</b><span>per tempi di preparazione</span></div>
+    <div class="blog-stat"><b>1</b><span>sede che manda in tilt le altre</span></div>
+</div>
+<figure class="blog-chart blog-chart--stack" data-blog-visuals="lead">
+  <p class="chart-kicker">Cause frequenti</p>
+  <figcaption>Da dove arrivano le cancellazioni</figcaption>
+  <div class="stack" role="img" aria-label="Da dove arrivano le cancellazioni">
+    <span class="seg seg-0 is-accent" style="flex:35" title="Stock / 86 35%"></span>
+    <span class="seg seg-1" style="flex:28" title="Tempo di preparazione 28%"></span>
+    <span class="seg seg-2" style="flex:22" title="Indirizzo / rider 22%"></span>
+    <span class="seg seg-3" style="flex:15" title="Altro 15%"></span>
+  </div>
+  <ul class="legend">
+    <li><i class="swatch seg-0 is-accent"></i>Stock / 86 <b>35%</b></li>
+    <li><i class="swatch seg-1"></i>Tempo di preparazione <b>28%</b></li>
+    <li><i class="swatch seg-2"></i>Indirizzo / rider <b>22%</b></li>
+    <li><i class="swatch seg-3"></i>Altro <b>15%</b></li>
+  </ul>
+  <p class="chart-note">Distribuzione illustrativa. Il primo passo è etichettare ogni cancellazione: senza causa, niente leva.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>Una cancellazione isolata è rumore. Cento cancellazioni al mese non classificate sono un problema invisibile che ti costa margine, rating e clienti che non tornano. Nel delivery multi-sede la sfida non è contare quanti ordini sono saltati: è sapere <strong>perché</strong>, <strong>in quale locale</strong> e <strong>in quale turno</strong>, per poter intervenire prima che si ripeta. Questa guida organizza le cancellazioni come un segnale gerarchizzato, con soglie e azioni concrete.</p><h2>Perché vengono cancellati gli ordini nel delivery</h2><p>Le cancellazioni non sono un fenomeno unico: sono storie diverse infilate nella stessa metrica. Prima di reagire devi separarle. Queste sono le <strong>cause di cancellazione degli ordini nelle app di food delivery</strong> più frequenti nelle operazioni con volume:</p><ul><li><strong>86 / mancanza di stock:</strong> il prodotto non è disponibile e l'ordine salta dopo essere stato ricevuto. Di solito si concentra su pochi SKU e in fasce orarie specifiche.</li><li><strong>Ritardo in cucina:</strong> il tempo di preparazione esplode, il rider aspetta troppo o il cliente cancella per il ritardo. È la causa più legata al picco.</li><li><strong>Indirizzo o rider:</strong> zona senza copertura, mancanza di rider, indirizzo inserito male o riassegnazioni che allungano il tempo totale.</li><li><strong>Picco di domanda:</strong> il locale si satura, la cucina non regge e inizia a rifiutare o ritardare fino a forzare la cancellazione.</li><li><strong>Errore nel menu:</strong> prezzo caricato male, foto che non corrisponde, combo rotti o modificatori che confondono il cliente.</li></ul><p>Il punto chiave: <strong>una cancellazione per 86 non si risolve come una per ritardo in cucina</strong>. Metterle nello stesso calderone ti condanna ad azioni generiche che non spostano l'ago.</p><h2>Ordini cancellati dal ristorante vs dal cliente</h2><p>La prima distinzione importante è chi ha premuto il pulsante. Una cancellazione che parte da te non è la stessa cosa di una decisa dal cliente, e confonderle distorce la diagnosi.</p><ul><li><strong>Cancellati dal ristorante:</strong> quasi sempre sono controllabili. 86, saturazione, errore nel menu o rifiuto per mancanza di rider propri rientrano qui. Sono una tua responsabilità operativa diretta.</li><li><strong>Cancellati dal cliente:</strong> spesso sono la conseguenza di qualcosa successo dalla tua parte (lungo ritardo, tempo stimato che si allunga). Anche se il pulsante lo preme il cliente, il fattore scatenante di solito è operativo.</li></ul><p>Per <strong>distinguere le cancellazioni per stock, per cucina o per il cliente</strong> devi etichettare ogni evento con una causa nel momento in cui accade, non ricostruirla a memoria a fine mese. Senza questa etichettatura, tutto è un numero sfocato.</p>                              <figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/casos/la-birra-bar/hero.jpg" alt="Cucina che controlla stock e tempi per evitare cancellazioni" width="1200" height="800" loading="lazy" />
+  <figcaption>Una sede con uno stock che mente cancella per due. L'86 deve essere un dato, non una voce di corridoio.</figcaption>
+</figure>
+          <h2>Qual è un tasso di cancellazione accettabile</h2><p>Il <strong>tasso di cancellazione del delivery</strong> è la percentuale di ordini cancellati sul totale degli ordini ricevuti in un periodo. Come riferimento operativo, molte operazioni sane si muovono nell'intervallo <strong>dal 2% al 5%</strong>; oltre conviene guardare da vicino, e sopra l'8-10% in modo costante c'è quasi sempre una causa strutturale.</p><p>Ma il numero globale inganna. Quello che conta è lo <strong>scostamento per locale e per turno</strong>: se la tua media è il 4% ma Palermo arriva all'11% tra le 21 e le 23, quel picco è il vero segnale. Per questo la domanda utile non è "qual è il tasso normale?" ma "quale locale si stacca dalla propria base e quando?".</p><h2>La soglia: quando una cancellazione smette di essere rumore</h2><p>Una soglia è il punto oltre il quale una cancellazione diventa un <strong>alert su cui agire</strong>. Senza soglia, o reagisci a tutto (e ti bruci) o non reagisci a niente (e lo scopri tardi). La logica pratica:</p><ol><li><strong>Definisci una baseline per locale e turno.</strong> Ogni punto vendita ha il suo comportamento; confrontare Palermo con un locale della zona sud sui dati grezzi non dice nulla.</li><li><strong>Fissa la soglia sullo scostamento, non sul valore assoluto.</strong> Per esempio: alert se il tasso del turno supera del 50% la base storica di quel turno, o se una sola causa concentra più del 40% delle cancellazioni del giorno.</li><li><strong>Aggiungi un volume minimo.</strong> 3 cancellazioni su 10 ordini sono un pomeriggio storto; 3 su 200 sono rumore. La soglia deve pesare la quantità, non solo la percentuale.</li></ol><p>Quando la soglia viene superata, non guardi "le cancellazioni": guardi <strong>la causa #1 di quel turno in quel locale</strong> e attivi il playbook corrispondente.</p><h2>Micro-playbook per causa</h2><p>Ogni causa ha un'azione diversa. È questo che trasforma il dato in una decisione di turno:</p><ul><li><strong>86 / stock:</strong> individua gli SKU che saltano e in quale fascia. Se sono 3 prodotti tra le 21 e le 23, l'azione è anticipare la prep, mettere in pausa quegli articoli nel menu prima che finiscano o regolare il livello di scorta del turno serale.</li><li><strong>Ritardo in cucina:</strong> confronta i tempi di preparazione reali con quelli promessi. Azione: aggiungere braccia alla postazione collo di bottiglia, semplificare il menu nel picco o mettere in pausa la ricezione per qualche minuto per decomprimere.</li><li><strong>Indirizzo / rider:</strong> guarda zone e disponibilità di rider. Azione: ridurre il raggio di consegna nelle ore critiche o coordinare meglio la finestra di assegnazione.</li><li><strong>Picco di domanda:</strong> se la saturazione si ripete alla stessa ora, l'azione riguarda lo staffing e non la reazione: rinforzare il turno o regolare la capacità offerta.</li><li><strong>Errore nel menu:</strong> verifica prezzi, foto e modificatori. È la causa più economica da sistemare e quella che abbassa più in fretta le cancellazioni evitabili.</li></ul><h2>Come confrontare le cancellazioni tra punti vendita senza Excel</h2><p>L'errore classico è misurare le cancellazioni a fine mese, in un foglio che nessuno guarda in tempo. Perché la metrica serva deve essere <strong>viva, confrontabile e per turno</strong>. Errori comuni che annullano qualsiasi sforzo:</p><ul><li>Contare le cancellazioni senza etichettare la causa: sai quante, non perché.</li><li>Confrontare i locali per numero assoluto invece che per scostamento dalla propria base.</li><li>Guardare solo la media mensile e perdere il picco di un turno specifico.</li><li>Non chiudere il cerchio: individuare il problema e non assegnare un'azione con un responsabile.</li></ul><div class="callout"><p><strong>Control Room</strong> è la sala di controllo operativa di Pimentón: incrocia le cancellazioni per causa, per locale e per turno, applica soglie che le trasformano in alert e ti mostra dove fa male senza fogli di calcolo infiniti. Da "si cancellano ordini" a "Palermo, 86 di 3 SKU, 21-23 → azione". Vuoi vederlo con i tuoi locali? <a href="https://wa.me/5491157035170">Scrivici su WhatsApp</a>.</p></div><h2>Cosa controllare nel turno quando le cancellazioni salgono</h2><p>Quando la soglia viene superata in tempo reale, lo standup del turno dovrebbe rispondere a tre domande in meno di due minuti: <strong>quale causa concentra le cancellazioni adesso?</strong>, <strong>è controllabile da noi?</strong> e <strong>cosa muoviamo nei prossimi 30 minuti?</strong>. Questo rituale, ripetuto, è ciò che trasforma la cancellazione da lamentela di fine mese in una leva operativa quotidiana. Neutralità verso le app: la piattaforma è il canale della domanda; la maggior parte delle cancellazioni che puoi ridurre si gioca dalla tua parte del bancone.</p>
+          <h2 id="faq">Domande frequenti</h2>
+          <div class="faq">
+            <details>
+              <summary>Qual è un tasso di cancellazione normale nel delivery?</summary>
+              <p>Come riferimento operativo, molte operazioni sane si muovono tra il 2% e il 5% di ordini cancellati sul totale ricevuto. Sopra l'8-10% in modo costante di solito c'è una causa strutturale. Più del numero globale, conta lo scostamento per locale e per turno rispetto alla propria base.</p>
+            </details>
+            <details>
+              <summary>Perché alcuni locali cancellano più ordini di altri?</summary>
+              <p>Perché ogni punto vendita ha cause e picchi diversi: un locale può cancellare per l'86 di pochi SKU la sera e un altro per ritardi in cucina nel picco di pranzo. Confrontare il numero assoluto non serve; bisogna guardare lo scostamento dalla base storica di ogni locale e turno per capire chi si stacca davvero.</p>
+            </details>
+            <details>
+              <summary>Quanto incide il tempo di preparazione sulle cancellazioni?</summary>
+              <p>Molto: il ritardo in cucina è una delle cause più frequenti, soprattutto nel picco. Quando il tempo reale supera quello promesso, il rider aspetta troppo e il cliente cancella per il ritardo. Confrontare i tempi di preparazione reali con quelli stimati è la prima diagnosi quando le cancellazioni salgono in un turno.</p>
+            </details>
+            <details>
+              <summary>Oltre quale soglia una cancellazione smette di essere rumore e diventa un alert?</summary>
+              <p>Quando supera una soglia definita sullo scostamento dalla base del locale e del turno, non su un numero assoluto. Per esempio: alert se il tasso del turno supera del 50% la sua base storica, o se una sola causa concentra più del 40% delle cancellazioni del giorno, sempre pesando un volume minimo per non reagire a una giornata storta.</p>
+            </details>
+            <details>
+              <summary>Come confrontare le cancellazioni tra punti vendita senza Excel?</summary>
+              <p>Etichettando ogni cancellazione per causa nel momento in cui accade e misurandola per locale e per turno con soglie sullo scostamento, non con fogli di calcolo di fine mese. Una sala di controllo come Control Room incrocia questi dati in tempo reale e mostra dove fa male e quale azione attivare, invece di ricostruire il problema in ritardo.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>Vuoi vedere il tuo delivery con chiarezza?</h2>
+            <p>Scrivici su WhatsApp. Analizziamo cosa sta rompendo il ritmo multi-sede e cosa sistemare per primo.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Scrivici su WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/it">Home</a> · <a href="/it/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

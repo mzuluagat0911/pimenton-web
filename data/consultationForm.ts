@@ -19,8 +19,8 @@ import {
   type WhatsappRegion,
 } from "./whatsapp";
 
-export type Lang = "es" | "en";
-type Localized = { es: string; en: string };
+export type Lang = "es" | "en" | "it";
+type Localized = { es: string; en: string; it: string };
 const L = (loc: Localized, lang: Lang) => loc[lang];
 
 // ────────── Tipos ──────────
@@ -49,37 +49,37 @@ type CategoryOption = {
 export const categories: ReadonlyArray<CategoryOption> = [
   {
     id: "burger",
-    label: { es: "Burger", en: "Burger" },
+    label: { es: "Burger", en: "Burger", it: "Burger" },
     emoji: "burger.png",
     fallback: "🍔",
   },
   {
     id: "pizza",
-    label: { es: "Pizza", en: "Pizza" },
+    label: { es: "Pizza", en: "Pizza", it: "Pizza" },
     emoji: "pizza.png",
     fallback: "🍕",
   },
   {
     id: "sushi",
-    label: { es: "Sushi", en: "Sushi" },
+    label: { es: "Sushi", en: "Sushi", it: "Sushi" },
     emoji: "sushi.png",
     fallback: "🍣",
   },
   {
     id: "dessert",
-    label: { es: "Postres", en: "Desserts" },
+    label: { es: "Postres", en: "Desserts", it: "Dolci" },
     emoji: "donut.png",
     fallback: "🍩",
   },
   {
     id: "bakery",
-    label: { es: "Panaderías", en: "Bakeries" },
+    label: { es: "Panaderías", en: "Bakeries", it: "Panetterie" },
     emoji: "croissant.png",
     fallback: "🥐",
   },
   {
     id: "other",
-    label: { es: "Otros", en: "Other" },
+    label: { es: "Otros", en: "Other", it: "Altro" },
     emoji: "plate.png",
     fallback: "🍽️",
   },
@@ -96,29 +96,29 @@ type SizeOption = {
 export const sizes: ReadonlyArray<SizeOption> = [
   {
     id: "solo",
-    label: { es: "1 Local", en: "1 location" },
-    caption: { es: "", en: "" },
+    label: { es: "1 Local", en: "1 location", it: "1 locale" },
+    caption: { es: "", en: "", it: "" },
     emoji: "chef.png",
     fallback: "👨‍🍳",
   },
   {
     id: "small",
-    label: { es: "2-5 locales", en: "2-5 locations" },
-    caption: { es: "", en: "" },
+    label: { es: "2-5 locales", en: "2-5 locations", it: "2-5 locali" },
+    caption: { es: "", en: "", it: "" },
     emoji: "building-small.png",
     fallback: "🏪",
   },
   {
     id: "medium",
-    label: { es: "6-20 locales", en: "6-20 locations" },
-    caption: { es: "", en: "" },
+    label: { es: "6-20 locales", en: "6-20 locations", it: "6-20 locali" },
+    caption: { es: "", en: "", it: "" },
     emoji: "building-medium.png",
     fallback: "🏢",
   },
   {
     id: "large",
-    label: { es: "+20 locales", en: "+20 locations" },
-    caption: { es: "", en: "" },
+    label: { es: "+20 locales", en: "+20 locations", it: "+20 locali" },
+    caption: { es: "", en: "", it: "" },
     emoji: "building-large.png",
     fallback: "🏬",
   },
@@ -135,49 +135,49 @@ type FeaturedCountry = {
 export const featuredCountries: ReadonlyArray<FeaturedCountry> = [
   {
     isoCode: "AR",
-    label: { es: "Argentina", en: "Argentina" },
+    label: { es: "Argentina", en: "Argentina", it: "Argentina" },
     emoji: "flag-ar.png",
     fallback: "🇦🇷",
   },
   {
     isoCode: "CL",
-    label: { es: "Chile", en: "Chile" },
+    label: { es: "Chile", en: "Chile", it: "Cile" },
     emoji: "flag-cl.png",
     fallback: "🇨🇱",
   },
   {
     isoCode: "CO",
-    label: { es: "Colombia", en: "Colombia" },
+    label: { es: "Colombia", en: "Colombia", it: "Colombia" },
     emoji: "flag-co.png",
     fallback: "🇨🇴",
   },
   {
     isoCode: "ES",
-    label: { es: "España", en: "Spain" },
+    label: { es: "España", en: "Spain", it: "Spagna" },
     emoji: "flag-es.png",
     fallback: "🇪🇸",
   },
   {
     isoCode: "MX",
-    label: { es: "México", en: "Mexico" },
+    label: { es: "México", en: "Mexico", it: "Messico" },
     emoji: "flag-mx.png",
     fallback: "🇲🇽",
   },
   {
     isoCode: "PE",
-    label: { es: "Perú", en: "Peru" },
+    label: { es: "Perú", en: "Peru", it: "Perù" },
     emoji: "flag-pe.png",
     fallback: "🇵🇪",
   },
   {
     isoCode: "UY",
-    label: { es: "Uruguay", en: "Uruguay" },
+    label: { es: "Uruguay", en: "Uruguay", it: "Uruguay" },
     emoji: "flag-uy.png",
     fallback: "🇺🇾",
   },
   {
     isoCode: "US",
-    label: { es: "USA", en: "USA" },
+    label: { es: "USA", en: "USA", it: "USA" },
     emoji: "flag-us.png",
     fallback: "🇺🇸",
   },
@@ -316,6 +316,13 @@ const MESSAGE = {
     instagram: (ig: string) => `Instagram: ${ig}`,
     closing: "I'd like to book the Free Consultancy.",
   },
+  it: {
+    greeting: (r: string) => `Ciao Pimentón! 👋 Sono di ${r}.`,
+    body: (cats: string, country: string, size: string) =>
+      `Abbiamo un ristorante di ${cats} in ${country} con ${size}.`,
+    instagram: (ig: string) => `Instagram: ${ig}`,
+    closing: "Vorrei prenotare la consulenza gratuita.",
+  },
 } as const;
 
 export function buildWhatsappMessage(snap: FormSnapshot, lang: Lang): string {
@@ -352,7 +359,7 @@ export type LeadPayload = {
   categorias: string;
   pais: string;
   sucursales: string;
-  idioma: "ES" | "EN";
+  idioma: "ES" | "EN" | "IT";
 };
 
 /** Label legible en español de una categoría (no el id interno). */
@@ -406,6 +413,6 @@ export function buildLeadPayload(snap: FormSnapshot, lang: Lang): LeadPayload {
     categorias: snap.categories.map(categoryLabelEs).join(", "),
     pais: crmPais(countryLabelEs(snap.countryIso, snap.countryLabel)),
     sucursales: sizeLabelEs(snap.size),
-    idioma: lang === "en" ? "EN" : "ES",
+    idioma: lang === "en" ? "EN" : lang === "it" ? "IT" : "ES",
   };
 }

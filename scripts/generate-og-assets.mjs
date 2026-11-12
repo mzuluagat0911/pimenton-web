@@ -1,6 +1,6 @@
 /**
  * Regenera assets de sharing:
- * - public/og-default.png  (1200×630, logo centrado en safe-zone)
+ * - public/og-default.png / og-en.png / og-it.png  (1200×630, logo centrado en safe-zone)
  * - public/favicon.ico
  * - public/favicon-32.png / favicon-16.png
  * - public/apple-touch-icon.png (con padding para crops circulares)
@@ -75,7 +75,7 @@ async function buildOg() {
   const logoLeft = Math.round((OG_W - logoW) / 2);
   const logoTop = Math.round(OG_H * 0.33);
 
-  const subtitleEs = Buffer.from(`
+  const subtitle = (tagline) => Buffer.from(`
     <svg width="${OG_W}" height="${OG_H}" xmlns="http://www.w3.org/2000/svg">
       <text
         x="50%"
@@ -96,34 +96,13 @@ async function buildOg() {
         font-weight="400"
         fill="${CREAM}"
         fill-opacity="0.9"
-      >Potenciamos tu delivery y canales digitales</text>
+      >${tagline}</text>
     </svg>
   `);
 
-  const subtitleEn = Buffer.from(`
-    <svg width="${OG_W}" height="${OG_H}" xmlns="http://www.w3.org/2000/svg">
-      <text
-        x="50%"
-        y="${logoTop + logoH + 44}"
-        text-anchor="middle"
-        font-family="Helvetica, Arial, sans-serif"
-        font-size="26"
-        font-weight="700"
-        letter-spacing="7"
-        fill="${CORAL}"
-      >GROWTH PARTNER</text>
-      <text
-        x="50%"
-        y="${logoTop + logoH + 88}"
-        text-anchor="middle"
-        font-family="Helvetica, Arial, sans-serif"
-        font-size="20"
-        font-weight="400"
-        fill="${CREAM}"
-        fill-opacity="0.9"
-      >We grow your delivery and digital channels</text>
-    </svg>
-  `);
+  const subtitleEs = subtitle("Potenciamos tu delivery y canales digitales");
+  const subtitleEn = subtitle("We grow your delivery and digital channels");
+  const subtitleIt = subtitle("Facciamo crescere il tuo delivery e i canali digitali");
 
   const compose = (subtitle, outName) =>
     sharp(photo)
@@ -139,6 +118,8 @@ async function buildOg() {
   console.log("✓ og-default.png (ES)");
   await compose(subtitleEn, "og-en.png");
   console.log("✓ og-en.png (EN)");
+  await compose(subtitleIt, "og-it.png");
+  console.log("✓ og-it.png (IT)");
 }
 
 /**

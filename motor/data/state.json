@@ -47,7 +47,10 @@
       "path": "/blog/rentabilidad-delivery-apps-restaurantes",
       "pathEn": "/en/blog/delivery-app-profitability-per-order-pl",
       "titleEn": "Delivery App Profitability: Your Restaurant's Per-Order P&L",
-      "descriptionEn": "Learn how to build a per-order P&L for delivery apps: commissions, packaging, ads and ticket size that decide if each order actually makes money."
+      "descriptionEn": "Learn how to build a per-order P&L for delivery apps: commissions, packaging, ads and ticket size that decide if each order actually makes money.",
+      "pathIt": "/it/blog/redditivita-app-delivery-ristoranti",
+      "titleIt": "Redditività delle app di delivery per ristoranti: P&L per ordine",
+      "descriptionIt": "Impara a costruire il P&L per ordine sulle app di delivery: commissioni, packaging, ads e ticket medio per sapere quanto ti lascia davvero ogni ordine."
     },
     {
       "slug": "indicadores-mañana-delivery-multi-sucursal",
@@ -59,7 +62,10 @@
       "path": "/blog/indicadores-mañana-delivery-multi-sucursal",
       "pathEn": "/en/blog/morning-metrics-checklist-multi-location-delivery",
       "titleEn": "Morning Metrics Checklist for Multi-Location Delivery Ops",
-      "descriptionEn": "The morning delivery metrics to check first across multiple locations: prep and delivery times, cancellations, ratings and stock outages — in one 10-minute scan."
+      "descriptionEn": "The morning delivery metrics to check first across multiple locations: prep and delivery times, cancellations, ratings and stock outages — in one 10-minute scan.",
+      "pathIt": "/it/blog/kpi-mattina-delivery-multi-sede",
+      "titleIt": "Quali KPI controllare ogni mattina nel delivery multi-sede",
+      "descriptionIt": "Checklist mattutina dei KPI per gestire il delivery multi-sede: tempi, cancellazioni, rating e stock. Scopri cosa guardare per primo senza Excel infiniti."
     },
     {
       "slug": "cuanto-subir-precios-apps-delivery",
@@ -71,7 +77,10 @@
       "path": "/blog/cuanto-subir-precios-apps-delivery",
       "pathEn": "/en/blog/how-much-raise-delivery-app-prices",
       "titleEn": "How Much to Raise Delivery App Prices Without Losing Orders",
-      "descriptionEn": "Learn exactly how much to raise delivery app prices to cover commissions without killing conversion. Markup math for Rappi, Uber Eats, DoorDash and more."
+      "descriptionEn": "Learn exactly how much to raise delivery app prices to cover commissions without killing conversion. Markup math for Rappi, Uber Eats, DoorDash and more.",
+      "pathIt": "/it/blog/quanto-alzare-prezzi-app-delivery",
+      "titleIt": "Quanto alzare i prezzi sulle app delivery senza perdere ordini",
+      "descriptionIt": "Scopri quanto alzare i prezzi sulle app di delivery per coprire le commissioni senza uccidere la conversione: markup, prezzi differenziati e come testarli."
     },
     {
       "slug": "controlar-operacion-delivery-multi-sucursal",
@@ -83,7 +92,10 @@
       "path": "/blog/controlar-operacion-delivery-multi-sucursal",
       "pathEn": "/en/blog/multi-location-delivery-daily-control-checklist",
       "titleEn": "How to Run Multi-Location Delivery With a Daily Control Checklist",
-      "descriptionEn": "Learn how to control multi-location delivery operations with a daily checklist: what to watch, who owns it, and how to turn each alert into action."
+      "descriptionEn": "Learn how to control multi-location delivery operations with a daily checklist: what to watch, who owns it, and how to turn each alert into action.",
+      "pathIt": "/it/blog/controllare-delivery-ristorante-multi-sede",
+      "titleIt": "Come controllare il delivery in un ristorante multi-sede",
+      "descriptionIt": "Controlla il delivery multi-sede con un sistema di ritmo, alert e responsabili chiari. Scopri cosa guardare ogni giorno e come passare dal dato all'azione."
     },
     {
       "slug": "take-rate-real-apps-delivery",
@@ -95,7 +107,10 @@
       "path": "/blog/take-rate-real-apps-delivery",
       "pathEn": "/en/blog/real-take-rate-delivery-apps",
       "titleEn": "Real Take Rate: The True Cost of Selling on Delivery Apps",
-      "descriptionEn": "Your delivery app contract says 28% commission, but the Real Take Rate is 35-40%. See the full formula, a $100 order breakdown, and healthy benchmarks."
+      "descriptionEn": "Your delivery app contract says 28% commission, but the Real Take Rate is 35-40%. See the full formula, a $100 order breakdown, and healthy benchmarks.",
+      "pathIt": "/it/blog/take-rate-reale-app-delivery",
+      "titleIt": "Take Rate Reale nelle app di delivery: il vero costo per ordine",
+      "descriptionIt": "Il Take Rate Reale somma commissione, ads, promo, cancellazioni e base imponibile: così passi dal 28% del contratto a un 35-40% effettivo per ordine."
     },
     {
       "slug": "como-reducir-cancelaciones-delivery",
@@ -107,7 +122,10 @@
       "path": "/blog/como-reducir-cancelaciones-delivery",
       "pathEn": "/en/blog/reduce-delivery-cancellations-multiple-locations",
       "titleEn": "How to Reduce Delivery Cancellations Across Multiple Locations",
-      "descriptionEn": "Reduce delivery cancellations by treating each one as a signal: a causes taxonomy, a per-location threshold that triggers alerts, and a micro-playbook per cause."
+      "descriptionEn": "Reduce delivery cancellations by treating each one as a signal: a causes taxonomy, a per-location threshold that triggers alerts, and a micro-playbook per cause.",
+      "pathIt": "/it/blog/ridurre-cancellazioni-ordini-delivery",
+      "titleIt": "Come ridurre le cancellazioni nel delivery multi-sede",
+      "descriptionIt": "Riduci le cancellazioni nel delivery trattandole come segnale: tassonomia delle cause, soglia per locale e micro-playbook per turno. Misurabile e comparabile."
     },
     {
       "slug": "como-leer-liquidacion-app-delivery",
@@ -119,7 +137,10 @@
       "path": "/blog/como-leer-liquidacion-app-delivery",
       "pathEn": "/en/blog/delivery-app-payout-statement-explained",
       "titleEn": "How to Read a Delivery App Payout Statement (Line by Line)",
-      "descriptionEn": "Learn to read a delivery app payout statement line by line: gross sales, commission, service fees, ads, co-funded promos, adjustments and net deposit."
+      "descriptionEn": "Learn to read a delivery app payout statement line by line: gross sales, commission, service fees, ads, co-funded promos, adjustments and net deposit.",
+      "pathIt": "/it/blog/come-leggere-estratto-conto-app-delivery",
+      "titleIt": "Come leggere l'estratto conto di un'app di delivery",
+      "descriptionIt": "Impara a leggere riga per riga l'estratto conto dei pagamenti di un'app di delivery: commissione, fee, ads, promo, rettifiche e accredito netto."
     },
     {
       "slug": "reunion-diaria-operaciones-delivery",
@@ -131,7 +152,10 @@
       "path": "/blog/reunion-diaria-operaciones-delivery",
       "pathEn": "/en/blog/daily-delivery-operations-meeting-ritual",
       "titleEn": "Daily Delivery Operations Meeting: The Layered Ritual",
-      "descriptionEn": "Build a layered delivery ops cadence: a 10-min daily standup for fires, a weekly to compare branches, and a war room triggered by thresholds."
+      "descriptionEn": "Build a layered delivery ops cadence: a 10-min daily standup for fires, a weekly to compare branches, and a war room triggered by thresholds.",
+      "pathIt": "/it/blog/riunione-giornaliera-operazioni-delivery",
+      "titleIt": "Riunione giornaliera operazioni delivery: il rituale in 3 livelli",
+      "descriptionIt": "Imposta il rituale ops delivery in 3 livelli: standup giornaliero da 10 min, weekly per confrontare i punti vendita e war room a soglia. Con agenda da copiare."
     },
     {
       "slug": "como-aparecer-primero-apps-delivery",
@@ -143,7 +167,10 @@
       "path": "/blog/como-aparecer-primero-apps-delivery",
       "pathEn": "/en/blog/rank-higher-delivery-apps-profitable-orders",
       "titleEn": "How to Rank Higher on Delivery Apps Without Killing Your Margin",
-      "descriptionEn": "Learn how to rank higher on delivery apps like Uber Eats, Rappi and DoorDash—and turn visibility into profitable orders, not volume you sell at a loss."
+      "descriptionEn": "Learn how to rank higher on delivery apps like Uber Eats, Rappi and DoorDash—and turn visibility into profitable orders, not volume you sell at a loss.",
+      "pathIt": "/it/blog/come-apparire-primo-app-delivery",
+      "titleIt": "Come apparire primo nelle app di delivery senza bruciare margine",
+      "descriptionIt": "Scopri come apparire primo nelle app di delivery separando le leve che controlli da quelle dell'algoritmo e incrociando ognuna con il tuo margine per ordine."
     },
     {
       "slug": "como-recuperar-rating-delivery-multi-sucursal",
@@ -155,7 +182,10 @@
       "path": "/blog/como-recuperar-rating-delivery-multi-sucursal",
       "pathEn": "/en/blog/recover-delivery-app-rating-multi-location",
       "titleEn": "How to recover a delivery app rating when one location drops",
-      "descriptionEn": "Recover a location's delivery-app rating in 48 hours: tag complaints, set a per-store threshold, and fix times, packing, and wrong orders — don't beg for stars."
+      "descriptionEn": "Recover a location's delivery-app rating in 48 hours: tag complaints, set a per-store threshold, and fix times, packing, and wrong orders — don't beg for stars.",
+      "pathIt": "/it/blog/recuperare-rating-delivery-multi-sede",
+      "titleIt": "Come recuperare il rating delivery di un punto vendita in calo",
+      "descriptionIt": "Recupera il rating di un punto vendita in 48 h: etichetta i reclami, soglia per locale e playbook su tempi, packing e ordine corretto. Senza chiedere stelle."
     },
     {
       "slug": "tiempo-de-preparacion-delivery",
@@ -167,7 +197,10 @@
       "path": "/blog/tiempo-de-preparacion-delivery",
       "pathEn": "/en/blog/kitchen-prep-time-multi-location-delivery",
       "titleEn": "Kitchen Prep Time for Multi-Location Delivery: Measure, Alert, Reduce",
-      "descriptionEn": "Prep time is the part of the delivery clock your kitchen controls. Learn to measure it, set green/amber/red alerts, and reduce it across locations."
+      "descriptionEn": "Prep time is the part of the delivery clock your kitchen controls. Learn to measure it, set green/amber/red alerts, and reduce it across locations.",
+      "pathIt": "/it/blog/tempo-di-preparazione-delivery",
+      "titleIt": "Tempo di preparazione nel delivery: come misurarlo e ridurlo",
+      "descriptionIt": "Il prep time è il tratto che controlla la tua cucina. Impara a misurarlo, a impostare alert verde/ambra/rosso e a ridurlo per punto vendita e fascia oraria."
     },
     {
       "slug": "cuantas-apps-delivery-restaurante",
@@ -179,7 +212,10 @@
       "path": "/blog/cuantas-apps-delivery-restaurante",
       "pathEn": "/en/blog/how-many-delivery-apps-restaurant",
       "titleEn": "How Many Delivery Apps Should a Restaurant Be On? Multi-App vs. Concentrating Volume",
-      "descriptionEn": "Decide how many delivery apps your restaurant needs using contribution per order, not guesswork. Multi-app vs. concentrating volume, with LATAM + USA numbers."
+      "descriptionEn": "Decide how many delivery apps your restaurant needs using contribution per order, not guesswork. Multi-app vs. concentrating volume, with LATAM + USA numbers.",
+      "pathIt": "/it/blog/quante-app-delivery-ristorante",
+      "titleIt": "Su quante app di delivery dovrebbe stare il mio ristorante?",
+      "descriptionIt": "Decidi su quante app di delivery stare in base alla contribuzione per ordine, non all'intuito. Multi-app vs. concentrare il volume, con criteri e numeri."
     },
     {
       "slug": "como-comparar-sucursales-delivery",
@@ -191,7 +227,10 @@
       "path": "/blog/como-comparar-sucursales-delivery",
       "pathEn": "/en/blog/compare-delivery-locations-fairly",
       "titleEn": "How to Compare Delivery Locations Fairly: Normalize First",
-      "descriptionEn": "Compare delivery locations the right way: normalize by volume, shift and mix, then use same-store trends so your ranking drives real interventions."
+      "descriptionEn": "Compare delivery locations the right way: normalize by volume, shift and mix, then use same-store trends so your ranking drives real interventions.",
+      "pathIt": "/it/blog/confrontare-punti-vendita-delivery",
+      "titleIt": "Come confrontare i punti vendita delivery in modo equo",
+      "descriptionIt": "Metodo in 3 livelli per confrontare i punti vendita delivery senza distorsioni: normalizza per volume, fascia oraria e mix, e confronta same-store."
     },
     {
       "slug": "promociones-apps-delivery-cuales-convienen",
@@ -203,7 +242,10 @@
       "path": "/blog/promociones-apps-delivery-cuales-convienen",
       "pathEn": "/en/blog/delivery-app-promotions-worth-it",
       "titleEn": "Do Delivery App Promotions Actually Pay Off for Restaurants?",
-      "descriptionEn": "Your discount isn't your only cost. Learn the 3 stacked layers of a delivery promo, the break-even formula and which deals actually pay off."
+      "descriptionEn": "Your discount isn't your only cost. Learn the 3 stacked layers of a delivery promo, the break-even formula and which deals actually pay off.",
+      "pathIt": "/it/blog/promozioni-app-delivery-quali-convengono",
+      "titleIt": "Promozioni app delivery: quali convengono e come calcolare il 2x1",
+      "descriptionIt": "Lo sconto non è il tuo unico costo: è sconto + cofinanziamento + commissione ricalcolata. Formula del punto di pareggio e quali promozioni convengono."
     },
     {
       "slug": "war-room-operaciones-delivery",
@@ -215,7 +257,10 @@
       "path": "/blog/war-room-operaciones-delivery",
       "pathEn": "/en/blog/delivery-war-room-multi-location-ops",
       "titleEn": "Delivery War Room: When to Activate It and How to Run It",
-      "descriptionEn": "A delivery ops war room is a threshold, not a room. Learn the triggers, roles, 20-minute agenda and exit checklist to fix multi-location delivery fast."
+      "descriptionEn": "A delivery ops war room is a threshold, not a room. Learn the triggers, roles, 20-minute agenda and exit checklist to fix multi-location delivery fast.",
+      "pathIt": "/it/blog/war-room-operazioni-delivery",
+      "titleIt": "War room operazioni delivery: quando attivarla e come gestirla",
+      "descriptionIt": "Una war room del delivery non è una sala: è una soglia. Quando attivarla, chi deve esserci, come gestirla in 20 minuti e chiuderla con azioni verificate."
     },
     {
       "slug": "cuanto-cuesta-packaging-delivery-pnl",
@@ -227,7 +272,10 @@
       "path": "/blog/cuanto-cuesta-packaging-delivery-pnl",
       "pathEn": "/en/blog/delivery-packaging-cost-per-order",
       "titleEn": "Delivery Packaging Cost per Order: How to Measure It in Your P&L",
-      "descriptionEn": "Delivery packaging is a variable cost per order. Learn the formula, the % of ticket it should be, and when premium packaging pays for itself."
+      "descriptionEn": "Delivery packaging is a variable cost per order. Learn the formula, the % of ticket it should be, and when premium packaging pays for itself.",
+      "pathIt": "/it/blog/quanto-costa-packaging-delivery-pnl",
+      "titleIt": "Quanto costa il packaging nel delivery: guida al P&L",
+      "descriptionIt": "Il packaging nel delivery costa di solito il 3-8% del ticket. Scopri come calcolare il costo dell'imballaggio per ordine, metterlo a budget e ottimizzarlo."
     },
     {
       "slug": "productos-agotados-delivery-disponibilidad-menu",
@@ -239,7 +287,10 @@
       "path": "/blog/productos-agotados-delivery-disponibilidad-menu",
       "pathEn": "/en/blog/out-of-stock-delivery-menu-availability",
       "titleEn": "Out-of-Stock Items in Delivery: Measure Menu Availability by Location",
-      "descriptionEn": "Menu availability rate is the % of active minutes your items are orderable. Learn how to measure it by location, set alert thresholds, and stop losing sales."
+      "descriptionEn": "Menu availability rate is the % of active minutes your items are orderable. Learn how to measure it by location, set alert thresholds, and stop losing sales.",
+      "pathIt": "/it/blog/prodotti-esauriti-delivery-disponibilita-menu",
+      "titleIt": "Prodotti esauriti nel delivery: misurare la disponibilità menu",
+      "descriptionIt": "Trasforma i prodotti esauriti nel delivery in una metrica: tasso di disponibilità del menu per punto vendita, soglie di alert e controllo rituale per turno."
     },
     {
       "slug": "margen-contribucion-pedido-delivery",
@@ -251,7 +302,10 @@
       "path": "/blog/margen-contribucion-pedido-delivery",
       "pathEn": "/en/blog/delivery-contribution-margin-per-order",
       "titleEn": "Delivery Contribution Margin Per Order: Formula, Example & Template",
-      "descriptionEn": "Learn to calculate delivery contribution margin per order with a clear formula, a line-by-line example and a template that works in LATAM and the USA."
+      "descriptionEn": "Learn to calculate delivery contribution margin per order with a clear formula, a line-by-line example and a template that works in LATAM and the USA.",
+      "pathIt": "/it/blog/margine-contribuzione-ordine-delivery",
+      "titleIt": "Margine di contribuzione per ordine delivery: formula e modello",
+      "descriptionIt": "Impara a calcolare il margine di contribuzione per ordine delivery con formula, esempio riga per riga e un modello valido per LATAM e USA. Misura, poi decidi."
     },
     {
       "slug": "cuando-pausar-tienda-apps-delivery",
@@ -263,7 +317,10 @@
       "path": "/blog/cuando-pausar-tienda-apps-delivery",
       "pathEn": "/en/blog/when-to-pause-store-delivery-apps",
       "titleEn": "When to Pause Your Store on Delivery Apps: Decide With Data",
-      "descriptionEn": "A data-driven decision matrix to know when to pause your delivery store, extend prep time, or 86 a single item when the kitchen is slammed."
+      "descriptionEn": "A data-driven decision matrix to know when to pause your delivery store, extend prep time, or 86 a single item when the kitchen is slammed.",
+      "pathIt": "/it/blog/quando-mettere-in-pausa-store-delivery",
+      "titleIt": "Quando mettere in pausa lo store sulle app delivery? Con i dati",
+      "descriptionIt": "Matrice decisionale con soglie chiare per mettere in pausa, allungare il tempo di preparazione o disattivare il prodotto esaurito quando la cucina è satura."
     },
     {
       "slug": "como-mejorar-rating-apps-delivery",
@@ -275,7 +332,10 @@
       "path": "/blog/como-mejorar-rating-apps-delivery",
       "pathEn": "/en/blog/improve-restaurant-rating-delivery-apps",
       "titleEn": "How to Improve Your Restaurant Rating on Delivery Apps",
-      "descriptionEn": "Your delivery app rating is an operational signal you control. Learn the 3 levers behind it and a weekly channel-health scoreboard to recover stars."
+      "descriptionEn": "Your delivery app rating is an operational signal you control. Learn the 3 levers behind it and a weekly channel-health scoreboard to recover stars.",
+      "pathIt": "/it/blog/come-migliorare-rating-app-delivery",
+      "titleIt": "Come migliorare il rating sulle app di delivery: guida pratica",
+      "descriptionIt": "Il rating sulle app di delivery è un segnale operativo che controlli tu. Scopri perché scende, come recuperarlo e quali metriche controllare ogni settimana."
     },
     {
       "slug": "tasa-error-pedidos-delivery",
@@ -287,7 +347,10 @@
       "path": "/blog/tasa-error-pedidos-delivery",
       "pathEn": "/en/blog/delivery-order-error-rate-by-location",
       "titleEn": "Delivery Order Error Rate: Measure & Reduce It by Location",
-      "descriptionEn": "Order error rate = orders with an incident ÷ total orders. Learn to measure, segment by location and shift, set alert thresholds and run a recovery playbook."
+      "descriptionEn": "Order error rate = orders with an incident ÷ total orders. Learn to measure, segment by location and shift, set alert thresholds and run a recovery playbook.",
+      "pathIt": "/it/blog/tasso-errore-ordini-delivery",
+      "titleIt": "Tasso di errore ordini delivery: come misurarlo per punto vendita",
+      "descriptionIt": "Il tasso di errore negli ordini delivery è il rapporto tra ordini con problemi e totali. Scopri come misurarlo per punto vendita e ridurlo con un playbook."
     },
     {
       "slug": "punto-de-equilibrio-delivery-restaurante",

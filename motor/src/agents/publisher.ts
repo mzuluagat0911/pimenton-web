@@ -3,7 +3,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { log } from "../lib/logger.js";
 import { env } from "../config/env.js";
-import { renderArticle, type ArticleDraft } from "../render/template.js";
+import { renderArticle, type ArticleDraft, type RenderContext } from "../render/template.js";
 import { linkCoverPair } from "../render/visuals.js";
 import { renderBlogIndex, renderBlogTeaserCards } from "../render/blogIndex.js";
 import { renderSitemap } from "../render/sitemap.js";
@@ -13,8 +13,19 @@ import { writeDraft } from "./writer.js";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(here, "..", "..", "..");
-/** Next sirve estáticos desde public/ — ahí viven blog/ y en/blog/. */
+/** Next sirve estáticos desde public/ — ahí viven blog/, en/blog/ e it/blog/. */
 const PUBLIC_ROOT = join(REPO_ROOT, "public");
+
+/** Carpeta pública del blog por idioma (ES sin prefijo: /blog). */
+const BLOG_DIR: Record<Language, string[]> = {
+  es: ["blog"],
+  en: ["en", "blog"],
+  it: ["it", "blog"],
+};
+
+export function blogPathFor(lang: Language, slug: string): string {
+  return `/${[...BLOG_DIR[lang], slug].join("/")}`;
+}
 
 function words(html: string): number {
   return html.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
@@ -30,9 +41,9 @@ function brandName(destino: Destino): string {
 
 function byline(destino: Destino, lang: Language, min: number, date: string): string {
   const brand = brandName(destino);
-  return lang === "es"
-    ? `Por ${brand} · ${date} · ${min} min de lectura`
-    : `By ${brand} · ${date} · ${min} min read`;
+  if (lang === "es") return `Por ${brand} · ${date} · ${min} min de lectura`;
+  if (lang === "it") return `Di ${brand} · ${date} · ${min} min di lettura`;
+  return `By ${brand} · ${date} · ${min} min read`;
 }
 
 function toArticle(destino: Destino, lang: Language, w: WriterOutput, date: string): ArticleDraft {
@@ -53,63 +64,36 @@ function toArticle(destino: Destino, lang: Language, w: WriterOutput, date: stri
   };
 }
 
-export async function publishIdea(destino: Destino, idea: Idea): Promise<PublishedPost> {
-  const date = new Date().toISOString().slice(0, 10);
-
-  const [es, en] = await Promise.all([
-    writeDraft(destino, idea, "es"),
-    writeDraft(destino, idea, "en"),
-  ]);
-
-  const esPath = `/blog/${es.slug}`;
-  const enPath = `/en/blog/${en.slug}`;
-  const ctx = { siteUrl: env.SITE_URL, esPath, enPath };
-  linkCoverPair(es.slug, en.slug);
-
-  const esHtml = renderArticle(toArticle(destino, "es", es, date), ctx);
-  const enHtml = renderArticle(toArticle(destino, "en", en, date), ctx);
-
-  mkdirSync(join(PUBLIC_ROOT, "blog"), { recursive: true });
-  mkdirSync(join(PUBLIC_ROOT, "en", "blog"), { recursive: true });
-  writeFileSync(join(PUBLIC_ROOT, "blog", `${es.slug}.html`), esHtml, "utf8");
-  writeFileSync(join(PUBLIC_ROOT, "en", "blog", `${en.slug}.html`), enHtml, "utf8");
-  log.ok(`[${destino}] Publicado: ${esPath} + ${enPath}`);
-
-  return {
-    slug: es.slug,
-    destino,
-    keyword: idea.keyword_primary,
-    date,
-    title: es.title,
-    description: es.meta_description,
-    path: esPath,
-    pathEn: enPath,
-    titleEn: en.title,
-    descriptionEn: en.meta_description,
-  };
+function writeArticle(lang: Language, slug: string, html: string): void {
+  const dir = join(PUBLIC_ROOT, ...BLOG_DIR[lang]);
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, `${slug}.html`), html, "utf8");
 }
 
-/** Publica un par ES/EN ya redactado (sin llamar al writer de Anthropic). */
+/** Publica los borradores ES/EN (+IT si existe) ya redactados. */
 export function publishDrafts(
   destino: Destino,
   idea: Idea,
   es: WriterOutput,
   en: WriterOutput,
   date = new Date().toISOString().slice(0, 10),
+  it?: WriterOutput,
 ): PublishedPost {
-  const esPath = `/blog/${es.slug}`;
-  const enPath = `/en/blog/${en.slug}`;
-  const ctx = { siteUrl: env.SITE_URL, esPath, enPath };
+  const ctx: RenderContext = {
+    siteUrl: env.SITE_URL,
+    esPath: blogPathFor("es", es.slug),
+    enPath: blogPathFor("en", en.slug),
+    itPath: it ? blogPathFor("it", it.slug) : undefined,
+  };
   linkCoverPair(es.slug, en.slug);
+  if (it) linkCoverPair(es.slug, it.slug);
 
-  const esHtml = renderArticle(toArticle(destino, "es", es, date), ctx);
-  const enHtml = renderArticle(toArticle(destino, "en", en, date), ctx);
-
-  mkdirSync(join(PUBLIC_ROOT, "blog"), { recursive: true });
-  mkdirSync(join(PUBLIC_ROOT, "en", "blog"), { recursive: true });
-  writeFileSync(join(PUBLIC_ROOT, "blog", `${es.slug}.html`), esHtml, "utf8");
-  writeFileSync(join(PUBLIC_ROOT, "en", "blog", `${en.slug}.html`), enHtml, "utf8");
-  log.ok(`[${destino}] Publicado (drafts): ${esPath} + ${enPath}`);
+  writeArticle("es", es.slug, renderArticle(toArticle(destino, "es", es, date), ctx));
+  writeArticle("en", en.slug, renderArticle(toArticle(destino, "en", en, date), ctx));
+  if (it) writeArticle("it", it.slug, renderArticle(toArticle(destino, "it", it, date), ctx));
+  log.ok(
+    `[${destino}] Publicado: ${[ctx.esPath, ctx.enPath, ctx.itPath].filter(Boolean).join(" + ")}`,
+  );
 
   return {
     slug: es.slug,
@@ -118,20 +102,36 @@ export function publishDrafts(
     date,
     title: es.title,
     description: es.meta_description,
-    path: esPath,
-    pathEn: enPath,
+    path: ctx.esPath,
+    pathEn: ctx.enPath,
     titleEn: en.title,
     descriptionEn: en.meta_description,
+    ...(it && {
+      pathIt: ctx.itPath,
+      titleIt: it.title,
+      descriptionIt: it.meta_description,
+    }),
   };
 }
 
+export async function publishIdea(destino: Destino, idea: Idea): Promise<PublishedPost> {
+  const date = new Date().toISOString().slice(0, 10);
+  const [es, en, it] = await Promise.all([
+    writeDraft(destino, idea, "es"),
+    writeDraft(destino, idea, "en"),
+    writeDraft(destino, idea, "it"),
+  ]);
+  return publishDrafts(destino, idea, es, en, date, it);
+}
+
 function patchTeaser(filePath: string, destino: Destino, cardsHtml: string): void {
-  if (!existsSync(filePath)) {
-    log.warn(`No existe ${filePath}; teaser ${destino} omitido.`);
-    return;
-  }
   const start = `<!-- BLOG_TEASER:${destino} -->`;
   const end = `<!-- /BLOG_TEASER:${destino} -->`;
+  if (!existsSync(filePath)) {
+    writeFileSync(filePath, `${start}\n${cardsHtml}\n${end}\n`, "utf8");
+    log.ok(`Teaser ${destino} creado en ${filePath}`);
+    return;
+  }
   const raw = readFileSync(filePath, "utf8");
   const i = raw.indexOf(start);
   const j = raw.indexOf(end);
@@ -144,46 +144,29 @@ function patchTeaser(filePath: string, destino: Destino, cardsHtml: string): voi
   log.ok(`Teaser ${destino} actualizado en ${filePath}`);
 }
 
-/** Regenera índice unificado ES/EN, sitemap-blog y teasers. */
+/** Archivo de teasers por idioma: `home.html` (ES), `home.en.html`, `home.it.html`. */
+function teaserFile(base: string, lang: Language): string {
+  return lang === "es" ? `${base}.html` : `${base}.${lang}.html`;
+}
+
+/** Regenera índices ES/EN/IT, sitemap-blog y teasers. */
 export function rebuildIndex(posts: PublishedPost[]): void {
-  mkdirSync(join(PUBLIC_ROOT, "blog"), { recursive: true });
-  mkdirSync(join(PUBLIC_ROOT, "en", "blog"), { recursive: true });
-
-  writeFileSync(
-    join(PUBLIC_ROOT, "blog", "index.html"),
-    renderBlogIndex(posts, env.SITE_URL, "all", "es"),
-    "utf8",
-  );
-  writeFileSync(
-    join(PUBLIC_ROOT, "en", "blog", "index.html"),
-    renderBlogIndex(posts, env.SITE_URL, "all", "en"),
-    "utf8",
-  );
-  // Alias legacy: /blog/control-room → mismo hub unificado
-  writeFileSync(
-    join(PUBLIC_ROOT, "blog", "control-room.html"),
-    renderBlogIndex(posts, env.SITE_URL, "all", "es"),
-    "utf8",
-  );
-  writeFileSync(
-    join(PUBLIC_ROOT, "en", "blog", "control-room.html"),
-    renderBlogIndex(posts, env.SITE_URL, "all", "en"),
-    "utf8",
-  );
-  writeFileSync(join(PUBLIC_ROOT, "sitemap-blog.xml"), renderSitemap(posts, env.SITE_URL), "utf8");
-
   const teasersDir = join(REPO_ROOT, "data", "blog-teasers");
   mkdirSync(teasersDir, { recursive: true });
-  patchTeaser(
-    join(teasersDir, "home.html"),
-    "pimenton",
-    renderBlogTeaserCards(posts, "all", "es", 3),
-  );
-  patchTeaser(
-    join(teasersDir, "control-room.html"),
-    "control-room",
-    renderBlogTeaserCards(posts, "all", "es", 3),
-  );
 
-  log.ok("Índice unificado + teasers + sitemap-blog regenerados.");
+  for (const lang of ["es", "en", "it"] as const) {
+    const dir = join(PUBLIC_ROOT, ...BLOG_DIR[lang]);
+    mkdirSync(dir, { recursive: true });
+    const hub = renderBlogIndex(posts, env.SITE_URL, "all", lang);
+    writeFileSync(join(dir, "index.html"), hub, "utf8");
+    // Alias legacy: /blog/control-room → mismo hub unificado
+    writeFileSync(join(dir, "control-room.html"), hub, "utf8");
+
+    const cards = renderBlogTeaserCards(posts, "all", lang, 3);
+    patchTeaser(join(teasersDir, teaserFile("home", lang)), "pimenton", cards);
+    patchTeaser(join(teasersDir, teaserFile("control-room", lang)), "control-room", cards);
+  }
+
+  writeFileSync(join(PUBLIC_ROOT, "sitemap-blog.xml"), renderSitemap(posts, env.SITE_URL), "utf8");
+  log.ok("Índices ES/EN/IT + teasers + sitemap-blog regenerados.");
 }

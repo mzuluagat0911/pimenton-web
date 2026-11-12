@@ -1,13 +1,13 @@
 "use client";
 
-import { useCopy } from "@/components/i18n/LanguageContext";
+import { useCopy, useT, type Localized } from "@/components/i18n/LanguageContext";
 import { platforms, type PlatformRing } from "@/data/platforms";
 import { IsologoTrigger } from "./IsologoTrigger";
 
-const TIER_LABELS: Record<PlatformRing, string> = {
-  inner: "Food Apps",
-  middle: "Operación",
-  outer: "Tecnología & IA",
+const TIER_LABELS: Record<PlatformRing, Localized> = {
+  inner: { es: "Food Apps", en: "Food Apps", it: "Food Apps" },
+  middle: { es: "Operación", en: "Operations", it: "Operatività" },
+  outer: { es: "Tecnología & IA", en: "Technology & AI", it: "Tecnologia & IA" },
 };
 
 const TIER_GRID: Record<PlatformRing, string> = {
@@ -20,6 +20,7 @@ const TIER_ORDER: PlatformRing[] = ["inner", "middle", "outer"];
 
 export function ControlRoomMobile() {
   const { eyebrow, heading } = useCopy().controlRoom;
+  const t = useT();
 
   return (
     // Padding sm:px-16 alinea con MarketStats (que también usa sm:px-16).
@@ -47,7 +48,7 @@ export function ControlRoomMobile() {
               return (
                 <div key={ring}>
                   <p className="text-center font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-text-on-dark-muted">
-                    {TIER_LABELS[ring]}
+                    {t(TIER_LABELS[ring])}
                   </p>
                   <div
                     className={`mt-4 grid justify-items-center gap-3 ${TIER_GRID[ring]}`}

@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Pimentón</title>
+    <meta name="description" content="Delivery, app e operazioni per ristoranti in LATAM e negli USA. Redditività, P&amp;L e Control Room — guide citabili." />
+    <link rel="canonical" href="https://www.pimenton.io/it/blog" />
+    <link rel="alternate" hreflang="es" href="https://www.pimenton.io/blog" />
+    <link rel="alternate" hreflang="en" href="https://www.pimenton.io/en/blog" />
+    <link rel="alternate" hreflang="it" href="https://www.pimenton.io/it/blog" />
+    <link rel="alternate" hreflang="x-default" href="https://www.pimenton.io/blog" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#E84B3C" />
+    <meta name="google-site-verification" content="lbmAEFkAWQmWQygVAsQW0qs8anyrhaUhAE_nIXK0pls" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-25DBL0EY6V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-25DBL0EY6V', { anonymize_ip: true });
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --topbar:rgba(250,241,227,.88);
+      }
+      * { box-sizing:border-box; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; text-decoration:none; }
+      .topbar { position:sticky; top:0; z-index:20; background:var(--topbar); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .brand img { height:28px; display:block; }
+      .top-actions { display:flex; align-items:center; gap:18px; font-size:14px; font-weight:500; }
+      .lang a { opacity:.5; }
+      .lang a.active { opacity:1; }
+      .btn-cta { font-weight:600; color:var(--accent); }
+      .hero { max-width:1120px; margin:0 auto; padding:64px 24px 28px; }
+      .eyebrow { color:var(--accent); font-weight:700; font-size:12px; letter-spacing:.14em; text-transform:uppercase; display:inline-flex; align-items:center; gap:8px; }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.4rem,6vw,3.4rem); line-height:1.08; margin:16px 0 14px; letter-spacing:-.02em; max-width:18ch; }
+      .lead { color:var(--muted); font-size:1.08rem; line-height:1.6; max-width:48ch; margin:0; }
+      .grid { max-width:1120px; margin:0 auto; padding:24px 24px 96px; display:grid; gap:18px; }
+      @media (min-width:820px) {
+        .grid { grid-template-columns:1.2fr 1fr; align-items:stretch; }
+        .post-card--featured { grid-row: span 2; }
+      }
+      .post-card {
+        display:flex; flex-direction:column; gap:12px;
+        background:var(--card); border:1px solid var(--line);
+        border-radius:18px; padding:28px 26px 24px;
+        overflow:hidden;
+        transition: transform .2s ease, border-color .2s ease;
+      }
+      .post-card:hover { transform:translateY(-2px); border-color:rgba(232,75,60,.45); }
+      .post-card-meta { font-size:13px; color:var(--muted); font-weight:500; }
+      .post-card-meta .lane { color:var(--accent); font-weight:700; }
+      .post-card h2 {
+        font-weight:700;
+        font-size:clamp(1.35rem,2.4vw,1.7rem); line-height:1.2; margin:0; letter-spacing:-.015em;
+      }
+      .post-card--featured h2 { font-size:clamp(1.7rem,3.2vw,2.15rem); }
+      .post-card p { color:var(--muted); margin:0; line-height:1.6; flex:1; }
+      .post-card-more { margin-top:8px; font-size:14px; font-weight:600; color:var(--accent); }
+      .empty { color:var(--muted); padding:40px 0; }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/it" aria-label="Pimentón"><img src="/assets/logos/principal/logo-coral.webp" alt="Pimentón" /></a>
+        <div class="top-actions">
+          <span class="lang">
+            <a href="/blog" hreflang="es" class="">ES</a>
+            ·
+            <a href="/en/blog" hreflang="en" class="">EN</a>
+            ·
+            <a href="/it/blog" hreflang="it" class="active">IT</a>
+          </span>
+          <a class="btn-cta" href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </div>
+      </div>
+    </header>
+    <header class="hero">
+      <p class="eyebrow">Blog Pimentón</p>
+      <h1>Delivery redditizio per ristoranti</h1>
+      <p class="lead">App, commissioni, P&L e operazioni multi-sede — senza fumo. Per titolari in LATAM e negli USA che vogliono margine e chiarezza.</p>
+    </header>
+    <main class="grid">
+        <a class="post-card post-card--featured" href="/it/blog/tasso-errore-ordini-delivery">
+          <div class="post-card-cover"><img src="/assets/blog-covers/cover-sushi-box.jpg" alt="Sushi confezionato da asporto" width="800" height="500" /></div>
+          <div class="post-card-meta">
+            <span class="lane">Control Room</span>
+            ·
+            <time datetime="2026-10-04">4 ott 2026</time>
+          </div>
+          <h2>Tasso di errore ordini delivery: come misurarlo per punto vendita</h2>
+          <p>Il tasso di errore negli ordini delivery è il rapporto tra ordini con problemi e totali. Scopri come misurarlo per punto vendita e ridurlo con un playbook.</p>
+          <span class="post-card-more" aria-hidden="true">Leggi →</span>
+        </a>
+        <a class="post-card" href="/it/blog/come-migliorare-rating-app-delivery">
+          <div class="post-card-cover"><img src="/assets/casos/grupo-pekin/hero.jpg" alt="Cucina di una catena nell'ora di punta" width="800" height="500" /></div>
+          <div class="post-card-meta">
+            <span class="lane">Delivery</span>
+            ·
+            <time datetime="2026-09-30">30 set 2026</time>
+          </div>
+          <h2>Come migliorare il rating sulle app di delivery: guida pratica</h2>
+          <p>Il rating sulle app di delivery è un segnale operativo che controlli tu. Scopri perché scende, come recuperarlo e quali metriche controllare ogni settimana.</p>
+          <span class="post-card-more" aria-hidden="true">Leggi →</span>
+        </a>
+        <a class="post-card" href="/it/blog/quando-mettere-in-pausa-store-delivery">
+          <div class="post-card-cover"><img src="/assets/casos/lima-sushi/hero.jpg" alt="Piatto premium di sushi" width="800" height="500" /></div>
+          <div class="post-card-meta">
+            <span class="lane">Control Room</span>
+            ·
+            <time datetime="2026-09-27">27 set 2026</time>
+          </div>
+          <h2>Quando mettere in pausa lo store sulle app delivery? Con i dati</h2>
+          <p>Matrice decisionale con soglie chiare per mettere in pausa, allungare il tempo di preparazione o disattivare il prodotto esaurito quando la cucina è satura.</p>
+          <span class="post-card-more" aria-hidden="true">Leggi →</span>
+        </a>
+        <a class="post-card" href="/it/blog/margine-contribuzione-ordine-delivery">
+          <div class="post-card-cover"><img src="/assets/insights/profesionalizar-delivery/hero.jpg" alt="Professionalizzare il canale delivery" width="800" height="500" /></div>
+          <div class="post-card-meta">
+            <span class="lane">Delivery</span>
+            ·
+            <time datetime="2026-09-23">23 set 2026</time>
+          </div>
+          <h2>Margine di contribuzione per ordine delivery: formula e modello</h2>
+          <p>Impara a calcolare il margine di contribuzione per ordine delivery con formula, esempio riga per riga e un modello valido per LATAM e USA. Misura, poi decidi.</p>
+          <span class="post-card-more" aria-hidden="true">Leggi →</span>
+        </a>
+        <a class="post-card" href="/it/blog/prodotti-esauriti-delivery-disponibilita-menu">
+          <div class="post-card-cover"><img src="/assets/equipo/equipo-completo-v2.webp" alt="Il team di Pimentón al completo" width="800" height="500" /></div>
+          <div class="post-card-meta">
+            <span class="lane">Control Room</span>
+            ·
+            <time datetime="2026-09-20">20 set 2026</time>
+          </div>
+          <h2>Prodotti esauriti nel delivery: misurare la disponibilità menu</h2>
+          <p>Trasforma i prodotti esauriti nel delivery in una metrica: tasso di disponibilità del menu per punto vendita, soglie di alert e controllo rituale per turno.</p>
+          <span class="post-card-more" aria-hidden="true">Leggi →</span>
+        </a>
+        <a class="post-card" href="/it/blog/quanto-costa-packaging-delivery-pnl">
+          <div class="post-card-cover"><img src="/assets/gallery/preparacion-pedido-veggie.webp" alt="Ordine confezionato: anche il packaging è una riga del P&amp;L" width="800" height="500" /></div>
+          <div class="post-card-meta">
+            <span class="lane">Delivery</span>
+            ·
+            <time datetime="2026-09-16">16 set 2026</time>
+          </div>
+          <h2>Quanto costa il packaging nel delivery: guida al P&amp;L</h2>
+          <p>Il packaging nel delivery costa di solito il 3-8% del ticket. Scopri come calcolare il costo dell'imballaggio per ordine, metterlo a budget e ottimizzarlo.</p>
+          <span class="post-card-more" aria-hidden="true">Leggi →</span>
+        </a>
+        <a class="post-card" href="/it/blog/war-room-operazioni-delivery">
+          <div class="post-card-cover"><img src="/assets/equipo/equipo-valor-1-v2.webp" alt="War room ops: quando attivarla e con chi" width="800" height="500" /></div>
+          <div class="post-card-meta">
+            <span class="lane">Control Room</span>
+            ·
+            <time datetime="2026-09-13">13 set 2026</time>
+          </div>
+          <h2>War room operazioni delivery: quando attivarla e come gestirla</h2>
+          <p>Una war room del delivery non è una sala: è una soglia. Quando attivarla, chi deve esserci, come gestirla in 20 minuti e chiuderla con azioni verificate.</p>
+          <span class="post-card-more" aria-hidden="true">Leggi →</span>
+        </a>
+        <a class="post-card" href="/it/blog/promozioni-app-delivery-quali-convengono">
+          <div class="post-card-cover"><img src="/assets/insights/ticket-promedio/hero.jpg" alt="Promo nel delivery: calcola il 2x1 prima di pubblicarlo" width="800" height="500" /></div>
+          <div class="post-card-meta">
+            <span class="lane">Delivery</span>
+            ·
+            <time datetime="2026-09-09">9 set 2026</time>
+          </div>
+          <h2>Promozioni app delivery: quali convengono e come calcolare il 2x1</h2>
+          <p>Lo sconto non è il tuo unico costo: è sconto + cofinanziamento + commissione ricalcolata. Formula del punto di pareggio e quali promozioni convengono.</p>
+          <span class="post-card-more" aria-hidden="true">Leggi →</span>
+        </a>
+        <a class="post-card" href="/it/blog/confrontare-punti-vendita-delivery">
+          <div class="post-card-cover"><img src="/assets/casos/tienda-de-empanadas/hero.jpg" alt="Operatività multi-sede: confrontare i locali senza distorsioni da volume" width="800" height="500" /></div>
+          <div class="post-card-meta">
+            <span class="lane">Control Room</span>
+            ·
+            <time datetime="2026-09-06">6 set 2026</time>
+          </div>
+          <h2>Come confrontare i punti vendita delivery in modo equo</h2>
+          <p>Metodo in 3 livelli per confrontare i punti vendita delivery senza distorsioni: normalizza per volume, fascia oraria e mix, e confronta same-store.</p>
+          <span class="post-card-more" aria-hidden="true">Leggi →</span>
+        </a>
+        <a class="post-card" href="/it/blog/quante-app-delivery-ristorante">
+          <div class="post-card-cover"><img src="/assets/gallery/plato-sushi.webp" alt="Piatto premium: scegliere le app per contribuzione, non per moda" width="800" height="500" /></div>
+          <div class="post-card-meta">
+            <span class="lane">Delivery</span>
+            ·
+            <time datetime="2026-09-02">2 set 2026</time>
+          </div>
+          <h2>Su quante app di delivery dovrebbe stare il mio ristorante?</h2>
+          <p>Decidi su quante app di delivery stare in base alla contribuzione per ordine, non all'intuito. Multi-app vs. concentrare il volume, con criteri e numeri.</p>
+          <span class="post-card-more" aria-hidden="true">Leggi →</span>
+        </a>
+        <a class="post-card" href="/it/blog/tempo-di-preparazione-delivery">
+          <div class="post-card-cover"><img src="/assets/casos/roma-del-abasto/hero.jpg" alt="Cucina di un ristorante che misura il tempo di preparazione" width="800" height="500" /></div>
+          <div class="post-card-meta">
+            <span class="lane">Control Room</span>
+            ·
+            <time datetime="2026-08-30">30 ago 2026</time>
+          </div>
+          <h2>Tempo di preparazione nel delivery: come misurarlo e ridurlo</h2>
+          <p>Il prep time è il tratto che controlla la tua cucina. Impara a misurarlo, a impostare alert verde/ambra/rosso e a ridurlo per punto vendita e fascia oraria.</p>
+          <span class="post-card-more" aria-hidden="true">Leggi →</span>
+        </a>
+        <a class="post-card" href="/it/blog/recuperare-rating-delivery-multi-sede">
+          <div class="post-card-cover"><img src="/assets/gallery/repartidor-rappi.webp" alt="Rider che consegna un ordine: il rating si cucina in strada" width="800" height="500" /></div>
+          <div class="post-card-meta">
+            <span class="lane">Control Room</span>
+            ·
+            <time datetime="2026-08-30">30 ago 2026</time>
+          </div>
+          <h2>Come recuperare il rating delivery di un punto vendita in calo</h2>
+          <p>Recupera il rating di un punto vendita in 48 h: etichetta i reclami, soglia per locale e playbook su tempi, packing e ordine corretto. Senza chiedere stelle.</p>
+          <span class="post-card-more" aria-hidden="true">Leggi →</span>
+        </a>
+        <a class="post-card" href="/it/blog/come-apparire-primo-app-delivery">
+          <div class="post-card-cover"><img src="/assets/services/service_estrategia.webp" alt="Strategia di visibilità nelle app di delivery" width="800" height="500" /></div>
+          <div class="post-card-meta">
+            <span class="lane">Delivery</span>
+            ·
+            <time datetime="2026-08-26">26 ago 2026</time>
+          </div>
+          <h2>Come apparire primo nelle app di delivery senza bruciare margine</h2>
+          <p>Scopri come apparire primo nelle app di delivery separando le leve che controlli da quelle dell'algoritmo e incrociando ognuna con il tuo margine per ordine.</p>
+          <span class="post-card-more" aria-hidden="true">Leggi →</span>
+        </a>
+        <a class="post-card" href="/it/blog/riunione-giornaliera-operazioni-delivery">
+          <div class="post-card-cover"><img src="/assets/equipo/equipo-valor-2-v2.webp" alt="Team che rivede il rituale quotidiano delle operazioni" width="800" height="500" /></div>
+          <div class="post-card-meta">
+            <span class="lane">Control Room</span>
+            ·
+            <time datetime="2026-08-23">23 ago 2026</time>
+          </div>
+          <h2>Riunione giornaliera operazioni delivery: il rituale in 3 livelli</h2>
+          <p>Imposta il rituale ops delivery in 3 livelli: standup giornaliero da 10 min, weekly per confrontare i punti vendita e war room a soglia. Con agenda da copiare.</p>
+          <span class="post-card-more" aria-hidden="true">Leggi →</span>
+        </a>
+        <a class="post-card" href="/it/blog/come-leggere-estratto-conto-app-delivery">
+          <div class="post-card-cover"><img src="/assets/services/service_consultoria.webp" alt="Estratto conto dell'app di delivery rivisto riga per riga" width="800" height="500" /></div>
+          <div class="post-card-meta">
+            <span class="lane">Delivery</span>
+            ·
+            <time datetime="2026-08-19">19 ago 2026</time>
+          </div>
+          <h2>Come leggere l'estratto conto di un'app di delivery</h2>
+          <p>Impara a leggere riga per riga l'estratto conto dei pagamenti di un'app di delivery: commissione, fee, ads, promo, rettifiche e accredito netto.</p>
+          <span class="post-card-more" aria-hidden="true">Leggi →</span>
+        </a>
+        <a class="post-card" href="/it/blog/ridurre-cancellazioni-ordini-delivery">
+          <div class="post-card-cover"><img src="/assets/gallery/preparacion-burguer.webp" alt="Cucina che prepara un ordine: dove nascono le cancellazioni" width="800" height="500" /></div>
+          <div class="post-card-meta">
+            <span class="lane">Control Room</span>
+            ·
+            <time datetime="2026-08-16">16 ago 2026</time>
+          </div>
+          <h2>Come ridurre le cancellazioni nel delivery multi-sede</h2>
+          <p>Riduci le cancellazioni nel delivery trattandole come segnale: tassonomia delle cause, soglia per locale e micro-playbook per turno. Misurabile e comparabile.</p>
+          <span class="post-card-more" aria-hidden="true">Leggi →</span>
+        </a>
+        <a class="post-card" href="/it/blog/take-rate-reale-app-delivery">
+          <div class="post-card-cover"><img src="/assets/services/service_performance.webp" alt="Operatività che misura il costo reale per canale delivery" width="800" height="500" /></div>
+          <div class="post-card-meta">
+            <span class="lane">Delivery</span>
+            ·
+            <time datetime="2026-08-12">12 ago 2026</time>
+          </div>
+          <h2>Take Rate Reale nelle app di delivery: il vero costo per ordine</h2>
+          <p>Il Take Rate Reale somma commissione, ads, promo, cancellazioni e base imponibile: così passi dal 28% del contratto a un 35-40% effettivo per ordine.</p>
+          <span class="post-card-more" aria-hidden="true">Leggi →</span>
+        </a>
+        <a class="post-card" href="/it/blog/controllare-delivery-ristorante-multi-sede">
+          <div class="post-card-cover"><img src="/assets/services/service_gestion-integral.webp" alt="Team che gestisce il delivery multi-sede con una dashboard condivisa" width="800" height="500" /></div>
+          <div class="post-card-meta">
+            <span class="lane">Control Room</span>
+            ·
+            <time datetime="2026-08-09">9 ago 2026</time>
+          </div>
+          <h2>Come controllare il delivery in un ristorante multi-sede</h2>
+          <p>Controlla il delivery multi-sede con un sistema di ritmo, alert e responsabili chiari. Scopri cosa guardare ogni giorno e come passare dal dato all'azione.</p>
+          <span class="post-card-more" aria-hidden="true">Leggi →</span>
+        </a>
+        <a class="post-card" href="/it/blog/quanto-alzare-prezzi-app-delivery">
+          <div class="post-card-cover"><img src="/assets/gallery/plato-burguer.webp" alt="Burger gourmet: scontrino alto senza abbassare il prezzo" width="800" height="500" /></div>
+          <div class="post-card-meta">
+            <span class="lane">Delivery</span>
+            ·
+            <time datetime="2026-08-09">9 ago 2026</time>
+          </div>
+          <h2>Quanto alzare i prezzi sulle app delivery senza perdere ordini</h2>
+          <p>Scopri quanto alzare i prezzi sulle app di delivery per coprire le commissioni senza uccidere la conversione: markup, prezzi differenziati e come testarli.</p>
+          <span class="post-card-more" aria-hidden="true">Leggi →</span>
+        </a>
+        <a class="post-card" href="/it/blog/kpi-mattina-delivery-multi-sede">
+          <div class="post-card-cover"><img src="/assets/services/service_tecnologia.webp" alt="Control room del delivery: checklist mattutina dei KPI" width="800" height="500" /></div>
+          <div class="post-card-meta">
+            <span class="lane">Control Room</span>
+            ·
+            <time datetime="2026-08-09">9 ago 2026</time>
+          </div>
+          <h2>Quali KPI controllare ogni mattina nel delivery multi-sede</h2>
+          <p>Checklist mattutina dei KPI per gestire il delivery multi-sede: tempi, cancellazioni, rating e stock. Scopri cosa guardare per primo senza Excel infiniti.</p>
+          <span class="post-card-more" aria-hidden="true">Leggi →</span>
+        </a>
+        <a class="post-card" href="/it/blog/redditivita-app-delivery-ristoranti">
+          <div class="post-card-cover"><img src="/assets/gallery/dashboard-analisis.webp" alt="Dashboard P&amp;L del delivery: margine, commissione e ordini" width="800" height="500" /></div>
+          <div class="post-card-meta">
+            <span class="lane">Delivery</span>
+            ·
+            <time datetime="2026-08-09">9 ago 2026</time>
+          </div>
+          <h2>Redditività delle app di delivery per ristoranti: P&amp;L per ordine</h2>
+          <p>Impara a costruire il P&amp;L per ordine sulle app di delivery: commissioni, packaging, ads e ticket medio per sapere quanto ti lascia davvero ogni ordine.</p>
+          <span class="post-card-more" aria-hidden="true">Leggi →</span>
+        </a>
+    </main>
+  </body>
+</html>

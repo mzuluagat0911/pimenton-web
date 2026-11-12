@@ -1,7 +1,13 @@
 import type { Destino, Idea, Language } from "../types.js";
 import { brandContext, blogStructure } from "../config/context.js";
 
-const IDIOMA: Record<Language, string> = { es: "español", en: "inglés" };
+const IDIOMA: Record<Language, string> = { es: "español", en: "inglés", it: "italiano" };
+
+function suggestedTitle(idea: Idea, lang: Language): string {
+  if (lang === "es") return idea.title_es;
+  if (lang === "it") return idea.title_it ?? idea.title_en;
+  return idea.title_en;
+}
 
 export function writerSystem(destino: Destino, lang: Language): string {
   return [
@@ -29,11 +35,10 @@ export function writerSystem(destino: Destino, lang: Language): string {
 }
 
 export function writerUser(idea: Idea, lang: Language): string {
-  const titulo = lang === "es" ? idea.title_es : idea.title_en;
   return [
     `Escribe el blog para esta idea, en ${IDIOMA[lang]}:`,
     "",
-    `- Título sugerido: ${titulo}`,
+    `- Título sugerido: ${suggestedTitle(idea, lang)}`,
     `- Keyword principal: ${idea.keyword_primary}`,
     `- Keywords secundarias: ${idea.keywords_secondary.join(", ")}`,
     `- Intención: ${idea.search_intent}`,

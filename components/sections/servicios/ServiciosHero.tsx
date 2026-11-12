@@ -28,16 +28,16 @@ function buildMosaic(t: ReturnType<typeof useT>): Placed[] {
     {
       node: (
         <MetricTile
-          label={t({ es: "Pedidos hoy", en: "Orders today" })}
+          label={t({ es: "Pedidos hoy", en: "Orders today", it: "Ordini oggi" })}
           value="1.247"
-          delta={t({ es: "+12% vs ayer", en: "+12% vs. yesterday" })}
+          delta={t({ es: "+12% vs ayer", en: "+12% vs. yesterday", it: "+12% vs ieri" })}
           cycle={["1.247", "1.251", "1.258", "1.263"]}
         />
       ),
       style: { top: "10%", left: "3%", width: 210, rotate: "-3deg" },
     },
     {
-      node: <BarsTile label={t({ es: "Ventas · 7 días", en: "Sales · 7 days" })} />,
+      node: <BarsTile label={t({ es: "Ventas · 7 días", en: "Sales · 7 days", it: "Vendite · 7 giorni" })} />,
       style: { top: "6%", left: "68%", width: 230, rotate: "2.5deg" },
     },
     {
@@ -48,9 +48,9 @@ function buildMosaic(t: ReturnType<typeof useT>): Placed[] {
     {
       node: (
         <MetricTile
-          label={t({ es: "Ticket promedio", en: "Average ticket" })}
+          label={t({ es: "Ticket promedio", en: "Average ticket", it: "Ticket medio" })}
           value="$24,50"
-          delta={t({ es: "+8% mensual", en: "+8% monthly" })}
+          delta={t({ es: "+8% mensual", en: "+8% monthly", it: "+8% mensile" })}
           cycle={["$24,50", "$24,80", "$25,10"]}
         />
       ),
@@ -62,6 +62,7 @@ function buildMosaic(t: ReturnType<typeof useT>): Placed[] {
           text={t({
             es: "Menú optimizado en 3 plataformas",
             en: "Menu optimized across 3 platforms",
+            it: "Menu ottimizzato su 3 piattaforme",
           })}
         />
       ),
@@ -76,9 +77,9 @@ function buildMosaic(t: ReturnType<typeof useT>): Placed[] {
     {
       node: (
         <MetricTile
-          label={t({ es: "Rentabilidad", en: "Profitability" })}
+          label={t({ es: "Rentabilidad", en: "Profitability", it: "Redditività" })}
           value="+18%"
-          delta={t({ es: "trimestral", en: "quarterly" })}
+          delta={t({ es: "trimestral", en: "quarterly", it: "trimestrale" })}
         />
       ),
       style: { top: "30%", left: "40%", width: 190, rotate: "2deg" },
@@ -126,12 +127,12 @@ export function ServiciosHero() {
           className="max-w-4xl text-4xl font-semibold leading-[1.02] tracking-tight text-pimenton-bg sm:text-6xl lg:text-7xl"
         >
           <span className="block">
-            {t({ es: "Soluciones", en: "Delivery" })}
+            {t({ es: "Soluciones", en: "Delivery", it: "Soluzioni" })}
           </span>
           <span className="block">
-            {t({ es: "de ", en: "" })}
+            {t({ es: "de ", en: "", it: "per il " })}
             <Highlight color="coral">
-              {t({ es: "delivery", en: "solutions" })}
+              {t({ es: "delivery", en: "solutions", it: "delivery" })}
             </Highlight>
           </span>
         </motion.h1>
@@ -143,6 +144,7 @@ export function ServiciosHero() {
           {t({
             es: "Gestionamos tu delivery de punta a punta para que vendas más, con menos fricción y mayor rentabilidad.",
             en: "We manage your delivery end to end so you sell more, with less friction and greater profitability.",
+            it: "Gestiamo il tuo delivery dall'inizio alla fine perché tu venda di più, con meno attriti e più redditività.",
           })}
         </motion.p>
       </div>

@@ -1,4 +1,4 @@
-export const LOCALES = ["es", "en"] as const;
+export const LOCALES = ["es", "en", "it"] as const;
 export type Locale = (typeof LOCALES)[number];
 export const DEFAULT_LOCALE: Locale = "es";
 
@@ -38,7 +38,7 @@ export function withLocale(path: string, locale: Locale): string {
   return `/${locale}${normalized}`;
 }
 
-/** Misma ruta, otro idioma (para el toggle ES/EN). */
+/** Misma ruta, otro idioma (para el selector ES/EN/IT). */
 export function switchLocalePath(pathname: string, locale: Locale): string {
   return withLocale(stripLocaleFromPathname(pathname), locale);
 }
@@ -67,4 +67,25 @@ export const siteMeta = {
     ogImage: "/og-en.png?v=3",
     ogLocale: "en_US",
   },
+  it: {
+    title: "Pimentón — Facciamo crescere il tuo Delivery e i Canali Digitali",
+    description:
+      "Growth Partner specializzato nel delivery per ristoranti. Gestiamo i tuoi canali digitali in LATAM ed Europa. Oltre 500 ristoranti si fidano di noi.",
+    ogTitle: "Pimentón — Growth Partner per il tuo Delivery",
+    ogDescription: "Facciamo crescere il tuo delivery e i tuoi canali digitali.",
+    ogImage: "/og-it.png?v=3",
+    ogLocale: "it_IT",
+  },
 } as const;
+
+export const OG_LOCALES: Record<Locale, string> = {
+  es: "es_AR",
+  en: "en_US",
+  it: "it_IT",
+};
+
+/** Ruta del blog estático por idioma (`/blog`, `/en/blog`, `/it/blog`). */
+export function blogPath(locale: Locale, slug?: string): string {
+  const base = locale === "es" ? "/blog" : `/${locale}/blog`;
+  return slug ? `${base}/${slug}` : base;
+}

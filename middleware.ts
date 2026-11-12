@@ -8,9 +8,11 @@ import {
 } from "@/lib/i18n";
 
 function detectLocale(request: NextRequest): Locale {
-  const acceptLang = request.headers.get("accept-language") ?? "";
-  if (acceptLang && !acceptLang.toLowerCase().startsWith("es")) return "en";
-  return DEFAULT_LOCALE;
+  const acceptLang = (request.headers.get("accept-language") ?? "").toLowerCase();
+  if (!acceptLang) return DEFAULT_LOCALE;
+  if (acceptLang.startsWith("es")) return "es";
+  if (acceptLang.startsWith("it")) return "it";
+  return "en";
 }
 
 export function middleware(request: NextRequest) {
@@ -47,8 +49,8 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   // Excluye estáticos con extensión y el blog HTML del motor
-  // (/blog y /en/blog viven fuera del App Router + i18n).
+  // (/blog, /en/blog e /it/blog viven fuera del App Router + i18n).
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|api(?:/.*)?|blog(?:/.*)?|en/blog(?:/.*)?|.*\\..*).*)",
+    "/((?!_next/static|_next/image|favicon.ico|api(?:/.*)?|blog(?:/.*)?|en/blog(?:/.*)?|it/blog(?:/.*)?|.*\\..*).*)",
   ],
 };

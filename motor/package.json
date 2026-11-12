@@ -11,6 +11,7 @@
     "recover": "tsx src/index.ts recover",
     "rebuild-indexes": "tsx scripts/rebuild-indexes.mjs",
     "inject-visuals": "tsx scripts/inject-visuals.mjs",
+    "publish-italian": "tsx scripts/publish-italian.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

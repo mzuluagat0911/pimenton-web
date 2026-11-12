@@ -5,10 +5,11 @@ import { useLanguage, type Lang } from "@/components/i18n/LanguageContext";
 const LANGS: { code: Lang; label: string; aria: string }[] = [
   { code: "es", label: "ES", aria: "Cambiar idioma a español" },
   { code: "en", label: "EN", aria: "Switch language to English" },
+  { code: "it", label: "IT", aria: "Cambia lingua in italiano" },
 ];
 
 /**
- * Toggle ES/EN. Sobrio, sobre fondo oscuro/transparente del header: el
+ * Selector ES/EN/IT. Sobrio, sobre fondo oscuro/transparente del header: el
  * idioma activo en coral, el inactivo en crema atenuado. Cada opción es un
  * button real con aria-label + aria-pressed.
  */
@@ -18,7 +19,7 @@ export function LanguageToggle({ className = "" }: { className?: string }) {
   return (
     <div
       role="group"
-      aria-label="Idioma / Language"
+      aria-label="Idioma / Language / Lingua"
       className={`inline-flex items-center gap-1.5 text-xs font-semibold tracking-wide ${className}`}
     >
       {LANGS.map((l, i) => (

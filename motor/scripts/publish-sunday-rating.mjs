@@ -1,5 +1,5 @@
 process.env.ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY || "sk-local-publish";
-process.env.SITE_URL = process.env.SITE_URL || "https://pimenton.io";
+process.env.SITE_URL = process.env.SITE_URL || "https://www.pimenton.io";
 
 const { publishDrafts, rebuildIndex } = await import("../src/agents/publisher.js");
 const { loadState, saveState, markPublished } = await import("../src/lib/state.js");

@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Tasso di errore ordini delivery: come misurarlo per punto vendita</title>
+    <meta name="description" content="Il tasso di errore negli ordini delivery è il rapporto tra ordini con problemi e totali. Scopri come misurarlo per punto vendita e ridurlo con un playbook." />
+    <meta name="keywords" content="tasso di errore ordini delivery, accuratezza degli ordini delivery, come misurare gli errori negli ordini delivery, ordini sbagliati delivery multi-sede, cos'è l'order accuracy in un ristorante, come ridurre gli errori di uscita nel delivery, ordini incompleti vs ordini sbagliati delivery, quale punto vendita sbaglia più ordini" />
+    <link rel="canonical" href="https://www.pimenton.io/it/blog/tasso-errore-ordini-delivery" />
+    <link rel="alternate" hreflang="es" href="https://www.pimenton.io/blog/tasa-error-pedidos-delivery" />
+    <link rel="alternate" hreflang="en" href="https://www.pimenton.io/en/blog/delivery-order-error-rate-by-location" />
+    <link rel="alternate" hreflang="it" href="https://www.pimenton.io/it/blog/tasso-errore-ordini-delivery" />
+    <link rel="alternate" hreflang="x-default" href="https://www.pimenton.io/blog/tasa-error-pedidos-delivery" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Tasso di errore ordini delivery: come misurarlo per punto vendita" />
+    <meta property="og:description" content="Il tasso di errore negli ordini delivery è il rapporto tra ordini con problemi e totali. Scopri come misurarlo per punto vendita e ridurlo con un playbook." />
+    <meta property="og:url" content="https://www.pimenton.io/it/blog/tasso-errore-ordini-delivery" />
+    <meta property="og:image" content="https://www.pimenton.io/assets/insights/delivery-rentable/hero.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tasso di errore ordini delivery: come misurarlo per punto vendita" />
+    <meta name="twitter:description" content="Il tasso di errore negli ordini delivery è il rapporto tra ordini con problemi e totali. Scopri come misurarlo per punto vendita e ridurlo con un playbook." />
+    <meta name="twitter:image" content="https://www.pimenton.io/assets/insights/delivery-rentable/hero.jpg" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="google-site-verification" content="lbmAEFkAWQmWQygVAsQW0qs8anyrhaUhAE_nIXK0pls" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-25DBL0EY6V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-25DBL0EY6V', { anonymize_ip: true });
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Tasso di errore negli ordini delivery: come misurarlo e ridurlo per punto vendita",
+      "description": "Il tasso di errore negli ordini delivery è il rapporto tra ordini con problemi e totali. Scopri come misurarlo per punto vendita e ridurlo con un playbook.",
+      "inLanguage": "it",
+      "author": {
+            "@type": "Organization",
+            "name": "Control Room by Pimentón",
+            "url": "https://www.pimenton.io/it"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.pimenton.io/assets/insights/delivery-rentable/hero.jpg"
+            }
+      },
+      "datePublished": "2026-10-04",
+      "dateModified": "2026-10-04",
+      "mainEntityOfPage": "https://www.pimenton.io/it/blog/tasso-errore-ordini-delivery",
+      "image": "https://www.pimenton.io/assets/insights/delivery-rentable/hero.jpg"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "Come si calcola il tasso di errore degli ordini delivery?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Si divide il numero di ordini con problemi (incompleti, sbagliati o mancanti) per il totale degli ordini spediti e si moltiplica per 100. Per renderlo utile, calcolalo per punto vendita e per turno, non come media globale, e segmentalo per tipo di errore."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Quale percentuale di errori negli ordini è accettabile in un ristorante?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Come riferimento operativo, sotto il 2% si considera un'operatività sana, tra il 2% e il 4% è zona di attenzione e oltre il 4% c'è già un problema sistemico che incide su rating e rimborsi. L'ideale è fissare una soglia propria per punto vendita e monitorare quando viene superata."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Qual è la differenza tra ordine incompleto, sbagliato e mancante?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Un ordine incompleto ha meno articoli di quelli richiesti (manca qualcosa); un ordine sbagliato contiene un prodotto diverso o senza la modifica richiesta; un ordine mancante è quello che non è arrivato o è andato a un altro indirizzo. Ogni tipo punta a una causa diversa: assemblaggio, cucina o logistica."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Perché un punto vendita ha più reclami per prodotto sbagliato di un altro?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Di solito per differenze nella lettura della comanda, in cucina o nel controllo in uscita, non per sfortuna. Segmentando l'errore per tipo e turno si vede se si tratta di un prodotto specifico, di una fascia oraria satura o di un passaggio dell'assemblaggio che non funziona in quel locale."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Gli errori negli ordini influiscono sul rating nelle app?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Sì. Le app mostrano il sintomo attraverso rating, reclami e rimborsi, ma la causa sta nell'operatività del ristorante. Ridurre il tasso di errore nell'assemblaggio e in cucina è ciò che migliora il rating in modo duraturo."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Ogni quanto dovrei rivedere gli errori negli ordini per locale?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Una lettura rapida giornaliera dei problemi per punto vendita, una revisione settimanale confrontando locali e tipi di errore, e una war room mirata quando un punto vendita supera la sua soglia per diversi turni di fila. È la costanza a far scendere il tasso."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://www.pimenton.io/it"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://www.pimenton.io/it/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Tasso di errore negli ordini delivery: come misurarlo e ridurlo per punto vendita",
+                  "item": "https://www.pimenton.io/it/blog/tasso-errore-ordini-delivery"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-control-room">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/it" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-blanco.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/it">Home</a>
+          <a href="/it/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma / Language / Lingua">
+            <a class="" href="/blog/tasa-error-pedidos-delivery" hreflang="es">ES</a>
+            <a class="" href="/en/blog/delivery-order-error-rate-by-location" hreflang="en">EN</a>
+            <a class="active" href="/it/blog/tasso-errore-ordini-delivery" hreflang="it">IT</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Control Room · Ops</p>
+          <h1>Tasso di errore negli ordini delivery: come misurarlo e ridurlo per punto vendita</h1>
+          <p class="lead-answer"><p>Il <strong>tasso di errore negli ordini delivery</strong> è il numero di ordini con qualche problema (incompleto, sbagliato o mancante) diviso per il totale degli ordini spediti, espresso in percentuale. Si misura per punto vendita e per turno, si segmenta per tipo di errore e si incrocia con rating e rimborsi per capire quale locale sbaglia di più e perché. Un range operativo sano di solito è sotto il 2–3%; oltre, il problema è ormai sistemico, non episodico.</p></p>
+          <p class="byline">Di Control Room · 2026-10-04 · 5 min di lettura</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/insights/delivery-rentable/hero.jpg" alt="Delivery redditizio nella pratica" width="1200" height="800" loading="eager" />
+  <figcaption>La redditività è un sistema, non fortuna.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>10'</b><span>standup quotidiano, non una riunione infinita</span></div>
+    <div class="blog-stat"><b>3</b><span>livelli: quotidiano, weekly, war room</span></div>
+    <div class="blog-stat"><b>1</b><span>dashboard. Il resto è rumore</span></div>
+</div>
+<figure class="blog-chart blog-chart--bars" data-blog-visuals="lead">
+  <p class="chart-kicker">Rituale ops</p>
+  <figcaption>Cosa si guarda ogni mattina (e in che ordine)</figcaption>
+  <div class="bars">
+    <div class="bar-row is-accent">
+      <div class="bar-meta"><span>Cancellazioni / 86</span><b>1º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-0" style="width:90%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Tempo di preparazione</span><b>2º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-1" style="width:75%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Connettività / stock</span><b>3º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-2" style="width:62%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Scontrino e mix</span><b>4º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-3" style="width:50%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ads e ranking</span><b>5º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-4" style="width:38%"></span></div>
+    </div>
+  </div>
+  <p class="chart-note">Se la dashboard non sta in uno schermo, non si usa. Cinque indicatori, responsabile, soglia, decisione.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>In un'operazione multi-sede, un ordine uscito male non è un aneddoto di cucina: è un dato. Se si ripete, diventa uno schema che ti costa rimborsi, abbassa il rating ed erode il margine per cui lotti tanto. Il problema non è l'app che mostra il reclamo; il problema è operare senza misurare dove e perché l'ordine si rompe. Trattare l'errore come <strong>metrica di controllo operativo</strong> è ciò che separa chi spegne incendi da chi li previene.</p><h2>Cos'è il tasso di errore negli ordini delivery</h2><p>L'<strong>order accuracy</strong> —o il suo inverso, il tasso di errore— misura quanti ordini sono usciti male rispetto al totale. La formula è semplice:</p><ul><li><strong>Tasso di errore = ordini con problemi / ordini totali × 100.</strong></li></ul><p>Un “ordine con problemi” è qualsiasi ordine che ha generato un reclamo, un rimborso o una restituzione per il contenuto: prodotto sbagliato, mancante, incompleto o assemblato male. La metrica serve davvero quando la calcoli <strong>per punto vendita e per turno</strong>, non come media globale. La media nasconde che un locale nell'orario di punta concentra il 70% degli errori mentre un altro è pulito.</p><h3>Ordine incompleto vs. sbagliato vs. mancante</h3><p>Misurare senza segmentare è misurare a metà. I tre tipi più comuni sono:</p><ul><li><strong>Ordine incompleto:</strong> manca un articolo dell'ordine (ne sono stati chiesti 3, ne sono arrivati 2). Di solito è un errore di assemblaggio o di uscita.</li><li><strong>Ordine sbagliato:</strong> è arrivato un prodotto diverso da quello richiesto (altra variante, altro gusto, senza la modifica). Di solito è un errore di lettura della comanda o di cucina.</li><li><strong>Ordine mancante / non consegnato:</strong> l'ordine completo non è arrivato o è arrivato a un altro indirizzo. Qui pesano la logistica e il passaggio di consegne con il rider.</li></ul><p>Ogni tipo punta a una causa diversa. Se non li separi, applichi il rimedio sbagliato.</p><h2>Come misurarlo per punto vendita e turno</h2><p>L'obiettivo è che la metrica sia <strong>comparabile</strong> tra i locali. Per questo ti servono una definizione unica di “problema” e una fonte dati coerente. I passaggi minimi:</p><ol><li><strong>Definisci cosa conta come errore</strong> e comunicalo allo stesso modo in tutti i locali. Un rimborso parziale per un articolo mancante è un problema; un ritardo senza prodotto sbagliato, no.</li><li><strong>Registra il totale degli ordini</strong> per punto vendita e fascia oraria (pranzo, cena, picco del weekend).</li><li><strong>Etichetta ogni problema per tipo</strong> (incompleto / sbagliato / mancante) e per origine probabile (cucina / packaging / logistica).</li><li><strong>Calcola il tasso</strong> locale per locale e ordina dal peggiore al migliore.</li></ol><p>Così rispondi alla domanda chiave: <em>quale punto vendita sbaglia più ordini e in quale turno?</em> Un locale con l'1,5% distribuito in modo uniforme non è come un altro con il 4% concentrato nella cena del venerdì: il secondo ha un collo di bottiglia specifico che puoi attaccare.</p><h3>Come distinguere un errore di cucina da un errore di uscita</h3><p>È la distinzione che fa risparmiare più tempo. Un <strong>errore di cucina</strong> produce un prodotto sbagliato o preparato male: l'hamburger è uscito con la cipolla quando era stato chiesto senza. Un <strong>errore di packaging/uscita</strong> produce articoli mancanti e ordini incompleti: il prodotto era fatto bene ma non è finito nella busta, o si è mescolato con un altro ordine. Il segnale rapido: se prevalgono gli “sbagliati”, guarda comanda e cucina; se prevalgono i “mancanti/incompleti”, guarda la postazione di assemblaggio e il controllo in uscita.</p>          <figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/insights/ticket-promedio/hero.jpg" alt="Aumentare lo scontrino medio nel delivery" width="1200" height="800" loading="lazy" />
+  <figcaption>Scontrino più alto, contribuzione migliore.</figcaption>
+</figure>
+          <h2>Soglie di alert: quando preoccuparsi</h2><p>Non esiste un numero ufficiale universale, ma come riferimento operativo:</p><ul><li><strong>Sotto il 2%:</strong> operatività sana, rumore normale.</li><li><strong>Dal 2% al 4%:</strong> zona di attenzione, analizza per tipo e turno.</li><li><strong>Oltre il 4%:</strong> problema sistemico; rating e rimborsi ti stanno già colpendo.</li></ul><p>L'importante non è centrare un numero magico, ma fissare <strong>una soglia propria</strong> per punto vendita e far scattare un alert quando viene superata per due turni di fila. Lì il dato smette di essere un report e diventa un innesco per l'azione.</p><h2>Errori comuni nel misurare (e nel non misurare)</h2><ul><li><strong>Usare solo la media globale:</strong> nasconde il locale che trascina giù il numero.</li><li><strong>Non separare il tipo di errore:</strong> ti porta a formare la cucina quando il problema è il packaging.</li><li><strong>Confondere sintomo e causa:</strong> il rating nell'app e i rimborsi sono il <em>sintomo</em>; la piattaforma si limita a mostrarlo. La cura sta nella tua postazione di assemblaggio e nella tua comanda.</li><li><strong>Non chiudere il cerchio:</strong> individuare l'errore senza avere un playbook di recovery significa fermarsi a metà strada.</li></ul><h2>Dal dato all'azione: playbook di recovery</h2><p>La metrica serve davvero solo quando fa scattare una risposta standardizzata. Cosa fare quando un cliente segnala un ordine sbagliato:</p><ol><li><strong>Risolvi prima con il cliente:</strong> sostituzione o rimborso rapido secondo la policy, senza attriti.</li><li><strong>Registra il problema</strong> con tipo, turno e punto vendita —quel dato alimenta il tasso.</li><li><strong>Cerca lo schema:</strong> è un prodotto specifico, un turno, una persona all'assemblaggio?</li><li><strong>Correggi il punto che non funziona:</strong> doppio controllo in uscita, foto dell'assemblaggio, comanda più chiara, nuovo briefing su un articolo problematico.</li><li><strong>Verifica alla revisione successiva</strong> che il tasso sia sceso dove sei intervenuto.</li></ol><div class="callout"><p><strong>Control Room</strong> è la sala di controllo operativa di Pimentón: ti mostra il tasso di errore per punto vendita e turno, fa scattare alert quando un locale supera la sua soglia e collega ogni problema a rating e rimborsi, così sai dove intervenire per primo. Meno Excel infiniti, più decisioni di turno. Vuoi vederlo con i tuoi locali? <a href="https://wa.me/5491157035170">Scrivici su WhatsApp</a>.</p></div><h2>Cadenza di revisione</h2><p>Un errore isolato si gestisce sul momento; lo schema si rivede con ritmo. Una cadenza che funziona: <strong>lettura giornaliera rapida</strong> dei problemi per locale, <strong>revisione settimanale</strong> confrontando punti vendita e tipi di errore, e una <strong>war room</strong> mirata quando un punto vendita supera la sua soglia per diversi turni di fila. La disciplina di guardare sempre le stesse cose è ciò che fa scendere il tasso e lo mantiene basso.</p>
+          <h2 id="faq">Domande frequenti</h2>
+          <div class="faq">
+            <details>
+              <summary>Come si calcola il tasso di errore degli ordini delivery?</summary>
+              <p>Si divide il numero di ordini con problemi (incompleti, sbagliati o mancanti) per il totale degli ordini spediti e si moltiplica per 100. Per renderlo utile, calcolalo per punto vendita e per turno, non come media globale, e segmentalo per tipo di errore.</p>
+            </details>
+            <details>
+              <summary>Quale percentuale di errori negli ordini è accettabile in un ristorante?</summary>
+              <p>Come riferimento operativo, sotto il 2% si considera un'operatività sana, tra il 2% e il 4% è zona di attenzione e oltre il 4% c'è già un problema sistemico che incide su rating e rimborsi. L'ideale è fissare una soglia propria per punto vendita e monitorare quando viene superata.</p>
+            </details>
+            <details>
+              <summary>Qual è la differenza tra ordine incompleto, sbagliato e mancante?</summary>
+              <p>Un ordine incompleto ha meno articoli di quelli richiesti (manca qualcosa); un ordine sbagliato contiene un prodotto diverso o senza la modifica richiesta; un ordine mancante è quello che non è arrivato o è andato a un altro indirizzo. Ogni tipo punta a una causa diversa: assemblaggio, cucina o logistica.</p>
+            </details>
+            <details>
+              <summary>Perché un punto vendita ha più reclami per prodotto sbagliato di un altro?</summary>
+              <p>Di solito per differenze nella lettura della comanda, in cucina o nel controllo in uscita, non per sfortuna. Segmentando l'errore per tipo e turno si vede se si tratta di un prodotto specifico, di una fascia oraria satura o di un passaggio dell'assemblaggio che non funziona in quel locale.</p>
+            </details>
+            <details>
+              <summary>Gli errori negli ordini influiscono sul rating nelle app?</summary>
+              <p>Sì. Le app mostrano il sintomo attraverso rating, reclami e rimborsi, ma la causa sta nell'operatività del ristorante. Ridurre il tasso di errore nell'assemblaggio e in cucina è ciò che migliora il rating in modo duraturo.</p>
+            </details>
+            <details>
+              <summary>Ogni quanto dovrei rivedere gli errori negli ordini per locale?</summary>
+              <p>Una lettura rapida giornaliera dei problemi per punto vendita, una revisione settimanale confrontando locali e tipi di errore, e una war room mirata quando un punto vendita supera la sua soglia per diversi turni di fila. È la costanza a far scendere il tasso.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>Vuoi vedere il tuo delivery con chiarezza?</h2>
+            <p>Scrivici su WhatsApp. Analizziamo cosa sta rompendo il ritmo multi-sede e cosa sistemare per primo.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Scrivici su WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/it">Home</a> · <a href="/it/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

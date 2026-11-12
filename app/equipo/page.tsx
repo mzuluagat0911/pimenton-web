@@ -1,83 +1,64 @@
-import type { Metadata } from "next";
 import { EquipoHero } from "@/components/sections/equipo/EquipoHero";
 import { FraseManifiesto } from "@/components/sections/equipo/FraseManifiesto";
 import { ValoresRows } from "@/components/sections/equipo/ValoresRows";
 import { ComoAcompanamos } from "@/components/sections/equipo/ComoAcompanamos";
 import { PartnersCarousel } from "@/components/sections/equipo/PartnersCarousel";
 import { CtaSumarte } from "@/components/sections/equipo/CtaSumarte";
-import { SITE_URL as SITE } from "@/lib/site";
+import {
+  breadcrumbList,
+  getRequestLocale,
+  jsonLdHtml,
+  pageMetadata,
+} from "@/lib/seo";
 
 const PATH = "/equipo";
-const TITLE = "Equipo | Pimentón — Nuestra cultura";
-const DESCRIPTION =
-  "Cultura Pimentón: cómo trabajamos, en qué creemos y qué buscamos en las personas que se suman al equipo. Adaptabilidad, protagonismo y respeto.";
+const TITLE = {
+  es: "Equipo | Pimentón — Nuestra cultura",
+  en: "Team | Pimentón — Our culture",
+  it: "Team | Pimentón — La nostra cultura",
+};
+const DESCRIPTION = {
+  es: "Cultura Pimentón: cómo trabajamos, en qué creemos y qué buscamos en las personas que se suman al equipo. Adaptabilidad, protagonismo y respeto.",
+  en: "Pimentón culture: how we work, what we believe, and what we look for in people who join the team. Adaptability, ownership, and respect.",
+  it: "La cultura Pimentón: come lavoriamo, in cosa crediamo e cosa cerchiamo nelle persone che entrano nel team. Adattabilità, responsabilità e rispetto.",
+};
+const H1 = {
+  es: "Equipo y cultura de Pimentón",
+  en: "Pimentón team and culture",
+  it: "Il team e la cultura di Pimentón",
+};
 
-export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
-  alternates: { canonical: PATH },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
-  openGraph: {
-    type: "website",
-    siteName: "Pimentón",
-    locale: "es_AR",
-    url: PATH,
+export async function generateMetadata() {
+  return pageMetadata({
+    path: PATH,
     title: TITLE,
     description: DESCRIPTION,
-    images: [
-      { url: "/og-default.png", width: 1200, height: 630, alt: "Pimentón — Equipo" },
+    ogAlt: { es: "Pimentón — Equipo", en: "Pimentón — Team", it: "Pimentón — Team" },
+  });
+}
+
+export default async function EquipoPage() {
+  const lang = await getRequestLocale();
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      breadcrumbList(lang, [
+        { name: { es: "Inicio", en: "Home", it: "Home" }, path: "/" },
+        { name: { es: "Equipo", en: "Team", it: "Team" }, path: PATH },
+      ]),
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: TITLE,
-    description: DESCRIPTION,
-    images: ["/og-default.png"],
-  },
-};
+  };
 
-// JSON-LD: breadcrumb (página interna). Organization + WebSite vienen del layout.
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Inicio", item: `${SITE}/` },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "Equipo",
-          item: `${SITE}${PATH}`,
-        },
-      ],
-    },
-  ],
-};
-
-export default function EquipoPage() {
   return (
     <main>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-        }}
+        dangerouslySetInnerHTML={{ __html: jsonLdHtml(jsonLd) }}
       />
       {/* H1 de la página (el hero es visual: logo + eyebrow, sin heading).
           Visualmente oculto — no toca el diseño, pero da un único H1 con la
           keyword principal para SEO y accesibilidad. */}
-      <h1 className="sr-only">Equipo y cultura de Pimentón</h1>
+      <h1 className="sr-only">{H1[lang]}</h1>
       <EquipoHero />
       <FraseManifiesto />
       <ValoresRows />

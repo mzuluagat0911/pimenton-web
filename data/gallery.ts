@@ -9,18 +9,19 @@
  * `alt` es bilingüe {es,en} (se resuelve con useT en el componente).
  */
 
-export type GalleryImage = { src: string; alt: { es: string; en: string } };
+export type GalleryImage = { src: string; alt: { es: string; en: string; it: string } };
 
 export const galleryImages: GalleryImage[] = [
   {
     src: "/assets/gallery/plato-burguer.webp",
-    alt: { es: "Plato de burger gourmet", en: "Gourmet burger plate" },
+    alt: { es: "Plato de burger gourmet", en: "Gourmet burger plate", it: "Piatto di burger gourmet" },
   },
   {
     src: "/assets/gallery/preparacion-burguer.webp",
     alt: {
       es: "Preparación de burger en cocina",
       en: "Burger being prepared in the kitchen",
+      it: "Preparazione di un burger in cucina",
     },
   },
   {
@@ -28,17 +29,19 @@ export const galleryImages: GalleryImage[] = [
     alt: {
       es: "Dashboard de análisis Pimentón",
       en: "Pimentón analytics dashboard",
+      it: "Dashboard di analisi Pimentón",
     },
   },
   {
     src: "/assets/gallery/plato-sushi.webp",
-    alt: { es: "Plato de sushi premium", en: "Premium sushi plate" },
+    alt: { es: "Plato de sushi premium", en: "Premium sushi plate", it: "Piatto di sushi premium" },
   },
   {
     src: "/assets/gallery/preparacion-pedido-veggie.webp",
     alt: {
       es: "Preparación de plato veggie",
       en: "Veggie dish being prepared",
+      it: "Preparazione di un piatto veggie",
     },
   },
   {
@@ -46,6 +49,7 @@ export const galleryImages: GalleryImage[] = [
     alt: {
       es: "Repartidor Rappi entregando pedido",
       en: "Rappi courier delivering an order",
+      it: "Rider Rappi che consegna un ordine",
     },
   },
 ];

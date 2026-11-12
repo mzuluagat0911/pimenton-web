@@ -96,6 +96,7 @@ export function CuatroPasos() {
   const ctaLabel = t({
     es: "Quiero analizar mi delivery",
     en: "Analyze my delivery",
+    it: "Voglio analizzare il mio delivery",
   });
 
   return (
@@ -113,8 +114,8 @@ export function CuatroPasos() {
               className="text-3xl font-semibold leading-[1.05] tracking-tight text-pimenton-text sm:text-4xl"
             >
               {splitHighlight(
-                t({ es: "¿Cómo lo hacemos?", en: "How we do it" }),
-                t({ es: "hacemos", en: "we do it" }),
+                t({ es: "¿Cómo lo hacemos?", en: "How we do it", it: "Come lo facciamo?" }),
+                t({ es: "hacemos", en: "we do it", it: "facciamo" }),
                 "coral",
               )}
             </motion.h2>
@@ -128,6 +129,7 @@ export function CuatroPasos() {
               {t({
                 es: "Un proceso claro, con foco en rentabilidad.",
                 en: "A clear process, focused on profitability.",
+                it: "Un processo chiaro, con focus sulla redditività.",
               })}
             </motion.p>
           </div>

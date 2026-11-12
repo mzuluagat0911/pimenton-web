@@ -1,9 +1,22 @@
 import type { Destino, PublishedPost } from "../lib/state.js";
-import { WHATSAPP_CTA_EN, WHATSAPP_CTA_ES } from "../config/cta.js";
+import { WHATSAPP_CTA_EN, WHATSAPP_CTA_ES, WHATSAPP_CTA_IT } from "../config/cta.js";
 import { analyticsHeadSnippets } from "../config/analytics.js";
 import { coverFor } from "./visuals.js";
 
-type IndexLang = "es" | "en";
+type IndexLang = "es" | "en" | "it";
+
+const DATE_LOCALE: Record<IndexLang, string> = { es: "es-ES", en: "en-US", it: "it-IT" };
+const READ: Record<IndexLang, string> = { es: "Leer", en: "Read", it: "Leggi" };
+const READ_ARTICLE: Record<IndexLang, string> = {
+  es: "Leer artículo",
+  en: "Read article",
+  it: "Leggi l'articolo",
+};
+const TEASER_EMPTY: Record<IndexLang, string> = {
+  es: "Pronto publicamos las primeras guías.",
+  en: "First guides coming soon.",
+  it: "Presto pubblicheremo le prime guide.",
+};
 
 function esc(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -12,7 +25,7 @@ function esc(s: string): string {
 function formatDate(iso: string, lang: IndexLang): string {
   const d = new Date(`${iso}T12:00:00Z`);
   if (Number.isNaN(d.getTime())) return iso;
-  return d.toLocaleDateString(lang === "es" ? "es-ES" : "en-US", {
+  return d.toLocaleDateString(DATE_LOCALE[lang], {
     day: "numeric",
     month: "short",
     year: "numeric",
@@ -51,6 +64,21 @@ const HUB = {
     brandAlt: "Pimentón",
     logo: "/assets/logos/principal/logo-coral.webp",
   },
+  it: {
+    title: "Blog | Pimentón",
+    description:
+      "Delivery, app e operazioni per ristoranti in LATAM e negli USA. Redditività, P&L e Control Room — guide citabili.",
+    eyebrow: "Blog Pimentón",
+    h1: "Delivery redditizio per ristoranti",
+    lead: "App, commissioni, P&L e operazioni multi-sede — senza fumo. Per titolari in LATAM e negli USA che vogliono margine e chiarezza.",
+    cta: "WhatsApp",
+    empty: "Presto i primi articoli.",
+    path: "/it/blog",
+    agenda: WHATSAPP_CTA_IT,
+    brandHref: "/it",
+    brandAlt: "Pimentón",
+    logo: "/assets/logos/principal/logo-coral.webp",
+  },
 } as const;
 
 function slugFromHref(href: string): string {
@@ -68,6 +96,15 @@ function mapPost(p: PublishedPost, lang: IndexLang) {
       destino: p.destino,
     };
   }
+  if (lang === "it" && p.pathIt) {
+    return {
+      href: p.pathIt,
+      title: p.titleIt ?? p.title,
+      description: p.descriptionIt ?? p.description,
+      date: p.date,
+      destino: p.destino,
+    };
+  }
   return {
     href: p.path,
     title: p.title,
@@ -77,21 +114,29 @@ function mapPost(p: PublishedPost, lang: IndexLang) {
   };
 }
 
+/** El hub IT solo lista posts con versión italiana (no mezcla artículos en español). */
+function availableIn(p: PublishedPost, lang: IndexLang): boolean {
+  return lang !== "it" || Boolean(p.pathIt);
+}
+
 function postsAll(posts: PublishedPost[], lang: IndexLang) {
-  return posts.slice().reverse().map((p) => mapPost(p, lang));
+  return posts
+    .filter((p) => availableIn(p, lang))
+    .slice()
+    .reverse()
+    .map((p) => mapPost(p, lang));
 }
 
 function postsFor(posts: PublishedPost[], destino: Destino, lang: IndexLang) {
   return posts
-    .filter((p) => p.destino === destino)
+    .filter((p) => p.destino === destino && availableIn(p, lang))
     .slice()
     .reverse()
     .map((p) => mapPost(p, lang));
 }
 
 function laneLabel(destino: Destino, lang: IndexLang): string {
-  if (destino === "control-room") return lang === "es" ? "Control Room" : "Control Room";
-  return lang === "es" ? "Delivery" : "Delivery";
+  return destino === "control-room" ? "Control Room" : "Delivery";
 }
 
 /** Índice unificado /blog (todos los carriles). */
@@ -106,6 +151,7 @@ export function renderBlogIndex(
   const canonical = `${siteUrl}${c.path}`;
   const altEs = `${siteUrl}${HUB.es.path}`;
   const altEn = `${siteUrl}${HUB.en.path}`;
+  const altIt = `${siteUrl}${HUB.it.path}`;
 
   const cards = list
     .map((p, i) => {
@@ -119,7 +165,7 @@ export function renderBlogIndex(
           </div>
           <h2>${esc(p.title)}</h2>
           <p>${esc(p.description)}</p>
-          <span class="post-card-more" aria-hidden="true">${lang === "es" ? "Leer" : "Read"} →</span>
+          <span class="post-card-more" aria-hidden="true">${READ[lang]} →</span>
         </a>`;
     })
     .join("\n");
@@ -134,6 +180,7 @@ export function renderBlogIndex(
     <link rel="canonical" href="${canonical}" />
     <link rel="alternate" hreflang="es" href="${altEs}" />
     <link rel="alternate" hreflang="en" href="${altEn}" />
+    <link rel="alternate" hreflang="it" href="${altIt}" />
     <link rel="alternate" hreflang="x-default" href="${altEs}" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="theme-color" content="#E84B3C" />
@@ -196,6 +243,8 @@ ${analyticsHeadSnippets()}    <style>
             <a href="${HUB.es.path}" hreflang="es" class="${lang === "es" ? "active" : ""}">ES</a>
             ·
             <a href="${HUB.en.path}" hreflang="en" class="${lang === "en" ? "active" : ""}">EN</a>
+            ·
+            <a href="${HUB.it.path}" hreflang="it" class="${lang === "it" ? "active" : ""}">IT</a>
           </span>
           <a class="btn-cta" href="${c.agenda}" target="_blank" rel="noopener noreferrer">${c.cta}</a>
         </div>
@@ -226,9 +275,7 @@ export function renderBlogTeaserCards(
       ? postsAll(posts, lang).slice(0, limit)
       : postsFor(posts, destino, lang).slice(0, limit);
   if (!list.length) {
-    return lang === "es"
-      ? `<p class="blog-teaser-empty">Pronto publicamos las primeras guías.</p>`
-      : `<p class="blog-teaser-empty">First guides coming soon.</p>`;
+    return `<p class="blog-teaser-empty">${TEASER_EMPTY[lang]}</p>`;
   }
   return list
     .map((p) => {
@@ -238,7 +285,7 @@ export function renderBlogTeaserCards(
   <time datetime="${esc(p.date)}">${esc(formatDate(p.date, lang))}</time>
   <h3>${esc(p.title)}</h3>
   <p>${esc(p.description)}</p>
-  <span class="blog-teaser-more">${lang === "es" ? "Leer artículo" : "Read article"} →</span>
+  <span class="blog-teaser-more">${READ_ARTICLE[lang]} →</span>
 </a>`;
     })
     .join("\n");

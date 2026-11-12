@@ -1,112 +1,125 @@
-import type { Metadata } from "next";
 import { HeroComoLoHacemos } from "@/components/sections/como-lo-hacemos/HeroComoLoHacemos";
 import { CuatroPasos } from "@/components/sections/como-lo-hacemos/CuatroPasos";
 import { DetrasDeCadaPedido } from "@/components/sections/como-lo-hacemos/DetrasDeCadaPedido";
 import { pasos } from "@/data/comoLoHacemos";
 
-import { SITE_URL as SITE } from "@/lib/site";
+import {
+  breadcrumbList,
+  getRequestLocale,
+  jsonLdHtml,
+  pageMetadata,
+} from "@/lib/seo";
+
 const PATH = "/como-lo-hacemos";
 
-const TITLE = "Cómo lo hacemos | Pimentón — Operación de delivery profesional";
-const DESCRIPTION =
-  "Un proceso claro, con foco en rentabilidad: analizamos, diagnosticamos, operamos y optimizamos cada delivery con datos reales y un Growth Manager dedicado.";
-
-export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
-  keywords: [
-    "cómo trabaja Pimentón",
-    "operación de delivery",
-    "proceso de delivery profesional",
-    "Growth Manager delivery",
-    "gestión de Foodapps",
-    "optimización de delivery",
-    "análisis de delivery para restaurantes",
-    "Rappi",
-    "PedidosYa",
-    "Uber Eats",
-  ],
-  alternates: { canonical: PATH },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
-  // openGraph/twitter completos: el merge de metadata es shallow, así que el
-  // OG del layout se reemplaza (no se hereda).
-  openGraph: {
-    type: "website",
-    siteName: "Pimentón",
-    locale: "es_AR",
-    url: PATH,
-    title: TITLE,
-    description:
-      "Operamos tu delivery como si fuera nuestro: analizamos, diagnosticamos, operamos y optimizamos con datos reales y un Growth Manager dedicado.",
-    images: [
-      {
-        url: "/og-default.png",
-        width: 1200,
-        height: 630,
-        alt: "Pimentón — Cómo lo hacemos",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: TITLE,
-    description:
-      "Operamos tu delivery como si fuera nuestro. Un proceso claro, con foco en rentabilidad.",
-    images: ["/og-default.png"],
-  },
+const TITLE = {
+  es: "Cómo lo hacemos | Pimentón — Operación de delivery profesional",
+  en: "How we do it | Pimentón — Professional delivery operations",
+  it: "Come lavoriamo | Pimentón — Gestione professionale del delivery",
+};
+const DESCRIPTION = {
+  es: "Un proceso claro, con foco en rentabilidad: analizamos, diagnosticamos, operamos y optimizamos cada delivery con datos reales y un Growth Manager dedicado.",
+  en: "A clear process focused on profitability: we analyze, diagnose, operate, and optimize every delivery with real data and a dedicated Growth Manager.",
+  it: "Un processo chiaro, focalizzato sulla redditività: analizziamo, diagnostichiamo, gestiamo e ottimizziamo ogni delivery con dati reali e un Growth Manager dedicato.",
 };
 
-// Structured data (JSON-LD): breadcrumb + el proceso de 4 pasos descrito como
-// HowTo. Ayuda a Google/AI a entender la página como un proceso operativo
-// concreto (analizar → diagnosticar → operar → optimizar).
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Inicio", item: `${SITE}/` },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "Cómo lo hacemos",
-          item: `${SITE}${PATH}`,
-        },
+export async function generateMetadata() {
+  return pageMetadata({
+    path: PATH,
+    title: TITLE,
+    description: DESCRIPTION,
+    ogDescription: {
+      es: "Operamos tu delivery como si fuera nuestro: analizamos, diagnosticamos, operamos y optimizamos con datos reales y un Growth Manager dedicado.",
+      en: "We run your delivery as if it were ours: we analyze, diagnose, operate, and optimize with real data and a dedicated Growth Manager.",
+      it: "Gestiamo il tuo delivery come se fosse nostro: analizziamo, diagnostichiamo, gestiamo e ottimizziamo con dati reali e un Growth Manager dedicato.",
+    },
+    twitterDescription: {
+      es: "Operamos tu delivery como si fuera nuestro. Un proceso claro, con foco en rentabilidad.",
+      en: "We run your delivery as if it were ours. A clear process, focused on profitability.",
+      it: "Gestiamo il tuo delivery come se fosse nostro. Un processo chiaro, focalizzato sulla redditività.",
+    },
+    keywords: {
+      es: [
+        "cómo trabaja Pimentón",
+        "operación de delivery",
+        "proceso de delivery profesional",
+        "Growth Manager delivery",
+        "gestión de Foodapps",
+        "optimización de delivery",
+        "análisis de delivery para restaurantes",
+        "Rappi",
+        "PedidosYa",
+        "Uber Eats",
+      ],
+      en: [
+        "how Pimentón works",
+        "delivery operations",
+        "professional delivery process",
+        "delivery Growth Manager",
+        "delivery app management",
+        "delivery optimization",
+        "restaurant delivery analysis",
+        "Rappi",
+        "PedidosYa",
+        "Uber Eats",
+      ],
+      it: [
+        "come lavora Pimentón",
+        "gestione operativa delivery",
+        "processo delivery professionale",
+        "Growth Manager delivery",
+        "gestione app delivery",
+        "ottimizzazione delivery",
+        "analisi delivery ristoranti",
+        "Glovo",
+        "Deliveroo",
+        "Uber Eats",
       ],
     },
-    {
-      "@type": "HowTo",
-      name: "Cómo operamos tu delivery en Pimentón",
-      description: DESCRIPTION,
-      step: pasos.map((p, i) => ({
-        "@type": "HowToStep",
-        position: i + 1,
-        name: p.title.es,
-        text: `${p.description.es} ${p.highlight.es}`,
-      })),
+    ogAlt: {
+      es: "Pimentón — Cómo lo hacemos",
+      en: "Pimentón — How we do it",
+      it: "Pimentón — Come lavoriamo",
     },
-  ],
-};
+  });
+}
 
-export default function ComoLoHacemosPage() {
+export default async function ComoLoHacemosPage() {
+  const lang = await getRequestLocale();
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      breadcrumbList(lang, [
+        { name: { es: "Inicio", en: "Home", it: "Home" }, path: "/" },
+        {
+          name: { es: "Cómo lo hacemos", en: "How we do it", it: "Come lavoriamo" },
+          path: PATH,
+        },
+      ]),
+      {
+        "@type": "HowTo",
+        name: {
+          es: "Cómo operamos tu delivery en Pimentón",
+          en: "How we operate your delivery at Pimentón",
+          it: "Come gestiamo il tuo delivery in Pimentón",
+        }[lang],
+        description: DESCRIPTION[lang],
+        step: pasos.map((p, i) => ({
+          "@type": "HowToStep",
+          position: i + 1,
+          name: p.title[lang] ?? p.title.es,
+          text: `${p.description[lang] ?? p.description.es} ${p.highlight[lang] ?? p.highlight.es}`,
+        })),
+      },
+    ],
+  };
+
   return (
     <main>
       {/* JSON-LD structured data */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-        }}
+        dangerouslySetInnerHTML={{ __html: jsonLdHtml(jsonLd) }}
       />
 
       {/* 1. Hero (oscuro) — video de fondo + overlay */}

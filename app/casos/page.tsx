@@ -1,97 +1,103 @@
-import type { Metadata } from "next";
 import { CasosHero } from "@/components/sections/casos/CasosHero";
 import { CasosGrid } from "@/components/sections/casos/CasosGrid";
 import { CtaPotenciar } from "@/components/sections/casos/CtaPotenciar";
 import { casos } from "@/data/casos";
 
-import { SITE_URL as SITE } from "@/lib/site";
-const PATH = "/casos";
-const TITLE = "Casos de éxito | Pimentón";
-const DESCRIPTION =
-  "Restaurantes que profesionalizaron su delivery con Pimentón y lo convirtieron en un canal rentable. Resultados reales: de +30% a +200% en ventas, más rentabilidad y escala.";
+import {
+  breadcrumbList,
+  getRequestLocale,
+  jsonLdHtml,
+  localeUrl,
+  pageMetadata,
+} from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
-  keywords: [
-    "casos de éxito delivery",
-    "resultados delivery restaurantes",
-    "Pimentón casos",
-    "crecimiento en Foodapps",
-    "rentabilidad delivery",
-    "Uber Eats",
-    "Rappi",
-    "PedidosYa",
-  ],
-  alternates: { canonical: PATH },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
-  openGraph: {
-    type: "website",
-    siteName: "Pimentón",
-    locale: "es_AR",
-    url: PATH,
-    title: TITLE,
-    description: DESCRIPTION,
-    images: [
-      { url: "/og-default.png", width: 1200, height: 630, alt: "Pimentón — Casos de éxito" },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: TITLE,
-    description: DESCRIPTION,
-    images: ["/og-default.png"],
-  },
+const PATH = "/casos";
+const TITLE = {
+  es: "Casos de éxito | Pimentón",
+  en: "Success stories | Pimentón",
+  it: "Casi di successo | Pimentón",
+};
+const DESCRIPTION = {
+  es: "Restaurantes que profesionalizaron su delivery con Pimentón y lo convirtieron en un canal rentable. Resultados reales: de +30% a +200% en ventas, más rentabilidad y escala.",
+  en: "Restaurants that professionalized delivery with Pimentón and turned it into a profitable channel. Real results: from +30% to +200% in sales, plus margin and scale.",
+  it: "Ristoranti che hanno reso professionale il proprio delivery con Pimentón trasformandolo in un canale redditizio. Risultati reali: da +30% a +200% di vendite, più margine e scala.",
 };
 
-// JSON-LD: breadcrumb + colección de casos (ItemList) para que Google/AI
-// entiendan la página como un listado de casos de éxito.
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Inicio", item: `${SITE}/` },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "Casos de éxito",
-          item: `${SITE}${PATH}`,
-        },
+export async function generateMetadata() {
+  return pageMetadata({
+    path: PATH,
+    title: TITLE,
+    description: DESCRIPTION,
+    keywords: {
+      es: [
+        "casos de éxito delivery",
+        "resultados delivery restaurantes",
+        "Pimentón casos",
+        "crecimiento en Foodapps",
+        "rentabilidad delivery",
+        "Uber Eats",
+        "Rappi",
+        "PedidosYa",
+      ],
+      en: [
+        "delivery success stories",
+        "restaurant delivery results",
+        "Pimentón case studies",
+        "delivery app growth",
+        "delivery profitability",
+        "Uber Eats",
+        "Rappi",
+        "PedidosYa",
+      ],
+      it: [
+        "casi di successo delivery",
+        "risultati delivery ristoranti",
+        "Pimentón casi studio",
+        "crescita app delivery",
+        "redditività delivery",
+        "Uber Eats",
+        "Glovo",
+        "Deliveroo",
       ],
     },
-    {
-      "@type": "ItemList",
-      name: "Casos de éxito de Pimentón",
-      itemListElement: casos.map((c, i) => ({
-        "@type": "ListItem",
-        position: i + 1,
-        name: `${c.marca} — ${c.tagline.es}`,
-        url: `${SITE}${PATH}/${c.slug}`,
-      })),
+    ogAlt: {
+      es: "Pimentón — Casos de éxito",
+      en: "Pimentón — Success stories",
+      it: "Pimentón — Casi di successo",
     },
-  ],
-};
+  });
+}
 
-export default function CasosPage() {
+export default async function CasosPage() {
+  const lang = await getRequestLocale();
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      breadcrumbList(lang, [
+        { name: { es: "Inicio", en: "Home", it: "Home" }, path: "/" },
+        {
+          name: { es: "Casos de éxito", en: "Success stories", it: "Casi di successo" },
+          path: PATH,
+        },
+      ]),
+      {
+        "@type": "ItemList",
+        name: TITLE[lang],
+        itemListElement: casos.map((c, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: `${c.marca} — ${c.tagline[lang] ?? c.tagline.es}`,
+          url: localeUrl(`${PATH}/${c.slug}`, lang),
+        })),
+      },
+    ],
+  };
+
   return (
     <main>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-        }}
+        dangerouslySetInnerHTML={{ __html: jsonLdHtml(jsonLd) }}
       />
       <CasosHero />
       <CasosGrid />

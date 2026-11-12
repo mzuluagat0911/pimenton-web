@@ -56,7 +56,7 @@ export function researchUser(seed: string, covered: string[], n: number): string
 export function structureSystem(): string {
   return [
     "Convierte los hallazgos en ideas estructuradas. Devuelve EXACTAMENTE el esquema JSON.",
-    "title_es en español y title_en en inglés, atractivos y con la keyword.",
+    "title_es en español, title_en en inglés y title_it en italiano, atractivos y con la keyword.",
     "Títulos neutros: sin clickbait anti-apps ni lenguaje de 'guerra' contra marketplaces.",
   ].join("\n");
 }

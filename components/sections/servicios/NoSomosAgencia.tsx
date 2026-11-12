@@ -42,10 +42,10 @@ function AgencyDeck() {
             <div className="size-6 flex-shrink-0 rounded bg-pimenton-text/12" />
             <div>
               <p className="text-[13px] font-medium text-pimenton-text-muted">
-                {t({ es: "Reporte mensual", en: "Monthly report" })}
+                {t({ es: "Reporte mensual", en: "Monthly report", it: "Report mensile" })}
               </p>
               <p className="mt-0.5 text-[10px] uppercase tracking-[0.16em] text-pimenton-text-subtle">
-                {t({ es: "Resumen ejecutivo · Q3", en: "Executive summary · Q3" })}
+                {t({ es: "Resumen ejecutivo · Q3", en: "Executive summary · Q3", it: "Sintesi esecutiva · Q3" })}
               </p>
             </div>
           </div>
@@ -150,12 +150,12 @@ export function NoSomosAgencia() {
             className="text-3xl font-semibold leading-[1.12] tracking-tight text-pimenton-text sm:text-4xl"
           >
             <span className="block">
-              {t({ es: "Somos un equipo", en: "We're a delivery" })}
+              {t({ es: "Somos un equipo", en: "We're a delivery", it: "Siamo un team" })}
             </span>
             <span className="mt-1 block">
-              {t({ es: "de ", en: "" })}
+              {t({ es: "de ", en: "", it: "di " })}
               <Highlight color="coral">
-                {t({ es: "operación de delivery.", en: "operations team." })}
+                {t({ es: "operación de delivery.", en: "operations team.", it: "operazioni delivery." })}
               </Highlight>
             </span>
           </motion.h2>
@@ -169,6 +169,7 @@ export function NoSomosAgencia() {
             {t({
               es: "La diferencia se ve cuando abres nuestra pantalla.",
               en: "The difference shows when you open our screen.",
+              it: "La differenza si vede quando apri il nostro schermo.",
             })}
           </motion.p>
         </div>
@@ -177,11 +178,12 @@ export function NoSomosAgencia() {
         <div className="mt-14 grid grid-cols-1 items-start gap-8 sm:mt-20 md:grid-cols-2 lg:gap-12">
           <Column
             visual={<AgencyDeck />}
-            label={t({ es: "Agencias tradicionales", en: "Traditional agencies" })}
+            label={t({ es: "Agencias tradicionales", en: "Traditional agencies", it: "Agenzie tradizionali" })}
             labelClass="text-pimenton-text-muted"
             text={t({
               es: "Te entregan slides, métricas vanity y reportes de actividad. La operación sigue siendo tu problema.",
               en: "They hand you slides, vanity metrics, and activity reports. The operation is still your problem.",
+              it: "Ti consegnano slide, metriche vanity e report di attività. L'operatività resta un tuo problema.",
             })}
             textClass="text-pimenton-text-muted"
             delay={0}
@@ -191,7 +193,7 @@ export function NoSomosAgencia() {
             visual={<OrdenesChart />}
             label={
               <>
-                {t({ es: "Equipo", en: "Team" })}
+                {t({ es: "Equipo", en: "Team", it: "Team" })}
                 {/* logo 25% más grande que el texto para darle peso */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -206,6 +208,7 @@ export function NoSomosAgencia() {
             text={t({
               es: "Operamos tu delivery todos los días. Tomamos decisiones, ajustamos campañas, optimizamos menús. Los resultados se ven en tu P&L.",
               en: "We operate your delivery every day. We make decisions, adjust campaigns, optimize menus. The results show up in your P&L.",
+              it: "Operiamo il tuo delivery ogni giorno. Prendiamo decisioni, regoliamo campagne, ottimizziamo menu. I risultati si vedono nel tuo P&L.",
             })}
             textClass="text-pimenton-text"
             delay={0.2}

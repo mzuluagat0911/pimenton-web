@@ -1,0 +1,23 @@
+{
+  "source_slug": "como-comparar-sucursales-delivery",
+  "slug": "confrontare-punti-vendita-delivery",
+  "destino": "control-room",
+  "date": "2026-09-06",
+  "title": "Come confrontare i punti vendita delivery in modo equo",
+  "headline": "Come confrontare i punti vendita delivery: normalizzare prima di fare la classifica",
+  "meta_description": "Metodo in 3 livelli per confrontare i punti vendita delivery senza distorsioni: normalizza per volume, fascia oraria e mix, e confronta same-store.",
+  "keywords": [
+    "come confrontare i punti vendita delivery",
+    "confrontare le performance di due locali delivery",
+    "confrontare punti vendita delivery senza Excel",
+    "classifica equa dei punti vendita delivery",
+    "normalizzare le metriche delivery per volume e orario",
+    "perché un punto vendita sembra peggiore nel delivery",
+    "benchmark interno dei locali delivery"
+  ],
+  "eyebrow": "Control Room · Ops",
+  "byline": "Di Control Room · 2026-09-06 · 3 min di lettura",
+  "answer_html": "<p>Confrontare i punti vendita delivery in modo equo significa <strong>normalizzare prima di fare la classifica</strong>: correggere le metriche per volume, fascia oraria e mix di prodotti, e confrontare ogni locale con se stesso nel tempo (same-store). Solo così una classifica riflette l'operatività reale e non le dimensioni o l'orario del locale. Senza normalizzare, un punto vendita piccolo o con un orario complicato sembra peggiore senza esserlo.</p>",
+  "body_html": "<p>Quando hai più locali che lavorano con il delivery, la tentazione è costruire una dashboard con il rating e i tempi di ciascuno e ordinarli dal migliore al peggiore. Il problema è che quella classifica è quasi sempre ingiusta: penalizza il punto vendita piccolo, quello del turno serale e quello che vende un mix più difficile. Confrontare senza normalizzare è come cronometrare due corridori senza sapere che uno ha corso in salita. Questo articolo ti dà un metodo in tre livelli perché il confronto tra locali sia legittimo e si traduca in un intervento prioritario, non in un grafico decorativo.</p><h2>Perché confrontare i punti vendita delivery sui dati grezzi inganna</h2><p>Confrontare sui dati grezzi significa ordinare i locali in base ai numeri assoluti senza correggere per il contesto. Il risultato inganna per tre motivi:</p><ul><li><strong>Volume diverso:</strong> un punto vendita con 40 ordini a turno e un altro con 200 non giocano la stessa partita. Un errore in quello piccolo pesa molto di più in percentuale.</li><li><strong>Fascia oraria:</strong> il picco delle 21 non si gestisce come il pranzo tranquillo. Tempi e cancellazioni salgono naturalmente nelle ore di punta.</li><li><strong>Mix di prodotti:</strong> un locale che vende più combo composti o piatti a cottura lenta avrà tempi di preparazione più alti per il suo menu, non per la sua squadra.</li></ul><p>Se non correggi per questi fattori, finisci per intervenire sul punto vendita sbagliato e lasciare fermo quello che ha davvero un problema.</p><h2>Livello 1: normalizzare per volume</h2><p>Normalizzare per volume significa trasformare i numeri assoluti in tassi, così che locali di dimensioni diverse siano confrontabili. La regola pratica:</p><ul><li><strong>Confronti in percentuale</strong> tutto ciò che dipende dalle dimensioni: tasso di cancellazione, % di ordini fuori tempo, % di ordini con reclamo, rating medio.</li><li><strong>Confronti in assoluto</strong> solo ciò che vuoi dimensionare come impatto: numero di ordini persi, soldi lasciati sul tavolo, numero di reclami del turno.</li></ul><p>Un esempio: il Punto vendita A ha avuto 6 cancellazioni su 40 ordini (15%) e il B 10 su 200 (5%). In assoluto il B",
+  "faq": []
+}

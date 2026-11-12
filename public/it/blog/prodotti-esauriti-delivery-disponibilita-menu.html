@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Prodotti esauriti nel delivery: misurare la disponibilità menu</title>
+    <meta name="description" content="Trasforma i prodotti esauriti nel delivery in una metrica: tasso di disponibilità del menu per punto vendita, soglie di alert e controllo rituale per turno." />
+    <meta name="keywords" content="prodotti esauriti nel delivery, disponibilità del menu nelle app di delivery, come ridurre i prodotti esauriti nel delivery multi-sede, cos'è il tasso di disponibilità del menu, quanto si perde per articoli esauriti nel delivery, quali piatti vengono messi in pausa più spesso nei miei locali, mettere in pausa un piatto vs segnarlo esaurito, come misurare la disponibilità del menu per punto vendita" />
+    <link rel="canonical" href="https://www.pimenton.io/it/blog/prodotti-esauriti-delivery-disponibilita-menu" />
+    <link rel="alternate" hreflang="es" href="https://www.pimenton.io/blog/productos-agotados-delivery-disponibilidad-menu" />
+    <link rel="alternate" hreflang="en" href="https://www.pimenton.io/en/blog/out-of-stock-delivery-menu-availability" />
+    <link rel="alternate" hreflang="it" href="https://www.pimenton.io/it/blog/prodotti-esauriti-delivery-disponibilita-menu" />
+    <link rel="alternate" hreflang="x-default" href="https://www.pimenton.io/blog/productos-agotados-delivery-disponibilidad-menu" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Prodotti esauriti nel delivery: misurare la disponibilità menu" />
+    <meta property="og:description" content="Trasforma i prodotti esauriti nel delivery in una metrica: tasso di disponibilità del menu per punto vendita, soglie di alert e controllo rituale per turno." />
+    <meta property="og:url" content="https://www.pimenton.io/it/blog/prodotti-esauriti-delivery-disponibilita-menu" />
+    <meta property="og:image" content="https://www.pimenton.io/assets/casos/la-piccola-italia/hero.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Prodotti esauriti nel delivery: misurare la disponibilità menu" />
+    <meta name="twitter:description" content="Trasforma i prodotti esauriti nel delivery in una metrica: tasso di disponibilità del menu per punto vendita, soglie di alert e controllo rituale per turno." />
+    <meta name="twitter:image" content="https://www.pimenton.io/assets/casos/la-piccola-italia/hero.jpg" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="google-site-verification" content="lbmAEFkAWQmWQygVAsQW0qs8anyrhaUhAE_nIXK0pls" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-25DBL0EY6V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-25DBL0EY6V', { anonymize_ip: true });
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Prodotti esauriti nel delivery: come misurare la disponibilità del menu per punto vendita",
+      "description": "Trasforma i prodotti esauriti nel delivery in una metrica: tasso di disponibilità del menu per punto vendita, soglie di alert e controllo rituale per turno.",
+      "inLanguage": "it",
+      "author": {
+            "@type": "Organization",
+            "name": "Control Room by Pimentón",
+            "url": "https://www.pimenton.io/it"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.pimenton.io/assets/casos/la-piccola-italia/hero.jpg"
+            }
+      },
+      "datePublished": "2026-09-20",
+      "dateModified": "2026-09-20",
+      "mainEntityOfPage": "https://www.pimenton.io/it/blog/prodotti-esauriti-delivery-disponibilita-menu",
+      "image": "https://www.pimenton.io/assets/casos/la-piccola-italia/hero.jpg"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "Cosa significa che un prodotto è esaurito o in pausa in un'app di delivery?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Un prodotto in pausa è un articolo disattivato in modo deliberato e temporaneo (per una decisione operativa, la mancanza puntuale di un ingrediente o per proteggere i tempi). Un prodotto esaurito di solito è un articolo che ha smesso di essere disponibile senza previsione, per mancanza di controllo su stock o prep. In entrambi i casi smette di vendere, ma mettere in pausa è gestione mentre esaurire a sorpresa è di solito un sintomo da correggere."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Quanto incidono sulle vendite gli articoli esauriti?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Ogni articolo non disponibile nel picco è una finestra di vendita chiusa: il cliente sceglie altro o cambia ristorante. L'impatto è misurabile se registri quanto pesa quel piatto sui tuoi ticket e per quanto tempo è rimasto esaurito. Senza misurarla, quella perdita sparisce dal radar e si ripete turno dopo turno."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Come si calcola il tasso di disponibilità del menu?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Il tasso di disponibilità del menu è la percentuale di articoli vendibili sul totale pubblicato in una finestra di tempo: (articoli vendibili ÷ articoli pubblicati) × 100. Conviene misurarlo per punto vendita e per turno, e ponderarlo per gli articoli che vendono di più, perché esaurire un piatto di punta non pesa come esaurire un contorno secondario."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Qual è un tasso di esauriti accettabile?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Dipende dall'operatività, ma una buona bussola è mantenere gli articoli top sopra il 97-98% di disponibilità nelle fasce di punta. Più che puntare a zero esauriti, l'obiettivo è che ogni articolo non disponibile sia una decisione con un motivo e un orario di riattivazione, non una sorpresa ricorrente."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Perché un locale esaurisce più articoli di un altro con lo stesso menu?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Quasi sempre per differenze di ritmo operativo: previsione degli acquisti diversa, prep non allineata alla domanda di ogni fascia, comunicazione di turno debole o criteri incoerenti per mettere in pausa. Confrontare la disponibilità per punto vendita fa emergere queste differenze senza bisogno di lunghi audit."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Cosa controllare in ogni turno per non perdere vendite per mancanze?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "All'inizio di ogni fascia di punta, verifica quali articoli sono in pausa o esauriti in ogni locale, conferma che ogni pausa abbia un motivo e un orario di riattivazione, riattiva tutto ciò che ha già stock pronto e annota le recidive per regolare acquisti e prep. È un controllo di pochi minuti che evita perdite silenziose."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://www.pimenton.io/it"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://www.pimenton.io/it/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Prodotti esauriti nel delivery: come misurare la disponibilità del menu per punto vendita",
+                  "item": "https://www.pimenton.io/it/blog/prodotti-esauriti-delivery-disponibilita-menu"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-control-room">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/it" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-blanco.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/it">Home</a>
+          <a href="/it/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma / Language / Lingua">
+            <a class="" href="/blog/productos-agotados-delivery-disponibilidad-menu" hreflang="es">ES</a>
+            <a class="" href="/en/blog/out-of-stock-delivery-menu-availability" hreflang="en">EN</a>
+            <a class="active" href="/it/blog/prodotti-esauriti-delivery-disponibilita-menu" hreflang="it">IT</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Control Room · Ops</p>
+          <h1>Prodotti esauriti nel delivery: come misurare la disponibilità del menu per punto vendita</h1>
+          <p class="lead-answer"><p>I <strong>prodotti esauriti nel delivery</strong> sono articoli che smettono di essere venduti nell'app perché vengono messi in pausa per scelta o si esauriscono per mancanza di controllo su cucina o stock. Il modo per gestirli è misurare il <strong>tasso di disponibilità del menu</strong>: la percentuale del menu attivo e vendibile per punto vendita e per turno. Con una soglia di alert per articolo, un responsabile e un trigger d'azione, l'esaurito smette di essere un problema invisibile di cucina e diventa un indicatore operativo confrontabile tra locali.</p></p>
+          <p class="byline">Di Control Room · 2026-09-20 · 5 min di lettura</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/casos/la-piccola-italia/hero.jpg" alt="Sala di un ristorante italiano" width="1200" height="800" loading="eager" />
+  <figcaption>Un'esperienza che viaggia anche nell'app.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>10'</b><span>standup quotidiano, non una riunione infinita</span></div>
+    <div class="blog-stat"><b>3</b><span>livelli: quotidiano, weekly, war room</span></div>
+    <div class="blog-stat"><b>1</b><span>dashboard. Il resto è rumore</span></div>
+</div>
+<figure class="blog-chart blog-chart--bars" data-blog-visuals="lead">
+  <p class="chart-kicker">Rituale ops</p>
+  <figcaption>Cosa si guarda ogni mattina (e in che ordine)</figcaption>
+  <div class="bars">
+    <div class="bar-row is-accent">
+      <div class="bar-meta"><span>Cancellazioni / 86</span><b>1º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-0" style="width:90%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Tempo di preparazione</span><b>2º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-1" style="width:75%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Connettività / stock</span><b>3º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-2" style="width:62%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Scontrino e mix</span><b>4º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-3" style="width:50%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ads e ranking</span><b>5º</b></div>
+      <div class="bar-track"><span class="bar-fill seg-4" style="width:38%"></span></div>
+    </div>
+  </div>
+  <p class="chart-note">Se la dashboard non sta in uno schermo, non si usa. Cinque indicatori, responsabile, soglia, decisione.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>Nel delivery, un piatto che appare come non disponibile è una vendita che non avviene e un cliente che probabilmente sceglie altro —o direttamente un altro ristorante—. Il problema è che la maggior parte dei team tratta l'esaurito come un incidente puntuale di cucina, quando in realtà è una <strong>metrica operativa</strong> che si può misurare, confrontare tra punti vendita e anticipare. Rileggere la mancanza come dato cambia la conversazione: smetti di spegnere incendi e inizi a vedere dove e quando ti sfuggono vendite.</p><h2>Cos'è il tasso di disponibilità del menu</h2><p>Il <strong>tasso di disponibilità del menu</strong> è la percentuale del menu attivo che è davvero vendibile in un dato momento. Se hai 100 articoli pubblicati e 8 sono in pausa o segnati come esauriti, la tua disponibilità è del 92%. È una metrica semplice ma potente perché si può misurare per <strong>articolo, per turno e per punto vendita</strong>, e questo la rende confrontabile.</p><p>La formula base è diretta:</p><ul><li><strong>Disponibilità (%) = (articoli vendibili ÷ articoli pubblicati) × 100</strong>, misurata in una finestra di tempo.</li><li>Ancora meglio: ponderarla per gli <em>articoli che contano</em> (i top di vendita), perché esaurire un piatto di punta non pesa come esaurire un contorno secondario.</li></ul><p>Misurata così, la disponibilità funziona come un <strong>allarme precoce</strong>: quando cala, qualcosa nell'operatività —acquisti, prep, comunicazione di turno— si sta rompendo prima che si veda nel fatturato.</p><h2>Mettere in pausa per scelta vs esaurire per mancanza di controllo</h2><p>Ecco la svolta chiave. Non tutti gli articoli non disponibili sono uguali, e confonderli è ciò che impedisce di migliorare.</p><h3>Mettere in pausa un piatto: una decisione operativa</h3><p>Mettere in pausa è un'azione deliberata e temporanea: è finito un ingrediente specifico, c'è un ritardo in cucina nel picco, o si decide di togliere un piatto complesso per proteggere i tempi di consegna. È gestione. Ha un motivo e, idealmente, un orario di riattivazione.</p><h3>Segnare come esaurito: spesso un sintomo di mancanza di controllo</h3><p>Esaurire a sorpresa —restare senza prodotto senza averlo previsto— di solito è un sintomo: cattiva previsione degli acquisti, prep insufficiente o mancanza di comunicazione tra la cucina e chi gestisce l'app. Quando lo stesso articolo si esaurisce tre venerdì di fila, non è sfortuna: è uno schema.</p><p>Distinguere <strong>mettere in pausa vs esaurire</strong> ti permette di separare il rumore dal segnale. Un locale con alta disponibilità e pause puntuali ben gestite lavora in modo diverso da uno che esaurisce senza controllo, anche se la percentuale sembra simile.</p>          <figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/gallery/plato-sushi.webp" alt="Piatto di sushi pronto per il delivery" width="1200" height="800" loading="lazy" />
+  <figcaption>Una presentazione che converte nell'app.</figcaption>
+</figure>
+          <h2>Quanto si perde e perché un locale esaurisce più di un altro</h2><p>Non serve inventare cifre per capire l'impatto: ogni articolo esaurito nel picco è una finestra di vendita chiusa. Se un piatto rappresenta, per esempio, il 6% dei tuoi ticket ed è non disponibile nelle tre ore centrali del venerdì, quella perdita è misurabile e ricorrente. Senza registrarla, semplicemente sparisce dal radar.</p><p>La domanda più utile nel multi-sede è: <strong>perché un locale esaurisce più articoli di un altro con lo stesso menu?</strong> Le cause tipiche:</p><ul><li><strong>Previsione degli acquisti diversa</strong> tra i manager.</li><li><strong>Prep non allineata</strong> alla domanda reale di ogni fascia.</li><li><strong>Comunicazione di turno debole</strong>: nessuno riattiva un articolo quando torna disponibile lo stock.</li><li><strong>Criteri incoerenti</strong>: un locale mette in pausa per proteggere i tempi, un altro lascia esaurire senza registrarlo.</li></ul><p>Confrontare la disponibilità per punto vendita fa emergere queste differenze senza bisogno di un Excel infinito. Il locale che esaurisce di più non ha una cucina peggiore: ha un ritmo di controllo peggiore.</p><h2>Mini-playbook: soglia, responsabile e trigger</h2><p>Misurare senza agire non serve. Traduci la disponibilità in un playbook con tre elementi per ogni articolo chiave:</p><ol><li><strong>Soglia di alert</strong>: per esempio, disponibilità del menu sotto il 95% nel turno di punta, o un articolo top esaurito per più di 30 minuti.</li><li><strong>Responsabile</strong>: chi vede l'alert e chi lo risolve (manager di turno, responsabile di cucina).</li><li><strong>Trigger d'azione</strong>: cosa si fa quando scatta —riattivare, rifornire, regolare la prep del turno successivo o mettere formalmente in pausa con orario di ritorno.</li></ol><p>L'obiettivo non è zero esauriti: è che ogni non disponibile sia una <strong>decisione</strong>, non una sorpresa. Un tasso accettabile dipende dalla tua operatività, ma una buona bussola è mantenere gli articoli top sopra il 97-98% di disponibilità nel picco e analizzare qualsiasi schema che si ripeta.</p><h2>Il rituale: controllo all'inizio di ogni fascia di punta</h2><p>La disponibilità si conquista nei cinque minuti prima del picco, non durante. Istituisci un controllo fisso all'avvio di ogni fascia (pranzo, pomeriggio, cena):</p><ul><li>Verificare quali articoli sono in pausa o esauriti <strong>in questo momento</strong> nell'app di ogni locale.</li><li>Confermare che ogni pausa abbia un motivo e un orario stimato di riattivazione.</li><li>Riattivare tutto ciò che ha già stock o prep pronta.</li><li>Annotare le recidive per regolare acquisti e prep del giorno dopo.</li></ul><p>Questo rituale trasforma l'esaurito in una conversazione di 3 minuti per turno invece di una perdita silenziosa che si scopre a fine mese.</p><div class="callout"><p><strong>Control Room</strong> è la sala di controllo operativa di Pimentón: ti mostra la disponibilità del menu per punto vendita e turno, evidenzia quali articoli vengono messi in pausa o si esauriscono di più e invia alert perché ogni mancanza sia una decisione e non una sorpresa. Vuoi vedere dove ti sfuggono vendite per prodotti esauriti? <a href="https://wa.me/5491157035170">Scrivici su WhatsApp</a>.</p></div><h2>Errori comuni nel misurare gli esauriti</h2><ul><li><strong>Guardare solo la media del giorno</strong> e perdere il picco, che è quando fa più male.</li><li><strong>Non separare la pausa dall'esaurito</strong>, mescolando gestione e mancanza di controllo.</li><li><strong>Trattare tutti gli articoli allo stesso modo</strong> senza ponderarli per vendite.</li><li><strong>Non assegnare un responsabile</strong>: l'alert senza un proprietario non si risolve.</li><li><strong>Non confrontare tra locali</strong>, perdendo lo schema che spiega la differenza.</li></ul><p>Inizia misurando la disponibilità dei tuoi 10 articoli top per punto vendita e turno. Con quel dato e un rituale di controllo, l'esaurito smette di essere un mistero di cucina e diventa un indicatore che puoi abbassare settimana dopo settimana.</p>
+          <h2 id="faq">Domande frequenti</h2>
+          <div class="faq">
+            <details>
+              <summary>Cosa significa che un prodotto è esaurito o in pausa in un'app di delivery?</summary>
+              <p>Un prodotto in pausa è un articolo disattivato in modo deliberato e temporaneo (per una decisione operativa, la mancanza puntuale di un ingrediente o per proteggere i tempi). Un prodotto esaurito di solito è un articolo che ha smesso di essere disponibile senza previsione, per mancanza di controllo su stock o prep. In entrambi i casi smette di vendere, ma mettere in pausa è gestione mentre esaurire a sorpresa è di solito un sintomo da correggere.</p>
+            </details>
+            <details>
+              <summary>Quanto incidono sulle vendite gli articoli esauriti?</summary>
+              <p>Ogni articolo non disponibile nel picco è una finestra di vendita chiusa: il cliente sceglie altro o cambia ristorante. L'impatto è misurabile se registri quanto pesa quel piatto sui tuoi ticket e per quanto tempo è rimasto esaurito. Senza misurarla, quella perdita sparisce dal radar e si ripete turno dopo turno.</p>
+            </details>
+            <details>
+              <summary>Come si calcola il tasso di disponibilità del menu?</summary>
+              <p>Il tasso di disponibilità del menu è la percentuale di articoli vendibili sul totale pubblicato in una finestra di tempo: (articoli vendibili ÷ articoli pubblicati) × 100. Conviene misurarlo per punto vendita e per turno, e ponderarlo per gli articoli che vendono di più, perché esaurire un piatto di punta non pesa come esaurire un contorno secondario.</p>
+            </details>
+            <details>
+              <summary>Qual è un tasso di esauriti accettabile?</summary>
+              <p>Dipende dall'operatività, ma una buona bussola è mantenere gli articoli top sopra il 97-98% di disponibilità nelle fasce di punta. Più che puntare a zero esauriti, l'obiettivo è che ogni articolo non disponibile sia una decisione con un motivo e un orario di riattivazione, non una sorpresa ricorrente.</p>
+            </details>
+            <details>
+              <summary>Perché un locale esaurisce più articoli di un altro con lo stesso menu?</summary>
+              <p>Quasi sempre per differenze di ritmo operativo: previsione degli acquisti diversa, prep non allineata alla domanda di ogni fascia, comunicazione di turno debole o criteri incoerenti per mettere in pausa. Confrontare la disponibilità per punto vendita fa emergere queste differenze senza bisogno di lunghi audit.</p>
+            </details>
+            <details>
+              <summary>Cosa controllare in ogni turno per non perdere vendite per mancanze?</summary>
+              <p>All'inizio di ogni fascia di punta, verifica quali articoli sono in pausa o esauriti in ogni locale, conferma che ogni pausa abbia un motivo e un orario di riattivazione, riattiva tutto ciò che ha già stock pronto e annota le recidive per regolare acquisti e prep. È un controllo di pochi minuti che evita perdite silenziose.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>Vuoi vedere il tuo delivery con chiarezza?</h2>
+            <p>Scrivici su WhatsApp. Analizziamo cosa sta rompendo il ritmo multi-sede e cosa sistemare per primo.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Scrivici su WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/it">Home</a> · <a href="/it/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Ciao%2C%20vorrei%20una%20consulenza%20gratuita%20sul%20delivery%20con%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

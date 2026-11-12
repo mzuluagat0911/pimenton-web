@@ -19,6 +19,9 @@ export interface PublishedPost {
   pathEn?: string;
   titleEn?: string;
   descriptionEn?: string;
+  pathIt?: string;
+  titleIt?: string;
+  descriptionIt?: string;
 }
 
 interface State {

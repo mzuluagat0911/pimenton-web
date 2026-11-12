@@ -3,7 +3,7 @@
 // footer, schema, hreflang) alineado al brand Pimentón.
 
 import type { Destino } from "../lib/state.js";
-import { WHATSAPP_CTA_EN, WHATSAPP_CTA_ES } from "../config/cta.js";
+import { WHATSAPP_CTA_EN, WHATSAPP_CTA_ES, WHATSAPP_CTA_IT } from "../config/cta.js";
 import { analyticsHeadSnippets } from "../config/analytics.js";
 import {
   coverFor,
@@ -18,7 +18,7 @@ export interface FaqItem {
 
 export interface ArticleDraft {
   destino: Destino;
-  lang: "es" | "en";
+  lang: "es" | "en" | "it";
   slug: string;
   title: string;
   headline: string;
@@ -36,8 +36,25 @@ export interface RenderContext {
   siteUrl: string;
   esPath: string;
   enPath: string;
+  /** Sin itPath el artículo no anuncia versión italiana (posts legacy). */
+  itPath?: string;
   ogImage?: string;
 }
+
+const IT_PIMENTON = {
+  nav: { home: "Home", blog: "Blog", schedule: "WhatsApp" },
+  blogHref: "/it/blog",
+  homeHref: "/it",
+  ctaTitle: "Pronto a far crescere il tuo delivery?",
+  ctaText:
+    "Scrivici su WhatsApp. In pochi minuti organizziamo una consulenza gratuita con diagnosi di canali, operazioni e prossimi passi.",
+  ctaLabel: "Scrivici su WhatsApp",
+  ctaHref: WHATSAPP_CTA_IT,
+  faqTitle: "Domande frequenti",
+  footerLinks: `<a href="/it">Home</a> · <a href="/it/blog">Blog</a> · <a href="${WHATSAPP_CTA_IT}">WhatsApp</a>`,
+  breadcrumbBlog: "Blog",
+  breadcrumbBlogUrl: "/it/blog",
+} as const;
 
 const T = {
   pimenton: {
@@ -69,6 +86,7 @@ const T = {
       breadcrumbBlog: "Blog",
       breadcrumbBlogUrl: "/en/blog",
     },
+    it: IT_PIMENTON,
   },
   "control-room": {
     es: {
@@ -98,6 +116,12 @@ const T = {
       footerLinks: `<a href="/en">Home</a> · <a href="/en/blog">Blog</a> · <a href="${WHATSAPP_CTA_EN}">WhatsApp</a>`,
       breadcrumbBlog: "Blog",
       breadcrumbBlogUrl: "/en/blog",
+    },
+    it: {
+      ...IT_PIMENTON,
+      ctaTitle: "Vuoi vedere il tuo delivery con chiarezza?",
+      ctaText:
+        "Scrivici su WhatsApp. Analizziamo cosa sta rompendo il ritmo multi-sede e cosa sistemare per primo.",
     },
   },
 } as const;
@@ -157,7 +181,7 @@ function jsonLd(draft: ArticleDraft, ctx: RenderContext, canonical: string, ogIm
       {
         "@type": "ListItem",
         position: 1,
-        name: draft.lang === "es" ? "Inicio" : "Home",
+        name: t.nav.home,
         item: `${ctx.siteUrl}${t.homeHref}`,
       },
       {
@@ -180,7 +204,14 @@ export function renderArticle(draft: ArticleDraft, ctx: RenderContext): string {
   const ogImage = ctx.ogImage ?? `${ctx.siteUrl}${cover.src}`;
   const esUrl = `${ctx.siteUrl}${ctx.esPath}`;
   const enUrl = `${ctx.siteUrl}${ctx.enPath}`;
-  const canonical = draft.lang === "es" ? esUrl : enUrl;
+  const itUrl = ctx.itPath ? `${ctx.siteUrl}${ctx.itPath}` : undefined;
+  const canonical = { es: esUrl, en: enUrl, it: itUrl ?? esUrl }[draft.lang];
+  const itAlternate = itUrl
+    ? `\n    <link rel="alternate" hreflang="it" href="${itUrl}" />`
+    : "";
+  const itSwitch = ctx.itPath
+    ? `\n            <a class="${draft.lang === "it" ? "active" : ""}" href="${ctx.itPath}" hreflang="it">IT</a>`
+    : "";
   const themeClass = draft.destino === "control-room" ? "theme-control-room" : "theme-pimenton";
   const logo =
     draft.destino === "control-room"
@@ -197,7 +228,7 @@ export function renderArticle(draft: ArticleDraft, ctx: RenderContext): string {
     <meta name="keywords" content="${esc(draft.keywords.join(", "))}" />
     <link rel="canonical" href="${canonical}" />
     <link rel="alternate" hreflang="es" href="${esUrl}" />
-    <link rel="alternate" hreflang="en" href="${enUrl}" />
+    <link rel="alternate" hreflang="en" href="${enUrl}" />${itAlternate}
     <link rel="alternate" hreflang="x-default" href="${esUrl}" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="${esc(draft.title)}" />
@@ -285,9 +316,9 @@ ${analyticsHeadSnippets()}${jsonLd(draft, ctx, canonical, ogImage)}
           <a class="hide-sm" href="${t.homeHref}">${t.nav.home}</a>
           <a href="${t.blogHref}">${t.nav.blog}</a>
           <a class="hide-sm" href="${t.ctaHref}">${t.nav.schedule}</a>
-          <span class="lang" role="group" aria-label="Idioma">
+          <span class="lang" role="group" aria-label="Idioma / Language / Lingua">
             <a class="${draft.lang === "es" ? "active" : ""}" href="${ctx.esPath}" hreflang="es">ES</a>
-            <a class="${draft.lang === "en" ? "active" : ""}" href="${ctx.enPath}" hreflang="en">EN</a>
+            <a class="${draft.lang === "en" ? "active" : ""}" href="${ctx.enPath}" hreflang="en">EN</a>${itSwitch}
           </span>
         </nav>
       </div>

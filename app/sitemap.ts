@@ -3,7 +3,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { casos } from "@/data/casos";
 import { insights } from "@/data/insights";
-import { LOCALES, withLocale } from "@/lib/i18n";
+import { blogPath, LOCALES, withLocale } from "@/lib/i18n";
 
 import { SITE_URL as SITE } from "@/lib/site";
 
@@ -21,6 +21,7 @@ const STATIC_PATHS = [
 interface BlogPost {
   path: string;
   pathEn?: string;
+  pathIt?: string;
   date: string;
 }
 
@@ -38,7 +39,7 @@ function loadBlogPosts(): BlogPost[] {
 }
 
 // Solo rutas públicas existentes. /lab/* queda fuera.
-// Blog motor: hubs + posts desde motor/data/state.json (fuera de /es|/en).
+// Blog motor: hubs + posts desde motor/data/state.json (fuera de /es|/en|/it).
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 
@@ -73,43 +74,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
-  entries.push(
-    {
-      url: `${SITE}/blog`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE}/en/blog`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE}/blog/control-room`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.7,
-    },
-    {
-      url: `${SITE}/en/blog/control-room`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.7,
-    },
-  );
+  for (const locale of LOCALES) {
+    entries.push(
+      {
+        url: `${SITE}${blogPath(locale)}`,
+        lastModified,
+        changeFrequency: "weekly",
+        priority: 0.8,
+      },
+      {
+        url: `${SITE}${blogPath(locale, "control-room")}`,
+        lastModified,
+        changeFrequency: "weekly",
+        priority: 0.7,
+      },
+    );
+  }
 
   for (const post of loadBlogPosts()) {
-    entries.push({
-      url: `${SITE}${post.path}`,
-      lastModified: new Date(post.date),
-      changeFrequency: "monthly",
-      priority: 0.65,
-    });
-    if (post.pathEn) {
+    for (const path of [post.path, post.pathEn, post.pathIt]) {
+      if (!path) continue;
       entries.push({
-        url: `${SITE}${post.pathEn}`,
+        url: `${SITE}${path}`,
         lastModified: new Date(post.date),
         changeFrequency: "monthly",
         priority: 0.65,

@@ -13,15 +13,16 @@ export function ServiciosSoluciones() {
   const t = useT();
   return (
     <Services
-      eyebrow={t({ es: "Qué hacemos", en: "What we do" })}
+      eyebrow={t({ es: "Qué hacemos", en: "What we do", it: "Cosa facciamo" })}
       heading={t({
         es: "Cinco soluciones, un mismo objetivo: que vendas más sin mayor esfuerzo.",
         en: "Five solutions, one goal: sell more without extra effort.",
+        it: "Cinque soluzioni, un unico obiettivo: vendere di più senza sforzi extra.",
       })}
-      headingHighlight={t({ es: "vendas más", en: "sell more" })}
+      headingHighlight={t({ es: "vendas más", en: "sell more", it: "vendere di più" })}
       showCta
       ctaHref="/contacto"
-      ctaLabel={t({ es: "Consultoría gratuita", en: "Free Consultancy" })}
+      ctaLabel={t({ es: "Consultoría gratuita", en: "Free Consultancy", it: "Consulenza gratuita" })}
       uppercaseNames
       showPlatforms
     />

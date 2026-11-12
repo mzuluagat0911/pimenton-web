@@ -75,7 +75,7 @@ export function OrdenesChart() {
         <div>
           <div className="flex items-center gap-2.5">
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-pimenton-text-on-dark-muted">
-              {t({ es: "Evolución mensual", en: "Monthly evolution" })}
+              {t({ es: "Evolución mensual", en: "Monthly evolution", it: "Andamento mensile" })}
             </p>
             {/* Badge EN VIVO */}
             <span className="inline-flex items-center gap-1.5 rounded-full bg-pimenton-accent/12 px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-pimenton-accent">
@@ -89,18 +89,18 @@ export function OrdenesChart() {
                     : { duration: 1.6, repeat: Infinity, ease: "easeInOut" }
                 }
               />
-              {t({ es: "En vivo", en: "Live" })}
+              {t({ es: "En vivo", en: "Live", it: "Live" })}
             </span>
           </div>
           <h4 className="mt-1.5 font-display text-2xl font-bold leading-none tracking-tight text-pimenton-text-on-dark sm:text-3xl">
-            {t({ es: "Órdenes", en: "Orders" })}{" "}
+            {t({ es: "Órdenes", en: "Orders", it: "Ordini" })}{" "}
             <span className="text-pimenton-accent">2025</span>
           </h4>
         </div>
         <div className="flex gap-8 sm:gap-6 sm:text-right">
           <div>
             <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-pimenton-text-on-dark-muted">
-              {t({ es: "Acumuladas", en: "Cumulative" })}
+              {t({ es: "Acumuladas", en: "Cumulative", it: "Cumulati" })}
             </p>
             <p className="mt-1 font-display text-xl font-bold tabular-nums text-pimenton-accent sm:text-2xl">
               {fmt(acc)}
@@ -108,7 +108,7 @@ export function OrdenesChart() {
           </div>
           <div>
             <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-pimenton-text-on-dark-muted">
-              {t({ es: "Diciembre", en: "December" })}
+              {t({ es: "Diciembre", en: "December", it: "Dicembre" })}
             </p>
             <p className="mt-1 font-display text-xl font-bold tabular-nums text-pimenton-text-on-dark sm:text-2xl">
               {fmt(cur)}
@@ -238,8 +238,8 @@ export function OrdenesChart() {
 
       {/* Footer */}
       <div className="mt-4 flex items-center justify-between border-t border-pimenton-dark-border pt-3 font-mono text-[9px] uppercase tracking-[0.18em] text-pimenton-text-on-dark-muted">
-        <span>{t({ es: "Órdenes mensuales · 2025", en: "Monthly orders · 2025" })}</span>
-        <span>{t({ es: "Enero → Diciembre", en: "January → December" })}</span>
+        <span>{t({ es: "Órdenes mensuales · 2025", en: "Monthly orders · 2025", it: "Ordini mensili · 2025" })}</span>
+        <span>{t({ es: "Enero → Diciembre", en: "January → December", it: "Gennaio → Dicembre" })}</span>
       </div>
     </div>
   );

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import localFont from "next/font/local";
 import { Footer } from "@/components/layout/Footer";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -9,13 +8,8 @@ import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { SITE_URL } from "@/lib/site";
 import { GOOGLE_SITE_VERIFICATION } from "@/lib/analytics";
-import {
-  DEFAULT_LOCALE,
-  isLocale,
-  LOCALE_HEADER,
-  siteMeta,
-  type Locale,
-} from "@/lib/i18n";
+import { LOCALES, OG_LOCALES, siteMeta, type Locale } from "@/lib/i18n";
+import { getRequestLocale, languageAlternates } from "@/lib/seo";
 import { copy } from "@/data/copy";
 import "./globals.css";
 
@@ -46,12 +40,38 @@ const helvetica = localFont({
   display: "swap",
 });
 
-async function getRequestLocale(): Promise<Locale> {
-  const h = await headers();
-  const raw = h.get(LOCALE_HEADER);
-  if (isLocale(raw ?? "")) return raw as Locale;
-  return DEFAULT_LOCALE;
-}
+const SITE_KEYWORDS: Record<Locale, string[]> = {
+  es: [
+    "delivery restaurantes",
+    "growth partner gastronomía",
+    "gestión apps delivery",
+    "Pedidos Ya",
+    "Rappi",
+    "Uber Eats",
+    "consultoría delivery",
+    "LATAM",
+  ],
+  en: [
+    "restaurant delivery",
+    "delivery growth partner",
+    "delivery app management",
+    "PedidosYa",
+    "Rappi",
+    "Uber Eats",
+    "delivery consultancy",
+    "LATAM",
+  ],
+  it: [
+    "delivery ristoranti",
+    "growth partner ristorazione",
+    "gestione app delivery",
+    "Glovo",
+    "Deliveroo",
+    "Just Eat",
+    "Uber Eats",
+    "consulenza delivery",
+  ],
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   const lang = await getRequestLocale();
@@ -63,11 +83,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: meta.description,
     alternates: {
       canonical: `/${lang}`,
-      languages: {
-        es: "/es",
-        en: "/en",
-        "x-default": "/es",
-      },
+      languages: languageAlternates("/"),
     },
     robots: {
       index: true,
@@ -80,23 +96,14 @@ export async function generateMetadata(): Promise<Metadata> {
         "max-video-preview": -1,
       },
     },
-    keywords: [
-      "delivery restaurantes",
-      "growth partner gastronomía",
-      "gestión apps delivery",
-      "Pedidos Ya",
-      "Rappi",
-      "Uber Eats",
-      "consultoría delivery",
-      "LATAM",
-    ],
+    keywords: SITE_KEYWORDS[lang],
     openGraph: {
       title: meta.ogTitle,
       description: meta.ogDescription,
       url: `${SITE_URL}/${lang}`,
       siteName: "Pimentón",
       locale: meta.ogLocale,
-      alternateLocale: lang === "es" ? ["en_US"] : ["es_AR"],
+      alternateLocale: LOCALES.filter((l) => l !== lang).map((l) => OG_LOCALES[l]),
       type: "website",
       images: [
         {
@@ -156,7 +163,7 @@ function buildSiteJsonLd(lang: Locale) {
           telephone: `+${p.phoneRaw}`,
           contactType: "customer service",
           areaServed: p.region.es,
-          availableLanguage: ["es", "en"],
+          availableLanguage: [...LOCALES],
         })),
       },
       {

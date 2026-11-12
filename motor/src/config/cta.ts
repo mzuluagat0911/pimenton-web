@@ -6,3 +6,7 @@ export const WHATSAPP_CTA_ES =
 export const WHATSAPP_CTA_EN =
   "https://wa.me/5491157035170?text=" +
   encodeURIComponent("Hi, I'd like a free delivery consultancy with Pimentón");
+
+export const WHATSAPP_CTA_IT =
+  "https://wa.me/5491157035170?text=" +
+  encodeURIComponent("Ciao, vorrei una consulenza gratuita sul delivery con Pimentón");

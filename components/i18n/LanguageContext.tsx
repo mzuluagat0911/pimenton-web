@@ -12,15 +12,20 @@ import {
 import { usePathname, useRouter } from "next/navigation";
 import { copy } from "@/data/copy";
 import {
+  blogPath,
   getLocaleFromPathname,
+  LOCALES,
   switchLocalePath,
   withLocale,
+  type Locale,
 } from "@/lib/i18n";
 
-export type Lang = "es" | "en";
+export type Lang = Locale;
 
-/** Campo bilingüe. `en` es opcional: si falta, el helper cae a `es`. */
-export type Localized = { es: string; en?: string };
+/** Campo traducido. `en`/`it` son opcionales: si faltan, el helper cae a `es`. */
+export type Localized = { es: string; en?: string; it?: string };
+
+const LANG_KEYS: readonly string[] = LOCALES;
 
 /**
  * Tipo que "resuelve" el árbol de copy: cada hoja {es,en} pasa a ser un
@@ -87,7 +92,7 @@ export function LanguageProvider({
   );
 
   const toggle = useCallback(() => {
-    setLang(lang === "es" ? "en" : "es");
+    setLang(LOCALES[(LOCALES.indexOf(lang) + 1) % LOCALES.length]);
   }, [lang, setLang]);
 
   const value = useMemo<LanguageContextValue>(
@@ -122,8 +127,8 @@ export function useT(): (field: Localized) => string {
   return useCallback((field: Localized) => field[lang] ?? field.es, [lang]);
 }
 
-// Resuelve recursivamente el árbol: las hojas {es,en} (objeto cuyas únicas
-// claves son es/en) colapsan al idioma activo (con fallback a es); el resto
+// Resuelve recursivamente el árbol: las hojas {es,en,it} (objeto cuyas únicas
+// claves son idiomas) colapsan al idioma activo (con fallback a es); el resto
 // se preserva (números, paths, enums, nombres propios).
 function deepResolve(node: unknown, lang: Lang): unknown {
   if (Array.isArray(node)) return node.map((n) => deepResolve(n, lang));
@@ -131,7 +136,7 @@ function deepResolve(node: unknown, lang: Lang): unknown {
     const keys = Object.keys(node);
     if (
       keys.includes("es") &&
-      keys.every((k) => k === "es" || k === "en")
+      keys.every((k) => LANG_KEYS.includes(k))
     ) {
       const loc = node as Localized;
       return loc[lang] ?? loc.es;
@@ -161,14 +166,14 @@ export function useCopy(): Resolved<typeof copy> {
 /**
  * Prefija rutas internas con el idioma activo (`/contacto` → `/es/contacto`).
  * El blog SEO/GEO es HTML estático fuera del App Router: ES en `/blog`,
- * EN en `/en/blog` (no usar `/es/blog`).
+ * EN en `/en/blog`, IT en `/it/blog` (no usar `/es/blog`).
  */
 export function useLocalizedHref(): (path: string) => string {
   const { lang } = useLanguage();
   return useCallback(
     (path: string) => {
       if (path === "/blog" || path.startsWith("/blog/")) {
-        return lang === "en" ? `/en${path}` : path;
+        return blogPath(lang) + path.slice("/blog".length);
       }
       return withLocale(path, lang);
     },

@@ -10,9 +10,9 @@
 export type WhatsappRegion = {
   id: "latam" | "europe" | "usa";
   /** Etiqueta corta bilingüe (LatAm, Europa/Europe, USA) */
-  title: { es: string; en: string };
+  title: { es: string; en: string; it: string };
   /** Descriptor bilingüe que aparece abajo del título en el selector */
-  subtitle: { es: string; en: string };
+  subtitle: { es: string; en: string; it: string };
   /** Solo dígitos, en formato internacional sin "+" (formato wa.me) */
   phone: string;
 };
@@ -20,20 +20,20 @@ export type WhatsappRegion = {
 export const whatsappRegions: readonly WhatsappRegion[] = [
   {
     id: "latam",
-    title: { es: "LatAm", en: "LatAm" },
-    subtitle: { es: "Argentina y la región", en: "Argentina & the region" },
+    title: { es: "LatAm", en: "LatAm", it: "LatAm" },
+    subtitle: { es: "Argentina y la región", en: "Argentina & the region", it: "Argentina e la regione" },
     phone: "5491157035170",
   },
   {
     id: "europe",
-    title: { es: "Europa", en: "Europe" },
-    subtitle: { es: "España y Europa", en: "Spain & Europe" },
+    title: { es: "Europa", en: "Europe", it: "Europa" },
+    subtitle: { es: "España y Europa", en: "Spain & Europe", it: "Spagna ed Europa" },
     phone: "34683632437",
   },
   {
     id: "usa",
-    title: { es: "USA", en: "USA" },
-    subtitle: { es: "Estados Unidos", en: "United States" },
+    title: { es: "USA", en: "USA", it: "USA" },
+    subtitle: { es: "Estados Unidos", en: "United States", it: "Stati Uniti" },
     phone: "5491157035170",
   },
 ] as const;
