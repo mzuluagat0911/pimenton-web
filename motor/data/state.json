@@ -33,7 +33,8 @@
       "qué hacer cuando un indicador de delivery se dispara",
       "mesa de control de delivery multi-sucursal",
       "cómo calcular la rentabilidad real del delivery por sucursal",
-      "tiempo de espera del repartidor en delivery"
+      "tiempo de espera del repartidor en delivery",
+      "tiempo offline de la tienda en apps de delivery"
     ]
   },
   "published": [
@@ -501,6 +502,21 @@
       "pathIt": "/it/blog/rimborsi-cancellazioni-app-delivery",
       "titleIt": "Rimborsi e cancellazioni nelle app di delivery: il margine perso",
       "descriptionIt": "Guida neutrale per capire chi paga rimborsi, cancellazioni ed error charge nelle app di delivery, calcolare quanto margine perdi e ridurlo con un playbook."
+    },
+    {
+      "slug": "tiempo-offline-tienda-apps-delivery",
+      "destino": "control-room",
+      "keyword": "tiempo offline de la tienda en apps de delivery",
+      "date": "2026-11-15",
+      "title": "Tiempo offline de la tienda en apps de delivery: cómo medirlo y cuánto cuesta",
+      "description": "Qué es el tiempo offline de la tienda en delivery, sus 4 causas, cómo medirlo por sucursal y la fórmula para calcular cuánto pierdes por cada minuto caído.",
+      "path": "/blog/tiempo-offline-tienda-apps-delivery",
+      "pathEn": "/en/blog/store-offline-time-delivery-apps",
+      "titleEn": "Store Offline Time on Delivery Apps: Measure It and Know the Cost",
+      "descriptionEn": "Store offline time is an operational KPI. Learn the 4 causes, how to measure uptime per location, and the formula to price what each offline minute costs.",
+      "pathIt": "/it/blog/tempo-offline-punto-vendita-delivery",
+      "titleIt": "Tempo offline del punto vendita nelle app di delivery: come misurarlo",
+      "descriptionIt": "Il tempo offline è un KPI operativo: scopri le 4 cause, come misurarlo per sede e la formula per calcolare quanto perdi quando il locale è chiuso senza volerlo."
     }
   ]
 }

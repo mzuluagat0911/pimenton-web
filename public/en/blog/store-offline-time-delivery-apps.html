@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Store Offline Time on Delivery Apps: Measure It and Know the Cost</title>
+    <meta name="description" content="Store offline time is an operational KPI. Learn the 4 causes, how to measure uptime per location, and the formula to price what each offline minute costs." />
+    <meta name="keywords" content="store offline time delivery apps, how long was my store down on delivery apps, measure store availability multi-location delivery, why a store goes offline on delivery apps, store uptime delivery what it is, offline store alerts multi-location, how much you lose with store accidentally closed" />
+    <link rel="canonical" href="https://www.pimenton.io/en/blog/store-offline-time-delivery-apps" />
+    <link rel="alternate" hreflang="es" href="https://www.pimenton.io/blog/tiempo-offline-tienda-apps-delivery" />
+    <link rel="alternate" hreflang="en" href="https://www.pimenton.io/en/blog/store-offline-time-delivery-apps" />
+    <link rel="alternate" hreflang="it" href="https://www.pimenton.io/it/blog/tempo-offline-punto-vendita-delivery" />
+    <link rel="alternate" hreflang="x-default" href="https://www.pimenton.io/blog/tiempo-offline-tienda-apps-delivery" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Store Offline Time on Delivery Apps: Measure It and Know the Cost" />
+    <meta property="og:description" content="Store offline time is an operational KPI. Learn the 4 causes, how to measure uptime per location, and the formula to price what each offline minute costs." />
+    <meta property="og:url" content="https://www.pimenton.io/en/blog/store-offline-time-delivery-apps" />
+    <meta property="og:image" content="https://www.pimenton.io/assets/blog-covers/cover-mise-en-place.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Store Offline Time on Delivery Apps: Measure It and Know the Cost" />
+    <meta name="twitter:description" content="Store offline time is an operational KPI. Learn the 4 causes, how to measure uptime per location, and the formula to price what each offline minute costs." />
+    <meta name="twitter:image" content="https://www.pimenton.io/assets/blog-covers/cover-mise-en-place.jpg" />
+    <meta name="theme-color" content="#E84B3C" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Store Offline Time on Delivery Apps: How to Measure It and What It Costs per Location",
+      "description": "Store offline time is an operational KPI. Learn the 4 causes, how to measure uptime per location, and the formula to price what each offline minute costs.",
+      "inLanguage": "en",
+      "author": {
+            "@type": "Organization",
+            "name": "Control Room by Pimentón",
+            "url": "https://www.pimenton.io/en"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Pimentón",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.pimenton.io/assets/blog-covers/cover-mise-en-place.jpg"
+            }
+      },
+      "datePublished": "2026-11-15",
+      "dateModified": "2026-11-15",
+      "mainEntityOfPage": "https://www.pimenton.io/en/blog/store-offline-time-delivery-apps",
+      "image": "https://www.pimenton.io/assets/blog-covers/cover-mise-en-place.jpg"
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "Why does my restaurant show as closed on the app when it's open?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Usually one of three reasons: the order device lost connection or logged out, someone paused orders and never reopened, or the configured hours don't match real operating hours. All three are restaurant-side and fixable — start by checking the device and the loaded schedule for that location."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "How do I know how long each location was offline?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Log every offline-to-online event per location against its scheduled open hours, then total the minutes by day and by time slot. Uptime % is online minutes divided by scheduled minutes. A control layer over your delivery channels automates this so you don't reconstruct it by hand."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "How many orders are lost when a store is paused?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Estimate it with minutes offline ÷ 60 × orders per hour in that slot × average ticket. A store doing 12 orders/hour at an $18 ticket that's down 40 minutes at peak loses about $144 in one gap — use the slot's real order rate, not a daily average."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "What's the difference between a manual pause, a connection outage, and a bad schedule?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "A manual pause is staff deliberately stopping orders (and often forgetting to reopen). A connection outage is involuntary — device, Wi-Fi or printer failure. A bad schedule is a phantom closure: hours loaded on the app don't match real hours, so the store looks closed while physically open. Each needs a different fix."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "How do I compare availability across locations?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Track uptime %, offline minutes in peak slots, and offline minutes by cause for each store, weekly. Ranked side by side, you see which location needs a shift-handoff fix versus a hours-config audit — comparison without a sprawling spreadsheet."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "What alert should fire when a store goes down during peak?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Any location offline for more than 5 minutes inside open hours, escalating faster during peak slots, plus a separate alert for any pause longer than 15 minutes. Auto-pauses from saturation should alert after the second trigger in one shift, since that signals the kitchen — not the app — needs attention."
+                  }
+            }
+      ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://www.pimenton.io/en"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://www.pimenton.io/en/blog"
+            },
+            {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Store Offline Time on Delivery Apps: How to Measure It and What It Costs per Location",
+                  "item": "https://www.pimenton.io/en/blog/store-offline-time-delivery-apps"
+            }
+      ]
+}
+    </script>
+    <style>
+      :root {
+        --accent:#E84B3C; --ink:#0F0F0E; --muted:#6B6967; --line:#E8DCC7;
+        --bg:#FAF1E3; --card:#FFFFFF; --measure:720px; --topbar:rgba(250,241,227,.88);
+        --cta-bg:#0F0F0E; --logo-filter:none;
+      }
+      .theme-control-room {
+        --ink:#FAF1E3; --muted:rgba(250,241,227,.68); --line:rgba(255,255,255,.12);
+        --bg:#0F0F0E; --card:#1A1A18; --topbar:rgba(15,15,14,.92); --cta-bg:#1A1A18;
+        --logo-filter:none;
+      }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body {
+        margin:0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:var(--ink); background:var(--bg); line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+      }
+      a { color:inherit; }
+      .wrap { max-width:var(--measure); margin:0 auto; padding:0 24px; }
+      .topbar { position:sticky; top:0; z-index:50; background:var(--topbar); backdrop-filter:saturate(150%) blur(10px); border-bottom:1px solid var(--line); }
+      .topbar-inner { max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .brand img { height:28px; width:auto; display:block; filter:var(--logo-filter); }
+      .topnav { display:flex; align-items:center; gap:22px; font-size:14px; font-weight:500; }
+      .topnav a { text-decoration:none; color:var(--muted); transition:color .2s; }
+      .topnav a:hover { color:var(--ink); }
+      .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+      .lang a { padding:4px 10px; font-size:12px; font-weight:600; text-decoration:none; color:var(--muted); }
+      .lang a.active { background:var(--ink); color:var(--bg); }
+      @media (max-width:640px){ .topnav .hide-sm{ display:none; } }
+      article { padding:56px 0 40px; }
+      .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+      .eyebrow::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+      h1 { font-weight:700; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.02em; margin:18px 0 20px; }
+      .lead-answer { font-size:1.18rem; line-height:1.6; color:var(--ink); border-left:3px solid var(--accent); padding:4px 0 4px 20px; margin:0 0 12px; font-weight:500; }
+      .byline { color:var(--muted); font-size:14px; margin-bottom:28px; }
+      article h2 { font-weight:700; font-size:clamp(1.45rem,3vw,1.85rem); line-height:1.2; margin:44px 0 12px; letter-spacing:-.015em; }
+      article h3 { font-size:1.08rem; font-weight:700; margin:26px 0 6px; }
+      article p { margin:0 0 18px; }
+      article ul, article ol { margin:0 0 18px; padding-left:22px; }
+      article li { margin:8px 0; }
+      article strong { font-weight:700; }
+      .callout { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:28px 0; }
+      .callout p:last-child { margin-bottom:0; }
+      .faq details { border-bottom:1px solid var(--line); padding:6px 0; }
+      .faq summary { cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+      .faq summary::-webkit-details-marker { display:none; }
+      .faq summary::after { content:"+"; color:var(--accent); font-size:1.4rem; line-height:1; }
+      .faq details[open] summary::after { content:"–"; }
+      .faq details p { margin:0 0 16px; color:var(--muted); }
+      .cta { margin:48px 0 8px; background:var(--cta-bg); color:#FAF1E3; border-radius:18px; padding:34px 30px; text-align:center; border:1px solid var(--line); }
+      .cta h2 { color:#FAF1E3; margin:0 0 10px; font-size:clamp(1.5rem,3vw,2rem); }
+      .cta p { color:rgba(250,241,227,.75); margin:0 auto 22px; max-width:46ch; }
+      .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 26px; border-radius:999px; transition:transform .15s,opacity .2s; }
+      .btn:hover { transform:translateY(-1px); opacity:.95; }
+      footer { border-top:1px solid var(--line); margin-top:40px; padding:30px 0 50px; }
+      .foot { max-width:1120px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:14px; }
+      .foot a { color:var(--muted); text-decoration:none; }
+      .foot a:hover { color:var(--ink); }
+    </style>
+    <link rel="stylesheet" href="/blog/visuals.css" />
+  </head>
+  <body class="theme-control-room">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/en" aria-label="Pimentón">
+          <img src="/assets/logos/principal/logo-blanco.webp" alt="Pimentón" width="160" height="40" />
+        </a>
+        <nav class="topnav" aria-label="Principal">
+          <a class="hide-sm" href="/en">Home</a>
+          <a href="/en/blog">Blog</a>
+          <a class="hide-sm" href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n">WhatsApp</a>
+          <span class="lang" role="group" aria-label="Idioma / Language / Lingua">
+            <a class="" href="/blog/tiempo-offline-tienda-apps-delivery" hreflang="es">ES</a>
+            <a class="active" href="/en/blog/store-offline-time-delivery-apps" hreflang="en">EN</a>
+            <a class="" href="/it/blog/tempo-offline-punto-vendita-delivery" hreflang="it">IT</a>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <article>
+          <p class="eyebrow">Control Room · Ops</p>
+          <h1>Store Offline Time on Delivery Apps: How to Measure It and What It Costs per Location</h1>
+          <p class="lead-answer"><p><strong>Store offline time is the number of minutes a location is not accepting orders on a delivery app during its scheduled open hours.</strong> It belongs to the restaurant as an operational KPI, not to the platform. Measure it by logging offline-to-online events per location and per time slot, then price the loss with a simple formula: <strong>minutes offline ÷ 60 × orders per hour × average ticket</strong>. That turns a silent gap into a number you can defend in a standup.</p></p>
+          <p class="byline">By Control Room · 2026-11-15 · 4 min read</p>
+<div class="blog-visuals-lead" data-blog-visuals="lead">
+<figure class="blog-cover" data-blog-visuals="lead">
+  <img src="/assets/blog-covers/cover-mise-en-place.jpg" alt="Mise en place before service" width="1200" height="800" loading="eager" />
+  <figcaption>If an item is missing, the order fails.</figcaption>
+</figure>
+<div class="blog-stats" data-blog-visuals="lead">
+    <div class="blog-stat"><b>10'</b><span>daily standup, not an endless meeting</span></div>
+    <div class="blog-stat"><b>3</b><span>layers: daily, weekly, war room</span></div>
+    <div class="blog-stat"><b>1</b><span>board. Everything else is noise</span></div>
+</div>
+<figure class="blog-chart blog-chart--bars" data-blog-visuals="lead">
+  <p class="chart-kicker">Ops ritual</p>
+  <figcaption>What you look at each morning (and in what order)</figcaption>
+  <div class="bars">
+    <div class="bar-row is-accent">
+      <div class="bar-meta"><span>Cancellations / 86s</span><b>1st</b></div>
+      <div class="bar-track"><span class="bar-fill seg-0" style="width:90%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Prep time</span><b>2nd</b></div>
+      <div class="bar-track"><span class="bar-fill seg-1" style="width:75%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Connectivity / stock</span><b>3rd</b></div>
+      <div class="bar-track"><span class="bar-fill seg-2" style="width:62%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ticket and mix</span><b>4th</b></div>
+      <div class="bar-track"><span class="bar-fill seg-3" style="width:50%"></span></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-meta"><span>Ads and ranking</span><b>5th</b></div>
+      <div class="bar-track"><span class="bar-fill seg-4" style="width:38%"></span></div>
+    </div>
+  </div>
+  <p class="chart-note">If the board doesn't fit on one screen, it doesn't get used. Five metrics, owner, threshold, decision.</p>
+</figure>
+</div><!-- /blog-visuals-lead -->
+
+<p>A location can look open on the street and still be invisible on a delivery app. When that happens during peak hours, orders don't arrive and nobody files a complaint — they just order from someone else. <strong>Store offline time</strong> is one of the few KPIs that costs you money while producing zero signal, which is exactly why it needs to be measured, named, and priced per location.</p><h2>What store offline time is (and why it's your KPI, not the app's)</h2><p><strong>Store offline time is the total minutes a location is unable to receive orders on a delivery channel while it is scheduled to be open.</strong> The opposite is <em>uptime</em>: the share of scheduled hours the store was actually accepting orders. If a location is scheduled open 12 hours and spent 48 minutes offline, its uptime is roughly 93.3%.</p><p>The app is the demand channel. Whether an order arrives depends on connection, device, staffing and how the store was configured — all of which the restaurant controls. Treating offline time as "the app's fault" guarantees it keeps happening. Treating it as an owned operational metric means someone reviews it, owns it, and fixes the cause.</p><h2>The four causes of offline time (a taxonomy you can act on)</h2><p>Not all offline time is the same. Lumping it together hides the fix. These are the four causes worth separating per location:</p><h3>1. Involuntary offline (connection or device)</h3><p>The tablet lost Wi-Fi, the printer died, the app logged out, or the device battery drained. The store wants orders and can't get them. <strong>Playbook:</strong> dedicated router or 4G backup for the order device, charger always plugged in, and a morning device check before the first slot. <strong>Alert:</strong> any location offline for more than 5 minutes inside open hours.</p><h3>2. Manual pause without reopening</h3><p>A shift got slammed, someone paused incoming orders to catch up — and then forgot to turn it back on. This is the most common and most avoidable cause. <strong>Playbook:</strong> every pause gets a timer and a named owner; no pause is "until further notice." <strong>Alert:</strong> any store paused longer than 15 minutes, escalating to the shift lead.</p><h3>3. Phantom closure (bad hours configuration)</h3><p>The schedule loaded on the app doesn't match real operating hours — a holiday never updated, a slot ending at 23:00 instead of 00:00, or a location set to a timezone that shifts the window. The store is physically open and silently closed online. <strong>Playbook:</strong> audit configured hours against real hours monthly and after every holiday. <strong>Alert:</strong> store shows closed while POS or staff indicate it's open.</p><h3>4. Auto-pause from saturation</h3><p>The app auto-pauses the store because prep times blew out or too many orders were rejected. This one is a real operational signal — the kitchen can't keep up. <strong>Playbook:</strong> don't just reopen; adjust prep times, trim the menu during the peak, or add a hand. <strong>Alert:</strong> auto-pause triggered more than twice in one shift at the same location.</p><figure class="blog-figure" data-blog-visuals="mid">
+  <img src="/assets/insights/profesionalizar-delivery/hero.jpg" alt="Professionalizing the delivery channel" width="1200" height="800" loading="lazy" />
+  <figcaption>Process before volume.</figcaption>
+</figure>
+          <h2>From data to action: what one offline minute costs</h2><p>Offline time only moves people when it's in money. Use this formula per location and per time slot:</p><p><strong>Lost revenue = (minutes offline ÷ 60) × orders per hour in that slot × average ticket</strong></p><p>Worked example: a location that normally does 12 orders/hour with a $18 average ticket goes offline for 40 minutes during Friday dinner. That's (40 ÷ 60) × 12 × 18 = <strong>roughly $144 in one gap</strong>. Multiply by how often it repeats across a month and across locations and the number stops being abstract.</p><p>Two refinements make it honest:</p><ul><li>Use the <strong>orders/hour for that specific slot</strong>, not a daily average — peak gaps cost far more than off-peak ones.</li><li>Don't double-count demand that shifted to another of your own locations; estimate net loss, not gross.</li></ul><h2>How to compare availability across locations</h2><p>With volume, you can't watch every tablet. The point of measuring is ranking, not perfection. For multi-location delivery, track three columns per store, per week:</p><ol><li><strong>Uptime %</strong> during scheduled hours — the headline number.</li><li><strong>Offline minutes in peak slots</strong> — because that's where the money is.</li><li><strong>Offline minutes by cause</strong> — so you fix the right thing (a connection problem and a forgotten pause have different owners).</li></ol><p>Ranked side by side, patterns surface fast: one location with chronic manual pauses needs a shift-handoff fix, another with recurring phantom closures needs a config audit. That's comparison without the endless spreadsheet.</p><h2>Common mistakes</h2><ul><li><strong>Only counting full outages.</strong> Ten-minute gaps repeated across a peak add up to more than one visible crash.</li><li><strong>Blaming the platform.</strong> It feels better and fixes nothing. The four causes above are all restaurant-side.</li><li><strong>Measuring daily averages.</strong> Averages hide the peak-hour losses that actually matter.</li><li><strong>No named owner.</strong> If no one owns reopening the store, it stays paused.</li></ul><div class="callout"><p><strong>Control Room</strong> is the operational control table for multi-location delivery: it watches store offline time per location and per slot, fires the alerts above when a store drops during peak, and turns minutes offline into a loss figure your shift leads can act on. Want to stop operating blind across locations? <a href="https://wa.me/5491157035170">Talk to us on WhatsApp</a>.</p></div>
+          <h2 id="faq">Frequently asked questions</h2>
+          <div class="faq">
+            <details>
+              <summary>Why does my restaurant show as closed on the app when it's open?</summary>
+              <p>Usually one of three reasons: the order device lost connection or logged out, someone paused orders and never reopened, or the configured hours don't match real operating hours. All three are restaurant-side and fixable — start by checking the device and the loaded schedule for that location.</p>
+            </details>
+            <details>
+              <summary>How do I know how long each location was offline?</summary>
+              <p>Log every offline-to-online event per location against its scheduled open hours, then total the minutes by day and by time slot. Uptime % is online minutes divided by scheduled minutes. A control layer over your delivery channels automates this so you don't reconstruct it by hand.</p>
+            </details>
+            <details>
+              <summary>How many orders are lost when a store is paused?</summary>
+              <p>Estimate it with minutes offline ÷ 60 × orders per hour in that slot × average ticket. A store doing 12 orders/hour at an $18 ticket that's down 40 minutes at peak loses about $144 in one gap — use the slot's real order rate, not a daily average.</p>
+            </details>
+            <details>
+              <summary>What's the difference between a manual pause, a connection outage, and a bad schedule?</summary>
+              <p>A manual pause is staff deliberately stopping orders (and often forgetting to reopen). A connection outage is involuntary — device, Wi-Fi or printer failure. A bad schedule is a phantom closure: hours loaded on the app don't match real hours, so the store looks closed while physically open. Each needs a different fix.</p>
+            </details>
+            <details>
+              <summary>How do I compare availability across locations?</summary>
+              <p>Track uptime %, offline minutes in peak slots, and offline minutes by cause for each store, weekly. Ranked side by side, you see which location needs a shift-handoff fix versus a hours-config audit — comparison without a sprawling spreadsheet.</p>
+            </details>
+            <details>
+              <summary>What alert should fire when a store goes down during peak?</summary>
+              <p>Any location offline for more than 5 minutes inside open hours, escalating faster during peak slots, plus a separate alert for any pause longer than 15 minutes. Auto-pauses from saturation should alert after the second trigger in one shift, since that signals the kitchen — not the app — needs attention.</p>
+            </details>
+          </div>
+          <div class="cta">
+            <h2>Want clear visibility on your delivery?</h2>
+            <p>Message us on WhatsApp. We'll review what's breaking multi-location rhythm and what to fix first.</p>
+            <a class="btn" href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n" target="_blank" rel="noopener noreferrer">Message on WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <div class="foot">
+        <p>© 2026 Pimentón</p>
+        <p><a href="/en">Home</a> · <a href="/en/blog">Blog</a> · <a href="https://wa.me/5491157035170?text=Hi%2C%20I'd%20like%20a%20free%20delivery%20consultancy%20with%20Piment%C3%B3n">WhatsApp</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
