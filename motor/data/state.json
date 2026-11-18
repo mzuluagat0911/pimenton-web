@@ -16,7 +16,8 @@
       "ingeniería de menú delivery",
       "ads en apps de delivery vs meta ads para restaurantes",
       "pedidos incrementales delivery",
-      "reembolsos y cancelaciones en apps de delivery"
+      "reembolsos y cancelaciones en apps de delivery",
+      "cómo aumentar la recompra en delivery"
     ],
     "control-room": [
       "qué indicadores revisar delivery multi-sucursal",
@@ -517,6 +518,21 @@
       "pathIt": "/it/blog/tempo-offline-punto-vendita-delivery",
       "titleIt": "Tempo offline del punto vendita nelle app di delivery: come misurarlo",
       "descriptionIt": "Il tempo offline è un KPI operativo: scopri le 4 cause, come misurarlo per sede e la formula per calcolare quanto perdi quando il locale è chiuso senza volerlo."
+    },
+    {
+      "slug": "como-aumentar-recompra-delivery",
+      "destino": "pimenton",
+      "keyword": "cómo aumentar la recompra en delivery",
+      "date": "2026-11-18",
+      "title": "Cómo aumentar la recompra en delivery: medir frecuencia y fidelizar",
+      "description": "Aprende a medir la frecuencia de compra, calcular el LTV y mover las palancas de retención que tu restaurante controla para que el cliente de delivery vuelva.",
+      "path": "/blog/como-aumentar-recompra-delivery",
+      "pathEn": "/en/blog/increase-repeat-orders-delivery",
+      "titleEn": "How to Increase Repeat Orders in Delivery: Measure Frequency and Build Loyalty",
+      "descriptionEn": "Learn how to increase repeat orders in delivery: measure purchase frequency, calculate customer LTV, and pull the retention levers your restaurant controls.",
+      "pathIt": "/it/blog/come-aumentare-riacquisto-delivery",
+      "titleIt": "Come aumentare il riacquisto nel delivery: frequenza e fidelizzazione",
+      "descriptionIt": "Misura la frequenza di acquisto nel delivery e attiva le leve di retention che controlli: prodotto, temperatura, packaging e canale proprio. Con calcolo LTV."
     }
   ]
 }
