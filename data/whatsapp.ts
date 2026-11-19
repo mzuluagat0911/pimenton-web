@@ -22,7 +22,7 @@ export const whatsappRegions: readonly WhatsappRegion[] = [
     id: "latam",
     title: { es: "LatAm", en: "LatAm", it: "LatAm" },
     subtitle: { es: "Argentina y la región", en: "Argentina & the region", it: "Argentina e la regione" },
-    phone: "5491157035170",
+    phone: "5491140425909",
   },
   {
     id: "europe",
@@ -34,7 +34,7 @@ export const whatsappRegions: readonly WhatsappRegion[] = [
     id: "usa",
     title: { es: "USA", en: "USA", it: "USA" },
     subtitle: { es: "Estados Unidos", en: "United States", it: "Stati Uniti" },
-    phone: "5491157035170",
+    phone: "5491140425909",
   },
 ] as const;
 
