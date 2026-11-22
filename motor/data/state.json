@@ -35,7 +35,8 @@
       "mesa de control de delivery multi-sucursal",
       "cómo calcular la rentabilidad real del delivery por sucursal",
       "tiempo de espera del repartidor en delivery",
-      "tiempo offline de la tienda en apps de delivery"
+      "tiempo offline de la tienda en apps de delivery",
+      "cómo definir umbrales de alerta en delivery multi-sucursal"
     ]
   },
   "published": [
@@ -533,6 +534,21 @@
       "pathIt": "/it/blog/come-aumentare-riacquisto-delivery",
       "titleIt": "Come aumentare il riacquisto nel delivery: frequenza e fidelizzazione",
       "descriptionIt": "Misura la frequenza di acquisto nel delivery e attiva le leve di retention che controlli: prodotto, temperatura, packaging e canale proprio. Con calcolo LTV."
+    },
+    {
+      "slug": "umbrales-alerta-delivery-multisucursal",
+      "destino": "control-room",
+      "keyword": "cómo definir umbrales de alerta en delivery multi-sucursal",
+      "date": "2026-11-22",
+      "title": "Umbrales de alerta en delivery multi-sucursal: cómo calibrarlos",
+      "description": "Aprendé a calibrar umbrales de alerta en delivery multi-sucursal en 3 capas y el principio una alerta = una acción dueña, para no saturar al equipo.",
+      "path": "/blog/umbrales-alerta-delivery-multisucursal",
+      "pathEn": "/en/blog/alert-thresholds-multi-location-delivery",
+      "titleEn": "How to Set Alert Thresholds for Multi-Location Delivery",
+      "descriptionEn": "Calibrate delivery alerts in 3 layers: a safety floor, a per-location relative threshold, and a priority rule. One alert = one owned action.",
+      "pathIt": "/it/blog/soglie-allerta-delivery-multi-sede",
+      "titleIt": "Soglie di allerta nel delivery multi-sede: come calibrarle",
+      "descriptionIt": "Come definire soglie di allerta nel delivery multi-sede con un criterio a 3 livelli e il principio 'una allerta = un'azione'. Guida operativa anti-fatica."
     }
   ]
 }
