@@ -17,7 +17,8 @@
       "ads en apps de delivery vs meta ads para restaurantes",
       "pedidos incrementales delivery",
       "reembolsos y cancelaciones en apps de delivery",
-      "cómo aumentar la recompra en delivery"
+      "cómo aumentar la recompra en delivery",
+      "marca virtual delivery"
     ],
     "control-room": [
       "qué indicadores revisar delivery multi-sucursal",
@@ -549,6 +550,21 @@
       "pathIt": "/it/blog/soglie-allerta-delivery-multi-sede",
       "titleIt": "Soglie di allerta nel delivery multi-sede: come calibrarle",
       "descriptionIt": "Come definire soglie di allerta nel delivery multi-sede con un criterio a 3 livelli e il principio 'una allerta = un'azione'. Guida operativa anti-fatica."
+    },
+    {
+      "slug": "marca-virtual-delivery",
+      "destino": "pimenton",
+      "keyword": "marca virtual delivery",
+      "date": "2026-11-25",
+      "title": "Marca virtual en delivery: ¿suma pedidos rentables o canibaliza?",
+      "description": "Marco de decisión en 3 preguntas para saber si una marca virtual de delivery suma pedidos incrementales rentables o solo canibaliza tu cocina actual.",
+      "path": "/blog/marca-virtual-delivery",
+      "pathEn": "/en/blog/virtual-brand-delivery-apps",
+      "titleEn": "Virtual Brand on Delivery Apps: Incremental or Cannibalizing?",
+      "descriptionEn": "A P&L framework in 3 questions to decide if a virtual brand on delivery apps adds profitable orders or just cannibalizes your existing kitchen.",
+      "pathIt": "/it/blog/brand-virtuale-delivery",
+      "titleIt": "Brand virtuale nel delivery: ordini incrementali o cannibalizzazione?",
+      "descriptionIt": "Guida al brand virtuale di delivery: framework P&L in 3 domande per sapere se aggiunge ordini incrementali rentabili o cannibalizza tu cocina."
     }
   ]
 }
